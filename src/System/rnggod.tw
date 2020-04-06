@@ -1,0 +1,5 @@
+:: rnggod [widget nobr]
+
+<<widget "rngod">>
+<<set $rnggod to (random(0,100))>>
+<</widget>>

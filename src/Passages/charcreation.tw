@@ -1,0 +1,9 @@
+:: Start
+
+!!Character creation
+
+<span class="yellow">Select your gender</span>
+* <label>Male <<radiobutton "$playervar.gender" "male" checked>> </label>
+* <label>Female <<radiobutton "$playervar.gender" "female">> </label>
+
+[[Home]]
