@@ -3,7 +3,9 @@
 <<set $playervar to
 {
     gender: 0, /* Gender of the player; Male or female */
-    playersize: 0, /* Size of the player */
+    height: 0, /* Height of the player */
+    bodyshape: 0, /* Body size of the player */
+    beauty: 0, /* How beautiful the player is*/
 
     /* Female variables */
     hasvagina: 0, /* Player has a vagina */
@@ -11,12 +13,12 @@
     vagcomfortinsert: 0, /* Player vaginal comfortable insertion */
     breastsize: 0, /* Size of player breast */
     uterusdepth: 0, /* Size of player uterus depth */
-    insidemaxcumlevel: 0, /* How much cum the player has inside in ml (pre-cuminflation variable) */
-    breastmilkmaxlevel: 0, /* How much breast milk the player has in ml (pre-lactation variable) */
+    insidemaxcumlevel: 0, /* How much cum the player can have inside in ml (pre-cuminflation variable) */
+    breastmilkmaxlevel: 0, /* How much breast milk the player can have in ml (pre-lactation variable) */
     breastmilkregen: 0, /* How much breast milk the player regens */
     clitorissize: 0, /* Size of player clitoris*/
-    nipplesize: 0,
-    aureolasize: 0,
+    nipplesize: 0, /* Size of player nipples*/
+    aureolasize: 0, /* Size of player aureolas */
 
     /* Male variables */
     haspenis: 0, /* Player has a penis */

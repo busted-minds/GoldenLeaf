@@ -3,42 +3,42 @@
 <<widget "gendercheck">>
 
 /*Female player*/
-<<if $playervar.gender is "female">>
+<<switch $playervar.gender>>
+<<case "female">>
 	<<set $playervar.hasvagina to true>>
 
-	<<if $playervar.playersize is "small">>
-		<<set $playervar.vagdepth to (random(7,10))>>
+	<<switch $playervar.height>>
+	<<case "small">>
+		<<set $playervar.vagdepth to (random(6,10))>>
 		<<set $playervar.anuscomfortinsert to (random(12,15))>>
 		<<set $playervar.vagcomfortinsert to (random(5,9))>>
-		<<set $playervar.uterusdepth to (random(3,5))>>
-		<</if>>
+		<<set $playervar.uterusdepth to (random(2,4))>>
 
-	<<if $playervar.playersize is "normal">>
+	<<case "normal">>
 		<<set $playervar.vagdepth to (random(11,15))>>
 		<<set $playervar.anuscomfortinsert to (random(16,19))>>
 		<<set $playervar.vagcomfortinsert to (random(10,14))>>
-		<<set $playervar.uterusdepth to (random(6,8))>>
-	<</if>>
+		<<set $playervar.uterusdepth to (random(5,7))>>
 
-	<<if $playervar.playersize is "medium">>
+	<<case "medium">>
 		<<set $playervar.vagdepth to (random(16,20))>>
 		<<set $playervar.anuscomfortinsert to (random(19,22))>>
 		<<set $playervar.vagcomfortinsert to (random(14,18))>>
 		<<set $playervar.uterusdepth to (random(8,10))>>
-	<</if>>
 
-	<<if $playervar.playersize is "tall">>
+	<<case "tall">>
 		<<set $playervar.vagdepth to (random(20,24))>>
 		<<set $playervar.anuscomfortinsert to (random(22,25))>>
 		<<set $playervar.vagcomfortinsert to (random(18,22))>>
 		<<set $playervar.uterusdepth to (random(10,12))>>
-	<</if>>
+	<</switch>>
 
 	<<set $playervar.insidemaxcumlevel to 1000 + ($playervar.uterusdepth * 50)>>
 	<<set $playervar.haspenis to false>>
 
 /*Male player*/
-<<elseif $playervar.gender is "male">>
+<<case "male">>
 	<<set $playervar.haspenis to true>>
-<</if>>
+<</switch>>
+
 <</widget>>

@@ -2,21 +2,13 @@
 
 <<gendercheck>>
 
-!!!Body size:
-<br>
-* <label>Small <<print '<<radiobutton "$playervar.playersize" "small" '+ ($playervar.playersize is "small" ? "checked" : "") +'>>'>></label>
-<br>
-* <label>Normal <<print '<<radiobutton "$playervar.playersize" "normal" '+ ($playervar.playersize is "normal" ? "checked" : "") +'>>'>></label>
-<br>
-* <label>Medium <<print '<<radiobutton "$playervar.playersize" "medium" '+ ($playervar.playersize is "medium" ? "checked" : "") +'>>'>></label>
-<br>
-* <label>Tall <<print '<<radiobutton "$playervar.playersize" "tall" '+ ($playervar.playersize is "tall" ? "checked" : "") +'>>'>></label>
-<br>
 <<if $playervar.gender is "female">>
 
-hey!
+hey! you are <<print $playervar.height>> and <<print $playervar.bodyshape>>
 
-<<elseif $playervar.gender is "male">>you have a penis
+<<elseif $playervar.gender is "male">>you have a penis.
 <</if>>
 
 [[Home]]
+
+[[Go Back|previous()]]
