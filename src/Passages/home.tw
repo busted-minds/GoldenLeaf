@@ -4,7 +4,9 @@
 
 <<if $playervar.gender is "female">>
 
-hey! you are <<print $playervar.height>> and <<print $playervar.bodyshape>>
+hey! you are <<print $playervar.height>> and <<print $playervar.bodyshape>> vagdepth:<<print $playervar.vagdepth>>
+anuscomfortinsert:<<print $playervar.anuscomfortinsert>> vagcomfortinsert:<<print $playervar.vagcomfortinsert>> uterusdepth:<<print $playervar.uterusdepth>> insidemaxcumlevel:<<print $playervar.insidemaxcumlevel>>
+<<bsandhchecker>>
 
 <<elseif $playervar.gender is "male">>you have a penis.
 <</if>>

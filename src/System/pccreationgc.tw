@@ -1,44 +1,131 @@
-:: pccreationgc [widget nobr]
+:: pccreation [widget nobr]
 
 <<widget "gendercheck">>
 
-/*Female player*/
 <<switch $playervar.gender>>
-<<case "female">>
-	<<set $playervar.hasvagina to true>>
+	/*Female player*/
+	<<case "female">>
+		<<set $playervar.hasvagina to true>>
+		<<set $playervar.haspenis to false>>
 
-	<<switch $playervar.height>>
-	<<case "small">>
-		<<set $playervar.vagdepth to (random(6,10))>>
-		<<set $playervar.anuscomfortinsert to (random(12,15))>>
-		<<set $playervar.vagcomfortinsert to (random(5,9))>>
-		<<set $playervar.uterusdepth to (random(2,4))>>
+		<<switch $playervar.height>>
+			<<case "small">>
+				<<set $playervar.vagdepth to (random(6,10))>>
+				<<set $playervar.anuscomfortinsert to (random(12,15))>>
+				<<set $playervar.vagcomfortinsert to (random(5,9))>>
+				<<set $playervar.uterusdepth to (random(2,4))>>
 
-	<<case "normal">>
-		<<set $playervar.vagdepth to (random(11,15))>>
-		<<set $playervar.anuscomfortinsert to (random(16,19))>>
-		<<set $playervar.vagcomfortinsert to (random(10,14))>>
-		<<set $playervar.uterusdepth to (random(5,7))>>
+			<<case "normal">>
+				<<set $playervar.vagdepth to (random(11,15))>>
+				<<set $playervar.anuscomfortinsert to (random(16,19))>>
+				<<set $playervar.vagcomfortinsert to (random(10,14))>>
+				<<set $playervar.uterusdepth to (random(4,6))>>
 
-	<<case "medium">>
-		<<set $playervar.vagdepth to (random(16,20))>>
-		<<set $playervar.anuscomfortinsert to (random(19,22))>>
-		<<set $playervar.vagcomfortinsert to (random(14,18))>>
-		<<set $playervar.uterusdepth to (random(8,10))>>
+			<<case "medium">>
+				<<set $playervar.vagdepth to (random(16,20))>>
+				<<set $playervar.anuscomfortinsert to (random(20,23))>>
+				<<set $playervar.vagcomfortinsert to (random(15,19))>>
+				<<set $playervar.uterusdepth to (random(6,8))>>
 
-	<<case "tall">>
-		<<set $playervar.vagdepth to (random(20,24))>>
-		<<set $playervar.anuscomfortinsert to (random(22,25))>>
-		<<set $playervar.vagcomfortinsert to (random(18,22))>>
-		<<set $playervar.uterusdepth to (random(10,12))>>
-	<</switch>>
+			<<case "tall">>
+				<<set $playervar.vagdepth to (random(21,25))>>
+				<<set $playervar.anuscomfortinsert to (random(24,27))>>
+				<<set $playervar.vagcomfortinsert to (random(20,24))>>
+				<<set $playervar.uterusdepth to (random(8,10))>>
+		<</switch>>
 
 	<<set $playervar.insidemaxcumlevel to 1000 + ($playervar.uterusdepth * 50)>>
-	<<set $playervar.haspenis to false>>
 
-/*Male player*/
-<<case "male">>
-	<<set $playervar.haspenis to true>>
+	/*Male player*/
+	<<case "male">>
+		<<set $playervar.haspenis to true>>
+		<<set $playervar.hasvagina to false>>
+		
+		<<switch $playervar.height>>
+			<<case "small">>
+				<<set $playervar.anuscomfortinsert to (random(12,15))>>
+				<<set $playervar.accumcumlevel to (random(100,150))>>
+				<<set $playervar.cumregen to (random(3,5))>>
+
+			<<case "normal">>
+				<<set $playervar.anuscomfortinsert to (random(16,19))>>
+				<<set $playervar.accumcumlevel to (random(151,200))>>
+				<<set $playervar.cumregen to (random(6,8))>>
+
+			<<case "medium">>
+				<<set $playervar.anuscomfortinsert to (random(20,23))>>
+				<<set $playervar.accumcumlevel to (random(201,250))>>
+				<<set $playervar.cumregen to (random(9,11))>>
+
+			<<case "tall">>
+				<<set $playervar.anuscomfortinsert to (random(24,27))>>
+				<<set $playervar.accumcumlevel to (random(251,300))>>
+				<<set $playervar.cumregen to (random(12,14))>>
+		<</switch>>
+
+<</switch>>
+
+<</widget>>
+
+<<widget "bsandhchecker">> /* Bodyshape and height checker */
+
+<<switch $playervar.height>>
+    <<case "tall">>
+        <<switch $playervar.bodyshape>>
+                <<case "muscular">>
+                    You are powerful.
+                <<case "fit">>
+                    You are healthy.
+                <<case "normal">>
+                    You are a bit skimpy.
+                <<case "chubby">>
+                    You have a little bit of fat.
+                <<case "fat">>
+                    You are fat.
+        <</switch>>
+        
+    <<case "medium">>
+            <<switch $playervar.bodyshape>>
+                <<case "muscular">>
+                    You are powerful.
+                <<case "fit">>
+                    You are healthy.
+                <<case "normal">>
+                    You are a bit skimpy.
+                <<case "chubby">>
+                    You have a little bit of fat.
+                <<case "fat">>
+                    You are fat.
+            <</switch>>
+                
+    <<case "normal">>
+            <<switch $playervar.bodyshape>>
+                <<case "muscular">>
+                    You are powerful.
+                <<case "fit">>
+                    You are healthy.
+                <<case "normal">>
+                    You are a bit skimpy.
+                <<case "chubby">>
+                    You have a little bit of fat.
+                <<case "fat">>
+                    You are fat.
+            <</switch>>
+
+    <<case "small">>
+            <<switch $playervar.bodyshape>>
+                <<case "muscular">>
+                    You are powerful.
+                <<case "fit">>
+                    You are healthy.
+                <<case "normal">>
+                    You are a bit skimpy.
+                <<case "chubby">>
+                    You have a little bit of fat.
+                <<case "fat">>
+                    You are fat.
+            <</switch>>
+
 <</switch>>
 
 <</widget>>

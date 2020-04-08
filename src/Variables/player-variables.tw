@@ -14,7 +14,7 @@
     breastsize: 0, /* Size of player breast */
     uterusdepth: 0, /* Size of player uterus depth */
     insidemaxcumlevel: 0, /* How much cum the player can have inside in ml (pre-cuminflation variable) */
-    breastmilkmaxlevel: 0, /* How much breast milk the player can have in ml (pre-lactation variable) */
+    breastmilkmaxlevel: 0, /* How much breast milk the player can have in ml (pre-lactation variable) (necesita ser minimo 1000 eliminar esto despues)*/
     breastmilkregen: 0, /* How much breast milk the player regens */
     clitorissize: 0, /* Size of player clitoris*/
     nipplesize: 0, /* Size of player nipples*/
@@ -24,8 +24,7 @@
     haspenis: 0, /* Player has a penis */
     penissize: 0, /* Size of player penis */
     ballssize: 0, /* Size of player balls */
-    maxcumlevel: 0, /* How much cum the player has in ml (max level) */
-    mincumlevel: 0, /* How much cum the player has in ml (min level) */
+    accumcumlevel: 0, /* How much cum the player has accumulated in ml */
     cumregen: 0, /* How much cum the player regens */
 
     /* General variables */
