@@ -9,14 +9,12 @@
 <span class="yellow">Select your body height:</span>  <sup><span class="red">Your body height will affect some statistics of your character.</span></sup>
 * <label>Small <<print '<<radiobutton "$playervar.height" "small" '+ ($playervar.height is "small" ? "checked" : "") +'>>'>></label>
 * <label>Normal <<print '<<radiobutton "$playervar.height" "normal" '+ ($playervar.height is "normal" ? "checked" : "") +'>>'>></label>
-* <label>Medium <<print '<<radiobutton "$playervar.height" "medium" '+ ($playervar.height is "medium" ? "checked" : "") +'>>'>></label>
 * <label>Tall <<print '<<radiobutton "$playervar.height" "tall" '+ ($playervar.height is "tall" ? "checked" : "") +'>>'>></label>
 
 <span class ="yellow">Select your body shape:</span> <sup><span class="red">Your body shape will affect some statistics of your character</span></sup>
-* <label>Muscular <<print '<<radiobutton "$playervar.bodyshape" "muscular" '+ ($playervar.bodyshape is "muscular" ? "checked" : "") +'>>'>></label>
-* <label>Fit <<print '<<radiobutton "$playervar.bodyshape" "fit" '+ ($playervar.bodyshape is "fit" ? "checked" : "") +'>>'>></label>
-* <label>Normal <<print '<<radiobutton "$playervar.bodyshape" "normal" '+ ($playervar.bodyshape is "normal" ? "checked" : "") +'>>'>></label>
-* <label>Chubby <<print '<<radiobutton "$playervar.bodyshape" "chubby" '+ ($playervar.bodyshape is "chubby" ? "checked" : "") +'>>'>></label>
-* <label>Fat <<print '<<radiobutton "$playervar.bodyshape" "fat" '+ ($playervar.bodyshape is "fat" ? "checked" : "") +'>>'>></label>
+* <label>Toned <<print '<<radiobutton "$playervar.bodyshapestate" "60" '+ ($playervar.bodyshapestate is "60" ? "checked" : "") +'>>'>></label>
+* <label>Normal <<print '<<radiobutton "$playervar.bodyshapestate" "40" '+ ($playervar.bodyshapestate is "40" ? "checked" : "") +'>>'>></label>
+* <label>Chubby <<print '<<radiobutton "$playervar.bodyshapestate" "20" '+ ($playervar.bodyshapestate is "20" ? "checked" : "") +'>>'>></label>
+* <label>fat<<print '<<radiobutton "$playervar.bodyshapestate" "0" '+ ($playervar.bodyshapestate is "0" ? "checked" : "") +'>>'>></label>
 
 [[Home]]

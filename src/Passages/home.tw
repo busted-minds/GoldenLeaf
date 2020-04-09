@@ -1,12 +1,11 @@
 :: Home [nobr]
 
 <<gendercheck>>
+<<bsandhsetter>>
 
 <<if $playervar.gender is "female">>
 
-hey! you are <<print $playervar.height>> and <<print $playervar.bodyshape>> vagdepth:<<print $playervar.vagdepth>>
-anuscomfortinsert:<<print $playervar.anuscomfortinsert>> vagcomfortinsert:<<print $playervar.vagcomfortinsert>> uterusdepth:<<print $playervar.uterusdepth>> insidemaxcumlevel:<<print $playervar.insidemaxcumlevel>>
-<<bsandhchecker>>
+hey! you are <<print $playervar.height>> and <<print $playervar.bodyshape>> making you <<bsandhmessager>>
 
 <<elseif $playervar.gender is "male">>you have a penis.
 <</if>>

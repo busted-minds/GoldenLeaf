@@ -1,0 +1,191 @@
+:: pccreation [widget nobr]
+
+<<widget "gendercheck">>
+	<<switch $playervar.gender>>
+		/*Female player*/
+		<<case "female">>
+			<<set $playervar.hasvagina to true>>
+			<<set $playervar.haspenis to false>>
+
+			<<switch $playervar.height>>
+				<<case "small">>
+					<<set $playervar.vagdepth to (random(11,15))>>
+					<<set $playervar.anuscomfortinsert to (random(16,19))>>
+					<<set $playervar.vagcomfortinsert to (random(10,14))>>
+					<<set $playervar.uterusdepth to (random(4,6))>>
+
+				<<case "normal">>
+					<<set $playervar.vagdepth to (random(16,20))>>
+					<<set $playervar.anuscomfortinsert to (random(20,23))>>
+					<<set $playervar.vagcomfortinsert to (random(15,19))>>
+					<<set $playervar.uterusdepth to (random(7,9))>>
+
+				<<case "tall">>
+					<<set $playervar.vagdepth to (random(21,25))>>
+					<<set $playervar.anuscomfortinsert to (random(24,27))>>
+					<<set $playervar.vagcomfortinsert to (random(20,24))>>
+					<<set $playervar.uterusdepth to (random(10,12))>>
+			<</switch>>
+
+		<<set $playervar.insidemaxcumlevel to 1000 + ($playervar.uterusdepth * 50)>>
+
+		/*Male player*/
+		<<case "male">>
+			<<set $playervar.haspenis to true>>
+			<<set $playervar.hasvagina to false>>
+			
+			<<switch $playervar.height>>
+				<<case "small">>
+					<<set $playervar.anuscomfortinsert to (random(16,19))>>
+					<<set $playervar.accumcumlevel to (random(150,200))>>
+					<<set $playervar.cumregen to (random(3,5))>>
+
+				<<case "normal">>
+					<<set $playervar.anuscomfortinsert to (random(20,23))>>
+					<<set $playervar.accumcumlevel to (random(201,250))>>
+					<<set $playervar.cumregen to (random(9,11))>>
+
+				<<case "tall">>
+					<<set $playervar.anuscomfortinsert to (random(24,27))>>
+					<<set $playervar.accumcumlevel to (random(251,300))>>
+					<<set $playervar.cumregen to (random(12,14))>>
+			<</switch>>
+
+	<</switch>>
+<</widget>>
+
+<<widget "bsandhsetter">> /* Bodyshape and height setter */
+	
+	<<switch $playervar.height>>
+		<<case "tall">>
+			<<switch $playervar.bodyshapestate>>
+					<<case "100">> /* Muscular*/
+						<<set $playervar.bodyshape to "muscular">>
+
+					<<case "80">> /* Fit */
+						<<set $playervar.bodyshape to "fit">>
+
+					<<case "60">> /* Toned */
+						<<set $playervar.bodyshape to "toned">>
+
+					<<case "40">> /* Normal */
+						<<set $playervar.bodyshape to "normal">>
+
+					<<case "20">> /* Chubby */
+						<<set $playervar.bodyshape to "chubby">>
+
+					<<case "0">> /* Fat */
+						<<set $playervar.bodyshape to "fat">>
+			<</switch>>
+			
+		<<case "normal">>
+				<<switch $playervar.bodyshapestate>>
+					<<case "100">>
+						<<set $playervar.bodyshape to "muscular">>
+
+					<<case "80">>
+						<<set $playervar.bodyshape to "fit">>
+
+					<<case "60">>
+						<<set $playervar.bodyshape to "toned">>
+
+					<<case "40">>
+						<<set $playervar.bodyshape to "normal">>
+
+					<<case "20">>
+						<<set $playervar.bodyshape to "chubby">>
+
+					<<case "0">>
+						<<set $playervar.bodyshape to "fat">>
+				<</switch>>
+
+		<<case "small">>
+				<<switch $playervar.bodyshapestate>>
+					<<case "100">>
+						<<set $playervar.bodyshape to "muscular">>
+
+					<<case "80">>
+						<<set $playervar.bodyshape to "fit">>
+
+					<<case "60">>
+						<<set $playervar.bodyshape to "toned">>
+
+					<<case "40">>
+						<<set $playervar.bodyshape to "normal">>
+
+					<<case "20">>
+						<<set $playervar.bodyshape to "chubby">>
+
+					<<case "0">>
+						<<set $playervar.bodyshape to "fat">>
+				<</switch>>
+	<</switch>>
+<</widget>>
+
+<<widget "bsandhmessager">> /* Bodyshape and height messager */
+	
+	<<switch $playervar.height>>
+		<<case "tall">>
+			<<switch $playervar.bodyshape>>
+					<<case "muscular">> /* Muscular*/
+						ripped
+
+					<<case "fit">> /* Fit */
+						powerful
+
+					<<case "toned">> /* Toned */
+						healthy
+
+					<<case "normal">> /* Normal */
+						looks good
+
+					<<case "chubby">> /* Chubby */
+						skinny
+
+					<<case "fat">> /* Fat */
+						fat
+			<</switch>>
+			
+		<<case "normal">>
+				<<switch $playervar.bodyshape>>
+					<<case "muscular">>
+						powerful
+
+					<<case "fit">>
+						healthy
+
+					<<case "toned">>
+						looks good
+
+					<<case "normal">>
+						skinny
+
+					<<case "chubby">>
+						fat
+
+					<<case "fat">>
+						obese
+				<</switch>>
+
+		<<case "small">>
+				<<switch $playervar.bodyshape>>
+					<<case "muscular">>
+						healthy
+
+					<<case "fit">>
+						looks good
+
+					<<case "toned">>
+						skinny
+
+					<<case "normal">>
+						fat
+
+					<<case "chubby">>
+						obese
+
+					<<case "fat">>
+						how do you even move?
+				<</switch>>
+	<</switch>>
+<</widget>>

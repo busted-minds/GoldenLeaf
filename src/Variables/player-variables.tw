@@ -4,8 +4,9 @@
 {
     gender: 0, /* Gender of the player; Male or female */
     height: 0, /* Height of the player */
-    bodyshape: 0, /* Body size of the player */
-    beauty: 0, /* How beautiful the player is*/
+    bodyshape: 0, /* Body shape of the player */
+    bodyshapestate: 0, /* State of the body shape */
+    beauty: 0, /* How beautiful the player is */
 
     /* Female variables */
     hasvagina: 0, /* Player has a vagina */
