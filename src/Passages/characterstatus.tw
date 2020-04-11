@@ -1,0 +1,4 @@
+:: characterstatus
+
+Breast info:
+Your breast are <<breastsizechecker>>. Thanks to that you can hold <<print $playervar.breastmilkmaxlevel>>ml of milk.
