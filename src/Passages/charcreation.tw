@@ -1,90 +1,196 @@
-:: charcreation1
+:: charcreation1[nobr]
+<fieldset>
+    <legend>Character Creation</legend>
 
-!!Character creation
+    <span class="darkyellow">Select your gender:</span>
+    <ul>
+        <li><label class="lightblue">Male <<print '<<radiobutton "$playervar.gender" "male"'+ ($playervar.gender is "male" ? "checked" : "") +'>>'>> </label></li>
+        <li><label class="pink">Female <<print '<<radiobutton "$playervar.gender" "female"'+ ($playervar.gender is "female" ? "checked" : "") +'>>'>> </label></li>
+    </ul>
 
-<span class="yellow">Select your gender:</span>
-* <label>Male <<print '<<radiobutton "$playervar.gender" "male"'+ ($playervar.gender is "male" ? "checked" : "") +'>>'>> </label>
-* <label>Female <<print '<<radiobutton "$playervar.gender" "female"'+ ($playervar.gender is "female" ? "checked" : "") +'>>'>> </label>
+    <span class="darkyellow">Select your body height:</span>  <sup><span class="red">Your body height will affect some statistics of your character.</span></sup>
+    <ul>
+        <li><label>Tall <<print '<<radiobutton "$playervar.height" "tall" '+ ($playervar.height is "tall" ? "checked" : "") +'>>'>></label></li>
+        <li><label>Normal <<print '<<radiobutton "$playervar.height" "normal" '+ ($playervar.height is "normal" ? "checked" : "") +'>>'>></label></li>
+        <li><label>Small <<print '<<radiobutton "$playervar.height" "small" '+ ($playervar.height is "small" ? "checked" : "") +'>>'>></label></li>
+    </ul>
 
-<span class="yellow">Select your body height:</span>  <sup><span class="red">Your body height will affect some statistics of your character.</span></sup>
-* <label>Small <<print '<<radiobutton "$playervar.height" "small" '+ ($playervar.height is "small" ? "checked" : "") +'>>'>></label>
-* <label>Normal <<print '<<radiobutton "$playervar.height" "normal" '+ ($playervar.height is "normal" ? "checked" : "") +'>>'>></label>
-* <label>Tall <<print '<<radiobutton "$playervar.height" "tall" '+ ($playervar.height is "tall" ? "checked" : "") +'>>'>></label>
-
-<span class ="yellow">Select your body shape:</span> <sup><span class="red">Your body shape will affect some statistics of your character</span></sup>
-* <label>Toned <<print '<<radiobutton "$playervar.bodyshape" "60" '+ ($playervar.bodyshape is "60" ? "checked" : "") +'>>'>></label>
-* <label>Normal <<print '<<radiobutton "$playervar.bodyshape" "40" '+ ($playervar.bodyshape is "40" ? "checked" : "") +'>>'>></label>
-* <label>Chubby <<print '<<radiobutton "$playervar.bodyshape" "20" '+ ($playervar.bodyshape is "20" ? "checked" : "") +'>>'>></label>
+    <span class ="darkyellow">Select your body shape:</span> <sup><span class="red">Your body shape will affect some statistics of your character</span></sup>
+    <ul>
+        <li><label class="green">Toned <<print '<<radiobutton "$playervar.bodyshape" 60 '+ ($playervar.bodyshape is 60 ? "checked" : "") +'>>'>></label></li>
+        <li><label class="gray">Normal <<print '<<radiobutton "$playervar.bodyshape" 40 '+ ($playervar.bodyshape is 40 ? "checked" : "") +'>>'>></label></li>
+        <li><label class="lightyellow">Chubby <<print '<<radiobutton "$playervar.bodyshape" 20 '+ ($playervar.bodyshape is 20 ? "checked" : "") +'>>'>></label></li>
+    </ul>
+</fieldset>
 
 [[Continue|charcreation2]]
 
 /* Character creation Passage 2*/
 :: charcreation2 [nobr]
 
-<<gendercheck>>
+<<gendersetter>>
 
 <<if $playervar.gender is "female">>
+    <fieldset>
+        <legend>Character Creation</legend>
 
-/* Breast size */
-<span class="yellow">Select your breast size: </span>
-<br>
--<label>Perky<<print '<<radiobutton "$playervar.breastsize" "60" '+ ($playervar.breastsize is "60" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Normal<<print '<<radiobutton "$playervar.breastsize" "40" '+ ($playervar.breastsize is "40" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Small<<print '<<radiobutton "$playervar.breastsize" "20" '+ ($playervar.breastsize is "20" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Flat<<print '<<radiobutton "$playervar.breastsize" "0" '+ ($playervar.breastsize is "0" ? "checked" : "") +'>>'>></label>
+        <span class="yellow">Select your breast size: </span>
+        <ul>
+            <li><label class="pink">Perky <<print '<<radiobutton "$playervar.breastsize" 60 '+ ($playervar.breastsize is 60 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.breastsize" 40 '+ ($playervar.breastsize is 40 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.breastsize" 20 '+ ($playervar.breastsize is 20 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Flat <<print '<<radiobutton "$playervar.breastsize" 0 '+ ($playervar.breastsize is 0 ? "checked" : "") +'>>'>></label></li>
+        </ul>
 
-/* Nipple type */
-<br>
-<span class="yellow">Select your nipple type: </span>
-<br>
--<label>Inverted<<print '<<radiobutton "$playervar.nippletype" "inverted" '+ ($playervar.nippletype is "inverted" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Protruding<<print '<<radiobutton "$playervar.nippletype" "protruding" '+ ($playervar.nippletype is "protruding" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Puffy<<print '<<radiobutton "$playervar.nippletype" "puffy" '+ ($playervar.nippletype is "puffy" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Flat<<print '<<radiobutton "$playervar.nippletype" "flat" '+ ($playervar.nippletype is "flat" ? "checked" : "") +'>>'>></label>
+        <span class="yellow">Select your nipple type: </span>
+        <ul>
+            <li><label class="pink">Inverted <<print '<<radiobutton "$playervar.nippletype" "inverted" '+ ($playervar.nippletype is "inverted" ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightblue">Protruding <<print '<<radiobutton "$playervar.nippletype" "protruding" '+ ($playervar.nippletype is "protruding" ? "checked" : "") +'>>'>></label></li>
+            <li><label class="purple">Puffy <<print '<<radiobutton "$playervar.nippletype" "puffy" '+ ($playervar.nippletype is "puffy" ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Flat <<print '<<radiobutton "$playervar.nippletype" "flat" '+ ($playervar.nippletype is "flat" ? "checked" : "") +'>>'>></label></li>
+        </ul>
 
-/* Clitoris size */
-<br>
-<span class="yellow">Select your clitoris size: </span>
-<br>
--<label>Big<<print '<<radiobutton "$playervar.clitorissize" "2.3" '+ ($playervar.clitorissize is "2.3" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Normal<<print '<<radiobutton "$playervar.clitorissize" "0.9" '+ ($playervar.clitorissize is "0.9" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Small<<print '<<radiobutton "$playervar.clitorissize" "0.48" '+ ($playervar.clitorissize is "0.48" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Tiny<<print '<<radiobutton "$playervar.clitorissize" "0.25" '+ ($playervar.clitorissize is "0.25" ? "checked" : "") +'>>'>></label>
+        <span class="yellow">Select your clitoris size: </span>
+        <ul>
+            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.clitorissize" 1.8 '+ ($playervar.clitorissize is 1.8 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.clitorissize" 0.9 '+ ($playervar.clitorissize is 0.9 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.clitorissize" 0.5 '+ ($playervar.clitorissize is 0.5 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.clitorissize" 0.3 '+ ($playervar.clitorissize is 0.3 ? "checked" : "") +'>>'>></label></li>
+        </ul>
 
-<<elseif $playervar.gender is "male">>you have a penis.
+        <span class="yellow">Select your nipple size: </span>
+        <ul>
+            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.nipplesize" 1.5 '+ ($playervar.nipplesize is 1.5 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.nipplesize" 0.95 '+ ($playervar.nipplesize is 0.95 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.nipplesize" 0.48 '+ ($playervar.nipplesize is 0.48 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.nipplesize" 0.24 '+ ($playervar.nipplesize is 0.24 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+        
+        <span class="yellow">Select your butt size: </span>
+        <ul>
+            <li><label class="pink">Plumpy <<print '<<radiobutton "$playervar.buttsize" 60 '+ ($playervar.buttsize is 60 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.buttsize" 40 '+ ($playervar.buttsize is 40 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.buttsize" 20 '+ ($playervar.buttsize is 20 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+
+        <span class="yellow">Select your vagina tightness: </span>
+        <ul>
+            <li><label class="lightgreen">Tight <<print '<<radiobutton "$playervar.vagtightness" 50 '+ ($playervar.vagtightness is 50 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.vagtightness" 40 '+ ($playervar.vagtightness is 40 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightred">Loose <<print '<<radiobutton "$playervar.vagtightness" 20 '+ ($playervar.vagtightness is 20 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+
+    </fieldset>
+
+<<elseif $playervar.gender is "male">>
+
+    <fieldset>
+        <legend>Character Creation</legend>
+
+        <span class="yellow">Select your penis size: </span>
+        <ul>
+            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.penissize" 18 '+ ($playervar.penissize is 18 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.penissize" 12 '+ ($playervar.penissize is 12 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.penissize" 5 '+ ($playervar.penissize is 5 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.penissize" 3 '+ ($playervar.penissize is 3 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+        <span class="yellow">Select your balls size: </span>
+        <ul>
+            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.ballssize" 8 '+ ($playervar.ballssize is 8 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.ballssize" 4 '+ ($playervar.ballssize is 4 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.ballssize" 2 '+ ($playervar.ballssize is 2 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+
+        <span class="yellow">Select your butt size: </span>
+        <ul>
+            <li><label class="pink">Plumpy <<print '<<radiobutton "$playervar.buttsize" 60 '+ ($playervar.buttsize is 60 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="gray">Normal <<print '<<radiobutton "$playervar.buttsize" 40 '+ ($playervar.buttsize is 40 ? "checked" : "") +'>>'>></label></li>
+            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.buttsize" 20 '+ ($playervar.buttsize is 20 ? "checked" : "") +'>>'>></label></li>
+        </ul>
+
+    </fieldset>
 <</if>>
-
-<br>
-<span class="yellow">Select your butt size: </span>
-<br>
--<label>Plumpy<<print '<<radiobutton "$playervar.buttsize" "60" '+ ($playervar.buttsize is "60" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Normal<<print '<<radiobutton "$playervar.buttsize" "40" '+ ($playervar.buttsize is "40" ? "checked" : "") +'>>'>></label>
-<br>
--<label>Small<<print '<<radiobutton "$playervar.buttsize" "20" '+ ($playervar.buttsize is "20" ? "checked" : "") +'>>'>></label>
-<br>
 
 /* Character confirmation Passage */
 [[Continue|charcreation3]]
 
 :: charcreation3 [nobr]
 
-<<breastmilkmaxsetter>>
-Breast info:
+<fieldset class="characterstatus">
+    <legend class="centered"> Character Status </legend>
+
+    <fieldset>
+        <<bsandhsetter>>
+        <legend> General info: </legend>
+        You are a 
+        <<if $playervar.gender is "female">>
+            <span class="pink"><<print $playervar.gender>></span>.
+        <<else>>
+            <span class="lightblue"><<print $playervar.gender>></span>.
+        <</if>>
+        Your body is <<print $playervar.height>> and <<print $playervar.bodyshapestate>> making you <<bsandhchecker>>.
+    </fieldset>
+
+    <fieldset>
+        <legend> Mouth info: </legend>
+        Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>><span class="green">hasn't been touched</span>.<</if>><br>
+        Your throat has a depth of <span class="blue"><<print $playervar.throatdepth>></span> cm and can comfortably insert objects upto <span class="blue"><<print $playervar.throatcomfortinsert>></span> cm. It <<if $playervar.virginity.throat is true>><span class="green">hasn't had any object in it before</span>.<</if>>
+    </fieldset>
+
+    <fieldset>
+        <legend> Arms info: </legend>
+        Your have a pair of  <<bsandhchecker>> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
+    </fieldset>
+
+    <<if $playervar.gender is "female">>
+
+        <<set $playervar.penissize to 0>>
+        <<set $playervar.ballssize to 0>>
+
+        <<femalesetter>>
+        <fieldset>
+            <legend>Breast info: </legend>
+                You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
+                <br> 
+                Each breast has <<nipplesizechecker>> nipple and they are <<print $playervar.nippletype>>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+        </fieldset>
+
+        <fieldset>
+            <legend>Genitals info: </legend>
+                You have a <<tightnesschecker>> vagina. <<if $playervar.virginity.vagina is true>> <span class="green">You are virgin</span>.<</if>> <br>
+                Your clitoris is <<clitorissizechecker>> and its size is <span class="blue"><<print $playervar.clitorissize>></span> cm. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+        </fieldset>
+
+    <<elseif $playervar.gender is "male">>
+        <<set $playervar.breastsize to 0>>
+        <<set $playervar.nipplesize to 0>>
+        <<set $playervar.vagtightness to 0>>
+        <<set $playervar.clitorissize to 0>>
+
+        <<malesetter>>
+        <fieldset>
+            <legend>Genitals info: </legend>
+                You have a <span class="orange"><<penissizechecker>></span> penis, its size is <span class="blue"><<print $playervar.penissize>></span> cm. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
+                <br>
+                Below it you have a pair of balls that are <span class="orange"><<ballssizechecker>></span> and their size is <span class="blue"><<print $playervar.ballssize>></span>  cm.
+        </fieldset>
+        
+    <</if>>
+
+    <fieldset>
+        <legend> Legs info: </legend>
+        You have a pair of <<bsandhchecker>> legs. They <<if $playervar.virginity.tights is true>> <span class="green">hasn't been touched</span>.<</if>>
+    </fieldset>
+
+    <fieldset>
+        <legend> Butt info: </legend>
+        Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> <span class="green">hasn't been touched</span>.<</if>>
+        <br>
+        You have an anus that is <<if $playervar.virginity.anus is true>> <span class="green">still virgin</span>.<</if>>
+    </fieldset>
+</fieldset>
+
 <br>
-Your breast are <<breastsizechecker>>. Thanks to that you can hold <<print $playervar.breastmilkmaxlevel>> ml of milk. 
-Your nipples size is <<print (Math.round($playervar.nipplesize * 10) / 10 )>> cm. 
-And your clitoris size is <<print $playervar.clitorissize>> cm.
-
-Your butt is <<buttsizechecker>>.
-
-[[Confirm|characterstatus]] [[Go back|previous()]]
+[[Change selections|previous()]]
+<br>
+[[Confirm|characterstatus]]

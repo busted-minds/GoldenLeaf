@@ -2,21 +2,24 @@
 
 <<set $playervar to
 {
-    gender: 0, /* Gender of the player; Male or female */
-    height: 0, /* Height of the player */
-    bodyshape: 0, /* Body shape of the player */
+    gender: "female", /* Gender of the player; Male or female */
+    height: "tall", /* Height of the player */
+    bodyshape: 60, /* Body shape of the player */
+    bodyshapestate: 0,
     beauty: 0, /* How beautiful the player is */
 
     /* Female variables */
     hasvagina: 0, /* Player has a vagina */
     vagdepth: 0, /* Player vaginal depth */
     vagcomfortinsert: 0, /* Player vaginal comfortable insertion */
-    breastsize: 0, /* Size of player breast */
+    breastsize: 60, /* Size of player breast */
+    vagtightness: 50,
+    cansquirt: 0,
     uterusdepth: 0, /* Size of player uterus depth */
     insidemaxcumlevel: 0, /* How much cum the player can have inside in ml (pre-cuminflation variable) */
-    clitorissize: 0, /* Size of player clitoris*/
-    nipplesize: 0, /* Size of player nipples*/
-    nippletype: 0, /* Type of player nipples */
+    clitorissize: 1.8, /* Size of player clitoris*/
+    nipplesize: 1.5, /* Size of player nipples*/
+    nippletype: "inverted", /* Type of player nipples */
            /* Lactation */
     lactationenabler: 0, /* Enables lactation */
     breastmilklevel: 0, /* How much breast milk the player currently has in ml. */
@@ -25,24 +28,35 @@
 
     /* Male variables */
     haspenis: 0, /* Player has a penis */
-    penissize: 0, /* Size of player penis */
-    ballssize: 0, /* Size of player balls */
-    accumcumlevel: 0, /* How much cum the player has accumulated in ml */
+    penissize: 18, /* Size of player penis */
+    ballssize: 8, /* Size of player balls */
+    cummaxlevel: 0, /* How much cum the player has accumulated in ml */
     cumregen: 0, /* How much cum the player regens */
 
     /* General variables */
-    buttsize: 0, /* Size of player butt */
+    buttsize: 60, /* Size of player butt */
     anuscomfortinsert : 0, /* Player anus comfortable insertion */
     throatdepth: 0, /* Size of player throat depth */
     throatcomfortinsert: 0, /* Player throat comfortable insertion */
-    sensibility: 0, /* Player sensibility */
+    sensibility:
+    {
+        uppersensibility: 30,
+        lowersensibility: 30,
+    },
     virginity:
     {
-        anal:true, 
-        oral: true, 
-        penil: true, 
-        vaginal: true 
-        /* urethral: true . Commented because it wont be implemented at this time */
+        anus: true, 
+        mouth: true, 
+        penis: true, 
+        vagina: true,
+        breast: true,
+        nipples: true,
+        clitoris: true,
+        throat: true,
+        hands: true,
+        tights: true,
+        butt: true
+        /* urethra: true . Commented because it wont be implemented at this time */
     },
     stamina : 100, /* Starting player stamina */
     maxstamina: 0 /* Max stamina that the player can develop current 0, will change later when implemented */

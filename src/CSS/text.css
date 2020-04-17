@@ -6,6 +6,79 @@
   	color: #ffcc00;
 }
 
+.lightyellow {
+	color: lightyellow;
+}
+
 .red {
 	color: #f10d0d;
 }
+
+.darkred {
+	color: darkred;
+}
+
+.lightred
+{
+	color: lightcoral;
+}
+
+.greenyellow{
+	color: greenyellow;
+}
+
+.green {
+	color: #48e618;
+}
+
+.lightgreen{
+	color: #caf7ad;
+}
+
+.blue {
+	color: #47a6ff;
+}
+
+.lightblue {
+	color: lightskyblue;
+}
+
+.orange {
+	color: #da9d2d;
+}
+
+.lightorange {
+	color: #fdcd4a
+}
+
+.gray {
+	color: gray;
+}
+
+.pink {
+	color: pink;
+}
+
+
+.purple {
+	color: #ca3eca;
+}
+
+
+
+fieldset {
+	border: 2px solid gray;
+	border-radius: 5px;
+	padding: auto;
+	padding-left: 15px;
+}
+
+.centered {
+	margin-left: 45%;
+	font-size: larger;
+}
+
+legend{
+	font-weight: bold;
+}
+

@@ -1,40 +1,44 @@
 :: pccreation [widget nobr]
 
-<<widget "gendercheck">>
+<<widget "gendersetter">>
 	<<switch $playervar.gender>>
 		/*Female player*/
 		<<case "female">>
 			<<set $playervar.hasvagina to true>>
 			<<set $playervar.haspenis to false>>
 
+			<<rngod>>
+    		<<if $rnggod gte 50>>
+        		<<set $playervar.cansquirt to true>>
+    		<</if>>
+
 			<<switch $playervar.height>>
 				<<case "small">>
-					<<set $playervar.vagdepth to (random(11,15))>>
-					<<set $playervar.anuscomfortinsert to (random(16,19))>>
-					<<set $playervar.vagcomfortinsert to (random(10,14))>>
-					<<set $playervar.uterusdepth to (random(4,6))>>
-					<<set $playervar.throatdeep to (random(13,16))>>
-					<<set $playervar.throatcomfortinsert to (random(10,13))>>
-
+					<<set $playervar.vagdepth to 13>>
+					<<set $playervar.anuscomfortinsert to 18>>
+					<<set $playervar.vagcomfortinsert to 11>>
+					<<set $playervar.uterusdepth to 5>>
+					<<set $playervar.throatdepth to 14>>
+					<<set $playervar.throatcomfortinsert to 12>>
+					
 				<<case "normal">>
-					<<set $playervar.vagdepth to (random(16,20))>>
-					<<set $playervar.anuscomfortinsert to (random(20,23))>>
-					<<set $playervar.vagcomfortinsert to (random(15,19))>>
-					<<set $playervar.uterusdepth to (random(7,9))>>
-					<<set $playervar.throatdeep to (random(17,20))>>
-					<<set $playervar.throatcomfortinsert to (random(14,17))>>
+					<<set $playervar.vagdepth to 18>>
+					<<set $playervar.anuscomfortinsert to 21>>
+					<<set $playervar.vagcomfortinsert to 16>>
+					<<set $playervar.uterusdepth to 8>>
+					<<set $playervar.throatdepth to 19>>
+					<<set $playervar.throatcomfortinsert to 17>>
 
 				<<case "tall">>
-					<<set $playervar.vagdepth to (random(21,25))>>
-					<<set $playervar.anuscomfortinsert to (random(24,27))>>
-					<<set $playervar.vagcomfortinsert to (random(20,24))>>
-					<<set $playervar.uterusdepth to (random(10,12))>>
-					<<set $playervar.throatdeep to (random(21,24))>>
-					<<set $playervar.throatcomfortinsert to (random(18,21))>>
+					<<set $playervar.vagdepth to 23>>
+					<<set $playervar.anuscomfortinsert to 25>>
+					<<set $playervar.vagcomfortinsert to 21>>
+					<<set $playervar.uterusdepth to 11>>
+					<<set $playervar.throatdepth to 24>>
+					<<set $playervar.throatcomfortinsert to 22>>
 			<</switch>>
 
 			<<set $playervar.insidemaxcumlevel to 1000 + ($playervar.uterusdepth * 50)>>
-			<<set $playervar.nipplesize to randomFloat(0.3,1.5)>>
 
 		/*Male player*/
 		<<case "male">>
@@ -43,19 +47,19 @@
 			
 			<<switch $playervar.height>>
 				<<case "small">>
-					<<set $playervar.anuscomfortinsert to (random(16,19))>>
-					<<set $playervar.accumcumlevel to (random(150,200))>>
-					<<set $playervar.cumregen to (random(3,5))>>
+					<<set $playervar.anuscomfortinsert to 18>>
+					<<set $playervar.throatdepth to 14>>
+					<<set $playervar.throatcomfortinsert to 12>>
 
 				<<case "normal">>
-					<<set $playervar.anuscomfortinsert to (random(20,23))>>
-					<<set $playervar.accumcumlevel to (random(201,250))>>
-					<<set $playervar.cumregen to (random(9,11))>>
+					<<set $playervar.anuscomfortinsert to 21>>
+					<<set $playervar.throatdepth to 19>>
+					<<set $playervar.throatcomfortinsert to 17>>
 
 				<<case "tall">>
-					<<set $playervar.anuscomfortinsert to (random(24,27))>>
-					<<set $playervar.accumcumlevel to (random(251,300))>>
-					<<set $playervar.cumregen to (random(12,14))>>
+					<<set $playervar.anuscomfortinsert to 25>>
+					<<set $playervar.throatdepth to 24>>
+					<<set $playervar.throatcomfortinsert to 22>>
 			<</switch>>
 
 	<</switch>>
@@ -65,119 +69,431 @@
 	
 	<<switch $playervar.height>>
 		<<case "tall">>
-			<<switch $playervar.bodyshape>>
-					<<case "100">> /* Muscular*/
-						ripped
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="red">ripped</span>
 
-					<<case "80">> /* Fit */
-						powerful
+				<<case "fit">>
+					<span class="lightred">powerful</span>
 
-					<<case "60">> /* Toned */
-						healthy
+				<<case "toned">>
+					<span class="green">healthy</span>
 
-					<<case "40">> /* Normal */
-						looks good
+				<<case "normal">>
+					<span class="lightgreen">looking good</span>
 
-					<<case "20">> /* Chubby */
-						skinny
+				<<case "chubby">>
+					<span class="lightyellow">skinny</span>
 
-					<<case "0">> /* Fat */
-						fat
+				<<case "fat">>
+					<span class="yellow">fat</span>
+
 			<</switch>>
 			
 		<<case "normal">>
-				<<switch $playervar.bodyshape>>
-					<<case "100">>
-						powerful
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="lightred">powerful</span>
 
-					<<case "80">>
-						healthy
+				<<case "fit">>
+					<span class="green">healthy</span>
 
-					<<case "60">>
-						looks good
+				<<case "toned">>
+					<span class="lightgreen">looking good</span>
 
-					<<case "40">>
-						skinny
+				<<case "normal">>
+					<span class="lightyellow">skinny</span>
 
-					<<case "20">>
-						fat
+				<<case "chubby">>
+					<span class="yellow">fat</span>
 
-					<<case "0">>
-						obese
-				<</switch>>
+				<<case "fat">>
+					<span class="darkyellow">obese.</span>
+			<</switch>>
 
 		<<case "small">>
-				<<switch $playervar.bodyshape>>
-					<<case "100">>
-						healthy
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="green">healthy</span>
 
-					<<case "80">>
-						looks good
+				<<case "fit">>
+					<span class="lightgreen">looking good</span>
 
-					<<case "60">>
-						skinny
+				<<case "toned">>
+					<span class="lightyellow">skinny</span>
 
-					<<case "40">>
-						fat
+				<<case "normal">>
+					<span class="yellow">fat</span>
 
-					<<case "20">>
-						obese
+				<<case "chubby">>
+					<span class="darkyellow">obese</span>
 
-					<<case "0">>
-						how do you even move?
-				<</switch>>
+				<<case "fat">>
+					<span class="darkred">how do you even move?</span>
+			<</switch>>
+
+	<</switch>>
+<</widget>>
+
+<<widget "bsandhsetter">> /* Bodyshape and height setter */
+	
+	<<switch $playervar.height>>
+		<<case "tall">>
+			<<if $playervar.bodyshape eq 100>> /* Muscular*/
+				<<set $playervar.bodyshapestate to "muscular" >>
+
+			<<elseif $playervar.bodyshape gte 80>> /* Fit */
+				<<set $playervar.bodyshapestate to "fit">>
+
+			<<elseif $playervar.bodyshape gte 60>> /* Toned */
+				<<set $playervar.bodyshapestate to 'toned'>>
+
+			<<elseif $playervar.bodyshape gte 40>> /* Normal */
+				<<set $playervar.bodyshapestate to "normal">>
+
+			<<elseif $playervar.bodyshape gte 20>> /* Chubby */
+				<<set $playervar.bodyshapestate to "chubby">>
+
+			<<elseif $playervar.bodyshape gte 0>> /* Fat */
+				<<set $playervar.bodyshapestate to "fat">>
+
+			<</if>>
+			
+		<<case "normal">>
+			<<if $playervar.bodyshape eq 100>>
+				<<set $playervar.bodyshapestate to "muscular" >>
+
+			<<elseif $playervar.bodyshape gte 80>>
+				<<set $playervar.bodyshapestate to "fit">>
+
+			<<elseif $playervar.bodyshape gte 60>>
+				<<set $playervar.bodyshapestate to "toned">>
+
+			<<elseif $playervar.bodyshape gte 40>>
+				<<set $playervar.bodyshapestate to "normal">>
+
+			<<elseif $playervar.bodyshape gte 20>>
+				<<set $playervar.bodyshapestate to "chubby">>
+
+			<<elseif $playervar.bodyshape gte 0>>
+				<<set $playervar.bodyshapestate to "fat">>
+
+			<</if>>
+
+		<<case "small">>
+			<<if $playervar.bodyshape eq 100>>
+				<<set $playervar.bodyshapestate to "muscular" >>
+
+			<<elseif $playervar.bodyshape gte 80>>
+				<<set $playervar.bodyshapestate to "fit">>
+
+			<<elseif $playervar.bodyshape gte 60>>
+				<<set $playervar.bodyshapestate to "toned">>
+
+			<<elseif $playervar.bodyshape gte 40>>
+				<<set $playervar.bodyshapestate to "normal">>
+
+			<<elseif $playervar.bodyshape gte 20>>
+				<<set $playervar.bodyshapestate to "chubby">>
+
+			<<elseif $playervar.bodyshape gte 0>>
+				<<set $playervar.bodyshapestate to "fat">>
+
+			<</if>>
+
 	<</switch>>
 <</widget>>
 
 <<widget "buttsizechecker">> /* Butt size checker */
-	<<switch $playervar.buttsize>>
-		<<case "100">>
-			huge
-		<<case "80">>
-			big
-		<<case "60">>
-			plumpy
-		<<case "40">>
-			normal
-		<<case "20">>
-			small
-		<<case "0">>
-			flat
-	<</switch>>
+	<<if $playervar.buttsize eq 100>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.buttsize gte 80>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.buttsize gte 60>>
+		<span class="pink">plumpy</span>
+	
+	<<elseif $playervar.buttsize gte 40>>
+		<span class="gray">normal</span>
+	
+	<<elseif $playervar.buttsize gte 20>>
+		<span class="lightorange">small</span>
+	
+	<<elseif $playervar.buttsize gte 0>>
+		<span class="lightyellow">flat</span>
+	
+	<</if>>
+
 <</widget>>
 
-<<widget "breastmilkmaxsetter">>/* Breast milk max level setter */
-	<<switch $playervar.breastsize>>
-		<<case "100">>
-			<<set $playervar.breastmilkmaxlevel to 420>>
-		<<case "80">>
-			<<set $playervar.breastmilkmaxlevel to 360>>
-		<<case "60">>
-			<<set $playervar.breastmilkmaxlevel to 300>>
-		<<case "40">>
-			<<set $playervar.breastmilkmaxlevel to 240>>
-		<<case "20">>
-			<<set $playervar.breastmilkmaxlevel to 180>>
-		<<case "0">>
-			<<set $playervar.breastmilkmaxlevel to 120>>
-	<</switch>>
+/* Male checker and setter*/
+
+<<widget "malesetter">>
+
+	<<if $playervar.ballssize eq 12>>
+		<<set $playervar.cummaxlevel to 550>>
+		<<set $playervar.cumregen to 5.5>>
+		<<set $playervar.sensibility.lowersensibility += 12>>
+
+	<<elseif $playervar.ballssize gte 8>>
+		<<set $playervar.cummaxlevel to 450>>
+		<<set $playervar.cumregen to 4.5>>	
+		<<set $playervar.sensibility.lowersensibility += 10>>
+
+	<<elseif $playervar.ballssize gte 4>>
+		<<set $playervar.cummaxlevel to 350>>
+		<<set $playervar.cumregen to 3.5>>
+		<<set $playervar.sensibility.lowersensibility += 8>>
+
+	<<elseif $playervar.ballssize gte 2>>
+		<<set $playervar.cummaxlevel to 250>>
+		<<set $playervar.cumregen to 2.5>>
+		<<set $playervar.sensibility.lowersensibility += 6>>
+
+	<<elseif $playervar.ballssize gte 1>>
+		<<set $playervar.cummaxlevel to 150>>
+		<<set $playervar.cumregen to 1.5>>
+		<<set $playervar.sensibility.lowersensibility += 4>>
+
+	<</if>>
+
+	<<if $playervar.penissize eq 25>>
+		<<set $playervar.sensibility.lowersensibility += 12>>
+
+	<<elseif $playervar.penissize gte 22>>
+		<<set $playervar.sensibility.lowersensibility += 10>>
+
+	<<elseif $playervar.penissize gte 18>>
+		<<set $playervar.sensibility.lowersensibility += 8>>
+		
+	<<elseif $playervar.penissize gte 12>>
+		<<set $playervar.sensibility.lowersensibility += 6>>
+
+	<<elseif $playervar.penissize gte 5>>
+		<<set $playervar.sensibility.lowersensibility += 4>>
+
+	<<elseif $playervar.penissize gte 3>>
+		<<set $playervar.sensibility.lowersensibility += 2>>
+
+	<</if>>
+
 <</widget>>
 
-<<widget "breastsizechecker">>/* Breast size checker */
-	<<switch $playervar.breastsize>>
-		<<case "100">>
-			enormous
-		<<case "80">>
-			big
-		<<case "60">>
-			perky
-		<<case "40">>
-			normal
-		<<case "20">>
-			small
-		<<case "0">>
-			flat
-	<</switch>>
+<<widget "penissizechecker">>
+
+	<<if $playervar.penissize eq 25>>
+		<span class="green">enormous</span>
+
+	<<elseif $playervar.penissize gte 22>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.penissize gte 18>>
+		<span class="greenyellow">big</span>
+		
+	<<elseif $playervar.penissize gte 12>>
+		<span class="gray">normal</span>
+
+	<<elseif $playervar.penissize gte 5>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.penissize gte 3>>
+		<span class="lightyellow">tiny</span>
+
+	<</if>>
+
+<</widget>>
+
+<<widget "ballssizechecker">>
+	<<if $playervar.ballssize eq 12>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.ballssize gte 8>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.ballssize gte 4>>
+		<span class="gray">normal</span>
+
+	<<elseif $playervar.ballssize gte 2>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.ballssize gte 1>>
+		<span class="lightyellow">tiny</span>
+
+	<</if>>
+
+<</widget>>
+
+/* Female checker and setter */
+<<widget "femalesetter">>
+
+	/* Upper body sensibility */
+	<<if $playervar.breastsize eq 100>> /* Enormous */
+		<<set $playervar.breastmilkmaxlevel to 420>>
+		<<set $playervar.sensibility.uppersensibility += 6>>
+
+	<<elseif $playervar.breastsize gte 80>> /* Big */
+		<<set $playervar.breastmilkmaxlevel to 360>>
+		<<set $playervar.sensibility.uppersensibility += 5>>
+
+	<<elseif $playervar.breastsize gte 60>> /* Perky */
+		<<set $playervar.breastmilkmaxlevel to 300>>
+		<<set $playervar.sensibility.uppersensibility += 4>>
+
+	<<elseif $playervar.breastsize gte 40>> /* Normal */
+		<<set $playervar.breastmilkmaxlevel to 240>>
+		<<set $playervar.sensibility.uppersensibility += 3>>
+	
+	<<elseif $playervar.breastsize gte 20>> /* Small */
+		<<set $playervar.breastmilkmaxlevel to 180>>
+		<<set $playervar.sensibility.uppersensibility += 2>>
+		
+	<<elseif $playervar.breastsize gte 0>> /* Flat */
+		<<set $playervar.breastmilkmaxlevel to 120>>
+		<<set $playervar.sensibility.uppersensibility += 1>>
+
+	<</if>>
+
+	<<if $playervar.nipplesize eq 3.2>>
+		<<set $playervar.sensibility.uppersensibility += 6>>
+
+	<<elseif $playervar.nipplesize gte 2.1>>
+		<<set $playervar.sensibility.uppersensibility += 5>>
+
+	<<elseif $playervar.nipplesize gte 1.5>>
+		<<set $playervar.sensibility.uppersensibility += 4>>
+
+	<<elseif $playervar.nipplesize gte 0.95>>
+		<<set $playervar.sensibility.uppersensibility += 3>>
+	
+	<<elseif $playervar.nipplesize gte 0.48>>
+		<<set $playervar.sensibility.uppersensibility += 2>>
+		
+	<<elseif $playervar.nipplesize gte 0.25>>
+		<<set $playervar.sensibility.uppersensibility += 1>>
+
+	<</if>>
+
+ 	/* Lower body sensibility */
+	<<if $playervar.clitorissize eq 3.4>>
+		<<set $playervar.sensibility.lowersensibility += 6>>
+		
+	<<elseif $playervar.clitorissize gte 2.2>>
+		<<set $playervar.sensibility.lowersensibility += 5>>
+
+	<<elseif $playervar.clitorissize gte 1.8>>
+		<<set $playervar.sensibility.lowersensibility += 4>>
+
+	<<elseif $playervar.clitorissize gte 0.9>>
+		<<set $playervar.sensibility.lowersensibility += 3>>
+		
+	<<elseif $playervar.clitorissize gte 0.5>>
+		<<set $playervar.sensibility.lowersensibility += 2>>
+		
+	<<elseif $playervar.clitorissize gte 0.3>>
+		<<set $playervar.sensibility.lowersensibility += 1>>
+
+	<</if>>
+
+	<<if $playervar.vagtightness eq 60>>
+		<<set $playervar.sensibility.lowersensibility += 6>>
+		
+	<<elseif $playervar.vagtightness gte 40>>
+		<<set $playervar.sensibility.lowersensibility += 5>>
+
+	<<elseif $playervar.vagtightness gte 20>>
+		<<set $playervar.sensibility.lowersensibility += 4>>
+
+	<<elseif $playervar.vagtightness gte 10>>
+		<<set $playervar.sensibility.lowersensibility += 3>>
+		
+	<<elseif $playervar.vagtightness gte 5>>
+		<<set $playervar.sensibility.lowersensibility += 2>>
+		
+	<<elseif $playervar.vagtightness gte 2>>
+		<<set $playervar.sensibility.lowersensibility += 1>>
+
+	<</if>>
+
+<</widget>>
+
+<<widget "breastsizechecker">>
+	<<if $playervar.breastsize eq 100>>
+		<span class="green">enormous</span>
+	<<elseif $playervar.breastsize gte 80>>
+		<span class="greenyellow">big</span>
+	<<elseif $playervar.breastsize gte 60>>
+		<span class="pink">perky</span>
+	<<elseif $playervar.breastsize gte 40>>
+		<span class="gray">normal</span>
+	<<elseif $playervar.breastsize gte 20>>
+		<span class="lightorange">small</span>
+	<<elseif $playervar.breastsize gte 0>>
+		<span class="lightyellow">flat</span>
+	<</if>>
+
+<</widget>>
+
+<<widget "clitorissizechecker">>
+	<<if $playervar.clitorissize eq 3.4>>
+		<span class="green">enormous</span>
+		
+	<<elseif $playervar.clitorissize gte 2.2>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.clitorissize gte 1.8>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.clitorissize gte 0.9>>
+		<span class="gray">normal</span>
+		
+	<<elseif $playervar.clitorissize gte 0.5>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.clitorissize gte 0.3>>
+		<span class="lightyellow">tiny</span>
+		
+	<</if>>
+<</widget>>
+
+<<widget "nipplesizechecker">>
+	<<if $playervar.nipplesize eq 3.2>>
+		<span class="green">enormous</span>
+	<<elseif $playervar.nipplesize gte 2.1>>
+		<span class="lightgreen">huge</span>
+	<<elseif $playervar.nipplesize gte 1.5>>
+		<span class="greenyellow">big</span>
+	<<elseif $playervar.nipplesize gte 0.95>>
+		<span class="gray">normal</span>
+	<<elseif $playervar.nipplesize gte 0.48>>
+		<span class="lightorange">small</span>
+	<<elseif $playervar.nipplesize gte 0.25>>
+		<span class="lightyellow">tiny</span>
+	<</if>>
+
+<</widget>>
+
+<<widget "tightnesschecker">>
+	<<if $playervar.vagtightness eq 70>>
+		<span class="red">too tight</span>
+		
+	<<elseif $playervar.vagtightness gte 50>>
+		<span class="lightred">tight</span>
+
+	<<elseif $playervar.vagtightness gte 40>>
+		<span class="gray">normal</span>
+
+	<<elseif $playervar.vagtightness gte 20>>
+		<span class="lightred">loose</span>
+		
+	<<elseif $playervar.vagtightness gte 10>>
+		<span class="red">too loose</span>
+		
+	<<elseif $playervar.vagtightness gte 5>>
+		<span class="darkred">extremely loose</span>
+
+	<</if>>
+
 <</widget>>
 
 <<widget "lactationsetter">>/* Lactation setter, disabled. */
