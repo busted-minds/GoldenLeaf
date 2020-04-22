@@ -20,8 +20,7 @@
     clitorissize: 1.8, /* Size of player clitoris*/
     nipplesize: 1.5, /* Size of player nipples*/
     nippletype: "inverted", /* Type of player nipples */
-           /* Lactation */
-    lactationenabler: 0, /* Enables lactation */
+        /* Lactation */
     breastmilklevel: 0, /* How much breast milk the player currently has in ml. */
     breastmilkmaxlevel: 0, /* How much breast milk the player can have in ml.*/
     breastmilkregen: 0, /* How much breast milk the player regens */
@@ -38,11 +37,10 @@
     anuscomfortinsert : 0, /* Player anus comfortable insertion */
     throatdepth: 0, /* Size of player throat depth */
     throatcomfortinsert: 0, /* Player throat comfortable insertion */
-    sensibility:
-    {
-        uppersensibility: 30,
-        lowersensibility: 30,
-    },
+    anusthightness:0,
+    uppersensibility: 30,
+    lowersensibility: 30,
+    sensibility: 0,
     virginity:
     {
         anus: true, 

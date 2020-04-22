@@ -1,0 +1,22 @@
+:: livingroom [nobr]
+
+<<if $gamestarted eq 0>>
+    <<set $gamestarted to 1>>
+<</if>>
+
+You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass-door that goes to your garden.
+<br>
+You can see two more doors, one goes to your bedroom and the others goes to the bathroom.
+
+<br>
+<br>
+[[Outside|outside]]
+<br>
+[[Kitchen|kitchen]]
+<br>
+[[Garden|garden]]
+<br>
+<br>
+[[Bedroom|bedroom]]
+<br>
+[[Bathroom|bathroom]]

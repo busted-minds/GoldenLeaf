@@ -1,1 +1,5 @@
-:: gene-variables [widget]
+:: gene-variables [widget nobr]
+
+<<set $gamestarted to 0>>
+
+<<set $lactationenabler to 0>> /* Enables lactation */

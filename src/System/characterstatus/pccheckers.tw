@@ -1,0 +1,246 @@
+:: pccheckers [widget nobr]
+
+
+<<widget "bsandhchecker">> /* Bodyshape and height checker */
+	
+	<<switch $playervar.height>>
+		<<case "tall">>
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="red">ripped</span>
+
+				<<case "fit">>
+					<span class="lightred">powerful</span>
+
+				<<case "toned">>
+					<span class="green">healthy</span>
+
+				<<case "normal">>
+					<span class="lightgreen">looking good</span>
+
+				<<case "chubby">>
+					<span class="lightyellow">skinny</span>
+
+				<<case "fat">>
+					<span class="yellow">fat</span>
+
+			<</switch>>
+			
+		<<case "normal">>
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="lightred">powerful</span>
+
+				<<case "fit">>
+					<span class="green">healthy</span>
+
+				<<case "toned">>
+					<span class="lightgreen">looking good</span>
+
+				<<case "normal">>
+					<span class="lightyellow">skinny</span>
+
+				<<case "chubby">>
+					<span class="yellow">fat</span>
+
+				<<case "fat">>
+					<span class="darkyellow">obese.</span>
+			<</switch>>
+
+		<<case "small">>
+			<<switch $playervar.bodyshapestate>>
+				<<case "muscular">>
+					<span class="green">healthy</span>
+
+				<<case "fit">>
+					<span class="lightgreen">looking good</span>
+
+				<<case "toned">>
+					<span class="lightyellow">skinny</span>
+
+				<<case "normal">>
+					<span class="yellow">fat</span>
+
+				<<case "chubby">>
+					<span class="darkyellow">obese</span>
+
+				<<case "fat">>
+					<span class="darkred">how do you even move?</span>
+			<</switch>>
+
+	<</switch>>
+<</widget>>
+
+<<widget "buttsizechecker">> /* Butt size checker */
+	<<if $playervar.buttsize eq 100>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.buttsize gte 80>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.buttsize gte 60>>
+		<span class="pink">plumpy</span>
+	
+	<<elseif $playervar.buttsize gte 40>>
+		<span class="darkpink">normal</span>
+	
+	<<elseif $playervar.buttsize gte 20>>
+		<span class="lightorange">small</span>
+	
+	<<elseif $playervar.buttsize gte 0>>
+		<span class="lightyellow">flat</span>
+	
+	<</if>>
+
+<</widget>>
+
+<<widget "anustightnesschecker">>
+
+	<<if $playervar.anustightness eq 70>>
+		<span class="red">too tight</span>
+		
+	<<elseif $playervar.anustightness gte 50>>
+		<span class="lightred">tight</span>
+
+	<<elseif $playervar.anustightness gte 40>>
+		<span class="darkpink">normal</span>
+
+	<<elseif $playervar.anustightness gte 20>>
+		<span class="lightred">loose</span>
+		
+	<<elseif $playervar.anustightness gte 10>>
+		<span class="red">too loose</span>
+		
+	<<elseif $playervar.anustightness gte 5>>
+		<span class="darkred">extremely loose</span>
+
+	<</if>>
+
+<</widget>>
+
+/* Male Checkers */
+
+<<widget "penissizechecker">>
+
+	<<if $playervar.penissize eq 25>>
+		<span class="green">enormous</span>
+
+	<<elseif $playervar.penissize gte 22>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.penissize gte 18>>
+		<span class="greenyellow">big</span>
+		
+	<<elseif $playervar.penissize gte 12>>
+		<span class="darkpink">normal</span>
+
+	<<elseif $playervar.penissize gte 5>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.penissize gte 3>>
+		<span class="lightyellow">tiny</span>
+
+	<</if>>
+
+<</widget>>
+
+<<widget "ballssizechecker">>
+	<<if $playervar.ballssize eq 12>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.ballssize gte 8>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.ballssize gte 4>>
+		<span class="darkpink">normal</span>
+
+	<<elseif $playervar.ballssize gte 2>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.ballssize gte 1>>
+		<span class="lightyellow">tiny</span>
+
+	<</if>>
+
+<</widget>>
+
+/* Female Checkers*/
+
+<<widget "breastsizechecker">>
+	<<if $playervar.breastsize eq 100>>
+		<span class="green">enormous</span>
+	<<elseif $playervar.breastsize gte 80>>
+		<span class="greenyellow">big</span>
+	<<elseif $playervar.breastsize gte 60>>
+		<span class="pink">perky</span>
+	<<elseif $playervar.breastsize gte 40>>
+		<span class="darkpink">normal</span>
+	<<elseif $playervar.breastsize gte 20>>
+		<span class="lightorange">small</span>
+	<<elseif $playervar.breastsize gte 0>>
+		<span class="lightyellow">flat</span>
+	<</if>>
+
+<</widget>>
+
+<<widget "clitorissizechecker">>
+	<<if $playervar.clitorissize eq 3.4>>
+		<span class="green">enormous</span>
+		
+	<<elseif $playervar.clitorissize gte 2.2>>
+		<span class="lightgreen">huge</span>
+
+	<<elseif $playervar.clitorissize gte 1.8>>
+		<span class="greenyellow">big</span>
+
+	<<elseif $playervar.clitorissize gte 0.9>>
+		<span class="darkpink">normal</span>
+		
+	<<elseif $playervar.clitorissize gte 0.5>>
+		<span class="lightorange">small</span>
+
+	<<elseif $playervar.clitorissize gte 0.3>>
+		<span class="lightyellow">tiny</span>
+		
+	<</if>>
+<</widget>>
+
+<<widget "nipplesizechecker">>
+	<<if $playervar.nipplesize eq 3.2>>
+		<span class="green">enormous</span>
+	<<elseif $playervar.nipplesize gte 2.1>>
+		<span class="lightgreen">huge</span>
+	<<elseif $playervar.nipplesize gte 1.5>>
+		<span class="greenyellow">big</span>
+	<<elseif $playervar.nipplesize gte 0.95>>
+		<span class="darkpink">normal</span>
+	<<elseif $playervar.nipplesize gte 0.48>>
+		<span class="lightorange">small</span>
+	<<elseif $playervar.nipplesize gte 0.25>>
+		<span class="lightyellow">tiny</span>
+	<</if>>
+
+<</widget>>
+
+<<widget "vagtightnesschecker">>
+	<<if $playervar.vagtightness eq 70>>
+		<span class="red">too tight</span>
+		
+	<<elseif $playervar.vagtightness gte 50>>
+		<span class="lightred">tight</span>
+
+	<<elseif $playervar.vagtightness gte 40>>
+		<span class="darkpink">normal</span>
+
+	<<elseif $playervar.vagtightness gte 20>>
+		<span class="lightred">loose</span>
+		
+	<<elseif $playervar.vagtightness gte 10>>
+		<span class="red">too loose</span>
+		
+	<<elseif $playervar.vagtightness gte 5>>
+		<span class="darkred">extremely loose</span>
+
+	<</if>>
+
+<</widget>>

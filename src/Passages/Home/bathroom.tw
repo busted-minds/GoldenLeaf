@@ -1,0 +1,15 @@
+:: bathroom [nobr]
+
+You are in your bathroom, you see the door to the living room.
+<br>
+Inside at one corner you see a $small_shower at the left of it you see the $uncomfortable_toilet. Near the little bathroom air extractor you see the $small_sink.
+<br>
+<br>
+[[Take a shower|shower]]
+<br>
+[[Use the toilet|toilet]]
+<br>
+[[Use the sink|sink]]
+<br>
+<br>
+[[To the living room|livingroom]]
