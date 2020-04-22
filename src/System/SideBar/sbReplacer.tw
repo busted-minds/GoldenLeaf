@@ -20,16 +20,20 @@
 
 		<<else>>
 			<<set $popUpBox to 0>>
-			
 			<<removeclass "#popUp" "open">>
+
 		<</if>>
+
 	<</if>>
 
 <</widget>>
 
 <<widget "closePop">>
+
 	<<button Close>>
 		<<removeclass "#popUp" "open">>
 		<<set $popUpBox to 0>>
+		
 	<</button>>
+
 <</widget>>

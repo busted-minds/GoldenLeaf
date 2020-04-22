@@ -12,30 +12,46 @@
         		<<set $playervar.cansquirt to true>>
     		<</if>>
 
+			<<if $rnggod gte 80>>
+				<<set $playevar.gagreflex to false>>
+			<</if>>
+
 			<<switch $playervar.height>>
 				<<case "small">>
 					<<set $playervar.vagdepth to 13>>
+					<<set $playervar.anusdepth to 20>>
 					<<set $playervar.anuscomfortinsert to 18>>
+					<<set $playervar.anuswidthcomfortinsert to 12>>
 					<<set $playervar.vagcomfortinsert to 11>>
 					<<set $playervar.uterusdepth to 5>>
 					<<set $playervar.throatdepth to 14>>
 					<<set $playervar.throatcomfortinsert to 12>>
+					<<set $playervar.vagwidthcomfortinsert to 10>>
+					<<set $playervar.throatwidthcomfortinsert to 8>>
 					
 				<<case "normal">>
 					<<set $playervar.vagdepth to 18>>
+					<<set $playervar.anusdepth to 23>>
 					<<set $playervar.anuscomfortinsert to 21>>
+					<<set $playervar.anuswidthcomfortinsert to 14>>
 					<<set $playervar.vagcomfortinsert to 16>>
 					<<set $playervar.uterusdepth to 8>>
 					<<set $playervar.throatdepth to 19>>
 					<<set $playervar.throatcomfortinsert to 17>>
+					<<set $playervar.vagwidthcomfortinsert to 12>>
+					<<set $playervar.throatwidthcomfortinsert to 10>>
 
 				<<case "tall">>
 					<<set $playervar.vagdepth to 23>>
+					<<set $playervar.anusdepth to 27>>
 					<<set $playervar.anuscomfortinsert to 25>>
+					<<set $playervar.anuswidthcomfortinsert to 16>>
 					<<set $playervar.vagcomfortinsert to 21>>
 					<<set $playervar.uterusdepth to 11>>
 					<<set $playervar.throatdepth to 24>>
 					<<set $playervar.throatcomfortinsert to 22>>
+					<<set $playervar.vagwidthcomfortinsert to 14>>
+					<<set $playervar.throatwidthcomfortinsert to 12>>
 			<</switch>>
 
 			<<set $playervar.insidemaxcumlevel to 1000 + ($playervar.uterusdepth * 50)>>
@@ -44,22 +60,36 @@
 		<<case "male">>
 			<<set $playervar.haspenis to true>>
 			<<set $playervar.hasvagina to false>>
+
+			<<rngod>>
+			<<if $rnggod gte 80>>
+				<<set $playevar.gagreflex to false>>
+			<</if>>
 			
 			<<switch $playervar.height>>
 				<<case "small">>
+					<<set $playervar.anusdepth to 20>>
 					<<set $playervar.anuscomfortinsert to 18>>
+					<<set $playervar.anuswidthcomfortinsert to 12>>
 					<<set $playervar.throatdepth to 14>>
 					<<set $playervar.throatcomfortinsert to 12>>
+					<<set $playervar.throatwidthcomfortinsert to 8>>
 
 				<<case "normal">>
+					<<set $playervar.anusdepth to 23>>
 					<<set $playervar.anuscomfortinsert to 21>>
+					<<set $playervar.anuswidthcomfortinsert to 14>>
 					<<set $playervar.throatdepth to 19>>
 					<<set $playervar.throatcomfortinsert to 17>>
+					<<set $playervar.throatwidthcomfortinsert to 10>>
 
 				<<case "tall">>
+					<<set $playervar.anusdepth to 27>>
 					<<set $playervar.anuscomfortinsert to 25>>
+					<<set $playervar.anuswidthcomfortinsert to 16>>
 					<<set $playervar.throatdepth to 24>>
 					<<set $playervar.throatcomfortinsert to 22>>
+					<<set $playervar.throatwidthcomfortinsert to 13>>
 			<</switch>>
 
 	<</switch>>
@@ -134,6 +164,32 @@
 	<</switch>>
 <</widget>>
 
+<<widget "antrwidthsetter">>
+
+	<<if $playervar.anustightness eq 70>> /* Very tight */
+		<<set $playervar.lowersensibility -= 3>>
+		<<set $playervar.anuswidthcomfortinsert -= 8>>
+		
+	<<elseif $playervar.anustightness gte 50>> /* Tight */
+		<<set $playervar.lowersensibility -= 1.5>>
+		<<set $playervar.anuswidthcomfortinsert -= 4>>
+
+	<<elseif $playervar.anustightness lte 15>> /* Loose */
+		<<set $playervar.lowersensibility -= 1.5>>
+		<<set $playervar.anuswidthcomfortinsert += 4>>
+
+	<<elseif $playervar.anustightness lte 5>> /* Very loose */
+		<<set $playervar.lowersensibility -= 3>>
+		<<set $playervar.anuswidthcomfortinsert += 8>>
+
+	<</if>>
+
+	<<if $playervar.gagreflex is true>>
+		<<set $playervar.throatwidthcomfortinsert *= 0.75>>
+	<</if>>
+
+<</widget>>
+
 /* Male setter*/
 
 <<widget "malesetter">>
@@ -141,47 +197,53 @@
 	<<if $playervar.ballssize eq 12>>
 		<<set $playervar.cummaxlevel to 550>>
 		<<set $playervar.cumregen to 5.5>>
-		<<set $playervar.lowersensibility += 12>>
+		<<set $playervar.lowersensibility += 5>>
 
 	<<elseif $playervar.ballssize gte 8>>
 		<<set $playervar.cummaxlevel to 450>>
 		<<set $playervar.cumregen to 4.5>>	
-		<<set $playervar.lowersensibility += 10>>
+		<<set $playervar.lowersensibility += 4>>
 
 	<<elseif $playervar.ballssize gte 4>>
 		<<set $playervar.cummaxlevel to 350>>
 		<<set $playervar.cumregen to 3.5>>
-		<<set $playervar.lowersensibility += 8>>
+		<<set $playervar.lowersensibility += 3>>
 
 	<<elseif $playervar.ballssize gte 2>>
 		<<set $playervar.cummaxlevel to 250>>
 		<<set $playervar.cumregen to 2.5>>
-		<<set $playervar.lowersensibility += 6>>
+		<<set $playervar.lowersensibility += 2>>
 
 	<<elseif $playervar.ballssize gte 1>>
 		<<set $playervar.cummaxlevel to 150>>
 		<<set $playervar.cumregen to 1.5>>
-		<<set $playervar.lowersensibility += 4>>
+		<<set $playervar.lowersensibility += 1>>
 
 	<</if>>
 
 	<<if $playervar.penissize eq 25>>
-		<<set $playervar.lowersensibility += 12>>
+		<<set $playervar.lowersensibility += 6>>
+		<<set $playervar.peniswidth to 6.5>>
 
 	<<elseif $playervar.penissize gte 22>>
-		<<set $playervar.lowersensibility += 10>>
+		<<set $playervar.lowersensibility += 5>>
+		<<set $playervar.peniswidth to 5.5>>
 
 	<<elseif $playervar.penissize gte 18>>
-		<<set $playervar.lowersensibility += 8>>
+		<<set $playervar.lowersensibility += 4>>
+		<<set $playervar.peniswidth to 4.5>>
 		
 	<<elseif $playervar.penissize gte 12>>
-		<<set $playervar.lowersensibility += 6>>
+		<<set $playervar.lowersensibility += 3>>
+		<<set $playervar.peniswidth to 3.5>>
 
 	<<elseif $playervar.penissize gte 5>>
-		<<set $playervar.lowersensibility += 4>>
+		<<set $playervar.lowersensibility += 2>>
+		<<set $playervar.peniswidth to 2.5>>
 
 	<<elseif $playervar.penissize gte 3>>
-		<<set $playervar.lowersensibility += 2>>
+		<<set $playervar.lowersensibility += 1>>
+		<<set $playervar.peniswidth to 1.5>>
 
 	<</if>>
 
@@ -251,20 +313,21 @@
 
 	<</if>>
 
-	<<if $playervar.vagtightness eq 70>>
+	<<if $playervar.vagtightness eq 70>> /* Very tight */
 		<<set $playervar.lowersensibility -= 3>>
+		<<set $playervar.vagwidthcomfortinsert -= 6>>
 		
-	<<elseif $playervar.vagtightness gte 50>>
+	<<elseif $playervar.vagtightness gte 50>> /* Tight */
 		<<set $playervar.lowersensibility -= 1.5>>
+		<<set $playervar.vagwidthcomfortinsert -= 3>>
 
-	<<elseif $playervar.vagtightness lte 20>>
-		<<set $playervar.lowersensibility -= 0.5>>
-		
-	<<elseif $playervar.vagtightness lte 10>>
+	<<elseif $playervar.vagtightness lte 15>> /* Loose */
 		<<set $playervar.lowersensibility -= 1.5>>
+		<<set $playervar.vagwidthcomfortinsert += 3>>
 
-	<<elseif $playervar.vagtightness lte 5>>
+	<<elseif $playervar.vagtightness lte 5>> /* Very loose */
 		<<set $playervar.lowersensibility -= 3>>
+		<<set $playervar.vagwidthcomfortinsert += 5>>
 
 	<</if>>
 

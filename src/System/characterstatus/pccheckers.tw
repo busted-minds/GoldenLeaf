@@ -118,6 +118,22 @@
 
 <</widget>>
 
+<<widget "sensibilitychecker">>
+	<<if $playervar.sensibility gte 80>>
+		<span class="red">very sensitive</span>.
+
+	<<elseif $playervar.sensibility gte 50>>
+		<span class="lightred">sensitive</span>.
+
+	<<elseif $playervar.sensibility gte 30>>
+		<span class="darkpink">normal</span>.
+
+	<<elseif $playervar.sensibility gte 10>>
+		<span class="darkred">insensitive</span>.
+
+	<</if>>
+
+<</widget>>
 /* Male Checkers */
 
 <<widget "penissizechecker">>
