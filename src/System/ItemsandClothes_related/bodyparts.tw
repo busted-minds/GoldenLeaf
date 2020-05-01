@@ -1,0 +1,221 @@
+:: bodyparts [widget nobr]
+
+<<widget "bodyparts">>
+
+    <<set $bodyparts.face to [
+        { 
+            id: 0,
+            bodypart: "head",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 1,
+            bodypart: "left-ear",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 2,
+            bodypart: "right-ear",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 3,
+            bodypart: "nose",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 4,
+            bodypart: "mouth",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        }
+    ]>>
+
+    <<set $bodyparts.upperbody to [
+        {
+            id: 0,
+            bodypart: "torso",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 1,
+            bodypart: "left-nipple",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 2,
+            bodypart: "right-nipple",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 3,
+            bodypart: "navel",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 4,
+            bodypart: "left-arm",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 5,
+            bodypart: "right-arm",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 6,
+            bodypart: "left-hand",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 7,
+            bodypart: "right-hand",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 8,
+            bodypart: "back",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 9,
+            bodypart: "right-boob",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 10,
+            bodypart: "left-bob",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        }
+    ]>>
+
+    <<set $bodyparts.genitals to [
+        {
+            id: 0,
+            bodypart: "vagina",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 1,
+            bodypart: "clitoris",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 2,
+            bodypart: "penis",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 3,
+            bodypart: "balls",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        }
+    ]>>
+
+    <<set $bodyparts.lowerbody to [
+        {
+            id: 0,
+            bodypart: "lowerbody",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 1,
+            bodypart: "anus",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 2,
+            bodypart: "left-leg",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 3,
+            bodypart: "right-leg",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 4,
+            bodypart: "left-foot",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        },
+
+        {
+            id: 5,
+            bodypart: "right-foot",
+            wear: {},
+            secondwear: {},
+            generalexposure: true
+        }
+    ]>>
+
+<</widget>>

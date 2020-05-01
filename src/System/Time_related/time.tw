@@ -1,0 +1,68 @@
+:: timesystem [widget nobr]
+
+<<widget "addminutes">> /* Add minutes*/
+    <<run $time.setUTCMinutes($time.getUTCMinutes() + $args[0])>>
+<</widget>>
+
+<<widget "addhours">> /* Add hours */
+    <<run $time.setUTCHours($time.getUTCHours() + $args[0])>>
+<</widget>>
+
+<<widget "date">> /* Gives format to the date */
+    <<print String.format("{0} {1} {2}.",
+        $months[$time.getMonth()],
+        $days[$time.getDay()],
+        $time.getDate()
+    )>>
+<</widget>>
+
+<<widget "convert12h">> /* Converts to 12 hours */
+    <<if $time.getUTCHours() eq 0>> 
+        
+        <<if $time.getUTCMinutes() lt 10>>
+
+            <<print $time.getUTCHours() + 12 + ":0" + $time.getUTCMinutes()>>
+
+        <<else>>
+            <<print $time.getUTCHours() + 12 + ":" + $time.getUTCMinutes()>>
+
+        <</if>>
+
+    <<elseif $time.getUTCHours() gt 12>>
+
+        <<if $time.getUTCMinutes() lt 10>>
+
+            <<print $time.getUTCHours() - 12 + ":0" + $time.getUTCMinutes()>>
+
+        <<else>>
+            <<print $time.getUTCHours() - 12 + ":" + $time.getUTCMinutes()>>
+
+        <</if>>
+
+    <<else>>
+
+        <<if $time.getUTCMinutes() lt 10>>
+
+            <<print $time.getUTCHours() + ":0" + $time.getUTCMinutes()>>
+
+        <<else>>
+            <<print $time.getUTCHours() + ":" + $time.getUTCMinutes()>>
+
+        <</if>>
+
+    <</if>>
+
+    <<if $time.getUTCHours() gte 12>>
+        PM.
+    <<else>>
+        AM.
+    <</if>>
+<</widget>>
+
+<<widget "timedate">>
+    <<date>> <<convert12h>>
+<</widget>>
+
+<<widget "sleep">> /* Sleep*/
+    <<run $time.setUTCMinutes(0)>>
+<</widget>>

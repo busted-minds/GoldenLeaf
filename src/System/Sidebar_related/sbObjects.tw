@@ -1,8 +1,10 @@
 :: StoryCaption [nobr]
 
-<<set $popUpBox to 0>>
+<<set $popupbox to 0>>
 
 <<if $gamestarted is 1>>
+    <<timedate>>
+    <br>
     <div id="popUp" class="popUp">
         <div id="popUpContent"></div>
         <div id="popUpBottom"></div>
@@ -11,4 +13,5 @@
     <<button Status>>
         <<replacer "status">>
     <</button>>
+
 <</if>>

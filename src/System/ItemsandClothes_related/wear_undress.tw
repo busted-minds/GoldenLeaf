@@ -1,0 +1,41 @@
+:: wearstrip [widget nobr]
+
+/* Wear widgets*/
+<<widget "wearmain">>
+
+    <<set $bodyparts[$args[0]][$args[1]][$args[3]] to clone(setup.clothes[$args[0]][$args[2]])>>
+
+<</widget>>
+
+<<widget "wearupperb">>
+
+    <<wearmain "upperbody" 0 $args[0] $args[1]>>
+
+<</widget>>
+
+<<widget "wearlowerb">>
+
+    <<wearmain "lowerbody" 0 $args[0] $args[1]>>
+
+<</widget>>
+
+/* Undress widgets */
+<<widget "undressmain">>
+
+    <<if $bodyparts[$args[0]][$args[1]][$args[2]] isnot "naked">>
+        <<set $bodyparts[$args[0]][$args[1]][$args[2]] to clone(setup.clothes[$args[0]][$args[1]])>>
+    <</if>>
+
+<</widget>>
+
+<<widget "undresstorso">>
+
+    <<undressmain "upperbody" 0 $args[0]>>
+
+<</widget>>
+
+<<widget "undresslowerb">>
+
+    <<undressmain "lowerbody" 0 $args[0]>>
+
+<</widget>>

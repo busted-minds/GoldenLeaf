@@ -1,18 +1,76 @@
-:: bedroom [nobr]
+:: bedroom
 
-You are in your bedroom, you see the door to the living room.
-<br>
-Your room has a $bed in one corner, on the other you see your $small_wardrobe. Near the windows you can see a $little_desk that has an $small_laptop ontop of it and a $normal_chair.
-
-<br>
-<br>
-[[Sleep in the bed|sleep]]
-<br>
-[[Use the computer|computer]]
-<br>
-[[Change clothes|wardrobe]]
-<br>
-<br>
-[[To the living room|livingroom]]
+    !!Bedroom
+    <div class="divisor"></div>
+    You are in your bedroom, you see the door to the living room.
+    Your room has a $cheap_bed in one corner, on the other you see your $small_wardrobe. 
+    Near the window you can see a $cheap_desk that has a $small_laptop ontop of it and a $cheap_chair.
 
 
+    [[Use the bed|bed]]
+    [[Use the computer|computer]]
+    [[Change clothes|wardrobe]]
+    [[Approach the window|window]]
+
+
+    [[To the living room|livingroom]]
+
+:: bed
+
+    !!Bed
+    <div class="divisor"></div>
+    You are in your $cheap_bed, what do you want to do?
+
+    [[Sleep|sleep]]
+    [[Relax|relax]]
+
+    [[Get up|livingroom]]
+
+:: sleep
+
+    !!Sleep
+    <div class="divisor"></div>
+    <<link "Sleep 2 hours" "bed">><<addhours 2>><<sleep>><</link>>
+    <<link "Sleep 4 hours" "bed">><<addhours 4>><<sleep>><</link>> 
+    <<link "Sleep 8 hours" "bed">><<addhours 8>><<sleep>><</link>>
+    <<link "Sleep 12 hours" "bed">><<addhours 12>><<sleep>><</link>>
+
+    [[Go back|previous()]]
+
+:: relax
+
+    !!Relax
+    <div class="divisor"></div>
+    <<link "Relax 5 minutes" "bed">><<addminutes 5>><</link>>
+    <<link "Relax 15 minutes" "bed">><<addminutes 15>><</link>>
+    <<link "Relax 30 minutes" "bed">><<addminutes 30>><</link>>
+    <<link "Relax 45 minutes" "bed">><<addminutes 45>><</link>>
+
+    [[Go back|previous()]]
+
+:: wardrobe [nobr]
+
+    <<link `"Wear a " + setup.clothes.upperbody[1].name` "wardrobe">><<wearupperb 1 "wear">><</link>>
+    <br>
+    <<link `"Wear a " + setup.clothes.lowerbody[1].name` "wardrobe">><<wearlowerb 1 "wear">><</link>>
+    <br>
+    <<link `"Wear a (secondwear) " + setup.clothes.upperbody[2].name` "wardrobe">><<wearupperb 2 "secondwear">><</link>>
+    <br>
+    <<link `"Wear a (secondwear) " + setup.clothes.lowerbody[2].name` "wardrobe">><<wearlowerb 2 "secondwear">><</link>>
+    <br>
+
+    <<link "Undress torso outerwear" "wardrobe">> <<undresstorso "wear">><</link>>
+    <br>
+    <<link "Undress lowerbody outerwear" "wardrobe">> <<undresslowerb "wear">><</link>>
+    <br>
+    <<link "Undress torso underwear" "wardrobe">> <<undresstorso "secondwear">><</link>>
+    <br>
+    <<link "Undress lowerbody underwear" "wardrobe">> <<undresslowerb "secondwear">><</link>>
+    <br>
+    <<clotheschecker>>
+
+    <br>
+    <br>
+    [[Close the wardrobe|bedroom]]
+
+/*::*/

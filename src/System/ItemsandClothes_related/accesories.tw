@@ -1,0 +1,18 @@
+:: accesories [widget nobr]
+
+<<widget "accesories">>
+
+    <<set setup.clothes.accesories to [
+        {
+            id: 0,
+            name: "Naked",
+            lowname: "naked",
+            price: 0,
+            state: "normal",
+            description: "naked",
+            category: ["naked"],
+            gender: "none"
+        }
+    ]>>
+
+<</widget>>

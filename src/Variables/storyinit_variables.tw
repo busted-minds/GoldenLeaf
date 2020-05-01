@@ -1,12 +1,13 @@
 :: StoryInit
 
-<<set $playervar to
-{
-    gender: "female", /* Gender of the player; Male or female */
+<<clothesinit>>
+/* Player body variables */
+<<set $playervar to {
+    gender: 0, /* Gender of the player; Male or female */
     height: "tall", /* Height of the player */
     bodyshape: 60, /* Body shape of the player */
     bodyshapestate: 0,
-    beauty: 0, /* How beautiful the player is */
+    attractiveness: 0, /* How beautiful the player is */
 
     /* Female variables */
     hasvagina: 0, /* Player has a vagina */
@@ -47,8 +48,7 @@
     lowersensibility: 30,
     gagreflex: true,
     sensibility: 0, /* u + l = 60 s */
-    virginity:
-    {
+    virginity:{
         anus: true, 
         mouth: true, 
         penis: true, 
@@ -65,3 +65,14 @@
     stamina : 100, /* Starting player stamina */
     maxstamina: 0 /* Max stamina that the player can develop current 0, will change later when implemented */
 }>>
+
+<<set $playername to 0>>
+<<set $playersurname to 0>>
+<<set $time to new Date("2050-02-03T06:05:00Z")>>
+<<set $days to [
+    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+]>>
+<<set $months to [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]>>

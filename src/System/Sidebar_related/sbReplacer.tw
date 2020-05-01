@@ -3,8 +3,8 @@
 <<widget "replacer">>
 
 	<<if $args[0]>>
-		<<if $popUpBox isnot $args[0]>>
-			<<set $popUpBox to $args[0]>>
+		<<if $popupbox isnot $args[0]>>
+			<<set $popupbox to $args[0]>>
 
 			<<switch $args[0]>>
 				<<case "status">>
@@ -19,7 +19,7 @@
 			<<addclass "#popUp" "open">>
 
 		<<else>>
-			<<set $popUpBox to 0>>
+			<<set $popupbox to 0>>
 			<<removeclass "#popUp" "open">>
 
 		<</if>>
@@ -32,7 +32,7 @@
 
 	<<button Close>>
 		<<removeclass "#popUp" "open">>
-		<<set $popUpBox to 0>>
+		<<set $popupbox to 0>>
 		
 	<</button>>
 

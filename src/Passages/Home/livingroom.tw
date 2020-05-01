@@ -1,22 +1,15 @@
-:: livingroom [nobr]
+:: livingroom 
+    !!Livingroom
+    <div class="divisor"></div>
+    You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden.Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
+    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is <<convert12h>>
 
-<<if $gamestarted eq 0>>
-    <<set $gamestarted to 1>>
-<</if>>
+    [[Use the Tv|tv]]
+    [[Use the Sofa|sofa]]
 
-You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass-door that goes to your garden.
-<br>
-You can see two more doors, one goes to your bedroom and the others goes to the bathroom.
+    [[Outside|outside]]
+    [[Kitchen|kitchen]]
+    [[Garden|garden]]
 
-<br>
-<br>
-[[Outside|outside]]
-<br>
-[[Kitchen|kitchen]]
-<br>
-[[Garden|garden]]
-<br>
-<br>
-[[Bedroom|bedroom]]
-<br>
-[[Bathroom|bathroom]]
+    [[Bedroom|bedroom]]
+    [[Bathroom|bathroom]]

@@ -2,25 +2,36 @@
 
 <fieldset>
     <legend>Character Creation</legend>
-
+    
+    <span class="darkyellow">What is your name?</span>
+    <br>
+    <<textbox "$playername" "Name" autofocus>> <<textbox "$playersurname" "Surname">>
+    <br>
+    <br>
     <span class="darkyellow">Select your gender:</span>
     <ul>
-        <li><label class="lightblue">Male <<print '<<radiobutton "$playervar.gender" "male"'+ ($playervar.gender is "male" ? "checked" : "") +'>>'>> </label></li>
-        <li><label class="pink">Female <<print '<<radiobutton "$playervar.gender" "female"'+ ($playervar.gender is "female" ? "checked" : "") +'>>'>> </label></li>
+        <<listbox "$playervar.gender" autoselect>>
+            <<option "Male" "male">>
+            <<option "Female" "female">>
+        <</listbox>>
     </ul>
 
-    <span class="darkyellow">Select your body height:</span>  <sup><span class="red">Your body height will affect some statistics of your character.</span></sup>
+    <span class="darkyellow">Select your body height:</span>  ^^<span class="red">Your body height will affect some statistics of your character.</span>^^
     <ul>
-        <li><label>Tall <<print '<<radiobutton "$playervar.height" "tall" '+ ($playervar.height is "tall" ? "checked" : "") +'>>'>></label></li>
-        <li><label>Normal <<print '<<radiobutton "$playervar.height" "normal" '+ ($playervar.height is "normal" ? "checked" : "") +'>>'>></label></li>
-        <li><label>Small <<print '<<radiobutton "$playervar.height" "small" '+ ($playervar.height is "small" ? "checked" : "") +'>>'>></label></li>
+        <<listbox "$playervar.height" autoselect>>
+            <<option "Tall" "tall">>
+            <<option "Normal" "normal">>
+            <<option "Small" "small">>
+        <</listbox>>
     </ul>
 
-    <span class ="darkyellow">Select your body shape:</span> <sup><span class="red">Your body shape will affect some statistics of your character</span></sup>
+    <span class ="darkyellow">Select your body shape:</span> ^^<span class="red">Your body shape will affect some statistics of your character</span>^^
     <ul>
-        <li><label class="green">Toned <<print '<<radiobutton "$playervar.bodyshape" 60 '+ ($playervar.bodyshape is 60 ? "checked" : "") +'>>'>></label></li>
-        <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.bodyshape" 40 '+ ($playervar.bodyshape is 40 ? "checked" : "") +'>>'>></label></li>
-        <li><label class="lightyellow">Chubby <<print '<<radiobutton "$playervar.bodyshape" 20 '+ ($playervar.bodyshape is 20 ? "checked" : "") +'>>'>></label></li>
+        <<listbox "$playervar.bodyshape" autoselect>>
+            <<option "Toned" 60>>
+            <<option "Normal" 40>>
+            <<option "Chubby" 20>>
+        <</listbox>>
     </ul>
 </fieldset>
 
@@ -45,10 +56,10 @@
 
         <span class="yellow">Select your nipple type: </span>
         <ul>
-            <li><label class="pink">Inverted <<print '<<radiobutton "$playervar.nippletype" "inverted" '+ ($playervar.nippletype is "inverted" ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightblue">Protruding <<print '<<radiobutton "$playervar.nippletype" "protruding" '+ ($playervar.nippletype is "protruding" ? "checked" : "") +'>>'>></label></li>
-            <li><label class="purple">Puffy <<print '<<radiobutton "$playervar.nippletype" "puffy" '+ ($playervar.nippletype is "puffy" ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Flat <<print '<<radiobutton "$playervar.nippletype" "flat" '+ ($playervar.nippletype is "flat" ? "checked" : "") +'>>'>></label></li>
+            <li><label class="pink">Inverted <<radiobutton "$playervar.nippletype" "inverted" `$playervar.nippletype is "inverted" ? "checked" : ""`>></label></li>
+            <li><label class="lightblue">Protruding <<radiobutton "$playervar.nippletype" "protruding" `$playervar.nippletype is "protruding" ? "checked" : ""`>></label></li>
+            <li><label class="purple">Puffy <<radiobutton "$playervar.nippletype" "puffy" `$playervar.nippletype is "puffy" ? "checked" : ""`>></label></li>
+            <li><label class="lightyellow">Flat <<radiobutton "$playervar.nippletype" "flat" `$playervar.nippletype is "flat" ? "checked" : ""`>></label></li>
         </ul>
 
         <span class="yellow">Select your clitoris size: </span>
@@ -126,9 +137,11 @@
     </fieldset>
 <</if>>
 
-/* Character confirmation Passage */
+<<return "Change selections">>
+<br>
 [[Continue|charcreation3]]
 
+/* Character confirmation Passage */
 :: charcreation3 [nobr]
 
 <<bsandhsetter>>
@@ -140,13 +153,14 @@
 
     <fieldset>
         <legend> General info: </legend>
-        You are a 
+        Your name is <span class="orange"><<print "$playername $playersurname">></span>,
+        you are a 
         <<if $playervar.gender is "female">>
             <span class="pink"><<print $playervar.gender>></span>.
         <<else>>
             <span class="lightblue"><<print $playervar.gender>></span>.
         <</if>>
-        Your body is <<sensibilitychecker>>
+        Your body sensibility is <<sensibilitychecker>>
         Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>.
     </fieldset>
 
@@ -191,9 +205,9 @@
         <<malesetter>>
         <fieldset>
             <legend>Genitals info: </legend>
-                You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
+                You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
                 <br>
-                Below it you have a pair of balls that are <span class="orange"><<ballssizechecker>></span> and their size is <span class="blue"><<print $playervar.ballssize>></span>  cm.
+                Below it you have a pair of balls that are <span class="orange"><<ballssizechecker>></span> and their size is <span class="blue"><<print $playervar.ballssize>></span> cm.
         </fieldset>
         
     <</if>>
@@ -212,6 +226,40 @@
 </fieldset>
 
 <br>
-[[Change selections|previous()]]
+<<return "Change selections">>
 <br>
-[[Confirm|livingroom]]
+[[Confirm|charcreation4]]
+
+:: charcreation4 [nobr]
+
+<<if $gamestarted eq 0>>
+    <<set $gamestarted to 1>>
+<</if>>
+
+You are <span class="orange"><<print "$playername $playersurname">></span>, you are in a train to <span class="gold">Golden Leaf City</span> after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.
+<br>
+<br>
+They saw your attitude with good eyes so they told you that they have a small house in <span class="gold">Golden Leaf City</span> where they lived many years ago and that you can live there. So here you are, in your way to <span class="gold">Golden Leaf City</span> in a slow af train and you haven't sleep since you got out of your parent's house neither eaten anything apart from some snacks that where given to you in the train.
+<br>
+<br>
+<div class="divisor"></div>
+//* After what looks like an eternity (But where just 3 hours) *//
+<br>
+<br>
+
+Finally got to your new house, you are in the front door and you scan your retina in the retina scanner and when you are about to open the door you get a message in your phone, it's from your parents.
+<br>
+<br>
+// "Hey <<print $playername >>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.
+<br>
+We deposited some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!"
+//
+<br>
+<br>
+After reading the message you put your phone in your pocket and open the door.
+
+~~''<span class="red"> You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.</span>''~~
+<br>
+<br>
+[[Enter the house|livingroom]]
+

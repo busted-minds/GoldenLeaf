@@ -1,5 +1,24 @@
 :: kitchen [nobr]
-
-<br>
-<br>
-[[To the living room|livingroom]]
+    <h2>Kitchen</h2>
+    <div class="divisor"></div>
+    <br>
+    You are in the kitchen it's small and is divided by an open-wall, you can see your living room from here.
+    <br>
+    At the corner you see your $cheap_fridge at the left of it a kitchen counter where you can store your cookware, on top if it you have a $small_spice_cabinet and a $small_cupboard. 
+    Next to your fridge there is your $cheap_stove and the kitchen sink.
+    <br>
+    <br>
+    [[Open the fridge|fridge]]
+    <br>
+    [[Open the kitchen counter|kitchencounter]]
+    <br>
+    [[Open the spice cabinet|spacecabinet]]
+    <br>
+    [[Open the cupboard|cupboard]]
+    <br>
+    [[Use the stove|stove]]
+    <br>
+    [[Use the kitchen sink|kitchensink]]
+    <br>
+    <br>
+    [[To the living room|livingroom]]

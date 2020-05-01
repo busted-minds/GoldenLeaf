@@ -1,0 +1,57 @@
+:: clothesmain [widget nobr]
+
+<<widget "clothesinit">>
+
+    <<clothesvar>>
+    <<bodyparts>>
+
+    <<upperbody_clothes>>
+    <<accesories>>
+    <<lowerbody_clothes>>
+
+    <<clothessetter>>
+    
+<</widget>>
+
+<<widget clothesvar>>
+
+    <<set $clothes to {}>>
+    <<set $bodyparts to {}>>
+    <<set setup.clothes to {}>>
+
+<</widget>>
+
+<<widget "clothessetter">>
+
+    /* Face setter */
+    <<for _i to 0; _i lt $bodyparts.face.length; _i++>>
+        <<set $bodyparts.face[_i].wear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.face[_i].secondwear to clone(setup.clothes.accesories[0])>>
+    <</for>>
+
+    /* Upper body setter */
+    <<for _i to 0; _i lt $bodyparts.upperbody.length; _i++>>
+        <<set $bodyparts.upperbody[_i].wear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.upperbody[_i].secondwear to clone(setup.clothes.accesories[0])>>
+    <</for>>
+
+    <<set $bodyparts.upperbody[0].wear to clone(setup.clothes.upperbody[0])>>
+    <<set $bodyparts.upperbody[0].secondwear to clone(setup.clothes.upperbody[0])>>
+
+    /* Genitals setter */
+    <<for _i to 0; _i lt $bodyparts.genitals.length; _i++>>
+        <<set $bodyparts.genitals[_i].wear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.genitals[_i].secondwear to clone(setup.clothes.accesories[0])>>
+    <</for>>
+
+    /* Lower body setter */
+    <<for _i to 0; _i lt $bodyparts.lowerbody.length; _i++>>
+        <<set $bodyparts.lowerbody[_i].wear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.lowerbody[_i].secondwear to clone(setup.clothes.accesories[0])>>
+    <</for>>
+
+    <<set $bodyparts.lowerbody[0].wear to clone(setup.clothes.lowerbody[0])>>
+    <<set $bodyparts.lowerbody[0].secondwear to clone(setup.clothes.lowerbody[0])>>
+
+<</widget>>
+

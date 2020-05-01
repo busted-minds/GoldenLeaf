@@ -1,3 +1,4 @@
+/* Colors */
 .yellow {
 	color: #ffff4d;
 }
@@ -55,12 +56,15 @@
 	color: gray;
 }
 
+.darkpink {
+	color: #ff6f8c;
+}
 
 .pink {
 	color: #ffc0cb;
 }
 
-.darkpink {
+.graypink {
 	color: #ac9ea1;
 }
 
@@ -69,6 +73,11 @@
 	color: #ca3eca;
 }
 
+.gold {
+	color:#ffd700;
+}
+
+/* Not colors */
 fieldset {
 	border: 2px solid gray;
 	border-radius: 5px;
@@ -127,6 +136,7 @@ legend {
 	background-color: #222;
 	overflow-y: scroll;
 	max-width: 750px;
+	max-height: 635px;
 }
 
 .open {
@@ -139,6 +149,8 @@ legend {
 	}
 }
 
-.closed {
-	display: none !important; 
+.divisor {
+	max-width: 100%;
+	border-radius: 3px;
+	border: 2px solid slategray;
 }

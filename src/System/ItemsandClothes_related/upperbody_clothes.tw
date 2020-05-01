@@ -1,0 +1,47 @@
+:: upperbody_clothes [widget nobr]
+
+<<widget "upperbody_clothes">>
+
+    <<set setup.clothes.upperbody to [
+        {
+            id: 0,
+            name: "Naked",
+            lowname: "naked",
+            price: 0,
+            state: "normal",
+            description: "Naked",
+            category: ["naked"],
+            gender: "none",
+            exposurelevel: 5,
+            exposedchest: true
+        },
+
+        {
+            id: 1,
+            name: "Polo shirt",
+            lowname: "polo shirt",
+            price: 0,
+            state: "normal",
+            description: "A normal polo shirt",
+            category: ["Shirt"],
+            gender: "male",
+            exposurelevel: 1,
+            exposedchest: false
+        },
+
+        {
+            id: 2,
+            name: "Plain Bra",
+            lowname: "plain bra",
+            price: 0,
+            state: "normal",
+            description: "A plain bra",
+            category: ["underwear", "bra"],
+            gender: "female",
+            exposurelevel: 2,
+            exposedchest: false
+        }
+
+    ]>>
+
+<</widget>>
