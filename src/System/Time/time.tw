@@ -1,6 +1,8 @@
 :: timesystem [widget nobr]
 
-<<widget "addminutes">> /* Add minutes*/
+/% This is just the time system, nothing to see go on. Its very easy. %/
+/% Credits to the internet, as I saw how to do this there and I don't remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth) %/
+<<widget "addminutes">> /* Add minutes*/ 
     <<run $time.setUTCMinutes($time.getUTCMinutes() + $args[0])>>
 <</widget>>
 
@@ -14,6 +16,33 @@
         $days[$time.getDay()],
         $time.getDate()
     )>>
+<</widget>>
+
+<<widget "daystatechecker">>
+
+    <<if $time.getUTCHours() eq 0>>
+        Midnight
+
+    <<elseif $time.getUTCHours() lte 4>>
+        Early Morning
+        
+    <<elseif $time.getUTCHours() lte 11>>
+        Morning
+
+    <<elseif $time.getUTCHours() lte 12>>
+        Noon
+
+    <<elseif $time.getUTCHours() lte 19>>
+        Afternoon
+
+    <<elseif $time.getUTCHours() lte 22>>
+        Evening
+
+    <<elseif $time.getUTCHours() lte 24>>
+        Late Evening
+
+    <</if>>
+
 <</widget>>
 
 <<widget "convert12h">> /* Converts to 12 hours */
@@ -60,7 +89,7 @@
 <</widget>>
 
 <<widget "timedate">>
-    <<date>> <<convert12h>>
+    <<date>> <<convert12h>> <<daystatechecker>>
 <</widget>>
 
 <<widget "sleep">> /* Sleep*/

@@ -1,6 +1,7 @@
 :: pccheckers [widget nobr]
 
 
+/% Some checkers that may and probably will change later on how it works. %/
 <<widget "bsandhchecker">> /* Bodyshape and height checker */
 	
 	<<switch $playervar.height>>
@@ -119,16 +120,16 @@
 <</widget>>
 
 <<widget "sensibilitychecker">>
-	<<if $playervar.sensibility gte 80>>
+	<<if $playervar.sensibility gte 120>>
 		<span class="red">very sensitive</span>.
 
-	<<elseif $playervar.sensibility gte 50>>
+	<<elseif $playervar.sensibility gte 100>>
 		<span class="lightred">sensitive</span>.
 
-	<<elseif $playervar.sensibility gte 30>>
+	<<elseif $playervar.sensibility gte 50>>
 		<span class="graypink">normal</span>.
 
-	<<elseif $playervar.sensibility gte 10>>
+	<<elseif $playervar.sensibility gte 20>>
 		<span class="darkred">insensitive</span>.
 
 	<</if>>
@@ -138,13 +139,13 @@
 
 <<widget "penissizechecker">>
 
-	<<if $playervar.penissize eq 25>>
+	<<if $playervar.penissize eq 24>>
 		<span class="green">enormous</span>
 
-	<<elseif $playervar.penissize gte 22>>
+	<<elseif $playervar.penissize gte 20>>
 		<span class="lightgreen">huge</span>
 
-	<<elseif $playervar.penissize gte 18>>
+	<<elseif $playervar.penissize gte 15>>
 		<span class="greenyellow">big</span>
 		
 	<<elseif $playervar.penissize gte 12>>

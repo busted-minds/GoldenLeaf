@@ -2,10 +2,10 @@
 
 <<widget charStatus>>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend class="centered"> Character Status </legend>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend> General info: </legend>
             Your name is <span class="orange"><<print $playername + " " + $playersurname>></span>,
             you are a 
@@ -18,7 +18,7 @@
             Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>.
         </fieldset>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend> Mouth info: </legend>
             Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>><span class="green">hasn't been touched</span>.<</if>><br>
             Your throat has a depth of <span class="blue"><<print $playervar.throatdepth>></span> cm and can comfortably insert objects upto <span class="blue"><<print $playervar.throatcomfortinsert>></span> cm in lenght and <span class="blue"><<print $playervar.throatwidthcomfortinsert>></span> cm width. 
@@ -26,21 +26,21 @@
             <<if $playervar.gagreflex is true>><span class="green">You still have your gag reflex</span>.<</if>>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend> Arms info: </legend>
             Your have a pair of <<bsandhchecker>> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
         </fieldset>
 
         <<if $playervar.gender is "female">>
 
-            <fieldset>
+            <fieldset class="charc">
                 <legend>Breast info: </legend>
                 You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
                 <br> 
                 Each breast has <<nipplesizechecker>> nipple and they are <<print $playervar.nippletype>>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="charc">
                 <legend>Genitals info: </legend>
                 You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span>cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>> 
                 <br>
@@ -49,7 +49,7 @@
 
         <<elseif $playervar.gender is "male">>
 
-            <fieldset>
+            <fieldset class="charc">
                 <legend>Genitals info: </legend>
                 You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>>                    
                 <br>
@@ -58,13 +58,13 @@
             
         <</if>>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend> Legs info: </legend>
             You have a pair of <<bsandhchecker>> legs.
             They <<if $playervar.virginity.tights is true>> <span class="green">hasn't been touched</span>.<</if>>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend> Butt info: </legend>
             Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> <span class="green">hasn't been touched</span>.<</if>>
             <br>

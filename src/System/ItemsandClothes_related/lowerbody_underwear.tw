@@ -1,0 +1,34 @@
+:: lowerbody_underwear [widget nobr]
+
+<<widget "lowerb_underwear">>
+
+    <<set setup.clothes.lowerbunder to [
+        {
+            id: 0,
+            name: "Naked",
+            lowname: "naked",
+            price: 0,
+            state: "normal",
+            description: "Naked",
+            category: ["naked"],
+            gender: "none",
+            exposurelevel: 5,
+            exposedgenitals: true
+        },
+
+        {
+            id: 1,
+            name: "Red Panties",
+            lowname: "<span class='lightred'>red panties</span>",
+            price: 0,
+            state: "normal",
+            description: "Just red panties",
+            category: ["panties", "underwear"],
+            article: "some",
+            gender: "female",
+            exposurelevel: 2,
+            exposedgenitals: false
+        },
+
+    ]>>
+<</widget>>

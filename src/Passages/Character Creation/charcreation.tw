@@ -1,6 +1,8 @@
 :: charcreation1[nobr]
 
-<fieldset>
+/% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
+/% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
+<fieldset class="charc">
     <legend>Character Creation</legend>
     
     <span class="darkyellow">What is your name?</span>
@@ -43,101 +45,126 @@
 <<gendersetter>>
 
 <<if $playervar.gender is "female">>
-    <fieldset>
+    <fieldset class="charc">
         <legend>Character Creation</legend>
 
         <span class="yellow">Select your breast size: </span>
         <ul>
-            <li><label class="pink">Perky <<print '<<radiobutton "$playervar.breastsize" 60 '+ ($playervar.breastsize is 60 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.breastsize" 40 '+ ($playervar.breastsize is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.breastsize" 20 '+ ($playervar.breastsize is 20 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Flat <<print '<<radiobutton "$playervar.breastsize" 0 '+ ($playervar.breastsize is 0 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.breastsize" autoselect>>
+                <<option "Perky" 60>>
+                <<option "Normal" 40>>
+                <<option "Small" 20>>
+                <<option "Flat" 0>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your nipple type: </span>
         <ul>
-            <li><label class="pink">Inverted <<radiobutton "$playervar.nippletype" "inverted" `$playervar.nippletype is "inverted" ? "checked" : ""`>></label></li>
-            <li><label class="lightblue">Protruding <<radiobutton "$playervar.nippletype" "protruding" `$playervar.nippletype is "protruding" ? "checked" : ""`>></label></li>
-            <li><label class="purple">Puffy <<radiobutton "$playervar.nippletype" "puffy" `$playervar.nippletype is "puffy" ? "checked" : ""`>></label></li>
-            <li><label class="lightyellow">Flat <<radiobutton "$playervar.nippletype" "flat" `$playervar.nippletype is "flat" ? "checked" : ""`>></label></li>
+            <<listbox "$playervar.nippletype" autoselect>>
+                <<option "Inverted" "inverted">>
+                <<option "Protrunding" "protrunding">>
+                <<option "Puffy" "puffy">>
+                <<option "Flat" "flat">>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your clitoris size: </span>
         <ul>
-            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.clitorissize" 1.8 '+ ($playervar.clitorissize is 1.8 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.clitorissize" 0.9 '+ ($playervar.clitorissize is 0.9 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.clitorissize" 0.5 '+ ($playervar.clitorissize is 0.5 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.clitorissize" 0.3 '+ ($playervar.clitorissize is 0.3 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.clitorissize" autoselect>>
+                <<option "Big" 1.8>>
+                <<option "Normal" 0.9>>
+                <<option "Small" 0.5>>
+                <<option "Tiny" 0.3>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your nipple size: </span>
         <ul>
-            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.nipplesize" 1.5 '+ ($playervar.nipplesize is 1.5 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.nipplesize" 0.95 '+ ($playervar.nipplesize is 0.95 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.nipplesize" 0.48 '+ ($playervar.nipplesize is 0.48 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.nipplesize" 0.24 '+ ($playervar.nipplesize is 0.24 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.nipplesize" autoselect>>
+                <<option "Big" 1.5>>
+                <<option "Normal" 0.95>>
+                <<option "Small" 0.48>>
+                <<option "Tiny" 0.24>>
+            <</listbox>>
         </ul>
         
         <span class="yellow">Select your butt size: </span>
         <ul>
-            <li><label class="pink">Plumpy <<print '<<radiobutton "$playervar.buttsize" 60 '+ ($playervar.buttsize is 60 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.buttsize" 40 '+ ($playervar.buttsize is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.buttsize" 20 '+ ($playervar.buttsize is 20 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.buttsize" autoselect>>
+                <<option "Plumpy" 60>>
+                <<option "Normal" 40>>
+                <<option "Small" 20>>
+                <<option "Flat" 0>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your vagina tightness: </span>
         <ul>
-            <li><label class="lightgreen">Tight <<print '<<radiobutton "$playervar.vagtightness" 50 '+ ($playervar.vagtightness is 50 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.vagtightness" 40 '+ ($playervar.vagtightness is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightred">Loose <<print '<<radiobutton "$playervar.vagtightness" 20 '+ ($playervar.vagtightness is 20 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.vagtightness" autoselect>>
+                <<option "Tight" 50>>
+                <<option "Normal" 35>>
+                <<option "Loose" 20>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your anus tightness: </span>
         <ul>
-            <li><label class="lightgreen">Tight <<print '<<radiobutton "$playervar.anustightness" 50 '+ ($playervar.anustightness is 50 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.anustightness" 40 '+ ($playervar.anustightness is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightred">Loose <<print '<<radiobutton "$playervar.anustightness" 20 '+ ($playervar.anustightness is 20 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.anustightness" autoselect>>
+                <<option "Tight" 50>>
+                <<option "Normal" 35>>
+                <<option "Loose" 20>>
+            <</listbox>>
         </ul>
 
     </fieldset>
 
 <<elseif $playervar.gender is "male">>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend>Character Creation</legend>
 
         <span class="yellow">Select your penis size: </span>
         <ul>
-            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.penissize" 18 '+ ($playervar.penissize is 18 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.penissize" 12 '+ ($playervar.penissize is 12 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightorange">Small <<print '<<radiobutton "$playervar.penissize" 5 '+ ($playervar.penissize is 5 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Tiny <<print '<<radiobutton "$playervar.penissize" 3 '+ ($playervar.penissize is 3 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.penissize" autoselect>>
+                <<option "Big" 15>>
+                <<option "Normal" 12>>
+                <<option "Small" 6>>
+                <<option "Tiny" 3>>
+            <</listbox>>
         </ul>
+
         <span class="yellow">Select your balls size: </span>
         <ul>
-            <li><label class="greenyellow">Big <<print '<<radiobutton "$playervar.ballssize" 8 '+ ($playervar.ballssize is 8 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.ballssize" 4 '+ ($playervar.ballssize is 4 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.ballssize" 2 '+ ($playervar.ballssize is 2 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.ballssize" autoselect>>
+                <<option "Big" 8>>
+                <<option "Normal" 4>>
+                <<option "Small" 2>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your butt size: </span>
         <ul>
-            <li><label class="pink">Plumpy <<print '<<radiobutton "$playervar.buttsize" 60 '+ ($playervar.buttsize is 60 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.buttsize" 40 '+ ($playervar.buttsize is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightyellow">Small <<print '<<radiobutton "$playervar.buttsize" 20 '+ ($playervar.buttsize is 20 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.buttsize" autoselect>>
+                <<option "Plumpy" 60>>
+                <<option "Normal" 40>>
+                <<option "Small" 20>>
+                <<option "Flat" 0>>
+            <</listbox>>
         </ul>
 
         <span class="yellow">Select your anus tightness: </span>
         <ul>
-            <li><label class="lightgreen">Tight <<print '<<radiobutton "$playervar.anustightness" 50 '+ ($playervar.anustightness is 50 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="darkpink">Normal <<print '<<radiobutton "$playervar.anustightness" 40 '+ ($playervar.anustightness is 40 ? "checked" : "") +'>>'>></label></li>
-            <li><label class="lightred">Loose <<print '<<radiobutton "$playervar.anustightness" 20 '+ ($playervar.anustightness is 20 ? "checked" : "") +'>>'>></label></li>
+            <<listbox "$playervar.anustightness" autoselect>>
+                <<option "Tight" 50>>
+                <<option "Normal" 35>>
+                <<option "Loose" 20>>
+            <</listbox>>
         </ul>
 
     </fieldset>
 <</if>>
 
-<<return "Change selections">>
+<<return [[Change Selections|charcreation1]]>>
 <br>
 [[Continue|charcreation3]]
 
@@ -148,10 +175,10 @@
 <<antrwidthsetter>>
 <<set $playervar.sensibility to $playervar.lowersensibility + $playervar.uppersensibility>>
 
-<fieldset class="characterstatus">
+<fieldset class="charc">
     <legend class="centered"> Character Status </legend>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend> General info: </legend>
         Your name is <span class="orange"><<print "$playername $playersurname">></span>,
         you are a 
@@ -164,32 +191,32 @@
         Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>.
     </fieldset>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend> Mouth info: </legend>
         Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>><span class="green">hasn't been touched</span>.<</if>><br>
         Your throat has a depth of <span class="blue"><<print $playervar.throatdepth>></span> cm and can comfortably insert objects upto <span class="blue"><<print $playervar.throatcomfortinsert>></span> cm in lenght and <span class="blue"><<print $playervar.throatwidthcomfortinsert>></span> cm width. 
         It <<if $playervar.virginity.throat is true>><span class="green">hasn't had any object in it before</span>.<</if>> <<if $playervar.gagreflex is true>><span class="green">You still have your gag reflex</span>.<</if>>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend> Arms info: </legend>
         Your have a pair of <<bsandhchecker>> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
     </fieldset>
 
     <<if $playervar.gender is "female">>
 
-        <<set $playervar.penissize to 0>>
-        <<set $playervar.ballssize to 0>>
+        <<set $playervar.penissize>>
+        <<set $playervar.ballssize>>
 
         <<femalesetter>>
-        <fieldset>
+        <fieldset class="charc">
             <legend>Breast info: </legend>
                 You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
                 <br> 
                 Each breast has <<nipplesizechecker>> nipple and they are <<print $playervar.nippletype>>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="charc">
             <legend>Genitals info: </legend>
                 You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span> cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>> 
                 <br>
@@ -203,7 +230,7 @@
         <<set $playervar.clitorissize to 0>>
 
         <<malesetter>>
-        <fieldset>
+        <fieldset class="charc">
             <legend>Genitals info: </legend>
                 You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
                 <br>
@@ -212,12 +239,12 @@
         
     <</if>>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend> Legs info: </legend>
         You have a pair of <<bsandhchecker>> legs. They <<if $playervar.virginity.tights is true>> <span class="green">hasn't been touched</span>.<</if>>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="charc">
         <legend> Butt info: </legend>
         Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> <span class="green">hasn't been touched</span>.<</if>>
         <br>
@@ -226,7 +253,7 @@
 </fieldset>
 
 <br>
-<<return "Change selections">>
+<<return [[Change selections|charcreation2]]>>
 <br>
 [[Confirm|charcreation4]]
 

@@ -1,17 +1,26 @@
 :: StoryCaption [nobr]
 
-<<set $popupbox to 0>>
-
 <<if $gamestarted is 1>>
-    <<timedate>>
-    <br>
+    <fieldset class="info">
+        <legend class="centered">Info</legend>
+        <div style="text-align: left;"><<clotheschecker>></div>
+        <br>
+        Credits: <span class="yellow">$credits</span>
+        <br>
+        <div style="text-align: left;"><<timedate>></div>
+    </fieldset>
+
     <div id="popUp" class="popUp">
         <div id="popUpContent"></div>
-        <div id="popUpBottom"></div>
+        <div id="popUpBottom" style="margin-top: 15px;"></div>
     </div>
 
+    <br>
+    <div class="divisor" style="margin-bottom: 4.6px;"></div>
     <<button Status>>
         <<replacer "status">>
     <</button>>
+    <br>
+    <div class="divisor" style="margin-top: 4.6px;"></div>
 
 <</if>>

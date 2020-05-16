@@ -1,5 +1,11 @@
 :: replacer [nobr widget]
 
+
+/% Credits and Thanks a lot to DoL(once more, again :D) as I liked how they show some info in-game with a "pop up" box so I tried the same. %/
+/% Heavely inspired in them. Give that game a try ffs. %/
+/% It checks if the argument given exist, then if the var popupbox doesn't have the "same value" as the argument then it sets it and goes to the switch. %/
+/% The switch switches between the case status and probably(soon)other things. Replacing things here and there. adding and removing classes here and there.%/
+/% And finally the widget to close them all. It just that, it closes the popup. %/
 <<widget "replacer">>
 
 	<<if $args[0]>>
@@ -12,7 +18,7 @@
 						<<charStatus>>
 					<</replace>>
 					<<replace #popUpBottom>>
-						<<closePop "status">>
+						<<closePop>>
 					<</replace>>
 			<</switch>>
 			
@@ -30,7 +36,7 @@
 
 <<widget "closePop">>
 
-	<<button Close>>
+	<<button X>>
 		<<removeclass "#popUp" "open">>
 		<<set $popupbox to 0>>
 		

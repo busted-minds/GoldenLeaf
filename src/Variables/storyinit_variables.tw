@@ -1,6 +1,7 @@
 :: StoryInit
 
 <<clothesinit>>
+<<gene-variables>>
 /* Player body variables */
 <<set $playervar to {
     gender: 0, /* Gender of the player; Male or female */
@@ -76,3 +77,5 @@
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ]>>
+
+<<set $credits to 200>>

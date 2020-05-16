@@ -1,57 +1,77 @@
 :: clothesmain [widget nobr]
 
+/% Just initializing some widgets and things you know. %/
+/% Oh and btw if you somehow got to read everything I wrote, thank you :D. English isn't my first languague so I hope u can understand something. %/
 <<widget "clothesinit">>
 
     <<clothesvar>>
     <<bodyparts>>
 
-    <<upperbody_clothes>>
+    <<upperb_outerwear>>
+    <<upperb_underwear>>
+    <<lowerb_outerwear>>
+    <<lowerb_underwear>>
     <<accesories>>
-    <<lowerbody_clothes>>
 
     <<clothessetter>>
     
 <</widget>>
 
-<<widget clothesvar>>
+/% Making the wardrobe content variable to store a lot(soon™) of clothes, the bodypart, the clothes the bodypart identifiers for the WandU widget etc. %/
+<<widget "clothesvar">>
 
-    <<set $clothes to {}>>
+    <<set $wardrobeContent to {}>>
+        <<set $wardrobeContent.upperbouter to []>>
+        <<set $wardrobeContent.upperbunder to []>>
+        <<set $wardrobeContent.lowerbouter to []>>
+        <<set $wardrobeContent.lowerbunder to []>>
+
+        <<set $wardrobeContent.accesories to []>>
+    
     <<set $bodyparts to {}>>
     <<set setup.clothes to {}>>
+    <<set $upperbodyID to null>>
+    <<set $lowerbodyID to null>>
+    <<set $accesoriesID to null>>
+    <<set $itemSlot to null>>
+    <<set $wardrobeSlot to null>>
 
 <</widget>>
 
+/% Because who doesn't like loops? More loops, you want a loop? You get a loop.%/
+/% It just give the "naked" to every part in the body. %/
 <<widget "clothessetter">>
 
-    /* Face setter */
-    <<for _i to 0; _i lt $bodyparts.face.length; _i++>>
-        <<set $bodyparts.face[_i].wear to clone(setup.clothes.accesories[0])>>
-        <<set $bodyparts.face[_i].secondwear to clone(setup.clothes.accesories[0])>>
+    /* Head setter */
+    <<for _i to 0; _i lt $bodyparts.head.length; _i++>>
+        <<set $bodyparts.head[_i].primary to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.head[_i].secondary to clone(setup.clothes.accesories[0])>>
     <</for>>
 
     /* Upper body setter */
     <<for _i to 0; _i lt $bodyparts.upperbody.length; _i++>>
-        <<set $bodyparts.upperbody[_i].wear to clone(setup.clothes.accesories[0])>>
-        <<set $bodyparts.upperbody[_i].secondwear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.upperbody[_i].primary to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.upperbody[_i].secondary to clone(setup.clothes.accesories[0])>>
     <</for>>
 
-    <<set $bodyparts.upperbody[0].wear to clone(setup.clothes.upperbody[0])>>
-    <<set $bodyparts.upperbody[0].secondwear to clone(setup.clothes.upperbody[0])>>
+    <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[0])>>
+    <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbouter[0])>>
+    <<set $bodyparts.upperbody[8].primary to clone(setup.clothes.accesories[1])>>
 
     /* Genitals setter */
     <<for _i to 0; _i lt $bodyparts.genitals.length; _i++>>
-        <<set $bodyparts.genitals[_i].wear to clone(setup.clothes.accesories[0])>>
-        <<set $bodyparts.genitals[_i].secondwear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.genitals[_i].primary to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.genitals[_i].secondary to clone(setup.clothes.accesories[0])>>
     <</for>>
 
     /* Lower body setter */
     <<for _i to 0; _i lt $bodyparts.lowerbody.length; _i++>>
-        <<set $bodyparts.lowerbody[_i].wear to clone(setup.clothes.accesories[0])>>
-        <<set $bodyparts.lowerbody[_i].secondwear to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.lowerbody[_i].primary to clone(setup.clothes.accesories[0])>>
+        <<set $bodyparts.lowerbody[_i].secondary to clone(setup.clothes.accesories[0])>>
     <</for>>
 
-    <<set $bodyparts.lowerbody[0].wear to clone(setup.clothes.lowerbody[0])>>
-    <<set $bodyparts.lowerbody[0].secondwear to clone(setup.clothes.lowerbody[0])>>
+    <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[0])>>
+    <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbouter[0])>>
 
 <</widget>>
 

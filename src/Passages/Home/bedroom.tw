@@ -49,28 +49,29 @@
     [[Go back|previous()]]
 
 :: wardrobe [nobr]
+    <h2>Wardrobe</h2>
+    <div class="divisor"></div>
 
-    <<link `"Wear a " + setup.clothes.upperbody[1].name` "wardrobe">><<wearupperb 1 "wear">><</link>>
+    <<wardrobeWandU>>
+    <<if $disablepush isnot true>>
+        <<set $wardrobeContent.upperbouter.push(clone(setup.clothes.upperbouter[1]))>>
+        <<set $wardrobeContent.upperbunder.push(clone(setup.clothes.upperbunder[1]))>>
+        <<set $wardrobeContent.lowerbouter.push(clone(setup.clothes.lowerbouter[1]))>>
+        <<set $wardrobeContent.lowerbunder.push(clone(setup.clothes.lowerbunder[1]))>>
+        <<set $disablepush to true>>
+    <</if>>
     <br>
-    <<link `"Wear a " + setup.clothes.lowerbody[1].name` "wardrobe">><<wearlowerb 1 "wear">><</link>>
-    <br>
-    <<link `"Wear a (secondwear) " + setup.clothes.upperbody[2].name` "wardrobe">><<wearupperb 2 "secondwear">><</link>>
-    <br>
-    <<link `"Wear a (secondwear) " + setup.clothes.lowerbody[2].name` "wardrobe">><<wearlowerb 2 "secondwear">><</link>>
-    <br>
+    <div>
+        <div id="wardrobeLinks">
+            <<wardrobeLinks>>
+        </div>
 
-    <<link "Undress torso outerwear" "wardrobe">> <<undresstorso "wear">><</link>>
+        <div id="wardrobeContent">
+            <<showWardrobeCC $pressedlink>>
+        </div>
+    </div>
     <br>
-    <<link "Undress lowerbody outerwear" "wardrobe">> <<undresslowerb "wear">><</link>>
-    <br>
-    <<link "Undress torso underwear" "wardrobe">> <<undresstorso "secondwear">><</link>>
-    <br>
-    <<link "Undress lowerbody underwear" "wardrobe">> <<undresslowerb "secondwear">><</link>>
-    <br>
-    <<clotheschecker>>
-
-    <br>
-    <br>
+    
     [[Close the wardrobe|bedroom]]
 
 /*::*/

@@ -12,6 +12,18 @@
             description: "naked",
             category: ["naked"],
             gender: "none"
+        },
+        {
+            id: 1,
+            name: "Backpack",
+            lowname: "backpack",
+            price: 0,
+            state: "normal",
+            description: "A normal backpack.",
+            category: ["backpack", "accesory"],
+            gender: "none",
+            slots: [],
+            maxitems: 5
         }
     ]>>
 

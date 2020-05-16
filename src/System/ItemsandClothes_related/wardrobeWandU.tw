@@ -1,0 +1,91 @@
+:: wearstrip [widget nobr]
+
+/* Wardrobe wear and undress widget*/
+    <<widget "wardrobeWandU">>
+        <<set _bodyparts to ["upperbody", "lowerbody", "head"]>>
+        <<for _iWU to 0; _iWU lt _bodyparts.length; _iWU++>>
+            <<unset _itemID>>
+            <<switch _bodyparts[_iWU]>> /% Assigns to the _itemID temp variable the value of the item or the keyword(That can be "undress") to a bodypart%/
+                <<case "upperbody">>
+                    <<set _itemID to $upperbodyID>>  
+                <<case "lowerbody">>
+                    <<set _itemID to $lowerbodyID>>
+                <<case "accesories">>
+                    <<set _itemID to $accesoriesID>>
+            <</switch>>
+
+            <<if _itemID is null or _itemID is undefined>>
+                <<continue>>
+            <</if>>
+
+            /% This remove a piece of the player currently weared clothes %/
+            <<if _itemID is "undress" and $bodyparts[_bodyparts[_iWU]][0][$itemSlot].lowname isnot "naked">>
+                You remove your <<print $bodyparts[_bodyparts[_iWU]][0][$itemSlot].lowname>>.
+                <<undressMain _bodyparts[_iWU] 0 $itemSlot $wardrobeSlot true>>
+
+                <<continue>>
+            <</if>>
+
+
+            /% This is the "main part" as it works by checking if the item's gender is neutral or if it's the same as player gender. May change in the future%/
+            /% If the if statement returns true then it "undress" that player part with the following arguments: %/
+            /% "_bodypart[_iWU]"" for what part of the body it goes (upperbody, lowerbody, etc).%/
+            /% "0" This may change in the future, but it's the index of what will be equiped (Example: [0] for upperbody means the Torso and for the lowerbody it means the lower body.) %/
+            /% "$itemSlot" This is from what slot it will be undressed (primary, secondary).%/
+            /% "$wardrobeSlot" Is from what slot from the wardrobe it will be used (upperbouter,lowerbouter etc).%/
+            /% And finally "true" it's tell the <<undressMain>> widget that the player is in a wardrobe.%/
+            <<if _itemID gte 0 and $itemSlot isnot null>>
+                <<if $wardrobeContent[$wardrobeSlot][_itemID].gender is "neutral" or $wardrobeContent[$wardrobeSlot][_itemID].gender is $playervar.gender>>
+                    <<undressMain _bodyparts[_iWU] 0 $itemSlot $wardrobeSlot true>>
+
+                    <<set $bodyparts[_bodyparts[_iWU]][0][$itemSlot] to clone($wardrobeContent[$wardrobeSlot][_itemID])>>
+                    You put your <<print $wardrobeContent[$wardrobeSlot][_itemID].lowname>> on.
+                    <<set $wardrobeContent[$wardrobeSlot].deleteAt(_itemID)>>
+
+                <<else>>
+                    You can't wear <span class="orange"><<print $wardrobeContent[$wardrobeSlot][_itemID].lowname>></span>, they are not for your gender.
+
+                <</if>>
+
+            <</if>>
+
+        <</for>>
+
+        <<set $wear to 0>>
+        <<set $upperbodyID to null>>
+        <<set $lowerbodyID to null>>
+        <<set $accesoriesID to null>>
+        <<set $itemSlot to null>>
+        <<set $wardrobeSlot to null>>
+
+    <</widget>>
+
+/* Undress widgets */
+    <<widget "undressMain">>
+        <<unset _bodyPart>>
+        <<unset _bodySlot>>
+        <<unset _ItemSlot>>
+        <<unset _clothesSlot>>
+        <<unset _bodyPart>>
+
+        <<set _bodyPart to $args[0]>>
+        <<set _bodySlot to $args[1]>>
+        <<set _itemsSlot to $args[2]>>
+        <<set _clothesSlot to $args[3]>>
+        <<set _isWardrobe to $args[4]>>
+
+        /% Checks if the player is in the wardrobe, then it checks if the player isn't naked(because we can't remove our skin you know.) %/
+        /% Then it undress the player.%/
+        <<if _isWardrobe is true>>
+            <<if $bodyparts[_bodyPart][_bodySlot][_itemsSlot].lowname isnot "naked">>
+                <<set $wardrobeContent[_clothesSlot].push(clone($bodyparts[_bodyPart][_bodySlot][_itemsSlot]))>>
+            <</if>>
+            <<set $bodyparts[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+
+        <<else>>
+            <<set $bodyparts[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+
+        <</if>>
+
+
+    <</widget>>

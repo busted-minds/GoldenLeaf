@@ -1,5 +1,6 @@
 :: pccreation [widget nobr]
 
+/% Character creation widgets and things that can or can't change later. %/
 <<widget "gendersetter">>
 	<<switch $playervar.gender>>
 		/*Female player*/

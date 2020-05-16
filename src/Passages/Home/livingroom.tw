@@ -4,12 +4,27 @@
     You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden.Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
     You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is <<convert12h>>
 
-    [[Use the Tv|tv]]
-    [[Use the Sofa|sofa]]
-
-    [[Outside|outside]]
-    [[Kitchen|kitchen]]
-    [[Garden|garden]]
-
-    [[Bedroom|bedroom]]
-    [[Bathroom|bathroom]]
+    <<nobr>>
+    <fieldset id="fieldinline">
+        <legend>Places</legend>
+        <span id="Link">[[Outside|outside]]</span>
+        <br>
+        <span id="Link">[[Kitchen|kitchen]]</span>
+        <br>
+        <span id="Link">[[Garden|garden]]</span>
+    </fieldset>
+    <br>
+    <fieldset id="fieldinline">
+        <legend>WIP</legend>
+        <span id="Link">[[Use the Tv|tv]]</span>
+        <br>
+        <span id="Link">[[Use the Sofa|sofa]]</span>
+    </fieldset>
+    <br>
+    <fieldset id="fieldinline">
+        <legend>Rooms</legend>
+        <span id="Link">[[Bedroom|bedroom]]</span>
+        <br>
+        <span id="Link">[[Bathroom|bathroom]]</span>
+    </fieldset>
+    <</nobr>>

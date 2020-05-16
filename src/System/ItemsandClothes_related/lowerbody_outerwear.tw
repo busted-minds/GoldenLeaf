@@ -1,8 +1,8 @@
-:: lowerbody_clothes [widget nobr]
+:: lowerbody_outerwear [widget nobr]
 
-<<widget "lowerbody_clothes">>
+<<widget "lowerb_outerwear">>
 
-    <<set setup.clothes.lowerbody to [
+    <<set setup.clothes.lowerbouter to [
         {
             id: 0,
             name: "Naked",
@@ -23,24 +23,13 @@
             price: 0,
             state: "normal",
             description: "A pair of Jeans",
-            category: ["pants"],
-            gender: "none",
+            article: "a pair of",
+            category: ["pants", "outerwear"],
+            gender: "neutral",
             exposurelevel: 1,
             exposedgenitals: false
         },
 
-        {
-            id: 2,
-            name: "Red Panties",
-            lowname: "<span class='lightred'>red panties</span>",
-            price: 0,
-            state: "normal",
-            description: "Just red panties",
-            category: ["undewear", "panties"],
-            gender: "female",
-            exposurelevel: 2,
-            exposedgenitals: false
-        },
     ]>>
 
 <</widget>>

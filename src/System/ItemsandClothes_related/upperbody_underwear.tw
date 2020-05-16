@@ -1,0 +1,34 @@
+:: upperbody_underwear [widget nobr]
+
+<<widget "upperb_underwear">>
+
+    <<set setup.clothes.upperbunder to [
+        {
+            id: 0,
+            name: "Naked",
+            lowname: "naked",
+            price: 0,
+            state: "normal",
+            description: "Naked",
+            category: ["naked"],
+            gender: "none",
+            exposurelevel: 5,
+            exposedchest: true
+        },
+
+        {        
+            id: 1,
+            name: "Bra",
+            lowname: "bra",
+            price: 0,
+            state: "normal",
+            description: "A normal bra",
+            article: "a",
+            category: ["bra", "underwear"],
+            gender: "female",
+            exposurelevel: 2,
+            exposedchest: false
+        }
+    ]>>
+
+<</widget>>
