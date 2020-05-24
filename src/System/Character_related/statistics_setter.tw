@@ -95,22 +95,22 @@
 
 <</widget>>
 
-<<widget "pisspoop">>
+<<widget "peepoop">>
 
-    <<set _pisspoop to $args[0]>>
+    <<set _peepoop to $args[0]>>
     <<set _id to $args[2]>>
     <<set _lessclean to $args[3]>>
     <<set _addmin to $args[4]>>
 
-    <<if $playervar[_pisspoop] gt $args[1]>>
+    <<if $playervar[_peepoop] gt $args[1]>>
         <<if $playervar.cleanliness gt 0>>
-            <<set $playervar[_pisspoop] -= $args[1]>>
+            <<set $playervar[_peepoop] -= $args[1]>>
             <<set $playervar.cleanliness -= _lessclean>>
 
             <<addminutes _addmin>>
 
             <<replace _id>>
-                <<print $playervar[_pisspoop]>>/100
+                <<print $playervar[_peepoop]>>/100
             <</replace>>
 
             <<replace #cleanliness>>
@@ -122,7 +122,7 @@
             <</replace>>
         <</if>>
 
-    <<elseif $playervar[_pisspoop] lt $args[1]>>
+    <<elseif $playervar[_peepoop] lt $args[1]>>
         <<replace #messager>>
             You are already empty.
         <</replace>>
