@@ -37,14 +37,14 @@
                 <legend>Breast info: </legend>
                 You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
                 <br> 
-                Each breast has <<nipplesizechecker>> nipple and they are <<print $playervar.nippletype>>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+                Each breast has <<nipplesizechecker>> nipple and they are <span class="orange"><<print $playervar.nippletype>></span>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
             </fieldset>
 
             <fieldset class="charc">
                 <legend>Genitals info: </legend>
                 You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span>cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>> 
                 <br>
-                Your clitoris is <<clitorissizechecker>> and it's size is <span class="blue"><<print $playervar.clitorissize>></span> cm. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+                Your clitoris has a <<clitorissizechecker>> size making it <span class="blue"><<print $playervar.clitorissize>></span> cm in total. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
             </fieldset>
 
         <<elseif $playervar.gender is "male">>
@@ -53,7 +53,7 @@
                 <legend>Genitals info: </legend>
                 You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>>                    
                 <br>
-                Below it you have a pair of balls that are <span class="orange"><<ballssizechecker>></span> and their size is <span class="blue"><<print $playervar.ballssize>></span>  cm.
+                Below it you have a pair of balls that are <<ballssizechecker>> and their size is <span class="blue"><<print $playervar.ballssize>></span>  cm.
             </fieldset>
             
         <</if>>

@@ -9,9 +9,57 @@
     <br>
     [[Get in to shower|shower]]
     <br>
-    [[Use the toilet|toilet]]
+    [[Sit on the toilet|toilet]]
     <br>
     [[Use the sink|sink]]
     <br>
     <br>
     [[To the living room|livingroom]]
+
+:: shower [nobr]
+    <h2>Shower</h2>
+    <div class="divisor"></div>
+    <br>
+    <div id="messager"></div>
+    <<link "Fast shower">>
+        <<cleanliness 40 4>>
+    <</link>>@@.green; +40 Cleanliness@@ | @@.red; +4 Minutes@@
+    <br>
+    <<link "Normal shower">>
+        <<cleanliness 100 10>>
+    <</link>>@@.green; +100 Cleanliness@@ | @@.red; +10 Minutes@@
+    <br>
+    <br>
+    [[Get out|bathroom]]
+
+:: toilet [nobr]
+    <h2>Bathroom</h2>
+    <div class="divisor"></div>
+    <br>
+    <div id="messager"></div>
+    <<link "Pee">>
+        <<peepoop "bladder" 90 "#bladder" 10 2>>
+    <</link>>@@.green; -90 Bladder@@ | @@.red; -10 Cleanliness +2 Minutes@@
+    <br>
+    <<link "Poop">>
+        <<peepoop "rectum" 90 "#rectum" 15 4>>
+    <</link>>@@.green; -90 Rectum@@ | @@.red; -15 Cleanliness +4 Minutes@@
+    <br>
+    <br>
+    [[Get up|bathroom]]
+
+:: sink [nobr]
+    <h2>Sink</h2>
+    <div class="divisor"></div>
+    <br>
+    <div id="messager"></div>
+    <<link "Wash your hands">>
+        <<cleanliness 10 1>>
+    <</link>>@@.green; +10 Cleanliness@@ | @@.red; +1 Minutes@@
+    <br>
+    <<link "Wash your hands with soap">>
+        <<cleanliness 15 2>>
+    <</link>>@@.green; +15 Cleanliness@@ | @@.red; +2 Minutes@@
+    <br>
+    <br>
+    [[Get out|bathroom]]

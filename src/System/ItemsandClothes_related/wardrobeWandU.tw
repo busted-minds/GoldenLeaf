@@ -2,7 +2,7 @@
 
 /* Wardrobe wear and undress widget*/
     <<widget "wardrobeWandU">>
-        <<set _bodyparts to ["upperbody", "lowerbody", "head"]>>
+        <<set _bodyparts to ["upperbody", "lowerbody", "head", "genitals"]>>
         <<for _iWU to 0; _iWU lt _bodyparts.length; _iWU++>>
             <<unset _itemID>>
             <<switch _bodyparts[_iWU]>> /% Assigns to the _itemID temp variable the value of the item or the keyword(That can be "undress") to a bodypart%/
@@ -10,8 +10,8 @@
                     <<set _itemID to $upperbodyID>>  
                 <<case "lowerbody">>
                     <<set _itemID to $lowerbodyID>>
-                <<case "accesories">>
-                    <<set _itemID to $accesoriesID>>
+                <<case "head">>
+                    <<set _itemID to $headID>>
             <</switch>>
 
             <<if _itemID is null or _itemID is undefined>>
@@ -19,9 +19,9 @@
             <</if>>
 
             /% This remove a piece of the player currently weared clothes %/
-            <<if _itemID is "undress" and $bodyparts[_bodyparts[_iWU]][0][$itemSlot].lowname isnot "naked">>
-                You remove your <<print $bodyparts[_bodyparts[_iWU]][0][$itemSlot].lowname>>.
-                <<undressMain _bodyparts[_iWU] 0 $itemSlot $wardrobeSlot true>>
+            <<if _itemID is "undress" and $bodyparts[_bodyparts[_iWU]][$bodypartIndex][$itemSlot].lowname isnot "naked">>
+                You remove your <<print $bodyparts[_bodyparts[_iWU]][$bodypartIndex][$itemSlot].lowname>>.
+                <<undressMain _bodyparts[_iWU] $bodypartIndex $itemSlot $wardrobeSlot true>>
 
                 <<continue>>
             <</if>>
@@ -36,9 +36,9 @@
             /% And finally "true" it's tell the <<undressMain>> widget that the player is in a wardrobe.%/
             <<if _itemID gte 0 and $itemSlot isnot null>>
                 <<if $wardrobeContent[$wardrobeSlot][_itemID].gender is "neutral" or $wardrobeContent[$wardrobeSlot][_itemID].gender is $playervar.gender>>
-                    <<undressMain _bodyparts[_iWU] 0 $itemSlot $wardrobeSlot true>>
+                    <<undressMain _bodyparts[_iWU] $bodypartIndex $itemSlot $wardrobeSlot true>>
 
-                    <<set $bodyparts[_bodyparts[_iWU]][0][$itemSlot] to clone($wardrobeContent[$wardrobeSlot][_itemID])>>
+                    <<set $bodyparts[_bodyparts[_iWU]][$bodypartIndex][$itemSlot] to clone($wardrobeContent[$wardrobeSlot][_itemID])>>
                     You put your <<print $wardrobeContent[$wardrobeSlot][_itemID].lowname>> on.
                     <<set $wardrobeContent[$wardrobeSlot].deleteAt(_itemID)>>
 
@@ -54,9 +54,10 @@
         <<set $wear to 0>>
         <<set $upperbodyID to null>>
         <<set $lowerbodyID to null>>
-        <<set $accesoriesID to null>>
+        <<set $headID to null>>
         <<set $itemSlot to null>>
         <<set $wardrobeSlot to null>>
+        <<set $bodypartIndex to null>>
 
     <</widget>>
 
@@ -64,7 +65,7 @@
     <<widget "undressMain">>
         <<unset _bodyPart>>
         <<unset _bodySlot>>
-        <<unset _ItemSlot>>
+        <<unset _itemsSlot>>
         <<unset _clothesSlot>>
         <<unset _bodyPart>>
 

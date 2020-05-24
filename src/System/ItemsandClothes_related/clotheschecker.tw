@@ -18,14 +18,14 @@
                     Your torso is visible.
 
                 <<case "female">>
-                    <span class="darkpink">Your <<breastsizechecker>> breast and <<print $playervar.nippletype>> nipples are visible</span>.
+                    <span class="darkpink">Your <<breastsizechecker>> breast and <span class="orange"><<print $playervar.nippletype>></span> nipples are visible</span>.
 
             <</switch>>
                 
         <<elseif $bodyparts.upperbody[0].primary.lowname is "naked" and $bodyparts.upperbody[0].secondary.lowname isnot "naked">> /% Or upperbody has outerwear but not underwear %/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    You have <<clothesArticles "upperbody" "secondary">> <<print $bodyparts.upperbody[0].secondary.lowname>>.
+                    You have <<clothesArticles "upperbody" "secondary" "0">> <<print $bodyparts.upperbody[0].secondary.lowname>>.
 
                 <<case "female">>
                     <span class="darkpink">Your <<print $bodyparts.upperbody[0].secondary.lowname>> is visible</span>.
@@ -37,7 +37,7 @@
         <<if $bodyparts.lowerbody[0].primary.lowname is "naked" and $bodyparts.lowerbody[0].secondary.lowname is "naked">> /% Lowerbody doesn't have outerwear nor underwear %/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    <span class="darkpink">Your penis, balls and anus are visible</span>.
+                    <span class="darkpink">Your <<penissizechecker>>penis, <<ballssizechecker>>balls and anus are visible</span>.
 
                 <<case "female">>
                     <span class="darkpink">Your vagina and anus are visible</span>.
@@ -47,7 +47,7 @@
         <<elseif $bodyparts.lowerbody[0].primary.lowname is "naked" and $bodyparts.lowerbody[0].secondary.lowname isnot "naked">> /% Or lowerbody doesn't have outerwear but have underwear%/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    You have <<clothesArticles "lowerbody" "secondary">> <<print $bodyparts.lowerbody[0].secondary.lowname>>.
+                    You have <<clothesArticles "lowerbody" "secondary" "0">> <<print $bodyparts.lowerbody[0].secondary.lowname>>.
 
                 <<case "female">>
                     <span class="darkpink">Your <<print $bodyparts.lowerbody[0].secondary.lowname>> are visible</span>.
@@ -56,10 +56,10 @@
 
         <<elseif $bodyparts.lowerbody[0].primary.lowname isnot "naked">> /% Lowerbody have outerwearwear %/
             <<if $bodyparts.lowerbody[0].secondary.lowname is "naked">> /% Upperbody doesn't have underwear %/
-                You have <<clothesArticles "lowerbody" "primary">> <<print $bodyparts.lowerbody[0].primary.lowname>> <span class="darkpink">but nothing underneath it</span>.
+                You have <<clothesArticles "lowerbody" "primary" "0">> <<print $bodyparts.lowerbody[0].primary.lowname>> <span class="darkpink">but nothing underneath</span>.
 
             <<elseif $bodyparts.lowerbody[0].secondary.lowname isnot "naked">> /% Or lowerbody have underwear %/
-                You have <<clothesArticles "lowerbody" "primary">> <<print $bodyparts.lowerbody[0].primary.lowname>>, underneath it <<clothesArticles "lowerbody" "secondary">> <<print $bodyparts.lowerbody[0].secondary.lowname>>.
+                You have <<clothesArticles "lowerbody" "primary" "0">> <<print $bodyparts.lowerbody[0].primary.lowname>> and <<print $bodyparts.lowerbody[0].secondary.lowname>>.
 
             <</if>>
         
@@ -67,15 +67,15 @@
 
     <<elseif $bodyparts.upperbody[0].primary.lowname isnot "naked">> /% Upperbody have outerwear %/
         <<if $bodyparts.upperbody[0].secondary.lowname isnot "naked">> /% Upperbody have underwear %/
-            You have <<clothesArticles "upperbody" "primary">> <<print $bodyparts.upperbody[0].primary.lowname>>, underneath it <<clothesArticles "upperbody" "secondary">> <<print $bodyparts.upperbody[0].secondary.lowname>>.
+            You have <<clothesArticles "upperbody" "primary" "0">><<print $bodyparts.upperbody[0].primary.lowname>> and <<clothesArticles "upperbody" "secondary" "0">> <<print $bodyparts.upperbody[0].secondary.lowname>>
         
         <<elseif $bodyparts.upperbody[0].secondary.lowname is "naked">> /% Or doesn't have underwear %/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    You have <<clothesArticles "upperbody" "primary">> <<print $bodyparts.upperbody[0].primary.lowname>>.
+                    You have <<clothesArticles "upperbody" "primary" "0">> <<print $bodyparts.upperbody[0].primary.lowname>>
 
                 <<case "female">>
-                    You have <<clothesArticles "upperbody" "primary">> <<print $bodyparts.upperbody[0].primary.lowname>> <span class="darkpink">but nothing underneath it</span>.
+                    You have <<clothesArticles "upperbody" "primary" "0">> <<print $bodyparts.upperbody[0].primary.lowname>> <span class="darkpink">but nothing underneath</span>,
 
             <</switch>>
 
@@ -83,10 +83,10 @@
 
         <<if $bodyparts.lowerbody[0].primary.lowname isnot "naked">> /% Lowerbody have outerwear %/
             <<if $bodyparts.lowerbody[0].secondary.lowname isnot "naked">> /% Lower body have underwear%/
-                You have <<clothesArticles "lowerbody" "primary">> <<print $bodyparts.lowerbody[0].primary.lowname>>, underneath it <<clothesArticles "lowerbody" "secondary">> <<print $bodyparts.lowerbody[0].secondary.lowname>>.
+                with <<clothesArticles "lowerbody" "primary" "0">> <<print $bodyparts.lowerbody[0].primary.lowname>> and <<print $bodyparts.lowerbody[0].secondary.lowname>>.
             
             <<elseif $bodyparts.lowerbody[0].secondary.lowname is "naked">> /% Lowerbody doesn't have underwear %/
-                You have <<clothesArticles "lowerbody" "primary">> <<print $bodyparts.lowerbody[0].primary.lowname>> <span class="darkpink">but nothing underneath it</span>.
+                with <<clothesArticles "lowerbody" "primary" "0">> <<print $bodyparts.lowerbody[0].primary.lowname>> <span class="darkpink">but nothing underneath</span>.
 
             <</if>>
 
@@ -102,6 +102,58 @@
                     <span class="darkpink">Your vagina and anus are visible</span>.
 
             <</switch>>
+
+        <</if>>
+
+    <</if>>
+    <br>
+
+    /% This thing checks if the player have any shoes, socks or any other legwear/footwear. %/
+    <<if $bodyparts.lowerbody[2].primary.lowname isnot "naked">>
+        In your feets you have <<clothesArticles "lowerbody" "primary" 2>><<print $bodyparts.lowerbody[2].primary.lowname>> 
+
+        <<if $bodyparts.lowerbody[3].secondary.lowname isnot "naked">>
+            and <<clothesArticles "lowerbody" "secondary" 3>> <<print $bodyparts.lowerbody[3].secondary.lowname>>
+
+            <<if $bodyparts.lowerbody[3].primary.lowname isnot "naked">>
+                with <<print $bodyparts.lowerbody[3].primary.lowname>>.
+
+            <<elseif $bodyparts.lowerbody[3].primary.lowname is "naked">>
+                but no shoes.
+
+            <</if>>
+
+        <<elseif $bodyparts.lowerbody[3].secondary.lowname is "naked">>
+            <<if $bodyparts.lowerbody[3].primary.lowname isnot "naked">>
+                and <<clothesArticles "lowerbody" "primary" 3>><<print $bodyparts.lowerbody[3].primary.lowname>>.
+                
+            <<elseif $bodyparts.lowerbody[3].primary.lowname is "naked">>
+                but no shoes.
+
+            <</if>>
+
+        <</if>>
+
+    <<elseif $bodyparts.lowerbody[2].primary.lowname is "naked">>
+        <<if $bodyparts.lowerbody[3].secondary.lowname isnot "naked">>
+            In your feets you have <<clothesArticles "lowerbody" "secondary" 3>><<print $bodyparts.lowerbody[3].secondary.lowname>>
+
+            <<if $bodyparts.lowerbody[3].primary.lowname isnot "naked">>
+                and <<print $bodyparts.lowerbody[3].primary.lowname>>.
+
+            <<elseif $bodyparts.lowerbody[3].primary.lowname is "naked">>
+                but no shoes.
+
+            <</if>>
+
+        <<elseif $bodyparts.lowerbody[3].secondary.lowname is "naked">>
+            <<if $bodyparts.lowerbody[3].primary.lowname isnot "naked">>
+                In your feets you have <<clothesArticles "lowerbody" "primary" 3>><<print $bodyparts.lowerbody[3].primary.lowname>> but no socks.
+                
+            <<elseif $bodyparts.lowerbody[3].primary.lowname is "naked">>
+                You are barefoot.
+
+            <</if>>
 
         <</if>>
 

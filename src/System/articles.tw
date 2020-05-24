@@ -3,8 +3,8 @@
 /% Just writes and article, you know, those that are in the papers and people get paid to write them. %/
 <<widget "clothesArticles">>
 
-    <<if $args[0] and $args[1]>>
-       <<print $bodyparts[$args[0]][0][$args[1]].article>>
+    <<if $args[0] and $args[1] and $args[2]>>
+       <<print $bodyparts[$args[0]][$args[2]][$args[1]].article>>
     <</if>>
 
 <</widget>>

@@ -1,6 +1,7 @@
 :: wardrobe_replacer [widget nobr]
 
 /% Just some wardrobelinks that are put as a <a> to use them as functions and so the "game" can remember what was pressed when you leave the passage or refreshes%/
+/% Credits to DoL.%/
 <<widget "wardrobeLinks">>
     <fieldset id="fieldinline">
         <legend style="font-size: 130%;">Clothes</legend>
@@ -40,20 +41,6 @@
                 <<wardrobeLinks "clothes">>
             <</replace>>
 
-        <<case "accesories">>
-            <<switch $args[1]>>
-                <<case "accesories">>
-                    <<replace "#wardrobeContent">>
-                        <<showWardrobeCC "accesories">>
-                    <</replace>>
-                    <<set $pressedlink to "accesories">>
-
-            <</switch>>
-        
-            <<replace "#wardrobeLinks">>
-                <<wardrobeLinks "accesories">>
-            <</replace>>
-
     <</switch>>
 <</widget>>
 
@@ -66,7 +53,7 @@
         <<case "upperbody">>
             <fieldset id="fieldinline">
                 <legend style="font-size: 115%;"> Upper Body </legend>
-                <<wardrobeItemsContent "upperbouter" "upperbunder">>
+                <<wardrobeItemsContent "upperbody">>
                 <div id="wardrobeItemsContent"></div>
 
             </fieldset>
@@ -74,15 +61,7 @@
         <<case "lowerbody">>
             <fieldset id="fieldinline">
                 <legend style="font-size: 115%;"> Lower Body </legend>
-                <<wardrobeItemsContent "lowerbouter" "lowerbunder">>
-                <div id="wardrobeItemsContent"></div>
-
-            </fieldset>
-
-        <<case "accesories">>
-            <fieldset id="fieldinline">
-                <legend style="font-size: 115%;"> Accesories </legend>
-                <<wardrobeItemsContent "head">>
+                <<wardrobeItemsContent "lowerbody">>
                 <div id="wardrobeItemsContent"></div>
 
             </fieldset>
@@ -92,81 +71,68 @@
 <</widget>>
 
 /% This is where the fun begins holy shit. I was like 2-3 weeks doing this thing.%/
-/% BTW Credits and thanks a lot to Degree of Lewdity for the code as this one is heavely based from the code that they have and prob heavely modified to work with what I have.%/
-/% It starts at setting a temp variable as an array so it can store more than one value, then it pushes argument(s) that came from calling it.%/
-/% and stores them in the previously temp var array.%/
-/% Now there is a for loop, that goes as much as there are is arguments in the temp var array and then it sets one value to another temp var %/
-/% then there are 3 switches, one checks for the "upperbody", the other for the lowerbody, it may and will be expanded further.%/
-/% The other assigns a temp var the value of the how is called in the wardrobe so it can go through the <a> function. %/
-/% The last one is the "divisor" so there can be a division between outerwear and underwear and assigns the itemSlot (primary or secondary). %/
-/% If you ask why there is two temp var that have nearly the same name, you can see that there is one with just "" and the other have "''" %/
-/% this is mostly because a problem with the <a> function as it thinks that the value that the temp var gives is a function, so with the '' it works %/
-/% But with Sugarcube I can't call that same value with "''" because Sugarcube doesn't want it so here it is. %/
+/% BTW Credits and thanks a lot to Degree of Lewdity for the code as this one is based from the code that they have and prob heavely modified to work with what I have.%/
+/% There are 3 switches, one checks for the "upperbody", the other for the lowerbody, it may be expanded further in the future.%/
+/% That switch stores it temporary so in case the args is, it becomes more easy to use later.%/
+/% The last 2 does essentially the same except that one is for "primary" and "secondary" body slots and the last one is for the bodypart index.%/
 /% After all that little happy story of me and this shit, now there is an if that checks if the player is naked so it hides and shows the "undress" link %/
 /% finally, another for loops for the length of the $wardrobeContent that makes a link for each item it has stored. %/
 <<widget "wardrobeItemsContent">>
 
-    <<set _wardrobeItemContent to []>>
+    /%<<set _wardrobeItemContent to []>>
     <<for _i to 0; _i lt $args.length; _i++>>
         <<set _wardrobeItemContent.push([$args[_i]])>>
-    <</for>>
-
-
-
-    <<for _i to 0; _i lt _wardrobeItemContent.length; _i++>>
-        <<set _wardrobeICLength to _wardrobeItemContent[_i]>>
-
-        <<switch _wardrobeICLength[0]>>
-            <<case "upperbouter" "upperbunder">>
-                <<set _wearID to "upperbodyID">>
-                <<set _body to "upperbody">>
-
-            <<case "lowerbouter" "lowerbunder">>
-                <<set _wearID to "lowerbodyID">>
-                <<set _body to "lowerbody">>
-
-        <</switch>>
+    <</for>>%/
+    <<switch $args[0]>>
+        <<case "upperbody">>
+            <<set _wearID to "upperbodyID">>
+            <<set _body to "upperbody">>
+            <<set _wardrobeSlot to ["upperbouter", "upperbunder"]>>
+            <<set _categories to ["Outerwear", "Underwear"]>>
         
-        <<switch _wardrobeICLength[0]>>
-            <<case "upperbouter">>
-                <<set _wardrobeSlot to "'upperbouter'">>
+        <<case "lowerbody">>
+            <<set _wearID to "lowerbodyID">>
+            <<set _body to "lowerbody">>
+            <<set _wardrobeSlot to ["lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
+            <<set _categories to ["Outerwear", "Underwear", "Legwear", "Footwear", "Shoes"]>>
 
-            <<case "upperbunder">>
-                <<set _wardrobeSlot to "'upperbunder'">>
+    <</switch>>
 
-            <<case "lowerbouter">>
-                <<set _wardrobeSlot to "'lowerbouter'">>
 
-            <<case "lowerbunder">>
-                <<set _wardrobeSlot to "'lowerbunder'">>
 
-        <</switch>>
+    <<for _i to 0; _i lt _wardrobeSlot.length; _i++>>
+        <<print _categories[_i]>>
 
-        <<switch _wardrobeICLength[0]>>
-            <<case "upperbouter" "lowerbouter">>
-                Outerwear
-                <<set _itemSlot to "'primary'">>
-                <<set _itemSlotT to "primary">>
+        <<switch _categories[_i]>>
+            <<case "Outerwear" "Legwear" "Shoes">>
+                <<set _itemSlot to "primary">>
 
-            <<case "upperbunder" "lowerbunder">>
-                Underwear
-                <<set _itemSlot to "'secondary'">>
-                <<set _itemSlotT to "secondary">>
-
-            <<case "head">>
-                Head
+            <<case "Underwear" "Footwear">>
+                <<set _itemSlot to "secondary">>
 
         <</switch>>
 
-        <<if $bodyparts[_body][0][_itemSlotT].lowname isnot "naked">>
-            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = `+ _itemSlot +`; SugarCube.State.variables.wardrobeSlot = `+ _wardrobeSlot +` ; SugarCube.State.display(SugarCube.State.passage)`'> Undress</a>
+        <<switch _categories[_i]>>
+            <<case "Outerwear" "Underwear">>
+                <<set _bpIndex to 0>>
+
+            <<case "Legwear">>
+                <<set _bpIndex to 2>>
+
+            <<case "Footwear" "Shoes">>
+                <<set _bpIndex to 3>>
+
+        <</switch>>
+
+        <<if $bodyparts[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
+            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'> Undress</a>
         <</if>>
         <div class="divisor"></div>
 
-        <<for _j to 0; _j lt $wardrobeContent[_wardrobeICLength].length; _j++>>
-            <<set _itemContent to $wardrobeContent[_wardrobeICLength][_j]>>
+        <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
+            <<set _itemContent to $wardrobeContent[_wardrobeSlot[_i]][_j]>>
 
-            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = `+ _itemSlot +`; SugarCube.State.variables.wardrobeSlot = `+ _wardrobeSlot +` ; SugarCube.State.display(SugarCube.State.passage)`'>_itemContent.name</a>
+            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>_itemContent.name</a>
             <br>
         <</for>>
 

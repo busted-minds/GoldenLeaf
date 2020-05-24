@@ -18,17 +18,31 @@
 
         {
             id: 1,
-            name: "Red Panties",
-            lowname: "<span class='lightred'>red panties</span>",
-            price: 0,
+            name: "Panties",
+            lowname: "panties",
+            price: 10,
             state: "normal",
-            description: "Just red panties",
+            description: "Just a pair of panties",
             category: ["panties", "underwear"],
-            article: "some",
+            article: "a pair of",
             gender: "female",
             exposurelevel: 2,
             exposedgenitals: false
         },
+
+        {
+            id: 2,
+            name: "Boxers",
+            lowname: "boxers",
+            price: 10,
+            state: "normal",
+            description: "Just a pair of boxers",
+            category: ["boxers", "underwear"],
+            article: "a pair of",
+            gender: "male",
+            exposurelevel: 2,
+            exposedgenitals: false
+        }
 
     ]>>
 <</widget>>

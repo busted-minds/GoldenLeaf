@@ -3,7 +3,7 @@
     !!Bedroom
     <div class="divisor"></div>
     You are in your bedroom, you see the door to the living room.
-    Your room has a $cheap_bed in one corner, on the other you see your $small_wardrobe. 
+    Your room has a $cheap_bed in one corner on the other you see your $small_wardrobe and a mirror. 
     Near the window you can see a $cheap_desk that has a $small_laptop ontop of it and a $cheap_chair.
 
 
@@ -21,31 +21,38 @@
     <div class="divisor"></div>
     You are in your $cheap_bed, what do you want to do?
 
-    [[Sleep|sleep]]
-    [[Relax|relax]]
+    [[Sleep or Rest|sleep]]
 
     [[Get up|livingroom]]
 
-:: sleep
+:: sleep [nobr]
 
-    !!Sleep
+    <h2>Sleep</h2>
     <div class="divisor"></div>
-    <<link "Sleep 2 hours" "bed">><<addhours 2>><<sleep>><</link>>
-    <<link "Sleep 4 hours" "bed">><<addhours 4>><<sleep>><</link>> 
-    <<link "Sleep 8 hours" "bed">><<addhours 8>><<sleep>><</link>>
-    <<link "Sleep 12 hours" "bed">><<addhours 12>><<sleep>><</link>>
+    <br>
+    <<link "Sleep 2 hours" "bed">><<addhours 2>><<recoverenergy 40>><<sleep>><</link>> @@.green; +40 energy@@
+    <br>
+    <<link "Sleep 4 hours" "bed">><<addhours 4>><<recoverenergy 60>><<sleep>><</link>> @@.green; +60 energy@@
+    <br>
+    <<link "Sleep 6 hours" "bed">><<addhours 6>><<recoverenergy 80>><<sleep>><</link>> @@.green; +80 energy@@
+    <br>
+    <<link "Sleep 8 hours" "bed">><<addhours 8>><<recoverenergy 100>><<sleep>><</link>> @@.green; +100 energy@@
+    <br>
 
-    [[Go back|previous()]]
-
-:: relax
-
-    !!Relax
+    <h2>Rest</h2>
     <div class="divisor"></div>
-    <<link "Relax 5 minutes" "bed">><<addminutes 5>><</link>>
-    <<link "Relax 15 minutes" "bed">><<addminutes 15>><</link>>
-    <<link "Relax 30 minutes" "bed">><<addminutes 30>><</link>>
-    <<link "Relax 45 minutes" "bed">><<addminutes 45>><</link>>
-
+    <br>
+    <<link "Rest 5 minutes" "bed">><<addminutes 5>><<recoverenergy 5>><</link>> @@.green; +5 energy@@
+    <br>
+    <<link "Rest 15 minutes" "bed">><<addminutes 15>><<recoverenergy 7>><</link>> @@.green; +7 energy@@
+    <br>
+    <<link "Rest 30 minutes" "bed">><<addminutes 30>><<recoverenergy 15>><</link>> @@.green; +15 energy@@
+    <br>
+    <<link "Rest 45 minutes" "bed">><<addminutes 45>><<recoverenergy 27>><</link>> @@.green; +27 energy@@
+    <br>
+    <<link "Rest 1 hour" "bed">><<addhours 1>><<recoverenergy 30>><</link>> @@.green; +30 energy@@
+    <br>
+    <br>
     [[Go back|previous()]]
 
 :: wardrobe [nobr]
@@ -53,13 +60,6 @@
     <div class="divisor"></div>
 
     <<wardrobeWandU>>
-    <<if $disablepush isnot true>>
-        <<set $wardrobeContent.upperbouter.push(clone(setup.clothes.upperbouter[1]))>>
-        <<set $wardrobeContent.upperbunder.push(clone(setup.clothes.upperbunder[1]))>>
-        <<set $wardrobeContent.lowerbouter.push(clone(setup.clothes.lowerbouter[1]))>>
-        <<set $wardrobeContent.lowerbunder.push(clone(setup.clothes.lowerbunder[1]))>>
-        <<set $disablepush to true>>
-    <</if>>
     <br>
     <div>
         <div id="wardrobeLinks">
@@ -73,5 +73,20 @@
     <br>
     
     [[Close the wardrobe|bedroom]]
+    <br>
+    [[Use the mirror|mirror]]
 
-/*::*/
+:: mirror
+
+    [[Back|wardrobe]]
+:: computer [nobr]
+    <h2>Computer</h2>
+    <div class="divisor"></div>
+    <div id="message"></div>
+    <br>
+    <<link "Play a videogame">>
+        <<energyfun 2 5 5 "videogames">>
+    <</link>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
+    <br>
+    <br>
+    [[Get up|bedroom]]

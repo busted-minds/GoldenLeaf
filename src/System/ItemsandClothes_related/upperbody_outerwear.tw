@@ -20,7 +20,7 @@
             id: 1,
             name: "Polo shirt",
             lowname: "polo shirt",
-            price: 0,
+            price: 25,
             state: "normal",
             description: "A normal polo shirt",
             article: "a",
@@ -32,16 +32,17 @@
         
         {
             id: 2,
-            name: "Lopo shirt",
-            lowname: "lopo shirt",
-            price: 0,
+            name: "Blouse",
+            lowname: "blouse",
+            price: 25,
             state: "normal",
-            description: "A normal lopo shirt",
-            category: ["shirt", "outerwear"],
-            gender: "neutral",
+            description: "A normal blouse",
+            article: "a",
+            category: ["blouse", "outerwear"],
+            gender: "female",
             exposurelevel: 1,
             exposedchest: false
-        },
+        }
 
     ]>>
 

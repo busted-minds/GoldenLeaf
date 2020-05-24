@@ -12,27 +12,20 @@
 
         {
             id: 1,
-            bodypart: "left-ear",
+            bodypart: "ears",
             primary: {},
             secondary: {}
         },
 
         {
             id: 2,
-            bodypart: "right-ear",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 3,
             bodypart: "nose",
             primary: {},
             secondary: {}
         },
 
         {
-            id: 4,
+            id: 3,
             bodypart: "mouth",
             primary: {},
             secondary: {}
@@ -49,70 +42,35 @@
 
         {
             id: 1,
-            bodypart: "left-nipple",
+            bodypart: "nipples",
             primary: {},
             secondary: {}
         },
 
         {
             id: 2,
-            bodypart: "right-nipple",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 3,
             bodypart: "navel",
             primary: {},
             secondary: {}
         },
 
         {
+            id: 3,
+            bodypart: "arms",
+            primary: {},
+            secondary: {}
+        },
+
+        {
             id: 4,
-            bodypart: "left-arm",
+            bodypart: "hands",
             primary: {},
             secondary: {}
         },
 
         {
             id: 5,
-            bodypart: "right-arm",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 6,
-            bodypart: "left-hand",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 7,
-            bodypart: "right-hand",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 8,
             bodypart: "back",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 9,
-            bodypart: "right-boob",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 10,
-            bodypart: "left-bob",
             primary: {},
             secondary: {}
         }
@@ -165,28 +123,14 @@
 
         {
             id: 2,
-            bodypart: "left-leg",
+            bodypart: "legs",
             primary: {},
             secondary: {}
         },
 
         {
             id: 3,
-            bodypart: "right-leg",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 4,
-            bodypart: "left-foot",
-            primary: {},
-            secondary: {}
-        },
-
-        {
-            id: 5,
-            bodypart: "right-foot",
+            bodypart: "feets",
             primary: {},
             secondary: {}
         }

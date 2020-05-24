@@ -1,0 +1,132 @@
+:: statisticsetter [widget nobr]
+
+
+<<widget "recoverenergy">>
+    <<if $playervar.energy lt $playervar.maxenergy>>
+        <<set $playervar.energy += $args[0]>>
+
+    <<elseif $playervar.energy gte $playervar.maxenergy>>
+        <<set $playervar.energy to $playervar.maxenergy>>
+
+    <</if>>
+<</widget>>
+
+<<widget "energyfun">>
+    <<set _energy to $args[0]>>
+    <<set _fun to $args[1]>>
+    <<set _addmin to $args[2]>>
+    <<set _activity to $args[3]>>
+
+    <<if $playervar.energy lt _energy>>
+        <<replace #message>>
+             You don't have enough energy.
+        <</replace>>
+
+        <<elseif $playervar.energy gte _energy>>
+
+            <<if $playervar.fun eq 100>>
+                <<replace #message>>
+                    <<switch _activity>>
+                        <<case "videogames">>
+                            You don't want to play anymore.
+
+                        <<case "watchtv">>
+                            You don't want to watch more TV.
+
+                    <</switch>>
+
+                <</replace>>
+
+            <<elseif $playervar.fun gte _fun>>
+                <<set $playervar.energy -= _energy>>
+                <<set $playervar.fun += _fun>>
+                <<addminutes _addmin>>
+
+                <<if $playervar.fun gte 100>>
+                    <<set $playervar.fun to 100>>
+
+                <</if>>
+
+            <</if>>
+
+        <</if>>
+
+    <<replace #energy>>
+        <<print $playervar.energy + "/" +$playervar.maxenergy>>
+    <</replace>>
+    
+    <<replace #fun>>
+        <<print $playervar.fun>>/100
+    <</replace>>
+
+    <<replace #timedate>>
+        <<timedate>>
+    <</replace>>
+
+<</widget>>
+
+<<widget "cleanliness">>
+    <<if $playervar.cleanliness lt 100>>
+
+        <<if $playervar.cleanliness gte 100>>
+            <<set $playervar.cleanliness to 100>>
+
+        <<else>>
+            <<set $playervar.cleanliness += $args[0]>>
+
+        <</if>>
+
+        <<addminutes $args[1]>>
+
+        <<replace #cleanliness>>
+            <<print $playervar.cleanliness>>/100
+        <</replace>>
+
+        <<replace #timedate>>
+            <<timedate>>
+        <</replace>>
+
+    <<elseif $playervar.cleanliness eq 100>>
+        <<replace #messager>>
+            You are already clean.
+        <</replace>>
+
+    <</if>>
+
+<</widget>>
+
+<<widget "pisspoop">>
+
+    <<set _pisspoop to $args[0]>>
+    <<set _id to $args[2]>>
+    <<set _lessclean to $args[3]>>
+    <<set _addmin to $args[4]>>
+
+    <<if $playervar[_pisspoop] gt $args[1]>>
+        <<if $playervar.cleanliness gt 0>>
+            <<set $playervar[_pisspoop] -= $args[1]>>
+            <<set $playervar.cleanliness -= _lessclean>>
+
+            <<addminutes _addmin>>
+
+            <<replace _id>>
+                <<print $playervar[_pisspoop]>>/100
+            <</replace>>
+
+            <<replace #cleanliness>>
+                <<print $playervar.cleanliness>>/100
+            <</replace>>
+
+            <<replace #timedate>>
+                <<timedate>>
+            <</replace>>
+        <</if>>
+
+    <<elseif $playervar[_pisspoop] lt $args[1]>>
+        <<replace #messager>>
+            You are already empty.
+        <</replace>>
+
+    <</if>>
+
+<</widget>>

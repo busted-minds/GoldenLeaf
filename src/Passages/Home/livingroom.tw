@@ -15,10 +15,10 @@
     </fieldset>
     <br>
     <fieldset id="fieldinline">
-        <legend>WIP</legend>
-        <span id="Link">[[Use the Tv|tv]]</span>
+        <legend>Misc</legend>
+        <span id="Link">[[Watch TV|tv]]</span>
         <br>
-        <span id="Link">[[Use the Sofa|sofa]]</span>
+        <span id="Link">[[Sit on the Sofa|sofa]]</span>
     </fieldset>
     <br>
     <fieldset id="fieldinline">
@@ -28,3 +28,40 @@
         <span id="Link">[[Bathroom|bathroom]]</span>
     </fieldset>
     <</nobr>>
+
+:: tv [nobr]
+    <h2>TV</h2>
+    <div class="divisor"></div>
+    <div id="message"></div>
+
+    <<link "Watch news channel">>
+        <<energyfun 1 2 3 "watchtv">>
+    <</link>>@@.green; +2 Fun@@ | @@.red; -1 Energy +3 Minutes@@
+    <br>
+    <br>
+    [[Turn off|livingroom]]
+
+:: sofa [nobr]
+    <h2>Sofa</h2>
+    <div class="divisor"></div>
+    <br>
+    [[Relax|relax]]
+    <br>
+    <br>
+    [[Get up|livingroom]]
+
+:: relax [nobr]
+    <h2>Relax</h2>
+    <div class="divisor"></div>
+    <br>
+    <<link "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><</link>> @@.green; +2 energy@@
+    <br>
+    <<link "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><</link>> @@.green; +4 energy@@
+    <br>
+    <<link "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><</link>> @@.green; +6 energy@@
+    <br>
+    <<link "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><</link>> @@.green; +8 energy@@
+    <br>
+    <br>
+
+    [[Go back|sofa]]

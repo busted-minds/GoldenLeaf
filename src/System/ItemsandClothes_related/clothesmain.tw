@@ -11,6 +11,9 @@
     <<upperb_underwear>>
     <<lowerb_outerwear>>
     <<lowerb_underwear>>
+    <<footwear>>
+    <<legwear>>
+    <<shoes>>
     <<accesories>>
 
     <<clothessetter>>
@@ -25,16 +28,20 @@
         <<set $wardrobeContent.upperbunder to []>>
         <<set $wardrobeContent.lowerbouter to []>>
         <<set $wardrobeContent.lowerbunder to []>>
+        <<set $wardrobeContent.legwear to []>>
+        <<set $wardrobeContent.footwear to []>>
+        <<set $wardrobeContent.shoes to []>>
 
         <<set $wardrobeContent.accesories to []>>
     
     <<set $bodyparts to {}>>
     <<set setup.clothes to {}>>
+    <<set $headID to null>>
     <<set $upperbodyID to null>>
     <<set $lowerbodyID to null>>
-    <<set $accesoriesID to null>>
     <<set $itemSlot to null>>
     <<set $wardrobeSlot to null>>
+    <<set $bodypartIndex to null>>
 
 <</widget>>
 
@@ -56,7 +63,6 @@
 
     <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[0])>>
     <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbouter[0])>>
-    <<set $bodyparts.upperbody[8].primary to clone(setup.clothes.accesories[1])>>
 
     /* Genitals setter */
     <<for _i to 0; _i lt $bodyparts.genitals.length; _i++>>

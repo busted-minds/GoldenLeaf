@@ -7,7 +7,7 @@
     
     <span class="darkyellow">What is your name?</span>
     <br>
-    <<textbox "$playername" "Name" autofocus>> <<textbox "$playersurname" "Surname">>
+    <<textbox "$playername" $playername autofocus>> <<textbox "$playersurname" $playersurname>>
     <br>
     <br>
     <span class="darkyellow">Select your gender:</span>
@@ -44,9 +44,23 @@
 
 <<gendersetter>>
 
+<<if $playervar.sensibility isnot 0 or $playervar.lowersensibility isnot 0 or $playervar.uppersensibility isnot 0>>
+    <<set $playervar.sensibility to 0>>
+    <<set $playervar.uppersensibility to 0>>
+    <<set $playervar.lowersensibility to 0>>
+<</if>>
+
 <<if $playervar.gender is "female">>
     <fieldset class="charc">
         <legend>Character Creation</legend>
+        
+        <span class="yellow">Select your hair style: </span>
+        <ul>
+            <<set _femalehairstyle to ["Bun", "Braided", "Crown Braid", "French Braid", "Asymmetric Cut", "Undercut", "Fishtail", "Bob Cut", "Lob", "Ponytail"]>>
+            <<listbox "$playerhairstyle" autoselect>>
+                <<optionsfrom _femalehairstyle>>
+            <</listbox>>
+        </ul>
 
         <span class="yellow">Select your breast size: </span>
         <ul>
@@ -123,6 +137,25 @@
     <fieldset class="charc">
         <legend>Character Creation</legend>
 
+        <span class="yellow">Select your hair style: </span>
+        <ul>
+            <<set _malehairstyle to ["Butch", "Crew Cut", "Ivy League", "Regular cut", "Undercut", "Wings"]>>
+            <<listbox "$playerhairstyle" autoselect>>
+                <<optionsfrom _malehairstyle>>
+            <</listbox>>
+        </ul>
+
+        <span class="yellow">Select your beard size: </span>
+        <ul>
+            <<listbox "$playerbeardsize" autoselect>>
+                <<option "Inexistent (It wont grow)" 0>>
+                <<option "None" 1>>
+                <<option "Small" 5>>
+                <<option "Medium" 10>>
+                <<option "Big" 15>>
+            <</listbox>>
+        </ul>
+
         <span class="yellow">Select your penis size: </span>
         <ul>
             <<listbox "$playervar.penissize" autoselect>>
@@ -173,29 +206,45 @@
 
 <<bsandhsetter>>
 <<antrwidthsetter>>
-<<set $playervar.sensibility to $playervar.lowersensibility + $playervar.uppersensibility>>
+<<if $playervar.gender is "female">>
+    <<femalesetter>>
+<<else>>
+    <<malesetter>>
+<</if>>
+
+<<set $playervar.sensibility += (($playervar.vagtightness + $playervar.anustightness)/2)>>
 
 <fieldset class="charc">
     <legend class="centered"> Character Status </legend>
 
     <fieldset class="charc">
         <legend> General info: </legend>
-        Your name is <span class="orange"><<print "$playername $playersurname">></span>,
+        Your name is <span class="gold"><<print "$playername $playersurname">></span>,
         you are a 
         <<if $playervar.gender is "female">>
             <span class="pink"><<print $playervar.gender>></span>.
+
         <<else>>
             <span class="lightblue"><<print $playervar.gender>></span>.
+
         <</if>>
+
         Your body sensibility is <<sensibilitychecker>>
         Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>.
+        Currently your hair style is <span class="orange"><<print $playerhairstyle>></span>. 
+        <<if $playervar.gender is "male">>
+            <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
+                And your beard has a size of <span class="blue"><<print $playervar.beardsize>></span> cm.
+            <</if>>
+        <</if>>
+
     </fieldset>
 
     <fieldset class="charc">
         <legend> Mouth info: </legend>
         Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>><span class="green">hasn't been touched</span>.<</if>><br>
         Your throat has a depth of <span class="blue"><<print $playervar.throatdepth>></span> cm and can comfortably insert objects upto <span class="blue"><<print $playervar.throatcomfortinsert>></span> cm in lenght and <span class="blue"><<print $playervar.throatwidthcomfortinsert>></span> cm width. 
-        It <<if $playervar.virginity.throat is true>><span class="green">hasn't had any object in it before</span>.<</if>> <<if $playervar.gagreflex is true>><span class="green">You still have your gag reflex</span>.<</if>>
+        It <<if $playervar.virginity.throat is true>><span class="green">hasn't had any object in it before</span>.<</if>> <<if $playervar.gagreflex is true>><span class="green">You still have your gag reflex</span>. <<else>> You don't have gag reflex.<</if>>
     </fieldset>
 
     <fieldset class="charc">
@@ -208,19 +257,19 @@
         <<set $playervar.penissize>>
         <<set $playervar.ballssize>>
 
-        <<femalesetter>>
         <fieldset class="charc">
             <legend>Breast info: </legend>
                 You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
                 <br> 
-                Each breast has <<nipplesizechecker>> nipple and they are <<print $playervar.nippletype>>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+                Each breast has <<nipplesizechecker>> nipple and they are <span class="orange"><<print $playervar.nippletype>></span>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
         </fieldset>
 
         <fieldset class="charc">
             <legend>Genitals info: </legend>
-                You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span> cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>> 
+                You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span> cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>>
+                <<if $playervar.cansquirt is true>><br><span class="green">When you orgasm you expel liquids from it</span>.<</if>> 
                 <br>
-                Your clitoris is <<clitorissizechecker>> and It's size is <span class="blue"><<print $playervar.clitorissize>></span> cm. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+                Your clitoris has a <<clitorissizechecker>>size and is <span class="blue"><<print $playervar.clitorissize>></span> cm in total. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
         </fieldset>
 
     <<elseif $playervar.gender is "male">>
@@ -229,12 +278,11 @@
         <<set $playervar.vagtightness to 0>>
         <<set $playervar.clitorissize to 0>>
 
-        <<malesetter>>
         <fieldset class="charc">
             <legend>Genitals info: </legend>
                 You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
                 <br>
-                Below it you have a pair of balls that are <span class="orange"><<ballssizechecker>></span> and their size is <span class="blue"><<print $playervar.ballssize>></span> cm.
+                Below it you have a pair of balls that are <<ballssizechecker>> and their size is <span class="blue"><<print $playervar.ballssize>></span> cm.
         </fieldset>
         
     <</if>>
@@ -261,6 +309,23 @@
 
 <<if $gamestarted eq 0>>
     <<set $gamestarted to 1>>
+    <<if $playervar.gender is "female">>
+        <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
+        <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
+        <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
+        <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
+        <<set $bodyparts.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
+        <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
+        <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
+    
+    <<elseif $playervar.gender is "male">>
+        <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
+        <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
+        <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
+        <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
+        <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
+    <</if>>
+
 <</if>>
 
 You are <span class="orange"><<print "$playername $playersurname">></span>, you are in a train to <span class="gold">Golden Leaf City</span> after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.

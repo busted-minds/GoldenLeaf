@@ -1,0 +1,46 @@
+:: shoes [widget nobr]
+
+<<widget "shoes">>
+
+    <<set setup.clothes.shoes to [
+        {
+            id: 0,
+            name: "Naked",
+            lowname: "naked",
+            price: 0,
+            state: "normal",
+            description: "Naked",
+            category: ["naked"],
+            gender: "none",
+            exposurelevel: 5,
+            exposedchest: true
+        },
+
+        {
+            id: 1,
+            name: "Sport shoes",
+            lowname: "sport shoes",
+            price: 25,
+            state: "normal",
+            description: "A pair of sport shoes",
+            article: "a pair of",
+            category: ["shoes", "sport"],
+            gender: "neutral",
+            exposurelevel: 0
+        },
+
+        {
+            id: 2,
+            name: "Sneakers",
+            lowname: "sneakers",
+            value: 25,
+            state: "normal",
+            description: "A pair of sneaker shoes",
+            article: "a pair of",
+            category: ["shoes", "sneakers"],
+            gender: "neutral",
+            exposurelevel: 0
+        }
+    ]>>
+
+<</widget>>

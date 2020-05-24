@@ -5,9 +5,21 @@
         <legend class="centered">Info</legend>
         <div style="text-align: left;"><<clotheschecker>></div>
         <br>
-        Credits: <span class="yellow">$credits</span>
+        <div style="text-align: left;" id="statistics">
+        Credits: @@.yellow; $credits@@
         <br>
-        <div style="text-align: left;"><<timedate>></div>
+        Cleanliness: @@#cleanliness.blue; <<print $playervar.cleanliness>>/100@@
+        <br>
+        Energy: @@#energy.green; <<print $playervar.energy + "/" +$playervar.maxenergy>>@@
+        <br>
+        Fun: @@#fun.lightblue; <<print $playervar.fun>>/100@@
+        <br>
+        Bladder: @@#bladder.lightyellow; <<print $playervar.bladder>>/100@@
+        <br>
+        Rectum: @@#rectum.lightbrown; <<print $playervar.rectum>>/100@@
+        </div>
+        <br>
+        <div id="timedate" style="text-align: left;"><<timedate>></div>
     </fieldset>
 
     <div id="popUp" class="popUp">

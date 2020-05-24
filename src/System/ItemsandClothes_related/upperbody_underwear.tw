@@ -20,7 +20,7 @@
             id: 1,
             name: "Bra",
             lowname: "bra",
-            price: 0,
+            price: 15,
             state: "normal",
             description: "A normal bra",
             article: "a",

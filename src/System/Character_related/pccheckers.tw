@@ -103,7 +103,7 @@
 	<<elseif $playervar.anustightness gte 50>>
 		<span class="lightred">tight</span>
 
-	<<elseif $playervar.anustightness gte 40>>
+	<<elseif $playervar.anustightness gte 35>>
 		<span class="graypink">normal</span>
 
 	<<elseif $playervar.anustightness gte 20>>
@@ -120,16 +120,19 @@
 <</widget>>
 
 <<widget "sensibilitychecker">>
-	<<if $playervar.sensibility gte 120>>
+	<<if $playervar.sensibility gte 100>>
 		<span class="red">very sensitive</span>.
 
-	<<elseif $playervar.sensibility gte 100>>
+	<<elseif $playervar.sensibility gte 60>>
 		<span class="lightred">sensitive</span>.
 
-	<<elseif $playervar.sensibility gte 50>>
+	<<elseif $playervar.sensibility gte 35>>
 		<span class="graypink">normal</span>.
 
-	<<elseif $playervar.sensibility gte 20>>
+	<<elseif $playervar.sensibility gte 10>>
+		<span class="red">somewhat insensitive</span>.
+
+	<<elseif $playervar.sensibility gte 0>>
 		<span class="darkred">insensitive</span>.
 
 	<</if>>
@@ -246,7 +249,7 @@
 	<<elseif $playervar.vagtightness gte 50>>
 		<span class="lightred">tight</span>
 
-	<<elseif $playervar.vagtightness gte 40>>
+	<<elseif $playervar.vagtightness gte 35>>
 		<span class="graypink">normal</span>
 
 	<<elseif $playervar.vagtightness gte 20>>
