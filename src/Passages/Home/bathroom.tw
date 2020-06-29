@@ -38,11 +38,11 @@
     <br>
     <div id="messager"></div>
     <<link "Pee">>
-        <<peepoop "bladder" 90 "#bladder" 10 2>>
+        <<peepoop 90 "#bladder" 10 2>>
     <</link>>@@.green; -90 Bladder@@ | @@.red; -10 Cleanliness +2 Minutes@@
     <br>
     <<link "Poop">>
-        <<peepoop "rectum" 90 "#rectum" 15 4>>
+        <<peepoop 90 "#rectum" 15 4>>
     <</link>>@@.green; -90 Rectum@@ | @@.red; -15 Cleanliness +4 Minutes@@
     <br>
     <br>

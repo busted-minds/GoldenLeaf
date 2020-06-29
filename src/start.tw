@@ -1,7 +1,6 @@
 :: StoryTitle
 Choosing Your Life
 
-
 :: StoryData
 {
         "ifid": "92D86F41-8C6B-4749-A2EF-2849676A8561"
@@ -13,9 +12,8 @@ Choosing Your Life
 
 [[Accept|charcreation1]]
 
-/%:: PassageHeader [nobr]
-
-<<if saveUpdate is true>>
+:: PassageHeader [nobr]
+/%<<if saveUpdate is true>>
     <<gameUpdate>>
    
     <<set saveUpdate to false>>

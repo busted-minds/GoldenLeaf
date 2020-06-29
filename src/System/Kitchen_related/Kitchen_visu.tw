@@ -1,0 +1,86 @@
+:: kitchenvisualizer [widget nobr]
+
+<<widget "fridgevisu">>
+    <<set _foodTypes to ["fruits", "meat", "vegetables", "liquids", "misc"]>>
+
+    <<for _ifv to 0; _ifv lt _foodTypes.length; _ifv++>>
+        <fieldset id="fieldinline">
+            <legend style="text-transform:capitalize;"><<print _foodTypes[_ifv]>></legend>
+            <<switch _foodTypes[_ifv]>>
+                <<case "fruits">>
+                    <<if $fruits[0] isnot undefined>>
+                        <<for _ifs to 0; _ifs lt $fruits.length; _ifs++>>
+                            <<set _foodnameF to $fruits[_ifs].name>>
+                            <<set _foodamountF to $fruits[_ifs].amount>>
+                            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>></a>
+                        <</for>>
+                    <</if>>
+
+                <<case "meat">>
+                    <<if $meat[0] isnot undefined>>
+                        <<for _im to 0; _im lt $meat.length; _im++>>
+                            <<set _foodnameF to $meat[_im].name>>
+                            <<set _foodamountF to $meat[_im].amount>>
+                            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>></a>
+                        <</for>>
+                    <</if>>
+
+                <<case "vegetables">>
+                    <<if $vegetables[0] isnot undefined>>
+                        <<for _iv to 0; _im lt $vegetables.length; _iv++>>
+                            <<set _foodnameF to $vegetables[_iv].name>>
+                            <<set _foodamountF to $vegetables[_iv].amount>>
+                            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>></a>
+                        <</for>>
+                    <</if>>
+
+                <<case "liquids">>
+                    <<if $liquids[0] isnot undefined>>
+                        <<for _il to 0; _il lt $liquids.length; _il++>>
+                            <<set _foodnameF to $liquids[_il].name>>
+                            <<set _foodamountF to $liquids[_il].amount>>
+                            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>></a>
+                        <</for>>
+                    <</if>>
+
+                <<case "misc">>
+                    <<if $misc[0] isnot undefined>>
+                        <<for _imi to 0; _imi lt $meat.length; _imi++>>
+                            <<set _foodnameF to $misc[_imi].name>>
+                            <<set _foodamountF to $misc[_imi].amount>>
+                            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>></a>
+                        <</for>>
+                    <</if>>
+
+            <</switch>>
+
+
+            <br>
+        </fieldset>
+        <br>
+    <</for>>
+<</widget>>
+
+<<widget "cupboardvisu">>
+    <fieldset id="fieldinline">
+        <legend style="text-transform:capitalize;">Others</legend>
+        <<for _icb to 0; _icb lt $cupboard.length; _icb++>>
+            <<set _foodnameCB to $cupboard[_icb].name>>
+            <<set _foodamountCB to $cupboard[_icb].amount>>
+
+            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameCB <<if _foodamountCB gt 1 >> x _foodamountCB <</if>></a>
+        <</for>>
+    </fieldset>
+<</widget>>
+
+<<widget "spicecabvisu">>
+    <fieldset id="fieldinline">
+        <legend style="text-transform:capitalize;">Spices</legend>
+        <<for _isc to 0; _isc lt $spicecabinet.length; _isc++>>
+            <<set _foodnameSC to $spicecabinet[0].name>>
+            <<set _foodamountSC to $spicecabinet[0].amount>>
+                
+            <a @onclick='`;SugarCube.State.display(SugarCube.State.passage)`'>_foodnameSC <<if _foodamountSC gt 1 >> x _foodamountSC <</if>></a>
+        <</for>>
+    </fieldset>
+<</widget>>

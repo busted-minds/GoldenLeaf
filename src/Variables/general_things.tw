@@ -1,0 +1,72 @@
+:: generalThings [widget nobr]
+
+<<widget "geneVariables">>
+    <<set $gamestarted to 0>>
+
+    <<set $lactationenabler to 0>> /* Enables lactation */
+
+    <<if $pressedlink is undefined>>
+        <<set $pressedlink to "upperbody">>
+    <</if>>
+
+    <<set $disablernggod to false>>
+
+    <<set $livingclean to false>>
+    <<set $kitchenclean to false>>
+    <<set $bedroomclean to false>>
+    <<set $bathroomclean to false>>
+
+    <<set $dadname to either("Joshua", "Daniel", "David", "Christopher", "Michael", "James", "Matthew", "Robert", "Andrew")>>
+    <<set $momname to either("Emily", "Megan", "Jessica", "Sarah", "Rebecca", "Laura", "Amber", "Victoria", "Katie")>>
+
+    <<set $backpack to []>>
+
+<</widget>>
+
+<<widget "skillinit">>
+    <<set $programmingskill to 0>>
+    <<set $progexp to 0>>
+    <<set $progexpleft to 100>>
+    <<set $programminglearning to 1.0>>
+
+    <<set $cookingskill to 0>>
+    <<set $cookexp to 0>>
+    <<set $cookexpleft to 100>>
+    <<set $cookinglearning to 1>>
+
+    <<set $gardeningskill to 0>>
+    <<set $gardexp to 0>>
+    <<set $gardexpleft to 100>>
+    <<set $gardeninglearning to 1>>
+
+    <<set $artskill to 0>>
+    <<set $artexp to 0>>
+    <<set $artexpleft to 100>>
+    <<set $artlearning to 1>>
+
+    <<set $athleticskill to 0>>
+    <<set $athleticexp to 0>>
+    <<set $athleticexpleft to 100>>
+	<<set $athleticslearning to 1>>
+
+    <<set $handymanskill to 0>>
+    <<set $handymexp to 0>>
+    <<set $handymexpleft to 100>>
+    <<set $handymanlearning to 1>>
+
+    <<set $swimmingskill to 0>>
+    <<set $swimexp to 0>>
+    <<set $swimexpleft to 100>>
+    <<set $swimmminglearning to 1>>
+    
+    <<set $runningskill to 0>>
+    <<set $runexp to 0>>
+    <<set $runexpleft to 100>>
+    <<set $runninglearning to 1>>
+
+    <<set $weightliftskill to 0>>
+    <<set $weightlexp to 0>>
+    <<set $weightlexpleft to 100>>
+    <<set $weightliftlearning to 1>>
+    
+<</widget>>

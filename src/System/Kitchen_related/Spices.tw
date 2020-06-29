@@ -1,0 +1,18 @@
+:: spices [widget nobr]
+
+<<widget "setspices">>
+    <<set setup.food.spices to [
+        {
+            id: 0,
+            name: "Pepper",
+            lowname: "pepper",
+            perishable: false,
+            price: 2,
+            hunger: 1,
+            amount: 1,
+            foodtype: "spices"
+
+        }
+    ]>>
+
+<</widget>>

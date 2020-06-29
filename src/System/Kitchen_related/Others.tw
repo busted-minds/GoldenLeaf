@@ -1,0 +1,27 @@
+:: others [widget nobr]
+
+<<widget "setothers">>
+    <<set setup.food.others to [
+        {
+            id: 0,
+            name: "Rice",
+            lowname: "rice",
+            perishable: false,
+            price: 2,
+            hunger: 6,
+            amount: 1,
+            foodtype: "others"
+        },
+        {
+            id: 1,
+            name: "Pasta",
+            lowname: "pasta",
+            perishable: true,
+            price: 2,
+            hunger: 7,
+            amount: 1,
+            foodtype: "others"
+        }
+    ]>>
+
+<</widget>>

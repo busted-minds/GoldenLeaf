@@ -1,0 +1,73 @@
+:: skillbar [widget nobr]
+
+<<widget "skillbar">>
+    <<checkup>>
+    <div>
+    Programming level: @@#prog;<<print $programmingskill>>@@
+    <br>
+        <<progressbar $progexp $progexpleft "programmingb">>
+    </div>
+    <br>
+    <div>
+    Cooking level: @@#cook;<<print $cookingskill>>@@
+    <br>
+        <<progressbar $cookexp $cookexpleft "cookingb">>
+    </div>
+    <br>
+    <div>
+    Gardening level:  @@#gard;<<print $gardeningskill>>@@
+    <br>
+        <<progressbar $gardexp $gardexpleft "gardeningb">>
+    </div>
+    <br>
+    <div>
+    Art level:  @@#art;<<print $artskill>>@@
+    <br>
+        <<progressbar $artexp $artexpleft "artb">>
+    </div>
+    <br>
+    <div>
+    Athletics level:  @@#athletic;<<print $athleticskill>>@@
+    <br>
+        <<progressbar $athleticexp $athleticexpleft "athleticb">>
+    </div>
+    <br>
+    <div>
+    Swimming level:  @@#swimming;<<print $swimmingskill>>@@
+    <br>
+        <<progressbar $swimexp $swimexpleft "swimmingb">>
+    </div>
+    <br>
+    <div>
+    Running level:  @@#running;<<print $runningskill>>@@
+    <br>
+        <<progressbar $runexp $runexpleft "runningb">>
+    </div>
+    <br>
+    <div>
+    Weightlifting level:  @@#weightlift;<<print $weightliftskill>>@@
+    <br>
+        <<progressbar $weightlexp $weightlexpleft "weightliftb">>
+    </div>
+    <br>
+    <div>
+    Handyman level:  @@#handyman;<<print $handymanskill>>@@
+    <br>
+        <<progressbar $handymexp $handymexpleft "handymanb">>
+    </div>
+<</widget>>
+
+<<widget "progressbar">>
+    <<set _expval to $args[0]>>
+    <<set _expleftval to $args[1]>>
+    <<set _skill to $args[2]>>
+
+    <<set _progress = Math.round((_expval/_expleftval)*100)>>
+    <div @id="_skill">
+    <div id="progressbar">
+        <div id="bar" @style="'width:' + _progress + '%'"></div>
+    </div>
+    <h4 id="expnumber" style="padding:0; margin:0;">Exp: <<print _expval + "/" + _expleftval>></h4>
+    </div>
+
+<</widget>>

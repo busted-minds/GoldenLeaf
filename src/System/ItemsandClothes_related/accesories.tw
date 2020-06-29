@@ -22,7 +22,6 @@
             description: "A normal backpack.",
             category: ["backpack", "accesory"],
             gender: "none",
-            slots: [],
             maxitems: 5
         }
     ]>>

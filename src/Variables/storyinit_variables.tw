@@ -1,52 +1,54 @@
 :: StoryInit
 
 <<clothesinit>>
-<<gene-variables>>
+<<geneVariables>>
+<<skillinit>>
+<<kitchenini>>
 /* Player body variables */
 <<set $playervar to {
-    gender: 0, /* Gender of the player; Male or female */
-    height: 0, /* Height of the player */
-    bodyshape: 0, /* Body shape of the player */
-    bodyshapestate: 0,
-    attractiveness: 0, /* How beautiful the player is */
+    gender: null, /* Gender of the player; Male or female */
+    height: null, /* Height of the player */
+    bodyshape: null, /* Body shape of the player */
+    bodyshapestate: null,
+    attractiveness: null, /* How beautiful the player is */
 
     /* Female variables */
-    hasvagina: 0, /* Player has a vagina */
-    vagdepth: 0, /* Player vaginal depth */
-    vagcomfortinsert: 0, /* Player vaginal comfortable insertion */
-    vagwidthcomfortinsert: 0,
-    breastsize: 0, /* Size of player breast */
-    vagtightness: 0,
-    cansquirt: 0,
-    uterusdepth: 0, /* Size of player uterus depth */
-    insidemaxcumlevel: 0, /* How much cum the player can have inside in ml (pre-cuminflation variable) */
-    clitorissize: 0, /* Size of player clitoris*/
-    nipplesize: 0, /* Size of player nipples*/
-    nippletype: 0, /* Type of player nipples */
+    hasvagina: null, /* Player has a vagina */
+    vagdepth: null, /* Player vaginal depth */
+    vagcomfortinsert: null, /* Player vaginal comfortable insertion */
+    vagwidthcomfortinsert: null,
+    breastsize: null, /* Size of player breast */
+    vagtightness: null,
+    cansquirt: null,
+    uterusdepth: null, /* Size of player uterus depth */
+    insidemaxcumlevel: null, /* How much cum the player can have inside in ml (pre-cuminflation variable) */
+    clitorissize: null, /* Size of player clitoris*/
+    nipplesize: null, /* Size of player nipples*/
+    nippletype: null, /* Type of player nipples */
         /* Lactation */
-    breastmilklevel: 0, /* How much breast milk the player currently has in ml. */
-    breastmilkmaxlevel: 0, /* How much breast milk the player can have in ml.*/
-    breastmilkregen: 0, /* How much breast milk the player regens */
+    breastmilklevel: null, /* How much breast milk the player currently has in ml. */
+    breastmilkmaxlevel: null, /* How much breast milk the player can have in ml.*/
+    breastmilkregen: null, /* How much breast milk the player regens */
 
     /* Male variables */
-    haspenis: 0, /* Player has a penis */
-    penissize: 0, /* Size of player penis */
-    peniswidth: 0,
-    ballssize: 0, /* Size of player balls */
-    cummaxlevel: 0, /* How much cum the player has accumulated in ml */
-    cumregen: 0, /* How much cum the player regens */
+    haspenis: null, /* Player has a penis */
+    penissize: null, /* Size of player penis */
+    peniswidth: null,
+    ballssize: null, /* Size of player balls */
+    cummaxlevel: null, /* How much cum the player has accumulated in ml */
+    cumregen: null, /* How much cum the player regens */
 
     /* General variables */
-    buttsize: 0, /* Size of player butt */
-    anuscomfortinsert: 0, /* Player anus comfortable insertion */
-    anusdepth: 0,
-    anuswidthcomfortinsert: 0,
-    throatdepth: 0, /* Size of player throat depth */
-    throatcomfortinsert: 0, /* Player throat comfortable insertion */
-    throatwidthcomfortinsert: 0,
-    anustightness: 0,
+    buttsize: null, /* Size of player butt */
+    anuscomfortinsert: null, /* Player anus comfortable insertion */
+    anusdepth: null,
+    anuswidthcomfortinsert: null,
+    throatdepth: null, /* Size of player throat depth */
+    throatcomfortinsert: null, /* Player throat comfortable insertion */
+    throatwidthcomfortinsert: null,
+    anustightness: null,
     gagreflex: true,
-    sensibility: 0, /* u + l = 60 s */
+    sensibility: null,
     virginity:{
         anus: true, 
         mouth: true, 
@@ -58,21 +60,27 @@
         throat: true,
         hands: true,
         tights: true,
-        butt: true
-        /* urethra: true . Commented because it wont be implemented at this time */
-    },
-    energy: 100, /* Starting player stamina */
-    maxenergy: 100, /* Max stamina that the player can develop current 0, will change later when implemented */
-    fun: 100,
-    cleanliness: 100,
-    bladder: 0,
-    rectum: 0
+        butt: true,
+        urethra: true
+    }
 }>>
+
+<<set $credits to 250>>
+<<set $energy to 100>>
+<<set $maxenergy to 100>>
+<<set $fun to 100>>
+<<set $cleanliness to 100>>
+<<set $bladder to 20>>
+<<set $rectum to 20>>
+<<set $hunger to 20>>
+
+<<set $hobby to null>>
 
 <<set $playername to "Name">>
 <<set $playersurname to "Surname">>
-<<set $playerhairstyle to 0>>
-<<set $playerbeardsize to 0>>
+<<set $playerhairstyle to null>>
+<<set $playerbeardsize to null>>
+
 <<set $time to new Date("2050-02-03T06:05:00Z")>>
 <<set $days to [
     "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
@@ -81,5 +89,3 @@
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ]>>
-
-<<set $credits to 200>>

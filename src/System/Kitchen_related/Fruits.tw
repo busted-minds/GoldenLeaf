@@ -1,0 +1,40 @@
+:: fruits [widget nobr]
+
+<<widget "setfruits">>
+    <<set setup.food.fruits to [
+        {
+            id: 0,
+            name: "Coconut",
+            lowname: "coconut",
+            perishable: true,
+            price: 2,
+            hunger: 5,
+            amount: 1,
+            foodtype: "fruits"
+
+        },
+        {
+            id: 1,
+            name: "Watermelon",
+            lowname: "watermelon",
+            perishable: true,
+            price: 5,
+            hunger: 8,
+            amount: 1,
+            foodtype: "fruits"
+
+        },
+        {
+            id: 2,
+            name: "Mea",
+            lowname: "mea",
+            perishable: true,
+            price: 5,
+            hunger: 8,
+            amount: 1,
+            foodtype: "meat"
+
+        }
+    ]>>
+
+<</widget>>

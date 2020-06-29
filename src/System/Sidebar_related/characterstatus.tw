@@ -14,8 +14,14 @@
             <<else>>
                 <span class="lightblue"><<print $playervar.gender>></span>.
             <</if>>
+            Currently your hair style is <span class="orange"><<print $playerhairstyle>></span>.
+            <<if $playervar.gender is "male">>
+                <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
+                    And your beard has a size of <span class="blue"><<print $playervar.beardsize>></span> cm.
+                <</if>>
+            <</if>>
             Your body sensibility is <<sensibilitychecker>>
-            Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>.
+            Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>. 
         </fieldset>
 
         <fieldset class="charc">

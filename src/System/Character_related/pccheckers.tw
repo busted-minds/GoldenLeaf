@@ -17,7 +17,7 @@
 					<span class="green">healthy</span>
 
 				<<case "normal">>
-					<span class="lightgreen">looking good</span>
+					<span class="lightgreen">good looking</span>
 
 				<<case "chubby">>
 					<span class="lightyellow">skinny</span>
@@ -36,7 +36,7 @@
 					<span class="green">healthy</span>
 
 				<<case "toned">>
-					<span class="lightgreen">looking good</span>
+					<span class="lightgreen">good looking</span>
 
 				<<case "normal">>
 					<span class="lightyellow">skinny</span>
@@ -45,7 +45,7 @@
 					<span class="yellow">fat</span>
 
 				<<case "fat">>
-					<span class="darkyellow">obese.</span>
+					<span class="darkyellow">obese</span>
 			<</switch>>
 
 		<<case "small">>
@@ -54,7 +54,7 @@
 					<span class="green">healthy</span>
 
 				<<case "fit">>
-					<span class="lightgreen">looking good</span>
+					<span class="lightgreen">good looking</span>
 
 				<<case "toned">>
 					<span class="lightyellow">skinny</span>

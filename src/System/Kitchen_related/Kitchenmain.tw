@@ -1,0 +1,23 @@
+:: kitchenini [widget nobr]
+
+<<widget "kitchenini">>
+    <<kitchenvar>>
+    <<setfruits>>
+    <<setspices>>
+    <<setothers>>
+    
+<</widget>>
+
+<<widget "kitchenvar">>
+    <<set $fruits to []>>
+    <<set $meat to []>>
+    <<set $vegetables to []>>
+    <<set $liquids to []>>
+    <<set $misc to []>>
+        
+    <<set $spicecabinet to []>>
+    <<set $cupboard to []>>
+    <<set $kitchentable to []>>
+
+    <<set setup.food to {}>>
+<</widget>>

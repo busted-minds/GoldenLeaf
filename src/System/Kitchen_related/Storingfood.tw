@@ -1,0 +1,125 @@
+:: storing [widget nobr]
+
+<<widget "storefridge">>
+    <<for _sf, _index range $backpack>>
+        <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
+
+        <<switch $backpack[_positb].foodtype>>
+            <<case "fruits">>
+                <<set _posit to $fruits.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$fruits[_posit]>>
+                    <<set $fruits.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $fruits[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $fruits[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+            <<case "meat">>
+                <<set _posit to $meat.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$meat[_posit]>>
+                    <<set $meat.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $meat[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $meat[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+            <<case "vegetables">>
+                <<set _posit to $vegetables.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$vegetables[_posit]>>
+                    <<set $vegetables.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $vegetables[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $vegetables[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+            <<case "liquids">>
+                <<set _posit to $liquids.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$liquids[_posit]>>
+                    <<set $liquids.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $liquids[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $liquids[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+            <<case "misc">>
+                <<set _posit to $misc.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$misc[_posit]>>
+                    <<set $misc.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $misc[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $misc[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+        <</switch>>
+
+    <</for>>
+
+<</widget>>
+
+<<widget "storecupb">>
+    <<for _scb, _index range $backpack>>
+        <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
+
+        <<switch $backpack[_positb].foodtype>>
+            <<case "others">>
+                <<set _posit to $cupboard.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$cupboard[_posit]>>
+                    <<set $cupboard.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $cupboard[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $cupboard[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+
+        <</switch>>
+
+    <</for>>
+
+<</widget>>
+
+<<widget "storespicecab">>
+    <<for _ssc, _index range $backpack>>
+        <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
+
+        <<switch $backpack[_positb].foodtype>>
+            <<case "spices">>
+                <<set _posit to $spicecabinet.findIndex(x => x.name === $backpack[_positb].name)>>
+
+                <<if !$spicecabinet[_posit]>>
+                    <<set $spicecabinet.push(clone($backpack[_positb]))>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <<elseif $spicecabinet[_posit].name.includes($backpack[_positb].name)>>
+                    <<set $spicecabinet[_posit].amount += $backpack[_positb].amount>>
+                    <<set $backpack.deleteAt(_positb)>>
+
+                <</if>>
+                
+        <</switch>>
+
+    <</for>>
+
+<</widget>>

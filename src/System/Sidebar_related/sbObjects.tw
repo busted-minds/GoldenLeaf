@@ -1,38 +1,47 @@
 :: StoryCaption [nobr]
 
 <<if $gamestarted is 1>>
+
     <fieldset class="info">
         <legend class="centered">Info</legend>
         <div style="text-align: left;"><<clotheschecker>></div>
         <br>
         <div style="text-align: left;" id="statistics">
-        Credits: @@.yellow; $credits@@
+        Credits: @@#credits.yellow; $credits@@
         <br>
-        Cleanliness: @@#cleanliness.blue; <<print $playervar.cleanliness>>/100@@
+        Cleanliness: @@#cleanliness.blue; <<print $cleanliness>>/100@@
         <br>
-        Energy: @@#energy.green; <<print $playervar.energy + "/" +$playervar.maxenergy>>@@
+        Energy: @@#energy.green; <<print $energy + "/" + $maxenergy>>@@
         <br>
-        Fun: @@#fun.lightblue; <<print $playervar.fun>>/100@@
+        Fun: @@#fun.lightblue; <<print $fun>>/100@@
         <br>
-        Bladder: @@#bladder.lightyellow; <<print $playervar.bladder>>/100@@
+        Hunger: @@#hunger.lightred; <<print $hunger>>/100@@
         <br>
-        Rectum: @@#rectum.lightbrown; <<print $playervar.rectum>>/100@@
+        Bladder: @@#bladder.lightyellow; <<print $bladder>>/100@@
+        <br>
+        Rectum: @@#rectum.lightbrown; <<print $rectum>>/100@@
         </div>
         <br>
         <div id="timedate" style="text-align: left;"><<timedate>></div>
     </fieldset>
 
+    <<set $popupbox to 0>>
     <div id="popUp" class="popUp">
         <div id="popUpContent"></div>
-        <div id="popUpBottom" style="margin-top: 15px;"></div>
+        <div id="popUpBottom" style="margin-top: 2.5%;"></div>
     </div>
 
     <br>
-    <div class="divisor" style="margin-bottom: 4.6px;"></div>
+    <div class="divisor" style="margin-bottom: 5px;"></div>
+    <div>
     <<button Status>>
         <<replacer "status">>
     <</button>>
-    <br>
-    <div class="divisor" style="margin-top: 4.6px;"></div>
-
+    </div>
+    <div style="margin-top:5px;">
+    <<button Skills>>
+        <<replacer "skills">>
+    <</button>>
+    </div>
+    <div class="divisor" style="margin-top: 5px;"></div>
 <</if>>

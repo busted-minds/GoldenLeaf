@@ -5,6 +5,7 @@
 /% This thing is and was a PitA (Pain in the Ass) to make so not a long comment this one will be :D.%/ 
 /% Credits and Thanks a lot to DoL again, because this was heavely inspired and may look the same as the one of them. %/
 /% Really, you may want to try and play DoL is a great game and it inspired me to make my own (Beware that DoL is more "rapey"). %/
+/% The widget "clothesArticles" works like this: First u need to put in what bodypart(upper or lower) it needs to check, then what slot and finally what body part (torso, legs, lowerbody, etc) and it gives you the article of that item.%/
 <<widget "clotheschecker">>
     <<if $bodyparts.upperbody[0].primary.lowname is "naked">> /% The player doesn't have outerwear %/
         <<if $bodyparts.upperbody[0].primary.lowname is "naked" and $bodyparts.upperbody[0].secondary.lowname is "naked">> /% The player doesn't have underwear%/
@@ -25,7 +26,7 @@
         <<elseif $bodyparts.upperbody[0].primary.lowname is "naked" and $bodyparts.upperbody[0].secondary.lowname isnot "naked">> /% Or upperbody has outerwear but not underwear %/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    You have <<clothesArticles "upperbody" "secondary" "0">> <<print $bodyparts.upperbody[0].secondary.lowname>>.
+                    You have <<clothesArticles "upperbody" "secondary" 0>> <<print $bodyparts.upperbody[0].secondary.lowname>>.
 
                 <<case "female">>
                     <span class="darkpink">Your <<print $bodyparts.upperbody[0].secondary.lowname>> is visible</span>.

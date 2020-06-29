@@ -30,7 +30,7 @@
             /% This is the "main part" as it works by checking if the item's gender is neutral or if it's the same as player gender. May change in the future%/
             /% If the if statement returns true then it "undress" that player part with the following arguments: %/
             /% "_bodypart[_iWU]"" for what part of the body it goes (upperbody, lowerbody, etc).%/
-            /% "0" This may change in the future, but it's the index of what will be equiped (Example: [0] for upperbody means the Torso and for the lowerbody it means the lower body.) %/
+            /% "_itemID" It's the index of what will be equiped (Example: [0] for upperbody means the Torso and for the lowerbody it means the lower body.) %/
             /% "$itemSlot" This is from what slot it will be undressed (primary, secondary).%/
             /% "$wardrobeSlot" Is from what slot from the wardrobe it will be used (upperbouter,lowerbouter etc).%/
             /% And finally "true" it's tell the <<undressMain>> widget that the player is in a wardrobe.%/

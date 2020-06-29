@@ -1,59 +1,82 @@
 :: bedroom
-
     !!Bedroom
     <div class="divisor"></div>
     You are in your bedroom, you see the door to the living room.
     Your room has a $cheap_bed in one corner on the other you see your $small_wardrobe and a mirror. 
     Near the window you can see a $cheap_desk that has a $small_laptop ontop of it and a $cheap_chair.
+    <<nobr>>
+    <<if $bedroomclean is true>>
+        @@.lightblue;You will need to clean your room and fix the bed before using it.@@
+        <br>
+        <<set _givexp to random(5,10)>>
+        <<addclass "#hidebed" "hide">>
+        <<link "Clean and fix the bed" "bedroom">>
+            <<unset $bedroomclean>>
+            <<removeclass "#hidebed" "hide">>
+            <<rngod>>
+            <<if $rnggod gte 50>>
+                <<set $credits += random(5,20)>>
+            <</if>>
+            <<energyfun 15 10 15 "skilling" "handyman" _givexp>>
+        <</link>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
+        <br>
+    <</if>>
+    
+    <fieldset id="fieldinline">
+        <legend>Use</legend>
+        @@#hidebed#Link;[[Use the bed|bed]]@@
+        <br>
+        @@#Link;[[Use the computer|computer]]@@
+    </fieldset>
+    <br>
+    <fieldset id="fieldinline">
+        <legend>Misc</legend>
+        @@#Link;[[Change clothes|wardrobe]]@@
+        <br>
+        @@#Link;[[Approach the window|window]]@@
+    </fieldset>
+    <</nobr>>
 
-
-    [[Use the bed|bed]]
-    [[Use the computer|computer]]
-    [[Change clothes|wardrobe]]
-    [[Approach the window|window]]
-
-
-    [[To the living room|livingroom]]
-
+    @@#Link;[[To the living room|livingroom]]@@
 :: bed
 
     !!Bed
     <div class="divisor"></div>
     You are in your $cheap_bed, what do you want to do?
 
-    [[Sleep or Rest|sleep]]
+    @@#Link;[[Sleep or Rest|sleep]]@@
 
-    [[Get up|livingroom]]
+    @@#Link;[[Get up|bedroom]]@@
 
 :: sleep [nobr]
 
     <h2>Sleep</h2>
     <div class="divisor"></div>
     <br>
-    <<link "Sleep 2 hours" "bed">><<addhours 2>><<recoverenergy 40>><<sleep>><</link>> @@.green; +40 energy@@
+    @@#Link;<<link "Sleep 2 hours" "bed">><<addhours 2>><<recoverenergy 40>><<sleep>><<timeattached "hours" 2>><</link>>@@ @@.green; +40 energy@@
     <br>
-    <<link "Sleep 4 hours" "bed">><<addhours 4>><<recoverenergy 60>><<sleep>><</link>> @@.green; +60 energy@@
+    @@#Link;<<link "Sleep 4 hours" "bed">><<addhours 4>><<recoverenergy 60>><<sleep>><<timeattached "hours" 4>><</link>>@@ @@.green; +60 energy@@
     <br>
-    <<link "Sleep 6 hours" "bed">><<addhours 6>><<recoverenergy 80>><<sleep>><</link>> @@.green; +80 energy@@
+    @@#Link;<<link "Sleep 6 hours" "bed">><<addhours 6>><<recoverenergy 80>><<sleep>><<timeattached "hours" 6>><</link>>@@ @@.green; +80 energy@@
     <br>
-    <<link "Sleep 8 hours" "bed">><<addhours 8>><<recoverenergy 100>><<sleep>><</link>> @@.green; +100 energy@@
+    @@#Link;<<link "Sleep 8 hours" "bed">><<addhours 8>><<recoverenergy 100>><<sleep>><<timeattached "hours" 8>><</link>>@@ @@.green; +100 energy@@
     <br>
 
     <h2>Rest</h2>
     <div class="divisor"></div>
     <br>
-    <<link "Rest 5 minutes" "bed">><<addminutes 5>><<recoverenergy 5>><</link>> @@.green; +5 energy@@
+    @@#Link;<<link "Rest 5 minutes" "bed">><<addminutes 5>><<recoverenergy 5>><<timeattached "minutes" 5>><</link>>@@ @@.green; +5 energy@@
     <br>
-    <<link "Rest 15 minutes" "bed">><<addminutes 15>><<recoverenergy 7>><</link>> @@.green; +7 energy@@
+    @@#Link;<<link "Rest 15 minutes" "bed">><<addminutes 15>><<recoverenergy 7>><<timeattached "minutes" 15>><</link>>@@ @@.green; +7 energy@@
     <br>
-    <<link "Rest 30 minutes" "bed">><<addminutes 30>><<recoverenergy 15>><</link>> @@.green; +15 energy@@
+    @@#Link;<<link "Rest 30 minutes" "bed">><<addminutes 30>><<recoverenergy 15>><<timeattached "minutes" 30>><</link>>@@ @@.green; +15 energy@@
     <br>
-    <<link "Rest 45 minutes" "bed">><<addminutes 45>><<recoverenergy 27>><</link>> @@.green; +27 energy@@
+    @@#Link;<<link "Rest 45 minutes" "bed">><<addminutes 45>><<recoverenergy 27>><<timeattached "minutes" 45>><</link>>@@ @@.green; +27 energy@@
     <br>
-    <<link "Rest 1 hour" "bed">><<addhours 1>><<recoverenergy 30>><</link>> @@.green; +30 energy@@
+    @@#Link;<<link "Rest 1 hour" "bed">><<addminutes 60>><<recoverenergy 30>><<timeattached "minutes" 60>><</link>>@@ @@.green; +30 energy@@
     <br>
     <br>
-    [[Go back|previous()]]
+    @@#Link;[[Go back|bedroom]]@@
 
 :: wardrobe [nobr]
     <h2>Wardrobe</h2>
@@ -72,21 +95,28 @@
     </div>
     <br>
     
-    [[Close the wardrobe|bedroom]]
+    @@#Link;[[Close the wardrobe|bedroom]]@@
     <br>
-    [[Use the mirror|mirror]]
+    @@#Link;[[Use the mirror|mirror]]@@
 
 :: mirror
 
-    [[Back|wardrobe]]
+    @@#Link;[[Back|wardrobe]]@@
 :: computer [nobr]
     <h2>Computer</h2>
     <div class="divisor"></div>
     <div id="message"></div>
     <br>
-    <<link "Play a videogame">>
+    @@#Link;<<link "Play videogames">>
         <<energyfun 2 5 5 "videogames">>
-    <</link>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
+    <</link>>@@@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
     <br>
+
+    <<if $hobby is "programming" or $programmingskill is 2>>
+        @@#Link;<<link "Practice programming">>
+            <<energyfun 10 5 15 "skilling" "programming" 6>>
+        <</link>>@@@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
     <br>
-    [[Get up|bedroom]]
+    <</if>>
+    <br>
+    @@#Link;[[Get up|bedroom]]@@

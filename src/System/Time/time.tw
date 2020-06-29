@@ -4,10 +4,12 @@
 /% Credits to the internet, as I saw how to do this there and I don't remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth) %/
 <<widget "addminutes">> /* Add minutes*/ 
     <<run $time.setUTCMinutes($time.getUTCMinutes() + $args[0])>>
+
 <</widget>>
 
 <<widget "addhours">> /* Add hours */
     <<run $time.setUTCHours($time.getUTCHours() + $args[0])>>
+
 <</widget>>
 
 <<widget "date">> /* Gives format to the date */

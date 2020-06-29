@@ -4,21 +4,86 @@
     <br>
     You are in the kitchen it's small and is divided by an open-wall, you can see your living room from here.
     <br>
-    At the corner you see your $cheap_fridge at the left of it a kitchen counter where you can store your cookware, on top if it you have a $small_spice_cabinet and a $small_cupboard. 
+    At the corner you see your $cheap_fridge, on top of it you have a $small_spice_cabinet and a $small_cupboard. 
     Next to your fridge there is your $cheap_stove and the kitchen sink.
     <br>
     <br>
-    [[Open the fridge|fridge]]
+    <fieldset id="fieldinline">
+        <legend>Open</legend>
+        @@#Link;[[Open the fridge|fridge]]@@
+        <br>
+        @@#Link;[[Open the spice cabinet|spicecabinet]]@@
+        <br>
+        @@#Link;[[Open the cupboard|cupboard]]@@
+        <br>
+        <<link "Watermelon" "kitchen">>
+        <<set $backpack.push(clone(setup.food.fruits[1]))>>
+        <</link>>
+        <br>
+        <<link "Coconut" "kitchen">>
+        <<set $backpack.push(clone(setup.food.fruits[0]))>>
+        <</link>>
+        <br>
+        <<link "MeatTest" "kitchen">>
+        <<set $backpack.push(clone(setup.food.fruits[2]))>>
+        <</link>>
+        <br>
+        <<link "Rice" "kitchen">>
+        <<set $backpack.push(clone(setup.food.others[0]))>>
+        <</link>>
+
+    </fieldset>
     <br>
-    [[Open the kitchen counter|kitchencounter]]
+    <fieldset id="fieldinline">
+        <legend>Use</legend>
+        @@#Link;[[Use the kitchen table|kitchentable]]@@
+        <br>
+        @@#Link;[[Use the stove|stove]]@@
+        <br>
+        @@#Link;[[Use the kitchen sink|kitchensink]]@@
+    </fieldset>
     <br>
-    [[Open the spice cabinet|spacecabinet]]
     <br>
-    [[Open the cupboard|cupboard]]
+    @@#Link;[[To the living room|livingroom]]@@
+
+:: fridge[nobr]
+
+    @@#message;@@
+    <<if $backpack[0] isnot undefined>>
+        <<storefridge>>
+    <</if>>
+    <div id="fridge">
+        <<fridgevisu>>
+    </div>
+    <<link "Pepper" "fridge">>
+        <<set $backpack.push(clone(setup.food.spices[0]))>>
+    <</link>>
     <br>
-    [[Use the stove|stove]]
     <br>
-    [[Use the kitchen sink|kitchensink]]
+    @@#Link;[[Close|kitchen]]@@
+
+:: spicecabinet[nobr]
+
+    @@#message;@@
+    <<if $backpack[0] isnot undefined>>
+        <<storespicecab>>
+    <</if>>
+    <div id="spicecabinet">
+        <<spicecabvisu>>
+    </div>
     <br>
     <br>
-    [[To the living room|livingroom]]
+    @@#Link;[[Close|kitchen]]@@
+
+:: cupboard[nobr]
+
+    @@#message;@@
+    <br>
+    <<if $backpack[0] isnot undefined>>
+        <<storecupb>>
+    <</if>>
+    <div id="cupboard">
+        <<cupboardvisu>>
+    </div>
+    <br>
+    @@#Link;[[Close|kitchen]]@@

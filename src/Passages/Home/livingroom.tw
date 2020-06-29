@@ -1,10 +1,22 @@
-:: livingroom 
+:: livingroom
+    
     !!Livingroom
     <div class="divisor"></div>
-    You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden.Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
-    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is <<convert12h>>
-
     <<nobr>>
+    <<if $livingclean is true>>
+        @@.lightblue;The livingroom is dirty and you need to clean it.@@
+        <br>
+        <<set _givexp to random(5,10)>>
+        <<link "Clean" "livingroom">>
+            <<unset $livingclean>>
+            <<energyfun 15 10 15 "skilling" "handyman" _givexp>>
+        <</link>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
+        <br>
+    <</if>>
+    You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden. Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
+    <br>
+    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is <<convert12h>>
+    <br>
     <fieldset id="fieldinline">
         <legend>Places</legend>
         <span id="Link">[[Outside|outside]]</span>
@@ -28,7 +40,6 @@
         <span id="Link">[[Bathroom|bathroom]]</span>
     </fieldset>
     <</nobr>>
-
 :: tv [nobr]
     <h2>TV</h2>
     <div class="divisor"></div>
@@ -54,13 +65,13 @@
     <h2>Relax</h2>
     <div class="divisor"></div>
     <br>
-    <<link "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><</link>> @@.green; +2 energy@@
+    <<link "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><<timeattached "minutes" 5>><</link>> @@.green; +2 energy@@
     <br>
-    <<link "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><</link>> @@.green; +4 energy@@
+    <<link "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><<timeattached "minutes" 10>><</link>> @@.green; +4 energy@@
     <br>
-    <<link "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><</link>> @@.green; +6 energy@@
+    <<link "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><<timeattached "minutes" 15>><</link>> @@.green; +6 energy@@
     <br>
-    <<link "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><</link>> @@.green; +8 energy@@
+    <<link "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><<timeattached "minutes" 20>><</link>> @@.green; +8 energy@@
     <br>
     <br>
 

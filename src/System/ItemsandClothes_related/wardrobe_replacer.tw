@@ -79,10 +79,6 @@
 /% finally, another for loops for the length of the $wardrobeContent that makes a link for each item it has stored. %/
 <<widget "wardrobeItemsContent">>
 
-    /%<<set _wardrobeItemContent to []>>
-    <<for _i to 0; _i lt $args.length; _i++>>
-        <<set _wardrobeItemContent.push([$args[_i]])>>
-    <</for>>%/
     <<switch $args[0]>>
         <<case "upperbody">>
             <<set _wearID to "upperbodyID">>
@@ -130,9 +126,9 @@
         <div class="divisor"></div>
 
         <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
-            <<set _itemContent to $wardrobeContent[_wardrobeSlot[_i]][_j]>>
+            <<set _itemContent to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
 
-            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>_itemContent.name</a>
+            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>_itemContent</a>
             <br>
         <</for>>
 

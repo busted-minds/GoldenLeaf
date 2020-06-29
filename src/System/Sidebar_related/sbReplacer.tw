@@ -17,9 +17,20 @@
 					<<replace #popUpContent>>
 						<<charStatus>>
 					<</replace>>
+
 					<<replace #popUpBottom>>
 						<<closePop>>
 					<</replace>>
+									
+				<<case "skills">>
+					<<replace #popUpContent>>
+						<<skillbar>>
+					<</replace>>
+
+					<<replace #popUpBottom>>
+						<<closePop>>
+					<</replace>>
+
 			<</switch>>
 			
 			<<addclass "#popUp" "open">>
