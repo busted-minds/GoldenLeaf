@@ -217,10 +217,20 @@
         <<set $kitchentable.push(clone(_tempkitchentable[0]))>>
 
     <</if>>
+
+    <<if $preptime gte 60>>
+        <<set _prepMorH to "hours">>
+
+    <<else>>
+        <<set _prepMorH to "minutes">>
+
+    <</if>>
+    <<timeattached _prepMorH $preptime>>
     
     <<unset $steps>>
     <<unset $correctCount>>
     <<unset $recipesteps>>
+    <<unset $preptime>>
 <</widget>>
 
 <<widget "recipeselection">>

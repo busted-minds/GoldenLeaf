@@ -10,6 +10,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 5>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -28,6 +29,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 5>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -47,6 +49,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 5>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -66,6 +69,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 5>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -84,6 +88,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 10>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -102,6 +107,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 15>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -120,6 +126,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 30>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -139,6 +146,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 45>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -157,6 +165,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 60>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -175,6 +184,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 90>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -193,6 +203,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 120>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -211,6 +222,7 @@
                 <</if>>
 
                 <<set $steps++>>
+                <<set $preptime += 180>>
                 <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
                         <<goto "kitchentable">>
@@ -222,6 +234,45 @@
 
             <</button>>
 
+        <<case "Clean and Prepare" "Clean">>
+            <<button "Clean and Prepare">>
+                <<if $recipesteps[$steps] is "Clean and Prepare">>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<set $preptime += 5>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+            
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Clean">>
+                <<if $recipesteps[$steps] is "Clean">>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<set $preptime += 5>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+            
+                <</if>>
+
+            <</button>>
+            <br>
     <</switch>>
 
 <</widget>>
