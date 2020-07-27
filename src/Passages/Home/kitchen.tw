@@ -1,11 +1,13 @@
 :: kitchen [nobr]
+    <<kitchenwidgets>>
     <h2>Kitchen</h2>
     <div class="divisor"></div>
     <br>
     You are in the kitchen it's small and is divided by an open-wall, you can see your living room from here.
     <br>
-    At the corner you see your $cheap_fridge, on top of it you have a $small_spice_cabinet and a $small_cupboard. 
+    At the corner you see your fridge, on top of it you have a spice cabinet and a cupboard. 
     Next to your fridge there is your $cheap_stove and the kitchen sink.
+    At the open wall you see the kitchen table, where you can prepare food.
     <br>
     <br>
     <fieldset id="fieldinline">
@@ -24,13 +26,27 @@
         <<set $backpack.push(clone(setup.food.fruits[0]))>>
         <</link>>
         <br>
-        <<link "MeatTest" "kitchen">>
-        <<set $backpack.push(clone(setup.food.fruits[2]))>>
+        <<link "Chicken Breast" "kitchen">>
+        <<set $backpack.push(clone(setup.food.meat[0]))>>
+        <</link>>
+        <br>
+        <<link "Chicken Wings" "kitchen">>
+        <<set $backpack.push(clone(setup.food.meat[1]))>>
         <</link>>
         <br>
         <<link "Rice" "kitchen">>
         <<set $backpack.push(clone(setup.food.others[0]))>>
         <</link>>
+        <br>
+        <<link "Pepper" "kitchen">>
+        <<set $backpack.push(clone(setup.food.spices[0]))>>
+        <</link>>
+        <br>
+        <<if !$learnedrecipes[0]>>
+            <<link "Learn Kitchen Rice" "kitchen">>
+                <<set $learnedrecipes.push(clone(setup.recipes[0].name))>>
+            <</link>>
+        <</if>>
 
     </fieldset>
     <br>
@@ -38,16 +54,17 @@
         <legend>Use</legend>
         @@#Link;[[Use the kitchen table|kitchentable]]@@
         <br>
-        @@#Link;[[Use the stove|stove]]@@
-        <br>
         @@#Link;[[Use the kitchen sink|kitchensink]]@@
     </fieldset>
     <br>
     <br>
     @@#Link;[[To the living room|livingroom]]@@
 
-:: fridge[nobr]
-
+:: fridge [nobr]
+    <h2>Fridge</h2>
+    <div class="divisor"></div>
+    <br>
+    <<storekitchentable>>
     @@#message;@@
     <<if $backpack[0] isnot undefined>>
         <<storefridge>>
@@ -55,15 +72,15 @@
     <div id="fridge">
         <<fridgevisu>>
     </div>
-    <<link "Pepper" "fridge">>
-        <<set $backpack.push(clone(setup.food.spices[0]))>>
-    <</link>>
     <br>
     <br>
     @@#Link;[[Close|kitchen]]@@
 
-:: spicecabinet[nobr]
-
+:: spicecabinet [nobr]
+    <h2>Spice Cabinet</h2>
+    <div class="divisor"></div>
+    <br>
+    <<storekitchentable>>
     @@#message;@@
     <<if $backpack[0] isnot undefined>>
         <<storespicecab>>
@@ -75,8 +92,11 @@
     <br>
     @@#Link;[[Close|kitchen]]@@
 
-:: cupboard[nobr]
-
+:: cupboard [nobr] 
+    <h2>Cupboard</h2>
+    <div class="divisor"></div>
+    <br>
+    <<storekitchentable>>
     @@#message;@@
     <br>
     <<if $backpack[0] isnot undefined>>
@@ -87,3 +107,66 @@
     </div>
     <br>
     @@#Link;[[Close|kitchen]]@@
+
+:: kitchentable [nobr]
+    <h2>Kitchen Table</h2>
+    <div class="divisor"></div>
+    <br>
+    <<if $selectedrecipe>>
+        <<button "Change Recipe" "kitchentable">><</button>> 
+        <<button "Clear selected recipe" "kitchentable">>
+            <<set $selectedrecipe to undefined>>
+        <</button>>
+        <br>
+        <br>
+        <<recipeselection>>
+        <br>
+        <br>
+        <<selectrecipe>>
+        <br>
+        <br>
+    <<elseif !$selectedrecipe>>
+        You haven't choose any recipe, please choose one to start preparing food.
+        <br>
+
+        <fieldset id="fieldinline">
+            <<if $learnedrecipes>>
+                <<button "Change Recipe" "kitchentable">><</button>>
+                <br>
+                <br>
+                <<recipeselection>>
+
+            <<else>>
+                You haven't learned any recipe, learn one first!.
+
+            <</if>>
+        </fieldset>
+        <br>
+        <br>
+    <</if>>
+
+    <<if !$kitchentable[0]>>
+        You don't have any ingredient in the table.
+
+    <<elseif $kitchentable[0]>>
+        <<kitchentablevisu>>
+
+    <</if>>
+    <br>
+    <br>
+    <<button "Back" "kitchen">><</button>>
+
+:: preparation [nobr]
+    <<if $recipesteps is undefined>>
+        <<set $correctCount to 0>>
+        <<set $steps to 0>>
+        <<set _recipeSID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+        <<set $recipesteps to setup.recipes[_recipeSID].steps>>
+    <</if>>
+    <h2>Preparation Step <<print $steps + 1>></h2>
+    <div class="divisor"></div>
+    <br>
+    Select the correct option based on the recipe instruction for @@.green;<<print $selectedrecipe>>@@. @@.red;Beware that the quality of the food depends on selected options@@
+    <br>
+    <br>
+    <<preparationsteps>>

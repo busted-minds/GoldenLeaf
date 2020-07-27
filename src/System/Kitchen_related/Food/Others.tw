@@ -5,21 +5,25 @@
         {
             id: 0,
             name: "Rice",
-            lowname: "rice",
-            perishable: false,
             price: 2,
-            hunger: 6,
             amount: 1,
+            qualitymult: 1,
             foodtype: "others"
         },
         {
             id: 1,
             name: "Pasta",
-            lowname: "pasta",
-            perishable: true,
             price: 2,
-            hunger: 7,
             amount: 1,
+            qualitymult: 1,
+            foodtype: "others"
+        },
+        {
+            id: 2,
+            name: "Salt",
+            price: 2,
+            amount: 1,
+            qualitymult: 1.15,
             foodtype: "others"
         }
     ]>>

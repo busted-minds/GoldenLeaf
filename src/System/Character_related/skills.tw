@@ -69,6 +69,7 @@
     
 <</widget>>
 
+/% It just add exp to the skill and then calls the widget skillup so it can check if it got the needed exp to lvl up.%/
 <<widget "addexp">>
     <<set _expval to $args[1]>>
 
@@ -211,6 +212,7 @@
 
 <</widget>>
 
+/% Checks if skills have the necessary exp to lvl up in cases where the page isn't changed.%/
 <<widget "checkup">>
     <<set _skill to ["progup", "cookup", "gardup", "artup", "athleticup", "handymup", "swimup", "runup", "weightup"]>>
 
@@ -220,6 +222,7 @@
     
 <</widget>>
 
+/% Updates the exp bar in cases where the page isn't changed.%/
 <<widget "updatebarAddExp">>
     <<set _expval to $args[0]>>
     <<set _expleftval to $args[1]>>

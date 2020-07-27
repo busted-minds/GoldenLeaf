@@ -2,9 +2,17 @@
 
 <<widget "kitchenini">>
     <<kitchenvar>>
+    <<kitchenwidgets>>
+
+<</widget>>
+
+<<widget "kitchenwidgets">>
     <<setfruits>>
     <<setspices>>
     <<setothers>>
+    <<setrecipes>>
+    <<setmeat>>
+    <<setprepfood>>
     
 <</widget>>
 
@@ -14,10 +22,14 @@
     <<set $vegetables to []>>
     <<set $liquids to []>>
     <<set $misc to []>>
+    <<set $learnedrecipes to []>>
         
     <<set $spicecabinet to []>>
     <<set $cupboard to []>>
     <<set $kitchentable to []>>
+    <<set $selectedrecipe to null>>
 
+    <<set setup.recipes to {}>>
     <<set setup.food to {}>>
+
 <</widget>>

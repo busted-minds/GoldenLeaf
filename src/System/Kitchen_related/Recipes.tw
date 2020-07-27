@@ -1,0 +1,35 @@
+:: recipes [widget nobr]
+/%Making a recipe: Name, Raw Ingredients (Required ingredients), Extra ingredients (These are optional) and steps.%/
+<<widget "setrecipes">>
+    <<set setup.recipes to [
+        {
+            id: 0,
+            name: "Chicken Rice",
+            rawingredients: ["Rice", "Chicken breast"],
+            extraingredients: ["Pepper", "Salt"],
+            steps: ["Cut into pieces", 5, 90]
+        },
+        {
+            id: 1,
+            name: "Chicken fillet with Rice",
+            rawingredients: ["Rice", "Chicken breast"],
+            extraingredients: ["Pepper", "Salt"],
+            steps: ["Fillet", 5, 10]
+        },
+        {
+            id: 2,
+            name: "Chicken fillet with Pasta",
+            rawingredients: ["Pasta", "Chicken breast"],
+            extraingredients: ["Pepper", "Salt"],
+            steps: ["Fillet", 4, 10]
+        },
+        {
+            id: 3,
+            name: "Chicken Wings",
+            rawingredients: ["Raw Chicken wings"],
+            extraingredients: ["Pepper", "Salt"],
+            steps: [15]
+        }
+    ]>>
+
+<</widget>>

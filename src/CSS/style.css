@@ -108,9 +108,9 @@
 		width: 100%;
 		font-size: 110%;
 		max-width: 240px;
-		background-color: #222;
 		border: 1px solid #444;
 		border-radius: 5px;
+		background-image: radial-gradient(#222 30%, #333333 70%);
 
 	}
 
@@ -179,8 +179,8 @@
 	#Link, #finish, #skip{
 		width: max-content;
 		padding: 10px;
-		max-width: 180px;
-		background-color: #222;
+		max-width: 200px;
+		background-image: radial-gradient(#222 30%, #333333 70%);
 		border: 1px solid #3b3b3b;
 		border-radius: 5px;
 		display: inline-block;

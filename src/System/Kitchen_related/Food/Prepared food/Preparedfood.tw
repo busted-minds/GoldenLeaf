@@ -1,0 +1,44 @@
+:: preparedfood [widget nobr]
+
+<<widget "setprepfood">>
+    <<set setup.food.preparedfood to [
+        {
+            id: 0,
+            name: "Chicken Rice",
+            quality: "Normal",
+            amount: 1,
+            hunger: 50,
+            price: 15,
+            foodtype: "preparedfood"
+        },
+        {
+            id: 1,
+            name: "Chicken Wings",
+            quality: "Normal",
+            amount: 1,
+            hunger: 40,
+            price: 10,
+            foodtype: "preparedfood"
+        },
+        {
+            id: 2,
+            name: "Chicken fillet with Rice",
+            quality: "Normal",
+            amount: 1,
+            hunger: 50,
+            price: 15,
+            foodtype: "preparedfood"
+        },
+        {
+            id: 3,
+            name: "Chicken fillet with Pasta",
+            quality: "Normal",
+            amount: 1,
+            hunger: 50,
+            price: 15,
+            foodtype: "preparedfood"
+        }
+
+    ]>>
+
+<</widget>>

@@ -1,0 +1,232 @@
+:: foodpreparation [widget nobr]
+
+<<widget "selectrecipe">>
+    <fieldset id="fieldinline">
+        <legend><<print $selectedrecipe>></legend>
+        <<set _recipeNameID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+        <<set _ingredID to 0>>
+        <<set _eingredID to 0>>
+        <<set _ingredCount to 0>>
+            
+        Main ingredients needed:<<for _i to 0; _i lt setup.recipes[_recipeNameID].rawingredients.length; _i++>>
+            <<set _ingredientN to setup.recipes[_recipeNameID].rawingredients[_i]>>
+            <<set _foodnameID to $kitchentable.findIndex(x => x.name === _ingredientN)>>
+
+            <<if $kitchentable[_foodnameID]>>
+                <<if $kitchentable[_foodnameID].name is _ingredientN>>
+                    <<set _ingredCount++>>
+                <</if>>
+            <</if>>
+
+            <<if _ingredID eq setup.recipes[_recipeNameID].rawingredients.length - 1>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span>.
+                <<set _ingredID++>>
+
+            <<elseif _ingredID eq setup.recipes[_recipeNameID].rawingredients.length - 2>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span> and
+                <<set _ingredID++>>
+
+            <<elseif _ingredID lt setup.recipes[_recipeNameID].rawingredients.length>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span>,
+                <<set _ingredID++>>
+                    
+            <</if>>
+
+        <</for>>
+        <br>
+        Extra ingredients needed: <<for _i to 0; _i lt setup.recipes[_recipeNameID].extraingredients.length; _i++>>
+            <<set  _eingredientN to setup.recipes[_recipeNameID].extraingredients[_i]>>
+            <<set _foodnameID to $kitchentable.findIndex(x => x.name === _eingredientN)>>
+
+            <<if _eingredID eq setup.recipes[_recipeNameID].extraingredients.length - 1>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _eingredientN ? 'green' : '') : 'orange')"><<print _eingredientN>></span>.
+                <<set _eingredID++>>
+
+            <<elseif _eingredID eq setup.recipes[_recipeNameID].extraingredients.length - 2>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _eingredientN ? 'green' : '') : 'orange')"><<print _eingredientN>></span> and
+                <<set _eingredID++>>
+
+            <<elseif _eingredID lt setup.recipes[_recipeNameID].extraingredients.length>>
+                <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _eingredientN ? 'green' : '') : 'orange')"><<print _eingredientN>></span>,
+                <<set _eingredID++>>
+                    
+            <</if>>
+
+        <</for>>
+        <br>
+        <<if _ingredCount eq setup.recipes[_recipeNameID].rawingredients.length>>
+            <<button `"Prepare " + $selectedrecipe` "preparation">>
+
+            <</button>>
+        <</if>>
+    </fieldset>
+
+<</widget>>
+
+<<widget "foodpreparation">>
+    <<set _rawIngredients to []>>
+    <<set _extraIngredients to []>>
+    <<set _ingredcount to 0>>
+    <<set _qaMult to 1>>
+    <<set _eqaMult to 1>>
+
+    <<set _recipeNameID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+    <<set _rawIngredients.push(clone(setup.recipes[_recipeNameID].rawingredients))>>
+    <<set _extraIngredients.push(clone(setup.recipes[_recipeNameID].extraingredients))>>
+    <<set _prepfoodID to setup.food.preparedfood.findIndex(x => x.name === $selectedrecipe)>>
+
+    <<for _ifp to 0; _ifp lt $kitchentable.length; _ifp++>>
+        
+        <<for _iri to 0; _iri lt _rawIngredients[0].length; _iri++>>
+            <<set _foodID to $kitchentable.findIndex(x => x.name === _rawIngredients[0][_iri])>>
+
+            <<if _foodID isnot -1 and $kitchentable[_foodID].name is _rawIngredients[0][_iri]>>
+                <<set _qaMult *= $kitchentable[_foodID].qualitymult>>
+                <<set $kitchentable.deleteAt(_foodID)>>
+                <<set _ingredcount++>>
+            
+            <</if>>
+
+        <</for>>
+
+        <<for _iei to 0; _iei lt _extraIngredients[0].length; _iei++>>
+            <<set _foodIDE to $kitchentable.findIndex(y => y.name === _extraIngredients[0][_iei])>>
+
+            <<if _foodIDE isnot -1 and $kitchentable[_foodIDE].name is _extraIngredients[0][_iei]>>
+                <<set _eqaMult *= $kitchentable[_foodIDE].qualitymult>>
+                <<set $kitchentable.deleteAt(_foodIDE)>>
+                <<set _ingredcount++>>
+
+            <<else>>
+                <<break>>
+
+            <</if>>
+
+        <</for>>
+        
+    <</for>>
+    <<qualityset>>
+
+<</widget>>
+
+<<widget "qualityset">>
+    <<if $correctCount gte setup.recipes[_recipeNameID].steps.length>>
+        <<set _quality to "Masterpiece">>
+        <<if _ingredcount gte _rawIngredients[0].length + _extraIngredients[0].length>>
+            <<set _pMult to 1.5>>
+            <<set _bonus to 0.90>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -1>>
+            <<set _pMult to 1.4>>
+            <<set _bonus to 0.92>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -2>>
+            <<set _pMult to 1.3>>
+            <<set _bonus to 0.94>>
+
+        <<elseif _ingredcount lte (_rawIngredients[0].length + _extraIngredients[0].length) -3>>
+            <<set _pMult to 1.2>>
+            <<set _bonus to 0.96>>
+        
+        <</if>>
+
+    <<elseif $correctCount eq setup.recipes[_recipeNameID].steps.length -1>>
+        <<set _quality to "Good">>
+        <<if _ingredcount eq _rawIngredients[0].length + _extraIngredients[0].length>>
+            <<set _pMult to 1.25>>
+            <<set _bonus to 0.95>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -1>>
+            <<set _pMult to 1.22>>
+            <<set _bonus to 0.97>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -2>>
+            <<set _pMult to 1.19>>
+            <<set _bonus to 0.99>>
+
+        <<elseif _ingredcount lte (_rawIngredients[0].length + _extraIngredients[0].length) -3>>
+            <<set _pMult to 1.2>>
+            <<set _bonus to 1.01>>
+        
+        <</if>>
+
+    <<elseif $correctCount eq setup.recipes[_recipeNameID].steps.length -2>>
+        <<set _quality to "Normal">>
+        <<if _ingredcount eq _rawIngredients[0].length + _extraIngredients[0].length>>
+            <<set _pMult to 1>>
+            <<set _bonus to 1>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -1>>
+            <<set _pMult to 0.98>>
+            <<set _bonus to 1.02>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -2>>
+            <<set _pMult to 1.19>>
+            <<set _bonus to 1.04>>
+
+        <<elseif _ingredcount lte (_rawIngredients[0].length + _extraIngredients[0].length) -3>>
+            <<set _pMult to 1.2>>
+            <<set _bonus to 1.06>>
+        
+        <</if>>
+    
+    <<elseif $correctCount eq setup.recipes[_recipeNameID].steps.length -3>>
+        <<set _quality to "Mediocre">>
+        <<if _ingredcount eq _rawIngredients[0].length + _extraIngredients[0].length>>
+            <<set _pMult to 0.75>>
+            <<set _bonus to 1.16>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -1>>
+            <<set _pMult to 0.72>>
+            <<set _bonus to 1.22>>
+
+        <<elseif _ingredcount eq (_rawIngredients[0].length + _extraIngredients[0].length) -2>>
+            <<set _pMult to 0.69>>
+            <<set _bonus to 1.28>>
+
+        <<elseif _ingredcount lte (_rawIngredients[0].length + _extraIngredients[0].length) -3>>
+            <<set _pMult to 0.66>>
+            <<set _bonus to 1.32>>
+        
+        <</if>>
+
+    <</if>>
+    <<set _tempkitchentable to []>>
+    <<set _tempkitchentable.push(clone(setup.food.preparedfood[_prepfoodID]))>>
+    <<set _tempkitchentable[0].quality to _quality>>
+    <<set _tempkitchentable[0].price to Math.round(_tempkitchentable[0].price * _pMult)>>
+    <<set _tempkitchentable[0].hunger to Math.round(_tempkitchentable[0].hunger *= _qaMult * _eqaMult / _bonus)>>
+    <<set _id to $kitchentable.findIndex(x => x.name === _tempkitchentable[0].name)>>
+    
+    <<if $kitchentable[_id]>>
+        <<if $kitchentable[_id].name is _tempkitchentable[0].name>>
+            <<set _uQuality to _tempkitchentable[0].quality>>
+            <<set _uPrice to _tempkitchentable[0].price>>
+            <<set _uHunger to _tempkitchentable[0].hunger>>
+            <<if $kitchentable[_id].quality is _uQuality and $kitchentable[_id].price is _uPrice and $kitchentable[_id].hunger is _uHunger>>
+                <<set $kitchentable[_id].amount += 1>>
+
+            <<else>>
+                <<set $kitchentable.push(clone(_tempkitchentable[0]))>>
+
+            <</if>>
+            
+        <</if>>
+
+    <<else>>
+        <<set $kitchentable.push(clone(_tempkitchentable[0]))>>
+
+    <</if>>
+    
+    <<unset $steps>>
+    <<unset $correctCount>>
+    <<unset $recipesteps>>
+<</widget>>
+
+<<widget "recipeselection">>
+    <<listbox "$selectedrecipe" autoselect>>
+        <<option "Select a recipe" undefined>>
+        <<optionsfrom $learnedrecipes>>
+
+    <</listbox>>
+<</widget>>

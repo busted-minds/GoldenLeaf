@@ -1,7 +1,7 @@
 :: characterstatus [widget nobr]
 
 <<widget charStatus>>
-
+    <<bodystateColors>>
     <fieldset class="charc">
         <legend class="centered"> Character Status </legend>
 
@@ -21,7 +21,7 @@
                 <</if>>
             <</if>>
             Your body sensibility is <<sensibilitychecker>>
-            Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <<bsandhchecker>>. 
+            Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <span @class="_colorbs"><<print $bodystate>></span>. 
         </fieldset>
 
         <fieldset class="charc">
@@ -34,7 +34,7 @@
 
         <fieldset class="charc">
             <legend> Arms info: </legend>
-            Your have a pair of <<bsandhchecker>> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
+            Your have a pair of <span @class="_colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
         </fieldset>
 
         <<if $playervar.gender is "female">>
@@ -66,7 +66,7 @@
 
         <fieldset class="charc">
             <legend> Legs info: </legend>
-            You have a pair of <<bsandhchecker>> legs.
+            You have a pair of <span @class="_colorbs"><<print $bodystate>></span> legs.
             They <<if $playervar.virginity.tights is true>> <span class="green">hasn't been touched</span>.<</if>>
         </fieldset>
 

@@ -1,0 +1,23 @@
+:: meat [widget nobr]
+
+<<widget "setmeat">>
+    <<set setup.food.meat to [
+        {
+            id: 0,
+            name: "Chicken breast",
+            price: 5,
+            amount: 1,
+            qualitymult: 1,
+            foodtype: "meat"
+        },
+        {
+            id: 1,
+            name: "Raw Chicken wings",
+            price: 5,
+            amount: 1,
+            qualitymult: 1,
+            foodtype: "meat"
+        }
+    ]>>
+
+<</widget>>

@@ -193,6 +193,8 @@
 			<</if>>
 
 	<</switch>>
+
+	<<bsandhchecker>>
 <</widget>>
 
 <<widget "antrwidthsetter">>

@@ -8,65 +8,65 @@
 		<<case "tall">>
 			<<switch $playervar.bodyshapestate>>
 				<<case "muscular">>
-					<span class="red">ripped</span>
+					<<set $bodystate to "ripped">>
 
 				<<case "fit">>
-					<span class="lightred">powerful</span>
+					<<set $bodystate to "powerful">>
 
 				<<case "toned">>
-					<span class="green">healthy</span>
+					<<set $bodystate to "healthy">>
 
 				<<case "normal">>
-					<span class="lightgreen">good looking</span>
+					<<set $bodystate to "good looking">>
 
 				<<case "chubby">>
-					<span class="lightyellow">skinny</span>
+					<<set $bodystate to "skinny">>
 
 				<<case "fat">>
-					<span class="yellow">fat</span>
+					<<set $bodystate to "fat">>
 
 			<</switch>>
 			
 		<<case "normal">>
 			<<switch $playervar.bodyshapestate>>
 				<<case "muscular">>
-					<span class="lightred">powerful</span>
+					<<set $bodystate to "powerful">>
 
 				<<case "fit">>
-					<span class="green">healthy</span>
+					<<set $bodystate to "healthy">>
 
 				<<case "toned">>
-					<span class="lightgreen">good looking</span>
+					<<set $bodystate to "good looking">>
 
 				<<case "normal">>
-					<span class="lightyellow">skinny</span>
+					<<set $bodystate to "skinny">>
 
 				<<case "chubby">>
-					<span class="yellow">fat</span>
+					<<set $bodystate to "fat">>
 
 				<<case "fat">>
-					<span class="darkyellow">obese</span>
+					<<set $bodystate to "obese">>
 			<</switch>>
 
 		<<case "small">>
 			<<switch $playervar.bodyshapestate>>
 				<<case "muscular">>
-					<span class="green">healthy</span>
+					<<set $bodystate to "healthy">>
 
 				<<case "fit">>
-					<span class="lightgreen">good looking</span>
+					<<set $bodystate to "good looking">>
 
 				<<case "toned">>
-					<span class="lightyellow">skinny</span>
+					<<set $bodystate to "skinny">>
 
 				<<case "normal">>
-					<span class="yellow">fat</span>
+					<<set $bodystate to "fat">>
 
 				<<case "chubby">>
-					<span class="darkyellow">obese</span>
+					<<set $bodystate to "obese">>
 
 				<<case "fat">>
-					<span class="darkred">how do you even move?</span>
+					<<set $bodystate to "how do you even move?">>
 			<</switch>>
 
 	<</switch>>

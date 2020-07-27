@@ -1,0 +1,227 @@
+:: preparationsteps [widget nobr]
+
+<<widget "preparationsteps">>
+    <<switch $recipesteps[$steps]>>
+        <<case "Cut into pieces" "Cut into julienne strips" "Fillet">>
+            <<button "Cut into pieces">>
+                <<if $recipesteps[$steps] is "Cut into pieces">>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+            
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cut into julienne strips">>
+                <<if $recipesteps[$steps] is "Cut into julienne strips">>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Fillet">>
+
+                <<if $recipesteps[$steps] is "Fillet">>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+            
+                <</if>>
+
+            <</button>>
+
+        <<case 5 10 15 30>>
+            <<button "Cook 5 minutes">>
+                <<if $recipesteps[$steps] is 5>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+        
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 10 minutes">>
+                <<if $recipesteps[$steps] is 10>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+        
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 15 minutes">>
+                <<if $recipesteps[$steps] is 15>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+        
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 30 minutes">>
+                <<if $recipesteps[$steps] is 30>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+        
+                <</if>>
+
+            <</button>>
+
+        <<case 45 60 90 120 180>>
+            <<button "Cook 45 minutes">>
+                <<if $recipesteps[$steps] is 45>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 1 hour">>
+                <<if $recipesteps[$steps] is 60>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 1h 30 min">>
+                <<if $recipesteps[$steps] is 90>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 2 hours">>
+                <<if $recipesteps[$steps] is 120>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+
+                <</if>>
+
+            <</button>>
+            <br>
+            <<button "Cook 3+ hours">>
+                <<if $recipesteps[$steps] gte 180>>
+                    <<set $correctCount++>>
+
+                <</if>>
+
+                <<set $steps++>>
+                <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">>
+
+                <<else>>
+                    <<goto "preparation">>
+        
+                <</if>>
+
+            <</button>>
+
+    <</switch>>
+
+<</widget>>

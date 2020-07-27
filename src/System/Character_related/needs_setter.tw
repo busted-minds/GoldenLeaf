@@ -201,7 +201,6 @@
 <</widget>>
 
 <<widget "timeattached">>
-
     <<if $args[0] and $args[1]>>
         <<switch $args[0]>>
             <<case "minutes">>
@@ -209,7 +208,7 @@
                 <<set _multiplier to 1>>
 
             <<case "hours">>
-                <<set _amount to 5.5>>
+                <<set _amount to 5>>
                 <<set _multiplier to 60>>
                 
         <</switch>>
@@ -239,5 +238,42 @@
     <<else>>
         Error in widget "timeattached".
     <</if>>
+
+<</widget>>
+
+<<widget "hunger">>
+    <<set _value to $args[0]>>
+    <<set _foodID to $args[1]>>
+    <<set _location to $args[2]>>
+
+    <<if $hunger gte _value>>
+        <<set $hunger -= _value>>
+
+    <<elseif $hunger lt _value>>
+        <<set $hunger to 0>>
+
+    <</if>>
+
+    <<if _location is "kitchentable">>
+        <<if $kitchentable[_foodID].amount gte 2>>
+            <<set $kitchentable[_foodID].amount -= 1>>
+        
+        <<else>>
+            <<set $kitchentable.deleteAt(_foodID)>>
+            
+        <</if>>
+
+    <<elseif _location is "fruits">>
+        <<if $fruits[_foodID].amount gte 2>>
+            <<set $fruits[_foodID].amount -= 1>>
+
+        <<else>>
+            <<set $fruits.deleteAt(_foodID)>>
+        <</if>>
+    
+    <</if>>
+
+
+
 
 <</widget>>
