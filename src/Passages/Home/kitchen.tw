@@ -12,11 +12,11 @@
     <br>
     <fieldset id="fieldinline">
         <legend>Open</legend>
-        @@#Link;[[Open the fridge|fridge]]@@
+        <<button "Open the fridge" "fridge">><</button>>
         <br>
-        @@#Link;[[Open the spice cabinet|spicecabinet]]@@
+        <<button "Open the spice cabinet" "spicecabinet">><</button>>
         <br>
-        @@#Link;[[Open the cupboard|cupboard]]@@
+        <<button "Open the cupboard" "cupboard">><</button>>
         <br>
         <<link "Watermelon" "kitchen">>
         <<set $backpack.push(clone(setup.food.fruits[1]))>>
@@ -52,13 +52,13 @@
     <br>
     <fieldset id="fieldinline">
         <legend>Use</legend>
-        @@#Link;[[Use the kitchen table|kitchentable]]@@
+        <<button "Kitchen table" "kitchentable">><</button>>
         <br>
-        @@#Link;[[Use the kitchen sink|kitchensink]]@@
+        <<button "Kitchen sink" "kitchensink">><</button>>
     </fieldset>
     <br>
     <br>
-    @@#Link;[[To the living room|livingroom]]@@
+    <<button "To the living room" "livingroom">><</button>>
 
 :: fridge [nobr]
     <h2>Fridge</h2>
@@ -74,7 +74,7 @@
     </div>
     <br>
     <br>
-    @@#Link;[[Close|kitchen]]@@
+    <<button "Close" "kitchen">><</button>>
 
 :: spicecabinet [nobr]
     <h2>Spice Cabinet</h2>
@@ -90,7 +90,7 @@
     </div>
     <br>
     <br>
-    @@#Link;[[Close|kitchen]]@@
+    <<button "Close" "kitchen">><</button>>
 
 :: cupboard [nobr] 
     <h2>Cupboard</h2>
@@ -106,7 +106,7 @@
         <<cupboardvisu>>
     </div>
     <br>
-    @@#Link;[[Close|kitchen]]@@
+    <<button "Close" "kitchen">><</button>>
 
 :: kitchentable [nobr]
     <h2>Kitchen Table</h2>
@@ -162,6 +162,7 @@
         <<set $steps to 0>>
         <<set _recipeSID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
         <<set $recipesteps to setup.recipes[_recipeSID].steps>>
+        <<set $preptime to 0>>
     <</if>>
     <h2>Preparation Step <<print $steps + 1>></h2>
     <div class="divisor"></div>

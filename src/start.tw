@@ -3,14 +3,17 @@ Golden Leaf
 
 :: StoryData
 {
-        "ifid": "92D86F41-8C6B-4749-A2EF-2849676A8561"
+    "ifid": "92D86F41-8C6B-4749-A2EF-2849676A8561"
 }
 
 :: Start
+!<span class="green" style="text-align: center;"> Disclaimer!</span>
+!!@@.red;You need to be 18 years old to play this game. (Or whatever years old you need to be to be considered legally an "adult" in your country.)@@
+!!@@.red;Every character, relationship, name, etc. are purely fictional and not related in any way to real life.@@
+!!@@.red;Every fetish in this game aren't endorsed by the Dev. And they can be disabled.@@
+!!@@.red;Play at your own risk and more importantly, have fun!.@@
 
-!<span class="red">You need to be 18 years old to play this game. (Or whatever years old you need to be to be considered legally an "adult" in your country.)</span>
-
-[[Accept|charcreation1]]
+<<button "Accept" "charcreation1">><</button>>
 
 :: PassageHeader [nobr]
 /%<<if saveUpdate is true>>

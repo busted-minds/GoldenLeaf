@@ -99,94 +99,35 @@
 <</widget>>
 
 <<widget "cleanliness">>
-    <<if $cleanliness lt 100>>
-        <<set $cleanliness += $args[0]>>
-
-        <<if $cleanliness gte 100>>
-            <<set $cleanliness to 100>>
-
-        <</if>>
-
-        <<addminutes $args[1]>>
-
-        <<replace #cleanliness>>
-            <<print $cleanliness>>/100
-        <</replace>>
-
-        <<replace #timedate>>
-            <<timedate>>
-        <</replace>>
-
-    <<elseif $cleanliness eq 100>>
-        <<replace #messager>>
-            You are already clean.
-        <</replace>>
-
-    <</if>>
-
-<</widget>>
-
-<<widget "peepoop">>
     <<set _value to $args[0]>>
-    <<set _id to $args[1]>>
-    <<set _lessclean to $args[2]>>
-    <<set _addmin to $args[3]>>
+    <<set _addmin to $args[1]>>
+    <<set _id to $args[2]>>
 
     <<switch _id>>
-        <<case "#bladder">>
-            <<if $bladder eq 0>>
-                <<replace #messager>>
-                    You are already empty.
-                <</replace>>
-            
-            <<else>>
-                <<if $cleanliness gte _lessclean>>
-                    <<if $bladder gte _value>>
-                        <<set $bladder -= _value>>
+        <<case "cleaning">>
+            <<if $cleanliness lt 100>>
+                <<set $cleanliness += _value>>
 
-                    <<elseif $bladder lt _value>>
-                        <<set $bladder to 0>>
-
-                    <</if>>
-                    <<set $cleanliness -= _lessclean>>
-                    <<addminutes _addmin>>
-
-                    <<replace _id>>
-                        <<print $bladder>>/100
-                    <</replace>>
+                <<if $cleanliness gte 100>>
+                    <<set $cleanliness to 100>>
 
                 <</if>>
 
-            <</if>>
+                <<addminutes _addmin>>
 
-        <<case "#rectum">>
-            <<if $rectum eq 0>>
+            <<elseif $cleanliness eq 100>>
                 <<replace #messager>>
-                    You are already empty.
+                    You are already clean.
                 <</replace>>
 
-            <<else>>
-                <<if $cleanliness gte _lessclean>>
-                    <<if $rectum gte _value>>
-                        <<set $rectum -= _value>>
-
-                    <<elseif $rectum lt _value>>
-                        <<set $rectum to 0>>
-
-                    <</if>>
-
-                    <<set $cleanliness -= _lessclean>>
-                    <<addminutes _addmin>>
-
-
-
-                    <<replace _id>>
-                        <<print $rectum>>/100
-                    <</replace>>
-                    
-                <</if>>
-
             <</if>>
+        
+        <<case "dirtying">>
+            <<set $cleanliness -= _value>>
+
+            <<if $cleanliness lte 0>>
+                <<set $cleanliness to 0>>
+            <</if>> 
 
     <</switch>>
 
@@ -200,31 +141,57 @@
 
 <</widget>>
 
+<<widget "peepoop">>
+    <<set _value to $args[0]>>
+    <<set _lessclean to $args[1]>>
+    <<set _addmin to $args[2]>>
+
+    <<if $pNeeds eq 0>>
+        <<replace #messager>>
+            You are already empty.
+        <</replace>>
+            
+    <<else>>
+        <<if $pNeeds gte _value>>
+            <<set $pNeeds -= _value>>
+
+        <<elseif $pNeeds lt _value>>
+            <<set $pNeeds to 0>>
+
+        <</if>>
+
+        <<cleanliness _lessclean 0 "dirtying">>
+        <<addminutes _addmin>>
+
+        <<replace #pNeeds>>
+            <<print $pNeeds>>/100
+        <</replace>>
+
+    <</if>>
+
+<</widget>>
+
 <<widget "timeattached">>
     <<if $args[0] and $args[1]>>
         <<switch $args[0]>>
             <<case "minutes">>
-                <<set _amount to 2.5>>
-                <<set _multiplier to 1>>
+                <<set _amount to 0.80>>
 
             <<case "hours">>
-                <<set _amount to 5>>
-                <<set _multiplier to 60>>
+                <<set _amount to 0.40>>
                 
         <</switch>>
 
 
-        <<set $hunger += Math.ceil((2 + ($args[1] * _multiplier))/_amount)>>
-        <<set $bladder += Math.ceil((2 + ($args[1] * _multiplier))/_amount)>>
-        <<set $rectum += Math.ceil((2 + ($args[1] * _multiplier))/_amount)>>
-        <<set $cleanliness -= Math.ceil((2 + ($args[1] * _multiplier))/_amount)>>
+        <<set $hunger += Math.round($args[1] * _amount)>>
+        <<set $pNeeds += Math.round($args[1] * _amount)>>
+        <<set $cleanliness -= Math.round($args[1] * _amount)>>
 
         <<set $hunger to Math.clamp($hunger, 0, 100)>>
-        <<set $bladder to Math.clamp($bladder, 0, 100)>>
-        <<set $rectum to Math.clamp($rectum, 0, 100)>>
+        <<set $pNeeds to Math.clamp($pNeeds, 0, 100)>>
         <<set $cleanliness to Math.clamp($cleanliness, 0, 100)>>
 
-        <<set _stats to ["hunger", "bladder", "rectum", "cleanliness"]>>
+        <<set _stats to ["hunger", "pNeeds", "cleanliness"]>>
 
         <<for _i to 0; _i lt _stats.length; _i++>>
             <<set _stat to "#" + _stats[_i]>>

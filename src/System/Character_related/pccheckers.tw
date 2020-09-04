@@ -3,7 +3,6 @@
 
 /% Some checkers that may and probably will change later on how it works. %/
 <<widget "bsandhchecker">> /* Bodyshape and height checker */
-	
 	<<switch $playervar.height>>
 		<<case "tall">>
 			<<switch $playervar.bodyshapestate>>
@@ -138,8 +137,8 @@
 	<</if>>
 
 <</widget>>
-/* Male Checkers */
 
+/* Male Checkers */
 <<widget "penissizechecker">>
 
 	<<if $playervar.penissize eq 24>>
@@ -185,7 +184,6 @@
 <</widget>>
 
 /* Female Checkers*/
-
 <<widget "breastsizechecker">>
 	<<if $playervar.breastsize eq 100>>
 		<span class="green">enormous</span>

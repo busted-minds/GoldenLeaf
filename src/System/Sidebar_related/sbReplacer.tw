@@ -31,6 +31,15 @@
 						<<closePop>>
 					<</replace>>
 
+				<<case "iteminfo">>
+					<<replace #popUpContent>>
+						<<iteminfo>>
+					<</replace>>
+
+					<<replace #popUpBottom>>
+						<<closePop>>
+					<</replace>>
+
 			<</switch>>
 			
 			<<addclass "#popUp" "open">>

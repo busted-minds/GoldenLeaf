@@ -78,7 +78,6 @@
 /% After all that little happy story of me and this shit, now there is an if that checks if the player is naked so it hides and shows the "undress" link %/
 /% finally, another for loops for the length of the $wardrobeContent that makes a link for each item it has stored. %/
 <<widget "wardrobeItemsContent">>
-
     <<switch $args[0]>>
         <<case "upperbody">>
             <<set _wearID to "upperbodyID">>
@@ -94,9 +93,8 @@
 
     <</switch>>
 
-
-
     <<for _i to 0; _i lt _wardrobeSlot.length; _i++>>
+        <div style="display: inline-block;">
         <<print _categories[_i]>>
 
         <<switch _categories[_i]>>
@@ -121,14 +119,18 @@
         <</switch>>
 
         <<if $bodyparts[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
-            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'> Undress</a>
+            <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'> Undress</button>
         <</if>>
+        </div>
         <div class="divisor"></div>
 
         <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
             <<set _itemContent to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
-
-            <a @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>_itemContent</a>
+            <<set _esItemContent to '"' + _itemContent + '"'>>
+            <<set _esSlot to '"' + _wardrobeSlot[_i] + '"'>>
+            
+            <<print _itemContent>> <button class="smoll-button" @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>Wear</button> 
+                                   <button class="smoll-button" @onclick='`SugarCube.State.temporary.itemName = `+ _esItemContent +`; SugarCube.State.temporary.slot = `+ _esSlot +`; wikifier("replacer", "iteminfo")`'>Info</button>
             <br>
         <</for>>
 

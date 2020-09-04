@@ -3,28 +3,28 @@
 <<widget "bodystateColors">>
     <<switch $bodystate>>
         <<case "ripped">>
-            <<set _colorbs to "red">>
+            <<set $colorbs to "red">>
 
         <<case "powerful">>
-            <<set _colorbs to "lightred">>
+            <<set $colorbs to "lightred">>
 
         <<case "healthy">>
-            <<set _colorbs to "green">>
+            <<set $colorbs to "green">>
 
         <<case "good looking">>
-            lightgreen
+            <<set $colorbs to "lightgreen">>
         
         <<case "skinny">>
-            lightyellow
+            <<set $colorbs to "lightyellow">>
 
         <<case "fat">>
-            yellow
+            <<set $colorbs to "yellow">>
         
         <<case "obese">>
-            darkyellow
+            <<set $colorbs to "darkyellow">>
 
         <<case "how do you even move?">>
-            darkred
+            <<set $colorbs to "darkred">>
             
     <</switch>>
 

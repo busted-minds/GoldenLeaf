@@ -17,9 +17,10 @@
         <br>
         Hunger: @@#hunger.lightred; <<print $hunger>>/100@@
         <br>
-        Bladder: @@#bladder.lightyellow; <<print $bladder>>/100@@
+        Physical Needs: @@#pNeeds.lightyellow; <<print $pNeeds>>/100@@
         <br>
-        Rectum: @@#rectum.lightbrown; <<print $rectum>>/100@@
+        Arousal: @@#arousal.pink; <<print $arousal>>/100@@
+        <br>
         </div>
         <br>
         <div id="timedate" style="text-align: left;"><<timedate>></div>
@@ -38,7 +39,7 @@
         <<replacer "status">>
     <</button>>
     </div>
-    <div style="margin-top:5px;">
+    <div>
     <<button Skills>>
         <<replacer "skills">>
     <</button>>

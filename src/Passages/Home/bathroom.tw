@@ -7,59 +7,59 @@
     Inside at one corner you see a $small_shower at the left of it you see the $cheap_toilet. Near the little bathroom air extractor you see the sink.
     <br>
     <br>
-    [[Get in to shower|shower]]
+    <<button "Get in to shower" "shower">><</button>>
     <br>
-    [[Sit on the toilet|toilet]]
+    <<button "Sit on the toilet" "toilet">><</button>>
     <br>
-    [[Use the sink|sink]]
+    <<button "Use the sink" "sink">><</button>>
     <br>
     <br>
-    [[To the living room|livingroom]]
+    <<button "To the living room" "livingroom">><</button>>
 
 :: shower [nobr]
     <h2>Shower</h2>
     <div class="divisor"></div>
     <br>
     <div id="messager"></div>
-    <<link "Fast shower">>
-        <<cleanliness 40 4>>
-    <</link>>@@.green; +40 Cleanliness@@ | @@.red; +4 Minutes@@
+    <<button "Fast shower">>
+        <<cleanliness 40 4 "cleaning">>
+    <</button>>@@.green; +40 Cleanliness@@ | @@.red; +4 Minutes@@
     <br>
-    <<link "Normal shower">>
-        <<cleanliness 100 10>>
-    <</link>>@@.green; +100 Cleanliness@@ | @@.red; +10 Minutes@@
+    <<button "Normal shower">>
+        <<cleanliness 100 10 "cleaning">>
+    <</button>>@@.green; +100 Cleanliness@@ | @@.red; +10 Minutes@@
     <br>
     <br>
-    [[Get out|bathroom]]
+    <<button "Get out" "bathroom">><</button>>
 
 :: toilet [nobr]
     <h2>Bathroom</h2>
     <div class="divisor"></div>
     <br>
     <div id="messager"></div>
-    <<link "Pee">>
-        <<peepoop 90 "#bladder" 10 2>>
-    <</link>>@@.green; -90 Bladder@@ | @@.red; -10 Cleanliness +2 Minutes@@
+    <<button "Pee">>
+        <<peepoop 45 10 2>>
+    <</button>>@@.green; -45 Physical Needs@@ | @@.red; -10 Cleanliness +2 Minutes@@
     <br>
-    <<link "Poop">>
-        <<peepoop 90 "#rectum" 15 4>>
-    <</link>>@@.green; -90 Rectum@@ | @@.red; -15 Cleanliness +4 Minutes@@
+    <<button "Poop">>
+        <<peepoop 60 15 3>>
+    <</button>>@@.green; -65 Physical Needs@@ | @@.red; -15 Cleanliness +3 Minutes@@
     <br>
     <br>
-    [[Get up|bathroom]]
+    <<button "Get up" "bathroom">><</button>>
 
 :: sink [nobr]
     <h2>Sink</h2>
     <div class="divisor"></div>
     <br>
     <div id="messager"></div>
-    <<link "Wash your hands">>
-        <<cleanliness 10 1>>
-    <</link>>@@.green; +10 Cleanliness@@ | @@.red; +1 Minutes@@
+    <<button "Wash your hands">>
+        <<cleanliness 10 1 "cleaning">>
+    <</button>>@@.green; +10 Cleanliness@@ | @@.red; +1 Minutes@@
     <br>
-    <<link "Wash your hands with soap">>
-        <<cleanliness 15 2>>
-    <</link>>@@.green; +15 Cleanliness@@ | @@.red; +2 Minutes@@
+    <<button "Wash your hands with soap">>
+        <<cleanliness 15 2 "cleaning">>
+    <</button>>@@.green; +15 Cleanliness@@ | @@.red; +2 Minutes@@
     <br>
     <br>
-    [[Get out|bathroom]]
+    <<button "Get out" "bathroom">><</button>>

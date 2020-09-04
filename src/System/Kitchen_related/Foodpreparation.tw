@@ -191,6 +191,7 @@
         <</if>>
 
     <</if>>
+
     <<set _tempkitchentable to []>>
     <<set _tempkitchentable.push(clone(setup.food.preparedfood[_prepfoodID]))>>
     <<set _tempkitchentable[0].quality to _quality>>
@@ -226,6 +227,8 @@
 
     <</if>>
     <<timeattached _prepMorH $preptime>>
+    <<addminutes $preptime>>
+    
     
     <<unset $steps>>
     <<unset $correctCount>>

@@ -1,686 +1,663 @@
 :: charcreation1[nobr]
+    /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
+    /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
+    <fieldset class="charc">
+        <legend>Character Creation</legend>
+        
+        @@.darkyellow;What is your name?@@
+        <br>
+        <<textbox "$playername" $playername autofocus>> <<textbox "$playersurname" $playersurname>>
+        <br>
+        <br>
+        @@.darkyellow;Select your gender:@@
+        <ul>
+            <<listbox "$playervar.gender" autoselect>>
+                <<option "Male" "male">>
+                <<option "Female" "female">>
+            <</listbox>>
+        </ul>
 
-/% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
-/% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
-<fieldset class="charc">
-    <legend>Character Creation</legend>
-    
-    <span class="darkyellow">What is your name?</span>
-    <br>
-    <<textbox "$playername" $playername autofocus>> <<textbox "$playersurname" $playersurname>>
-    <br>
-    <br>
-    <span class="darkyellow">Select your gender:</span>
-    <ul>
-        <<listbox "$playervar.gender" autoselect>>
-            <<option "Male" "male">>
-            <<option "Female" "female">>
-        <</listbox>>
-    </ul>
+        @@.darkyellow;Select your body height:@@  ^^@@.red;Your body height will affect some statistics of your character.@@^^
+        <ul>
+            <<listbox "$playervar.height" autoselect>>
+                <<option "Tall" "tall">>
+                <<option "Normal" "normal">>
+                <<option "Small" "small">>
+            <</listbox>>
+        </ul>
 
-    <span class="darkyellow">Select your body height:</span>  ^^@@.red;Your body height will affect some statistics of your character.@@^^
-    <ul>
-        <<listbox "$playervar.height" autoselect>>
-            <<option "Tall" "tall">>
-            <<option "Normal" "normal">>
-            <<option "Small" "small">>
-        <</listbox>>
-    </ul>
+        @@.darkyellow;Select your body shape:@@ ^^@@.red;Your body shape will affect some statistics of your character.@@^^
+        <ul>
+            <<listbox "$playervar.bodyshape" autoselect>>
+                <<option "Toned" 60>>
+                <<option "Normal" 40>>
+                <<option "Chubby" 20>>
+            <</listbox>>
+        </ul>
 
-    <span class ="darkyellow">Select your body shape:</span> ^^@@.red;Your body shape will affect some statistics of your character.@@^^
-    <ul>
-        <<listbox "$playervar.bodyshape" autoselect>>
-            <<option "Toned" 60>>
-            <<option "Normal" 40>>
-            <<option "Chubby" 20>>
-        <</listbox>>
-    </ul>
+        @@.darkyellow;Select your preferred hobby:@@ ^^@@.red;Your hobby will positively affect your learning speed at it but negatively at others.@@^^
+        <ul>
+            <<listbox "$hobby" autoselect>>
+                <<option "None" "none">>
+                <<option "Programming" "programming">>
+                <<option "Cooking" "cooking">>
+                <<option "Gardening" "gardening">>
+                <<option "Arts" "arts">>
+                <<option "Athletics" "athletics">>
+            <</listbox>>
+        </ul>
+    </fieldset>
 
-    <span class ="darkyellow">Select your preferred hobby:</span> ^^@@.red;Your hobby will positively affect your learning speed at it but negatively at others.@@^^
-    <ul>
-        <<listbox "$hobby" autoselect>>
-            <<option "None" "none">>
-            <<option "Programming" "programming">>
-            <<option "Cooking" "cooking">>
-            <<option "Gardening" "gardening">>
-            <<option "Arts" "arts">>
-            <<option "Athletics" "athletics">>
-        <</listbox>>
-    </ul>
-</fieldset>
+    <<button "Continue" "charcreation2">><</button>>
 
-[[Continue|charcreation2]]
-
-/* Character creation Passage 2*/
 :: charcreation2 [nobr]
+    <<gendersetter>>
 
-<<gendersetter>>
-
-<<if $playervar.sensibility isnot 0 or $playervar.lowersensibility isnot 0 or $playervar.uppersensibility isnot 0>>
-    <<set $playervar.sensibility to 0>>
-    <<set $playervar.uppersensibility to 0>>
-    <<set $playervar.lowersensibility to 0>>
-<</if>>
-
-<<if $playervar.gender is "female">>
-    <fieldset class="charc">
-        <legend>Character Creation</legend>
-        
-        <span class="yellow">Select your hair style: </span>
-        <ul>
-            <<set _femalehairstyle to ["Bun", "Braided", "Crown Braid", "French Braid", "Asymmetric Cut", "Undercut", "Fishtail", "Bob Cut", "Lob", "Ponytail"]>>
-            <<listbox "$playerhairstyle" autoselect>>
-                <<optionsfrom _femalehairstyle>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your breast size: </span>
-        <ul>
-            <<listbox "$playervar.breastsize" autoselect>>
-                <<option "Perky" 60>>
-                <<option "Normal" 40>>
-                <<option "Small" 20>>
-                <<option "Flat" 0>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your nipple type: </span>
-        <ul>
-            <<listbox "$playervar.nippletype" autoselect>>
-                <<option "Inverted" "inverted">>
-                <<option "Protrunding" "protrunding">>
-                <<option "Puffy" "puffy">>
-                <<option "Flat" "flat">>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your clitoris size: </span>
-        <ul>
-            <<listbox "$playervar.clitorissize" autoselect>>
-                <<option "Big" 1.8>>
-                <<option "Normal" 0.9>>
-                <<option "Small" 0.5>>
-                <<option "Tiny" 0.3>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your nipple size: </span>
-        <ul>
-            <<listbox "$playervar.nipplesize" autoselect>>
-                <<option "Big" 1.5>>
-                <<option "Normal" 0.95>>
-                <<option "Small" 0.48>>
-                <<option "Tiny" 0.24>>
-            <</listbox>>
-        </ul>
-        
-        <span class="yellow">Select your butt size: </span>
-        <ul>
-            <<listbox "$playervar.buttsize" autoselect>>
-                <<option "Plumpy" 60>>
-                <<option "Normal" 40>>
-                <<option "Small" 20>>
-                <<option "Flat" 0>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your vagina tightness: </span>
-        <ul>
-            <<listbox "$playervar.vagtightness" autoselect>>
-                <<option "Tight" 50>>
-                <<option "Normal" 35>>
-                <<option "Loose" 20>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your anus tightness: </span>
-        <ul>
-            <<listbox "$playervar.anustightness" autoselect>>
-                <<option "Tight" 50>>
-                <<option "Normal" 35>>
-                <<option "Loose" 20>>
-            <</listbox>>
-        </ul>
-
-    </fieldset>
-
-<<elseif $playervar.gender is "male">>
-
-    <fieldset class="charc">
-        <legend>Character Creation</legend>
-
-        <span class="yellow">Select your hair style: </span>
-        <ul>
-            <<set _malehairstyle to ["Butch", "Crew Cut", "Ivy League", "Regular cut", "Undercut", "Wings"]>>
-            <<listbox "$playerhairstyle" autoselect>>
-                <<optionsfrom _malehairstyle>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your beard size: </span>
-        <ul>
-            <<listbox "$playerbeardsize" autoselect>>
-                <<option "Inexistent (It wont grow)" 0>>
-                <<option "None" 1>>
-                <<option "Small" 5>>
-                <<option "Medium" 10>>
-                <<option "Big" 15>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your penis size: </span>
-        <ul>
-            <<listbox "$playervar.penissize" autoselect>>
-                <<option "Big" 15>>
-                <<option "Normal" 12>>
-                <<option "Small" 6>>
-                <<option "Tiny" 3>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your balls size: </span>
-        <ul>
-            <<listbox "$playervar.ballssize" autoselect>>
-                <<option "Big" 8>>
-                <<option "Normal" 4>>
-                <<option "Small" 2>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your butt size: </span>
-        <ul>
-            <<listbox "$playervar.buttsize" autoselect>>
-                <<option "Plumpy" 60>>
-                <<option "Normal" 40>>
-                <<option "Small" 20>>
-                <<option "Flat" 0>>
-            <</listbox>>
-        </ul>
-
-        <span class="yellow">Select your anus tightness: </span>
-        <ul>
-            <<listbox "$playervar.anustightness" autoselect>>
-                <<option "Tight" 50>>
-                <<option "Normal" 35>>
-                <<option "Loose" 20>>
-            <</listbox>>
-        </ul>
-
-    </fieldset>
-<</if>>
-
-<<return [[Change Selections|charcreation1]]>>
-<br>
-[[Continue|charcreation3]]
-
-/* Character confirmation Passage */
-:: charcreation3 [nobr]
-
-<<bsandhsetter>>
-<<antrwidthsetter>>
-<<if $playervar.gender is "female">>
-    <<femalesetter>>
-<<else>>
-    <<malesetter>>
-<</if>>
-
-<<set $playervar.sensibility += (($playervar.vagtightness + $playervar.anustightness)/2)>>
-
-<fieldset class="charc">
-    <<bodystateColors>>
-    <legend class="centered"> Character Status </legend>
-
-    <fieldset class="charc">
-        <legend> General info: </legend>
-        Your name is <span class="gold"><<print "$playername $playersurname">></span>,
-        you are a 
-        <<if $playervar.gender is "female">>
-            <span class="pink"><<print $playervar.gender>></span>.
-
-        <<else>>
-            <span class="lightblue"><<print $playervar.gender>></span>.
-
-        <</if>>
-        Currently your hair style is <span class="orange"><<print $playerhairstyle>></span>.
-        <<if $playervar.gender is "male">>
-            <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
-                And your beard has a size of <span class="blue"><<print $playervar.beardsize>></span> cm.
-            <</if>>
-        <</if>>
-        Your body sensibility is <<sensibilitychecker>>
-        Your body is <span class="orange"><<print $playervar.height>></span> and <span class="orange"><<print $playervar.bodyshapestate>></span> making you <span @class="_colorbs"><<print $bodystate>></span>.
-
-    </fieldset>
-
-    <fieldset class="charc">
-        <legend> Mouth info: </legend>
-        Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>><span class="green">hasn't been touched</span>.<</if>><br>
-        Your throat has a depth of <span class="blue"><<print $playervar.throatdepth>></span> cm and can comfortably insert objects upto <span class="blue"><<print $playervar.throatcomfortinsert>></span> cm in lenght and <span class="blue"><<print $playervar.throatwidthcomfortinsert>></span> cm width. 
-        It <<if $playervar.virginity.throat is true>><span class="green">hasn't had any object in it before</span>.<</if>> <<if $playervar.gagreflex is true>><span class="green">You still have your gag reflex</span>. <<else>> You don't have gag reflex.<</if>>
-    </fieldset>
-
-    <fieldset class="charc">
-        <legend> Arms info: </legend>
-        Your have a pair of <span @class="_colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>><span class="green"> hasn't touched anything</span>.<</if>>
-    </fieldset>
+    <<if $playervar.sensibility isnot 0 or $playervar.lowersensibility isnot 0 or $playervar.uppersensibility isnot 0>>
+        <<set $playervar.sensibility to 0>>
+        <<set $playervar.uppersensibility to 0>>
+        <<set $playervar.lowersensibility to 0>>
+    <</if>>
 
     <<if $playervar.gender is "female">>
-
-        <<set $playervar.penissize to null>>
-        <<set $playervar.ballssize to null>>
-
         <fieldset class="charc">
-            <legend>Breast info: </legend>
-                You have a pair of <<breastsizechecker>> breast. They can hold <span class="blue"><<print $playervar.breastmilkmaxlevel>></span> ml of milk. Your breasts<<if $playervar.virginity.breast is true>> <span class="green">hasn't been touched yet</span>.<</if>>
-                <br> 
-                Each breast has <<nipplesizechecker>> nipple and they are <span class="orange"><<print $playervar.nippletype>></span>. Their size is <span class="blue"><<print $playervar.nipplesize>></span> cm. Your nipples <<if $playervar.virginity.nipples is true>> <span class="green">hasn't been touched yet</span>. <</if>>
-        </fieldset>
+            <legend>Character Creation</legend>
+            
+            @@.yellow;Select your hair style: @@
+            <ul>
+                <<set _femalehairstyle to ["Bun", "Braided", "Crown Braid", "French Braid", "Asymmetric Cut", "Undercut", "Fishtail", "Bob Cut", "Lob", "Ponytail"]>>
+                <<listbox "$playerhairstyle" autoselect>>
+                    <<optionsfrom _femalehairstyle>>
+                <</listbox>>
+            </ul>
 
-        <fieldset class="charc">
-            <legend>Genitals info: </legend>
-                You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of <span class="blue"><<print $playervar.vagdepth>></span> cm, can insert objects upto <span class="blue"><<print $playervar.vagcomfortinsert>></span> cm in length and <span class="blue"><<print $playervar.vagwidthcomfortinsert>></span> cm width. <<if $playervar.virginity.vagina is true>> <span class="green">You are still virgin</span>.<</if>>
-                <<if $playervar.cansquirt is true>><br><span class="green">When you orgasm you expel liquids from it</span>.<</if>> 
-                <br>
-                Your clitoris has a <<clitorissizechecker>>size and is <span class="blue"><<print $playervar.clitorissize>></span> cm in total. It <<if $playervar.virginity.clitoris is true>> <span class="green">hasn't been touched yet</span>. <</if>>
+            @@.yellow;Select your breast size: @@
+            <ul>
+                <<listbox "$playervar.breastsize" autoselect>>
+                    <<option "Perky" 60>>
+                    <<option "Normal" 40>>
+                    <<option "Small" 20>>
+                    <<option "Flat" 0>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your nipple type: @@
+            <ul>
+                <<listbox "$playervar.nippletype" autoselect>>
+                    <<option "Inverted" "inverted">>
+                    <<option "Protrunding" "protrunding">>
+                    <<option "Puffy" "puffy">>
+                    <<option "Flat" "flat">>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your clitoris size: @@
+            <ul>
+                <<listbox "$playervar.clitorissize" autoselect>>
+                    <<option "Big" 1.8>>
+                    <<option "Normal" 0.9>>
+                    <<option "Small" 0.5>>
+                    <<option "Tiny" 0.3>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your nipple size: @@
+            <ul>
+                <<listbox "$playervar.nipplesize" autoselect>>
+                    <<option "Big" 1.5>>
+                    <<option "Normal" 0.95>>
+                    <<option "Small" 0.48>>
+                    <<option "Tiny" 0.24>>
+                <</listbox>>
+            </ul>
+            
+            @@.yellow;Select your butt size: @@
+            <ul>
+                <<listbox "$playervar.buttsize" autoselect>>
+                    <<option "Plumpy" 60>>
+                    <<option "Normal" 40>>
+                    <<option "Small" 20>>
+                    <<option "Flat" 0>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your vagina tightness: @@
+            <ul>
+                <<listbox "$playervar.vagtightness" autoselect>>
+                    <<option "Tight" 50>>
+                    <<option "Normal" 35>>
+                    <<option "Loose" 20>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your anus tightness: @@
+            <ul>
+                <<listbox "$playervar.anustightness" autoselect>>
+                    <<option "Tight" 50>>
+                    <<option "Normal" 35>>
+                    <<option "Loose" 20>>
+                <</listbox>>
+            </ul>
+
         </fieldset>
 
     <<elseif $playervar.gender is "male">>
-        <<set $playervar.breastsize to null>>
-        <<set $playervar.nipplesize to null>>
-        <<set $playervar.vagtightness to null>>
-        <<set $playervar.clitorissize to null>>
 
         <fieldset class="charc">
-            <legend>Genitals info: </legend>
-                You have a <span class="orange"><<penissizechecker>></span> penis, It's size is <span class="blue"><<print $playervar.penissize>></span> cm in length and <span class="blue"><<print $playervar.peniswidth>></span> cm width. <<if $playervar.virginity.penis is true>> <span class="green">You are virgin</span>.<</if>> 
-                <br>
-                Below it you have a pair of balls that are <<ballssizechecker>> and their size is <span class="blue"><<print $playervar.ballssize>></span> cm.
+            <legend>Character Creation</legend>
+
+            @@.yellow;Select your hair style: @@
+            <ul>
+                <<set _malehairstyle to ["Butch", "Crew Cut", "Ivy League", "Regular cut", "Undercut", "Wings"]>>
+                <<listbox "$playerhairstyle" autoselect>>
+                    <<optionsfrom _malehairstyle>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your beard size: @@
+            <ul>
+                <<listbox "$playerbeardsize" autoselect>>
+                    <<option "Inexistent (It wont grow)" 0>>
+                    <<option "None" 1>>
+                    <<option "Small" 5>>
+                    <<option "Medium" 10>>
+                    <<option "Big" 15>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your penis size: @@
+            <ul>
+                <<listbox "$playervar.penissize" autoselect>>
+                    <<option "Big" 15>>
+                    <<option "Normal" 12>>
+                    <<option "Small" 6>>
+                    <<option "Tiny" 3>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your balls size: @@
+            <ul>
+                <<listbox "$playervar.ballssize" autoselect>>
+                    <<option "Big" 8>>
+                    <<option "Normal" 4>>
+                    <<option "Small" 2>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your butt size: @@
+            <ul>
+                <<listbox "$playervar.buttsize" autoselect>>
+                    <<option "Plumpy" 60>>
+                    <<option "Normal" 40>>
+                    <<option "Small" 20>>
+                    <<option "Flat" 0>>
+                <</listbox>>
+            </ul>
+
+            @@.yellow;Select your anus tightness: @@
+            <ul>
+                <<listbox "$playervar.anustightness" autoselect>>
+                    <<option "Tight" 50>>
+                    <<option "Normal" 35>>
+                    <<option "Loose" 20>>
+                <</listbox>>
+            </ul>
+
         </fieldset>
-        
     <</if>>
 
-    <fieldset class="charc">
-        <legend> Legs info: </legend>
-        You have a pair of <span @class="_colorbs"><<print $bodystate>></span> legs. They <<if $playervar.virginity.tights is true>> <span class="green">hasn't been touched</span>.<</if>>
-    </fieldset>
+    <<button "Change Selections" "charcreation1">><</button>>
+    <br>
+    <<button "Continue" "charcreation3">><</button>>
+
+:: charcreation3 [nobr]
+    <<bsandhsetter>>
+    <<antrwidthsetter>>
+    <<if $playervar.gender is "female">>
+        <<femalesetter>>
+    <<else>>
+        <<malesetter>>
+    <</if>>
+
+    <<set $playervar.sensibility += (($playervar.vagtightness + $playervar.anustightness)/2)>>
 
     <fieldset class="charc">
-        <legend> Butt info: </legend>
-        Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> <span class="green">hasn't been touched</span>.<</if>>
-        <br>
-        You have an anus that has a <<anustightnesschecker>> tightness, it has a depth of <span class="blue"><<print $playervar.anusdepth>></span> cm and can insert objects upto <span class="blue"><<print $playervar.anuscomfortinsert>></span> cm in lenght and <span class="blue"><<print $playervar.anuswidthcomfortinsert>></span> cm width. <<if $playervar.virginity.anus is true>> <span class="green"> It's still virgin</span>.<</if>>
-    </fieldset>
-</fieldset>
+        <<bodystateColors>>
+        <legend class="centered"> Character Status </legend>
 
-<br>
-<<return [[Change selections|charcreation2]]>>
-<br>
-[[Confirm|charcreation4]]
+        <fieldset class="charc">
+            <legend> General info: </legend>
+            Your name is @@.gold;<<print "$playername $playersurname">>@@,
+            you are a 
+            <<if $playervar.gender is "female">>
+                @@.pink;<<print $playervar.gender>>@@.
+
+            <<else>>
+                @@.lightblue;<<print $playervar.gender>>@@.
+
+            <</if>>
+            Currently your hair style is @@.orange;<<print $playerhairstyle>>@@.
+            <<if $playervar.gender is "male">>
+                <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
+                    And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ cm.
+                <</if>>
+            <</if>>
+            Your body sensibility is <<sensibilitychecker>>
+            Your body is @@.orange;<<print $playervar.height>>@@ and @@.orange;<<print $playervar.bodyshapestate>>@@ making you <span @class="$colorbs"><<print $bodystate>></span>.
+
+        </fieldset>
+
+        <fieldset class="charc">
+            <legend> Mouth info: </legend>
+            Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;hasn't been touched@@.<</if>><br>
+            Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects upto @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
+            It <<if $playervar.virginity.throat is true>>@@.green;hasn't had any object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
+        </fieldset>
+
+        <fieldset class="charc">
+            <legend> Arms info: </legend>
+            Your have a pair of <span @class="$colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;hasn't touched anything@@.<</if>>
+        </fieldset>
+
+        <<if $playervar.gender is "female">>
+
+            <<set $playervar.penissize to null>>
+            <<set $playervar.ballssize to null>>
+
+            <fieldset class="charc">
+                <legend>Breast info: </legend>
+                    You have a pair of <<breastsizechecker>> breast. They can hold @@.blue;<<print $playervar.breastmilkmaxlevel>>@@ ml of milk. Your breasts<<if $playervar.virginity.breast is true>> @@.green;hasn't been touched yet@@.<</if>>
+                    <br> 
+                    Each breast has <<nipplesizechecker>> nipple and they are @@.orange;<<print $playervar.nippletype>>@@. Their size is @@.blue;<<print $playervar.nipplesize>>@@ cm. Your nipples <<if $playervar.virginity.nipples is true>> @@.green;hasn't been touched yet@@. <</if>>
+            </fieldset>
+
+            <fieldset class="charc">
+                <legend>Genitals info: </legend>
+                    You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects upto @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;You are still virgin@@.<</if>>
+                    <<if $playervar.cansquirt is true>><br>@@.green;When you orgasm you expel liquids from it@@.<</if>> 
+                    <br>
+                    Your clitoris has a <<clitorissizechecker>>size and is @@.blue;<<print $playervar.clitorissize>>@@ cm in total. It <<if $playervar.virginity.clitoris is true>> @@.green;hasn't been touched yet@@. <</if>>
+            </fieldset>
+
+        <<elseif $playervar.gender is "male">>
+            <<set $playervar.breastsize to null>>
+            <<set $playervar.nipplesize to null>>
+            <<set $playervar.vagtightness to null>>
+            <<set $playervar.clitorissize to null>>
+
+            <fieldset class="charc">
+                <legend>Genitals info: </legend>
+                    You have a @@.orange;<<penissizechecker>>@@ penis, It's size is @@.blue;<<print $playervar.penissize>>@@ cm in length and @@.blue;<<print $playervar.peniswidth>>@@ cm width. <<if $playervar.virginity.penis is true>> @@.green;You are virgin@@.<</if>> 
+                    <br>
+                    Below it you have a pair of balls that are <<ballssizechecker>> and their size is @@.blue;<<print $playervar.ballssize>>@@ cm.
+            </fieldset>
+            
+        <</if>>
+
+        <fieldset class="charc">
+            <legend> Legs info: </legend>
+            You have a pair of <span @class="$colorbs"><<print $bodystate>></span> legs. They <<if $playervar.virginity.tights is true>> @@.green;hasn't been touched@@.<</if>>
+        </fieldset>
+
+        <fieldset class="charc">
+            <legend> Butt info: </legend>
+            Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;hasn't been touched@@.<</if>>
+            <br>
+            You have an anus that has a <<anustightnesschecker>> tightness, it has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects upto @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
+        </fieldset>
+    </fieldset>
+
+    <br>
+    <<button "Change Selections" "charcreation2">><</button>>
+    <br>
+    <<button "Continue" "charcreation4">><</button>>
 
 :: charcreation4 [nobr]
-
-<<if $gamestarted eq 0>>
-    <<set $gamestarted to 1>>
-    <<set $disablernggod to false>>
-    <<set $bodyparts.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
-    <<if $playervar.gender is "female">>
-        <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
-        <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
-        <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
-        <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
-        <<set $bodyparts.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
-        <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
-        <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
-    
-    <<elseif $playervar.gender is "male">>
-        <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
-        <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
-        <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
-        <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
-        <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
-
-    <</if>>
-    
-    <<hobbyselection>>
-
-<</if>>
-You are <span class="orange"><<print "$playername $playersurname">></span>, you are in a train to <span class="gold">Golden Leaf City</span> after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.
-<br>
-<br>
-They saw your attitude with good eyes so they told you that they have a small house in <span class="gold">Golden Leaf City</span> where they lived many years ago and that you can live there. So here you are, in your way to <span class="gold">Golden Leaf City</span> in a slow af train with @@.yellow;$credits credits@@ in your account and you haven't sleep well since you got out of your parent's house neither eaten anything good apart from some food that where given to you in the train.
-<br>
-<br>
-<div class="divisor"></div>
-//* After what looks like an eternity (But where just 3 hours) *//
-<br>
-<br>
-
-Finally got to your new house, you are in the front door and you scan your retina in the retina scanner and when you are about to open the door you get a message in your phone, it's from your parents.
-<br>
-<br>
-// "Hey <<print $playername>>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.
-<br>
-<<timed 1s>> <<set $credits += 350>><<replace #credits>>$credits<</replace>>
-We transfered some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!"
-// @@.yellow; +350 credits@@
-<br>
-<br>
-<<next 250ms>>
-After reading the message you put your phone in your pocket and open the door.
-
-~~''<span class="red"> You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.</span>''~~
-<br>
-<br>
-[[Enter the house|prelivingroom]]
-<</timed>>
-
-:: prelivingroom
-    !!House
-    <div class="divisor"></div>
-    @@#call1;As you get in the house and having a good look of it, you see that it's in pretty bad shape there are things that need to be fixed, others that needs to be replaced and rooms that needs to be cleaned, there is even a harder that may be good to clean after you think what to do with it.
-    Fortunately for you, there is water and even some supplies to clean it. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@<<nobr>>
-    <span id="call">
-    <br>
-    @@#Link;<<link "Call father">>
-        <<remove #skip>>
-        <<replace #call>>
-        <</replace>>
-        <<set $clean to 0>>
-
-        <<replace #call1>>
-            <br>
-            //Calling<<timed 200ms>>.<<next 250ms>>.<<next 300ms>>.<<next 350ms>> Ding
-            <br>
-            <<next 400ms>>
-            - "Hello, @@.gold;<<print $playername>>@@ what happened, it's everything alright?"
-            <br>- Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things.
-            <br>- "Really it's that bad? We tought that well, it wont be in a perfect state but atleast it would bein somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house check if they are still working."
-            <br>- Thanks Dad, thanks! Call you later, bye.
-            <br>- "Bye, @@.gold;<<print $playername>>@@ take care."
-            <<next 3s>>
-            <br>
-            Bep
-            <br>Alright lets see if this number works and please, please don't be expensive.
-            //
-            <<replace #call>>
-               @@#Link;<<link "Call the home repair company">>
-                    <<replace #call>>
-                    <</replace>>
-
-                    <<replace #call1>>
-                        //Calling<<timed 200ms>>.<<next 250ms>>.<<next 300ms>>.<<next 350ms>>Ding
-
-                        <<next 400ms>>
-                        <br>
-                        - "Hello HORECO Inc., how may I help you?"
-                        <br>- Hello, I'm <<print $playername + " " + $playersurname>>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.
-                        <br>- "Alright <<courtesygender>> <<print $playersurname>>, wait a moment please... Your dad is <<print $dadname + " " + $playersurname>>?"
-                        <br>- Yes, everything alright? Did he do something bad or anything that I need to worry about?.
-                        <br>- "No, nothing like that hahaha. It's just that Mr. <<print $dadname>> was my dad's friend, he helped us a lot when we began this family company so in return I can't unfortunately help you free, but we can give you a big discount. Give me your direction and I'll send one of our employee ASAP."
-                        <br>- Great thanks a lot, give me a sec... Ready.
-                        <br>- "Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course."
-                        <br>- Thank you very much, bye!.
-                        <br>- "Bye."
-                        <br>
-                        <<next 1s>>
-                        Bep
-                        <br>
-                        Well, I need to play fortunately enough I got data so I can check some videos or shitposts, because who doesn't like shitposts?.
-                        //
-                        <<replace #call>>
-                            @@#Link;<<link "Wait until the HORECO Inc.'s employee comes">>
-                                <<replace #call>>
-                                <</replace>>
-
-                                <<replace #call1>>
-                                    // Ding Dong...
-                                    <<timed 200ms>>
-                                    <br>- "Hello, I'm from HORECO Inc."
-                                    <br>- Wait a second, I'll open the door.
-                                    <<next 250ms>>
-                                    <br>- Hello, I'm <<print $playername>> go in please.
-                                    <br>- "Alright <<courtesygender>> <<print $playername>>... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment."
-                                    
-                                    <<next 2s>>
-                                    <<addminutes 15>>
-                                    <<replace #timedate>>
-                                        <<timedate>>
-                                    <</replace>>
-                                    <br>
-                                    <br>- "I'm back, I left the robot already working. Checked everything and there a lot of things to fix and lucky for you, you got a big discount so it will be 250 credits. We'll finish in about 3 hours, the place will get dirty so you may need to clean after we finish."
-                                    <br>- Alright, thanks I'll transfer it in a second.
-                                    //
-                                    <<next 1s>>
-                                    <<replace #call>>
-                                        @@#Link;<<link "Pay and wait">>
-                                            <<remove #call>>
-                                            <<replace #call1>>
-                                                //After 3 long hours everything looks better than when you got there. So now it's time clean and buy what you need.//
-                                            <</replace>>
-
-                                            <<addhours 3>>
-                                            <<replace #timedate>>
-                                                <<timedate>>
-                                            <</replace>>
-
-                                            <<set $credits -= 250>>
-
-                                            <<replace #credits>>
-                                                $credits
-                                            <</replace>>
-
-                                            <<removeclass "#cleaning" "hide">>
-                                            <<removeclass "#finish" "hide">>
-                                        <</link>>@@ @@.red;-250 credits +3 hours@@
-                                    <</replace>>
-
-                                    <</timed>>
-                                <</replace>>
-
-                                <<addhours 2>>
-                                <<replace #timedate>>
-                                    <<timedate>>
-                                <</replace>>
-
-                            <</link>>@@ @@.red;+2 hours.@@
-                        <</replace>>
-
-                        <</timed>>
-                    <</replace>>
-
-                <</link>>@@
-            <</replace>>
+    <<if $gamestarted eq 0>>
+        <<set $gamestarted to 1>>
+        <<set $disablernggod to false>>
+        <<set $bodyparts.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
+        <<if $playervar.gender is "female">>
+            <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
+            <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
+            <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
+            <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
+            <<set $bodyparts.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
+            <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
+            <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
             
-            <</timed>>
-        <</replace>>
-
-    <</link>>@@
-    </span>
-    <</nobr>>
-    <span id="cleaning" class="hide">
-    Well the house is in a better shape, still need cleaning but is better that it was before.
-    @@#cleanedfronthouse;The entrance of the house needs to be cleaned, it doesn't look that bad atleast but you don't want anyone to see it.@@
-        <<nobr>>
-        <div id="cleanfronthouse">
-        @@#Link;<<link "Clean the entrance of the house">>
-            <<energyfun 10 5 15 "skilling" "handyman" 10>>
-            <<remove #cleanfronthouse>>
-            <<replace #cleanedfronthouse>>
-                Now you can feel proud if someone looks at your house, because it looks somewhat decent(If you knew how it was before that is).
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-        </div>
-        <</nobr>>
-    @@#cleanedlivingroom;Wow the livingroom, it's like a world of difference but it's dirty after a good clean everything will be right.@@ @@#tv; There is an old tv, who still use a 21 inch LED tv in this day and age?@@ @@#sofa; The Horeco employee told you that this sofa was beyond repairable, so you need to buy a new one@@ 
-        <<nobr>>
-        <div id="cleanliving">
-        @@#Link;<<link "Clean the livingroom">>
-            <<energyfun 10 5 15 "skilling" "handyman" 10>>
-            <<removeclass "#buytv" "hide">>
-            <<removeclass "#buysofa" "hide">>
-            <<remove "#cleanliving">>
-            <<replace #cleanedlivingroom>>
-                Now the livingroom looks like something you could spend time off and is worth looking and you even bought a little clock :D.
-            <</replace>>
-            <<set $credits -= 5>>
-            
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-        </div>
-
-        <div id="buytv" class="hide">
-        @@#Link;<<link "Buy a new TV and install it">>
-            <<energyfun 15 3 10 "skilling" "handyman" 10>>
-            <<remove #buytv>>
-            <<set $credits -= 65>>
-            <<replace #tv>>
-                You bought the new tv and installed it, it's an Echelon Enterprise S.A 36 inch and QLED TV, that's all you can afford and not getting broke.
-            <</replace>>
-
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes -65 Credits@@
-        </div>
-
-        <div id="buysofa" class="hide">
-        @@#Link;<<link "Buy a new sofa">>
-            <<energyfun 15 3 15 "skilling" "handyman" 10>>
-            <<remove #buysofa>>
-            <<set $credits -= 60>>
-            <<replace #sofa>>
-                You bought a new sofa, not that expensive but atleast you can sit in it a big difference from the one that was here before.
-            <</replace>>
-
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes -60 Credits@@
-        </div>
-        <</nobr>>
-    @@#cleanedkitchen;This kitchen doesn't look that bad it needs to be cleaned first tho@@. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
-        <<nobr>>
-        <div id="cleankitchen">
-        @@#Link;<<link "Clean the kitchen and buy cookware">>
-            <<energyfun 10 5 15 "skilling" "handyman" 10>>
-            <<remove #cleankitchen>>
-            <<set $credits -= 15>>
-
-            <<replace #cleanedkitchen>>
-                Now this is a place where you can cook!
-            <</replace>>
-
-            <<set $clean +=1>>
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-        </div>
-        <</nobr>>
-    @@#cleanedbedroom;The bedroom looks fine, a little empty but after you buy a bed, a wardrobe and a table with a chair it will be ready.@@
-        <<nobr>>
-        <div id="cleanbedroom">
-        @@#Link;<<link "Clean the bedroom and settle in">>
-            <<energyfun 10 5 15 "skilling" "handyman" 10>>
-            <<remove #cleanbedroom>>
-            <<set $credits -= 120>>
-
-            <<replace #cleanedbedroom>>
-                You can sleep here, the bed isn't that good but it will work until you can afford a better one, your laptop is in the chair in case you want to use it. Your wardrobe is a pretty big one and it was cheap, what more do you want?.
-            <</replace>>
-
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -120 Credits@@
-        </div>
-        <</nobr>>
-    @@#cleanedbathroom;The bathroom is the best looking part of the house, needs some clean and supplies but nothing more.@@
-        <<nobr>>
-        <div id="cleanbathroom">
-        @@#Link;<<link "Clean the bathroom and buy supplies">>
-            <<energyfun 10 5 15 "skilling" "handyman" 10>>
-            <<remove #cleanbathroom>>
-            <<set $credits -= 40>>
-
-            <<replace #cleanedbathroom>>
-                The bathroom is so clean that you can see your own reflection, you bought some soaps and shampoo.
-            <</replace>>
-
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
-            <<set $clean +=1>>
-
-        <</link>>@@@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -40 Credits@@
-        </div>
-        <</nobr>>
-    </span>
-    <<nobr>>
-    @@#skip;<<link "Skip history">>
-        <<replace #call1>>
-            //After 3 long hours everything looks better than when you got there. So now it's time clean and buy what you need.//
-        <</replace>>
-        <<remove #call>>
-        <<remove #skip>>
-
-        <<removeclass "#cleaning" "hide">>
-        <<removeclass "#finish" "hide">>
-
-        <<addhours 5>>
-        <<addminutes 15>>
-        <<replace #timedate>>
-            <<timedate>>
-        <</replace>>
-
-        <<set $clean to 0>>
-        <<set $credits -= 250>>
-
-        <<replace #credits>>
-            $credits
-        <</replace>>
-
-    <</link>>@@
-    
-    @@#finish.hide;<<link "Finish">>
-        <<if $clean gte 7>>
-            <<goto "livingroom">>
-            <<unset $clean>>
-
-        <<else>>       
-            <<replace #call1>>
-                You haven't finished cleaning.
-            <</replace>>
-
-            <<script>>
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-
-            <</script>>
+        <<elseif $playervar.gender is "male">>
+            <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
+            <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
+            <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
+            <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
+            <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
 
         <</if>>
-        
-    <</link>>@@
+            
+        <<hobbyselection>>
 
-    <</nobr>>
+    <</if>>
+    You are @@.orange;<<print "$playername $playersurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.
+    <br>
+    <br>
+    They saw your attitude with good eyes so they told you that they have a small house in @@.gold;Golden Leaf City@@ where they lived many years ago and that you can live there. So here you are, in your way to @@.gold;Golden Leaf City@@ in a slow af train with @@.yellow;$credits credits@@ in your account and you haven't sleep well since you got out of your parent's house neither eaten anything good apart from some food that where given to you in the train.
+    <br>
+    <br>
+    <div class="divisor"></div>
+    //* After what looks like an eternity (But where just 3 hours) *//
+    <br>
+    <br>
 
+    Finally got to your new house, you are in the front door and you scan your retina in the retina scanner and when you are about to open the door you get a message in your phone, it's from your parents.
+    <br>
+    <br>
+    // "Hey @@.orange;<<print $playername>>@@, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.
+    <br>
+    <<timed 1s>> <<set $credits += 350>><<replace #credits>>$credits<</replace>>
+    We transfered some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!"
+    // @@.yellow; +350 credits@@
+    <br>
+    <br>
+    <<next 250ms>>
+    After reading the message you put your phone in your pocket and open the door.
+
+    ~~''@@.red"> You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
+    <br>
+    <br>
+    <<button "Enter the house" "prelivingroom">><</button>>
+    <</timed>>
+
+:: prelivingroom [nobr]
+    <h2>House</h2>
+    <div class="divisor"></div>
+    <<if $finishL isnot true>>
+        @@#call1;As you get in the house and having a good look of it, you see that it's in pretty bad shape there are things that need to be fixed, others that needs to be replaced and rooms that needs to be cleaned, there is even a harder that may be good to clean after you think what to do with it.
+        Fortunately for you, there is water and even some supplies to clean it. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
+        @@#call;
+        <br>
+        <<button "Call father">>
+            <<remove #skip>>
+            <<replace #call>>
+            <</replace>>
+            <<set $clean to 0>>
+
+            <<replace #call1>>
+                <br>
+                //<<type 50ms>>Calling...Ding<</type>>
+                <br>
+                <<timed 1500ms>>
+                - "Hello, @@.orange;<<print $playername>>@@ what happened, it's everything alright?"
+                <br>- Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things.
+                <br>- "Really it's that bad? We tought that well, it wont be in a perfect state but atleast it would bein somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house check if they are still working."
+                <br>- Thanks Dad, thanks! Call you later, bye.
+                <br>- "Bye, @@.orange;<<print $playername>>@@ take care."
+                <<next 1s>>
+                <br>
+                Bep
+                <br>Alright lets see if this number works and please, please don't be expensive.
+                //
+                <<replace #call>>
+                    <<button "Call the home repair company">>
+                        <<replace #call>>
+                        <</replace>>
+
+                        <<replace #call1>>
+                            //<<type 50ms>>Calling...Ding<</type>>
+
+                            <<timed 1500ms>>
+                            <br>
+                            - "Hello HORECO Inc., how may I help you?"
+                            <br>- Hello, I'm @@.orange;<<print "$playername $playersurname">>@@. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.
+                            <br>- "Alright <<courtesy>> @@.orange;<<print $playersurname>>@@, wait a moment please... Your dad is @@.orange;<<print "$dadname $playersurname">>@@?"
+                            <br>- Yes, everything alright? Did he do something bad or anything that I need to worry about?.
+                            <br>- "No, nothing like that hahaha. It's just that Mr. @@.orange;<<print $dadname>>@@ was my dad's friend, he helped us a lot when we began this family company so in return I can't unfortunately help you free, but we can give you a big discount. Give me your direction and I'll send one of our employee ASAP."
+                            <br>- Great thanks a lot, give me a sec... Ready.
+                            <br>- "Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course."
+                            <br>- Thank you very much, bye!.
+                            <br>- "Bye."
+                            <br>
+                            <<next 1600ms>>
+                            Bep
+                            <br>
+                            Well, I need to play fortunately enough I got data so I can check some videos or shitposts, because who doesn't like shitposts?.
+                            //
+                            <<replace #call>>
+                                <br>
+                                <<button "Wait until the HORECO Inc.'s employee comes">>
+                                    <<replace #call>>
+                                    <</replace>>
+
+                                    <<replace #call1>>
+                                        // <<type 75ms>>Ding Dong...<</type>>
+                                        <<timed 1500ms>>
+                                        <br>- "Hello, I'm from HORECO Inc."
+                                        <br>- Wait a second, I'll open the door.
+                                        <<next 1600ms>>
+                                        <br>- Hello, I'm @@.orange;<<print $playername>>@@ go in please.
+                                        <br>- "Alright <<courtesy>> @@.orange;<<print $playername>>@@... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment."
+                                        
+                                        <<next 2s>>
+                                        <<addminutes 15>>
+                                        <<replace #timedate>>
+                                            <<timedate>>
+                                        <</replace>>
+                                        <br>
+                                        <br>- "I'm back, I left the robot already working. Checked everything and there a lot of things to fix and lucky for you, you got a big discount so it will be 250 credits. We'll finish in about 3 hours, the place will get dirty so you may need to clean after we finish."
+                                        <br>- Alright, thanks I'll transfer it in a second.
+                                        //
+                                        <<next 1s>>
+                                        <<replace #call>>
+                                            <<button "Pay and wait" "prelivingroom">>
+                                                <<remove #call>>
+                                                <<remove #call1>>
+
+                                                <<addhours 3>>
+                                                <<set $credits -= 250>>
+                                                <<set $finishL to true>>
+                                            <</button>> @@.red;-250 credits +3 hours@@
+                                        <</replace>>
+
+                                        <</timed>>
+                                    <</replace>>
+
+                                    <<addhours 2>>
+
+                                <</button>> @@.red;+2 hours.@@
+                            <</replace>>
+
+                            <</timed>>
+                        <</replace>>
+
+                    <</button>>
+                <</replace>>
+                
+                <</timed>>
+            <</replace>>
+
+        <</button>>
+        @@
+        <br>
+        @@#skip;<<button "Skip history" "prelivingroom">>
+            <<remove #call1>>
+            <<remove #call>>
+            <<remove #skip>>
+            <<set $finishL to true>>
+
+            <<addhours 5>>
+            <<addminutes 15>>
+            <<replace #timedate>>
+                <<timedate>>
+            <</replace>>
+
+            <<set $clean to 0>>
+            <<set $credits -= 250>>
+
+            <<replace #credits>>
+                $credits
+            <</replace>>
+
+        <</button>>@@
+
+    <<elseif $finishL is true>>
+        @@#message.red;@@
+        <br>
+        Well the house is in a better shape, still need cleaning but is better that it was before.
+        @@#cleanedfronthouse;The entrance of the house needs to be cleaned, it doesn't look that bad atleast but you don't want anyone to see it.@@
+            <br>
+            <div id="cleanfronthouse">
+            <<button "Clean the entrance of the house">>
+                <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                <<remove #cleanfronthouse>>
+                <<replace #cleanedfronthouse>>
+                    Now you can feel proud if someone looks at your house, because it looks somewhat decent(If you knew how it was before that is).
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+            </div>
+        <br>
+        @@#cleanedlivingroom;Wow the livingroom, it's like a world of difference but it's dirty after a good clean everything will be right.@@ @@#tv; There is an old tv, who still use a 21 inch LED tv in this day and age?@@ @@#sofa; The Horeco employee told you that this sofa was beyond repairable, so you need to buy a new one@@   
+            <br>
+            <div id="cleanliving">
+            <<button "Clean the livingroom">>
+                <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                <<removeclass "#buytv" "hide">>
+                <<removeclass "#buysofa" "hide">>
+                <<remove "#cleanliving">>
+                <<replace #cleanedlivingroom>>
+                    Now the livingroom looks like something you could spend time off and is worth looking and you even bought a little clock :D.
+                <</replace>>
+                <<set $credits -= 5>>
+                
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+            </div>
+            <br>
+            <div id="buytv" class="hide">
+            <<button "Buy a new TV and install it">>
+                <<energyfun 15 3 10 "skilling" "handyman" 10>>
+                <<remove #buytv>>
+                <<set $credits -= 65>>
+                <<replace #tv>>
+                    You bought the new tv and installed it, it's an Echelon Enterprise S.A 36 inch and QLED TV, that's all you can afford and not getting broke.
+                <</replace>>
+
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes -65 Credits@@
+            </div>
+            <div id="buysofa" class="hide">
+            <<button "Buy a new sofa">>
+                <<energyfun 15 3 15 "skilling" "handyman" 10>>
+                <<remove #buysofa>>
+                <<set $credits -= 60>>
+                <<replace #sofa>>
+                    You bought a new sofa, not that expensive but atleast you can sit in it a big difference from the one that was here before.
+                <</replace>>
+
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes -60 Credits@@
+            </div>
+
+        @@#cleanedkitchen;This kitchen doesn't look that bad it needs to be cleaned first tho@@. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
+            <br>
+            <div id="cleankitchen">
+            <<button "Clean the kitchen and buy cookware">>
+                <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                <<remove #cleankitchen>>
+                <<set $credits -= 15>>
+
+                <<replace #cleanedkitchen>>
+                    Now this is a place where you can cook!
+                <</replace>>
+
+                <<set $clean +=1>>
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+            </div>
+            <br>
+        @@#cleanedbedroom;The bedroom looks fine, a little empty but after you buy a bed, a wardrobe and a table with a chair it will be ready.@@
+            <br>
+            <div id="cleanbedroom">
+            <<button "Clean the bedroom and settle in">>
+                <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                <<remove #cleanbedroom>>
+                <<set $credits -= 120>>
+
+                <<replace #cleanedbedroom>>
+                    You can sleep here, the bed isn't that good but it will work until you can afford a better one, your laptop is in the chair in case you want to use it. Your wardrobe is a pretty big one and it was cheap, what more do you want?.
+                <</replace>>
+
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -120 Credits@@
+            </div>
+            <br>
+        @@#cleanedbathroom;The bathroom is the best looking part of the house, needs some clean and supplies but nothing more.@@
+            <br>
+            <div id="cleanbathroom">
+            <<button "Clean the bathroom and buy supplies">>
+                <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                <<remove #cleanbathroom>>
+                <<set $credits -= 40>>
+
+                <<replace #cleanedbathroom>>
+                    The bathroom is so clean that you can see your own reflection, you bought some soaps and shampoo.
+                <</replace>>
+
+                <<replace #credits>>
+                    $credits
+                <</replace>>
+
+                <<set $clean +=1>>
+
+            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -40 Credits@@
+            </div>
+        <br>
+        <br>
+        <<button "Finish">>
+            <<if $clean gte 7>>
+                <<goto "livingroom">>
+                <<unset $clean>>
+                <<unset $finishL>>
+
+            <<else>>       
+                <<replace #message>>
+                    You haven't finished cleaning.
+                <</replace>>
+
+                <<script>>
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+
+                <</script>>
+
+            <</if>>
+            
+        <</button>>
+
+    <</if>>
 

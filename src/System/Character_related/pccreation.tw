@@ -7,7 +7,19 @@
 		<<case "female">>
 			<<set $playervar.hasvagina to true>>
 			<<set $playervar.haspenis to false>>
-			<<set $playervar.attractiveness to 40>>
+			<<set $playervar.virginity to {
+				anus: true, 
+				mouth: true, 
+				vagina: true,
+				breast: true,
+				nipples: true,
+				clitoris: true,
+				throat: true,
+				hands: true,
+				tights: true,
+				butt: true,
+				urethra: true
+			}>>
 		
 			<<if $disablernggod is false>>
 				<<rngod>>
@@ -69,18 +81,27 @@
 		<<case "male">>
 			<<set $playervar.haspenis to true>>
 			<<set $playervar.hasvagina to false>>
-			<<set $playervar.attractiveness to 25>>
+			<<set $playervar.virginity to {
+				anus: true, 
+				mouth: true, 
+				penis: true,
+				throat: true,
+				hands: true,
+				tights: true,
+				butt: true,
+				urethra: true
+			}>>
 		
-		<<if $disablernggod is false>>
-			<<rngod>>
-			<<if $rnggod gte 80>>
-				<<set $playervar.gagreflex to false>>
+			<<if $disablernggod is false>>
+				<<rngod>>
+				<<if $rnggod gte 80>>
+					<<set $playervar.gagreflex to false>>
+
+				<</if>>
+
+				<<set $disablernggod to true>>
 
 			<</if>>
-
-			<<set $disablernggod to true>>
-
-		<</if>>
 			
 			<<switch $playervar.height>>
 				<<case "small">>
@@ -117,78 +138,78 @@
 		<<case "tall">>
 			<<if $playervar.bodyshape eq 100>> /* Muscular*/
 				<<set $playervar.bodyshapestate to "muscular" >>
-				<<set $playervar.attractiveness -= 5>>
+
 
 			<<elseif $playervar.bodyshape gte 80>> /* Fit */
 				<<set $playervar.bodyshapestate to "fit">>
-				<<set $playervar.attractiveness += 4>>
+
 
 			<<elseif $playervar.bodyshape gte 60>> /* Toned */
 				<<set $playervar.bodyshapestate to 'toned'>>
-				<<set $playervar.attractiveness += 3>>
+
 
 			<<elseif $playervar.bodyshape gte 40>> /* Normal */
 				<<set $playervar.bodyshapestate to "normal">>
 
 			<<elseif $playervar.bodyshape gte 20>> /* Chubby */
 				<<set $playervar.bodyshapestate to "chubby">>
-				<<set $playervar.attractiveness -= 5>>
+
 
 			<<elseif $playervar.bodyshape gte 0>> /* Fat */
 				<<set $playervar.bodyshapestate to "fat">>
-				<<set $playervar.attractiveness -= 8>>
+
 
 			<</if>>
 			
 		<<case "normal">>
 			<<if $playervar.bodyshape eq 100>>
 				<<set $playervar.bodyshapestate to "muscular" >>
-				<<set $playervar.attractiveness -= 5>>
+
 
 			<<elseif $playervar.bodyshape gte 80>>
 				<<set $playervar.bodyshapestate to "fit">>
-				<<set $playervar.attractiveness += 4>>
+
 
 			<<elseif $playervar.bodyshape gte 60>>
 				<<set $playervar.bodyshapestate to "toned">>
-				<<set $playervar.attractiveness += 3>>
+
 
 			<<elseif $playervar.bodyshape gte 40>>
 				<<set $playervar.bodyshapestate to "normal">>
 
 			<<elseif $playervar.bodyshape gte 20>>
 				<<set $playervar.bodyshapestate to "chubby">>
-				<<set $playervar.attractiveness -= 5>>
+
 
 			<<elseif $playervar.bodyshape gte 0>>
 				<<set $playervar.bodyshapestate to "fat">>
-				<<set $playervar.attractiveness -= 8>>
+
 
 			<</if>>
 
 		<<case "small">>
 			<<if $playervar.bodyshape eq 100>>
 				<<set $playervar.bodyshapestate to "muscular" >>
-				<<set $playervar.attractiveness -= 5>>
+
 
 			<<elseif $playervar.bodyshape gte 80>>
 				<<set $playervar.bodyshapestate to "fit">>
-				<<set $playervar.attractiveness += 4>>
+
 
 			<<elseif $playervar.bodyshape gte 60>>
 				<<set $playervar.bodyshapestate to "toned">>
-				<<set $playervar.attractiveness += 3>>
+
 
 			<<elseif $playervar.bodyshape gte 40>>
 				<<set $playervar.bodyshapestate to "normal">>
 
 			<<elseif $playervar.bodyshape gte 20>>
 				<<set $playervar.bodyshapestate to "chubby">>
-				<<set $playervar.attractiveness -= 9>>
+
 
 			<<elseif $playervar.bodyshape gte 0>>
 				<<set $playervar.bodyshapestate to "fat">>
-				<<set $playervar.attractiveness -= 14>>
+
 
 			<</if>>
 
@@ -224,23 +245,17 @@
 <</widget>>
 
 <<widget "buttsizesetter">> /* Butt size setter */
-	<<if $playervar.buttsize eq 100>>
-		<<set $playervar.attractiveness += 8>>
+	<<if $playervar.buttsize eq 100>
 
-	<<elseif $playervar.buttsize gte 80>>
-		<<set $playervar.attractiveness += 6>>
+	<<elseif $playervar.buttsize gte 80>
 
-	<<elseif $playervar.buttsize gte 60>>
-		<<set $playervar.attractiveness += 4>>
+	<<elseif $playervar.buttsize gte 60>
 	
-	<<elseif $playervar.buttsize gte 40>>
-		<<set $playervar.attractiveness += 2>>
+	<<elseif $playervar.buttsize gte 40>
 	
-	<<elseif $playervar.buttsize gte 20>>
-		<<set $playervar.attractiveness += 1>>
+	<<elseif $playervar.buttsize gte 20>
 	
-	<<elseif $playervar.buttsize gte 0>>
-		<<set $playervar.attractiveness -= 4>>
+	<<elseif $playervar.buttsize gte 0>
 	
 	<</if>>
 
@@ -249,7 +264,6 @@
 /* Male setter*/
 
 <<widget "malesetter">>
-
 	<<if $playervar.ballssize eq 12>>
 		<<set $playervar.cummaxlevel to 550>>
 		<<set $playervar.cumregen to 5.5>>
@@ -280,32 +294,26 @@
 	<<if $playervar.penissize eq 25>>
 		<<set $playervar.sensibility += 6>>
 		<<set $playervar.peniswidth to 6.5>>
-		<<set $playervar.attractiveness += 4>>
 
 	<<elseif $playervar.penissize gte 22>>
 		<<set $playervar.sensibility += 5>>
 		<<set $playervar.peniswidth to 5.5>>
-		<<set $playervar.attractiveness += 3>>
 
 	<<elseif $playervar.penissize gte 18>>
 		<<set $playervar.sensibility += 4>>
 		<<set $playervar.peniswidth to 4.5>>
-		<<set $playervar.attractiveness += 2>>
 		
 	<<elseif $playervar.penissize gte 12>>
 		<<set $playervar.sensibility += 3>>
 		<<set $playervar.peniswidth to 3.5>>
-		<<set $playervar.attractiveness += 1>>
 
 	<<elseif $playervar.penissize gte 5>>
 		<<set $playervar.sensibility += 2>>
 		<<set $playervar.peniswidth to 2.5>>
-		<<set $playervar.attractiveness -= 1>>
 
 	<<elseif $playervar.penissize gte 3>>
 		<<set $playervar.sensibility += 1>>
 		<<set $playervar.peniswidth to 1.5>>
-		<<set $playervar.attractiveness -= 5>>
 
 	<</if>>
 
@@ -318,27 +326,22 @@
 	<<if $playervar.breastsize eq 100>> /* Enormous */
 		<<set $playervar.breastmilkmaxlevel to 420>>
 		<<set $playervar.sensibility += 5>>
-		<<set $playervar.attractiveness += 8>>
 
 	<<elseif $playervar.breastsize gte 80>> /* Big */
 		<<set $playervar.breastmilkmaxlevel to 360>>
 		<<set $playervar.sensibility += 4>>
-		<<set $playervar.attractiveness += 6>>
 
 	<<elseif $playervar.breastsize gte 60>> /* Perky */
 		<<set $playervar.breastmilkmaxlevel to 300>>
 		<<set $playervar.sensibility += 3>>
-		<<set $playervar.attractiveness += 4>>
 
 	<<elseif $playervar.breastsize gte 40>> /* Normal */
 		<<set $playervar.breastmilkmaxlevel to 240>>
 		<<set $playervar.sensibility += 2>>
-		<<set $playervar.attractiveness += 2>>
 	
 	<<elseif $playervar.breastsize gte 20>> /* Small */
 		<<set $playervar.breastmilkmaxlevel to 180>>
 		<<set $playervar.sensibility += 1>>
-		<<set $playervar.attractiveness += 1>>
 		
 	<<elseif $playervar.breastsize gte 0>> /* Flat */
 		<<set $playervar.breastmilkmaxlevel to 120>>
@@ -400,7 +403,7 @@
 
 <</widget>>
 
-<<widget "lactationsetter">>/* Lactation setter, disabled. */
+/%<<widget "lactationsetter">>
 	<<if $playervar.lactationenabler eq 1>>
 		<<switch $playervar.breastsize>>
 			<<case "100">>
@@ -411,7 +414,7 @@
 	<<else>>
 		You are not lactating.
 	<</if>>
-<</widget>>
+<</widget>>%/
 
 <<widget "hobbyselection">>
 	<<switch $hobby>>

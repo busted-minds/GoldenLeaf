@@ -10,7 +10,6 @@
     height: null, /* Height of the player */
     bodyshape: null, /* Body shape of the player */
     bodyshapestate: null,
-    attractiveness: null, /* How beautiful the player is */
 
     /* Female variables */
     hasvagina: null, /* Player has a vagina */
@@ -25,7 +24,7 @@
     clitorissize: null, /* Size of player clitoris*/
     nipplesize: null, /* Size of player nipples*/
     nippletype: null, /* Type of player nipples */
-        /* Lactation */
+    /* Lactation */
     breastmilklevel: null, /* How much breast milk the player currently has in ml. */
     breastmilkmaxlevel: null, /* How much breast milk the player can have in ml.*/
     breastmilkregen: null, /* How much breast milk the player regens */
@@ -49,20 +48,7 @@
     anustightness: null,
     gagreflex: true,
     sensibility: null,
-    virginity:{
-        anus: true, 
-        mouth: true, 
-        penis: true, 
-        vagina: true,
-        breast: true,
-        nipples: true,
-        clitoris: true,
-        throat: true,
-        hands: true,
-        tights: true,
-        butt: true,
-        urethra: true
-    }
+    virginity:{}
 }>>
 
 <<set $bodystate to null>>
@@ -72,9 +58,9 @@
 <<set $maxenergy to 100>>
 <<set $fun to 100>>
 <<set $cleanliness to 100>>
-<<set $bladder to 20>>
-<<set $rectum to 20>>
+<<set $pNeeds to 20>>
 <<set $hunger to 20>>
+<<set $arousal to 0>>
 
 <<set $hobby to null>>
 

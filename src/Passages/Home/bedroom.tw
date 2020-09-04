@@ -10,7 +10,7 @@
         <br>
         <<set _givexp to random(5,10)>>
         <<addclass "#hidebed" "hide">>
-        <<link "Clean and fix the bed" "bedroom">>
+        <<button "Clean and fix the bed" "bedroom">>
             <<unset $bedroomclean>>
             <<removeclass "#hidebed" "hide">>
             <<rngod>>
@@ -18,65 +18,69 @@
                 <<set $credits += random(5,20)>>
             <</if>>
             <<energyfun 15 10 15 "skilling" "handyman" _givexp>>
-        <</link>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
+        <</button>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
         <br>
     <</if>>
     
     <fieldset id="fieldinline">
         <legend>Use</legend>
-        @@#hidebed#Link;[[Use the bed|bed]]@@
+        @@#hidebed;<<button "Use the bed" "bed">><</button>>@@
         <br>
-        @@#Link;[[Use the computer|computer]]@@
+        <<button "Use the computer" "computer">><</button>>
     </fieldset>
     <br>
     <fieldset id="fieldinline">
         <legend>Misc</legend>
-        @@#Link;[[Change clothes|wardrobe]]@@
+        <<button "Change clothes" "wardrobe">><</button>>
         <br>
-        @@#Link;[[Approach the window|window]]@@
+        <<button "Approach the window" "window">><</button>>
     </fieldset>
     <</nobr>>
 
-    @@#Link;[[To the living room|livingroom]]@@
+    <<button "To the living room" "livingroom">><</button>>
 :: bed
 
     !!Bed
     <div class="divisor"></div>
     You are in your $cheap_bed, what do you want to do?
 
-    @@#Link;[[Sleep or Rest|sleep]]@@
+    <<button "Sleep or Rest" "sleep">><</button>>
 
-    @@#Link;[[Get up|bedroom]]@@
+    <<button "Masturbate" "masturbate">>
+        <<set $location to passage()>>
+    <</button>>
+
+    <<button "Get up" "bedroom">><</button>>
 
 :: sleep [nobr]
 
     <h2>Sleep</h2>
     <div class="divisor"></div>
     <br>
-    @@#Link;<<link "Sleep 2 hours" "bed">><<addhours 2>><<recoverenergy 40>><<sleep>><<timeattached "hours" 2>><</link>>@@ @@.green; +40 energy@@
+    <<button "Sleep 2 hours" "bed">><<addhours 2>><<recoverenergy 40>><<sleep>><<timeattached "hours" 2>><</button>> @@.green; +40 energy@@
     <br>
-    @@#Link;<<link "Sleep 4 hours" "bed">><<addhours 4>><<recoverenergy 60>><<sleep>><<timeattached "hours" 4>><</link>>@@ @@.green; +60 energy@@
+    <<button "Sleep 4 hours" "bed">><<addhours 4>><<recoverenergy 60>><<sleep>><<timeattached "hours" 4>><</button>> @@.green; +60 energy@@
     <br>
-    @@#Link;<<link "Sleep 6 hours" "bed">><<addhours 6>><<recoverenergy 80>><<sleep>><<timeattached "hours" 6>><</link>>@@ @@.green; +80 energy@@
+    <<button "Sleep 6 hours" "bed">><<addhours 6>><<recoverenergy 80>><<sleep>><<timeattached "hours" 6>><</button>> @@.green; +80 energy@@
     <br>
-    @@#Link;<<link "Sleep 8 hours" "bed">><<addhours 8>><<recoverenergy 100>><<sleep>><<timeattached "hours" 8>><</link>>@@ @@.green; +100 energy@@
+    <<button "Sleep 8 hours" "bed">><<addhours 8>><<recoverenergy 100>><<sleep>><<timeattached "hours" 8>><</button>> @@.green; +100 energy@@
     <br>
 
     <h2>Rest</h2>
     <div class="divisor"></div>
     <br>
-    @@#Link;<<link "Rest 5 minutes" "bed">><<addminutes 5>><<recoverenergy 5>><<timeattached "minutes" 5>><</link>>@@ @@.green; +5 energy@@
+    <<button "Rest 5 minutes" "bed">><<addminutes 5>><<recoverenergy 5>><<timeattached "minutes" 5>><</button>> @@.green; +5 energy@@
     <br>
-    @@#Link;<<link "Rest 15 minutes" "bed">><<addminutes 15>><<recoverenergy 7>><<timeattached "minutes" 15>><</link>>@@ @@.green; +7 energy@@
+    <<button "Rest 15 minutes" "bed">><<addminutes 15>><<recoverenergy 7>><<timeattached "minutes" 15>><</button>> @@.green; +7 energy@@
     <br>
-    @@#Link;<<link "Rest 30 minutes" "bed">><<addminutes 30>><<recoverenergy 15>><<timeattached "minutes" 30>><</link>>@@ @@.green; +15 energy@@
+    <<button "Rest 30 minutes" "bed">><<addminutes 30>><<recoverenergy 15>><<timeattached "minutes" 30>><</button>> @@.green; +15 energy@@
     <br>
-    @@#Link;<<link "Rest 45 minutes" "bed">><<addminutes 45>><<recoverenergy 27>><<timeattached "minutes" 45>><</link>>@@ @@.green; +27 energy@@
+    <<button "Rest 45 minutes" "bed">><<addminutes 45>><<recoverenergy 27>><<timeattached "minutes" 45>><</button>> @@.green; +27 energy@@
     <br>
-    @@#Link;<<link "Rest 1 hour" "bed">><<addminutes 60>><<recoverenergy 30>><<timeattached "minutes" 60>><</link>>@@ @@.green; +30 energy@@
+    <<button "Rest 1 hour" "bed">><<addminutes 60>><<recoverenergy 30>><<timeattached "minutes" 60>><</button>> @@.green; +30 energy@@
     <br>
     <br>
-    @@#Link;[[Go back|bedroom]]@@
+    <<button "Go back" "bedroom">><</button>>
 
 :: wardrobe [nobr]
     <h2>Wardrobe</h2>
@@ -91,32 +95,39 @@
 
         <div id="wardrobeContent">
             <<showWardrobeCC $pressedlink>>
+
         </div>
+
+
     </div>
     <br>
     
-    @@#Link;[[Close the wardrobe|bedroom]]@@
+    <<button "Close the wardrobe" "bedroom">><</button>>
     <br>
-    @@#Link;[[Use the mirror|mirror]]@@
+    <<button "Use the mirror" "mirror">><</button>>
 
 :: mirror
 
-    @@#Link;[[Back|wardrobe]]@@
+    <<button "Back" "wardrobe">><</button>>
+    
 :: computer [nobr]
     <h2>Computer</h2>
     <div class="divisor"></div>
     <div id="message"></div>
     <br>
-    @@#Link;<<link "Play videogames">>
+    <<button "Play videogames">>
         <<energyfun 2 5 5 "videogames">>
-    <</link>>@@@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
+    <</button>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
     <br>
-
     <<if $hobby is "programming" or $programmingskill is 2>>
-        @@#Link;<<link "Practice programming">>
+        <<button "Practice programming">>
             <<energyfun 10 5 15 "skilling" "programming" 6>>
-        <</link>>@@@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
+        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
     <br>
     <</if>>
     <br>
-    @@#Link;[[Get up|bedroom]]@@
+    <<button "Get up" "bedroom">><</button>>
+    <br>
+    <<button "Masturbate" "masturbate">>
+        <<set $location to passage()>>
+    <</button>>

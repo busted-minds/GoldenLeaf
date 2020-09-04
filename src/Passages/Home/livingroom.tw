@@ -7,10 +7,10 @@
         @@.lightblue;The livingroom is dirty and you need to clean it.@@
         <br>
         <<set _givexp to random(5,10)>>
-        <<link "Clean" "livingroom">>
+        <<button "Clean" "livingroom">>
             <<unset $livingclean>>
             <<energyfun 15 10 15 "skilling" "handyman" _givexp>>
-        <</link>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
+        <</button>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
         <br>
     <</if>>
     You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden. Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
@@ -19,25 +19,25 @@
     <br>
     <fieldset id="fieldinline">
         <legend>Places</legend>
-        <span id="Link">[[Outside|outside]]</span>
+        <<link "Outside" "outside">><</link>>
         <br>
-        <span id="Link">[[Kitchen|kitchen]]</span>
+        <<button "Kitchen" "kitchen">><</button>>
         <br>
-        <span id="Link">[[Garden|garden]]</span>
+        <<link "Garden" "garden">><</link>>
     </fieldset>
     <br>
     <fieldset id="fieldinline">
         <legend>Misc</legend>
-        <span id="Link">[[Watch TV|tv]]</span>
+        <<button "Watch TV" "tv">><</button>>
         <br>
-        <span id="Link">[[Sit on the Sofa|sofa]]</span>
+        <<button "Sit on the Sofa" "sofa">><</button>>
     </fieldset>
     <br>
     <fieldset id="fieldinline">
         <legend>Rooms</legend>
-        <span id="Link">[[Bedroom|bedroom]]</span>
+        <<button "Bedroom" "bedroom">><</button>>
         <br>
-        <span id="Link">[[Bathroom|bathroom]]</span>
+        <<button "Bathroom" "bathroom">><</button>>
     </fieldset>
     <</nobr>>
 :: tv [nobr]
@@ -45,34 +45,39 @@
     <div class="divisor"></div>
     <div id="message"></div>
 
-    <<link "Watch news channel">>
+    <<button "Watch news channel">>
         <<energyfun 1 2 3 "watchtv">>
-    <</link>>@@.green; +2 Fun@@ | @@.red; -1 Energy +3 Minutes@@
+    <</button>>@@.green; +2 Fun@@ | @@.red; -1 Energy +3 Minutes@@
     <br>
     <br>
-    [[Turn off|livingroom]]
+    <<button "Turn off" "livingroom">><</button>>
 
 :: sofa [nobr]
     <h2>Sofa</h2>
     <div class="divisor"></div>
     <br>
-    [[Relax|relax]]
+    <<button "Relax" "relax">><</button>>
     <br>
     <br>
-    [[Get up|livingroom]]
+    <<button "Get up" "livingroom">><</button>>
+    <br>
+    <br>
+    <<button "Masturbate" "masturbate">>
+        <<set $location to passage()>>
+    <</button>>
 
 :: relax [nobr]
     <h2>Relax</h2>
     <div class="divisor"></div>
     <br>
-    <<link "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><<timeattached "minutes" 5>><</link>> @@.green; +2 energy@@
+    <<button "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><<timeattached "minutes" 5>><</button>> @@.green; +2 energy@@
     <br>
-    <<link "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><<timeattached "minutes" 10>><</link>> @@.green; +4 energy@@
+    <<button "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><<timeattached "minutes" 10>><</button>> @@.green; +4 energy@@
     <br>
-    <<link "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><<timeattached "minutes" 15>><</link>> @@.green; +6 energy@@
+    <<button "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><<timeattached "minutes" 15>><</button>> @@.green; +6 energy@@
     <br>
-    <<link "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><<timeattached "minutes" 20>><</link>> @@.green; +8 energy@@
+    <<button "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><<timeattached "minutes" 20>><</button>> @@.green; +8 energy@@
     <br>
     <br>
 
-    [[Go back|sofa]]
+    <<button "Go back" "sofa">><</button>>

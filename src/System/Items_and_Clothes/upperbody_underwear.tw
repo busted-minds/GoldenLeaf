@@ -26,7 +26,7 @@
             article: "a",
             category: ["bra", "underwear"],
             gender: "female",
-            exposurelevel: 2,
+            exposurelevel: 3,
             exposedchest: false
         }
     ]>>

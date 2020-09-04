@@ -100,18 +100,28 @@
 		font-weight: bold;
 	}
 
-	#menu-item-restart, #ui-bar-history {
+	#menu-item-restart {
 		display: none;
 	}
 
 	.macro-button, #menu ul {
 		width: 100%;
-		font-size: 110%;
-		max-width: 240px;
+		font-size: 120%;
+		max-width: 280px;
 		border: 1px solid #444;
+		background-color: #3b3b3b;
 		border-radius: 5px;
-		background-image: radial-gradient(#222 30%, #333333 70%);
+		margin-top: 5px;
+		margin-bottom: 5px;
 
+	}
+
+	.smoll-button, #smoll-buttonid{
+		width: 100%;
+		max-width: max-content;
+		border: 1px solid #444;
+		background-color: #3b3b3b;
+		border-radius: 5px;
 	}
 
 	#menu li a {
@@ -121,7 +131,7 @@
 	#menu li a:after {
 		content:"/Load Game";
 	}
-	.macro-button:hover, #wardrobeLink:hover {
+	.macro-button:hover, #wardrobeLink:hover, .smoll-button:hover, #smoll-buttonid:hover{
 		background-color: #444;
 		border-color: #eee;
 	}
@@ -176,11 +186,11 @@
 		background-color: #444 !important;
 	}
 
-	#Link, #finish, #skip{
+	#Link {
 		width: max-content;
 		padding: 10px;
 		max-width: 200px;
-		background-image: radial-gradient(#222 30%, #333333 70%);
+		background-color: #3b3b3b;
 		border: 1px solid #3b3b3b;
 		border-radius: 5px;
 		display: inline-block;
