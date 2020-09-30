@@ -17,37 +17,6 @@
         <<button "Open the spice cabinet" "spicecabinet">><</button>>
         <br>
         <<button "Open the cupboard" "cupboard">><</button>>
-        <br>
-        <<link "Watermelon" "kitchen">>
-        <<set $backpack.push(clone(setup.food.fruits[1]))>>
-        <</link>>
-        <br>
-        <<link "Coconut" "kitchen">>
-        <<set $backpack.push(clone(setup.food.fruits[0]))>>
-        <</link>>
-        <br>
-        <<link "Chicken Breast" "kitchen">>
-        <<set $backpack.push(clone(setup.food.meat[0]))>>
-        <</link>>
-        <br>
-        <<link "Chicken Wings" "kitchen">>
-        <<set $backpack.push(clone(setup.food.meat[1]))>>
-        <</link>>
-        <br>
-        <<link "Rice" "kitchen">>
-        <<set $backpack.push(clone(setup.food.others[0]))>>
-        <</link>>
-        <br>
-        <<link "Pepper" "kitchen">>
-        <<set $backpack.push(clone(setup.food.spices[0]))>>
-        <</link>>
-        <br>
-        <<if !$learnedrecipes[0]>>
-            <<link "Learn Kitchen Rice" "kitchen">>
-                <<set $learnedrecipes.push(clone(setup.recipes[0].name))>>
-            <</link>>
-        <</if>>
-
     </fieldset>
     <br>
     <fieldset id="fieldinline">
@@ -63,9 +32,7 @@
 :: fridge [nobr]
     <h2>Fridge</h2>
     <div class="divisor"></div>
-    <br>
     <<storekitchentable>>
-    @@#message;@@
     <<if $backpack[0] isnot undefined>>
         <<storefridge>>
     <</if>>
@@ -79,9 +46,7 @@
 :: spicecabinet [nobr]
     <h2>Spice Cabinet</h2>
     <div class="divisor"></div>
-    <br>
     <<storekitchentable>>
-    @@#message;@@
     <<if $backpack[0] isnot undefined>>
         <<storespicecab>>
     <</if>>
@@ -95,9 +60,7 @@
 :: cupboard [nobr] 
     <h2>Cupboard</h2>
     <div class="divisor"></div>
-    <br>
     <<storekitchentable>>
-    @@#message;@@
     <br>
     <<if $backpack[0] isnot undefined>>
         <<storecupb>>
@@ -111,7 +74,6 @@
 :: kitchentable [nobr]
     <h2>Kitchen Table</h2>
     <div class="divisor"></div>
-    <br>
     <<if $selectedrecipe>>
         <<button "Change Recipe" "kitchentable">><</button>> 
         <<button "Clear selected recipe" "kitchentable">>

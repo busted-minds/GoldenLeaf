@@ -1,0 +1,38 @@
+:: outsideHouse
+    !!Outside
+    <div class="divisor"></div>
+    You are outside of your home, located inside a nice housing complex. 
+
+    <<button "Get inside" "livingroom">><</button>>
+
+    You can get a bus or if you want to walk, you could go to the Blythe Celyn street or _place2 from here.
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Walk to Blythe Celyn street" "blythecelyn">><</button>>
+    <<link "Walk to _place2">><</link>>
+
+:: blythecelyn
+    !!Blythe Celyn street
+    <div class="divisor"></div>
+    <<button "Get inside the Grocery" "grocerystore">><</button>>
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Go home" "outsideHouse">><</button>>
+    <<link "Walk to Barlow Grove street" "barlowgrove">><</link>>
+
+:: hollinsdrift
+
+:: barlowgrove
+    !!Barlow Grove Street
+    <div class="divisor"></div>
+    <<button "Get inside Horeco Inc" "horeco">><</button>>
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Go back to Blythe Celyn street" "blythecelyn">><</button>>
+
+    <<link "Walk to _placeh2">><</link>>
+    <<link "Walk to the Shopping Center">>
+    

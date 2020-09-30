@@ -19,7 +19,7 @@
     <br>
     <fieldset id="fieldinline">
         <legend>Places</legend>
-        <<link "Outside" "outside">><</link>>
+        <<button "Outside" "outsideHouse">><</button>>
         <br>
         <<button "Kitchen" "kitchen">><</button>>
         <br>

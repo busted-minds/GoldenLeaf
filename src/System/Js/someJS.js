@@ -29,6 +29,7 @@ Config.saves.onLoad = function(save) {
 };
 
 window.saveUpdate = true;
+
 //This is just a function to change an image on the go, it will be implemented when visuals get implemented in the game.
 
 //function setCar() {

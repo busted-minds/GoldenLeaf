@@ -4,7 +4,7 @@
     <<set setup.food.meat to [
         {
             id: 0,
-            name: "Chicken breast",
+            name: "Raw Chicken Breast",
             price: 5,
             amount: 1,
             qualitymult: 1,
@@ -12,7 +12,7 @@
         },
         {
             id: 1,
-            name: "Raw Chicken wings",
+            name: "Raw Chicken Wings",
             price: 5,
             amount: 1,
             qualitymult: 1,

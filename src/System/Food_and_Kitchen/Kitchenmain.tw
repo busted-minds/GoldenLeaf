@@ -10,8 +10,8 @@
     <<setfruits>>
     <<setspices>>
     <<setothers>>
-    <<setrecipes>>
     <<setmeat>>
+    <<setrecipes>>
     <<setprepfood>>
     
 <</widget>>

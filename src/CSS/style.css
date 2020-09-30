@@ -83,11 +83,12 @@
 
 /* Not colors */
 	.charc {
-		border: 2px solid gray;
+		border: 1px solid gray;
 		border-radius: 5px;
 		padding-left: 15px;
 		text-align: left;
 		box-sizing: content-box;
+		background-color: #1b1b1b;
 	}
 
 
@@ -116,12 +117,9 @@
 
 	}
 
-	.smoll-button, #smoll-buttonid{
-		width: 100%;
-		max-width: max-content;
-		border: 1px solid #444;
-		background-color: #3b3b3b;
-		border-radius: 5px;
+	.smollbutt {
+		max-width: 4em !important; 
+		max-height: 4em !important;
 	}
 
 	#menu li a {
@@ -131,7 +129,7 @@
 	#menu li a:after {
 		content:"/Load Game";
 	}
-	.macro-button:hover, #wardrobeLink:hover, .smoll-button:hover, #smoll-buttonid:hover{
+	.macro-button:hover, #wardrobeLink:hover{
 		background-color: #444;
 		border-color: #eee;
 	}
@@ -145,7 +143,7 @@
 		right: 20px;
 		height: max-content;
 		width: auto;
-		border: lightslategray solid 3px;
+		border: lightslategray solid 2px;
 		border-radius: 10px;
 		background-color: #222;
 		overflow-y: scroll;
@@ -171,7 +169,6 @@
 	}
 
 	.divisor {
-		max-width: 100%;
 		border-radius: 3px;
 		border: 2px solid slategray;
 	}
@@ -209,9 +206,9 @@
 	}
 
 	.info {
-		border: 2px solid lightslategray;
+		border: 1px solid lightslategray;
 		border-radius: 5px;
-		background-color: #7c7c7c2c;
+		background-color: #1b1b1b;
 		padding-left: 5px;
 		padding-top: 3px;
 		padding-bottom: 3px;
@@ -219,7 +216,8 @@
 
 	#fieldinline {
 		display: inline-block;
-		border: 2px solid lightslategray;
+		border: 1px solid lightslategray;
+		background-color: #1b1b1b;
 		border-radius: 5px;
 	}
 
@@ -239,3 +237,28 @@
 		height: 20px;
 		border-radius: 20px;
 	  }
+
+	.list {
+		display: inline-flex;
+		border: 1px solid lightslategray;
+		border-radius: 5px;
+		background-color: #1b1b1b;
+		max-width: 17em;
+		margin-bottom: 5px;
+	}
+
+	#insidelist {
+		margin-left: 7px;
+		margin-right: 7px;
+		font-size: medium;
+	}
+
+	.smollfont {
+		font-size: small;
+	}
+
+	.thindiv {
+		border-radius: 3px;
+		border: 1px solid slategray;
+		margin-bottom: 4px;
+	}

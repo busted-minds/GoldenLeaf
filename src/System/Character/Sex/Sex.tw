@@ -9,7 +9,11 @@
         <<set $selectedSexOpt.LeftHand to false>>
         <<mastOpt>>
         <<set $masturbationCount++>>
-        <<set $message[0] to "Oushit">>
+        <<if $playervar.gender is "male" or $playervar.cansquirt is true>>
+            <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some liquid out">>
+        <<else>>
+            <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?">>
+        <</if>>
         <<set $message[1] to "">>
     <</if>>
     <div class="divisor"></div>
