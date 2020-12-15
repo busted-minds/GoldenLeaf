@@ -5,10 +5,9 @@
         {
             id: 0,
             name: "Pepper",
-            price: 2,
+            price: 1,
             amount: 1,
             foodtype: "spices",
-            qualitymult: 1.10
 
         }
     ]>>

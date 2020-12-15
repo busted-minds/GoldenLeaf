@@ -1,5 +1,6 @@
 :: recipes [widget nobr]
-/%Making a recipe: Name, Raw Ingredients (Required ingredients), Extra ingredients (These are optional) and steps.%/
+/%Making a recipe: Name, Raw Ingredients (Required ingredients), Extra ingredients (These are optional), defining ingredients (If they are needed. Ex: Chicken fillet with rice or pasta)
+Minimum skill level (Required to learn the recipe), Recomended skill level (To get "Masterwork" quality) and steps.%/
 <<widget "setrecipes">>
     <<set _foodnameM to []>>
     <<set _foodnameS to []>>
@@ -25,12 +26,12 @@
         <<set _foodnameO.push(setup.food.others[_i].name)>>
     <</for>>
 
-    <<for _i to 0; _I lt setup.food.fruits.length; _i++>>
+    /%<<for _i to 0; _I lt setup.food.fruits.length; _i++>>
         /%IDs: Coconut = 0
                Watermelon = 1
-        %/
+        /
         <<set _foodnameF.push(setup.food.fruits[_i].name)>>
-    <</for>>
+    <</for>>%/
 
     <<set setup.recipes to [
         {
@@ -38,27 +39,27 @@
             name: "Chicken Rice",
             rawingredients: [_foodnameO[0], _foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
+            minskill: 2,
+            recskill: 3,
             steps: ["Clean","Cut into pieces", 5, 60]
         },
         {
             id: 1,
-            name: "Chicken fillet with Rice",
-            rawingredients: [_foodnameO[0], _foodnameM[0]],
+            name: "Chicken fillet",
+            rawingredients: [_foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
-            steps: ["Fillet", "Clean and Prepare", 5, 10]
+            defingredients: [_foodnameO[0], _foodnameO[1]],
+            minskill: 3,
+            recskill: 4,
+            steps: ["Fillet", "Clean and Prepare", 7, 10]
         },
         {
             id: 2,
-            name: "Chicken fillet with Pasta",
-            rawingredients: [_foodnameO[1], _foodnameM[0]],
-            extraingredients: [_foodnameS[0], _foodnameO[2]],
-            steps: ["Fillet", "Clean and Prepare", 4, 10]
-        },
-        {
-            id: 3,
             name: "Chicken Wings",
             rawingredients: [_foodnameM[1]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
+            minskill: 1,
+            recskill: 2,
             steps: ["Clean and Prepare", 15]
         }
     ]>>

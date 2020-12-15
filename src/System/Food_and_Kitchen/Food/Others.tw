@@ -7,7 +7,6 @@
             name: "Rice",
             price: 2,
             amount: 1,
-            qualitymult: 1,
             foodtype: "others"
         },
         {
@@ -15,15 +14,13 @@
             name: "Pasta",
             price: 2,
             amount: 1,
-            qualitymult: 1,
             foodtype: "others"
         },
         {
             id: 2,
             name: "Salt",
-            price: 2,
+            price: 1,
             amount: 1,
-            qualitymult: 1.15,
             foodtype: "others"
         }
     ]>>

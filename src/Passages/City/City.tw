@@ -1,0 +1,69 @@
+:: cloverow
+    !!Clove Row Complex
+    <div class="divisor"></div>
+    You are outside of your home, located inside a nice housing complex called Clove Row. 
+
+    <<button "Get inside" "livingroom">><</button>>
+
+    You can get a bus or if you want to walk, you could go to the Blythe Celyn street or Hollins Drift street from here.
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Walk to Blythe Celyn" "blythecelyn">><<timeattached 8>><</button>>@@.red; +8 min@@
+    <<button "Walk to Hollins Drift" "hollinsdrift">><<timeattached 8>><</button>>@@.red; +8 min@@
+
+:: blythecelyn
+    !!Blythe Celyn
+    <div class="divisor"></div>
+    <<nobr>>
+    <<if visited() is 1>>
+        //A flyer on the street floor comes into your sight, it's from a place called "Frozen Jar" apparently is the "Grand Opening" of the place it says that their open at <<print setup.frozenjar.workingHours.openingHours>> am.
+        <br>
+        You should take a look and see if they looking for workers, maybe it's your lucky day ;).
+        <br>//
+    <</if>>
+    <</nobr>><<button "Get inside the Grocery" "grocerystore">><</button>>
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Walk to Barlow Grove" "barlowgrove">><<timeattached 8>><</button>>@@.red; +8 min@@
+    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
+
+:: barlowgrove
+    !!Barlow Grove
+    <div class="divisor"></div>
+    <<button "Get inside Horeco Inc" "horeco">><</button>>
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<link "Walk to the Shopping Center">><</link>>
+    <<button "Go back to Blythe Celyn" "blythecelyn">><<timeattached 8>><</button>>@@.red; +8 min@@
+
+:: hollinsdrift
+    !!Hollins Drift
+    <div class="divisor"></div>
+    Arriving at Hollins Drift, you see that there is a building that is in construction, who knows what it will be. Maybe some furniture? ;).
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Go to Pioneer Lane" "pioneerlane">><<timeattached 8>><</button>>@@.red; +8 min@@
+    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
+
+:: pioneerlane
+    !!Pioneer Lane
+    <div class="divisor"></div>
+    <<nobr>>
+    <<messager>>
+    <<button "Get inside Frozen Jar">>
+        <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
+            <<goto "frozenjar">>
+        <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>
+            <<set $message to "placeClosed">>
+            <<goto pioneerlane>>
+        <</if>>
+    <</button>>
+    <</nobr>>
+
+    <<link "Take a bus" "bus">><</link>>
+
+    <<button "Go back to Hollins Drift" "hollinsdrift">><<timeattached 8>><</button>>@@.red; +8 min@@
+    

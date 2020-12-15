@@ -137,10 +137,10 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $fruits[_positOut].amount gt 1>>
-                    <<set $fruits[_positOut].amount -= 1>>
+                    <<set $fruits[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($fruits[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
                 <<elseif $fruits[_positOut].amount eq 1>>
                     <<set $kitchentable.push(clone($fruits[_positOut]))>>
@@ -150,14 +150,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $fruits[_positOut].amount gt 1>>
-                    <<set $fruits[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $fruits[_positOut].amount -= $moveAm>>
 
                 <<elseif $fruits[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $fruits.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -166,10 +166,10 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $meat[_positOut].amount gt 1>>
-                    <<set $meat[_positOut].amount -= 1>>
+                    <<set $meat[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($meat[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
                 <<elseif $meat[_positOut].amount eq 1>>
                     <<set $kitchentable.push(clone($meat[_positOut]))>>
@@ -179,14 +179,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $meat[_positOut].amount gt 1>>
-                    <<set $meat[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $meat[_positOut].amount -= $moveAm>>
 
-                <<elseif $meat[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                <<elseif $meat[_positOut].amount eq $moveAm>>
                     <<set $meat.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -195,10 +195,10 @@
             
             <<if !$kitchentable[_positIn]>>
                 <<if $vegetables[_positOut].amount gt 1>>
-                    <<set $vegetables[_positOut].amount -= 1>>
+                    <<set $vegetables[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($vegetables[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
                 <<elseif $vegetables[_positOut].amount eq 1>>
                     <<set $kitchentable.push(clone($vegetables[_positOut]))>>
@@ -208,14 +208,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $vegetables[_positOut].amount gt 1>>
-                    <<set $vegetables[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $vegetables[_positOut].amount -= $moveAm>>
 
                 <<elseif $vegetables[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $vegetables.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -224,10 +224,10 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $liquids[_positOut].amount gt 1>>
-                    <<set $liquids[_positOut].amount -= 1>>
+                    <<set $liquids[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($liquids[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
                 <<elseif $liquids[_positOut].amount eq 1>>
                     <<set $kitchentable.push(clone($liquids[_positOut]))>>
@@ -237,14 +237,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $liquids[_positOut].amount gt 1>>
-                    <<set $liquids[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $liquids[_positOut].amount -= $moveAm>>
 
                 <<elseif $liquids[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $liquids.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -253,10 +253,10 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $misc[_positOut].amount gt 1>>
-                    <<set $misc[_positOut].amount -= 1>>
+                    <<set $misc[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($misc[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
                 <<elseif $misc[_positOut].amount eq 1>>
                     <<set $kitchentable.push(clone($misc[_positOut]))>>
@@ -266,14 +266,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $misc[_positOut].amount gt 1>>
-                    <<set $misc[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $misc[_positOut].amount -= $moveAm>>
 
                 <<elseif $misc[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $misc.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -282,12 +282,12 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $cupboard[_positOut].amount gt 1>>
-                    <<set $cupboard[_positOut].amount -= 1>>
+                    <<set $cupboard[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($cupboard[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
-                <<elseif $cupboard[_positOut].amount eq 1>>
+                <<elseif $cupboard[_positOut].amount eq $moveAm>>
                     <<set $kitchentable.push(clone($cupboard[_positOut]))>>
                     <<set $cupboard.deleteAt(_positOut)>>
             
@@ -295,14 +295,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $cupboard[_positOut].amount gt 1>>
-                    <<set $cupboard[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $cupboard[_positOut].amount -= $moveAm>>
 
                 <<elseif $cupboard[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $cupboard.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -311,12 +311,12 @@
 
             <<if !$kitchentable[_positIn]>>
                 <<if $spicecabinet[_positOut].amount gt 1>>
-                    <<set $spicecabinet[_positOut].amount -= 1>>
+                    <<set $spicecabinet[_positOut].amount -= $moveAm>>
                     <<set $kitchentable.push(clone($spicecabinet[_positOut]))>>
                     <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to 1>>
+                    <<set $kitchentable[_positIn].amount to $moveAm>>
 
-                <<elseif $spicecabinet[_positOut].amount eq 1>>
+                <<elseif $spicecabinet[_positOut].amount eq $moveAm>>
                     <<set $kitchentable.push(clone($spicecabinet[_positOut]))>>
                     <<set $spicecabinet.deleteAt(_positOut)>>
             
@@ -324,14 +324,14 @@
 
             <<elseif $kitchentable[_positIn]>>
                 <<if $spicecabinet[_positOut].amount gt 1>>
-                    <<set $spicecabinet[_positOut].amount -= 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
+                    <<set $spicecabinet[_positOut].amount -= $moveAm>>
 
                 <<elseif $spicecabinet[_positOut].amount eq 1>>
-                    <<set $kitchentable[_positIn].amount += 1>>
                     <<set $spicecabinet.deleteAt(_positOut)>>
             
                 <</if>>
+
+                <<set $kitchentable[_positIn].amount += $moveAm>>
 
             <</if>>
 
@@ -339,5 +339,6 @@
 
     <<unset $location>>
     <<unset $foodNOut>>
+    <<unset $moveAm>>
 
 <</widget>>

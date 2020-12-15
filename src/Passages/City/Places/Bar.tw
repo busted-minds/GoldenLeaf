@@ -1,0 +1,250 @@
+:: frozenjar [nobr]
+    <h2 class="blue">Frozen Jar</h2>
+    <div class="divisor"></div>
+    <span id="aW">
+    You are inside @@.blue;Frozen Jar@@, a restaurant-bar. It's a pretty cozy place their tables and chairs made of wood or some material that looks alike placed with some space between them so that it doesn't look or feel all tight, there are large windows facing the street giving good lightning. Their walls give a feeling of warmth and lightness. 
+    <br>
+    <<if $playerjob.place is "frozenjar" and !$workedhours>>
+        <br>
+        You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working on some tables and serving food to the costumers.
+        <br>
+        <<button "Start Working" "work">><</button>>
+        <br>
+    <<elseif $playerjob.place is undefined>>
+        <<if $playerdeniedjob is "frozenjar">>
+            <br>
+            You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working at some tables. You approach her and ask her if she has any available work.
+            <br>
+            <br>
+            - @@.lightblue;You denied the contract not too long ago. Come back later to see if it's available.@@
+        <<elseif not hasVisited("employing")>>
+            <br>
+            As you open the door, you see an asian girl with @@.black;long black hair@@ and a petite frame focused on cleaning some tables and chairs. The place is pretty empty maybe they are opening?.
+            <br>
+            <br>
+            Try to approach her to see if she can give you work.
+            <br>
+            <<button "Ask for work">>
+                <<replace #aW>>
+                    - @@.lightblue;Excuse me, hello I'm currently looking for work do you know if they are searching for someone here?.@@
+                    <br>
+                    <br>
+                    - @@.lightyellow;Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>></span> the owner of this little place and yes we are currently working for someone to work here. As you can see I'm the only one here (excluding the guy at the kitchen) and I need a little bit of help.
+                    <br>
+                    We serve food and drinks here but mostly food in the day. You could start as a <<barGender>> and depending how well you perform you may work as a bartender with a higher salary and benefits, of course.
+                    <br>
+                    And... As you saw the place is pretty empty, mostly because we just opened and this is one of those slow days so it's just me and a guy in the kitchen like I said making food.
+                    <br>
+                    <br>
+                    Let's go to my office so we can finish the contract and you can start working.
+                    If you have any other question, ask me.@@
+
+                    <<button "Follow her" "employing">><<set $knowsFJOwner to true>><</button>>
+                <</replace>>
+            <</button>>
+        <</if>>
+        <br>
+    <<elseif $workedhours eq $playerjob.hoursreq>>
+        <br>
+        You finished working your @@.orange;<<print $playerjob.hoursreq>>@@ required hours!
+        <br>
+    <</if>>
+    <<button "Go Out" "pioneerlane">><</button>>
+    </span>
+
+:: employing [nobr]
+    <h2><<print setup.frozenjar.ownerName>>'s Office</h2>
+    <div class="divisor"></div>
+    You get inside a little office it's a typical office with a desk, two chairs and a file cabinet for some reason.
+    <br>
+    <br>
+    - @@.lightyellow;Welcome to my office, I don't use it that much to be honest...
+    Alright give me a second to get the contract.@@
+    <br>
+    She says as she open the drawer and take a tablet from it, makes a few taps and hands it to you, it has all the info regarding the contract.
+    <br>
+    - @@.lightyellow;There you go, read it carefully and if you have any question, ask me.@@
+    <br>
+    <br>
+    <fieldset class="charc">
+        <legend>Frozen Jar's Employee Contract</legend>
+        We @@.blue;Frozen Jar@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;$playersurname, $playername@@ with the following requeriments, payment, rules and info as shown here.
+        <br>
+        <br>
+        Requeriments:
+        <br>
+        - <span @class="$playeremployed is undefined ? 'green' : 'orange'">Not working in any other place.</span>
+        <br>
+        - <span class="green">Must work atleast @@.orange;<<print setup.frozenjar.jobs[0].hoursreq>>@@ hours per day and @@.orange;<<print setup.frozenjar.jobs[0].daysreq>>@@ days a week//(Flexible if you are studying)//.</span>
+        <br>
+        - @@.green;Best disposition to work and have a __good relationship__ with your co-workers.@@
+        <br>
+        - @@.green;Must treat customer with __respect__.@@
+        <br>
+        <br>
+        Payment:
+        <br>
+        - The payment is at @@.yellow;<<print setup.frozenjar.jobs[0].payment>> credits@@ per hour worked, not including customer tips.
+        <br>
+        - The employee get the totality of the tips.
+        <br>
+        <br>
+        Additional info and rules:
+        <br>
+        - The employee is subject to promotion if certain conditions are met.
+        <br>
+        - Any problem regarding clients or co-workers may be directed and talked to @@.orange;<<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>>@@ so they can be resolved ASAP.
+        <br>
+        - Any client to employee or viceversa and/or co-worker harassment is __severely punished__, with any client being __permanently expelled__ from the place (in case they where the harasser) or the employee __being fired__, __permanently expelled__ from the place and __reported to the police__.
+        <br>
+        <br>
+        If you accept everything that was stated before put your firm here: //__@@.gold;<<print $playername + " " + $playersurname>>@@__//
+        <br>
+        <br>
+        Please put your finger here:
+        <br>
+        <br>
+        //__@@.orange;<<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>>@@__//
+        <br>
+        Frozen Jar
+    </fieldset>
+    <<button "Accept" "employing2">>
+        <<set $jobaccepted to true>>
+        <<set $playerjob to clone(setup.frozenjar.jobs[0])>>
+    <</button>>
+    <<button "Deny" "employing2">>
+        <<set $jobaccepted to false>>
+    <</button>> @@.red; Beware, at this version(0.1) if you deny the job you wont be able to work here anymore, as the reset to the var isn't implemented.@@
+
+:: employing2 [nobr]
+    <h2><<print setup.frozenjar.ownerName>>'s Office</h2>
+    <div class="divisor"></div>
+    <<switch $jobaccepted>>
+        <<case true>>
+            After signing and giving it your fingerprint you hand back the tablet to her.
+            <br>
+            - @@.lightblue;Here, signed the document.@@
+            <br>
+            <br>
+            She confirm something and put the tablet back from where it came.
+            <br>
+            - @@.lightyellow; Good... You can start tomorrow, we open saturdays and sundays but you have those days free. Wait a second, let me borrow an uniform for you.@@
+            <br>
+            She says, pulling out an uniform from a cabinet and handing it to you.
+            <br>
+            - @@.lightyellow; Here, if you lose it or something happens to it, you have to buy a new one. You get a locker in the staff room, so you can keep it there or take it home, as you see best <span class="red">(Uniform not implemented yet, so it isn't required.)</span>. It's mandatory that you use it while you are working. Well any question?.@@
+            <br>
+            <br>
+            @@#q1;<<link "There is any more workers here?">>
+                <<replace #q1>>
+                    - @@.lightblue;There is any more workers here?@@
+                    <br>
+                    - @@.lightyellow; Yes, as I said there is a guy who is the one in the kitchen cooking the food and me... Oh right, there is a part-time girl working here on weekends. So pretty much three of us.
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q2;<<link "How do I get paid?">>
+                <<replace #q2>>
+                    - @@.lightblue; How do I get paid? I didn't see anything in the contract.@@
+                    <br>
+                    - @@.lightyellow; All the payments are done directly in your account, as you must know, thanks to your sign and fingerprint we get where to deposit the credits.@@
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q3;<<link "Don't you need my address?">>
+                <<replace #q3>>
+                    - @@.lightblue; Don't you need my address? I got told that jobs needed them.@@
+                    <br>
+                    - @@.lightyellow; Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your sign and fingerprint.@@
+                    <br>
+                    - @@.lightblue; Isn't it insecure if with my sign and fingerprint someone could get my address?@@
+                    <br>
+                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered in the <span class="orange">A.T.P.D.S</span> from the goverment and only the devices that authorized by them are enabled to get that information.@@ 
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q4;<<link "Regarding a possible promotion">>
+                <<replace #q4>>
+                    - @@.lightblue; Regarding a possible promotion, how do I know when I'll get it? Or what is required to be able to get one?@@
+                    <br>
+                    - @@.lightyellow; I will call you to my office if you are working or send you a message to met me here if you aren't. About the requeriments, well you just need to acumulate working hours ;).@@
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q5;<<link "About working days and hours">>
+                <<replace #q5>>
+                    - @@.lightblue; About working days and hours. Do I need to work each day? And those <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours required, they can be anytime in the day?@@
+                    <br>
+                    - @@.lightyellow; Yes, as you saw in the contract you need to work atleast <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours, monday to friday. 
+                    The good thing is that it can be anytime in the day but of course, <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours before we close. We __open__ at <span class="orange"><<print setup.frozenjar.workingHours.openingHours>></span> am and __close__ at <span class="orange"><<print setup.frozenjar.workingHours.closingHours>></span> am.
+                <</replace>>
+            <</link>>@@
+            <br>
+            <br>
+            
+            @@#smsg;
+            <<button "Bye">>
+                <<replace #smsg>>
+                    She stops you before you go out.
+                    <br>
+                    - @@.lightyellow; Oh before I forget you will get a copy of the contract in your mail.@@
+                    <br>
+                    - @@.lightblue; Alright, thanks. Have a nice day.@@
+                    <br>
+                    You say as you close the door.
+                <</replace>>
+                <<script>>
+                    document.getElementById("smsg").scrollIntoView();
+                <</script>>
+                <<unset $jobaccepted>>
+                <<timed 5s>>
+                    <<goto "frozenjar">>
+                <</timed>>
+            <</button>>
+            @@
+
+        <<case false>>
+            You hand back the tablet to her.
+            <br>
+            - @@.lightblue; Sorry but I'm not interested.@@
+            <br>
+            <br>
+            - @@.lightyellow; Alright, if you want the job just come again if it's available I'll tell you. Have a nice day.@@
+            <br>
+            She says with a smile, putting the tablet back from where it came.
+            <br>
+            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $playerdeniedjob to "frozenjar">><</button>>
+    <</switch>>
+
+:: work [nobr]
+    <h2>Work you little shit >:D</h2>
+    <div class="divisor"></div>
+    <<if !$workedhours>>
+        <<set $workedhours to 1>>
+        You greet @@.orange;<<print setup.frozenjar.ownerName>>@@, change yourself into the uniform in the staff room and start working.
+    <<else>>
+        <<set $workedhours++>>
+    <</if>>
+
+    <<if $workedhours eq $playerjob.hoursreq>>
+        You finished your working hours. Congrats you did a lot of nothing! :D
+        <<timed 3s>>
+        <<goto "frozenjar">>
+        <</timed>>
+
+    <<elseif $workedhours lt $playerjob.hoursreq>>
+        <<set _workinghour to $playerjob.hoursreq / $playerjob.hoursreq>>
+        There would be some kind of development if it existed. But it doesn't so there you go, a funny weird meme (Or that what the link says).
+        <br>
+        [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
+        <br>
+        <<button `"Work " + _workinghour + " hour(s)"` "work">>
+                <<timeattached `_workinghour*60`>>
+                <<payment _workinghour>>
+        <</button>>
+
+    <</if>>

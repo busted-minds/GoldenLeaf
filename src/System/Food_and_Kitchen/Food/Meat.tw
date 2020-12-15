@@ -7,7 +7,6 @@
             name: "Raw Chicken Breast",
             price: 5,
             amount: 1,
-            qualitymult: 1,
             foodtype: "meat"
         },
         {
@@ -15,7 +14,6 @@
             name: "Raw Chicken Wings",
             price: 5,
             amount: 1,
-            qualitymult: 1,
             foodtype: "meat"
         }
     ]>>

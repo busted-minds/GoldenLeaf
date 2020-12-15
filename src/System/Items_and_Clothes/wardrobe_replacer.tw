@@ -10,11 +10,11 @@
     
     </fieldset>
 
-    <fieldset id="fieldinline">
+    /%<fieldset id="fieldinline">
         <legend style="font-size: 130%;">Accesories</legend>
         <a id="Link" @class="($pressedlink is 'accesories' ? 'selected' : '')" onclick="wikifier('wardrobeCCReplacer', 'accesories', 'accesories')">accesories</a>
     
-    </fieldset>
+    </fieldset>%/
 <</widget>>
 
 /% This replaces some divs in the wardrobe passage and makes it remember what link was pressed.%/
@@ -47,9 +47,7 @@
 /% Just some styling and calls to the main "wardrobe content"%/
 
 <<widget "showWardrobeCC">>
-
     <<switch $args[0]>>
-
         <<case "upperbody">>
             <fieldset id="fieldinline">
                 <legend style="font-size: 115%;"> Upper Body </legend>
@@ -119,7 +117,7 @@
         <</switch>>
 
         <<if $bodyparts[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
-            <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'> Undress</button>
+            <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.Engine.play(SugarCube.State.passage)`'> Undress</button>
         <</if>>
         </div>
         <div class="divisor"></div>
@@ -129,8 +127,8 @@
             <<set _esItemContent to '"' + _itemContent + '"'>>
             <<set _esSlot to '"' + _wardrobeSlot[_i] + '"'>>
             
-            <<print _itemContent>> <button class="smoll-button" @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.State.display(SugarCube.State.passage)`'>Wear</button> 
-                                   <button class="smoll-button" @onclick='`SugarCube.State.temporary.itemName = `+ _esItemContent +`; SugarCube.State.temporary.slot = `+ _esSlot +`; wikifier("replacer", "iteminfo")`'>Info</button>
+            <<print _itemContent>> <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.Engine.play(SugarCube.State.passage)`'>Wear</button> 
+                                   <button id="smoll-buttonid" @onclick='`SugarCube.State.temporary.itemName = `+ _esItemContent +`; SugarCube.State.temporary.slot = `+ _esSlot +`; wikifier("replacer", "iteminfo")`'>Info</button>
             <br>
         <</for>>
 

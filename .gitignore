@@ -1,3 +1,5 @@
 *.html
 compiledev.bat
 ideas
+.vscode
+img

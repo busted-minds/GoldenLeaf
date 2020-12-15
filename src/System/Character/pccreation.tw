@@ -244,23 +244,6 @@
 
 <</widget>>
 
-<<widget "buttsizesetter">> /* Butt size setter */
-	<<if $playervar.buttsize eq 100>
-
-	<<elseif $playervar.buttsize gte 80>
-
-	<<elseif $playervar.buttsize gte 60>
-	
-	<<elseif $playervar.buttsize gte 40>
-	
-	<<elseif $playervar.buttsize gte 20>
-	
-	<<elseif $playervar.buttsize gte 0>
-	
-	<</if>>
-
-<</widget>>
-
 /* Male setter*/
 
 <<widget "malesetter">>
@@ -418,52 +401,20 @@
 
 <<widget "hobbyselection">>
 	<<switch $hobby>>
-		<<case "none">>
-			<<set $programminglearning to 1>>
-			<<set $cookinglearning to 1>>
-			<<set $gardeninglearning to 1>>
-			<<set $artlearning to 1>>
-			<<set $athleticslearning to 1>>
-
-		<<case "programming">>
-			<<set $programmingskill to 2>>
+		<<case "joat">>
 			<<set $programminglearning to 1.2>>
-			<<set $cookinglearning to 0.9>>
-			<<set $gardeninglearning to 0.8>>
-			<<set $artlearning to 0.7>>
-			<<set $athleticslearning to 0.8>>
-
-		<<case "cooking">>
-			<<set $cookingskill to 2>>
-			<<set $programminglearning to 0.9>>
 			<<set $cookinglearning to 1.2>>
-			<<set $gardeninglearning to 1>>
-			<<set $artlearning to 0.8>>
-			<<set $athleticslearning to 0.8>>
-
-		<<case "gardening">>
-			<<set $gardeningskill to 2>>
-			<<set $programminglearning to 0.8>>
-			<<set $cookinglearning to 1>>
 			<<set $gardeninglearning to 1.2>>
-			<<set $artlearning to 0.8>>
-			<<set $athleticslearning to 0.8>>
-
-		<<case "arts">>
-			<<set $artskill to 2>>
-			<<set $programminglearning to 0.7>>
-			<<set $cookinglearning to 0.8>>
-			<<set $gardeninglearning to 0.8>>
 			<<set $artlearning to 1.2>>
-			<<set $athleticslearning to 0.8>>
+			<<set $athleticlearning to 1.2>>
 
-		<<case "athletics">>
-			<<set $atleticskills to 2>>
-			<<set $programminglearning to 0.8>>
-			<<set $cookinglearning to 0.9>>
-			<<set $gardeninglearning to 0.8>>
-			<<set $artlearning to 0.8>>
-			<<set $athleticslearning to 1.2>>
+		<<case $hobby>>
+			<<set _skill to '$'+$hobby+'skill'>>
+			<<set _learning to '$'+$hobby+'learning'>>
+			
+			<<set State.setVar(_skill, 2)>>
+			<<set _amount to (State.getVar(_learning) + (State.getVar(_skill) * 0.40))>>
+			<<set State.setVar(_learning, _amount)>>
 
 	<</switch>>
 

@@ -1,0 +1,21 @@
+:: PassageHeader [nobr]
+    <<if $time.getUTCHours() is setup.frozenjar.workingHours.openingHours and $workedhours>>
+        <<unset $workedhours>>
+    <</if>>
+    /%<<if saveUpdate is true>>
+        <<gameUpdate>>
+    
+        <<set saveUpdate to false>>
+    <</if>>%/
+
+:: PassageFooter [nobr]
+    
+    <<map>>
+    <<if !$footerMessager>> 
+        <br>
+        <br>
+        <div class="thindiv"></div>
+        <div>
+            <<footerMessager "tips">>
+        </div>
+    <</if>>

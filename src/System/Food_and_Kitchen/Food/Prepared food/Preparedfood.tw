@@ -7,8 +7,9 @@
             name: "Chicken Rice",
             quality: "Normal",
             amount: 1,
-            hunger: 50,
+            hunger: 60,
             price: 15,
+            exp: 10,
             foodtype: "preparedfood"
         },
         {
@@ -16,29 +17,21 @@
             name: "Chicken Wings",
             quality: "Normal",
             amount: 1,
-            hunger: 40,
+            hunger: 50,
             price: 10,
+            exp: 8,
             foodtype: "preparedfood"
         },
         {
             id: 2,
-            name: "Chicken fillet with Rice",
+            name: "Chicken fillet",
             quality: "Normal",
             amount: 1,
-            hunger: 50,
+            hunger: 60,
             price: 15,
-            foodtype: "preparedfood"
-        },
-        {
-            id: 3,
-            name: "Chicken fillet with Pasta",
-            quality: "Normal",
-            amount: 1,
-            hunger: 50,
-            price: 15,
+            exp: 11,
             foodtype: "preparedfood"
         }
-
     ]>>
 
 <</widget>>

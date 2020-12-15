@@ -1,60 +1,21 @@
 :: skillbar [widget nobr]
 
 <<widget "skillbar">>
-    <<checkup>>
-    <div>
-    Programming level: @@#prog;<<print $programmingskill>>@@
-    <br>
-        <<progressbar $progexp $progexpleft "programmingb">>
-    </div>
-    <br>
-    <div>
-    Cooking level: @@#cook;<<print $cookingskill>>@@
-    <br>
-        <<progressbar $cookexp $cookexpleft "cookingb">>
-    </div>
-    <br>
-    <div>
-    Gardening level:  @@#gard;<<print $gardeningskill>>@@
-    <br>
-        <<progressbar $gardexp $gardexpleft "gardeningb">>
-    </div>
-    <br>
-    <div>
-    Art level:  @@#art;<<print $artskill>>@@
-    <br>
-        <<progressbar $artexp $artexpleft "artb">>
-    </div>
-    <br>
-    <div>
-    Athletics level:  @@#athletic;<<print $athleticskill>>@@
-    <br>
-        <<progressbar $athleticexp $athleticexpleft "athleticb">>
-    </div>
-    <br>
-    <div>
-    Swimming level:  @@#swimming;<<print $swimmingskill>>@@
-    <br>
-        <<progressbar $swimexp $swimexpleft "swimmingb">>
-    </div>
-    <br>
-    <div>
-    Running level:  @@#running;<<print $runningskill>>@@
-    <br>
-        <<progressbar $runexp $runexpleft "runningb">>
-    </div>
-    <br>
-    <div>
-    Weightlifting level:  @@#weightlift;<<print $weightliftskill>>@@
-    <br>
-        <<progressbar $weightlexp $weightlexpleft "weightliftb">>
-    </div>
-    <br>
-    <div>
-    Handyman level:  @@#handyman;<<print $handymanskill>>@@
-    <br>
-        <<progressbar $handymexp $handymexpleft "handymanb">>
-    </div>
+    <<set _skillname to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
+    <<set _skillexpN to ["prog", "cook", "gard", "art", "athletic", "weightl", "handym"]>>
+    
+    <<for _i to 0; _i lt _skillname.length; _i++>>
+        <<set _exp to State.getVar('$'+_skillexpN[_i]+'exp')>>
+        <<set _expLeft to State.getVar('$'+_skillexpN[_i]+'expleft')>>
+        <<set _skillBarN to _skillname[_i]+'b'>>
+
+        <div style="margin-bottom: 8px;">
+            <<print _skillname[_i].toUpperFirst()>> level: <span @id="_skillexpN[_i]"><<print '$'+_skillname[_i]+'skill'>></span>
+            <br>
+            <<progressbar _exp _expLeft _skillBarN>>
+        </div>
+    <</for>>
+
 <</widget>>
 
 <<widget "progressbar">>

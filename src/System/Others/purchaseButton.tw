@@ -1,0 +1,10 @@
+:: purchasebutton [widget nobr]
+
+<<widget "pButton">>
+    <<switch $args[0]>>
+        <<case "grocery">>
+            <button class="macro-button smollfont" 
+            @onclick='`(`+_exist+` !== -1 && SugarCube.State.variables.shoppingcart[`+_exist+`].name == SugarCube.State.temporary.foodlist[`+_i+`].name ? SugarCube.State.variables.shoppingcart[`+_exist+`].amount += 1 : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.foodlist[`+_i+`])); SugarCube.Engine.play(SugarCube.State.passage)`'
+            >Add to shopping cart</button>
+    <</switch>>
+<</widget>>

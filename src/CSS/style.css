@@ -8,9 +8,21 @@
 	}
 
 	.lightyellow {
-		color: lightyellow;
+		color: #ffffae;
 	}
 
+	.midnightblue {
+		color: #191970;
+	}
+
+	.eveningblue {
+		color: #323285;
+	}
+
+	.lateveningblue {
+		color: #2b2b70;
+	}
+	
 	.red {
 		color: #f10d0d;
 	}
@@ -81,6 +93,10 @@
 		color: #9f6934;
 	}
 
+	.black {
+		color: #444444;
+	}
+
 /* Not colors */
 	.charc {
 		border: 1px solid gray;
@@ -105,11 +121,15 @@
 		display: none;
 	}
 
+	#stats {
+		margin-top: 5px;
+	}
+
 	.macro-button, #menu ul {
 		width: 100%;
 		font-size: 120%;
 		max-width: 280px;
-		border: 1px solid #444;
+		border: 2px solid black;
 		background-color: #3b3b3b;
 		border-radius: 5px;
 		margin-top: 5px;
@@ -118,8 +138,16 @@
 	}
 
 	.smollbutt {
-		max-width: 4em !important; 
+		max-width: 3.8em !important; 
 		max-height: 4em !important;
+	}
+
+	#smoll-buttonid{
+		width: 100%;
+		max-width: 4.6em;
+		border: 2px solid black;
+		background-color: #3b3b3b;
+		border-radius: 5px;
 	}
 
 	#menu li a {
@@ -129,7 +157,7 @@
 	#menu li a:after {
 		content:"/Load Game";
 	}
-	.macro-button:hover, #wardrobeLink:hover{
+	.macro-button:hover, #wardrobeLink:hover, #smoll-buttonid:hover{
 		background-color: #444;
 		border-color: #eee;
 	}
@@ -188,7 +216,7 @@
 		padding: 10px;
 		max-width: 200px;
 		background-color: #3b3b3b;
-		border: 1px solid #3b3b3b;
+		border: 2px solid black;
 		border-radius: 5px;
 		display: inline-block;
 		font-weight: bold;
@@ -230,6 +258,7 @@
 		width: 75%;
 		margin-left: 13%;
 		border-radius: 20px;
+		border: 1px solid black;
 	  }
 	  
 	#bar {
@@ -261,4 +290,17 @@
 		border-radius: 3px;
 		border: 1px solid slategray;
 		margin-bottom: 4px;
+	}
+
+	.sbIcons {
+		height: 40px;
+		vertical-align: middle;
+	}
+
+	rect.map:hover {
+		stroke:cyan;
+	}
+
+	rect {
+		fill-opacity: 0;
 	}

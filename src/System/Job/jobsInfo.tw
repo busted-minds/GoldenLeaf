@@ -1,0 +1,8 @@
+:: jobsinfo [widget nobr]
+
+<<widget "jobsInfo">>
+    <<set setup.frozenjar.workingHours to {
+        openingHours : 11,
+        closingHours : 3
+    }>>
+<</widget>>

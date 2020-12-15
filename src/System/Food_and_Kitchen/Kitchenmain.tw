@@ -28,8 +28,7 @@
     <<set $cupboard to []>>
     <<set $kitchentable to []>>
     <<set $selectedrecipe to null>>
-
-    <<set setup.recipes to {}>>
+    
     <<set setup.food to {}>>
 
 <</widget>>

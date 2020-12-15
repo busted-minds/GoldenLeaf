@@ -38,12 +38,12 @@
         @@.darkyellow;Select your preferred hobby:@@ ^^@@.red;Your hobby will positively affect your learning speed at it but negatively at others.@@^^
         <ul>
             <<listbox "$hobby" autoselect>>
-                <<option "None" "none">>
+                <<option "None" "joat">>
                 <<option "Programming" "programming">>
                 <<option "Cooking" "cooking">>
                 <<option "Gardening" "gardening">>
-                <<option "Arts" "arts">>
-                <<option "Athletics" "athletics">>
+                <<option "Art" "art">>
+                <<option "Athletic" "athletic">>
             <</listbox>>
         </ul>
     </fieldset>
@@ -261,8 +261,8 @@
 
         <<if $playervar.gender is "female">>
 
-            <<set $playervar.penissize to null>>
-            <<set $playervar.ballssize to null>>
+            <<set $playervar.penissize to undefined>>
+            <<set $playervar.ballssize to undefined>>
 
             <fieldset class="charc">
                 <legend>Breast info: </legend>
@@ -280,10 +280,10 @@
             </fieldset>
 
         <<elseif $playervar.gender is "male">>
-            <<set $playervar.breastsize to null>>
-            <<set $playervar.nipplesize to null>>
-            <<set $playervar.vagtightness to null>>
-            <<set $playervar.clitorissize to null>>
+            <<set $playervar.breastsize to undefined>>
+            <<set $playervar.nipplesize to undefined>>
+            <<set $playervar.vagtightness to undefined>>
+            <<set $playervar.clitorissize to undefined>>
 
             <fieldset class="charc">
                 <legend>Genitals info: </legend>
@@ -352,17 +352,17 @@
     Finally got to your new house, you are in the front door and you scan your retina in the retina scanner and when you are about to open the door you get a message in your phone, it's from your parents.
     <br>
     <br>
-    // "Hey @@.orange;<<print $playername>>@@, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.
+    // "@@.lightyellow;Hey @@@@.orange;<<print $playername>>@@@@.lightyellow;, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
     <br>
     <<timed 1s>> <<set $credits += 350>><<replace #credits>>$credits<</replace>>
-    We transfered some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!"
+    @@.lightyellow;We transfered some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!@@"
     // @@.yellow; +350 credits@@
     <br>
     <br>
     <<next 250ms>>
     After reading the message you put your phone in your pocket and open the door.
 
-    ~~''@@.red"> You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
+    ~~''@@.red;You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
     <br>
     <br>
     <<button "Enter the house" "prelivingroom">><</button>>
@@ -387,11 +387,11 @@
                 //<<type 50ms>>Calling...Ding<</type>>
                 <br>
                 <<timed 1500ms>>
-                - "Hello, @@.orange;<<print $playername>>@@ what happened, it's everything alright?"
-                <br>- Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things.
-                <br>- "Really it's that bad? We tought that well, it wont be in a perfect state but atleast it would bein somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house check if they are still working."
-                <br>- Thanks Dad, thanks! Call you later, bye.
-                <br>- "Bye, @@.orange;<<print $playername>>@@ take care."
+                - "@@.lightyellow;Hello, @@@@.orange;<<print $playername>>@@ @@.lightyellow;what happened, it's everything alright?@@"
+                <br><br>- @@.green;Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things.@@
+                <br><br>- "@@.lightyellow;It's really that bad? We tought that well, it wont be in a perfect state but atleast it would bein somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house. Check if they are still working please.@@"
+                <br><br>- @@.green;Thanks Dad, thanks! Call you later, bye.@@
+                <br><br>- "@@.lightyellow;Bye, @@@@.orange;<<print $playername>>@@ @@.lightyellow;take care.@@"
                 <<next 1s>>
                 <br>
                 Bep
@@ -407,15 +407,15 @@
 
                             <<timed 1500ms>>
                             <br>
-                            - "Hello HORECO Inc., how may I help you?"
-                            <br>- Hello, I'm @@.orange;<<print "$playername $playersurname">>@@. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.
-                            <br>- "Alright <<courtesy>> @@.orange;<<print $playersurname>>@@, wait a moment please... Your dad is @@.orange;<<print "$dadname $playersurname">>@@?"
-                            <br>- Yes, everything alright? Did he do something bad or anything that I need to worry about?.
-                            <br>- "No, nothing like that hahaha. It's just that Mr. @@.orange;<<print $dadname>>@@ was my dad's friend, he helped us a lot when we began this family company so in return I can't unfortunately help you free, but we can give you a big discount. Give me your direction and I'll send one of our employee ASAP."
-                            <br>- Great thanks a lot, give me a sec... Ready.
-                            <br>- "Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course."
-                            <br>- Thank you very much, bye!.
-                            <br>- "Bye."
+                            - "@@.lightyellow;Hello HORECO Inc., how may I help you?@@"
+                            <br><br>- @@.green;Hello, I'm @@@@.orange;<<print "$playername $playersurname">>@@@@.green;. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
+                            <br><br>- "@@.lightyellow;Alright @@@@.orange;<<courtesy>> <<print $playersurname>>@@@@.lightyellow;, wait a moment please... Your dad is @@@@.orange;<<print "setup.dadname $playersurname">>@@?"
+                            <br><br>- @@.green;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
+                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that @@@@.orange;Mr.<<print $playersurname>>@@@@.lightyellow;was my dad's friend, he helped us a lot when we began this family company so in return I can't unfortunately help you free, but we can give you a big discount. Give me your direction and I'll send one of our employee ASAP.@@"
+                            <br><br>- @@.green;Great thanks a lot, give me a sec... Ready.@@
+                            <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course.@@"
+                            <br><br>- @@.green;Thank you very much, bye!.@@
+                            <br><br>- "@@.lightyellow;Bye.@@"
                             <br>
                             <<next 1600ms>>
                             Bep
@@ -429,13 +429,14 @@
                                     <</replace>>
 
                                     <<replace #call1>>
+                                        // Two hours later of shitposts //
                                         // <<type 75ms>>Ding Dong...<</type>>
                                         <<timed 1500ms>>
-                                        <br>- "Hello, I'm from HORECO Inc."
-                                        <br>- Wait a second, I'll open the door.
+                                        <br><br>- "@@.lightyellow;Hello, I'm from HORECO Inc.@@"
+                                        <br><br>- @@.green;Wait a second, I'll open the door.@@
                                         <<next 1600ms>>
-                                        <br>- Hello, I'm @@.orange;<<print $playername>>@@ go in please.
-                                        <br>- "Alright <<courtesy>> @@.orange;<<print $playername>>@@... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment."
+                                        <br><br>- @@.green;Hello, I'm @@@@.orange;<<print $playername>>@@@@.green; go in please.@@
+                                        <br><br>- "@@.lightyellow;Alright @@@@.orange;<<courtesy>> <<print $playername>>@@@@.lightyellow;... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
                                         
                                         <<next 2s>>
                                         <<addminutes 15>>
@@ -443,8 +444,8 @@
                                             <<timedate>>
                                         <</replace>>
                                         <br>
-                                        <br>- "I'm back, I left the robot already working. Checked everything and there a lot of things to fix and lucky for you, you got a big discount so it will be 250 credits. We'll finish in about 3 hours, the place will get dirty so you may need to clean after we finish."
-                                        <br>- Alright, thanks I'll transfer it in a second.
+                                        <br><br>- "@@.lightyellow;I'm back, I left the robot already working. Checked everything and there a lot of things to fix and lucky for you, you got a big discount so it will be 250 credits. We'll finish in about 3 hours, the place will get dirty so you may need to clean after we finish.@@"
+                                        <br><br>- @@.green;Alright, thanks I'll transfer it in a second.@@
                                         //
                                         <<next 1s>>
                                         <<replace #call>>
@@ -500,164 +501,152 @@
         <</button>>@@
 
     <<elseif $finishL is true>>
-        @@#message.red;@@
-        <br>
-        Well the house is in a better shape, still need cleaning but is better that it was before.
-        @@#cleanedfronthouse;The entrance of the house needs to be cleaned, it doesn't look that bad atleast but you don't want anyone to see it.@@
+        <<if !$messageL>>
+            <<set $messageL to []>>
+        <</if>>
+        <<if $clean lt 7>>
+            Well the house is in a better shape, still need cleaning but is better than before. Unfortunately you don't have enough money to pay someone to clean the house and buy new things :(.
             <br>
-            <div id="cleanfronthouse">
-            <<button "Clean the entrance of the house">>
-                <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                <<remove #cleanfronthouse>>
-                <<replace #cleanedfronthouse>>
-                    Now you can feel proud if someone looks at your house, because it looks somewhat decent(If you knew how it was before that is).
-                <</replace>>
+        <</if>>
 
-                <<set $clean +=1>>
+        <fieldset class="charc" id="FrontHouse">
+            <legend>Front house</legend>
+            <<if !$messageL[0]>>
+                The entrance of the house needs to be cleaned, it doesn't look that bad atleast but you don't want anyone to see it.
+                <<button "Clean the entrance of the house" "prelivingroom">>
+                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<set $messageL[0] to true>>
+        
+                    <<set $clean +=1>>
 
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-            </div>
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <br>
+            <<else>>
+                @@.green;Now you can feel proud if someone looks at your house, because it looks somewhat decent(If you knew how it was before that is).@@
+            <</if>>
+        </fieldset>
         <br>
-        @@#cleanedlivingroom;Wow the livingroom, it's like a world of difference but it's dirty after a good clean everything will be right.@@ @@#tv; There is an old tv, who still use a 21 inch LED tv in this day and age?@@ @@#sofa; The Horeco employee told you that this sofa was beyond repairable, so you need to buy a new one@@   
-            <br>
-            <div id="cleanliving">
-            <<button "Clean the livingroom">>
-                <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                <<removeclass "#buytv" "hide">>
-                <<removeclass "#buysofa" "hide">>
-                <<remove "#cleanliving">>
-                <<replace #cleanedlivingroom>>
-                    Now the livingroom looks like something you could spend time off and is worth looking and you even bought a little clock :D.
-                <</replace>>
-                <<set $credits -= 5>>
+        <fieldset class="charc" id="Livingroom">
+            <legend>Livingroom</legend>
+            <<if !$messageL[1]>>
+                Wow the livingroom, it's like a world of difference but it's still dirty and need a good clean.
+                <br>
+                <<button "Clean the livingroom" "prelivingroom">>
+                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<set $messageL[1] to true>>
+                    <<set $credits -= 5>>
+                    <<set $clean +=1>>
+
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <br>
+            <<else>>
+                @@.green;Now the livingroom looks like something you could spend time off and is worth looking, you even bought a little clock :D.@@
+                <<if !$messageL[2]>>
+                    There is an old tv, who still use a 21 inch LED tv in this day and age?.
+                    <br>
+                    <<button "Buy a new TV and install it" "prelivingroom">>
+                        <<energyfun 15 3 10 "skilling" "handyman" 10>>
+                        <<set $credits -= 65>>
+                        <<set $messageL[2] to true>>
+
+                        <<set $clean +=1>>
+
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes -65 Credits@@
                 
-                <<replace #credits>>
-                    $credits
-                <</replace>>
+                <<else>>
+                    <br>
+                    @@.green;You bought the new tv and installed it, it's an Echelon Enterprise S.A QLED 36 inch TV, that's all you can afford and not run out of money.@@
 
-                <<set $clean +=1>>
+                <</if>>
 
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-            </div>
-            <br>
-            <div id="buytv" class="hide">
-            <<button "Buy a new TV and install it">>
-                <<energyfun 15 3 10 "skilling" "handyman" 10>>
-                <<remove #buytv>>
-                <<set $credits -= 65>>
-                <<replace #tv>>
-                    You bought the new tv and installed it, it's an Echelon Enterprise S.A 36 inch and QLED TV, that's all you can afford and not getting broke.
-                <</replace>>
+                <<if !$messageL[3]>>
+                    The Horeco's employee told you that this sofa was beyond repair, so you will need to buy a new one.
+                    <br>
+                    <<button "Buy a new sofa" "prelivingroom">>
+                        <<energyfun 15 3 15 "skilling" "handyman" 10>>
+                        <<set $credits -= 60>>
+                        <<set $messageL[3] to true>>
+                        <<set $clean +=1>>
 
-                <<replace #credits>>
-                    $credits
-                <</replace>>
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes -60 Credits@@
 
-                <<set $clean +=1>>
+                <<else>>
+                    <br>
+                    @@.green;You bought a new sofa, not that expensive but atleast you can sit in it a big difference from the one that was here before.@@
 
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes -65 Credits@@
-            </div>
-            <div id="buysofa" class="hide">
-            <<button "Buy a new sofa">>
-                <<energyfun 15 3 15 "skilling" "handyman" 10>>
-                <<remove #buysofa>>
-                <<set $credits -= 60>>
-                <<replace #sofa>>
-                    You bought a new sofa, not that expensive but atleast you can sit in it a big difference from the one that was here before.
-                <</replace>>
-
-                <<replace #credits>>
-                    $credits
-                <</replace>>
-
-                <<set $clean +=1>>
-
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes -60 Credits@@
-            </div>
-
-        @@#cleanedkitchen;This kitchen doesn't look that bad it needs to be cleaned first tho@@. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
-            <br>
-            <div id="cleankitchen">
-            <<button "Clean the kitchen and buy cookware">>
-                <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                <<remove #cleankitchen>>
-                <<set $credits -= 15>>
-
-                <<replace #cleanedkitchen>>
-                    Now this is a place where you can cook!
-                <</replace>>
-
-                <<set $clean +=1>>
-                <<replace #credits>>
-                    $credits
-                <</replace>>
-
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
-            </div>
-            <br>
-        @@#cleanedbedroom;The bedroom looks fine, a little empty but after you buy a bed, a wardrobe and a table with a chair it will be ready.@@
-            <br>
-            <div id="cleanbedroom">
-            <<button "Clean the bedroom and settle in">>
-                <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                <<remove #cleanbedroom>>
-                <<set $credits -= 120>>
-
-                <<replace #cleanedbedroom>>
-                    You can sleep here, the bed isn't that good but it will work until you can afford a better one, your laptop is in the chair in case you want to use it. Your wardrobe is a pretty big one and it was cheap, what more do you want?.
-                <</replace>>
-
-                <<replace #credits>>
-                    $credits
-                <</replace>>
-
-                <<set $clean +=1>>
-
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -120 Credits@@
-            </div>
-            <br>
-        @@#cleanedbathroom;The bathroom is the best looking part of the house, needs some clean and supplies but nothing more.@@
-            <br>
-            <div id="cleanbathroom">
-            <<button "Clean the bathroom and buy supplies">>
-                <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                <<remove #cleanbathroom>>
-                <<set $credits -= 40>>
-
-                <<replace #cleanedbathroom>>
-                    The bathroom is so clean that you can see your own reflection, you bought some soaps and shampoo.
-                <</replace>>
-
-                <<replace #credits>>
-                    $credits
-                <</replace>>
-
-                <<set $clean +=1>>
-
-            <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -40 Credits@@
-            </div>
+                <</if>>
+            <</if>>
+        </fieldset>
         <br>
-        <br>
-        <<button "Finish">>
-            <<if $clean gte 7>>
-                <<goto "livingroom">>
-                <<unset $clean>>
-                <<unset $finishL>>
+        <fieldset class="charc" id="Kitchen">
+            <legend>Kitchen</legend>
+            <<if !$messageL[4]>>
+                This kitchen doesn't look that bad but it needs to be cleaned first tho. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
+                <br>
+                <<button "Clean the kitchen and buy cookware" "prelivingroom">>
+                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<set $credits -= 15>>
+                    <<set $kitchenclean to true>>
+                    <<set $messageL[4] to true>>
+                    <<set $clean +=1>>
 
-            <<else>>       
-                <<replace #message>>
-                    You haven't finished cleaning.
-                <</replace>>
-
-                <<script>>
-                        document.body.scrollTop = 0;
-                        document.documentElement.scrollTop = 0;
-
-                <</script>>
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+            
+            <<else>>
+                @@.green;Now this is a place where you could cook!.@@
 
             <</if>>
-            
-        <</button>>
+        </fieldset>
+        <br>
+        <fieldset class="charc" id="Bedroom">
+            <legend>Bedroom</legend>
+            <<if !$messageL[5]>>
+                The bedroom looks fine, a little empty but after you buy a bed, a wardrobe and a table with a chair it will be ready.
+                <br>
+                <<button "Clean the bedroom and settle in" "prelivingroom">>
+                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<set $credits -= 120>>
+                    <<set $messageL[5] to true>>
+                    <<set $clean +=1>>
 
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -120 Credits@@
+            
+            <<else>>
+                @@.green;You can sleep here, the bed isn't that good but it will work until you can afford a better one, your laptop is in the chair in case you want to use it. Your wardrobe is a pretty big one and it was cheap, what more do you want?.@@
+            
+            <</if>>
+        </fieldset>
+        <br>
+        <fieldset class="charc" id="Bathroom">
+            <legend>Bathroom</legend>
+            <<if !$messageL[6]>>
+                The bathroom is the best looking part of the house, needs some clean and supplies but nothing more.
+                <br>
+                <<button "Clean the bathroom and buy supplies" "prelivingroom">>
+                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<set $credits -= 40>>
+                    <<set $messageL[6] to true>>
+                    <<set $clean +=1>>
+
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -40 Credits@@
+
+            <<else>>
+                @@.green;The bathroom is so clean that you can see your own reflection, you bought some soaps and shampoo.@@
+
+            <</if>>
+        </fieldset>
+        <br>
+        <<if $clean gte 7>>
+            <<button "Finish">>
+                    <<goto "livingroom">>
+                    <<set $bathrclean to true>>
+                    <<set $bedroomclean to true>>
+                    <<set $livingclean to true>>
+                    <<unset $clean>>
+                    <<unset $finishL>>
+                    <<unset $messageL>>
+                    <<unset $footerMessager>>
+            <</button>>
+        <</if>>
     <</if>>
 

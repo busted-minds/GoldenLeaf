@@ -1,0 +1,52 @@
+:: map [widget nobr]
+
+<<widget "map">>
+    <<set _id to setup.mapStreets.findIndex(x => x.place === passage())>>
+
+    <<if _id isnot -1>>
+        <br>
+        <br>
+        <svg width="300" height="150" style="border: 1px solid white">
+            <image x="5" href="img/sidebar-icons/hunger.png" height="100%" width="100%"></image>
+            
+            <a onclick="passageMov(0, 8);">
+                <rect class="map" x="5" y="0" height="45" width="67" id="rect">
+                <title>To Clover Row +8 min.</title>
+            </a> 
+            <a onclick="passageMov(1, 8);">
+                <rect class="map" x="150" y="0" height="45" width="67">
+                <title class="green">To Blythe Celyn +8 min.</title>
+            </a>
+            <a onclick="passageMov(2, 8);">
+                <rect class="map" x="150" y="50" height="45" width="67">
+                <title>To Barlow Grove +8 min.</title>
+            </a>
+            <a onclick="passageMov(3, 8);">
+                <rect class="map" x="150" y="100" height="45" width="67">
+                <title>To Hollins Drift +8 min.</title>
+            </a>
+            <a onclick="passageMov(4, 8);">
+                <rect class="map" x="5" y="55" height="45" width="67">
+                <title>To Pioneer Lane +8 min.</title>
+            </a>
+        </svg>
+
+        <<script>>
+            /* Parameters: placeid=Is the id of the passage in mapPlace. time=time used for timeattached widget.
+               It compares if the current passage connects to the passage that the players want to move to..    
+            */
+            window.passageMov = function(placeid, time) {
+                var id = setup.mapStreets.findIndex(x => x.place === State.passage);
+                var conts = setup.mapStreets[id].connectedTo;
+                var moveTo = setup.mapStreets[placeid].place;
+
+                if (conts.includes(moveTo)) {
+                    Engine.play(moveTo);
+                    wikifier("timeattached", time);
+                }
+            }
+
+        <</script>>
+    <</if>>
+    
+<</widget>>

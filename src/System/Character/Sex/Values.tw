@@ -1,4 +1,4 @@
-:: values(Sex) [widget nobr]
+:: values(sex) [widget nobr]
 
 <<widget "masturbation">>
     <<if $selectedSexOpt.RightHand isnot $selectedSexOpt.LeftHand>>

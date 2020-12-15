@@ -1,12 +1,12 @@
-:: genderword [widget nobr]
+:: courtesy [widget nobr]
 
 <<widget "courtesy">>
     <<switch $playervar.gender>>
         <<case "male">>
-            Gentleman.
+            Sir
 
         <<case "female">>
-            Miss.
+            Miss
     <</switch>>
 
 <</widget>>
@@ -18,5 +18,14 @@
 
         <<case "female">>
             Daughter
+    <</switch>>
+<</widget>>
+
+<<widget "barGender">>
+    <<switch $playervar.gender>>
+        <<case "male">>
+            Waiter
+        <<case "female">>
+            Waitress
     <</switch>>
 <</widget>>

@@ -55,3 +55,15 @@
         <<unset $location>>
 
     <</button>>
+
+:: masturbutton [widget nobr]
+
+<<widget "masturbutton">>
+    <<if $energy gte 35>>
+        <<button "Masturbate" "masturbate">>
+            <<set $location to passage()>>
+        <</button>>
+    <<else>>
+        @@.lightred;You need some rest before trying to masturbate.@@
+    <</if>>
+<</widget>>

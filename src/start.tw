@@ -3,7 +3,9 @@ Golden Leaf
 
 :: StoryData
 {
-    "ifid": "92D86F41-8C6B-4749-A2EF-2849676A8561"
+    "ifid": "92D86F41-8C6B-4749-A2EF-2849676A8561",
+    "format": "SugarCube",
+    "format-version": "2.33.2"
 }
 
 :: Start
@@ -14,10 +16,3 @@ Golden Leaf
 !!@@.red;Play at your own risk and more importantly, have fun!.@@
 
 <<button "Accept" "charcreation1">><</button>>
-
-:: PassageHeader [nobr]
-/%<<if saveUpdate is true>>
-    <<gameUpdate>>
-   
-    <<set saveUpdate to false>>
-<</if>>%/

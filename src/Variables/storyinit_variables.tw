@@ -1,9 +1,11 @@
 :: StoryInit
 
 <<clothesinit>>
-<<geneVariables>>
-<<skillinit>>
 <<kitchenini>>
+<<images>>
+<<jobsIni>>
+<<qsGT>>
+<<set State.prng.init()>>
 /* Player body variables */
 <<set $playervar to {
     gender: null, /* Gender of the player; Male or female */
@@ -57,10 +59,11 @@
 <<set $energy to 100>>
 <<set $maxenergy to 100>>
 <<set $fun to 100>>
-<<set $cleanliness to 100>>
+<<set $hygiene to 100>>
 <<set $pNeeds to 20>>
 <<set $hunger to 20>>
 <<set $arousal to 0>>
+<<set $footerMessager to true>>
 
 <<set $hobby to null>>
 
@@ -68,12 +71,13 @@
 <<set $playersurname to "Surname">>
 <<set $playerhairstyle to null>>
 <<set $playerbeardsize to null>>
+<<set $playerjob to false>>
 
-<<set $time to new Date("2050-02-03T06:05:00Z")>>
-<<set $days to [
+<<set $time to new Date("2050-02-03T09:05:00Z")>>
+<<set setup.days to [
     "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 ]>>
-<<set $months to [
+<<set setup.months to [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ]>>

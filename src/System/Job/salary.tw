@@ -1,0 +1,20 @@
+:: jobs [widget nobr]
+<<widget "jobsIni">>
+    <<set setup.frozenjar to []>>
+
+    <<jobs>>
+<</widget>>
+
+<<widget "jobs">>
+    <<set setup.frozenjar.jobs to [
+        {
+            rank : 0,
+            place: "frozenjar",
+            name : "waiter/waitress",
+            payment : 5,
+            hoursreq : 4,
+            daysreq : 5,
+            expreq : 4 * 30,
+        }
+    ]>>
+<</widget>>

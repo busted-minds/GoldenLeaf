@@ -1,45 +1,55 @@
-:: livingroom
-    
-    !!Livingroom
+:: livingroom [nobr]
+    <h2> Livingroom </h2>
     <div class="divisor"></div>
-    <<nobr>>
-    <<if $livingclean is true>>
-        @@.lightblue;The livingroom is dirty and you need to clean it.@@
+    <<messager>>
+    <<if visited() is 1>>
+        //You start to have hunger, so maybe your phone could tell you where to buy some ingredients and learn a recipe//
         <br>
-        <<set _givexp to random(5,10)>>
-        <<button "Clean" "livingroom">>
-            <<unset $livingclean>>
-            <<energyfun 15 10 15 "skilling" "handyman" _givexp>>
-        <</button>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -10 Fun +15 Minutes@@
+        <br>
+        You pull out your phone from your pocket and start searching where to buy food. After some time you see an AD about a grocery shop.
+        <br>
+        //@@.lightyellow;If you want cheap, fresh and good ingredients come to Grocery Shop, we are located at Blythe Celyn we are open 24/7. That's right, 24 hours a day, 7 days a week. The best service and the best ingredients is our slogan! What are you waiting for? Come and see it for yourself!@@//
+        <br>
+        <br>
+        //Hmmm... this looks interesting, maybe you should take a look? After you come back, you should learn a recipe at your laptop.// @@.red;Read each step carefully, as you will need it for the cooking "minigame".@@
+        <br>
         <br>
     <</if>>
-    You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden. Next to the door you have a $cheap_tv and a $uncomfortable_sofa.
+    <<livingrclean>>
+    You are in your living room. From here you can see the door that goes outside. In one of the sides you can see your kitchen, in the other side you see a glass door that goes to your garden. Next to the door you have a @@.orange;normal tv@@ and a @@.orange;cheap sofa@@. /% Normal and cheap sofa probably can be upgradable. %/
     <br>
-    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is <<convert12h>>
+    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is @@.green;<<convert12h>>@@
     <br>
-    <fieldset id="fieldinline">
-        <legend>Places</legend>
-        <<button "Outside" "outsideHouse">><</button>>
-        <br>
-        <<button "Kitchen" "kitchen">><</button>>
-        <br>
-        <<link "Garden" "garden">><</link>>
-    </fieldset>
     <br>
-    <fieldset id="fieldinline">
-        <legend>Misc</legend>
-        <<button "Watch TV" "tv">><</button>>
-        <br>
-        <<button "Sit on the Sofa" "sofa">><</button>>
-    </fieldset>
-    <br>
+    <<button "Test 1 hour" "livingroom">>
+        <<addhours 1>>
+    <</button>>
     <fieldset id="fieldinline">
         <legend>Rooms</legend>
         <<button "Bedroom" "bedroom">><</button>>
         <br>
         <<button "Bathroom" "bathroom">><</button>>
     </fieldset>
-    <</nobr>>
+    <br>
+    <fieldset id="fieldinline">
+        <legend>Places</legend>
+        <<if $livingclean or $hygiene gte 50 or $pNeeds lte 35>>
+            <<button "Outside" "cloverow">><</button>>
+            <br>
+        <</if>>
+        <<button "Kitchen" "kitchen">><</button>>
+        <br>
+        <<link "Garden" "garden">><</link>>
+    </fieldset>
+    <<if $livingclean>>
+        <br>
+        <fieldset id="fieldinline">
+            <legend>Misc</legend>
+            <<button "Watch TV" "tv">><</button>>
+            <br>
+            <<button "Sit on the Sofa" "sofa">><</button>>
+        </fieldset>
+    <</if>>
 :: tv [nobr]
     <h2>TV</h2>
     <div class="divisor"></div>
@@ -58,26 +68,42 @@
     <br>
     <<button "Relax" "relax">><</button>>
     <br>
+    <<masturbutton>>
+    <br>
     <br>
     <<button "Get up" "livingroom">><</button>>
-    <br>
-    <br>
-    <<button "Masturbate" "masturbate">>
-        <<set $location to passage()>>
-    <</button>>
 
 :: relax [nobr]
     <h2>Relax</h2>
     <div class="divisor"></div>
     <br>
-    <<button "Relax 5 minutes" "sofa">><<addminutes 5>><<recoverenergy 2>><<timeattached "minutes" 5>><</button>> @@.green; +2 energy@@
+    <<button "Relax 5 minutes" "sofa">><<recoverenergy 1>><<timeattached 5>><</button>> @@.green; +1 energy@@
     <br>
-    <<button "Relax 10 minutes" "sofa">><<addminutes 10>><<recoverenergy 4>><<timeattached "minutes" 10>><</button>> @@.green; +4 energy@@
+    <<button "Relax 10 minutes" "sofa">><<recoverenergy 3>><<timeattached 10>><</button>> @@.green; +2 energy@@
     <br>
-    <<button "Relax 15 minutes" "sofa">><<addminutes 15>><<recoverenergy 6>><<timeattached "minutes" 15>><</button>> @@.green; +6 energy@@
+    <<button "Relax 15 minutes" "sofa">><<recoverenergy 5>><<timeattached 15>><</button>> @@.green; +5 energy@@
     <br>
-    <<button "Relax 20 minutes" "sofa">><<addminutes 20>><<recoverenergy 8>><<timeattached "minutes" 20>><</button>> @@.green; +8 energy@@
+    <<button "Relax 20 minutes" "sofa">><<recoverenergy 7>><<timeattached 20>><</button>> @@.green; +7 energy@@
     <br>
     <br>
 
     <<button "Go back" "sofa">><</button>>
+
+:: livingroomclean [widget nobr]
+    <<widget "livingrclean">>
+        <<if $livingclean is false>>
+            @@.lightblue;The livingroom is dirty and you need to clean it before going outside, watching tv or using the sofa.@@
+            <br>
+            <<set _givexp to 10>>
+            <<button "Clean" "livingroom">>
+                <<if $energy gte 10>>
+                    <<set $livingclean to true>>
+                    <<energyfun 10 12 15 "skilling" "handyman" _givexp>>
+                <<else>>
+                    <<set $message to "noEnergy">>
+                <</if>>
+            <</button>>@@.green; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red; -14 Energy -12 Fun +15 Minutes@@
+            <br>
+            <br>
+        <</if>>
+    <</widget>>

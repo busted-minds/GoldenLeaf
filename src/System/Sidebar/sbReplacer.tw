@@ -56,7 +56,7 @@
 
 <<widget "closePop">>
 
-	<<button X>>
+	<<button "Close">>
 		<<removeclass "#popUp" "open">>
 		<<set $popupbox to 0>>
 		

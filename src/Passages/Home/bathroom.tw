@@ -1,15 +1,18 @@
 :: bathroom [nobr]
     <h2>Bathroom</h2>
     <div class="divisor"></div>
-    <br>
+    <<messager>>
+    <<bathrclean>>
     You are in your bathroom, you see the door to the living room.
     <br>
-    Inside at one corner you see a $small_shower at the left of it you see the $cheap_toilet. Near the little bathroom air extractor you see the sink.
+    Inside at one corner you see a @@.orange;small shower@@ at the left of it you see the @@.orange;normal toilet@@. Near the little bathroom air extractor you see the sink.
     <br>
-    <br>
-    <<button "Get in to shower" "shower">><</button>>
-    <br>
-    <<button "Sit on the toilet" "toilet">><</button>>
+    <<if $bathrclean>>
+        <br>
+        <<button "Get in to shower" "shower">><</button>>
+        <br>
+        <<button "Sit on the toilet" "toilet">><</button>>
+    <</if>>
     <br>
     <<button "Use the sink" "sink">><</button>>
     <br>
@@ -19,15 +22,17 @@
 :: shower [nobr]
     <h2>Shower</h2>
     <div class="divisor"></div>
+    <<messager>>
     <br>
-    <div id="messager"></div>
-    <<button "Fast shower">>
-        <<cleanliness 40 4 "cleaning">>
-    <</button>>@@.green; +40 Cleanliness@@ | @@.red; +4 Minutes@@
+    <<button "Fast shower" "shower">>
+        <<hygiene 40 4 "cleaning">>
+    <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
     <br>
-    <<button "Normal shower">>
-        <<cleanliness 100 10 "cleaning">>
-    <</button>>@@.green; +100 Cleanliness@@ | @@.red; +10 Minutes@@
+    <<button "Normal shower" "shower">>
+        <<hygiene 100 10 "cleaning">>
+    <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
+    <br>
+    <<masturbutton>>
     <br>
     <br>
     <<button "Get out" "bathroom">><</button>>
@@ -35,15 +40,17 @@
 :: toilet [nobr]
     <h2>Bathroom</h2>
     <div class="divisor"></div>
+        <<messager>>
     <br>
-    <div id="messager"></div>
-    <<button "Pee">>
-        <<peepoop 45 10 2>>
-    <</button>>@@.green; -45 Physical Needs@@ | @@.red; -10 Cleanliness +2 Minutes@@
+    <<button "Pee" "toilet">>
+        <<pNeeds 45 10 2>>
+    <</button>>@@.green; -45 Physical Needs@@ | @@.red; -10 hygiene +2 Minutes@@
     <br>
-    <<button "Poop">>
-        <<peepoop 60 15 3>>
-    <</button>>@@.green; -65 Physical Needs@@ | @@.red; -15 Cleanliness +3 Minutes@@
+    <<button "Poop" "toilet">>
+        <<pNeeds 60 15 3>>
+    <</button>>@@.green; -65 Physical Needs@@ | @@.red; -15 hygiene +3 Minutes@@
+    <br>
+    <<masturbutton>>
     <br>
     <br>
     <<button "Get up" "bathroom">><</button>>
@@ -51,15 +58,33 @@
 :: sink [nobr]
     <h2>Sink</h2>
     <div class="divisor"></div>
+        <<messager>>
     <br>
-    <div id="messager"></div>
-    <<button "Wash your hands">>
-        <<cleanliness 10 1 "cleaning">>
-    <</button>>@@.green; +10 Cleanliness@@ | @@.red; +1 Minutes@@
+    <<button "Wash your hands" "sink">>
+        <<hygiene 10 1 "cleaning">>
+    <</button>>@@.green; +10 hygiene@@ | @@.red; +1 Minutes@@
     <br>
-    <<button "Wash your hands with soap">>
-        <<cleanliness 15 2 "cleaning">>
-    <</button>>@@.green; +15 Cleanliness@@ | @@.red; +2 Minutes@@
+    <<button "Wash your hands with soap" "sink">>
+        <<hygiene 15 2 "cleaning">>
+    <</button>>@@.green; +15 hygiene@@ | @@.red; +2 Minutes@@
     <br>
     <br>
     <<button "Get out" "bathroom">><</button>>
+
+:: bathroomclean [widget nobr]
+    <<widget "bathrclean">>
+        <<if !$bathrclean>>
+            @@.lightblue;You will need to clean your room and fix the bed before using it.@@
+            <br>
+            <<set _givexp to 7>>
+            <<button "Clean the bathroom" "bathroom">>
+                <<if $energy gte 10>>
+                    <<set $bathrclean to true>>
+                    <<energyfun 13 8 12 "skilling" "handyman" _givexp>>
+                <<else>>
+                    <<set $message to "noEnergy">>
+                <</if>>
+            <</button>>@@.green.smollfont; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -13 Energy -8 Fun +12 Minutes@@
+            <br>
+        <</if>>
+    <</widget>>

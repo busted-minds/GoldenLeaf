@@ -1,0 +1,7 @@
+:: payment [widget nobr]
+
+<<widget "payment">>
+    <<set _hoursworked to $args[0]>>
+
+    <<set $credits += $playerjob.payment * _hoursworked>>
+<</widget>>

@@ -14,8 +14,8 @@
 
 <<widget "date">> /* Gives format to the date */
     <<print String.format("{0} {1} {2}.",
-        $months[$time.getMonth()],
-        $days[$time.getDay()],
+        setup.months[$time.getMonth()],
+        setup.days[$time.getDay()],
         $time.getDate()
     )>>
 <</widget>>
@@ -23,25 +23,28 @@
 <<widget "daystatechecker">>
 
     <<if $time.getUTCHours() eq 0>>
-        Midnight
+        <<set _daystate to "Midnight">>
+        <<set _color to "midnightblue">>
 
     <<elseif $time.getUTCHours() lte 4>>
-        Early Morning
+        <<set _daystate to "Early Morning">>
+        <<set _color to "lightyellow">>
         
     <<elseif $time.getUTCHours() lte 11>>
-        Morning
+        <<set _daystate to "Morning">>
+        <<set _color to "gold">>
 
-    <<elseif $time.getUTCHours() lte 12>>
-        Noon
+    <<elseif $time.getUTCHours() lte 17>>
+        <<set _daystate to "Afternoon">>
+        <<set _color to "darkyellow">>
 
-    <<elseif $time.getUTCHours() lte 19>>
-        Afternoon
-
-    <<elseif $time.getUTCHours() lte 22>>
-        Evening
+    <<elseif $time.getUTCHours() lte 21>>
+        <<set _daystate to "Evening">>
+        <<set _color to "eveningblue">>
 
     <<elseif $time.getUTCHours() lte 24>>
-        Late Evening
+        <<set _daystate to "Late Evening">>
+        <<set _color to "lateveningblue">>
 
     <</if>>
 
@@ -91,15 +94,11 @@
 <</widget>>
 
 <<widget "timedate">>
-    <<date>> <<convert12h>> <<daystatechecker>>
+    <<daystatechecker>>
+    <<set _imgIc to setup.icons.stateD[_daystate]>>
+    <<date>><span @class="_color"><<convert12h>> <<print _daystate>></span> <img @src="_imgIc" class="sbIcons" title="The state of the day." @alt="_daystate">
 <</widget>>
 
 <<widget "sleep">>
     <<run $time.setUTCMinutes(0)>>
 <</widget>>
-
-/% Just for testing%/
-/%<<widget "sleepnextday">>
-    <<run $time.setUTCHours(6)>>
-    <<run $time.setDate($time.getDate() + 1)>>
-<</widget>>/%

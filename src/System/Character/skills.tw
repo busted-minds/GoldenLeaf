@@ -3,67 +3,53 @@
 <<widget "skillup">>
     <<switch $args[0]>>
         <<case "progup">>
-            <<if $progexp gte $progexpleft>>
+            <<for $progexp gte $progexpleft>>
                 <<set $progexp -= $progexpleft>>
                 <<set $progexpleft += Math.round(100 * ($programmingskill ** 1.5) / 2.1)>>
                 <<set $programmingskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "cookup">>
-            <<if $cookexp eq $cookexpleft>>
+            <<for $cookexp gte $cookexpleft>>
                 <<set $cookexp -= $cookexpleft>>
                 <<set $cookexpleft += Math.round(100 * ($cookingskill ** 1.5) / 2.1)>>
                 <<set $cookingskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "gardup">>
-            <<if $gardexp eq $gardexpleft>>
+            <<for $gardexp gte $gardexpleft>>
                 <<set $gardexp -= $gardexpleft>>
                 <<set $gardexpleft += Math.round(100 * ($gardeningskill ** 1.5) / 2.1)>>
                 <<set $gardeningskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "artup">>
-            <<if $artexp eq $artexpleft>>
+            <<for $artexp gte $artexpleft>>
                 <<set $artexp -= $artexpleft>>
                 <<set $artexpleft += Math.round(100 * ($artskill ** 1.5) / 2.1)>>
                 <<set $artskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "athleticup">>
-            <<if $athleticexp eq $athleticexpleft>>
+            <<for $athleticexp gte $athleticexpleft>>
                 <<set $athleticexp -= $athleticexpleft>>
                 <<set $athleticexpleft += Math.round(100 * ($athleticskill ** 1.5) / 2.1)>>
                 <<set $athleticskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "handymup">>
-            <<if $handymexp eq $handymexpleft>>
+            <<for $handymexp gte $handymexpleft>>
                 <<set $handymexp -= $handymexpleft>>
                 <<set $handymexpleft += Math.round(100 * ($handymanskill ** 1.5) / 2.1)>>
                 <<set $handymanskill += 1>>
-            <</if>>
-
-        <<case "swimup">>
-            <<if $swimexp eq $swimexpleft>>
-                <<set $swimexp -= $swimexpleft>>
-                <<set $swimexpleft += Math.round(100 * ($swimmingskill ** 1.5) / 2.1)>>
-                <<set $swimanskill += 1>>
-            <</if>>
-
-        <<case "runup">>
-            <<if $runexp eq $runexpleft>>
-                <<set $runexp -= $runexpleft>>
-                <<set $runexpleft += Math.round(100 * ($runningskill ** 1.5) / 2.1)>>
-                <<set $runningskill += 1>>
-            <</if>>
+            <</for>>
 
         <<case "weightup">>
-            <<if $weightlexp eq $weightlexpleft>>
+            <<for $weightlexp gte $weightlexpleft>>
                 <<set $weightlexp -= $weightlexpleft>>
                 <<set $weightlexpleft += Math.round(100 * ($weightliftskill ** 1.5) / 2.1)>>
                 <<set $weightliftskill += 1>>
-            <</if>>
+            <</for>>
 
     <</switch>>
     
@@ -72,167 +58,33 @@
 /% It just add exp to the skill and then calls the widget skillup so it can check if it got the needed exp to lvl up.%/
 <<widget "addexp">>
     <<set _expval to $args[1]>>
+    <<penalty>>
 
     <<switch $args[0]>>
         <<case "programming">>
+            <<set $progexp += Math.round((_expval * $programminglearning)/_penalty)>>
             <<skillup "progup">>
-            <<set $progexp += Math.round(_expval * $programminglearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "progup">>
-
-                <<replace #prog>>
-                    <<print $programmingskill>>
-                <</replace>>
-
-                <<updatebarAddExp $progexp $progexpleft $args[0]>>
-
-            <</if>>
 
         <<case "cooking">>
+            <<set $cookexp += Math.round((_expval * $cookinglearning)/_penalty)>>
             <<skillup "cookup">>
-            <<set $cookexp += Math.round(_expval * $cookinglearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "cookup">>
-
-                <<replace #cook>>
-                    <<print $cookingskill>>
-                <</replace>>
-
-                <<updatebarAddExp $cookexp $cookexpleft $args[0]>>
-
-            <</if>>
 
         <<case "gardening">>
+            <<set $gardexp += Math.round((_expval * $gardeninglearning)/_penalty)>>
             <<skillup "gardup">>
-            <<set $gardexp += Math.round(_expval * $gardeninglearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "gardup">>
-
-                <<replace #gard>>
-                    <<print $gardeningskill>>
-                <</replace>>
-
-                <<updatebarAddExp $gardexp $gardexpleft $args[0]>>
-
-            <</if>>
 
         <<case "art">>
+            <<set $artexp += Math.round((_expval * $artlearning)/_penalty)>> 
             <<skillup "artup">>
-            <<set $artexp += Math.round(_expval * $artlearning)>> 
-
-            <<if $popupbox is "skills">>
-                <<skillup "artup">>
-
-                <<replace #art>>
-                    <<print $artskill>>
-                <</replace>>
-
-                <<updatebarAddExp $artexp $artexpleft $args[0]>>
-
-            <</if>>
-
-        <<case "athletic">>
-            <<skillup "athleticup">>
-            <<set $athleticexp += Math.round((_expval * $athleticslearning)/3)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "athleticup">>
-
-                <<replace #athletic>>
-                    <<print $athleticskill>>
-                <</replace>>
-
-                <<updatebarAddExp $athleticexp $athleticexpleft $args[0]>>
-
-            <</if>>
 
         <<case "handyman">>
+            <<set $handymexp += Math.round((_expval * $handymanlearning)/_penalty)>>
             <<skillup "handymup">>
-            <<set $handymexp += Math.round(_expval * $handymanlearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "handymup">>
-
-                <<replace #handyman>>
-                    <<print $handymanskill>>
-                <</replace>>
-
-                <<updatebarAddExp $handymexp $handymexpleft $args[0]>>
-
-            <</if>>
-
-        <<case "swimming">>
-            <<skillup "swimup">>
-            <<set $swimexp += Math.round(_expval * $swimminglearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "swimup">>
-
-                <<replace #swimming>>
-                    <<print $swimmingskill>>
-                <</replace>>
-
-                <<updatebarAddExp $swimexp $swimexpleft $args[0]>>
-
-            <</if>>
-        
-        <<case "running">>
-            <<skillup "runup">>
-            <<set $runexp += Math.round(_expval * $runninglearning)>>
-
-            <<if $popupbox is "skills">>
-                <<skillup "runup">>
-
-                <<replace #running>>
-                    <<print $runningskill>>
-                <</replace>>
-
-                <<updatebarAddExp $runexp $runexpleft $args[0]>>
-
-            <</if>>
         
         <<case "weightlift">>
+            <<set $weightlexp += Math.round((_expval * $weightliftlearning)/_penalty)>>
             <<skillup "weightup">>
-            <<set $weightlexp += Math.round(_expval * $weightliftlearning)>>
 
-            <<if $popupbox is "skills">>
-                <<skillup "weightup">>
-
-                <<replace #weightlift>>
-                    <<print $weightliftskill>>
-                <</replace>>
-
-                <<updatebarAddExp $weightlexp $weightlexpleft $args[0]>>
-
-            <</if>>
     <</switch>>
 
-<</widget>>
-
-/% Checks if skills have the necessary exp to lvl up in cases where the page isn't changed.%/
-<<widget "checkup">>
-    <<set _skill to ["progup", "cookup", "gardup", "artup", "athleticup", "handymup", "swimup", "runup", "weightup"]>>
-
-    <<for _i to 0; _i lt _skill.length; _i++>>
-        <<skillup _skill[_i]>>
-    <</for>>
-    
-<</widget>>
-
-/% Updates the exp bar in cases where the page isn't changed.%/
-<<widget "updatebarAddExp">>
-    <<set _expval to $args[0]>>
-    <<set _expleftval to $args[1]>>
-    <<set _skillbar to "#" + $args[2] + "b">>
-
-    <<set _progress = Math.round((_expval/_expleftval)*100)>>
-    <<replace _skillbar>>
-        <div id="progressbar">
-            <div id="bar" @style="'width:' + _progress + '%'"></div>
-        </div>
-        <h4 id="expnumber" style="padding:0; margin:0;">Exp: <<print _expval + "/" + _expleftval>></h4>
-    <</replace>>
 <</widget>>

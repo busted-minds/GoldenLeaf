@@ -1,0 +1,60 @@
+:: messager [widget nobr]
+
+<<widget "messager">>
+    <<if $message>>
+        <span class="red">
+        //
+        ''
+        <<switch $message>>
+            <<case "noEnergy">>
+                You don't have enough energy.
+            <<case "videogames">>
+            You don't want to play games anymore.
+            <<case "watchtv">>
+                You don't want to watch more TV.
+            <<case "fun">>
+                You don't have enough fun.
+            <<case "clean">>
+                You are clean enough.
+            <<case "pNeedEmpt">>
+                <<print either("Your bladder is empty.", "You don't want to use the toilet.")>>
+            <<case "credits">>
+                You don't have enough credits.
+            <<case "space">>
+                You don't have enough space in your backpack to store so many items.
+            <<case "placeClosed">>
+                The place is closed, you'll need to come back at their opening hours.
+                <br>
+            <<case "skillLvlLearnReq">>
+                You don't have the minimum required skill level to learn this.
+                <br>
+        <</switch>>
+        ''
+        //
+        </span>
+        <<unset $message>>
+    <</if>>
+<</widget>>
+
+<<widget "footerMessager">>
+    //<<switch $args[0]>>
+        <<case "tips">>
+            <<set _messages to random(0, 5)>>
+            <<switch _messages>>
+                <<case 0>>
+                    If any of your status get to their highest point(Ex: 100/100 Hunger or P.Needs) or lower point (Ex: 0/100 Energy, Hygiene) you may not be able to do certain options. With "Fun" or "Arousal" you may not be able to focus when working or studying.
+                <<case 1>>
+                    Certain actions like cooking, masturbating and others uses energy if you don't have enough they will tell you so.
+                <<case 2>>
+                    Each weekends you will need to clean your house. If you don't, many options will be unavailable to be used.
+                <<case 3>>
+                    Fruits and liquids may be eaten for a low amount of hunger replenishment.
+                <<case 4>>
+                    Going out at night might be dangerous, even more if you go to not "protected" streets @@.red;(Not implemented and it's as a hint just because :D)@@.
+                <<case 5>>
+                    Each hobby has a learning multiplier according to their respective skill but that multiplier isn't static, they can be "upgraded" but those with that hobby will start with an upperhand.
+            <</switch>>
+        <<case "commessages">>
+    <</switch>>
+    //
+<</widget>>
