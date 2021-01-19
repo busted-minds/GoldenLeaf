@@ -1,215 +1,75 @@
 :: kitchenvisualizer [widget nobr]
 
-/% Just some fors to display the stored food, nothing else.%/
+/% Just some for loops to display the stored food, nothing else.%/
 
-<<widget "fridgevisu">>
-    <<set _foodTypes to ["fruits", "meat", "vegetables", "liquids", "misc"]>>
+<<widget "foodVisu">>
+    <<if passage() is "fridge">>
+        <<set _foodTypes to ["fruits", "meat", "vegetables", "liquids", "misc"]>>
+    <<elseif passage() is "cupboard">>
+        <<set _foodTypes to ["generalIng"]>>
+    <<elseif passage() is "spicecabinet">>
+        <<set _foodTypes to ["spices"]>>
+    <</if>>
+    <<set _currPass to passage()>>
 
     <<for _ifv to 0; _ifv lt _foodTypes.length; _ifv++>>
         <fieldset id="fieldinline">
-            <legend style="text-transform:capitalize;"><<print _foodTypes[_ifv]>></legend>
-            <<switch _foodTypes[_ifv]>>
-                <<case "fruits">>
-                    <<if $fruits[0]>>
-                        <<for _ifs to 0; _ifs lt $fruits.length; _ifs++>>
-                            <<set _n to []>>
-                            <<set _foodnameF to $fruits[_ifs].name>>
-                            <<set _foodamountF to $fruits[_ifs].amount>>
-                            <<set _foodname to '"'+ _foodnameF +'"'>>
-                            <<set _foodhunger to $fruits[_ifs].hunger>>
-                            _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
-                            <br>
-                            <<for _j to 0; _j lt $fruits[_ifs].amount; _j++>>
-                                <<set _n.push(_j +1)>>
-                            <</for>>
-                            <<listbox "$moveAm">>
-                                <<optionsfrom _n>>
-                            <</listbox>>
-                            <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "fruits"; SugarCube.Engine.play(SugarCube.State.passage)`'>Amount to move</button>
-                            <br>
-                            <button class="macro-button smollbutt" @onclick='`wikifier("hunger", `+_foodhunger+`, `+_ifs+`, "fruits"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
-                            <br>
+            <legend style="text-transform:capitalize;"><<if _foodTypes.includes("generalIng")>>General Ingredients <<else>><<print _foodTypes[_ifv]>><</if>></legend>
+                <<set _fvFTName to State.getVar("$"+ _foodTypes[_ifv])>>
+                    
+                <<if _fvFTName[0]>>
+                    <<for _fvFT to 0; _fvFT lt _fvFTName.length; _fvFT++>>
+                        <<set _n to []>>
+                        <<set _foodnameF to _fvFTName[_fvFT].name>>
+                        <<set _foodamountF to _fvFTName[_fvFT].amount>>
+                        <<set _foodhunger to _fvFTName[_fvFT].hunger>>
+                        _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
+                        <br>
+                        <<for _j to 0; _j lt _fvFTName[_fvFT].amount; _j++>>
+                            <<set _n.push(_j +1)>>
                         <</for>>
-
-                    <<else>>
-                        Nothing to see here move on.
-                        
-                    <</if>>
-
-                <<case "meat">>
-                    <<if $meat[0]>>
-                        <<for _im to 0; _im lt $meat.length; _im++>>
-                            <<set _n to []>>
-                            <<set _foodnameF to $meat[_im].name>>
-                            <<set _foodamountF to $meat[_im].amount>>
-                            <<set _foodname to '"'+ _foodnameF +'"'>>
-                            _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
-                            <br>
-                            <<for _j to 0; _j lt $meat[_im].amount; _j++>>
-                                <<set _n.push(_j +1)>>
-                            <</for>>
-                            <<listbox "$moveAm">>
-                                <<optionsfrom _n>>
-                            <</listbox>>
-                            <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "meat"; SugarCube.Engine.play(SugarCube.State.passage)`'>Move to Kitchen Table</button>
-                            <br>
-                        <</for>>
-
-                    <<else>>
-                        Nothing to see here move on.
-                        
-                    <</if>>
-
-                <<case "vegetables">>
-                    <<if $vegetables[0]>>
-                        <<for _iv to 0; _im lt $vegetables.length; _iv++>>
-                            <<set _n to []>>    
-                            <<set _foodnameF to $vegetables[_iv].name>>
-                            <<set _foodamountF to $vegetables[_iv].amount>>
-                            <<set _foodname to '"'+ _foodnameF +'"'>>
-                            _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
-                            <br>
-                            <<for _j to 0; _j lt $vegetables[_iv].amount; _j++>>
-                                <<set _n.push(_j +1)>>
-                            <</for>>
-                            <<listbox "$moveAm">>
-                                <<optionsfrom _n>>
-                            <</listbox>>
-                            <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "vegetables"; SugarCube.Engine.play(SugarCube.State.passage)`'>Move to Kitchen Table</button>
-                            <br>
-                        <</for>>
-
-                    <<else>>
-                        Nothing to see here move on.
-                        
-                    <</if>>
-
-                <<case "liquids">>
-                    <<if $liquids[0]>>
-                        <<for _il to 0; _il lt $liquids.length; _il++>>
-                            <<set _n to []>>
-                            <<set _foodnameF to $liquids[_il].name>>
-                            <<set _foodamountF to $liquids[_il].amount>>
-                            <<set _foodname to '"'+ _foodnameF +'"'>>
-                            _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
-                            <br>
-                            <<for _j to 0; _j lt $liquids[_il].amount; _j++>>
-                                <<set _n.push(_j +1)>>
-                            <</for>>
-                            <<listbox "$moveAm">>
-                                <<optionsfrom _n>>
-                            <</listbox>>
-                            <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "liquids"; SugarCube.Engine.play(SugarCube.State.passage)`'>Move to Kitchen Table</button>
-                            <br>
-                        <</for>>
-                        
-                    <<else>>
-                        Nothing to see here move on.
-                        
-                    <</if>>
-
-                <<case "misc">>
-                    <<if $misc[0]>>
-                        <<for _imi to 0; _imi lt $meat.length; _imi++>>
-                            <<set _n to []>>
-                            <<set _foodnameF to $misc[_imi].name>>
-                            <<set _foodamountF to $misc[_imi].amount>>
-                            <<set _foodname to '"'+ _foodnameF +'"'>>
-                            _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
-                            <br>
-                            <<for _j to 0; _j lt $misc[_imi].amount; _j++>>
-                                <<set _n.push(_j +1)>>
-                            <</for>>
-                            <<listbox "$moveAm">>
-                                <<optionsfrom _n>>
-                            <</listbox>>
-                            <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "misc"; SugarCube.Engine.play(SugarCube.State.passage)`'>Move to Kitchen Table</button>
-                            <br>    
-                        <</for>>
-                        
-                    <<else>>
-                        Nothing to see here move on.
-                        
-                    <</if>>
-
-            <</switch>>
+                        <<listbox "$moveAm">>
+                            <<optionsfrom _n>>
+                        <</listbox>>
+                        <<capture _foodnameF _foodTypes[_ifv]>>
+                            <<button "Amount to move" _currPass>>
+                                <<storekitchentable _foodnameF _foodTypes[_ifv]>>
+                            <</button>>
+                        <</capture>>
+                        <br>
+                        <<if _foodTypes[_ifv] is "fruits" or _foodTypes[_ifv] is "vegetables">>
+                            <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_fvFT+`, \"`+_foodTypes[_ifv]+`\"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
+                        <</if>>
+                        <div class="thindiv"></div>
+                    <</for>>
+                <<else>>
+                    Nothing to see here move on.
+                    
+                <</if>>
         </fieldset>
         <br>
     <</for>>
-<</widget>>
-
-<<widget "cupboardvisu">>
-    <fieldset id="fieldinline">
-        <legend style="text-transform:capitalize;">Others</legend>
-        <<if $cupboard[0]>>
-            <<for _icb to 0; _icb lt $cupboard.length; _icb++>>
-                <<set _n to []>>
-                <<set _foodnameCB to $cupboard[_icb].name>>
-                <<set _foodamountCB to $cupboard[_icb].amount>>
-                <<set _foodname to '"'+ _foodnameCB +'"'>>
-                _foodnameCB <<if _foodamountCB gt 1 >> x _foodamountCB <</if>>
-                <br>
-                <<for _j to 0; _j lt $cupboard[_icb].amount; _j++>>
-                    <<set _n.push(_j +1)>>
-                <</for>>
-                <<listbox "$moveAm">>
-                    <<optionsfrom _n>>
-                <</listbox>>
-                <button class="macro-button"  @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "cupboard"; SugarCube.Engine.play(SugarCube.State.passage)`'>Amount to move</button>
-                <br>
-            <</for>>
-        <<else>>
-            Nothing to see here move on.
-        <</if>>
-    </fieldset>
-<</widget>>
-
-<<widget "spicecabvisu">>
-    <fieldset id="fieldinline">
-        <legend style="text-transform:capitalize;">Spices</legend>
-        <<if $spicecabinet[0]>>
-            <<for _isc to 0; _isc lt $spicecabinet.length; _isc++>>
-                <<set _n to []>>
-                <<set _foodnameSC to $spicecabinet[_isc].name>>
-                <<set _foodamountSC to $spicecabinet[_isc].amount>>
-                <<set _foodname to '"'+ _foodnameSC +'"'>>
-                _foodnameSC <<if _foodamountSC gt 1 >> x _foodamountSC <</if>>
-                <br>
-                <<for _j to 0; _j lt $spicecabinet[_isc].amount; _j++>>
-                    <<set _n.push(_j +1)>>
-                <</for>>
-                <<listbox "$moveAm">>
-                    <<optionsfrom _n>>
-                <</listbox>>
-                <button class="macro-button" @onclick='`SugarCube.State.variables.foodNOut = `+_foodname+`; SugarCube.State.variables.location = "spicecabinet"; SugarCube.Engine.play(SugarCube.State.passage)`'>Amount to move</button>
-                <br>
-            <</for>>
-        <<else>>
-            Nothing to see here move on.
-        <</if>>
-    </fieldset>
 <</widget>>
 
 <<widget "kitchentablevisu">>
     <fieldset id="fieldinline">
         <legend style="text-transform:capitalize;">Food</legend>
         <<set _recipeNameID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
-
+        <<set _defFood to ["meatfood", "fruits"]>>
         <<for _ikt to 0; _ikt lt $kitchentable.length; _ikt++>>
-            <<set _n to []>>
+            <<set _foodtypeKT to []>>
             <<set _foodnameKT to $kitchentable[_ikt].name>>
             <<set _foodamountKT to $kitchentable[_ikt].amount>>
-            <<set _foodtypeKT to $kitchentable[_ikt].foodtype>>
+            <<set _foodtypeKT.push($kitchentable[_ikt].foodtype)>>
             <<set _foodquality to $kitchentable[_ikt].quality>>
             <<set _foodhunger to $kitchentable[_ikt].hunger>>
                 
             _foodnameKT <<if _foodquality>> <<print "(" + _foodquality + ")">><</if>> <<if _foodamountKT gt 1 >> x _foodamountKT <</if>>
-            <<if _foodtypeKT is "preparedfood" or _foodtypeKT is "fruits">>
+            <<if _foodtypeKT.includesAny(_defFood)>>
                 <br>
-                <button class="macro-button smollbutt" @onclick='`wikifier("hunger", `+_foodhunger+`, `+_ikt+`, "kitchentable"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
+                <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_ikt+`, "kitchentable"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
             <</if>>
-
-            <br>
+            <div class="thindiv"></div>
         <</for>>
     </fieldset>
 <</widget>>

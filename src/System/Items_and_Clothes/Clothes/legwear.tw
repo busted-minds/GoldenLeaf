@@ -1,7 +1,6 @@
 :: legwear [widget nobr]
 
-<<widget "legwear">>
-
+<<widget "legwearIni">>
     <<set setup.clothes.legwear to [
         {
             id: 0,
@@ -14,12 +13,11 @@
             gender: "none",
             exposurelevel: 5
         },
-
         {
             id: 1,
             name: "Pantyhose",
             lowname: "pantyhose",
-            price: 30,
+            price: 20,
             state: "normal",
             description: "A pair of pantyhose",
             article: "a",

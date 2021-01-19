@@ -3,35 +3,34 @@ Config.history.controls = false;
 Config.history.maxStates = 1;
 
 // Credits to DoL for the wikifier.
-window.wikifier = function(widget, args, args2, args3){
-	if (args3 !== undefined){
-		new Wikifier(null, '<<'+ widget + ' ' + args + ' ' + args2 + ' ' + args3 + '>>');
-	}
-	else if(args2 !== undefined){
-		new Wikifier(null, '<<' + widget + ' ' + args + ' ' + args2 + '>>');
-	}
-	else if(args !== undefined){
-		new Wikifier(null, '<<' + widget + ' ' + args + '>>');
-	}
-	else if(args === undefined){
-		new Wikifier(null, '<<' + widget + '>>');
-	}
+window.wikifier = function (widget, args, args2, args3) {
+    if (args3 !== undefined) {
+        new Wikifier(null, `<<${widget} ${args} ${args2} ${args3}>>`);
+    }
+    else if (args2 !== undefined) {
+        new Wikifier(null, `<<${widget} ${args} ${args2}>>`);
+    }
+    else if (args !== undefined) {
+        new Wikifier(null, `<<${widget} ${args}>>`);
+    }
+    else if (args === undefined) {
+        new Wikifier(null, `<<${widget}>>`);
+    }
 };
 
-window.lastSaveVersion = 1;
-Config.saves.version = 1;
+window.updatedVersion = 1;
+(!Config.saves.version ? Config.saves.version = 1 : '');
 
-Config.saves.onLoad = function(save) {
-	if(Config.saves.version !== window.lastSaveVersion){
-		window.saveUpdate = true;
-		Config.saves.version = window.lastSaveVersion;
+Config.saves.onLoad = function () {
+    if (Config.saves.version !== window.updatedVersion) {
+        window.saveUpdate = true;
+        Config.saves.version = window.updatedVersion;
     }
-    location.reload();
 };
 
 var l = document.createElement('link');
 l.rel = "icon";
-l.href = "img/sidebar-icons/arousal.png";
+l.href = "img/others/Icon.png";
 l.type = "img/png";
 
 document.head.appendChild(l);
@@ -56,7 +55,7 @@ window.saveUpdate = true;
     var cls = 'disabled';
     var interactive = ['button', 'fieldset', 'input', 'menuitem', 'optgroup', 'option', 'select', 'textarea'];
 
-    function getEl (self) {
+    function getEl(self) {
         // get the first interactive element
         var $el = $(self).find(interactive.join(',')).first();
         if (!$el[0]) {
@@ -68,7 +67,7 @@ window.saveUpdate = true;
         return $el;
     }
 
-    function changeCls ($el) {
+    function changeCls($el) {
         if ($el.ariaIsDisabled()) {
             $el.addClass(cls);
         } else {
@@ -76,7 +75,7 @@ window.saveUpdate = true;
         }
     }
 
-    function disable ($el, bool) {
+    function disable($el, bool) {
         if (!($el instanceof $)) {
             $el = $($el);
         }
@@ -88,8 +87,8 @@ window.saveUpdate = true;
     // no need for JS API as there us a built-in jQuery extension
 
     Macro.add('disable', {
-        tags : null,
-        handler : function () {
+        tags: null,
+        handler: function () {
             var bool, $wrapper = $(document.createElement('span'))
                 .addClass('macro-' + this.name)
                 .wiki(this.payload[0].contents);

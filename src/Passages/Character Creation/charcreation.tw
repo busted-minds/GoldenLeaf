@@ -1,6 +1,8 @@
 :: charcreation1[nobr]
     /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
     /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
+    <<print $message>>
+    <<unset $message>>
     <fieldset class="charc">
         <legend>Character Creation</legend>
         
@@ -35,7 +37,7 @@
             <</listbox>>
         </ul>
 
-        @@.darkyellow;Select your preferred hobby:@@ ^^@@.red;Your hobby will positively affect your learning speed at it but negatively at others.@@^^
+        @@.darkyellow;Select your preferred hobby:@@ ^^@@.red;Your hobby will give a learning bonus to your selected skill.@@^^
         <ul>
             <<listbox "$hobby" autoselect>>
                 <<option "None" "joat">>
@@ -48,7 +50,14 @@
         </ul>
     </fieldset>
 
-    <<button "Continue" "charcreation2">><</button>>
+    <<button "Continue">>
+        <<if $playername isnot "Name" and $playersurname isnot "Surname">>
+            <<goto charcreation2>>
+        <<else>>
+            <<set $message to "@@.red;Your name/surname can't be the default one.@@">>
+            <<goto charcreation1>>
+        <</if>>
+    <</button>>
 
 :: charcreation2 [nobr]
     <<gendersetter>>
@@ -94,7 +103,7 @@
             @@.yellow;Select your clitoris size: @@
             <ul>
                 <<listbox "$playervar.clitorissize" autoselect>>
-                    <<option "Big" 1.8>>
+                    <<option "Medium" 1.2>>
                     <<option "Normal" 0.9>>
                     <<option "Small" 0.5>>
                     <<option "Tiny" 0.3>>
@@ -104,7 +113,7 @@
             @@.yellow;Select your nipple size: @@
             <ul>
                 <<listbox "$playervar.nipplesize" autoselect>>
-                    <<option "Big" 1.5>>
+                    <<option "Medium" 1.25>>
                     <<option "Normal" 0.95>>
                     <<option "Small" 0.48>>
                     <<option "Tiny" 0.24>>
@@ -142,7 +151,6 @@
         </fieldset>
 
     <<elseif $playervar.gender is "male">>
-
         <fieldset class="charc">
             <legend>Character Creation</legend>
 
@@ -215,97 +223,20 @@
     <<antrwidthsetter>>
     <<if $playervar.gender is "female">>
         <<femalesetter>>
+        <<set $playervar.sensibility += (($playervar.vagtightness + $playervar.anustightness)/2)>>
+        <<set $playervar.penissize to undefined>>
+        <<set $playervar.ballssize to undefined>>
+
     <<else>>
         <<malesetter>>
+        <<set $playervar.sensibility += $playervar.anustightness>>
+        <<set $playervar.breastsize to undefined>>
+        <<set $playervar.nipplesize to undefined>>
+        <<set $playervar.vagtightness to undefined>>
+        <<set $playervar.clitorissize to undefined>>
     <</if>>
 
-    <<set $playervar.sensibility += (($playervar.vagtightness + $playervar.anustightness)/2)>>
-
-    <fieldset class="charc">
-        <<bodystateColors>>
-        <legend class="centered"> Character Status </legend>
-
-        <fieldset class="charc">
-            <legend> General info: </legend>
-            Your name is @@.gold;<<print "$playername $playersurname">>@@,
-            you are a 
-            <<if $playervar.gender is "female">>
-                @@.pink;<<print $playervar.gender>>@@.
-
-            <<else>>
-                @@.lightblue;<<print $playervar.gender>>@@.
-
-            <</if>>
-            Currently your hair style is @@.orange;<<print $playerhairstyle>>@@.
-            <<if $playervar.gender is "male">>
-                <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
-                    And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ cm.
-                <</if>>
-            <</if>>
-            Your body sensibility is <<sensibilitychecker>>
-            Your body is @@.orange;<<print $playervar.height>>@@ and @@.orange;<<print $playervar.bodyshapestate>>@@ making you <span @class="$colorbs"><<print $bodystate>></span>.
-
-        </fieldset>
-
-        <fieldset class="charc">
-            <legend> Mouth info: </legend>
-            Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;hasn't been touched@@.<</if>><br>
-            Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects upto @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
-            It <<if $playervar.virginity.throat is true>>@@.green;hasn't had any object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
-        </fieldset>
-
-        <fieldset class="charc">
-            <legend> Arms info: </legend>
-            Your have a pair of <span @class="$colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;hasn't touched anything@@.<</if>>
-        </fieldset>
-
-        <<if $playervar.gender is "female">>
-
-            <<set $playervar.penissize to undefined>>
-            <<set $playervar.ballssize to undefined>>
-
-            <fieldset class="charc">
-                <legend>Breast info: </legend>
-                    You have a pair of <<breastsizechecker>> breast. They can hold @@.blue;<<print $playervar.breastmilkmaxlevel>>@@ ml of milk. Your breasts<<if $playervar.virginity.breast is true>> @@.green;hasn't been touched yet@@.<</if>>
-                    <br> 
-                    Each breast has <<nipplesizechecker>> nipple and they are @@.orange;<<print $playervar.nippletype>>@@. Their size is @@.blue;<<print $playervar.nipplesize>>@@ cm. Your nipples <<if $playervar.virginity.nipples is true>> @@.green;hasn't been touched yet@@. <</if>>
-            </fieldset>
-
-            <fieldset class="charc">
-                <legend>Genitals info: </legend>
-                    You have a vagina that has a <<vagtightnesschecker>> tightness. It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects upto @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;You are still virgin@@.<</if>>
-                    <<if $playervar.cansquirt is true>><br>@@.green;When you orgasm you expel liquids from it@@.<</if>> 
-                    <br>
-                    Your clitoris has a <<clitorissizechecker>>size and is @@.blue;<<print $playervar.clitorissize>>@@ cm in total. It <<if $playervar.virginity.clitoris is true>> @@.green;hasn't been touched yet@@. <</if>>
-            </fieldset>
-
-        <<elseif $playervar.gender is "male">>
-            <<set $playervar.breastsize to undefined>>
-            <<set $playervar.nipplesize to undefined>>
-            <<set $playervar.vagtightness to undefined>>
-            <<set $playervar.clitorissize to undefined>>
-
-            <fieldset class="charc">
-                <legend>Genitals info: </legend>
-                    You have a @@.orange;<<penissizechecker>>@@ penis, It's size is @@.blue;<<print $playervar.penissize>>@@ cm in length and @@.blue;<<print $playervar.peniswidth>>@@ cm width. <<if $playervar.virginity.penis is true>> @@.green;You are virgin@@.<</if>> 
-                    <br>
-                    Below it you have a pair of balls that are <<ballssizechecker>> and their size is @@.blue;<<print $playervar.ballssize>>@@ cm.
-            </fieldset>
-            
-        <</if>>
-
-        <fieldset class="charc">
-            <legend> Legs info: </legend>
-            You have a pair of <span @class="$colorbs"><<print $bodystate>></span> legs. They <<if $playervar.virginity.tights is true>> @@.green;hasn't been touched@@.<</if>>
-        </fieldset>
-
-        <fieldset class="charc">
-            <legend> Butt info: </legend>
-            Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;hasn't been touched@@.<</if>>
-            <br>
-            You have an anus that has a <<anustightnesschecker>> tightness, it has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects upto @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
-        </fieldset>
-    </fieldset>
+    <<charStatus>>
 
     <br>
     <<button "Change Selections" "charcreation2">><</button>>
@@ -316,27 +247,26 @@
     <<if $gamestarted eq 0>>
         <<set $gamestarted to 1>>
         <<set $disablernggod to false>>
-        <<set $bodyparts.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
+        <<set $bps.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
         <<if $playervar.gender is "female">>
-            <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
-            <<set $bodyparts.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
-            <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
-            <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
-            <<set $bodyparts.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
-            <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
-            <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
+            <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
+            <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
+            <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
+            <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
+            <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
+            <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
+            <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
             
         <<elseif $playervar.gender is "male">>
-            <<set $bodyparts.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
-            <<set $bodyparts.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
-            <<set $bodyparts.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
-            <<set $bodyparts.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
-            <<set $bodyparts.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
+            <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
+            <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
+            <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
+            <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
+            <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
 
         <</if>>
             
         <<hobbyselection>>
-
     <</if>>
     You are @@.orange;<<print "$playername $playersurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.
     <br>
@@ -348,21 +278,21 @@
     //* After what looks like an eternity (But where just 3 hours) *//
     <br>
     <br>
-
-    Finally got to your new house, you are in the front door and you scan your retina in the retina scanner and when you are about to open the door you get a message in your phone, it's from your parents.
+    Finally got to your new house it's pretty big from the outside, with the digital key in your phone you are about to open the front door when you get a message in your phone, it's from your parents. It's odd that you didn't got the message until now, maybe there were problems in the Network?.
     <br>
     <br>
-    // "@@.lightyellow;Hey @@@@.orange;<<print $playername>>@@@@.lightyellow;, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
+    // "@@.lightyellow;Hey <span class="orange"><<print $playername>></span>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
     <br>
-    <<timed 1s>> <<set $credits += 350>><<replace #credits>>$credits<</replace>>
-    @@.lightyellow;We transfered some money in your account so you can buy some food and maybe some clothes, you will need to clean the house as we haven't gone there since we started to live here. Oh, and please check if there is anything that needs to be repaired. That's all, bye and take care!@@"
-    // @@.yellow; +350 credits@@
+    <<timed 1s>> <<set $credits += 70>><<replace #credits>>$credits<</replace>>
+    @@.lightyellow;We transfered some money in your account so you can buy some food, you will need to clean the house as we haven't been there since we started to live here. Oh, probably there is something that needs to be repaired or changed so we bought a little gift for you, it's probably already at the house's front door. That's all, bye and take care!@@"
+    // @@.yellow; +70 credits@@
     <br>
     <br>
     <<next 250ms>>
-    After reading the message you put your phone in your pocket and open the door.
-
-    ~~''@@.red;You are about to start the game, you may join college [Not implemented] or start working [not implemented] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
+    After reading the message you take step inside and look around you there is place for an small garden or something here and at a corner of the front wall there was indeed a "small" gift;
+    A wardrobe, a bed, a table with a chair and a laptop on top, a sofa, a TV, some cookware and a box with personal use things like soap and shampoo and cleaning supplies, not exactly a small gift, this could've cost a fortune. 
+    After inspecting everything and unlocking the house's door you put the phone in your pocket and get in.
+    ~~''@@.red;You are about to start the game, you may join college [Not implemented. WIP] or start working [1 job implemented. WIP] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
     <br>
     <br>
     <<button "Enter the house" "prelivingroom">><</button>>
@@ -372,8 +302,8 @@
     <h2>House</h2>
     <div class="divisor"></div>
     <<if $finishL isnot true>>
-        @@#call1;As you get in the house and having a good look of it, you see that it's in pretty bad shape there are things that need to be fixed, others that needs to be replaced and rooms that needs to be cleaned, there is even a harder that may be good to clean after you think what to do with it.
-        Fortunately for you, there is water and even some supplies to clean it. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
+        @@#call1;As you get in the house and having a good look of it, you see that it's in pretty bad shape there are things that need to be fixed, others that needs to be replaced and rooms that needs to be cleaned.
+        Fortunately for you, there is water and even some supplies from the boxes. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
         @@#call;
         <br>
         <<button "Call father">>
@@ -388,9 +318,9 @@
                 <br>
                 <<timed 1500ms>>
                 - "@@.lightyellow;Hello, @@@@.orange;<<print $playername>>@@ @@.lightyellow;what happened, it's everything alright?@@"
-                <br><br>- @@.green;Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things.@@
-                <br><br>- "@@.lightyellow;It's really that bad? We tought that well, it wont be in a perfect state but atleast it would bein somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house. Check if they are still working please.@@"
-                <br><br>- @@.green;Thanks Dad, thanks! Call you later, bye.@@
+                <br><br>- @@.lightblue;Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things, oh and your little gift wasn't exactly that little, but thanks a lot, really.@@
+                <br><br>- "@@.lightyellow;No problem, we though that you will need those things so you can start your new left there but the house is really that bad? We tought that well, it wont be in a perfect state but atleast it would be in a somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house. Check if they are still working please.@@"
+                <br><br>- @@.lightblue;Thanks Dad! Call you later, bye.@@
                 <br><br>- "@@.lightyellow;Bye, @@@@.orange;<<print $playername>>@@ @@.lightyellow;take care.@@"
                 <<next 1s>>
                 <br>
@@ -408,13 +338,13 @@
                             <<timed 1500ms>>
                             <br>
                             - "@@.lightyellow;Hello HORECO Inc., how may I help you?@@"
-                            <br><br>- @@.green;Hello, I'm @@@@.orange;<<print "$playername $playersurname">>@@@@.green;. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
-                            <br><br>- "@@.lightyellow;Alright @@@@.orange;<<courtesy>> <<print $playersurname>>@@@@.lightyellow;, wait a moment please... Your dad is @@@@.orange;<<print "setup.dadname $playersurname">>@@?"
-                            <br><br>- @@.green;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
-                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that @@@@.orange;Mr.<<print $playersurname>>@@@@.lightyellow;was my dad's friend, he helped us a lot when we began this family company so in return I can't unfortunately help you free, but we can give you a big discount. Give me your direction and I'll send one of our employee ASAP.@@"
-                            <br><br>- @@.green;Great thanks a lot, give me a sec... Ready.@@
+                            <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$playername $playersurname">></span>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
+                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playersurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print "setup.dadname $playersurname">>@@?"
+                            <br><br>- @@.lightblue;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
+                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $playersurname>></span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
+                            <br><br>- @@.lightblue;Great thanks a lot, give me a sec... Ready.@@
                             <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course.@@"
-                            <br><br>- @@.green;Thank you very much, bye!.@@
+                            <br><br>- @@.lightblue;Thank you very much, bye!.@@
                             <br><br>- "@@.lightyellow;Bye.@@"
                             <br>
                             <<next 1600ms>>
@@ -433,10 +363,10 @@
                                         // <<type 75ms>>Ding Dong...<</type>>
                                         <<timed 1500ms>>
                                         <br><br>- "@@.lightyellow;Hello, I'm from HORECO Inc.@@"
-                                        <br><br>- @@.green;Wait a second, I'll open the door.@@
+                                        <br><br>- @@.lightblue;Wait a second, I'll open the door.@@
                                         <<next 1600ms>>
-                                        <br><br>- @@.green;Hello, I'm @@@@.orange;<<print $playername>>@@@@.green; go in please.@@
-                                        <br><br>- "@@.lightyellow;Alright @@@@.orange;<<courtesy>> <<print $playername>>@@@@.lightyellow;... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
+                                        <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print $playername>></span> go in please.@@
+                                        <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playername>></span>... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
                                         
                                         <<next 2s>>
                                         <<addminutes 15>>
@@ -444,8 +374,8 @@
                                             <<timedate>>
                                         <</replace>>
                                         <br>
-                                        <br><br>- "@@.lightyellow;I'm back, I left the robot already working. Checked everything and there a lot of things to fix and lucky for you, you got a big discount so it will be 250 credits. We'll finish in about 3 hours, the place will get dirty so you may need to clean after we finish.@@"
-                                        <br><br>- @@.green;Alright, thanks I'll transfer it in a second.@@
+                                        <br><br>- "@@.lightyellow;I'm back, I left the robot working. Checked everything and there were a lot of things to be fixed lucky for you, you got a big discount from my boss so it will be 250 credits. We'll finish in about 3 hours, the place will get a bit dirty so you may need to clean after we finish.@@"
+                                        <br><br>- @@.lightblue;Alright, thanks I'll transfer it in a second.@@
                                         //
                                         <<next 1s>>
                                         <<replace #call>>
@@ -471,33 +401,22 @@
                         <</replace>>
 
                     <</button>>
-                <</replace>>
-                
+                <</replace>>   
                 <</timed>>
             <</replace>>
 
         <</button>>
         @@
         <br>
-        @@#skip;<<button "Skip history" "prelivingroom">>
+        @@#skip;<<button "Skip" "prelivingroom">>
             <<remove #call1>>
             <<remove #call>>
             <<remove #skip>>
             <<set $finishL to true>>
-
-            <<addhours 5>>
-            <<addminutes 15>>
-            <<replace #timedate>>
-                <<timedate>>
-            <</replace>>
-
             <<set $clean to 0>>
             <<set $credits -= 250>>
-
-            <<replace #credits>>
-                $credits
-            <</replace>>
-
+            <<addhours 5>>
+            <<addminutes 15>>
         <</button>>@@
 
     <<elseif $finishL is true>>
@@ -505,24 +424,23 @@
             <<set $messageL to []>>
         <</if>>
         <<if $clean lt 7>>
-            Well the house is in a better shape, still need cleaning but is better than before. Unfortunately you don't have enough money to pay someone to clean the house and buy new things :(.
+            Well the house is in a better shape, still need cleaning but is better than before. Unfortunately you don't have enough money to pay someone to clean completely clean the house :(.
             <br>
         <</if>>
 
         <fieldset class="charc" id="FrontHouse">
             <legend>Front house</legend>
             <<if !$messageL[0]>>
-                The entrance of the house needs to be cleaned, it doesn't look that bad atleast but you don't want anyone to see it.
-                <<button "Clean the entrance of the house" "prelivingroom">>
+                The front of the house needs to be cleaned, it doesn't look that bad atleast but you don't want any visit to see it.
+                <<button "Clean the front of the house" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
                     <<set $messageL[0] to true>>
-        
                     <<set $clean +=1>>
 
                 <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
                 <br>
             <<else>>
-                @@.green;Now you can feel proud if someone looks at your house, because it looks somewhat decent(If you knew how it was before that is).@@
+                @@.green;Now you can feel proud if someone came to your house, because it looks somewhat decent.@@
             <</if>>
         </fieldset>
         <br>
@@ -534,7 +452,6 @@
                 <<button "Clean the livingroom" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
                     <<set $messageL[1] to true>>
-                    <<set $credits -= 5>>
                     <<set $clean +=1>>
 
                 <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
@@ -544,36 +461,32 @@
                 <<if !$messageL[2]>>
                     There is an old tv, who still use a 21 inch LED tv in this day and age?.
                     <br>
-                    <<button "Buy a new TV and install it" "prelivingroom">>
+                    <<button "Install the new TV" "prelivingroom">>
                         <<energyfun 15 3 10 "skilling" "handyman" 10>>
-                        <<set $credits -= 65>>
                         <<set $messageL[2] to true>>
 
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes -65 Credits@@
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes@@
                 
                 <<else>>
                     <br>
-                    @@.green;You bought the new tv and installed it, it's an Echelon Enterprise S.A QLED 36 inch TV, that's all you can afford and not run out of money.@@
-
+                    @@.green;You installed the new TV, it's an Echelon Enterprise S.A QLED 36 inch TV, that's all you can afford and not run out of money.@@
                 <</if>>
 
                 <<if !$messageL[3]>>
-                    The Horeco's employee told you that this sofa was beyond repair, so you will need to buy a new one.
+                    You will need to move the new sofa it to the living room it weighs so lets put those muscles to work.
                     <br>
                     <<button "Buy a new sofa" "prelivingroom">>
                         <<energyfun 15 3 15 "skilling" "handyman" 10>>
-                        <<set $credits -= 60>>
                         <<set $messageL[3] to true>>
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes -60 Credits@@
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes@@
 
                 <<else>>
                     <br>
-                    @@.green;You bought a new sofa, not that expensive but atleast you can sit in it a big difference from the one that was here before.@@
-
+                    @@.green;Hey you finally moved the sofa, got tired? Well you haven't finished move on.@@
                 <</if>>
             <</if>>
         </fieldset>
@@ -583,10 +496,8 @@
             <<if !$messageL[4]>>
                 This kitchen doesn't look that bad but it needs to be cleaned first tho. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
                 <br>
-                <<button "Clean the kitchen and buy cookware" "prelivingroom">>
+                <<button "Clean the kitchen and store the cookware" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                    <<set $credits -= 15>>
-                    <<set $kitchenclean to true>>
                     <<set $messageL[4] to true>>
                     <<set $clean +=1>>
 
@@ -601,18 +512,17 @@
         <fieldset class="charc" id="Bedroom">
             <legend>Bedroom</legend>
             <<if !$messageL[5]>>
-                The bedroom looks fine, a little empty but after you buy a bed, a wardrobe and a table with a chair it will be ready.
+                The bedroom looks fine, a little empty but after you install everything for it, it will be ready.
                 <br>
                 <<button "Clean the bedroom and settle in" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                    <<set $credits -= 120>>
                     <<set $messageL[5] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -120 Credits@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
             
             <<else>>
-                @@.green;You can sleep here, the bed isn't that good but it will work until you can afford a better one, your laptop is in the chair in case you want to use it. Your wardrobe is a pretty big one and it was cheap, what more do you want?.@@
+                @@.green;You can sleep here, the bed isn't that good but it was free so it will work until you can afford a better one, yournew  laptop is in the table in case you want to use it. The wardrobe was a hard work for sure, why do you want one so big? Well you didn't buy it but still...@@
             
             <</if>>
         </fieldset>
@@ -620,18 +530,17 @@
         <fieldset class="charc" id="Bathroom">
             <legend>Bathroom</legend>
             <<if !$messageL[6]>>
-                The bathroom is the best looking part of the house, needs some clean and supplies but nothing more.
+                The bathroom is the best looking part of the house, needs some clean.
                 <br>
-                <<button "Clean the bathroom and buy supplies" "prelivingroom">>
+                <<button "Clean the bathroom" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
-                    <<set $credits -= 40>>
                     <<set $messageL[6] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes -40 Credits@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
 
             <<else>>
-                @@.green;The bathroom is so clean that you can see your own reflection, you bought some soaps and shampoo.@@
+                @@.green;The bathroom is so clean that you can see your own reflection, some soaps and shampoos were in the boxes as well.@@
 
             <</if>>
         </fieldset>
@@ -642,6 +551,7 @@
                     <<set $bathrclean to true>>
                     <<set $bedroomclean to true>>
                     <<set $livingclean to true>>
+                    <<set $kitchenclean to true>>
                     <<unset $clean>>
                     <<unset $finishL>>
                     <<unset $messageL>>
@@ -649,4 +559,3 @@
             <</button>>
         <</if>>
     <</if>>
-

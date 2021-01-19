@@ -1,117 +1,81 @@
 :: preparationsteps [widget nobr]
-
+/* Just preparations steps and the button for it. I swear that one day I will find a way to "automate" this so I don't need to manually add each value to the case and the object. If you know how, please tell me :D.*/ 
 <<widget "preparationsteps">>
     <<switch $recipesteps[$steps]>>
         <<case "Cut into pieces" "Cut into julienne strips" "Fillet">>
             <<set _stepS to ["Cut into pieces", "Cut into julienne strips", "Fillet"]>>
+            <<buttons "s">>
 
-            <<for _i to 0; _i lt _stepS.length; _i++>>
-                <<capture _i>>
-                <<button _stepS[_i]>>
-                    <<if $recipesteps[$steps] is _stepS[_i]>>
-                        <<set $correctCount++>>
-
-                    <</if>>
-
-                    <<set $steps++>>
-                    <<set $preptime += 5>>
-                    <<if $steps gte $recipesteps.length>>
-                        <<foodpreparation>>
-                        <<goto "kitchentable">>
-
-                    <<else>>
-                        <<goto "preparation">>
-
-                    <</if>>
-
-                <</button>>
-                <</capture>>
-                <br>
-            <</for>>
-
-        <<case 5 7 10 15 30 >>
-            <<set _stepN to [5, 7, 10, 15, 30]>>
+        <<case 3 5 7 8 10 15 30 >>
+            <<set _stepN to [3, 5, 7, 8, 10, 15]>>
+            <<buttons "n">>
             
-            <<for _i to 0; _i lt _stepN.length; _i++>>
-                <<capture _i>>
-                <<button `"Cook " + _stepN[_i] + " minutes"`>>
-                    <<if $recipesteps[$steps] is _stepN[_i]>>
-                        <<set $correctCount++>>
-
-                    <</if>>
-
-                    <<set $steps++>>
-                    <<set $preptime += _stepN[_i]>>
-                    <<if $steps gte $recipesteps.length>>
-                        <<foodpreparation>>
-                        <<goto "kitchentable">>
-
-                    <<else>>
-                        <<goto "preparation">>
-            
-                    <</if>>
-
-                <</button>>
-                <</capture>>
-                <br>
-            <</for>>
         <<case 45 60 90 120 180>>
             <<set _stepN to [45, 60, 90, 120, 180]>>
-            <<set _minHour to " minutes">>
-            <<for _i to 0; _i lt _stepN.length; _i++>>
+            <<buttons "n">>
+
+        <<case "Clean and Prepare" "Clean">>
+            <<set _stepS to ["Clean and Prepare", "Clean"]>>
+            <<buttons "s">>
+            
+    <</switch>>
+<</widget>>
+
+<<widget "buttons">>
+    <<switch $args[0]>>
+        <<case "s">>
+            <<for _i to 0; _i lt _stepS.length; _i++>>
                 <<capture _i>>
+                    <<button _stepS[_i]>>
+                        <<if $recipesteps[$steps] is _stepS[_i]>>
+                            <<set $correctCount++>>
+
+                        <</if>>
+
+                        <<set $steps++>>
+                        <<set $preptime += 5>>
+                        <<if $steps gte $recipesteps.length>>
+                            <<foodpreparation>>
+                            <<goto "kitchentable">>
+
+                        <<else>>
+                            <<goto "preparation">>
+
+                        <</if>>
+
+                    <</button>>
+                <</capture>>
+                <br>
+            <</for>>
+        <<case "n">>
+            <<for _i to 0; _i lt _stepN.length; _i++>>
+                <<set _minHour to " minutes">>
                 <<if _stepN[_i] gte 60>>
                     <<set _minHour to " hour(s)">>
 
                 <</if>>
 
-                <<button `"Cook "+ (_stepN[_i] gte 60 ? _stepN[_i] / 60 : _stepN[_i]) + _minHour`>>
-                <<if $recipesteps[$steps] is _stepN[_i]>>
-                    <<set $correctCount++>>
-
-                <</if>>
-
-                <<set $steps++>>
-                <<set $preptime += _stepN[_i]>>
-                <<if $steps gte $recipesteps.length>>
-                    <<foodpreparation>>
-                    <<goto "kitchentable">>
-
-                <<else>>
-                    <<goto "preparation">>
-
-                <</if>>
-
-                <</button>>
-                <br>
-                <</capture>>
-            <</for>>
-
-        <<case "Clean and Prepare" "Clean">>
-            <<set _stepS to ["Clean and Prepare", "Clean"]>>
-
-            <<for _i to 0; _i lt _stepS.length; _i++>>
                 <<capture _i>>
-                <<button _stepS[_i]>>
-                <<if $recipesteps[$steps] is _stepS[_i]>>
-                    <<set $correctCount++>>
+                    <<button `"Cook " + _stepN[_i] + _minHour`>>
+                        <<if $recipesteps[$steps] is _stepN[_i]>>
+                            <<set $correctCount++>>
 
-                <</if>>
+                        <</if>>
 
-                <<set $steps++>>
-                <<set $preptime += 5>>
-                <<if $steps gte $recipesteps.length>>
-                    <<foodpreparation>>
-                    <<goto "kitchentable">>
+                        <<set $steps++>>
+                        <<set $preptime += _stepN[_i]>>
+                        <<if $steps gte $recipesteps.length>>
+                            <<foodpreparation>>
+                            <<goto "kitchentable">>
 
-                <<else>>
-                    <<goto "preparation">>
-            
-                <</if>>
+                        <<else>>
+                            <<goto "preparation">>
+                    
+                        <</if>>
 
-                <</button>>
-                <br>   
+                    <</button>>
                 <</capture>>
+            <br>
             <</for>>
     <</switch>>
 <</widget>>

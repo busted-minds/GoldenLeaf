@@ -1,7 +1,7 @@
 :: timesystem [widget nobr]
 
 /% This is just the time system, nothing to see go on. Its very easy. %/
-/% Credits to the internet, as I saw how to do this there and I don't remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth) %/
+/% Credits to the internet, as I saw how to do this there and I don't remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth :()) %/
 <<widget "addminutes">> /* Add minutes*/ 
     <<run $time.setUTCMinutes($time.getUTCMinutes() + $args[0])>>
 

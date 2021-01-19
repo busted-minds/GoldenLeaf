@@ -1,0 +1,83 @@
+:: clothes_replacer [widget nobr]
+/* These widgets are neraly the same as the one for the wardrobe. Just modified for the store. */
+<<widget "csShow">>
+    <<messager>>
+    <<if !$pressedlStore>>
+        <<set $pressedlStore to $args[1]>>
+    <</if>>
+    <br>
+        <div id="storeLinks" class="storeLinks">
+            <<storeLinks $args[0]>>
+        </div>
+        <div class="thindiv"></div>
+        <div id="storeContent">
+            <<showStoreIC $pressedlStore>>
+
+        </div>
+    <br>
+    <<button "Finish" "clothesstore">>
+        <<unset $pressedlStore>>
+    <</button>>
+<</widget>>
+
+<<widget "storeLinks">>
+    <div class="list">
+    <span style="font-size: 130%; margin-left: 5px;"> Category: </span>
+    <div id="insidelist">
+        <<switch $args[0]>>
+            <<case "Outerwear">>
+                <button class="macro-button" onclick="wikifier('storeContent', 'upperbouter', 'Outerwear')"><span @class="($pressedlStore is 'upperbouter' ? 'selected' : '')">Upper Body</span></button>
+                <br>
+                <button class="macro-button" onclick="wikifier('storeContent', 'lowerbouter', 'Outerwear')"><span @class="($pressedlStore is 'lowerbouter' ? 'selected' : '')">Lower Body</span></button>
+
+            <<case "Underwear">>
+                <button class="macro-button" onclick="wikifier('storeContent', 'upperbunder', 'Underwear')"><span @class="($pressedlStore is 'upperbunder' ? 'selected' : '')">Upper Body</span></button>
+                <br>
+                <button class="macro-button" onclick="wikifier('storeContent', 'lowerbunder', 'Underwear')"><span @class="($pressedlStore is 'lowerbunder' ? 'selected' : '')">Lower Body</span></button>
+                <br>
+                <button class="macro-button" onclick="wikifier('storeContent', 'legwear', 'Underwear')"><span @class="($pressedlStore is 'legwear' ? 'selected' : '')">Legwear</span></button>
+            
+            <<case "Footwear">>
+                <button class="macro-button" onclick="wikifier('storeContent', 'shoes', 'Footwear')"><span @class="($pressedlStore is 'shoes' ? 'selected' : '')">Shoes</span></button>
+                <br>
+                <button class="macro-button" onclick="wikifier('storeContent', 'footwear', 'Footwear')"><span @class="($pressedlStore is 'footwear' ? 'selected' : '')">Socks</span></button>
+        <</switch>>
+    </div>
+    </div>
+<</widget>>
+
+<<widget "storeContent">>
+    <<replace "#storeContent">>
+        <<showStoreIC $args[0]>>
+    <</replace>>
+    <<set $pressedlStore to $args[0]>>
+
+    <<replace "#storeLinks">>
+        <<storeLinks $args[1]>>
+    <</replace>>
+<</widget>>
+
+<<widget "showStoreIC">>
+    <<storeItemContent $args[0]>>
+    <div id="storeItemContent"></div>
+<</widget>>
+
+<<widget "storeItemContent">>
+    <<set _values to State.getVar("setup.clothes."+$args[0])>>
+    
+    <<for _j to 1; _j lt _values.length; _j++>>
+        <<set _exist to $wardrobeContent[$args[0]].findIndex(x => x.name === _values[_j].name)>>
+        <<set _existsc to $shoppingcart.findIndex(x => x.name === _values[_j].name)>>
+
+        <div class="list">
+            <div id="insidelist">
+                Name: @@.orange;<<print _values[_j].name>>@@ 
+                <br>
+                Price: @@.yellow;<<print _values[_j].price>> credits@@
+                <br>
+                <<pButton "clothstore">>
+            </div>
+        </div>
+        
+    <</for>>
+<</widget>>

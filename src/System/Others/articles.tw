@@ -4,7 +4,7 @@
 <<widget "clothesArticles">>
 
     <<if $args[0] and $args[1] and $args[2]>>
-       <<print $bodyparts[$args[0]][$args[2]][$args[1]].article>>
+       <<print $bps[$args[0]][$args[2]][$args[1]].article>>
     <</if>>
 
 <</widget>>

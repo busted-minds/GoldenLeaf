@@ -9,7 +9,7 @@
 <<widget "kitchenwidgets">>
     <<setfruits>>
     <<setspices>>
-    <<setothers>>
+    <<setgeneralIng>>
     <<setmeat>>
     <<setrecipes>>
     <<setprepfood>>
@@ -24,8 +24,8 @@
     <<set $misc to []>>
     <<set $learnedrecipes to []>>
         
-    <<set $spicecabinet to []>>
-    <<set $cupboard to []>>
+    <<set $spices to []>>
+    <<set $generalIng to []>>
     <<set $kitchentable to []>>
     <<set $selectedrecipe to null>>
     

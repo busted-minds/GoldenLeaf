@@ -1,0 +1,88 @@
+:: purchasewidget [widget nobr]
+
+<<widget "purchase">>
+    <h2>Cash register</h2>
+    <div class="divisor"></div>
+    <<set _total to 0>>
+    <<set _deleteAm to 0>>
+    <<messager>>
+    <br>
+    <div>
+    <<for _sci to 0; _sci lt $shoppingcart.length; _sci++>>
+        <<set _n to []>>
+        <div class="list">
+            <div id="insidelist">
+                Name: @@.orange;<<print $shoppingcart[_sci].name>>@@
+                <br>
+                <<if $args[0] is "grocerystore">>
+                    Amount: @@.blue;<<print $shoppingcart[_sci].amount>>@@
+                    <br>
+                    <<set _total += $shoppingcart[_sci].price * $shoppingcart[_sci].amount>>
+                    Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
+                    <br>
+                    <div class="thindiv"></div>
+                    @@.smollfont;Amount to remove:@@
+                    <<for _scj to 0; _scj lt $shoppingcart[_sci].amount; _scj++>>
+                        <<set _n.push(_scj +1)>>
+                    <</for>>
+                    <<listbox "_deleteAm">>
+                        <<optionsfrom _n>>
+                    <</listbox>>
+                    <button class="macro-button smollfont smollbutt" @onclick='`(SugarCube.State.variables.shoppingcart[`+_sci+`].amount > SugarCube.State.temporary.deleteAm ? SugarCube.State.variables.shoppingcart[`+_sci+`].amount -= SugarCube.State.temporary.deleteAm : SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`)); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
+                <<else>>
+                    <<set _total += $shoppingcart[_sci].price>>
+                    Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
+                    <br>
+                    <button class="macro-button smollfont smollbutt" @onclick='`SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
+                <</if>>
+            </div>
+        </div>
+    <</for>>
+    <br>
+    <div class="thindiv" style="margin-top: 5px;"></div>
+    Total to pay: @@.yellow;<<print _total>>@@ Credits
+    </div>
+    <br>
+    <<if $shoppingcart [0]>>
+        <<button "Confirm">>
+        /* You know, sometimes I hate myself because I don't comment my code. I understand them but it's just hard to explain it. Well here I go... 
+           It's just a button that checks if the player has enough money to buy everything and if the player has enough space in its backpack.
+        */
+            <<if $credits gte _total>>
+                <<if $bps.upperbody[5].primary.name is "Backpack">>
+                    <<if $shoppingcart.length gt $bps.upperbody[5].primary.maxitems>>
+                        <<set $message to "space">>
+                        <<goto "purchase">>
+
+                    <<else>>
+                        <<set $credits -= _total>>
+                        <<for _sci to 0; _sci lt $shoppingcart.length; _sci++>>
+                            <<set _find to $backpack.findIndex(x => x.name === $shoppingcart[_sci].name)>>
+
+                            <<if _find isnot -1 and $backpack[_find].name is $shoppingcart[_sci].name>>
+                                <<set $backpack[_find].amount += $shoppingcart[_sci].amount>>
+
+                            <<else>>
+                                <<set $backpack.push(clone($shoppingcart[_sci]))>>
+
+                            <</if>>
+                        <</for>>
+                        
+                        <<set _minut to ($shoppingcart.length * 2)>>
+                        <<timeattached _minut>>
+                        <<unset $shoppingcart>>
+                        <<set $message to "succPurch">>
+                        <<goto $args[0]>>
+
+                    <</if>>
+                <</if>>
+            <<else>>
+                <<set $message to "noCredits">>
+                <<goto "purchase">>
+            <</if>>
+
+        <</button>>@@.red; +<<print ($shoppingcart.length * 2)>> minutes@@
+    <</if>>
+    <<button "Back" $args[0]>><</button>>
+
+<</widget>>

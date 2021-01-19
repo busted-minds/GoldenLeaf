@@ -1,5 +1,5 @@
 :: courtesy [widget nobr]
-
+/* If you think that this need code comment. Check your priorities D:. */
 <<widget "courtesy">>
     <<switch $playervar.gender>>
         <<case "male">>

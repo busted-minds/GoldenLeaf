@@ -10,27 +10,27 @@
             hunger: 60,
             price: 15,
             exp: 10,
-            foodtype: "preparedfood"
+            foodtype: "meatfood"
         },
         {
             id: 1,
-            name: "Chicken Wings",
+            name: "Fried Chicken Wings",
             quality: "Normal",
             amount: 1,
             hunger: 50,
             price: 10,
             exp: 8,
-            foodtype: "preparedfood"
+            foodtype: "meatfood"
         },
         {
             id: 2,
-            name: "Chicken fillet",
+            name: "Chicken Fillet",
             quality: "Normal",
             amount: 1,
             hunger: 60,
             price: 15,
             exp: 11,
-            foodtype: "preparedfood"
+            foodtype: "meatfood"
         }
     ]>>
 

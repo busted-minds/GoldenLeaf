@@ -1,0 +1,56 @@
+:: wardrobemain[widget nobr]
+/* Wardrobe wear and undress widget.*/
+    <<widget "wearMain">>
+        <<set _wrSlot to $args[0]>>
+        <<set _itemID to $args[1]>>
+        <<set _bodyPart to $args[2]>>
+        <<set _bodyPIndex to $args[3]>>
+        <<set _itemSlot to $args[4]>>
+
+        <<if $wardrobeContent[_wrSlot][_itemID].gender is "neutral" or $wardrobeContent[_wrSlot][_itemID].gender is $playervar.gender>>
+            <<undressMain _bodyPart _bpIndex _itemSlot _wrSlot>>
+
+            <<set $bps[_bodyPart][_bpIndex][_itemSlot] to clone($wardrobeContent[_wrSlot][_itemID])>>
+            <<set $message to "@@.green;You put your <span class='orange'><<print '"+ $wardrobeContent[_wrSlot][_itemID].name +"'>></span> on.@@">>
+            <<set $wardrobeContent[_wrSlot].deleteAt(_itemID)>>
+
+        <<else>>
+            <<set $message to "@@.red;You can't wear <span class='orange'><<print '"+ $wardrobeContent[_wrSlot][_itemID].name +"'>></span>, they are not for your gender.@@">>
+
+        <</if>>
+
+    <</widget>>
+
+    <<widget "undressMain">>
+        <<set _bodyPart to $args[0]>>
+        <<set _bodySlot to $args[1]>>
+        <<set _itemsSlot to $args[2]>>
+        <<set _clothesSlot to $args[3]>>
+
+        /% Checks if the player is in the wardrobe, then it checks if the player isn't naked(because we can't remove our skin you know.) 
+           Then it undress the player.
+        %/
+        <<if passage() is "wardrobe">>
+            <<if $bps[_bodyPart][_bodySlot][_itemsSlot].lowname isnot "naked">>
+                <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
+                <<set $message to "@@.red;You remove your <span class='orange'><<print '"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"'>></span>.@@">>
+            <</if>>
+            <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+
+        <<else>>
+            <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+
+        <</if>>
+
+    <</widget>>
+
+/* Stores clothes inside the wardrobe, can be extended to any other "storage" that may exist in the future */
+    <<widget "storingClothes">>
+        <<for _isc to 0; _isc lt $backpack.length; _isc++>>
+            <<if $backpack[_isc].category>>
+                <<set $wardrobeContent[$backpack[_isc].category[1]].push(clone($backpack[_isc]))>>
+                <<set $backpack.deleteAt(_isc)>>
+
+            <</if>>
+        <</for>>
+    <</widget>>

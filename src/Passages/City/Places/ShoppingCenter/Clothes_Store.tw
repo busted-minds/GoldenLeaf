@@ -1,0 +1,42 @@
+:: clothesstore [nobr]
+    <h2>Clothes Store</h2>
+    <<if $shoppingcart is undefined>>
+        <<set $shoppingcart to []>>
+    <</if>>
+    <div class="divisor"></div>
+    <<messager>>
+    <<if visited() is 1>>
+    After seeing a big announcement outside the store, you get in. It seems that they sell shirts, blouses, pants, skirts, shoes and even underwear. There is a girl attending the store.
+    <<else>>
+    You are inside the Clothes Store.There is a girl attending the store.
+    <</if>>
+    <br>
+    <<button "Outerwear" "outerwear">><</button>>
+    <br>
+    <<button "Underwear" "underwear">><</button>>
+    <br>
+    <<button "Footwear" "footwear">><</button>>
+    <br>
+    <br>
+    <<if $shoppingcart[0] isnot undefined>>
+        <<button "Purchase Items" "cspurchase">><</button>>
+    <<else>>
+        <<button "Go out" "shoppingcenter">><<unset $shoppingcart>><</button>>
+    <</if>>
+
+:: outerwear [nobr]
+    <h2>Outerwear</h2>
+    <div class="divisor"></div>
+    <<csShow "Outerwear" "upperbouter">>
+
+:: underwear [nobr]
+    <h2>Underwear</h2>
+    <div class="divisor"></div>
+    <<csShow "Underwear" "upperbunder">>
+
+:: footwear [nobr]
+    <h2>Footwear</h2>
+    <<csShow "Footwear" "shoes">>
+
+:: cspurchase [nobr]
+    <<purchase "clothesstore">>

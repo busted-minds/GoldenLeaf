@@ -53,8 +53,8 @@
         <</if>>
         <<unset $message>>
         <<unset $location>>
-
-    <</button>>
+        <<timeattached 8>>
+    <</button>>@@.red; +8 min@@
 
 :: masturbutton [widget nobr]
 

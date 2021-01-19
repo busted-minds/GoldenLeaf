@@ -1,14 +1,38 @@
 :: frozenjar [nobr]
     <h2 class="blue">Frozen Jar</h2>
     <div class="divisor"></div>
-    <span id="aW">
-    You are inside @@.blue;Frozen Jar@@, a restaurant-bar. It's a pretty cozy place their tables and chairs made of wood or some material that looks alike placed with some space between them so that it doesn't look or feel all tight, there are large windows facing the street giving good lightning. Their walls give a feeling of warmth and lightness. 
+    <<messager>>
+    /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) "lore" or story it's just not my forte. */
+    You are inside @@.blue;Frozen Jar@@, a restaurant-bar.
+    <<if visited() is 1>> 
+        It's a pretty cozy place their tables and chairs made of wood or some material that looks alike placed with some space between them so that it doesn't look or feel all tight, there are large windows facing the street giving good lightning. 
+        The place give a feeling of warmth and lightness. 
+        As you open the door, you see an asian girl with @@.black;long black hair@@ and a petite frame focused on cleaning some tables and chairs. The place is pretty empty maybe they are opening?.
+        <br>
+    <</if>>
+    There is a sign showing the food available today.
+    <<if $hunger gt 0>>
+        <br>
+        <br>
+        <<button "Buy and eat some food(WIP)" "frozenjar">>
+            <<if $credits gte 8>>
+                <<set $credits -= 8>>
+                <<timeattached 10>>
+                <<eatFood 60>>
+            <<else>>
+                <<set $message to "noCredits">>
+            <</if>>
+        <</button>>@@.green; -60 hunger,@@@@.red; -8 credits, +10 min.@@
+    <</if>>
     <br>
     <<if $playerjob.place is "frozenjar" and !$workedhours>>
+        <<set _totalEU to $playerjob.hoursreq * $playerjob.energyused>>
         <br>
         You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working on some tables and serving food to the costumers.
         <br>
-        <<button "Start Working" "work">><</button>>
+        <<disable $energy lt _totalEU>>
+            <<button "Start Working" "work">><</button>> 
+        <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~
         <br>
     <<elseif $playerjob.place is undefined>>
         <<if $playerdeniedjob is "frozenjar">>
@@ -17,10 +41,7 @@
             <br>
             <br>
             - @@.lightblue;You denied the contract not too long ago. Come back later to see if it's available.@@
-        <<elseif not hasVisited("employing")>>
-            <br>
-            As you open the door, you see an asian girl with @@.black;long black hair@@ and a petite frame focused on cleaning some tables and chairs. The place is pretty empty maybe they are opening?.
-            <br>
+        <<elseif !hasVisited("employing")>>
             <br>
             Try to approach her to see if she can give you work.
             <br>
@@ -50,7 +71,6 @@
         <br>
     <</if>>
     <<button "Go Out" "pioneerlane">><</button>>
-    </span>
 
 :: employing [nobr]
     <h2><<print setup.frozenjar.ownerName>>'s Office</h2>
@@ -229,7 +249,6 @@
     <<else>>
         <<set $workedhours++>>
     <</if>>
-
     <<if $workedhours eq $playerjob.hoursreq>>
         You finished your working hours. Congrats you did a lot of nothing! :D
         <<timed 3s>>
@@ -237,13 +256,16 @@
         <</timed>>
 
     <<elseif $workedhours lt $playerjob.hoursreq>>
-        <<set _workinghour to $playerjob.hoursreq / $playerjob.hoursreq>>
+        <<print "Hours left: " + ($playerjob.hoursreq - $workedhours)>>
+        <br>
+        <<set _workinghour to 1>>
         There would be some kind of development if it existed. But it doesn't so there you go, a funny weird meme (Or that what the link says).
         <br>
         [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
         <br>
         <<button `"Work " + _workinghour + " hour(s)"` "work">>
                 <<timeattached `_workinghour*60`>>
+                <<energy -$playerjob.energyused>>
                 <<payment _workinghour>>
         <</button>>
 

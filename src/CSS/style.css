@@ -1,10 +1,10 @@
 /* Colors */
 	.yellow {
-		color: #ffff4d;
+		color: #fbf665;
 	}
 
 	.darkyellow {
-		color: #ffcc00;
+		color: #d0902f;
 	}
 
 	.lightyellow {
@@ -24,7 +24,7 @@
 	}
 	
 	.red {
-		color: #f10d0d;
+		color: #A10500;
 	}
 
 	.darkred {
@@ -33,31 +33,31 @@
 
 	.lightred
 	{
-		color: lightcoral;
+		color: #ff577d;
 	}
 
 	.greenyellow{
-		color: greenyellow;
+		color: #defe47;
 	}
 
 	.green {
-		color: #48e618;
+		color: #20D065;
 	}
 
 	.lightgreen{
-		color: #caf7ad;
+		color: #ffe69d;
 	}
 
 	.blue {
-		color: #47a6ff;
+		color: #0a9cf5;
 	}
 
 	.lightblue {
-		color: lightskyblue;
+		color: #89e3f6;
 	}
 
 	.orange {
-		color: #da9d2d;
+		color: #ff6e27;
 	}
 
 	.lightorange {
@@ -65,21 +65,20 @@
 	}
 
 	.gray {
-		color: gray;
+		color: #b7c1de;
 	}
 
 	.darkpink {
-		color: #ff6f8c;
+		color: #ff2a6d;
 	}
 
 	.pink {
-		color: #ffc0cb;
+		color: #ffccdc;
 	}
 
 	.graypink {
 		color: #ac9ea1;
 	}
-
 
 	.purple {
 		color: #ca3eca;
@@ -99,7 +98,7 @@
 
 /* Not colors */
 	.charc {
-		border: 1px solid gray;
+		border: 1px solid #383e65;
 		border-radius: 5px;
 		padding-left: 15px;
 		text-align: left;
@@ -107,6 +106,9 @@
 		background-color: #1b1b1b;
 	}
 
+	body{
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
 
 	.centered {
 		margin-left: 40%;
@@ -125,29 +127,41 @@
 		margin-top: 5px;
 	}
 
-	.macro-button, #menu ul {
+	.macro-button, #menu ul, .delete, .load, .save, #saves-export, #saves-import, #saves-clear {
 		width: 100%;
 		font-size: 120%;
 		max-width: 280px;
-		border: 2px solid black;
-		background-color: #3b3b3b;
+		border: 2px solid #575267;
+		background-color: #222035;
 		border-radius: 5px;
 		margin-top: 5px;
 		margin-bottom: 5px;
 
 	}
 
-	.smollbutt {
-		max-width: 3.8em !important; 
+	button:disabled {
+		background-color: #191827;
+		border: 2px solid #454152;
+	}
+
+	select, input {
+		border: 1px solid #454152;
+	}
+
+	span.wardrobeBttns button{
+		max-width: 4.7em !important; 
+		max-height: 4em !important;
+		font-size: 100% !important;
+	}
+
+	.med-button{
+		max-width: 7em !important; 
 		max-height: 4em !important;
 	}
 
-	#smoll-buttonid{
-		width: 100%;
-		max-width: 4.6em;
-		border: 2px solid black;
-		background-color: #3b3b3b;
-		border-radius: 5px;
+	.smollbutt {
+		max-width: 4.9em !important; 
+		max-height: 4em !important;
 	}
 
 	#menu li a {
@@ -157,8 +171,9 @@
 	#menu li a:after {
 		content:"/Load Game";
 	}
-	.macro-button:hover, #wardrobeLink:hover, #smoll-buttonid:hover{
-		background-color: #444;
+
+	.macro-button:hover, .delete:hover, .load:hover, .save:hover, #saves-export:hover, #saves-import:hover, #saves-clear:hover {
+		background-color: #191827;
 		border-color: #eee;
 	}
 
@@ -198,33 +213,19 @@
 
 	.divisor {
 		border-radius: 3px;
-		border: 2px solid slategray;
+		border: 2px solid #6287f8;
 	}
 
 	.macro-button:focus {
-		background-color: #444;
-		color: greenyellow;
+		background-color: #191827;
+		color: #65dc98;
 	}
 
-	.selected {
-		color: greenyellow;
-		background-color: #444 !important;
-	}
-
-	#Link {
-		width: max-content;
-		padding: 10px;
-		max-width: 200px;
-		background-color: #3b3b3b;
-		border: 2px solid black;
+	.selected{
+		color: #65dc98;
 		border-radius: 5px;
-		display: inline-block;
-		font-weight: bold;
-		margin: 5px;
-		
 	}
 	
-
 	#wardrobeLinks{
 		display: inline-block;
 	}
@@ -234,7 +235,7 @@
 	}
 
 	.info {
-		border: 1px solid lightslategray;
+		border: 1px solid #383e65;
 		border-radius: 5px;
 		background-color: #1b1b1b;
 		padding-left: 5px;
@@ -244,7 +245,7 @@
 
 	#fieldinline {
 		display: inline-block;
-		border: 1px solid lightslategray;
+		border: 1px solid #383e65;
 		background-color: #1b1b1b;
 		border-radius: 5px;
 	}
@@ -258,18 +259,18 @@
 		width: 75%;
 		margin-left: 13%;
 		border-radius: 20px;
-		border: 1px solid black;
+		border: 1px solid #01012b;
 	  }
 	  
 	#bar {
-		background-color: lightgreen;
+		background-color: #1afe49;
 		height: 20px;
 		border-radius: 20px;
 	  }
 
 	.list {
-		display: inline-flex;
-		border: 1px solid lightslategray;
+		display: inline-block;
+		border: 1px solid #383e65;
 		border-radius: 5px;
 		background-color: #1b1b1b;
 		max-width: 17em;
@@ -288,19 +289,48 @@
 
 	.thindiv {
 		border-radius: 3px;
-		border: 1px solid slategray;
+		border: 1px solid #73fffe;
 		margin-bottom: 4px;
 	}
 
 	.sbIcons {
 		height: 40px;
 		vertical-align: middle;
+		margin-bottom: 5px;
 	}
 
 	rect.map:hover {
-		stroke:cyan;
+		stroke: #00ff37;
 	}
 
 	rect {
 		fill-opacity: 0;
+	}
+
+	.textshining {
+			position: relative;
+			overflow: hidden;
+			background: linear-gradient(90deg, #ff2a6d, #fff, #ff2a6d);
+			background-repeat: no-repeat;
+			background-size: 80%;
+			animation: tsAnimate 7s linear infinite;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: #ff6f8c59;
+		  }
+		  
+	@keyframes tsAnimate {
+		0% {
+			background-position: -500%;
+		}
+		100% {
+			background-position: 500%;
+		}
+	}
+
+	#logo {
+		max-width: 500px;
+		max-height: 250px;
+		width: 100%;
+		height: 100%;
 	}

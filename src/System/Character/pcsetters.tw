@@ -1,4 +1,4 @@
-:: pccreation [widget nobr]
+:: pcsetters [widget nobr]
 
 /% Character creation widgets and things that can or can't change later. %/
 <<widget "gendersetter">>
@@ -275,27 +275,21 @@
 	<</if>>
 
 	<<if $playervar.penissize eq 25>>
-		<<set $playervar.sensibility += 6>>
 		<<set $playervar.peniswidth to 6.5>>
 
 	<<elseif $playervar.penissize gte 22>>
-		<<set $playervar.sensibility += 5>>
 		<<set $playervar.peniswidth to 5.5>>
 
 	<<elseif $playervar.penissize gte 18>>
-		<<set $playervar.sensibility += 4>>
 		<<set $playervar.peniswidth to 4.5>>
 		
 	<<elseif $playervar.penissize gte 12>>
-		<<set $playervar.sensibility += 3>>
 		<<set $playervar.peniswidth to 3.5>>
 
 	<<elseif $playervar.penissize gte 5>>
-		<<set $playervar.sensibility += 2>>
 		<<set $playervar.peniswidth to 2.5>>
 
 	<<elseif $playervar.penissize gte 3>>
-		<<set $playervar.sensibility += 1>>
 		<<set $playervar.peniswidth to 1.5>>
 
 	<</if>>
@@ -401,20 +395,19 @@
 
 <<widget "hobbyselection">>
 	<<switch $hobby>>
-		<<case "joat">>
-			<<set $programminglearning to 1.2>>
-			<<set $cookinglearning to 1.2>>
-			<<set $gardeninglearning to 1.2>>
-			<<set $artlearning to 1.2>>
-			<<set $athleticlearning to 1.2>>
-
 		<<case $hobby>>
 			<<set _skill to '$'+$hobby+'skill'>>
 			<<set _learning to '$'+$hobby+'learning'>>
 			
 			<<set State.setVar(_skill, 2)>>
-			<<set _amount to (State.getVar(_learning) + (State.getVar(_skill) * 0.40))>>
-			<<set State.setVar(_learning, _amount)>>
+			<<set State.setVar(_learning, 2)>>
+			
+		<<default>>
+			<<set $programminglearning to 1.2>>
+			<<set $cookinglearning to 1.2>>
+			<<set $gardeninglearning to 1.2>>
+			<<set $artlearning to 1.2>>
+			<<set $athleticlearning to 1.2>>
 
 	<</switch>>
 

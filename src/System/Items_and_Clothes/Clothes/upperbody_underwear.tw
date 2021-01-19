@@ -1,6 +1,6 @@
 :: upperbody_underwear [widget nobr]
 
-<<widget "upperb_underwear">>
+<<widget "upperb_underwearIni">>
 
     <<set setup.clothes.upperbunder to [
         {
@@ -20,7 +20,7 @@
             id: 1,
             name: "Bra",
             lowname: "bra",
-            price: 15,
+            price: 10,
             state: "normal",
             description: "A normal bra",
             article: "a",

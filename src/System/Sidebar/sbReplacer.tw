@@ -33,7 +33,7 @@
 
 				<<case "iteminfo">>
 					<<replace #popUpContent>>
-						<<iteminfo>>
+						<<iteminfo $args[1] $args[2]>>
 					<</replace>>
 
 					<<replace #popUpBottom>>

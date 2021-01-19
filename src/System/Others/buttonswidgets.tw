@@ -1,0 +1,39 @@
+:: buttonswidgets [widget nobr]
+
+<<widget "pButton">> /* Some buttons for purchasing items. The first one is for grocery items and the second one for "unique" purchases (Limited to one, or in the case of clothes 2 :)). */
+    <<switch $args[0]>>
+        <<case "grocery">>
+            <button class="macro-button smollfont" 
+            @onclick='`(`+_exist+` !== -1 && SugarCube.State.variables.shoppingcart[`+_exist+`].name == SugarCube.State.temporary.foodlist[`+_i+`].name ? SugarCube.State.variables.shoppingcart[`+_exist+`].amount += 1 : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.foodlist[`+_i+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
+            Add to shopping cart
+            </button>
+
+        <<case "clothstore">>
+            <button class="macro-button smollfont" 
+            @onclick='`(`+_exist+` !== -1 || `+_existsc+` !== -1 ? SugarCube.State.variables.message = "bought" : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.values[`+_j+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
+            Add to shopping cart
+            </button>
+
+    <</switch>>
+<</widget>>
+
+<<widget "cleaningb">> /* This is a magic button. It knows everything by its args. That's all you need to know ;). */
+    <<set _name to $args[0]>>
+    <<set _exp to $args[1]>>
+    <<set _e to $args[2]>>
+    <<set _f to $args[3]>>
+    <<set _t to $args[4]>>
+    <<set _p to passage()>>
+    <<set _varN to "$" + $args[5]>>
+
+    <<button _name _p>>
+        <<if $energy gte 10>>
+            <<run State.setVar(_varN, true)>>
+            <<energyfun _e _f _t "skilling" "handyman" _exp>>
+
+        <<else>>
+            <<set $message to "noEnergy">>
+        <</if>>
+
+    <</button>>@@.green.smollfont; +<<print (_exp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -_e Energy -_f Fun +_t Minutes@@
+<</widget>>

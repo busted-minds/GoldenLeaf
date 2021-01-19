@@ -3,11 +3,10 @@
 /% Just some wardrobelinks that are put as a <a> to use them as functions and so the "game" can remember what was pressed when you leave the passage or refreshes%/
 /% Credits to DoL.%/
 <<widget "wardrobeLinks">>
-    <fieldset id="fieldinline">
+    <fieldset id="fieldinline" style="min-width: 17.1em;">
         <legend style="font-size: 130%;">Clothes</legend>
-        <a id="Link" @class="($pressedlink is 'upperbody' ? 'selected' : '')" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')">Upper Body</a>
-        <a id="Link" @class="($pressedlink is 'lowerbody' ? 'selected' : '')" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')">Lower Body</a>
-    
+        <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
+        <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
     </fieldset>
 
     /%<fieldset id="fieldinline">
@@ -18,7 +17,6 @@
 <</widget>>
 
 /% This replaces some divs in the wardrobe passage and makes it remember what link was pressed.%/
-
 <<widget "wardrobeCCReplacer">>
     <<switch $args[0]>>
         <<case "clothes">>
@@ -38,7 +36,7 @@
             <</switch>>
 
             <<replace "#wardrobeLinks">>
-                <<wardrobeLinks "clothes">>
+                <<wardrobeLinks>>
             <</replace>>
 
     <</switch>>
@@ -49,7 +47,7 @@
 <<widget "showWardrobeCC">>
     <<switch $args[0]>>
         <<case "upperbody">>
-            <fieldset id="fieldinline">
+            <fieldset id="fieldinline" style="min-width: 10em;">
                 <legend style="font-size: 115%;"> Upper Body </legend>
                 <<wardrobeItemsContent "upperbody">>
                 <div id="wardrobeItemsContent"></div>
@@ -57,7 +55,7 @@
             </fieldset>
 
         <<case "lowerbody">>
-            <fieldset id="fieldinline">
+            <fieldset id="fieldinline" style="min-width: 10em;">
                 <legend style="font-size: 115%;"> Lower Body </legend>
                 <<wardrobeItemsContent "lowerbody">>
                 <div id="wardrobeItemsContent"></div>
@@ -78,13 +76,11 @@
 <<widget "wardrobeItemsContent">>
     <<switch $args[0]>>
         <<case "upperbody">>
-            <<set _wearID to "upperbodyID">>
             <<set _body to "upperbody">>
             <<set _wardrobeSlot to ["upperbouter", "upperbunder"]>>
             <<set _categories to ["Outerwear", "Underwear"]>>
         
         <<case "lowerbody">>
-            <<set _wearID to "lowerbodyID">>
             <<set _body to "lowerbody">>
             <<set _wardrobeSlot to ["lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
             <<set _categories to ["Outerwear", "Underwear", "Legwear", "Footwear", "Shoes"]>>
@@ -116,21 +112,39 @@
 
         <</switch>>
 
-        <<if $bodyparts[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
-            <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = "undress"; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.Engine.play(SugarCube.State.passage)`'> Undress</button>
+        <<if $bps[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
+            <span class="wardrobeBttns">
+                <<capture _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
+                    <<button "Undress" "wardrobe">>
+                        <<undressMain _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
+                    <</button>>
+                <</capture>>
+            </span>
         <</if>>
         </div>
         <div class="divisor"></div>
 
         <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
-            <<set _itemContent to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
-            <<set _esItemContent to '"' + _itemContent + '"'>>
-            <<set _esSlot to '"' + _wardrobeSlot[_i] + '"'>>
+            <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
             
-            <<print _itemContent>> <button id="smoll-buttonid" @onclick='`SugarCube.State.variables.`+ _wearID +` = `+ _j +`; SugarCube.State.variables.itemSlot = \"`+ _itemSlot +`\"; SugarCube.State.variables.wardrobeSlot = \"`+ _wardrobeSlot[_i] +`\"; SugarCube.State.variables.bodypartIndex = `+ _bpIndex +`; SugarCube.Engine.play(SugarCube.State.passage)`'>Wear</button> 
-                                   <button id="smoll-buttonid" @onclick='`SugarCube.State.temporary.itemName = `+ _esItemContent +`; SugarCube.State.temporary.slot = `+ _esSlot +`; wikifier("replacer", "iteminfo")`'>Info</button>
+            <<print _itemContentN>> 
+            <span class="wardrobeBttns">
+                <br>
+                <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
+                    <<button "Wear" "wardrobe">>
+                        <<wearMain _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
+                    <</button>>
+                <</capture>>
+                
+                <<capture _itemContentN _wardrobeSlot[_i]>>
+                    <<button "Info">>
+                        <<replacer "iteminfo" _itemContentN _wardrobeSlot[_i]>>
+                    <</button>>
+                <</capture>>
+            </span>
             <br>
         <</for>>
+        <div class="thindiv"></div>
 
     <</for>>
 

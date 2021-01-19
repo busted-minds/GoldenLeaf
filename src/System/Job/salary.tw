@@ -12,6 +12,7 @@
             place: "frozenjar",
             name : "waiter/waitress",
             payment : 5,
+            energyused: 5,
             hoursreq : 4,
             daysreq : 5,
             expreq : 4 * 30,

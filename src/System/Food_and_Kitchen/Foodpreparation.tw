@@ -1,5 +1,7 @@
 :: foodpreparation [widget nobr]
 
+/* Note to myself: Remember to write the comments after you have finished these widgets. Because is a PITA to write them. Fuck. */
+/*These are just some for loops to check if the kitchen table has the ingredients of the selected recipe.*/
 <<widget "selectrecipe">>
     <fieldset id="fieldinline">
         <legend><<print $selectedrecipe>></legend>
@@ -8,8 +10,8 @@
         <<set _eingredID to 0>>
         <<set $ingCount to 0>>
             
-        Main ingredients needed:<<for _i to 0; _i lt setup.recipes[_recipeNameID].rawingredients.length; _i++>>
-            <<set _ingredientN to setup.recipes[_recipeNameID].rawingredients[_i]>>
+        Main ingredients needed:<<for _i to 0; _i lt setup.recipes[_recipeNameID].reqingredients.length; _i++>>
+            <<set _ingredientN to setup.recipes[_recipeNameID].reqingredients[_i]>>
             <<set _foodnameID to $kitchentable.findIndex(x => x.name === _ingredientN)>>
 
             <<if $kitchentable[_foodnameID]>>
@@ -18,15 +20,15 @@
                 <</if>>
             <</if>>
 
-            <<if _ingredID eq setup.recipes[_recipeNameID].rawingredients.length - 1>>
+            <<if _ingredID eq setup.recipes[_recipeNameID].reqingredients.length - 1>>
                 <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span>.
                 <<set _ingredID++>>
 
-            <<elseif _ingredID eq setup.recipes[_recipeNameID].rawingredients.length - 2>>
+            <<elseif _ingredID eq setup.recipes[_recipeNameID].reqingredients.length - 2>>
                 <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span> and
                 <<set _ingredID++>>
 
-            <<elseif _ingredID lt setup.recipes[_recipeNameID].rawingredients.length>>
+            <<elseif _ingredID lt setup.recipes[_recipeNameID].reqingredients.length>>
                 <span @class="($kitchentable[_foodnameID] isnot undefined ? ($kitchentable[_foodnameID].name is _ingredientN ? 'green' : '') : 'orange')"><<print _ingredientN>></span>,
                 <<set _ingredID++>>
                     
@@ -89,7 +91,7 @@
 
         <</for>>
         <br>
-        <<if $ingCount eq setup.recipes[_recipeNameID].rawingredients.length and !_tempKitchenTable>>
+        <<if $ingCount eq setup.recipes[_recipeNameID].reqingredients.length and !_tempKitchenTable>>
             <<button `"Prepare " + $selectedrecipe`>>
                 <<if $energy gte 15>>
                     <<goto "preparation">>
@@ -99,7 +101,7 @@
                 <</if>>
             <</button>>
 
-        <<elseif $ingCount eq setup.recipes[_recipeNameID].rawingredients.length and _defIngredCount is true>>
+        <<elseif $ingCount eq setup.recipes[_recipeNameID].reqingredients.length and _defIngredCount is true>>
             <<button `"Prepare " + $selectedrecipe`>>
                 <<if $energy gte 15>>
                     <<goto "preparation">>
@@ -113,14 +115,15 @@
 
 <</widget>>
 
+/* Here is where the magic happens part 1. It finds and delete the ingredient then per ingredient added it counts to the next magic part. */
 <<widget "foodpreparation">>
-    <<set _rawIngredients to []>>
+    <<set _reqingredients to []>>
     <<set _extraIngredients to []>>
     <<set $ingCount to 0>>
     <<set $defExist to 0>>
 
     <<set _recipeNameID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
-    <<set _rawIngredients to setup.recipes[_recipeNameID].rawingredients>>
+    <<set _reqingredients to setup.recipes[_recipeNameID].reqingredients>>
     <<set _extraIngredients to setup.recipes[_recipeNameID].extraingredients>>
     <<if setup.recipes[_recipeNameID].defingredients>>
         <<set _defIngredients to []>>
@@ -137,10 +140,10 @@
         <<set $defExist to 1>>
     <</if>>
 
-        <<for _iri to 0; _iri lt _rawIngredients.length; _iri++>>
-            <<set _foodID to $kitchentable.findIndex(x => x.name === _rawIngredients[_iri])>>
+        <<for _iri to 0; _iri lt _reqingredients.length; _iri++>>
+            <<set _foodID to $kitchentable.findIndex(x => x.name === _reqingredients[_iri])>>
 
-            <<if _foodID isnot -1 and $kitchentable[_foodID].name is _rawIngredients[_iri]>>
+            <<if _foodID isnot -1 and $kitchentable[_foodID].name is _reqingredients[_iri]>>
                 <<set $kitchentable.deleteAt(_foodID)>>
                 <<set $ingCount++>>
             
@@ -171,7 +174,12 @@
 
         <<foodready>>
 <</widget>>
-
+ /* Here is where the magic happens part 2. It checks if the correct count (If you followed the steps as the recipe says) and assigns a quality, a price and a hunger value. 
+    In the case that the recipe has a defining ingredient it adds a "with" to their name.
+    It stores the new "prepared food" in a temporary kitchen table, makes all changes to it and then add it to the kitchen table.
+    Checking if any item inside it has the same name, quality, price and hunger value. If it does then the amount values goes up. Meaning that you can eat it more than 1 time.
+    Everything else is self explatanory I think.
+ */
 <<widget "foodready">>
     <<set _stepsL to setup.recipes[_recipeNameID].steps.length>>
     <<set _minskill to setup.recipes[_recipeNameID].minskill>>
@@ -181,19 +189,19 @@
 
     <<if $correctCount lte _stepsL -3 and $cookingskill gte _minskill>>
         <<set _quality to "Mediocre">>
-        <<if $ingCount gte _rawIngredients.length + _extraIngredients.length + $defExist>>
+        <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 0.75>>
             <<set _bonus to 1.16>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -1>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -1>>
             <<set _pMult to 0.72>>
             <<set _bonus to 1.22>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -2>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -2>>
             <<set _pMult to 0.69>>
             <<set _bonus to 1.28>>
 
-        <<elseif $ingCount lte (_rawIngredients.length + _extraIngredients.length + $defExist) -3>>
+        <<elseif $ingCount lte (_reqingredients.length + _extraIngredients.length + $defExist) -3>>
             <<set _pMult to 0.66>>
             <<set _bonus to 1.32>>
         
@@ -201,19 +209,19 @@
 
     <<elseif $correctCount eq _stepsL -2 and $cookingskill gte _minskill>>
         <<set _quality to "Normal">>
-        <<if $ingCount gte _rawIngredients.length + _extraIngredients.length + $defExist>>
+        <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1>>
             <<set _bonus to 1>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -1>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -1>>
             <<set _pMult to 0.98>>
             <<set _bonus to 1.02>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -2>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -2>>
             <<set _pMult to 1.19>>
             <<set _bonus to 1.04>>
 
-        <<elseif $ingCount lte (_rawIngredients.length + _extraIngredients.length + $defExist) -3>>
+        <<elseif $ingCount lte (_reqingredients.length + _extraIngredients.length + $defExist) -3>>
             <<set _pMult to 1.2>>
             <<set _bonus to 1.06>>
         
@@ -221,19 +229,19 @@
 
     <<elseif $correctCount eq _stepsL -1 and $cookingskill gte _minskill or $correctCount eq _stepsL and $cookingskill gte _minskill>>
         <<set _quality to "Good">>
-        <<if $ingCount gte _rawIngredients.length + _extraIngredients.length + $defExist>>
+        <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1.25>>
             <<set _bonus to 0.95>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -1>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -1>>
             <<set _pMult to 1.22>>
             <<set _bonus to 0.97>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -2>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -2>>
             <<set _pMult to 1.19>>
             <<set _bonus to 0.99>>
 
-        <<elseif $ingCount lte (_rawIngredients.length + _extraIngredients.length + $defExist) -3>>
+        <<elseif $ingCount lte (_reqingredients.length + _extraIngredients.length + $defExist) -3>>
             <<set _pMult to 1.2>>
             <<set _bonus to 1.01>>
         
@@ -241,19 +249,19 @@
 
     <<elseif $correctCount gte _stepsL and $cookingskill gt _recskill>>
         <<set _quality to "Masterpiece">>
-        <<if $ingCount gte _rawIngredients.length + _extraIngredients.length + $defExist>>
+        <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1.5>>
             <<set _bonus to 0.90>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -1>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -1>>
             <<set _pMult to 1.4>>
             <<set _bonus to 0.92>>
 
-        <<elseif $ingCount eq (_rawIngredients.length + _extraIngredients.length + $defExist) -2>>
+        <<elseif $ingCount eq (_reqingredients.length + _extraIngredients.length + $defExist) -2>>
             <<set _pMult to 1.3>>
             <<set _bonus to 0.94>>
 
-        <<elseif $ingCount lte (_rawIngredients.length + _extraIngredients.length + $defExist) -3>>
+        <<elseif $ingCount lte (_reqingredients.length + _extraIngredients.length + $defExist) -3>>
             <<set _pMult to 1.2>>
             <<set _bonus to 0.96>>
         
@@ -292,6 +300,8 @@
     <<addexp "cooking" _exp>>
 
     <<timeattached $preptime>>
+    <<set _ener to Math.round($preptime * 0.5)>>
+    <<energy -_ener>>
     <<unset $defExist>>
     <<unset $ingCount>>
     <<unset $steps>>
@@ -300,6 +310,7 @@
     <<unset $preptime>>
 <</widget>>
 
+/* Just some recipe selection widget :D. */
 <<widget "recipeselection">>
     <<listbox "$selectedrecipe" autoselect>>
         <<option "Select a recipe" undefined>>
@@ -307,3 +318,5 @@
 
     <</listbox>>
 <</widget>>
+
+/* Twenty dollars is twenty dollars. */

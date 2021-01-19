@@ -23,7 +23,7 @@
         <legend>Misc</legend>
         <<button "Change clothes" "wardrobe">><</button>>
         <br>
-        <<button "Approach the window" "window">><</button>>
+        <<disable>><<button "Approach the window" "window">><</button>><</disable>>
     </fieldset>
     <br>
     <br>
@@ -49,25 +49,25 @@
     <h2>Sleep</h2>
     <div class="divisor"></div>
     <br>
-    <<button "Sleep 2 hours" "bed">><<recoverenergy 40>><<sleep>><<timeattached 120 true>><</button>> @@.green; +40 energy@@
+    <<button "Sleep 2 hours" "bed">><<energy 40>><<sleep>><<timeattached 120 true>><</button>> @@.green; +40 energy@@
     <br>
-    <<button "Sleep 4 hours" "bed">><<recoverenergy 60>><<sleep>><<timeattached 240 true>><</button>> @@.green; +60 energy@@
+    <<button "Sleep 4 hours" "bed">><<energy 60>><<sleep>><<timeattached 240 true>><</button>> @@.green; +60 energy@@
     <br>
-    <<button "Sleep 6 hours" "bed">><<recoverenergy 80>><<sleep>><<timeattached 360 true>><</button>> @@.green; +80 energy@@
+    <<button "Sleep 6 hours" "bed">><<energy 80>><<sleep>><<timeattached 360 true>><</button>> @@.green; +80 energy@@
     <br>
-    <<button "Sleep 8 hours" "bed">><<recoverenergy 100>><<sleep>><<timeattached 480 true>><</button>> @@.green; +100 energy@@
+    <<button "Sleep 8 hours" "bed">><<energy 100>><<sleep>><<timeattached 480 true>><</button>> @@.green; +100 energy@@
     <br>
 
     <h2>Relax</h2>
     <div class="divisor"></div>
     <br>
-    <<button "Relax 5 minutes" "bed">><<recoverenergy 2>><<timeattached 5>><</button>> @@.green; +2 energy@@
+    <<button "Relax 5 minutes" "bed">><<energy 2>><<timeattached 5>><</button>> @@.green; +2 energy@@
     <br>
-    <<button "Relax 15 minutes" "bed">><<recoverenergy 6>><<timeattached 15>><</button>> @@.green; +6 energy@@
+    <<button "Relax 15 minutes" "bed">><<energy 6>><<timeattached 15>><</button>> @@.green; +6 energy@@
     <br>
-    <<button "Relax 30 minutes" "bed">><<recoverenergy 14>><<timeattached 30>><</button>> @@.green; +14 energy@@
+    <<button "Relax 30 minutes" "bed">><<energy 14>><<timeattached 30>><</button>> @@.green; +14 energy@@
     <br>
-    <<button "Relax 1 hour" "bed">><<recoverenergy 24>><<timeattached 60>><</button>> @@.green; +24 energy@@
+    <<button "Relax 1 hour" "bed">><<energy 24>><<timeattached 60>><</button>> @@.green; +24 energy@@
     <br>
     <br>
     <<button "Go back" "bedroom">><</button>>
@@ -75,9 +75,12 @@
 :: wardrobe [nobr]
     <h2>Wardrobe</h2>
     <div class="divisor"></div>
-
-    <<wardrobeWandU>>
-    <br>
+    <<storingClothes>>
+    <<if $message>>
+        <<print $message>>
+        <br>
+        <<unset $message>>
+    <</if>>
     <div>
         <div id="wardrobeLinks">
             <<wardrobeLinks>>
@@ -85,16 +88,13 @@
 
         <div id="wardrobeContent">
             <<showWardrobeCC $pressedlink>>
-
         </div>
-
-
     </div>
     <br>
     
-    <<button "Close the wardrobe" "bedroom">><</button>>
-    <br>
-    <<button "Use the mirror" "mirror">><</button>>
+    <<button "Close the wardrobe" "bedroom">><<unset $pressedlink>><</button>>
+    /%<br>
+    <<button "Use the mirror" "mirror">><</button>>%/
 
 :: mirror
 
@@ -108,8 +108,7 @@
         <<energyfun 2 5 5 "videogames">>
     <</button>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
     <br>
-    <<button "Search cooking recipes" "learnrecipes">>
-    <</button>>
+    <<button "Open WaterDog Browser" "browser">><</button>>
     <br>
     <<if $hobby is "programming" or $programmingskill is 2>>
         <<button "Practice programming" "computer">>
@@ -117,42 +116,16 @@
         <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
     <</if>>
     <br>
-    <<button "Masturbate" "masturbate">>
-        <<set $location to passage()>>
-    <</button>>
-    <br>
     <br>
     <<button "Get up" "bedroom">><</button>>
 
-:: learnrecipes [nobr]
-<<if $cookingskill lte 5 and visited() is 1>>
-    You found some recipes in a webpage called "Cook-ing for Newbies".
-
-    <<button "Click on the link" "learnrecipes">><</button>>
-<<else>>
-    <h2>Cook-ing for Newbies</h2>
+:: browser [nobr]
+    <h2>WaterDog Browser</h2>
     <div class="divisor"></div>
-    <<messager>>
-    //Welcome to Cook-ing for Newbies, where you can learn some useful recipes so you can delight your family, or yourself if you are a loner.
-    <br>
-    Are you interested in some Chicken Wings? Or maybe some easy-to-make pizza? Then this is your place! Scroll down to see our recommended recipes!
-    ~~@@.red;We use an AI system to learn your preferences, if you are concerned about your privacy please __click here__. By continuing to use site, you are agreeing to the COMPLETELY NON-INVASIVE terms regarding your privacy.@@~~
-    <br>
-    <br>
 
-    <<for _i to 0; _i lt setup.recipes.length; _i++>>
-        <<set _recipeName to setup.recipes[_i].name>>
-        <<set _minskill to setup.recipes[_i].minskill>>
-        <<set _recskill to setup.recipes[_i].recskill>>
-        <<set _findLearned to $learnedrecipes.findIndex(x => x === _recipeName)>>
-        <<if _findLearned is -1>>
-            <<disable  _minskill > $cookingskill>><button class="macro-button" @id='``+ _recipeName +``' @onclick='`(SugarCube.State.variables.cookingskill lt `+ _minskill +` ? SugarCube.State.variables.message = "skillLvlLearnReq" : SugarCube.State.variables.learnedrecipes.push(\"`+ _recipeName +`\")); SugarCube.Engine.play(SugarCube.State.passage);`'>Learn <<print _recipeName>></button><</disable>>
-            @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'orange');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'orange');">_recskill</span>@@
-            <br>
-        <<else>>
-            <<print $learnedrecipes[_findLearned]>>
-        <</if>>
-    <</for>>
+    <<button "Search cooking recipes" "learnrecipes">><</button>>
+    <br>
+    <<masturbutton>>
+    <br>
     <br>
     <<button "Close Browser" "computer">><</button>>
-<</if>>

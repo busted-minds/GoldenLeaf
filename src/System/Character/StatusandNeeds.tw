@@ -1,13 +1,9 @@
 :: statusnneeds [widget nobr]
 
-<<widget "recoverenergy">>
-    <<if $args[0] lt $maxenergy>>
-        <<set $energy += $args[0]>>
+<<widget "energy">> /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn't, and arriving at a position that it wasn't, it now is.*/
+    <<set $energy + $args[0]>>
 
-    <<elseif $args[0] gte $maxenergy>>
-        <<set $energy to $maxenergy>>
-
-    <</if>>
+    <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 <</widget>>
 
 <<widget "energyfun">> /% The args need to be asigned as 0= Energy that will be used. 1= Fun that will be used. 2= Minutes that will be added. 3= Activity(skilling or not). %/
@@ -132,11 +128,11 @@
 <</widget>>
 
 <<widget "timeattached">> /% It's pretty self explanatory I think. 0=Case of minutes or hours. 1=Amount of minutes or hours. %/
-    <<set _mult to 0.25>>
+    <<set _mult to 0.20>>
     <<set _sleeping to $args[1]>>
 
     <<if _sleeping is true>>
-        <<set _mult to 0.12>>
+        <<set _mult to 0.10>>
     <</if>>
     
     <<set $hunger += Math.round($args[0] * _mult)>>
@@ -151,7 +147,7 @@
 
 <</widget>>
 
-<<widget "hunger">>/%The args need to be assigned as 0= Value to be used to satisfy hunger. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
+<<widget "eatFood">>/%The args need to be assigned as 0= Value to be used to satisfy hunger. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
     <<set _value to $args[0]>>
     <<set _foodID to $args[1]>>
     <<set _location to $args[2]>>
@@ -184,3 +180,5 @@
     <</if>>
 
 <</widget>>
+
+/* Who are you, who is so wise in the ways of science */

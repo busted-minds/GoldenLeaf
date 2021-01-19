@@ -1,0 +1,21 @@
+:: foodshow [widget nobr]
+
+<<widget "foodshow">>
+    <<set _foodlist to State.getVar("setup.food."+ $args[0])>>
+    <br>
+    <<for _i to 0; _i lt _foodlist.length; _i++>>
+        <<set _exist to $shoppingcart.findIndex(x => x.name === _foodlist[_i].name)>>
+        <div class="list">
+            <div id="insidelist">
+                Name: @@.orange;<<print _foodlist[_i].name>>@@ 
+                <br>
+                Price: @@.yellow;<<print _foodlist[_i].price>> credits@@
+
+                <<pButton "grocery">>
+            </div>
+        </div>
+    <</for>>
+    <br>
+    <br>
+    <<button "Back" "grocerystore">> <</button>>
+<</widget>>

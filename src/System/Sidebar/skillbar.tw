@@ -1,6 +1,10 @@
 :: skillbar [widget nobr]
-
-<<widget "skillbar">>
+/* If you you think that I know what I've done here, oh boy you are so wrong.
+   Or maybe not. It uses the getvar so it can concatenate the skill name to the "$". Making it more easy and doesn't need to write it manually for each skill.
+   Saved me like 80 lines of code (Maybe they where 20 but shhhhh).
+   The _skillname and _skillexpN length needs to be always the same number.
+*/
+<<widget "skillbar">> 
     <<set _skillname to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
     <<set _skillexpN to ["prog", "cook", "gard", "art", "athletic", "weightl", "handym"]>>
     
@@ -18,7 +22,7 @@
 
 <</widget>>
 
-<<widget "progressbar">>
+<<widget "progressbar">> /* This is the progress bar. A pretty bar I tell you. With some green color and shit. Please refer to SugarCube Doc if you don't know what @id does. I didn't know but now I do :D */
     <<set _expval to $args[0]>>
     <<set _expleftval to $args[1]>>
     <<set _skill to $args[2]>>

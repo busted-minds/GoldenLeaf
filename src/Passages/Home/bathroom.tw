@@ -70,21 +70,3 @@
     <br>
     <br>
     <<button "Get out" "bathroom">><</button>>
-
-:: bathroomclean [widget nobr]
-    <<widget "bathrclean">>
-        <<if !$bathrclean>>
-            @@.lightblue;You will need to clean your room and fix the bed before using it.@@
-            <br>
-            <<set _givexp to 7>>
-            <<button "Clean the bathroom" "bathroom">>
-                <<if $energy gte 10>>
-                    <<set $bathrclean to true>>
-                    <<energyfun 13 8 12 "skilling" "handyman" _givexp>>
-                <<else>>
-                    <<set $message to "noEnergy">>
-                <</if>>
-            <</button>>@@.green.smollfont; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -13 Energy -8 Fun +12 Minutes@@
-            <br>
-        <</if>>
-    <</widget>>

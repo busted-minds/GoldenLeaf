@@ -2,7 +2,7 @@
 
 <<widget "bodyparts">>
 
-    <<set $bodyparts.head to [
+    <<set $bps.head to [
         { 
             id: 0,
             bodypart: "face",
@@ -32,7 +32,7 @@
         }
     ]>>
 
-    <<set $bodyparts.upperbody to [
+    <<set $bps.upperbody to [
         {
             id: 0,
             bodypart: "torso",
@@ -76,7 +76,7 @@
         }
     ]>>
 
-    <<set $bodyparts.genitals to [
+    <<set $bps.genitals to [
         {
             id: 0,
             bodypart: "vagina",
@@ -106,7 +106,7 @@
         }
     ]>>
 
-    <<set $bodyparts.lowerbody to [
+    <<set $bps.lowerbody to [
         {
             id: 0,
             bodypart: "lowerbody",

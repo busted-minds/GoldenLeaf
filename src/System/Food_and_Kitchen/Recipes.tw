@@ -18,12 +18,13 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         <<set _foodnameS.push(setup.food.spices[_i].name)>>
     <</for>>
 
-    <<for _i to 0; _i lt setup.food.others.length; _i++>>
+    <<for _i to 0; _i lt setup.food.generalIng.length; _i++>>
         /%IDs: Rice = 0
                Pasta = 1
                Salt = 2
+               Flour = 3
         %/
-        <<set _foodnameO.push(setup.food.others[_i].name)>>
+        <<set _foodnameO.push(setup.food.generalIng[_i].name)>>
     <</for>>
 
     /%<<for _i to 0; _I lt setup.food.fruits.length; _i++>>
@@ -37,30 +38,33 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         {
             id: 0,
             name: "Chicken Rice",
-            rawingredients: [_foodnameO[0], _foodnameM[0]],
+            reqingredients: [_foodnameO[0], _foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
+            mastery: "newbie",
             minskill: 2,
             recskill: 3,
-            steps: ["Clean","Cut into pieces", 5, 60]
+            steps: ["Clean","Cut into pieces", 3, 10]
         },
         {
             id: 1,
-            name: "Chicken fillet",
-            rawingredients: [_foodnameM[0]],
+            name: "Chicken Fillet",
+            reqingredients: [_foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
             defingredients: [_foodnameO[0], _foodnameO[1]],
+            mastery: "newbie",
             minskill: 3,
             recskill: 4,
             steps: ["Fillet", "Clean and Prepare", 7, 10]
         },
         {
             id: 2,
-            name: "Chicken Wings",
-            rawingredients: [_foodnameM[1]],
+            name: "Fried Chicken Wings",
+            reqingredients: [_foodnameM[1], _foodnameO[3]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
+            mastery: "newbie",
             minskill: 1,
             recskill: 2,
-            steps: ["Clean and Prepare", 15]
+            steps: ["Clean and Prepare", 8]
         }
     ]>>
 

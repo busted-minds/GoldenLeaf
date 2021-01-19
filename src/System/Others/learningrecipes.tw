@@ -1,0 +1,85 @@
+:: learnrecipsteps [nobr]
+    <h2>Cook-ing for Newbies</h2>
+    <div class="divisor"></div>
+    To make $selectedrecipe you need to follow these steps:
+    <<set _rID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+    <<set _steps to setup.recipes[_rID].steps>>
+    <br>
+    <br>
+        <<switch $selectedrecipe>> /* Tried to make it more easy to automate but didn't got it working. Couldn't "personalize" it enought to how I liked :(). */
+            <<case setup.recipes[0].name>>/% Chicken Rice %/
+                1- Carefully @@.green;clean@@ the Chicken Breast, removing any remnants that may exist.
+                <br>
+                2- @@.green;Cut it into cubes or pieces@@. Remember to add salt and pepper to your liking!.
+                <br>
+                3- Add the chicken in to a pot and let it brown for about @@.green;<<print _steps[2]>> minutes@@.
+                <br>
+                4- Finally, add one cup of rice to the pot. Let it cook for about @@.green;<<print _steps[3]>> minutes@@. Add salt and seasoning to your taste.
+                <br>
+                Remember that per cup of rice you need to add 2 cups of water.
+            <<case setup.recipes[1].name>>/% Chicken Fillet %/
+                1- @@.green;Fillet@@ the chicken breast.
+                <br>
+                2- @@.green;Clean and prepare@@ it, adding salt and pepper to taste.
+                <br>
+                3- You may use @@.green;rice or pasta@@. Assuming that you used pasta and the water was already preheated cook it for @@.green;7 minutes@@ or to be al dente. Same time for rice, assuming you are using one cup of rice per 2 cups of water. Remember to add salt and/or pepper!.
+                <br>
+                4- The last step is to cook the chicken fillet for about @@.green;10 minutes@@. Add the pasta or rice(that you cooked previously).
+
+            <<case setup.recipes[2].name>>/% Chicken Wings %/
+                1- First @@.green;clean and prepare@@ the Chicken Wings, adding salt and seasoning to taste.
+                <br>
+                2- Prepare the flour adding cornstarch, salt, pepper and any other seasoning that you have. Coat the wings in the flour mixture, let it rest while you heat the oil.
+                <br>
+                3- In preheated oil, fry the wings for about @@.green;8 minutes@@ turning them halfway.
+                <br>
+                4- Serve and eat them! :).
+
+        <</switch>>
+        <br>
+        <br>
+        Congratulations! Now you have learned how to cook <<print $selectedrecipe>>.
+        <br>
+        <<button "Finish" "learnrecipes">>
+            <<timeattached 5>>
+            <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
+            <<unset $selectedrecipe>>
+        <</button>>@@.red; +5 minutes@@
+
+:: learnrecipes [nobr]
+    /* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little "checker" for skill requirements.*/
+    <<if $cookingskill lte 5 and visited() is 1>>
+        You found some recipes in a webpage called "Cook-ing for Newbies".
+
+        <<button "Click on the link" "learnrecipes">><</button>>
+    <<else>>
+        <h2>Cook-ing for Newbies</h2>
+        <div class="divisor"></div>
+        <<messager>>
+        //Welcome to Cook-ing for Newbies, where you can learn some useful recipes so you can delight your family, or yourself if you are a loner.
+        <br>
+        Are you interested in some Chicken Wings? Or maybe some easy-to-make pizza? Then this is your place! Scroll down to see our recommended recipes!
+        ~~@@.red;We use an AI system to learn your preferences, if you are concerned about your privacy please __click here__. By continuing to use site, you are agreeing to the COMPLETELY NON-INVASIVE terms regarding your privacy.@@~~//
+        <br>
+        <br>
+
+        <<for _i to 0; _i lt setup.recipes.length; _i++>>
+            <<set _recipeName to setup.recipes[_i].name>>
+            <<set _minskill to setup.recipes[_i].minskill>>
+            <<set _recskill to setup.recipes[_i].recskill>>
+            <<set _findLearned to $learnedrecipes.findIndex(x => x === _recipeName)>>
+            <<if _findLearned is -1>>
+                <<disable  _minskill gt $cookingskill>>
+                    <<capture _recipeName>>
+                        <<button `"Learn " + _recipeName` "learnrecipsteps">>
+                            <<set $selectedrecipe to _recipeName>>
+                        <</button>>
+                    <</capture>>
+                <</disable>>
+                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'orange');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'orange');">_recskill</span>@@
+                <br>
+            <</if>>
+        <</for>>
+        <br>
+        <<button "Close tab" "browser">><</button>>
+    <</if>>

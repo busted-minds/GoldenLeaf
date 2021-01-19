@@ -1,6 +1,6 @@
 :: upperbody_outerwear [widget nobr]
 
-<<widget "upperb_outerwear">>
+<<widget "upperb_outerwearIni">>
 
     <<set setup.clothes.upperbouter to [
         {
@@ -20,7 +20,7 @@
             id: 1,
             name: "Polo shirt",
             lowname: "polo shirt",
-            price: 25,
+            price: 15,
             state: "normal",
             description: "A normal polo shirt",
             article: "a",
@@ -34,7 +34,7 @@
             id: 2,
             name: "Blouse",
             lowname: "blouse",
-            price: 25,
+            price: 20,
             state: "normal",
             description: "A normal blouse",
             article: "a",

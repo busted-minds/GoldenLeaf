@@ -1,344 +1,51 @@
 :: storing [widget nobr]
-
-
-/% Stores food inside determined locations, the index is found and saved so the system can remember where is the position of the food and check if it existed so it can add the amount%/
-/% to it inside where it's stored. %/
-/% This was some long work, after 2-3 days trying to make this work and nothing, got frustrated and stopped trying. 3 weeks later and I get it to work in 1 day :D.%/
-<<widget "storefridge">>
-    <<for _sf, _index range $backpack>>
+/% Stores food in their respective "category". The first widget uses State.getVar so we can use one case instead of one case per each foodtype%/
+<<widget "storefood">>
+    <<for _index range $backpack>>
         <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
 
         <<switch $backpack[_positb].foodtype>>
-            <<case "fruits">>
-                <<set _posit to $fruits.findIndex(x => x.name === $backpack[_positb].name)>>
+            <<case "fruits" "meat" "vegetables" "liquids" "misc" "spices" "generalIng">>
+                <<set _ftName to State.getVar("$"+ $backpack[_positb].foodtype)>>
+                <<set _posit to _ftName.findIndex(x => x.name === $backpack[_positb].name)>>
 
-                <<if !$fruits[_posit]>>
-                    <<set $fruits.push(clone($backpack[_positb]))>>
+                <<if !_ftName[_posit]>>
+                    <<set _ftName.push(clone($backpack[_positb]))>>
                     <<set $backpack.deleteAt(_positb)>>
 
-                <<elseif $fruits[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $fruits[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-
-            <<case "meat">>
-                <<set _posit to $meat.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$meat[_posit]>>
-                    <<set $meat.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $meat[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $meat[_posit].amount += $backpack[_positb].amount>>
+                <<elseif _ftName[_posit].name.includes($backpack[_positb].name)>>
+                    <<set _ftName[_posit].amount += $backpack[_positb].amount>>
                     <<set $backpack.deleteAt(_positb)>>
 
                 <</if>>
-
-            <<case "vegetables">>
-                <<set _posit to $vegetables.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$vegetables[_posit]>>
-                    <<set $vegetables.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $vegetables[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $vegetables[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-
-            <<case "liquids">>
-                <<set _posit to $liquids.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$liquids[_posit]>>
-                    <<set $liquids.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $liquids[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $liquids[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-
-            <<case "misc">>
-                <<set _posit to $misc.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$misc[_posit]>>
-                    <<set $misc.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $misc[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $misc[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-
+            <<default>>
+                <<break>>
         <</switch>>
-
-    <</for>>
-
-<</widget>>
-
-<<widget "storecupb">>
-    <<for _scb, _index range $backpack>>
-        <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
-
-        <<switch $backpack[_positb].foodtype>>
-            <<case "others">>
-                <<set _posit to $cupboard.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$cupboard[_posit]>>
-                    <<set $cupboard.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $cupboard[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $cupboard[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-
-        <</switch>>
-
-    <</for>>
-
-<</widget>>
-
-<<widget "storespicecab">>
-    <<for _ssc, _index range $backpack>>
-        <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
-
-        <<switch $backpack[_positb].foodtype>>
-            <<case "spices">>
-                <<set _posit to $spicecabinet.findIndex(x => x.name === $backpack[_positb].name)>>
-
-                <<if !$spicecabinet[_posit]>>
-                    <<set $spicecabinet.push(clone($backpack[_positb]))>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <<elseif $spicecabinet[_posit].name.includes($backpack[_positb].name)>>
-                    <<set $spicecabinet[_posit].amount += $backpack[_positb].amount>>
-                    <<set $backpack.deleteAt(_positb)>>
-
-                <</if>>
-                
-        <</switch>>
-
     <</for>>
 
 <</widget>>
 
 <<widget "storekitchentable">>
-    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
+    <<set _fName to $args[0]>>
+    <<set _location to State.getVar("$"+ $args[1])>>
+    <<set _positIn to $kitchentable.findIndex(x => x.name === _fName)>>
+    <<set _positOut to _location.findIndex(x => x.name === _fName)>>
 
-    <<switch $location>>
-        <<case "fruits">>
-            <<set _positOut to $fruits.findIndex(x => x.name === $foodNOut)>>
+    <<if !$kitchentable[_positIn]>>
+        <<set $kitchentable.push(clone(_location[_positOut]))>>
+        <<set _positIn to $kitchentable.findIndex(x => x.name === _fName)>>
+        <<set $kitchentable[_positIn].amount to $moveAm>>
 
-            <<if !$kitchentable[_positIn]>>
-                <<if $fruits[_positOut].amount gt 1>>
-                    <<set $fruits[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($fruits[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
+    <<elseif $kitchentable[_positIn]>>
+        <<set $kitchentable[_positIn].amount += $moveAm>>
 
-                <<elseif $fruits[_positOut].amount eq 1>>
-                    <<set $kitchentable.push(clone($fruits[_positOut]))>>
-                    <<set $fruits.deleteAt(_positOut)>>
-            
-                <</if>>
+    <</if>>
 
-            <<elseif $kitchentable[_positIn]>>
-                <<if $fruits[_positOut].amount gt 1>>
-                    <<set $fruits[_positOut].amount -= $moveAm>>
-
-                <<elseif $fruits[_positOut].amount eq 1>>
-                    <<set $fruits.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "meat">>
-            <<set _positOut to $meat.findIndex(x => x.name === $foodNOut)>>
-
-            <<if !$kitchentable[_positIn]>>
-                <<if $meat[_positOut].amount gt 1>>
-                    <<set $meat[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($meat[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $meat[_positOut].amount eq 1>>
-                    <<set $kitchentable.push(clone($meat[_positOut]))>>
-                    <<set $meat.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $meat[_positOut].amount gt 1>>
-                    <<set $meat[_positOut].amount -= $moveAm>>
-
-                <<elseif $meat[_positOut].amount eq $moveAm>>
-                    <<set $meat.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "vegetables">>
-            <<set _positOut to $vegetables.findIndex(x => x.name === $foodNOut)>>
-            
-            <<if !$kitchentable[_positIn]>>
-                <<if $vegetables[_positOut].amount gt 1>>
-                    <<set $vegetables[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($vegetables[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $vegetables[_positOut].amount eq 1>>
-                    <<set $kitchentable.push(clone($vegetables[_positOut]))>>
-                    <<set $vegetables.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $vegetables[_positOut].amount gt 1>>
-                    <<set $vegetables[_positOut].amount -= $moveAm>>
-
-                <<elseif $vegetables[_positOut].amount eq 1>>
-                    <<set $vegetables.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "liquids">>
-            <<set _positOut to $liquids.findIndex(x => x.name === $foodNOut)>>
-
-            <<if !$kitchentable[_positIn]>>
-                <<if $liquids[_positOut].amount gt 1>>
-                    <<set $liquids[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($liquids[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $liquids[_positOut].amount eq 1>>
-                    <<set $kitchentable.push(clone($liquids[_positOut]))>>
-                    <<set $liquids.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $liquids[_positOut].amount gt 1>>
-                    <<set $liquids[_positOut].amount -= $moveAm>>
-
-                <<elseif $liquids[_positOut].amount eq 1>>
-                    <<set $liquids.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "misc">>
-            <<set _positOut to $misc.findIndex(x => x.name === $foodNOut)>>
-
-            <<if !$kitchentable[_positIn]>>
-                <<if $misc[_positOut].amount gt 1>>
-                    <<set $misc[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($misc[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $misc[_positOut].amount eq 1>>
-                    <<set $kitchentable.push(clone($misc[_positOut]))>>
-                    <<set $misc.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $misc[_positOut].amount gt 1>>
-                    <<set $misc[_positOut].amount -= $moveAm>>
-
-                <<elseif $misc[_positOut].amount eq 1>>
-                    <<set $misc.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "cupboard">>
-            <<set _positOut to $cupboard.findIndex(x => x.name === $foodNOut)>>
-
-            <<if !$kitchentable[_positIn]>>
-                <<if $cupboard[_positOut].amount gt 1>>
-                    <<set $cupboard[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($cupboard[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $cupboard[_positOut].amount eq $moveAm>>
-                    <<set $kitchentable.push(clone($cupboard[_positOut]))>>
-                    <<set $cupboard.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $cupboard[_positOut].amount gt 1>>
-                    <<set $cupboard[_positOut].amount -= $moveAm>>
-
-                <<elseif $cupboard[_positOut].amount eq 1>>
-                    <<set $cupboard.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-        <<case "spicecabinet">>
-            <<set _positOut to $spicecabinet.findIndex(x => x.name === $foodNOut)>>
-
-            <<if !$kitchentable[_positIn]>>
-                <<if $spicecabinet[_positOut].amount gt 1>>
-                    <<set $spicecabinet[_positOut].amount -= $moveAm>>
-                    <<set $kitchentable.push(clone($spicecabinet[_positOut]))>>
-                    <<set _positIn to $kitchentable.findIndex(x => x.name === $foodNOut)>>
-                    <<set $kitchentable[_positIn].amount to $moveAm>>
-
-                <<elseif $spicecabinet[_positOut].amount eq $moveAm>>
-                    <<set $kitchentable.push(clone($spicecabinet[_positOut]))>>
-                    <<set $spicecabinet.deleteAt(_positOut)>>
-            
-                <</if>>
-
-            <<elseif $kitchentable[_positIn]>>
-                <<if $spicecabinet[_positOut].amount gt 1>>
-                    <<set $spicecabinet[_positOut].amount -= $moveAm>>
-
-                <<elseif $spicecabinet[_positOut].amount eq 1>>
-                    <<set $spicecabinet.deleteAt(_positOut)>>
-            
-                <</if>>
-
-                <<set $kitchentable[_positIn].amount += $moveAm>>
-
-            <</if>>
-
-    <</switch>>
-
-    <<unset $location>>
-    <<unset $foodNOut>>
+    <<if _location[_positOut].amount is $moveAm>>
+        <<set _location.deleteAt(_positOut)>>
+    <<else>>
+        <<set _location[_positOut].amount -= $moveAm>>
+    <</if>>
+    
     <<unset $moveAm>>
-
 <</widget>>

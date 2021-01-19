@@ -1,8 +1,8 @@
 :: characterstatus [widget nobr]
 
-<<widget charStatus>>
+<<widget "charStatus">>
     <<bodystateColors>>
-        <fieldset class="charc">
+    <fieldset class="charc">
         <<bodystateColors>>
         <legend class="centered"> Character Status </legend>
 
@@ -32,7 +32,7 @@
             <legend> Mouth info: </legend>
             Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;hasn't been touched@@.<</if>><br>
             Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects upto @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
-            It <<if $playervar.virginity.throat is true>>@@.green;hasn't had any object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
+            It <<if $playervar.virginity.throat is true>>@@.green;had no object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
         </fieldset>
 
         <fieldset class="charc">

@@ -1,6 +1,6 @@
-:: footwear [widget nobr]
+:: footwearIni [widget nobr]
 
-<<widget "footwear">>
+<<widget "footwearIni">>
 
     <<set setup.clothes.footwear to [
         {
@@ -14,12 +14,11 @@
             gender: "none",
             exposurelevel: 5
         },
-
         {
             id: 1,
             name: "Socks",
             lowname: "socks",
-            value: 25,
+            price: 10,
             state: "normal",
             description: "A pair of socks",
             article: "a pair of",
@@ -27,12 +26,11 @@
             gender: "male",
             exposurelevel: 0
         },
-        
         {
             id: 2,
             name: "Female socks",
             lowname: "female socks",
-            value: 25,
+            price: 10,
             state: "normal",
             description: "A pair of female socks",
             article: "a pair of",

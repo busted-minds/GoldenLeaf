@@ -1,5 +1,9 @@
 :: values(sex) [widget nobr]
-
+/* Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+   This work beyond human understanding.
+   Just some options so you can fap or the other thing that girls do.
+   You can even fap while switching hands :0
+ */
 <<widget "masturbation">>
     <<if $selectedSexOpt.RightHand isnot $selectedSexOpt.LeftHand>>
         <<if $selectedSexOpt.RightHand isnot "Select an option">>

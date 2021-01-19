@@ -1,6 +1,6 @@
 :: shoes [widget nobr]
 
-<<widget "shoes">>
+<<widget "shoesIni">>
 
     <<set setup.clothes.shoes to [
         {
@@ -15,7 +15,6 @@
             exposurelevel: 5,
             exposedchest: true
         },
-
         {
             id: 1,
             name: "Sport shoes",
@@ -24,20 +23,19 @@
             state: "normal",
             description: "A pair of sport shoes",
             article: "a pair of",
-            category: ["shoes", "sport"],
+            category: ["sport", "shoes"],
             gender: "neutral",
             exposurelevel: 0
         },
-
         {
             id: 2,
             name: "Sneakers",
             lowname: "sneakers",
-            value: 25,
+            price: 25,
             state: "normal",
             description: "A pair of sneaker shoes",
             article: "a pair of",
-            category: ["shoes", "sneakers"],
+            category: ["sneakers", "shoes"],
             gender: "neutral",
             exposurelevel: 0
         }

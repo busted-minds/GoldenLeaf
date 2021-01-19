@@ -1,5 +1,5 @@
 :: payment [widget nobr]
-
+/* Just pay me! D: D: */
 <<widget "payment">>
     <<set _hoursworked to $args[0]>>
 

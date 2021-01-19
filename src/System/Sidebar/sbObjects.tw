@@ -1,31 +1,30 @@
 :: StoryCaption [nobr]
 
 <<if $gamestarted is 1>>
-
     <fieldset class="info">
         <legend class="centered">Info</legend>
-        <div style="text-align: left;"><<clotheschecker>></div>
+        <div style="text-align: left;"><<clotheschecker>><<exposedCheck>></div>
         <div style="text-align: left;" id="StatContainer">
-            <div id="stats">
+            <div>
                 <img src="img/sidebar-icons/credits.png" class="sbIcons" title="Credits: Your credits, used to buy items." alt="Credits">: @@#credits.yellow; $credits@@
             </div>
-            <div id="stats">
+            <div>
                 <img src="img/sidebar-icons/hygiene.png" class="sbIcons" title="Hygiene: You hygiene level, you can't do certain actions if you don't have enought energy" alt="hygiene">: @@#hygiene.blue; <<print $hygiene>>/100@@
             </div>
-            <div id="stats">
+            <div>
                 <img src="img/sidebar-icons/energy.png" class="sbIcons" title="Energy: You energy level, you can't do certain actions if you don't have enought energy" alt="Energy">: @@#energy.green; <<print $energy + "/" + $maxenergy>>@@
             </div>
-            <div id="stats">
-                <img @src="_icon" class="sbIcons" title="Fun: You fun level" alt="fun">: @@#fun.lightblue; <<print $fun>>/100@@
+            <div>
+                <img src="img/sidebar-icons/fun.png" class="sbIcons" title="Fun: You fun level" alt="fun">: @@#fun.lightblue; <<print $fun>>/100@@
             </div>
-            <div id="stats">
-                <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.lightred; <<print $hunger>>/100@@
+            <div>
+                <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.red; <<print $hunger>>/100@@
             </div>
-            <div id="stats">
+            <div>
                 <img src="img/sidebar-icons/pneeds.png" class="sbIcons" title="P.Needs: Your physical needs." alt="PNeeds">: @@#pNeeds.lightyellow; <<print $pNeeds>>/100@@
             </div>
-            <div id="stats">
-                <img src="img/sidebar-icons/arousal.png" class="sbIcons" title="Arousal: High levels of arousal may lower your learning profficiency." alt="arousal">: @@#arousal.pink; <<print $arousal>>/100@@
+            <div>
+                <img src="img/sidebar-icons/arousal.png" class="sbIcons" title="Arousal: High levels of arousal may lower your learning profficiency." alt="arousal">: @@#arousal.lightred; <<print $arousal>>/100@@
             </div>
         </div>
         <br>

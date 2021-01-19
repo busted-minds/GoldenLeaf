@@ -82,7 +82,7 @@
 		<span class="pink">plumpy</span>
 	
 	<<elseif $playervar.buttsize gte 40>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 	
 	<<elseif $playervar.buttsize gte 20>>
 		<span class="lightorange">small</span>
@@ -103,7 +103,7 @@
 		<span class="lightred">tight</span>
 
 	<<elseif $playervar.anustightness gte 35>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 
 	<<elseif $playervar.anustightness gte 20>>
 		<span class="lightred">loose</span>
@@ -126,7 +126,7 @@
 		<span class="lightred">sensitive</span>.
 
 	<<elseif $playervar.sensibility gte 35>>
-		<span class="graypink">normal</span>.
+		<span class="gray">normal</span>.
 
 	<<elseif $playervar.sensibility gte 10>>
 		<span class="red">somewhat insensitive</span>.
@@ -151,7 +151,7 @@
 		<span class="greenyellow">big</span>
 		
 	<<elseif $playervar.penissize gte 12>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 
 	<<elseif $playervar.penissize gte 5>>
 		<span class="lightorange">small</span>
@@ -171,7 +171,7 @@
 		<span class="greenyellow">big</span>
 
 	<<elseif $playervar.ballssize gte 4>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 
 	<<elseif $playervar.ballssize gte 2>>
 		<span class="lightorange">small</span>
@@ -192,7 +192,7 @@
 	<<elseif $playervar.breastsize gte 60>>
 		<span class="pink">perky</span>
 	<<elseif $playervar.breastsize gte 40>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 	<<elseif $playervar.breastsize gte 20>>
 		<span class="lightorange">small</span>
 	<<elseif $playervar.breastsize gte 0>>
@@ -212,7 +212,7 @@
 		<span class="greenyellow">big</span>
 
 	<<elseif $playervar.clitorissize gte 0.9>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 		
 	<<elseif $playervar.clitorissize gte 0.5>>
 		<span class="lightorange">small</span>
@@ -231,7 +231,7 @@
 	<<elseif $playervar.nipplesize gte 1.5>>
 		<span class="greenyellow">big</span>
 	<<elseif $playervar.nipplesize gte 0.95>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 	<<elseif $playervar.nipplesize gte 0.48>>
 		<span class="lightorange">small</span>
 	<<elseif $playervar.nipplesize gte 0.25>>
@@ -248,7 +248,7 @@
 		<span class="lightred">tight</span>
 
 	<<elseif $playervar.vagtightness gte 35>>
-		<span class="graypink">normal</span>
+		<span class="gray">normal</span>
 
 	<<elseif $playervar.vagtightness gte 20>>
 		<span class="lightred">loose</span>

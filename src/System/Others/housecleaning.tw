@@ -1,17 +1,37 @@
 :: cleanbedroom [widget nobr]
     <<widget "cleanbedroom">>
-        <<if $bedroomclean is false>>
+        <<if !$bedroomclean>>
             @@.lightblue.smollfont;You will need to clean your room and fix the bed before using it.@@
-            <<set _givexp to 5>>
             <br>
-            <<button "Clean and fix the bed" "bedroom">>
-                <<if $energy gte 10>>
-                    <<set $bedroomclean to true>>
-                    <<energyfun 10 8 8 "skilling" "handyman" _givexp>>
-                <<else>>
-                    <<set $message to "noEnergy">>
-                <</if>>
-            <</button>><br>@@.green.smollfont; +<<print _givexp * $handymanlearning>> Handyman exp@@ | @@.red.smollfont; -10 Energy -8 Fun +8 Minutes@@
+            <<cleaningb "Clean and fix the bed" 5 10 8 8 "bedroomclean">>
+            <br>
+        <</if>>
+    <</widget>>
+
+    <<widget "livingrclean">>
+        <<if !$livingclean>>
+            @@.lightblue;The livingroom is dirty and you need to clean it before going outside, watching tv or using the sofa.@@
+            <br>
+            <<cleaningb "Clean" 10 14 12 15 "livingclean">>
+            <br>
+            <br>
+        <</if>>
+    <</widget>>
+
+    <<widget "kitchenclean">>
+        <<if !$kitchenclean>>
+            @@.lightblue.smollfont;You will need to clean the kitchen before cooking.@@
+            <br>
+            <<cleaningb "Clean the kitchen" 8 10 12 16 "kitchenclean">>
+            <br>
+        <</if>>
+    <</widget>>
+
+    <<widget "bathrclean">>
+        <<if !$bathrclean>>
+            @@.lightblue;You will need to clean your room and fix the bed before using it.@@
+            <br>
+            <<cleaningb "Clean the bathroom" 7 13 8 12 "bathrclean">>
             <br>
         <</if>>
     <</widget>>

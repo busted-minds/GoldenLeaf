@@ -2,7 +2,6 @@
     <h2>Kitchen</h2>
     <div class="divisor"></div>
     <<messager>>
-    <br>
     You are in the kitchen it's small and is divided by an open-wall, you can see your living room from here.
     <br>
     At the corner you see your fridge, on top of it you have a spice cabinet and a cupboard. 
@@ -11,6 +10,9 @@
     <br>
     <<kitchenclean>>
     <br>
+    <<if $backpack[0] isnot undefined>>
+        <<storefood>>
+    <</if>>
     <fieldset id="fieldinline">
         <legend>Open</legend>
         <<button "Open the fridge" "fridge">><</button>>
@@ -34,12 +36,8 @@
 :: fridge [nobr]
     <h2>Fridge</h2>
     <div class="divisor"></div>
-    <<storekitchentable>>
-    <<if $backpack[0] isnot undefined>>
-        <<storefridge "backpack">>
-    <</if>>
     <div id="fridge">
-        <<fridgevisu>>
+        <<foodVisu>>
     </div>
     <br>
     <br>
@@ -48,12 +46,8 @@
 :: spicecabinet [nobr]
     <h2>Spice Cabinet</h2>
     <div class="divisor"></div>
-    <<storekitchentable>>
-    <<if $backpack[0] isnot undefined>>
-        <<storespicecab "backpack">>
-    <</if>>
     <div id="spicecabinet">
-        <<spicecabvisu>>
+        <<foodVisu>>
     </div>
     <br>
     <br>
@@ -62,13 +56,8 @@
 :: cupboard [nobr] 
     <h2>Cupboard</h2>
     <div class="divisor"></div>
-    <<storekitchentable>>
-    <br>
-    <<if $backpack[0] isnot undefined>>
-        <<storecupb "backpack">>
-    <</if>>
     <div id="cupboard">
-        <<cupboardvisu>>
+        <<foodVisu>>
     </div>
     <br>
     <<button "Close" "kitchen">><</button>>
@@ -77,7 +66,6 @@
     <h2>Kitchen Table</h2>
     <div class="divisor"></div>
     <<messager>>
-    <br>
     <<if $selectedrecipe>>
         <<button "Change Recipe" "kitchentable">><</button>> 
         <<button "Clear selected recipe" "kitchentable">>
@@ -137,21 +125,3 @@
     <br>
     <br>
     <<preparationsteps>>
-
-:: kitchenclean [widget nobr]
-    <<widget "kitchenclean">>
-        <<if $kitchenclean is false>>
-            @@.lightblue.smollfont;You will need to clean the kitchen before cooking.@@
-            <<set _givexp to 8>>
-            <br>
-            <<button "Clean the kitchen" "kitchen">>
-                <<if $energy gte 10>>
-                    <<set $kitchenclean to true>>
-                    <<energyfun 10 12 16 "skilling" "handyman" _givexp>>
-                <<else>>
-                    <<set $message to "noEnergy">>
-                <</if>>
-            <</button>><br>@@.green.smollfont; +<<print (_givexp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -10 Energy -12 Fun +16 Minutes@@
-            <br>
-        <</if>>
-    <</widget>>

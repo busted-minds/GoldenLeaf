@@ -9,7 +9,8 @@
             <<case "noEnergy">>
                 You don't have enough energy.
             <<case "videogames">>
-            You don't want to play games anymore.
+                You don't want to play games.
+                <br>
             <<case "watchtv">>
                 You don't want to watch more TV.
             <<case "fun">>
@@ -18,15 +19,18 @@
                 You are clean enough.
             <<case "pNeedEmpt">>
                 <<print either("Your bladder is empty.", "You don't want to use the toilet.")>>
-            <<case "credits">>
+            <<case "noCredits">>
                 You don't have enough credits.
             <<case "space">>
                 You don't have enough space in your backpack to store so many items.
             <<case "placeClosed">>
                 The place is closed, you'll need to come back at their opening hours.
                 <br>
-            <<case "skillLvlLearnReq">>
-                You don't have the minimum required skill level to learn this.
+            <<case "succPurch">>
+                @@.green;Thank you for you purchase, please come back again!.@@
+                <br>
+            <<case "bought">>
+                You don't need more of this item.
                 <br>
         <</switch>>
         ''
@@ -57,4 +61,9 @@
         <<case "commessages">>
     <</switch>>
     //
+
+    /* If you see this comment, please write your username below:
+       - Khroma(Phalanx)
+    
+     */
 <</widget>>

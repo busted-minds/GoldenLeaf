@@ -1,57 +1,25 @@
 :: skills [widget nobr]
 
-<<widget "skillup">>
-    <<switch $args[0]>>
-        <<case "progup">>
-            <<for $progexp gte $progexpleft>>
-                <<set $progexp -= $progexpleft>>
-                <<set $progexpleft += Math.round(100 * ($programmingskill ** 1.5) / 2.1)>>
-                <<set $programmingskill += 1>>
-            <</for>>
+<<widget "skillup">> /* This is just some voodoo magic, it just make that if the exp is greater than the exp left to level up, it level up that skill as many time as the exp meet the exp left threshold. */
+    <<set _exp to "$" + $args[0] + "exp">>
+    <<set _expleft to "$" + $args[0] + "expleft">>
+    <<set _skillname to "$" + $args[1] + "skill">>
 
-        <<case "cookup">>
-            <<for $cookexp gte $cookexpleft>>
-                <<set $cookexp -= $cookexpleft>>
-                <<set $cookexpleft += Math.round(100 * ($cookingskill ** 1.5) / 2.1)>>
-                <<set $cookingskill += 1>>
-            <</for>>
+    <<set _e to State.getVar(_exp)>>
+    <<set _el to State.getVar(_expleft)>>
 
-        <<case "gardup">>
-            <<for $gardexp gte $gardexpleft>>
-                <<set $gardexp -= $gardexpleft>>
-                <<set $gardexpleft += Math.round(100 * ($gardeningskill ** 1.5) / 2.1)>>
-                <<set $gardeningskill += 1>>
-            <</for>>
+    <<for _e gte _el>>
+        <<set _e -= _el>>
+        <<run State.setVar(_exp, _e)>>
 
-        <<case "artup">>
-            <<for $artexp gte $artexpleft>>
-                <<set $artexp -= $artexpleft>>
-                <<set $artexpleft += Math.round(100 * ($artskill ** 1.5) / 2.1)>>
-                <<set $artskill += 1>>
-            <</for>>
+        <<set _el += Math.round(100 * (State.getVar(_skillname) ** 1.5) / 2.1)>>
+        <<run State.setVar(_expleft, _el)>>
 
-        <<case "athleticup">>
-            <<for $athleticexp gte $athleticexpleft>>
-                <<set $athleticexp -= $athleticexpleft>>
-                <<set $athleticexpleft += Math.round(100 * ($athleticskill ** 1.5) / 2.1)>>
-                <<set $athleticskill += 1>>
-            <</for>>
+        <<set _su to State.getVar(_skillname)>>
+        <<set _su += 1>>
+        <<run State.setVar(_skillname, _su)>>
 
-        <<case "handymup">>
-            <<for $handymexp gte $handymexpleft>>
-                <<set $handymexp -= $handymexpleft>>
-                <<set $handymexpleft += Math.round(100 * ($handymanskill ** 1.5) / 2.1)>>
-                <<set $handymanskill += 1>>
-            <</for>>
-
-        <<case "weightup">>
-            <<for $weightlexp gte $weightlexpleft>>
-                <<set $weightlexp -= $weightlexpleft>>
-                <<set $weightlexpleft += Math.round(100 * ($weightliftskill ** 1.5) / 2.1)>>
-                <<set $weightliftskill += 1>>
-            <</for>>
-
-    <</switch>>
+    <</for>>
     
 <</widget>>
 
@@ -62,29 +30,24 @@
 
     <<switch $args[0]>>
         <<case "programming">>
-            <<set $progexp += Math.round((_expval * $programminglearning)/_penalty)>>
-            <<skillup "progup">>
-
+            <<set _sN to "prog">>
         <<case "cooking">>
-            <<set $cookexp += Math.round((_expval * $cookinglearning)/_penalty)>>
-            <<skillup "cookup">>
-
+            <<set _sN to "cook">>
         <<case "gardening">>
-            <<set $gardexp += Math.round((_expval * $gardeninglearning)/_penalty)>>
-            <<skillup "gardup">>
-
+            <<set _sN to "gard">>
+        <<case "athletic">>
+            <<set _sN to "athletic">>
         <<case "art">>
-            <<set $artexp += Math.round((_expval * $artlearning)/_penalty)>> 
-            <<skillup "artup">>
-
+            <<set _sN to "art">>
         <<case "handyman">>
-            <<set $handymexp += Math.round((_expval * $handymanlearning)/_penalty)>>
-            <<skillup "handymup">>
-        
+            <<set _sN to "handym">>
         <<case "weightlift">>
-            <<set $weightlexp += Math.round((_expval * $weightliftlearning)/_penalty)>>
-            <<skillup "weightup">>
-
+            <<set _sN to "weightl">>
     <</switch>>
+
+    <<set _expSN to "$" + _sN + "exp">>
+    <<set _skillLearN to State.getVar("$" + $args[0] + "learning")>>
+    <<set _expV = (State.getVar(_expSN) + Math.round((_expval * _skillLearN)/_penalty))>>
+    <<run State.setVar(_expSN, _expV)>>
 
 <</widget>>

@@ -61,27 +61,50 @@
         {
             id: 0,
             place: "cloverow",
+            timeTo: 8,
             connectedTo: ["blythecelyn", "hollinsdrift"]
         },
         {
             id: 1,
             place: "blythecelyn",
+            timeTo: 7,
             connectedTo: ["barlowgrove", "cloverow"]
         },
         {
             id: 2,
             place: "barlowgrove",
-            connectedTo: ["blythecelyn"]
+            timeTo: 9,
+            connectedTo: ["blythecelyn", "ashrout"]
         },
         {
             id: 3,
             place: "hollinsdrift",
+            timeTo: 6,
             connectedTo: ["pioneerlane", "cloverow"]
         },
         {
             id: 4,
             place: "pioneerlane",
+            timeTo: 8,
             connectedTo: ["hollinsdrift"]
+        },
+        {
+            id: 5,
+            place: "ashrout",
+            timeTo: 4,
+            connectedTo: ["barlowgrove", "shoppingcenter", "collobby"]
+        },
+        {
+            id: 6,
+            place: "shoppingcenter",
+            timeTo: 6,
+            connectedTo: ["barlowgrove","ashrout"]
+        },
+        {
+            id: 7,
+            place: "collobby",
+            timeTo: 3,
+            connectedTo: ["ashrout"]
         }
     ]>>
 <</widget>>

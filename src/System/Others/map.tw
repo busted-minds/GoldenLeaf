@@ -1,46 +1,60 @@
 :: map [widget nobr]
 
-<<widget "map">>
-    <<set _id to setup.mapStreets.findIndex(x => x.place === passage())>>
+<<widget "map">>/* Hippity Hoppity, get off my property */
+    <<set _mID to setup.mapStreets.findIndex(x => x.place === passage())>>
 
-    <<if _id isnot -1>>
+    <<if _mID isnot -1>>
         <br>
         <br>
-        <svg width="300" height="150" style="border: 1px solid white">
-            <image x="5" href="img/sidebar-icons/hunger.png" height="100%" width="100%"></image>
+        <svg width="416" height="350" style="border: 0.5px solid #383e65">
+            <image href="img/others/mapV1.png" height="100%" width="100%"></image>
             
-            <a onclick="passageMov(0, 8);">
-                <rect class="map" x="5" y="0" height="45" width="67" id="rect">
-                <title>To Clover Row +8 min.</title>
+            <a onclick="passageMov(0);">
+                <rect class="map" x="131" y="43" height="35" width="65">
+                <title>To Clove Row +8 min.</title>
             </a> 
-            <a onclick="passageMov(1, 8);">
-                <rect class="map" x="150" y="0" height="45" width="67">
-                <title class="green">To Blythe Celyn +8 min.</title>
+            <a onclick="passageMov(1);">
+                <rect class="map" x="84" y="77" height="77" width="36">
+                <title>To Blythe Celyn +7 min.</title>
             </a>
-            <a onclick="passageMov(2, 8);">
-                <rect class="map" x="150" y="50" height="45" width="67">
-                <title>To Barlow Grove +8 min.</title>
+            <a onclick="passageMov(2);">
+                <rect class="map" x="84" y="184" height="83" width="36">
+                <title>To Barlow Grove +9 min.</title>
             </a>
-            <a onclick="passageMov(3, 8);">
-                <rect class="map" x="150" y="100" height="45" width="67">
-                <title>To Hollins Drift +8 min.</title>
+            <a onclick="passageMov(3);">
+                <rect class="map" x="225" y="124" height="35" width="73">
+                <title>To Hollins Drift +6 min.</title>
             </a>
-            <a onclick="passageMov(4, 8);">
-                <rect class="map" x="5" y="55" height="45" width="67">
+            <a onclick="passageMov(4);">
+                <rect class="map" x="346" y="105" height="70" width="36">
                 <title>To Pioneer Lane +8 min.</title>
+            </a>
+            <a onclick="passageMov(5);">
+                <rect class="map" x="100" y="308" height="35" width="56">
+                <title>To Ashrout +4 min.</title>
+            </a>
+            <a onclick="passageMov(6);">
+                <rect class="map" x="195" y="197" height="45" width="50">
+                <title>To Shopping Center  +6 min.</title>
+            </a>
+            <a onclick="passageMov(7);">
+                <rect class="map" x="10" y="298" height="45" width="50">
+                <title>To Golden Leaf Central College  +3 min.</title>
             </a>
         </svg>
 
         <<script>>
             /* Parameters: placeid=Is the id of the passage in mapPlace. time=time used for timeattached widget.
-               It compares if the current passage connects to the passage that the players want to move to..    
+               It compares if the current passage connects to the passage that the players want to move to.
             */
-            window.passageMov = function(placeid, time) {
+            window.passageMov = function(placeid) {
                 var id = setup.mapStreets.findIndex(x => x.place === State.passage);
-                var conts = setup.mapStreets[id].connectedTo;
+                var connts = setup.mapStreets[id].connectedTo;
                 var moveTo = setup.mapStreets[placeid].place;
+                var time = setup.mapStreets[placeid].timeTo;
 
-                if (conts.includes(moveTo)) {
+
+                if (connts.includes(moveTo)) {
                     Engine.play(moveTo);
                     wikifier("timeattached", time);
                 }
