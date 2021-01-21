@@ -9,7 +9,7 @@
         <legend>Places</legend>
         <<button "City" "cloverow">><</button>>
         <br>
-        <<button "Garden" "garden">><</button>>~~@@.red;(Not Implemented. WIP)@@~~
+        <<button "Garden (WIP)" "garden">><</button>>
         <br>
         <<button "Living Room" "livingroom">><</button>>
     </fieldset>
