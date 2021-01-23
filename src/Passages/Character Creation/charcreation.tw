@@ -339,9 +339,9 @@
                             <br>
                             - "@@.lightyellow;Hello HORECO Inc., how may I help you?@@"
                             <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$playername $playersurname">></span>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
-                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playersurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print "setup.dadname $playersurname">>@@?"
+                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playersurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print setup.dadname + " " + $playersurname>>@@?"
                             <br><br>- @@.lightblue;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
-                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $playersurname>></span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
+                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $playersurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
                             <br><br>- @@.lightblue;Great thanks a lot, give me a sec... Ready.@@
                             <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course.@@"
                             <br><br>- @@.lightblue;Thank you very much, bye!.@@
