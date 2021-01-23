@@ -23,7 +23,7 @@
         <legend>Misc</legend>
         <<button "Change clothes" "wardrobe">><</button>>
         <br>
-        <<disable>><<button "Approach the window" "window">><</button>><</disable>>
+        <<disable>><<button "Approach the window">><</button>><</disable>>
     </fieldset>
     <br>
     <br>

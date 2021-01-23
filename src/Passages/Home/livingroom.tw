@@ -49,9 +49,8 @@
 :: tv [nobr]
     <h2>TV</h2>
     <div class="divisor"></div>
-    <div id="message"></div>
-
-    <<button "Watch news channel">>
+    <<messager>>
+    <<button "Watch news channel" "tv">>
         <<energyfun 1 2 3 "watchtv">>
     <</button>>@@.green; +2 Fun@@ | @@.red; -1 Energy +3 Minutes@@
     <br>

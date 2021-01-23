@@ -118,7 +118,7 @@
 
     /% This thing checks if the player have any shoes, socks or any other footwear. %/
     <<if $bps.lowerbody[2].primary.lowname isnot "naked">>
-        In your feets you have <<clothesArticles "lowerbody" "primary" 2>><<print $bps.lowerbody[2].primary.lowname>> 
+        On your feet you have <<clothesArticles "lowerbody" "primary" 2>><<print $bps.lowerbody[2].primary.lowname>> 
 
         <<if $bps.lowerbody[3].secondary.lowname isnot "naked">>
             and <<clothesArticles "lowerbody" "secondary" 3>> <<print $bps.lowerbody[3].secondary.lowname>>
@@ -144,7 +144,7 @@
 
     <<elseif $bps.lowerbody[2].primary.lowname is "naked">>
         <<if $bps.lowerbody[3].secondary.lowname isnot "naked">>
-            In your feets you have <<clothesArticles "lowerbody" "secondary" 3>><<print $bps.lowerbody[3].secondary.lowname>>
+            On your feet you have <<clothesArticles "lowerbody" "secondary" 3>><<print $bps.lowerbody[3].secondary.lowname>>
 
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
                 and <<print $bps.lowerbody[3].primary.lowname>>.
@@ -156,7 +156,7 @@
 
         <<elseif $bps.lowerbody[3].secondary.lowname is "naked">>
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
-                In your feets you have <<clothesArticles "lowerbody" "primary" 3>><<print $bps.lowerbody[3].primary.lowname>> but no socks.
+                On your feet you have <<clothesArticles "lowerbody" "primary" 3>><<print $bps.lowerbody[3].primary.lowname>> but no socks.
                 
             <<elseif $bps.lowerbody[3].primary.lowname is "naked">>
                 You are barefoot.

@@ -5,6 +5,7 @@
     <div class="divisor"></div>
     <<set _total to 0>>
     <<set _deleteAm to 0>>
+    <<set _currPass to passage()>>
     <<messager>>
     <br>
     <div>
@@ -52,7 +53,7 @@
                 <<if $bps.upperbody[5].primary.name is "Backpack">>
                     <<if $shoppingcart.length gt $bps.upperbody[5].primary.maxitems>>
                         <<set $message to "space">>
-                        <<goto "purchase">>
+                        <<goto _currPass>>
 
                     <<else>>
                         <<set $credits -= _total>>
@@ -78,7 +79,7 @@
                 <</if>>
             <<else>>
                 <<set $message to "noCredits">>
-                <<goto "purchase">>
+                <<goto _currPass>>
             <</if>>
 
         <</button>>@@.red; +<<print ($shoppingcart.length * 2)>> minutes@@
