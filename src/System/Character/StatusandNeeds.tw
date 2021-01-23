@@ -1,7 +1,7 @@
 :: statusnneeds [widget nobr]
 
 <<widget "energy">> /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn't, and arriving at a position that it wasn't, it now is.*/
-    <<set $energy + $args[0]>>
+    <<set $energy += $args[0]>>
 
     <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 <</widget>>

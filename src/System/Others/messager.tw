@@ -13,6 +13,7 @@
                 <br>
             <<case "watchtv">>
                 You don't want to watch more TV.
+                <br>
             <<case "fun">>
                 You don't have enough fun.
             <<case "clean">>

@@ -31,13 +31,13 @@
         <fieldset class="charc">
             <legend> Mouth info: </legend>
             Your have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;hasn't been touched@@.<</if>><br>
-            Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects upto @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
+            Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects upto @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
             It <<if $playervar.virginity.throat is true>>@@.green;had no object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
         </fieldset>
 
         <fieldset class="charc">
             <legend> Arms info: </legend>
-            Your have a pair of <span @class="$colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;hasn't touched anything@@.<</if>>
+            Your have a pair of <span @class="$colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;haven't touched anything@@.<</if>>
         </fieldset>
 
         <<if $playervar.gender is "female">>
@@ -75,7 +75,7 @@
             <legend> Butt info: </legend>
             Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;hasn't been touched@@.<</if>>
             <br>
-            You have an anus that has a <<anustightnesschecker>> tightness, it has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects upto @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in lenght and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
+            You have an anus that has a <<anustightnesschecker>> tightness, it has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects upto @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
         </fieldset>
     </fieldset>
 <</widget>>
