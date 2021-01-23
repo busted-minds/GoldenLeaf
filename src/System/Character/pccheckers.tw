@@ -211,6 +211,9 @@
 	<<elseif $playervar.clitorissize gte 1.8>>
 		<span class="greenyellow">big</span>
 
+	<<elseif $playervar.clitorissize gte 1.25>>
+		<span class="graypink">medium</span>
+
 	<<elseif $playervar.clitorissize gte 0.9>>
 		<span class="gray">normal</span>
 		
@@ -230,6 +233,8 @@
 		<span class="lightgreen">huge</span>
 	<<elseif $playervar.nipplesize gte 1.5>>
 		<span class="greenyellow">big</span>
+	<<elseif $playervar.nipplesize gte 1.25>>
+		<span class="graypink">medium</span>
 	<<elseif $playervar.nipplesize gte 0.95>>
 		<span class="gray">normal</span>
 	<<elseif $playervar.nipplesize gte 0.48>>

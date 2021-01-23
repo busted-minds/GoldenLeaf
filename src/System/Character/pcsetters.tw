@@ -331,7 +331,7 @@
 	<<elseif $playervar.nipplesize gte 2.1>>
 		<<set $playervar.sensibility += 4>>
 
-	<<elseif $playervar.nipplesize gte 1.5>>
+	<<elseif $playervar.nipplesize gte 1.25>>
 		<<set $playervar.sensibility += 3>>
 
 	<<elseif $playervar.nipplesize gte 0.95>>
@@ -351,6 +351,9 @@
 
 	<<elseif $playervar.clitorissize gte 1.8>>
 		<<set $playervar.sensibility += 3>>
+	
+	<<elseif $playervar.clitorissize gte 1.2>>
+		<<set $playervar.sensibility += 2.5>>
 
 	<<elseif $playervar.clitorissize gte 0.9>>
 		<<set $playervar.sensibility += 2>>
