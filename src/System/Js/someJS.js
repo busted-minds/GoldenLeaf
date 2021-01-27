@@ -19,6 +19,7 @@ window.wikifier = function (widget, args, args2, args3) {
 };
 
 window.updatedVersion = 1;
+Config.saves.id="golden-leaf";
 (!Config.saves.version ? Config.saves.version = 1 : '');
 
 Config.saves.onLoad = function () {
@@ -28,14 +29,13 @@ Config.saves.onLoad = function () {
     }
 };
 
+window.saveUpdate = true;
+
 var l = document.createElement('link');
 l.rel = "icon";
 l.href = "img/others/Icon.png";
 l.type = "img/png";
-
 document.head.appendChild(l);
-
-window.saveUpdate = true;
 
 //This is just a function to change an image on the go, it will be implemented when visuals get implemented in the game.
 

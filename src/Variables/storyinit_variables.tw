@@ -53,7 +53,7 @@
     virginity:{}
 }>>
 
-<<set $bodystate to null>>
+<<set $bodystate to undefined>>
 
 <<set $credits to 250>>
 <<set $energy to 100>>
@@ -65,7 +65,7 @@
 <<set $arousal to 0>>
 <<set $footerMessager to true>>
 
-<<set $hobby to null>>
+<<set $hobby to undefined>>
 
 <<set _skills to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
 
@@ -74,11 +74,12 @@
     <<set State.setVar(_skillN, 1)>>
 <</for>>
 
-<<set $playername to "Name">>
-<<set $playersurname to "Surname">>
-<<set $playerhairstyle to null>>
-<<set $playerbeardsize to null>>
-<<set $playerjob to false>>
+<<set $pName to "Name">>
+<<set $pSurname to "Surname">>
+<<set $pHairStyle to undefined>>
+<<set $pHairColor to undefined>>
+<<set $pBeardSize to undefined>>
+<<set $pJob to false>>
 
 <<set $time to new Date("2050-02-03T09:05:00Z")>>
 <<set setup.days to [

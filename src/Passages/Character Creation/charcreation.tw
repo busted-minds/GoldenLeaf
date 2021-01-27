@@ -93,7 +93,7 @@
                     <<optionsfrom _haircolors>>
                 <</listbox>>
             </ul>
-            
+
             <<if $playervar.gender is "male">>
                 @@.yellow;Select your beard size: @@
                 <ul>
@@ -271,6 +271,9 @@
     <br>
     <div class="divisor"></div>
     //* After what looks like an eternity (But where just 3 hours) *//
+    <br>
+    <br>
+    Welcome to Golden Leaf City, from the station you can see some places of the city what surprises you is that even though it's a city it has green places all around. At one part of the city there is what seems to be 3 main building, with and interesting modern design probably worth millions of Credits, at the other side of the city it's the a residential area where you need to go.
     <br>
     <br>
     Finally got to your new house it's pretty big from the outside, with the digital key in your phone you are about to open the front door when you get a message in your phone, it's from your parents. It's odd that you didn't got the message until now, maybe there were problems in the Network?.

@@ -27,7 +27,7 @@
     <<set $spices to []>>
     <<set $generalIng to []>>
     <<set $kitchentable to []>>
-    <<set $selectedrecipe to null>>
+    <<set $selectedrecipe to undefined>>
     
     <<set setup.food to {}>>
 

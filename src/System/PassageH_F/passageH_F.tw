@@ -1,6 +1,6 @@
 :: PassageHeader [nobr]
     /* Check if the actual time is the same as the opening hours at your job and if your worked hours are the same as the job's requirement(Just in case). As there is only one job, well it uses it. I need to remember to change this :D. */
-    <<if $time.getUTCHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $playerjob.hoursreq>>
+    <<if $time.getUTCHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
         <<unset $workedhours>>
     <</if>>
     /%<<if saveUpdate is true>>
