@@ -8,7 +8,7 @@
         
         @@.darkyellow;What is your name?@@
         <br>
-        <<textbox "$playername" $playername autofocus>> <<textbox "$playersurname" $playersurname>>
+        <<textbox "$pName" $pName autofocus>> <<textbox "$pSurname" $pSurname>>
         <br>
         <br>
         @@.darkyellow;Select your gender:@@
@@ -51,7 +51,7 @@
     </fieldset>
 
     <<button "Continue">>
-        <<if $playername isnot "Name" and $playersurname isnot "Surname">>
+        <<if $pName isnot "Name" and $pSurname isnot "Surname">>
             <<goto charcreation2>>
         <<else>>
             <<set $message to "@@.red;Your name/surname can't be the default one.@@">>
@@ -68,58 +68,125 @@
         <<set $playervar.lowersensibility to 0>>
     <</if>>
 
-    <<if $playervar.gender is "female">>
+    <fieldset class="charc">
+        <legend>Character Creation</legend>
+        
         <fieldset class="charc">
-            <legend>Character Creation</legend>
-            
+            <legend>Hair</legend>
+            <<switch $playervar.gender>>
+                <<case "female">>
+                    <<set _hairstyle to ["Bun", "Braided", "Crown Braid", "French Braid", "Asymmetric Cut", "Undercut", "Fishtail", "Bob Cut", "Lob", "Ponytail", "Pigtails(Short)", "Pigtails(Long)", "Pigtails(Loose)", "Pixie Cut", "Straight(Loose)"]>>
+                <<case "male">>
+                    <<set _hairstyle to ["Butch", "Crew Cut", "Ivy League", "Regular cut", "Undercut", "Wings", "Pixie Cut", "Loose", "Ponytail(Male)"]>>
+            <</switch>>
             @@.yellow;Select your hair style: @@
             <ul>
-                <<set _femalehairstyle to ["Bun", "Braided", "Crown Braid", "French Braid", "Asymmetric Cut", "Undercut", "Fishtail", "Bob Cut", "Lob", "Ponytail"]>>
-                <<listbox "$playerhairstyle" autoselect>>
-                    <<optionsfrom _femalehairstyle>>
+                <<listbox "$pHairStyle" autoselect>>
+                        <<optionsfrom _hairstyle>>
                 <</listbox>>
             </ul>
 
-            @@.yellow;Select your breast size: @@
+            <<set _haircolors to ["Black", "Brown", "Blonde", "Ginger"]>>
+            @@.yellow;Select your hair color: @@
             <ul>
-                <<listbox "$playervar.breastsize" autoselect>>
-                    <<option "Perky" 60>>
-                    <<option "Normal" 40>>
-                    <<option "Small" 20>>
-                    <<option "Flat" 0>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your nipple type: @@
-            <ul>
-                <<listbox "$playervar.nippletype" autoselect>>
-                    <<option "Inverted" "inverted">>
-                    <<option "Protrunding" "protrunding">>
-                    <<option "Puffy" "puffy">>
-                    <<option "Flat" "flat">>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your clitoris size: @@
-            <ul>
-                <<listbox "$playervar.clitorissize" autoselect>>
-                    <<option "Medium" 1.2>>
-                    <<option "Normal" 0.9>>
-                    <<option "Small" 0.5>>
-                    <<option "Tiny" 0.3>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your nipple size: @@
-            <ul>
-                <<listbox "$playervar.nipplesize" autoselect>>
-                    <<option "Medium" 1.25>>
-                    <<option "Normal" 0.95>>
-                    <<option "Small" 0.48>>
-                    <<option "Tiny" 0.24>>
+                <<listbox "$pHairColor" autoselect>>
+                    <<optionsfrom _haircolors>>
                 <</listbox>>
             </ul>
             
+            <<if $playervar.gender is "male">>
+                @@.yellow;Select your beard size: @@
+                <ul>
+                    <<listbox "$pBeardSize" autoselect>>
+                        <<option "Inexistent (It wont grow)" 0>>
+                        <<option "None" 1>>
+                        <<option "Small" 5>>
+                        <<option "Medium" 10>>
+                        <<option "Big" 15>>
+                    <</listbox>>
+                </ul>
+            <</if>>
+        </fieldset>
+        <<if $playervar.gender is "female">>
+            <fieldset class="charc">
+                <legend>Chest</legend>
+                @@.yellow;Select your breast size: @@
+                <ul>
+                    <<listbox "$playervar.breastsize" autoselect>>
+                        <<option "Perky" 60>>
+                        <<option "Normal" 40>>
+                        <<option "Small" 20>>
+                        <<option "Flat" 0>>
+                    <</listbox>>
+                </ul>
+
+                @@.yellow;Select your nipple type: @@
+                <ul>
+                    <<listbox "$playervar.nippletype" autoselect>>
+                        <<option "Inverted" "inverted">>
+                        <<option "Protrunding" "protrunding">>
+                        <<option "Puffy" "puffy">>
+                        <<option "Flat" "flat">>
+                    <</listbox>>
+                </ul>
+
+                @@.yellow;Select your nipple size: @@
+                <ul>
+                    <<listbox "$playervar.nipplesize" autoselect>>
+                        <<option "Medium" 1.25>>
+                        <<option "Normal" 0.95>>
+                        <<option "Small" 0.48>>
+                        <<option "Tiny" 0.24>>
+                    <</listbox>>
+                </ul>
+            </fieldset>
+        <</if>>
+        <fieldset class="charc">
+            <legend>Genital</legend>
+            <<if $playervar.gender is "female">>
+                @@.yellow;Select your clitoris size: @@
+                <ul>
+                    <<listbox "$playervar.clitorissize" autoselect>>
+                        <<option "Medium" 1.2>>
+                        <<option "Normal" 0.9>>
+                        <<option "Small" 0.5>>
+                        <<option "Tiny" 0.3>>
+                    <</listbox>>
+                </ul>
+
+                @@.yellow;Select your vagina tightness: @@
+                <ul>
+                    <<listbox "$playervar.vagtightness" autoselect>>
+                        <<option "Tight" 50>>
+                        <<option "Normal" 35>>
+                        <<option "Loose" 20>>
+                    <</listbox>>
+                </ul>
+
+            <<else>>
+                @@.yellow;Select your penis size: @@
+                <ul>
+                    <<listbox "$playervar.penissize" autoselect>>
+                        <<option "Big" 15>>
+                        <<option "Normal" 12>>
+                        <<option "Small" 6>>
+                        <<option "Tiny" 3>>
+                    <</listbox>>
+                </ul>
+
+                @@.yellow;Select your balls size: @@
+                <ul>
+                    <<listbox "$playervar.ballssize" autoselect>>
+                        <<option "Big" 8>>
+                        <<option "Normal" 4>>
+                        <<option "Small" 2>>
+                    <</listbox>>
+                </ul>
+            <</if>>
+        </fieldset>
+
+        <fieldset class="charc">
+            <legend>Back</legend>
             @@.yellow;Select your butt size: @@
             <ul>
                 <<listbox "$playervar.buttsize" autoselect>>
@@ -127,15 +194,6 @@
                     <<option "Normal" 40>>
                     <<option "Small" 20>>
                     <<option "Flat" 0>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your vagina tightness: @@
-            <ul>
-                <<listbox "$playervar.vagtightness" autoselect>>
-                    <<option "Tight" 50>>
-                    <<option "Normal" 35>>
-                    <<option "Loose" 20>>
                 <</listbox>>
             </ul>
 
@@ -147,72 +205,9 @@
                     <<option "Loose" 20>>
                 <</listbox>>
             </ul>
-
         </fieldset>
 
-    <<elseif $playervar.gender is "male">>
-        <fieldset class="charc">
-            <legend>Character Creation</legend>
-
-            @@.yellow;Select your hair style: @@
-            <ul>
-                <<set _malehairstyle to ["Butch", "Crew Cut", "Ivy League", "Regular cut", "Undercut", "Wings"]>>
-                <<listbox "$playerhairstyle" autoselect>>
-                    <<optionsfrom _malehairstyle>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your beard size: @@
-            <ul>
-                <<listbox "$playerbeardsize" autoselect>>
-                    <<option "Inexistent (It wont grow)" 0>>
-                    <<option "None" 1>>
-                    <<option "Small" 5>>
-                    <<option "Medium" 10>>
-                    <<option "Big" 15>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your penis size: @@
-            <ul>
-                <<listbox "$playervar.penissize" autoselect>>
-                    <<option "Big" 15>>
-                    <<option "Normal" 12>>
-                    <<option "Small" 6>>
-                    <<option "Tiny" 3>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your balls size: @@
-            <ul>
-                <<listbox "$playervar.ballssize" autoselect>>
-                    <<option "Big" 8>>
-                    <<option "Normal" 4>>
-                    <<option "Small" 2>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your butt size: @@
-            <ul>
-                <<listbox "$playervar.buttsize" autoselect>>
-                    <<option "Plumpy" 60>>
-                    <<option "Normal" 40>>
-                    <<option "Small" 20>>
-                    <<option "Flat" 0>>
-                <</listbox>>
-            </ul>
-
-            @@.yellow;Select your anus tightness: @@
-            <ul>
-                <<listbox "$playervar.anustightness" autoselect>>
-                    <<option "Tight" 50>>
-                    <<option "Normal" 35>>
-                    <<option "Loose" 20>>
-                <</listbox>>
-            </ul>
-
-        </fieldset>
-    <</if>>
+    </fieldset>
 
     <<button "Change Selections" "charcreation1">><</button>>
     <br>
@@ -268,10 +263,10 @@
             
         <<hobbyselection>>
     <</if>>
-    You are @@.orange;<<print "$playername $playersurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing your high school in your home city and turning 18 you told your parents that you want to live alone so you can learn responsibility and things like that.
+    You are @@.orange;<<print "$pName $pSurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing your high school and turning 18 you told your parents that you wanted to live alone so you could learn responsability and things like that.
     <br>
     <br>
-    They saw your attitude with good eyes so they told you that they have a small house in @@.gold;Golden Leaf City@@ where they lived many years ago and that you can live there. So here you are, in your way to @@.gold;Golden Leaf City@@ in a slow af train with @@.yellow;$credits credits@@ in your account and you haven't sleep well since you got out of your parent's house neither eaten anything good apart from some food that where given to you in the train.
+    They saw your attitude with good eyes so they told you that they have a small house in @@.gold;Golden Leaf City@@ where they lived many years ago and that they rented it out to other people but since the last tenant didn't took care of the house they stopped doing it so now you have a house all to yourself. So here you are, in your way to @@.gold;Golden Leaf City@@ in a slow af train with @@.yellow;$credits credits@@ in your account and you haven't sleep well since you got out of your parent's house neither eaten anything good apart from some food that where given to you in the train.
     <br>
     <br>
     <div class="divisor"></div>
@@ -281,7 +276,7 @@
     Finally got to your new house it's pretty big from the outside, with the digital key in your phone you are about to open the front door when you get a message in your phone, it's from your parents. It's odd that you didn't got the message until now, maybe there were problems in the Network?.
     <br>
     <br>
-    // "@@.lightyellow;Hey <span class="orange"><<print $playername>></span>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
+    // "@@.lightyellow;Hey <span class="orange"><<print $pName>></span>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
     <br>
     <<timed 1s>> <<set $credits += 70>><<replace #credits>>$credits<</replace>>
     @@.lightyellow;We transfered some money in your account so you can buy some food, you will need to clean the house as we haven't been there since we started to live here. Oh, probably there is something that needs to be repaired or changed so we bought a little gift for you, it's probably already at the house's front door. That's all, bye and take care!@@"
@@ -317,11 +312,11 @@
                 //<<type 50ms>>Calling...Ding<</type>>
                 <br>
                 <<timed 1500ms>>
-                - "@@.lightyellow;Hello, @@@@.orange;<<print $playername>>@@ @@.lightyellow;what happened, it's everything alright?@@"
+                - "@@.lightyellow;Hello, @@@@.orange;<<print $pName>>@@ @@.lightyellow;what happened, it's everything alright?@@"
                 <br><br>- @@.lightblue;Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things, oh and your little gift wasn't exactly that little, but thanks a lot, really.@@
                 <br><br>- "@@.lightyellow;No problem, we though that you will need those things so you can start your new left there but the house is really that bad? We tought that well, it wont be in a perfect state but atleast it would be in a somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house. Check if they are still working please.@@"
                 <br><br>- @@.lightblue;Thanks Dad! Call you later, bye.@@
-                <br><br>- "@@.lightyellow;Bye, @@@@.orange;<<print $playername>>@@ @@.lightyellow;take care.@@"
+                <br><br>- "@@.lightyellow;Bye, @@@@.orange;<<print $pName>>@@ @@.lightyellow;take care.@@"
                 <<next 1s>>
                 <br>
                 Bep
@@ -338,10 +333,10 @@
                             <<timed 1500ms>>
                             <br>
                             - "@@.lightyellow;Hello HORECO Inc., how may I help you?@@"
-                            <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$playername $playersurname">></span>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
-                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playersurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print setup.dadname + " " + $playersurname>>@@?"
+                            <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$pName $pSurname">></span>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
+                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pSurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print setup.dadname + " " + $pSurname>>@@?"
                             <br><br>- @@.lightblue;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
-                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $playersurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
+                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $pSurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
                             <br><br>- @@.lightblue;Great thanks a lot, give me a sec... Ready.@@
                             <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course.@@"
                             <br><br>- @@.lightblue;Thank you very much, bye!.@@
@@ -365,8 +360,8 @@
                                         <br><br>- "@@.lightyellow;Hello, I'm from HORECO Inc.@@"
                                         <br><br>- @@.lightblue;Wait a second, I'll open the door.@@
                                         <<next 1600ms>>
-                                        <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print $playername>></span> go in please.@@
-                                        <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $playername>></span>... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
+                                        <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print $pName>></span> go in please.@@
+                                        <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pName>></span>... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
                                         
                                         <<next 2s>>
                                         <<addminutes 15>>
