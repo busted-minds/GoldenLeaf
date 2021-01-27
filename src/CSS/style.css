@@ -45,7 +45,7 @@
 	}
 
 	.lightgreen{
-		color: #ffe69d;
+		color: #a0ffe3;
 	}
 
 	.blue {
@@ -88,12 +88,24 @@
 		color:#ffd700;
 	}
 
-	.lightbrown {
+	.brown {
 		color: #9f6934;
 	}
 
+	.lightbrown {
+		color: #8f704b;
+	}
+
+	.blonde {
+		color: #ffe69d;
+	}
+
+	.ginger {
+		color: #b06500;
+	}
+
 	.black {
-		color: #444444;
+		color: black;
 	}
 
 /* Not colors */
