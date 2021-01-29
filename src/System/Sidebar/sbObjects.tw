@@ -21,9 +21,6 @@
                 <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.red; <<print $hunger>>/100@@
             </div>
             <div>
-                <img src="img/sidebar-icons/pneeds.png" class="sbIcons" title="P.Needs: Your physical needs." alt="PNeeds">: @@#pNeeds.lightyellow; <<print $pNeeds>>/100@@
-            </div>
-            <div>
                 <img src="img/sidebar-icons/arousal.png" class="sbIcons" title="Arousal: High levels of arousal may lower your learning profficiency." alt="arousal">: @@#arousal.lightred; <<print $arousal>>/100@@
             </div>
         </div>

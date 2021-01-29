@@ -5,7 +5,6 @@
     <<set $energy to $maxenergy>>
     <<set $fun to 100>>
     <<set $hunger to 0>>
-    <<set $pNeeds to 0>>
     <<if $args[0] is 1>>
         <<set $arousal to 100>>
     <<else>>

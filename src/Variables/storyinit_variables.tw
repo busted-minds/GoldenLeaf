@@ -60,7 +60,6 @@
 <<set $maxenergy to 100>>
 <<set $fun to 100>>
 <<set $hygiene to 100>>
-<<set $pNeeds to 20>>
 <<set $hunger to 20>>
 <<set $arousal to 0>>
 <<set $footerMessager to true>>

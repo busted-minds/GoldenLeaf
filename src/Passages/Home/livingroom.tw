@@ -30,7 +30,7 @@
     <br>
     <fieldset id="fieldinline">
         <legend>Places</legend>
-        <<set _cond to $livingclean and $hygiene gte 60 and $pNeeds lte 80 and !$exposed>>
+        <<set _cond to $livingclean and $hygiene gte 60 and !$exposed>>
         <<disable _cond eq false>>
             <button class="macro-button" onclick="SugarCube.Engine.play('frontdoor')" title="Requires 60 Hygiene and P.Needs lower than 80 and not being exposed.">Front Door</button>
             <br>
@@ -72,13 +72,17 @@
     <h2>Relax</h2>
     <div class="divisor"></div>
     <br>
-    <<button "Relax 5 minutes" "sofa">><<energy 1>><<timeattached 5>><</button>> @@.green; +1 energy@@
-    <br>
-    <<button "Relax 10 minutes" "sofa">><<energy 3>><<timeattached 10>><</button>> @@.green; +2 energy@@
-    <br>
-    <<button "Relax 15 minutes" "sofa">><<energy 5>><<timeattached 15>><</button>> @@.green; +5 energy@@
-    <br>
-    <<button "Relax 20 minutes" "sofa">><<energy 7>><<timeattached 20>><</button>> @@.green; +7 energy@@
+    <div class="list">
+        <div id="insidelist">
+            <<set _relaxtime to {"5 minutes, +2 energy": 5, "10 minutes, +4 energy": 10, "15 minutes, +6 energy": 15, "20 minutes, +8 energy": 20}>>
+            Relaxing time:
+            <<listbox "_rtime" autoselect>>
+                <<optionsfrom _relaxtime>>
+            <</listbox>>
+            <br>
+            <<button "Relax" "bed">><<energy _rtime * 0.4>><<timeattached _rtime>><</button>>
+        </div>
+    </div>
     <br>
     <br>
 

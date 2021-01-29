@@ -9,9 +9,7 @@
     <br>
     <<if $bathrclean>>
         <br>
-        <<button "Get in to shower" "shower">><</button>>
-        <br>
-        <<button "Sit on the toilet" "toilet">><</button>>
+        <<button "Get into the shower" "shower">><</button>>
     <</if>>
     <br>
     <<button "Use the sink" "sink">><</button>>
@@ -36,24 +34,6 @@
     <br>
     <br>
     <<button "Get out" "bathroom">><</button>>
-
-:: toilet [nobr]
-    <h2>Bathroom</h2>
-    <div class="divisor"></div>
-        <<messager>>
-    <br>
-    <<button "Pee" "toilet">>
-        <<pNeeds 45 10 2>>
-    <</button>>@@.green; -45 Physical Needs@@ | @@.red; -10 hygiene +2 Minutes@@
-    <br>
-    <<button "Poop" "toilet">>
-        <<pNeeds 60 15 3>>
-    <</button>>@@.green; -65 Physical Needs@@ | @@.red; -15 hygiene +3 Minutes@@
-    <br>
-    <<masturbutton>>
-    <br>
-    <br>
-    <<button "Get up" "bathroom">><</button>>
 
 :: sink [nobr]
     <h2>Sink</h2>
