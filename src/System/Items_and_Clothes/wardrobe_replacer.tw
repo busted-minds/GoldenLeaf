@@ -84,7 +84,7 @@
     <<for _i to 0; _i lt _wardrobeSlot.length; _i++>>
         <div class="list" style="min-width: 10.6em;">
             <div id="insidelist">
-                <<print _categories[_i]>>
+                <span style="font-size: 115%"><<print _categories[_i]>></span>
 
                 <<switch _categories[_i]>>
                     <<case "Outerwear" "Legwear" "Shoes">>
