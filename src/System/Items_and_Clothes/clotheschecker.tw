@@ -168,21 +168,20 @@
 <</widget>>
 
 <<widget "exposedCheck">>
-    <<set _checkUbP to $bps.upperbody[0].primary.lowname is "naked" >>
+    <<set _checkUbP to $bps.upperbody[0].primary.lowname is "naked">>
     <<set _checkUbSN to $bps.upperbody[0].secondary.lowname isnot "naked">>
-    <<set _checkLbS to $bps.lowerbody[0].secondary.lowname is "naked">>
-    <<set _checkG to $playervar.gender is "female">>
     <<set _checkLbP to $bps.lowerbody[0].primary.lowname is "naked">>
     <<set _checkLbSN to $bps.lowerbody[0].secondary.lowname isnot "naked">>
     <<set _checkSwimSUb to $bps.upperbody[0].secondary.category.includesAny("swimsuit")>>
     <<set _checkSwimSLb to $bps.lowerbody[0].secondary.category.includesAny("swimsuit")>>
+    <<set _checkG to $playervar.gender is "female">>
 
-    <<if _checkUbP and _checkUbSN and _checkG and !_checkSwimSUb and !_checkSwimSLb>>
+    <<if _checkUbP and !_checkUbSN and _checkG and !_checkSwimSUb and !_checkSwimSLb>>
         <<set $exposed to true>>
         <br>
         @@.textshining;You are exposed!@@
 
-    <<elseif _checkLbP and _checkLbS and !_checkSwimSLb or _checkLbP and _checkLbSN and !_checkSwimSLb>>
+    <<elseif _checkLbP and _checkLbSN and !_checkSwimSLb or _checkLbP and !_checkLbSN and !_checkSwimSLb>>
         <<set $exposed to true>>
         <br>
         @@.textshining; You are exposed!@@
