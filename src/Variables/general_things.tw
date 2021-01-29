@@ -6,7 +6,9 @@
     <<importantNPCs>>
     <<jobsInfo>>
     <<mapStreets>>
+    <<traitsInit>>
 <</widget>>
+
 <<widget "geneVariables">>
     <<set $gamestarted to 0>>
 
@@ -74,7 +76,7 @@
             id: 2,
             place: "barlowgrove",
             timeTo: 9,
-            connectedTo: ["blythecelyn", "ashrout"]
+            connectedTo: ["blythecelyn", "ashrout", "shoppingcenter"]
         },
         {
             id: 3,
