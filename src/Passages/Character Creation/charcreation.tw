@@ -31,7 +31,7 @@
         @@.darkyellow;Select your body shape:@@ ^^@@.red;Your body shape will affect some statistics of your character.@@^^
         <ul>
             <<listbox "$playervar.bodyshape" autoselect>>
-                <<option "Toned" 60>>
+                <<option "Fit" 60>>
                 <<option "Normal" 40>>
                 <<option "Chubby" 20>>
             <</listbox>>
@@ -124,7 +124,7 @@
                 <ul>
                     <<listbox "$playervar.nippletype" autoselect>>
                         <<option "Inverted" "inverted">>
-                        <<option "Protrunding" "protrunding">>
+                        <<option "Protruding" "protruding">>
                         <<option "Puffy" "puffy">>
                         <<option "Flat" "flat">>
                     <</listbox>>
