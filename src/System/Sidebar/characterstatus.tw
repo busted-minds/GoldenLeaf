@@ -1,14 +1,12 @@
 :: characterstatus [widget nobr]
 
 <<widget "charStatus">>
-    <<bodystateColors>>
     <fieldset class="charc">
-        <<bodystateColors>>
         <legend class="centered"> Character Status </legend>
 
         <fieldset class="charc">
             <legend> General info: </legend>
-            Your name is @@.gold;<<print "$pName $$pSurname">>@@,
+            Your name is @@.gold;<<print "$pName $pSurname">>@@,
             you are a 
             <<if $playervar.gender is "female">>
                 @@.pink;<<print $playervar.gender>>@@.
@@ -17,14 +15,14 @@
                 @@.lightblue;<<print $playervar.gender>>@@.
 
             <</if>>
-            Currently your hair style is @@.orange;<<print $playerhairstyle>>@@.
+            You hair color is <span @class="$pHairColor.toLowerCase();">$pHairColor</span> with a $pHairStyle style.
             <<if $playervar.gender is "male">>
                 <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
                     And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ cm.
                 <</if>>
             <</if>>
             Your body sensibility is <<sensibilitychecker>>
-            Your body is @@.orange;<<print $playervar.height>>@@ and @@.orange;<<print $playervar.bodyshapestate>>@@ making you <span @class="$colorbs"><<print $bodystate>></span>.
+            Your body is @@.orange;<<print $playervar.height>>@@ and @@.orange;<<print $playervar.bodyshapestate>>@@.
 
         </fieldset>
 
@@ -37,7 +35,7 @@
 
         <fieldset class="charc">
             <legend> Arms info: </legend>
-            You have a pair of <span @class="$colorbs"><<print $bodystate>></span> arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;haven't touched anything@@.<</if>>
+            You have a pair of arms and each one has a hand that <<if $playervar.virginity.hands is true>>@@.green;haven't touched anything@@.<</if>>
         </fieldset>
 
         <<if $playervar.gender is "female">>
@@ -68,7 +66,7 @@
 
         <fieldset class="charc">
             <legend> Legs info: </legend>
-            You have a pair of <span @class="$colorbs"><<print $bodystate>></span> legs. They <<if $playervar.virginity.tights is true>> @@.green;hasn't been touched@@.<</if>>
+            You have a pair of legs. They <<if $playervar.virginity.tights is true>> @@.green;hasn't been touched@@.<</if>>
         </fieldset>
 
         <fieldset class="charc">
