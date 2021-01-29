@@ -133,7 +133,6 @@
 <</widget>>
 
 <<widget "bsandhsetter">> /* Bodyshape and height setter */
-	
 	<<switch $playervar.height>>
 		<<case "tall">>
 			<<if $playervar.bodyshape eq 100>> /* Muscular*/
@@ -215,7 +214,6 @@
 
 	<</switch>>
 
-	<<bsandhchecker>>
 <</widget>>
 
 <<widget "antrwidthsetter">>
@@ -298,7 +296,6 @@
 
 /* Female setter */
 <<widget "femalesetter">>
-
 	/* Upper body sensibility */
 	<<if $playervar.breastsize eq 100>> /* Enormous */
 		<<set $playervar.breastmilkmaxlevel to 420>>

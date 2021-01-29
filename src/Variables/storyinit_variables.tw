@@ -53,8 +53,6 @@
     virginity:{}
 }>>
 
-<<set $bodystate to undefined>>
-
 <<set $credits to 250>>
 <<set $energy to 100>>
 <<set $maxenergy to 100>>
