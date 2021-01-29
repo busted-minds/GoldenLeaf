@@ -57,7 +57,8 @@
                 <<optionsfrom _sleeptime>>
             <</listbox>>
             <br>
-            <<button "Sleep" "bed">><<energy (_time*10)+20>><<sleep>><<timeattached _time*60 true>><</button>>
+            <<set _ene to (_time*10)+20>>
+            <<button "Sleep" "sleep">><<energy _ene>><<sleep>><<timeattached _time*60 true>><</button>>
         </div>
     </div>
     <div class="list">
@@ -68,7 +69,8 @@
                 <<optionsfrom _relaxtime>>
             <</listbox>>
             <br>
-            <<button "Relax" "bed">><<energy _rtime * 0.4>><<timeattached _rtime>><</button>>
+            <<set _rene to _rtime * 0.4>>
+            <<button "Relax" "sleep">><<energy _rene>><<timeattached _rtime>><</button>>
         </div>
     </div>
     <br>

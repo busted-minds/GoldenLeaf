@@ -80,7 +80,8 @@
                 <<optionsfrom _relaxtime>>
             <</listbox>>
             <br>
-            <<button "Relax" "bed">><<energy _rtime * 0.4>><<timeattached _rtime>><</button>>
+            <<set _rene to _rtime * 0.4>>
+            <<button "Relax" "relax">><<energy _rene>><<timeattached _rtime>><</button>>
         </div>
     </div>
     <br>
