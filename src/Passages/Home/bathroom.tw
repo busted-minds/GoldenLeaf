@@ -9,44 +9,18 @@
     <br>
     <<if $bathrclean>>
         <br>
-        <<button "Get into the shower" "shower">><</button>>
+        <<button "Fast shower" "bathroom">>
+            <<hygiene 40 4 "cleaning">>
+        <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
+        <br>
+        <<button "Normal shower" "bathroom">>
+            <<hygiene 100 10 "cleaning">>
+        <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
+        <br>
+        <br>
+        <<masturbutton>>
     <</if>>
-    <br>
-    <<button "Use the sink" "sink">><</button>>
     <br>
     <br>
     <<button "To the living room" "livingroom">><</button>>
 
-:: shower [nobr]
-    <h2>Shower</h2>
-    <div class="divisor"></div>
-    <<messager>>
-    <br>
-    <<button "Fast shower" "shower">>
-        <<hygiene 40 4 "cleaning">>
-    <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
-    <br>
-    <<button "Normal shower" "shower">>
-        <<hygiene 100 10 "cleaning">>
-    <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
-    <br>
-    <<masturbutton>>
-    <br>
-    <br>
-    <<button "Get out" "bathroom">><</button>>
-
-:: sink [nobr]
-    <h2>Sink</h2>
-    <div class="divisor"></div>
-        <<messager>>
-    <br>
-    <<button "Wash your hands" "sink">>
-        <<hygiene 10 1 "cleaning">>
-    <</button>>@@.green; +10 hygiene@@ | @@.red; +1 Minutes@@
-    <br>
-    <<button "Wash your hands with soap" "sink">>
-        <<hygiene 15 2 "cleaning">>
-    <</button>>@@.green; +15 hygiene@@ | @@.red; +2 Minutes@@
-    <br>
-    <br>
-    <<button "Get out" "bathroom">><</button>>
