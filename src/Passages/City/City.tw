@@ -5,10 +5,8 @@
 
     <<button "Get inside the house" "livingroom">><</button>>
 
-    You can get a bus@@.red;(WIP)@@ or if you want to walk, you could go to the Blythe Celyn street or Hollins Drift street from here.
+    You can get a bus@@.red;(WIP)@@ or if you want to walk, you could go to Blythe Celyn or Hollins Drift from here.
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Blythe Celyn" "blythecelyn">><<timeattached 7>><</button>>@@.red; +7 min@@
-    <<button "Walk to Hollins Drift" "hollinsdrift">><<timeattached 6>><</button>>@@.red; +6 min@@
 
 :: blythecelyn
     !!Blythe Celyn
@@ -23,32 +21,23 @@
     <</nobr>>
     <<button "Get inside the Grocery" "grocerystore">><</button>>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Barlow Grove" "barlowgrove">><<timeattached 9>><</button>>@@.red; +9 min@@
-    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
 
 :: barlowgrove
     !!Barlow Grove
     <div class="divisor"></div>
     /*<<button "Get inside Horeco Inc" "horeco">><</button>>
     <<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to the Shopping Center" "shoppingcenter">><<timeattached 6>><</button>>@@.red; +6 min@@
-    <<button "Walk to Ashrout" "ashrout">><<timeattached 4>><</button>>@@.red; +4 min@@
-    <<button "Back to Blythe Celyn" "blythecelyn">><<timeattached 7>><</button>>@@.red; +7 min@@
 
 :: ashrout
     !!Ashrout
     <div class="divisor"></div>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Golden Leaf Central College" "collobby">><<timeattached 3>><</button>>@@.red; +3 min@@
-    <<button "Walk to the Shopping Center" "shoppingcenter">><<timeattached 6>><</button>>@@.red; +6 min@@
-    <<button "Back to Barlow Grove" "barlowgrove">><<timeattached 7>><</button>>@@.red; +7 min@@
 
 :: hollinsdrift
     !!Hollins Drift
     <div class="divisor"></div>
     Arriving at Hollins Drift, you see that there is a building that is in construction, who knows what it will be. Maybe some furniture related thing? ;).
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Go to Pioneer Lane" "pioneerlane">><<timeattached 8>><</button>>@@.red; +8 min@@
     <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
 
 :: pioneerlane
@@ -66,6 +55,5 @@
     <</button>>
     <</nobr>>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Back to Hollins Drift" "hollinsdrift">><<timeattached 6>><</button>>@@.red; +6 min@@
 
 /* This is some voodoo shit I tell you. People think that this is programming but no, this is just magic, its power comes from the pain and tears of the people who call themselves "programmers". It doesn't work? I don't know why. It works? I don't know too. */
