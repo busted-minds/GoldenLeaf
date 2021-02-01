@@ -1,0 +1,76 @@
+:: masturbate [nobr]
+    <h2>Masturbation</h2>
+    <<if !$message>>
+        <<set $message to []>>
+    <</if>>
+    <<if $arousal gte 100>>
+        <<set $arousal to 0>>
+        <<set $selectedSexOpt.RightHand to "Select an option">>
+        <<set $selectedSexOpt.LeftHand to "Select an option">>
+        <<set $masturCount++>>
+        <<if $playervar.gender is "male">>
+            <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
+        <<elseif $playervar.cansquirt is true>>
+            <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some liquid out.">>
+        <<else>>
+            <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
+        <</if>>
+        <<set $aroused to undefined>>
+        <<timed 1s>>
+            <<set $message[0] to undefined>>
+        <</timed>>
+        <<set $message[1] to undefined>>
+    <</if>>
+    <div class="divisor"></div>
+    <<mastOpt>>
+    <<print $message[0]>>
+        <<if $message[0]>>
+        <br>
+        <br>
+        <</if>>
+    <<print $message[1]>>
+        <<if $message[1]>>
+        <br>
+        <br>
+        <</if>>
+
+    Right Hand:
+    <<listbox "$selectedSexOpt.RightHand" autoselect>>
+        <<optionsfrom _masturoptions>>
+    <</listbox>>
+    <br>
+    <br>
+    Left Hand:
+    <<listbox "$selectedSexOpt.LeftHand" autoselect>>
+        <<optionsfrom _masturoptions>>
+    <</listbox>>
+
+    <br>
+    <br>
+    <<set _eRH to $selectedSexOpt.RightHand isnot "Select an option">>
+    <<set _eLH to $selectedSexOpt.LeftHandand isnot "Select an option">>
+    <<button "Update" "masturbate">>
+        <<masturbation>>
+        <<if _eRH and _eLH>>
+            <<timeattached 1>>
+        <</if>>
+    <</button>><<if _eRH or _eLH>>@@.red;+1 Minute@@<</if>>
+
+    <<button "Finish" $location>>
+        <<set $selectedSexOpt.RightHand to undefined>>
+        <<set $selectedSexOpt.LeftHand to undefined>>
+        <<unset $message>>
+        <<unset $location>>
+    <</button>>
+
+:: masturbutton [widget nobr]
+
+<<widget "masturbutton">>
+    <<if $energy gte 35>>
+        <<button "Masturbate" "masturbate">>
+            <<set $location to passage()>>
+        <</button>>
+    <<else>>
+        @@.lightred;You need some rest before trying to masturbate.@@
+    <</if>>
+<</widget>>
