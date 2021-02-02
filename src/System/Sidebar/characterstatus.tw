@@ -28,7 +28,7 @@
 
         <fieldset class="charc">
             <legend> Mouth info: </legend>
-            You have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;hasn't been touched@@.<</if>><br>
+            You have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;haven't been touched@@.<</if>><br>
             Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects up to @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
             It <<if $playervar.virginity.throat is true>>@@.green;had no object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have gag reflex.<</if>>
         </fieldset>
