@@ -3,7 +3,7 @@
 /% Just some wardrobelinks that are put as a <a> to use them as functions and so the "game" can remember what was pressed when you leave the passage or refreshes%/
 /% Credits to DoL.%/
 <<widget "wardrobeLinks">>
-    <fieldset id="fieldinline" style="min-width: 17.1em;">
+    <fieldset id="fieldinline" style="min-width: 18.5em;">
         <legend style="font-size: 130%;">Clothes</legend>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
