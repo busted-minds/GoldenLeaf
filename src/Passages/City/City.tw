@@ -38,7 +38,6 @@
     <div class="divisor"></div>
     Arriving at Hollins Drift, you see that there is a building that is in construction, who knows what it will be. Maybe some furniture related thing? ;).
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
 
 :: pioneerlane
     !!Pioneer Lane

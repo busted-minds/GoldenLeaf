@@ -10,8 +10,6 @@
     <br>
     <br>
     <<button "Reception" "reception">><</button>>
-    <br>
-    <<button "To Ashrout" "ashrout">><<timeattached 3>><</button>>@@.red; +3 min@@
 
 :: reception [nobr]
     <h2>College Reception</h2>
