@@ -1,11 +1,11 @@
 :: bedroom [nobr]
     <h2>Bedroom</h2>
     <div class="divisor"></div>
-    You are in your bedroom, you see the door to the living room.
+    You are in your bedroom and you see the door to the living room.
     <br>
-    Your room has a @@.orange;normal bed@@ in one corner on the other you see your wardrobe and a mirror.
+    Your room has a @@.orange;normal bed@@ in one corner and your wardrobe and a mirror in the other.
     <br>
-    Near the window you can see a cheap desk that has a @@.orange;normal laptop@@ ontop of it and a @@.orange;cheap chair@@.
+    Near the window you can see a cheap desk that has a @@.orange;normal laptop@@ on top of it and a @@.orange;cheap chair@@.
     <br>
     <br>
     <<messager>>

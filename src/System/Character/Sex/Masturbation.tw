@@ -11,7 +11,7 @@
         <<if $playervar.gender is "male">>
             <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
         <<elseif $playervar.cansquirt is true>>
-            <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some liquid out.">>
+            <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some fluids.">>
         <<else>>
             <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
         <</if>>

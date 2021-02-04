@@ -3,22 +3,22 @@
     <div class="divisor"></div>
     <<messager>>
     <<if visited() is 1>>
-        //You start to have hunger, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh and remember to download the map of the city so you know where everything is ;).//
+        //You start to get hungry, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh, and remember to download the map of the city so you know where everything is ;).//
         <br>
         <br>
-        You pull out your phone from your pocket and start searching where to buy food. After some time you see an AD about a grocery shop.
+        You pull out your phone from your pocket and start searching where to buy food. After some time you see an ad about a grocery shop.
         <br>
-        //@@.lightyellow;If you want cheap, fresh and good ingredients come to Grocery Shop, we are located at Blythe Celyn we are open 24/7. That's right, 24 hours a day, 7 days a week. The best service and the best ingredients is our slogan! What are you waiting for? Come and see it for yourself!@@//
+        //@@.lightyellow;If you want cheap, fresh, and quality ingredients come to the Grocery Shop! We are located at Blythe Celyn and are open 24/7. That's right, 24 hours a day, 7 days a week! "The best service and the best ingredients" is our slogan! What are you waiting for? Come and see it for yourself!@@//
         <br>
         <br>
-        //Hmmm... this looks interesting, maybe you should take a look? After you come back, you should learn a recipe at your laptop.// @@.red;Read each step carefully, as you will need it for the cooking "minigame".@@
+        //Hmmm... this looks interesting, maybe you should take a look? After you come back, you should learn a recipe on your laptop.// @@.red;Read each step carefully, as you will need it for the cooking "minigame".@@
         <br>
         <br>
     <</if>>
     <<livingrclean>>
     You are in your living room. From here you can see the door that goes to the front door and the garden. In one of the sides you can see your kitchen. Next to the door you have a @@.orange;normal tv@@ and a @@.orange;cheap sofa@@. /% Normal and cheap sofa probably can be upgradable. %/
     <br>
-    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You see the wall clock, the time is @@.green;<<convert12h>>@@
+    You can see two more doors, one goes to your bedroom and the others goes to the bathroom. You look at the wall clock, the time is @@.green;<<convert12h>>@@
     <br>
     <br>
     <fieldset id="fieldinline">
@@ -32,7 +32,7 @@
         <legend>Places</legend>
         <<set _cond to $livingclean and $hygiene gte 60 and !$exposed>>
         <<disable _cond eq false>>
-            <button class="macro-button" onclick="SugarCube.Engine.play('frontdoor')" title="Requires 60 Hygiene and P.Needs lower than 80 and not being exposed.">Front Door</button>
+            <button class="macro-button" onclick="SugarCube.Engine.play('frontdoor')" title="Requires 60 Hygiene and not being exposed.">Front Door</button>
             <br>
         <</disable>>
         <<button "Kitchen" "kitchen">><</button>>

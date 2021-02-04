@@ -1,4 +1,4 @@
 :: shoppingcenter
     !!Shopping Center
     <div class="divisor"></div>
-    <<button "Clothes Store" "clothesstore">><</button>>
+    <<button "Clothing Store" "clothesstore">><</button>>

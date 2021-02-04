@@ -5,7 +5,7 @@
 
     <<button "Get inside the house" "livingroom">><</button>>
 
-    You can get a bus@@.red;(WIP)@@ or if you want to walk, you could go to Blythe Celyn or Hollins Drift from here.
+    You can catch a bus@@.red;(WIP)@@ or walk, heading either to Blythe Celyn or Hollins Drift from here.
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: blythecelyn
@@ -13,19 +13,19 @@
     <div class="divisor"></div>
     <<nobr>>
     <<if visited() is 1>>
-        //A flyer on the street floor comes into your sight, it's from a place called "Frozen Jar" apparently is the "Grand Opening" of the place it says that their open at <<print setup.frozenjar.workingHours.openingHours>> am.
+        //A flyer on the street comes into your sight from a place called the "Frozen Jar", apparently having a "Grand Opening". It says that they're open at <<print setup.frozenjar.workingHours.openingHours>> am.
         <br>
-        You should take a look and see if they looking for workers, maybe it's your lucky day ;).
+        You should take a look and see if they're looking for workers, maybe it's your lucky day ;).
         <br>//
     <</if>>
     <</nobr>>
-    <<button "Get inside the Grocery" "grocerystore">><</button>>
+    <<button "Go inside the Grocery" "grocerystore">><</button>>
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: barlowgrove
     !!Barlow Grove
     <div class="divisor"></div>
-    /*<<button "Get inside Horeco Inc" "horeco">><</button>>
+    /*<<button "Go inside Horeco Inc." "horeco">><</button>>
     <<link "Take a bus" "bus">><</link>>*/
 
 :: ashrout
@@ -36,7 +36,7 @@
 :: hollinsdrift
     !!Hollins Drift
     <div class="divisor"></div>
-    Arriving at Hollins Drift, you see that there is a building that is in construction, who knows what it will be. Maybe some furniture related thing? ;).
+    Arriving at Hollins Drift, you see a building that is in construction. Who knows what it will be. Maybe some furniture related thing? ;).
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: pioneerlane
@@ -44,7 +44,7 @@
     <div class="divisor"></div>
     <<nobr>>
     <<messager>>
-    <<button "Get inside Frozen Jar">>
+    <<button "Go inside the Frozen Jar">>
         <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
             <<goto "frozenjar">>
         <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>

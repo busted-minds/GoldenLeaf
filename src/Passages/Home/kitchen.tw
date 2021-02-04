@@ -2,10 +2,10 @@
     <h2>Kitchen</h2>
     <div class="divisor"></div>
     <<messager>>
-    You are in the kitchen it's small and is divided by an open-wall, you can see your living room from here.
+    You are in the kitchen. It's small and is divided by an open-wall through which you can see your living room from.
     <br>
-    At the corner you see your fridge, on top of it you have a spice cabinet and a cupboard. 
-    Next to your fridge there is your @@.orange;cheap stove@@ and the kitchen sink.
+    In the corner you see your fridge, on top of which you have a spice cabinet and a cupboard. 
+    Next to your fridge there is your @@.orange;cheap stove@@ and kitchen sink.
     At the open wall you see the kitchen table, where you can prepare food.
     <br>
     <<kitchenclean>>
@@ -80,7 +80,7 @@
         <br>
         <br>
     <<elseif !$selectedrecipe>>
-        You haven't choose any recipe, please choose one to start preparing food.
+        You haven't choose any recipe. Please choose one to start preparing food.
         <br>
 
         <fieldset id="fieldinline">
@@ -91,7 +91,7 @@
                 <<recipeselection>>
 
             <<else>>
-                You haven't learned any recipe, learn one first!.
+                You haven't learned any recipe, learn one first!
 
             <</if>>
         </fieldset>
@@ -100,7 +100,7 @@
     <</if>>
 
     <<if !$kitchentable[0]>>
-        You don't have any ingredient in the table.
+        You don't have any ingredient on the table.
 
     <<elseif $kitchentable[0]>>
         <<kitchentablevisu>>
@@ -121,7 +121,7 @@
     <h2>Preparation Step <<print $steps + 1>></h2>
     <div class="divisor"></div>
     <br>
-    Select the correct option based on the recipe instruction for @@.green;<<print $selectedrecipe>>@@. @@.red;Beware that the quality of the food depends on selected options@@
+    Select the correct option based on the recipe instruction for @@.green;<<print $selectedrecipe>>@@. @@.red;Beware that the quality of the food depends on the selected options@@
     <br>
     <br>
     <<preparationsteps>>
