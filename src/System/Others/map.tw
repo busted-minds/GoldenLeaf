@@ -40,7 +40,7 @@
                 <rect id="GLCC" class="map" x="10" y="298" height="45" width="50">
                 <title>To Golden Leaf Central College  +3 min.</title>
             </a>
-            <image href="img/others/Icon.png" id="location" x="-100" y="0"></img>
+            <image href="img/others/maploc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
         </svg>
         <<timed 40ms>>
             <<run _imgLoc = document.querySelector("#location");
