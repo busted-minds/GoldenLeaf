@@ -239,30 +239,29 @@
     <<button "Continue" "charcreation4">><</button>>
 
 :: charcreation4 [nobr]
-    <<if $gamestarted eq 0>>
-        <<set $gamestarted to 1>>
-        <<set $disablernggod to false>>
-        <<set $bps.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
-        <<if $playervar.gender is "female">>
-            <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
-            <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
-            <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
-            <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
-            <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
-            <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
-            <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
+    <<set $gamestarted to 1>>
+    <<set $disablernggod to false>>
+    <<set $bps.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
+    <<if $playervar.gender is "female">>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
+        <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
+        <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
             
-        <<elseif $playervar.gender is "male">>
-            <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
-            <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
-            <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
-            <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
-            <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
+    <<elseif $playervar.gender is "male">>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
 
-        <</if>>
-            
-        <<hobbyselection>>
     <</if>>
+            
+    <<hobbyselection>>
+
     You are @@.orange;<<print "$pName $pSurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing high school and turning 18 you told your parents that you wanted to live alone so you can achieve your personal goals. /*Expand later with the selected hobby. */
     <br>
     <br>
