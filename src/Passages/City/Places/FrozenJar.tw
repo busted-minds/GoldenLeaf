@@ -237,7 +237,7 @@
             <br>
             She says with a smile, putting the tablet back from where it came.
             <br>
-            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $playerdeniedjob to "frozenjar">><</button>>
+            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $playerdeclinejobb to "frozenjar">><</button>>
     <</switch>>
 
 :: work [nobr]
