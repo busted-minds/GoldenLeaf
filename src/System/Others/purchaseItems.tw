@@ -69,7 +69,7 @@
                             <</if>>
                         <</for>>
                         
-                        <<set _minut to ($shoppingcart.length * 2)>>
+                        <<set _minut to Math.round($shoppingcart.length * 1.5)>>
                         <<timeattached _minut>>
                         <<unset $shoppingcart>>
                         <<set $message to "succPurch">>
@@ -82,7 +82,7 @@
                 <<goto _currPass>>
             <</if>>
 
-        <</button>>@@.red; +<<print ($shoppingcart.length * 2)>> minutes@@
+        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 2)>> minutes@@
     <</if>>
     <<button "Back" $args[0]>><</button>>
 
