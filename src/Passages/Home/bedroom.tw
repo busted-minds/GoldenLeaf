@@ -58,7 +58,7 @@
             <</listbox>>
             <br>
             <<set _ene to (_time*10)+20>>
-            <<button "Sleep" "sleep">><<energy _ene>><<sleep>><<timeattached _time*60 true>><</button>>
+            <<button "Sleep" "sleep">><<restoreEnergy _ene>><<sleep>> <<set $sleeping to true>> <<timeattached _time*60>><</button>>
         </div>
     </div>
     <div class="list">
@@ -70,7 +70,7 @@
             <</listbox>>
             <br>
             <<set _rene to _rtime * 0.4>>
-            <<button "Relax" "sleep">><<energy _rene>><<timeattached _rtime>><</button>>
+            <<button "Relax" "sleep">><<restoreEnergy _rene>><<timeattached _rtime>><</button>>
         </div>
     </div>
     <br>
@@ -109,15 +109,29 @@
     <div class="divisor"></div>
     <<messager>>
     <<button "Play videogames" "computer">>
-        <<energyfun 2 5 5 "videogames">>
+        <<if $fun lt 100 and $energy gt 2>>
+            <<restoreEnergy -2>>
+            <<set $fun += 5>>
+            <<addminutes 5>>
+        <<else>>
+            <<if $energy lt 2>>
+                <<set $message to "noEnergyFun">>
+            <<else>>
+                <<set $message to "fullFun">>
+            <</if>>
+        <</if>>
     <</button>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
     <br>
     <<button "Open WaterDog Browser" "browser">><</button>>
     <br>
     <<if $hobby is "programming" or $programmingskill is 2>>
         <<button "Practice programming" "computer">>
-            <<energyfun 10 5 15 "skilling" "programming" 6>>
-        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
+            <<if $fun gte Math.round(15 *0.2) and $energy gte Math.round(15 *0.1)>>
+                <<timeattached 15 "programming" 6>>
+            <<else>>
+                <<set $message to "noEnergyFun">>
+            <</if>>
+        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -<<print Math.round(15 *0.2)>> Fun -<<print Math.round(15 *0.1)>> Energy +15 Minutes@@
     <</if>>
     <br>
     <br>

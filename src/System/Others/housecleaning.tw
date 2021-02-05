@@ -3,7 +3,7 @@
         <<if !$bedroomclean>>
             @@.lightblue.smollfont;You will need to clean your room and fix the bed before using it.@@
             <br>
-            <<cleaningb "Clean and fix the bed" 5 10 8 8 "bedroomclean">>
+            <<cleaningb "Clean and fix the bed" 5 10 8 "bedroomclean">>
             <br>
         <</if>>
     <</widget>>
@@ -12,7 +12,7 @@
         <<if !$livingclean>>
             @@.lightblue;The livingroom is dirty and you need to clean it before going outside, watching tv or using the sofa.@@
             <br>
-            <<cleaningb "Clean" 10 14 12 15 "livingclean">>
+            <<cleaningb "Clean" 10 14 14 "livingclean">>
             <br>
             <br>
         <</if>>
@@ -22,7 +22,7 @@
         <<if !$kitchenclean>>
             @@.lightblue.smollfont;You will need to clean the kitchen before cooking.@@
             <br>
-            <<cleaningb "Clean the kitchen" 8 10 12 16 "kitchenclean">>
+            <<cleaningb "Clean the kitchen" 8 10 16 "kitchenclean">>
             <br>
         <</if>>
     <</widget>>
@@ -31,7 +31,7 @@
         <<if !$bathrclean>>
             @@.lightblue;You will need to clean your room and fix the bed before using it.@@
             <br>
-            <<cleaningb "Clean the bathroom" 7 13 8 12 "bathrclean">>
+            <<cleaningb "Clean the bathroom" 7 13 10 "bathrclean">>
             <br>
         <</if>>
     <</widget>>

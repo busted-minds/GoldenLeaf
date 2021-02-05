@@ -432,11 +432,11 @@
             <<if !$messageL[0]>>
                 The front of the house needs to be cleaned. It doesn't look that bad but you don't want any visitors to see it.
                 <<button "Clean the front of the house" "prelivingroom">>
-                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<timeattached 15 "handyman" 10>>
                     <<set $messageL[0] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now you can feel proud if someone came to your house, because it looks somewhat decent.@@
@@ -449,11 +449,11 @@
                 Wow the livingroom, it's like a world of difference but it's still dirty and needs a good cleaning.
                 <br>
                 <<button "Clean the livingroom" "prelivingroom">>
-                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<timeattached 15 "handyman" 10>>
                     <<set $messageL[1] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now the livingroom looks like something you could spend your time off in and is worth looking at, you even bought a little clock :D.@@
@@ -461,12 +461,12 @@
                     There is an old tv, who still uses a 21 inch LED tv anymore?.
                     <br>
                     <<button "Install the new TV" "prelivingroom">>
-                        <<energyfun 15 3 10 "skilling" "handyman" 10>>
+                        <<timeattached 10 "handyman" 10>>
                         <<set $messageL[2] to true>>
 
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +10 Minutes@@
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
                 
                 <<else>>
                     <br>
@@ -477,11 +477,11 @@
                     You will need to move the new sofa to the living room. It weighs a lot, so lets put those muscles to work.
                     <br>
                     <<button "Buy a new sofa" "prelivingroom">>
-                        <<energyfun 15 3 15 "skilling" "handyman" 10>>
+                        <<timeattached 15 "handyman" 10>>
                         <<set $messageL[3] to true>>
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -15 Energy -3 Fun +15 Minutes@@
+                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
 
                 <<else>>
                     <br>
@@ -496,11 +496,11 @@
                 This kitchen doesn't look that bad, but it needs to be cleaned before you use it. Lucky for you the fridge and the stove are fixed! They even repaired the cupboards, cabinets, and counters.
                 <br>
                 <<button "Clean the kitchen and store the cookware" "prelivingroom">>
-                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<timeattached 10 "handyman" 10>>
                     <<set $messageL[4] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
             
             <<else>>
                 @@.green;Now this is a place where you could cook!@@
@@ -514,11 +514,11 @@
                 The bedroom looks fine, a little empty but after you move everything in, it will be ready.
                 <br>
                 <<button "Clean the bedroom and settle in" "prelivingroom">>
-                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<timeattached 15 "handyman" 10>>
                     <<set $messageL[5] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
             
             <<else>>
                 @@.green;You can sleep here, the bed isn't that good but it was free so it'll' work until you can afford a better one. Your new laptop is on the table in case you want to use it. The wardrobe difficult to move, why did they buy one so big? Oh well, it *was* free...@@
@@ -532,11 +532,11 @@
                 The bathroom is the best looking part of the house, but it still needs some cleaning.
                 <br>
                 <<button "Clean the bathroom" "prelivingroom">>
-                    <<energyfun 10 5 15 "skilling" "handyman" 10>>
+                    <<timeattached 10 "handyman" 10>>
                     <<set $messageL[6] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
+                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
 
             <<else>>
                 @@.green;The bathroom is so clean that you can see your own reflection, some soaps and shampoos were in the boxes as well.@@

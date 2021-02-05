@@ -10,11 +10,11 @@
     <<if $bathrclean>>
         <br>
         <<button "Fast shower" "bathroom">>
-            <<hygiene 40 4 "cleaning">>
+            <<hygiene 40 4>>
         <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
         <br>
         <<button "Normal shower" "bathroom">>
-            <<hygiene 100 10 "cleaning">>
+            <<hygiene 100 10>>
         <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
         <br>
         <br>

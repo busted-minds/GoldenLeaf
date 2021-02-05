@@ -264,8 +264,7 @@
         [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
         <br>
         <<button `"Work " + _workinghour + " hour(s)"` "work">>
-                <<timeattached `_workinghour*60`>>
-                <<energy -$pJob.energyused>>
+                <<timeattached `_workinghour*60` $pJob.energyused>>
                 <<payment _workinghour>>
         <</button>>
 
