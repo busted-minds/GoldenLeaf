@@ -51,7 +51,6 @@
                         <<set $preptime += 2>>
                     <<else>>
                         <<set $preptime += _steps[_i]>>
-                        <<run console.log($preptime)>>
                     <</if>>
                     <<if $steps gte $recipesteps.length>>
                         <<foodpreparation>>
