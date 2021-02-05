@@ -1,89 +1,69 @@
 :: preparationsteps [widget nobr]
 /* Just preparations steps and the button for it. I swear that one day I will find a way to "automate" this so I don't need to manually add each value to the case and the object. If you know how, please tell me :D.*/ 
 <<widget "preparationsteps">>
-    <<switch typeof($recipesteps[$steps])>>
-        <<case "string">>
-            <<set _stepS to ["Clean and Prepare", "Clean", "Cut into pieces", "Cut into julienne strips", "Fillet"]>>
-            
-            <<for _i to 1; _i lt _stepS.length +1; _i++>>
-                <<set _gC to _stepS.random()>>
+        <<if typeof($recipesteps[$steps]) is "string">>
+            <<set _steps to []>>
+            <<for _js to 0; _js lt setup.recipes.length; _js++>>
+                <<for _is to 0; _is lt setup.recipes[_js].steps.length; _is++>>
+                    <<if typeof(setup.recipes[_js].steps[_is]) is "string">>
+                        <<set _steps.pushUnique(setup.recipes[_js].steps[_is])>>
 
-                <<capture _gC>>
-                    <<button _gC>>
-                        <<if $recipesteps[$steps] is _gC>>
-                            <<set $correctCount++>>
-
-                        <</if>>
-
-                        <<set $steps++>>
-                        <<set $preptime += 5>>
-                        <<if $steps gte $recipesteps.length>>
-                            <<foodpreparation>>
-                            <<goto "kitchentable">> 
-
-                        <<else>>
-                            <<goto "preparation">>
-
-                        <</if>>
-
-                    <</button>>
-                <</capture>>
-                <<if _gc isnot $recipesteps[$steps]>>
-                    <<set _stepS.push($recipesteps[$steps])>>
-                <</if>>
-                <<set _stepS.delete(_gC)>>
-                <br>
+                    <</if>>
+                <</for>>
             <</for>>
 
-        <<case "number">>/*Isn't finished */
-            <<for _i to 0; _i lt _stepN.length; _i++>>
-                <<set _minHour to " minutes">>
-                <<if _stepN[_i] gte 60>>
+            <<for _steps.length gt 4>>
+                <<if _steps[0] isnot $recipesteps[$steps]>>
+                    <<set _steps.deleteAt(0)>>
+                <<else>>
+                    <<set _steps.deleteAt(random(1, _steps.length))>>
+                <</if>>
+            <</for>>
+
+        <<elseif typeof($recipesteps[$steps]) is "number">>
+            <<set _steps to [$recipesteps[$steps], Math.round($recipesteps[$steps] * 1.5), Math.round($recipesteps[$steps] * 2), Math.round($recipesteps[$steps] / 2)]>>
+        <</if>>
+
+        <<set _steps.shuffle()>>
+
+        <<for _i to 0; _i lt 4; _i++>>
+            <<if typeof($recipesteps[$steps]) is "number">>
+                <<if _steps[_i] gte 60>>
                     <<set _minHour to " hour(s)">>
-
+                <<else>>
+                    <<set _minHour to " minutes">>
                 <</if>>
+                <<set _bname to "Cook " + _steps[_i] + _minHour>>
 
-                <<capture _i>>
-                    <<button `"Cook " + _stepN[_i] + _minHour`>>
-                        <<if $recipesteps[$steps] is _stepN[_i]>>
-                            <<set $correctCount++>>
+            <<else>>
+                <<set _bname to _steps[_i]>>
+            <</if>>
 
-                        <</if>>
+            <<capture _i>>
+                <<button _bname>>
+                    <<if $recipesteps[$steps] is _steps[_i]>>
+                        <<set $correctCount++>>
 
-                        <<set $steps++>>
-                        <<set $preptime += _stepN[_i]>>
-                        <<if $steps gte $recipesteps.length>>
-                            <<foodpreparation>>
-                            <<goto "kitchentable">>
+                    <</if>>
 
-                        <<else>>
-                            <<goto "preparation">>
-                    
-                        <</if>>
+                    <<set $steps++>>
+                    <<if typeof(_steps[_i]) is "string">>
+                        <<set $preptime += 2>>
+                    <<else>>
+                        <<set $preptime += _steps[_i]>>
+                        <<run console.log($preptime)>>
+                    <</if>>
+                    <<if $steps gte $recipesteps.length>>
+                        <<foodpreparation>>
+                        <<goto "kitchentable">> 
 
-                    <</button>>
-                <</capture>>
+                    <<else>>
+                        <<goto "preparation">>
+
+                    <</if>>
+
+                <</button>>
+            <</capture>>
             <br>
-            <</for>>
-    <</switch>>    
-    /*<<switch $recipesteps[$steps]>>
-        <<case "Cut into pieces" "Cut into julienne strips" "Fillet">>
-            <<set _stepS to ["Cut into pieces", "Cut into julienne strips", "Fillet"]>>
-            <<buttons "s">>
-
-        <<case 3 5 7 8 10 15 30 >>
-            <<set _stepN to [3, 5, 7, 8, 10, 15]>>
-            <<buttons "n">>
-            
-        <<case 45 60 90 120 180>>
-            <<set _stepN to [45, 60, 90, 120, 180]>>
-            <<buttons "n">>
-
-        <<case "Clean and Prepare" "Clean">>
-            <<set _stepS to ["Clean and Prepare", "Clean"]>>
-            <<buttons "s">>
-            
-    <</switch>>*/
-    <<set _pass to passage()>>
-    <<button "Reload" _pass>><</button>>
+        <</for>>
 <</widget>>
