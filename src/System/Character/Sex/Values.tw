@@ -20,13 +20,13 @@
                     <<set $arousal += 6+ Math.round(6* _mult)>>
                         
                     <<if $arousal lt 45>>
-                        <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your clitoris, with motions in circles, up and down and to the sides building up arousal@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your clitoris in circular motion, up and down and to the sides, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lte 80>>
-                        <<set $message[_i] to "@@.pink;After a bit you start to feel it more and now you're doing more rapid and fast motions trying to @@@@.darkpink;feel better@@ @@.pink;more and more@@.">>
+                        <<set $message[_i] to "@@.pink;After a bit, you start to feel it more and now you're doing faster and more rapid motions, trying to @@@@.darkpink;feel better@@ @@.pink; more and more@@.">>
 
                     <<elseif $arousal lte 99>>
-                        <<set $message[_i] to "@@.pink;With that much stimulation your @@@@.darkpink;clitoris@@ @@.pink;got a bit swollen from arousal, you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
+                        <<set $message[_i] to "@@.pink;With that much stimulation, your @@@@.darkpink;clitoris@@ @@.pink;got a bit swollen from arousal and you feel that you are close to having an @@@@.darkpink;orgasm@@.">>
 
                     <</if>>
 
@@ -34,7 +34,7 @@
                     <<set $arousal += 4+ Math.round(4* _mult)>>
                         
                     <<if $arousal lt 45>>
-                        <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your labia, with motions in circles, up and down and to the sides building up arousal trying to get wet to maybe an insertion@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your labia, in circular motion, up and down and to the sides building up arousal trying to get wet to maybe an insertion@@ and starting to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lte 99>>
                         <<set $message[_i] to "@@.pink;With that much stimulation you are now wet. After so many motions, you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
@@ -45,13 +45,13 @@
                     <<set $arousal += 6+ Math.round(6* _mult)>>
                     
                     <<if $arousal lt 45>>
-                        <<set $message[_i] to "You gently insert @@.orange;2@@ @@.pink;fingers into your vagina, trying to find the spot that feels the most, it's warm and moist@@. @@.darkpink;You're starting to feel good@@.">>
+                        <<set $message[_i] to "You gently insert @@.orange;2@@ @@.pink;fingers into your vagina, trying to find the spot that feels the best, warm and moist@@. @@.darkpink;You're starting to feel good@@.">>
 
                     <<elseif $arousal lte 80>>
-                        <<set $message[_i] to "@@.pink;After so much stimulation you start to feel it more and now you're doing fast motions trying to @@@@.darkpink;feel better, more and more trying to get close to an orgasm@@.">>
+                        <<set $message[_i] to "@@.pink;After so much stimulation you start to feel it more, and now you're doing fast motions trying to @@@@.darkpink;feel better, getting closer to an orgasm@@.">>
 
                     <<elseif $arousal lte 99>>
-                        <<set $message[_i] to "@@.pink;Your vagina is more wetter than before, a sign that you are close to an @@@@.darkpink;orgasm@@.">>
+                        <<set $message[_i] to "@@.pink;Your vagina is wetter than before, a sign that you are close to an @@@@.darkpink;orgasm@@.">>
 
                     <</if>>
 
@@ -59,7 +59,7 @@
                     <<set $arousal += 4+ Math.round(4* _mult)>>
 
                     <<if $arousal lt 45>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage around your anus, with motions in circles trying to prepare it to an insertion or maybe you just like to massage it@@, and started to @@.darkpink;feel good@@.">>
+                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage around your anus with circular motions, trying to prepare it for an insertion, or maybe you just like to massage it, and start to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lt 100>>
                         <<set $message[_i] to "@@.pink;After a bit you start to feel it more and now you're doing it more fast, trying to @@@@.darkpink;feel better, taking care of not putting a finger in, yet@@.">>

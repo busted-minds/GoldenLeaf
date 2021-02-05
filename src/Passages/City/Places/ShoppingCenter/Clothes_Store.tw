@@ -1,14 +1,14 @@
 :: clothesstore [nobr]
-    <h2>Clothes Store</h2>
+    <h2>Clothing Store</h2>
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
     <div class="divisor"></div>
     <<messager>>
     <<if visited() is 1>>
-    After seeing a big announcement outside the store, you get in. It seems that they sell shirts, blouses, pants, skirts, shoes and even underwear. There is a girl attending the store.
+    After seeing a big announcement outside the store, you step inside. It seems that they sell shirts, blouses, pants, skirts, shoes and even underwear. There is a girl attending the store.
     <<else>>
-    You are inside the Clothes Store.There is a girl attending the store.
+    You are inside the Clothing Store.There is a girl attending the store.
     <</if>>
     <br>
     <<button "Outerwear" "outerwear">><</button>>

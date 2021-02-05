@@ -263,35 +263,35 @@
             
         <<hobbyselection>>
     <</if>>
-    You are @@.orange;<<print "$pName $pSurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing your high school and turning 18 you told your parents that you wanted to live alone so you can achieve your personal goals. /*Expand later with the selected hobby. */
+    You are @@.orange;<<print "$pName $pSurname">>@@, you are in a train to @@.gold;Golden Leaf City@@ after finishing high school and turning 18 you told your parents that you wanted to live alone so you can achieve your personal goals. /*Expand later with the selected hobby. */
     <br>
     <br>
-    They saw your attitude with good eyes, they told you that they have a small house in @@.gold;Golden Leaf City@@ where they lived many years ago and that they rented it out to other people but since the last tenant didn't took care of the house they stopped doing it and now you have a house all to yourself. So here you are, in your way to @@.gold;Golden Leaf City@@ in a slow af train with @@.yellow;$credits credits@@ in your account and you haven't slept well since you got out of your parent's house neither eaten anything besides the food that you bought on the train.
+    They were excited at your attitude and told you about a small house in @@.gold;Golden Leaf City@@ where they lived many years ago that they rented out to other people. But, since the last tenant didn't take care of the house, they stopped renting it out and now you have a house all to yourself. So, here you are, on your way to @@.gold;Golden Leaf City@@ on a slow train with @@.yellow;$credits credits@@ in your account. You haven't slept well since you got out of your parents' house nor eaten anything besides the food that you bought on the train.
     <br>
     <br>
     <div class="divisor"></div>
     //* After what looks like an eternity (But where just 3 hours) *//
     <br>
     <br>
-    Welcome to Golden Leaf City. From the station you can see a small panorama of a few places in the city with a suprising amount of greenery around, quite a lot considering it's a city. In one of the parts of the city there are what seems to be three main building that attract a lot of/your attention due to their interesting modern designs probably worth millions of Credits. 
+    Welcome to @@.gold;Golden Leaf City@@. From the station you can see a small panorama of a few places in the city with a suprising amount of greenery around, quite a lot considering it's a city. On one end of the city, there appear to be three main buildings that attract a lot of your attention due to their unique modern designs. 
     <br>
-    In the past it seems the city was just a small rural town, but thanks to the arrival of a successful business *his name here* it has expanded and thrived to the point where it is now. In the other side of the city you can see what appears to be the residential area where you are supposed to go.
-    <br>
-    <br>
-    Finally got to your new house it's pretty big from the outside, with the digital key in your phone you are about to open the front door when you get a message in your phone, it's from your parents. It's odd that you didn't got the message until now, maybe there were problems in the Network?.
+    In the past the city was just a small rural town, but thanks to the arrival of a successful business *insert name here* it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
     <br>
     <br>
-    // "@@.lightyellow;Hey <span class="orange"><<print $pName>></span>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to choose what you want to do in your life.@@
+    When you finally arrive at your new house, you notice it's pretty big from the outside. You are about to open the front door with the digital key in your phone when you get a message on your phone, it's from your parents. It's odd that you didn't recieve the message until now, maybe there was a problem with the Network?
+    <br>
+    <br>
+    // "@@.lightyellow;Hey <span class="orange"><<print $pName>></span>, we hope that you arrived well. We are really happy that you made this decision and we really hope that you use it to decide what you want to do with your life.@@
     <br>
     <<timed 1s>> <<set $credits += 70>><<replace #credits>>$credits<</replace>>
-    @@.lightyellow;We transfered some money in your account so you can buy some food, you will need to clean the house as we haven't been there since we started to live here. Oh, probably there is something that needs to be repaired or changed so we bought a little gift for you, it's probably already at the house's front door. That's all, bye and take care!@@"
+    @@.lightyellow;We transfered some money in your account so you can buy some food, you will need to clean the house as we haven't been there since we started to live here. There are probably a few things that need to be repaired or changed so we bought a little gift for you, it's probably already at the front door. That's all, love you and take care!@@"
     // @@.yellow; +70 credits@@
     <br>
     <br>
     <<next 250ms>>
-    After reading the message you take step inside and look around you there is place for an small garden or something here and at a corner of the front wall there was indeed a "small" gift;
-    A wardrobe, a bed, a table with a chair and a laptop on top, a sofa, a TV, some cookware and a box with personal use things like soap and shampoo and cleaning supplies, not exactly a small gift, this could've cost a fortune. 
-    After inspecting everything and unlocking the house's door you put the phone in your pocket and get in.
+    After reading the message you step through the front gate and take a look around. There is space for a small garden or something out nearby and in the corner by the wall there was indeed a "small" gift;
+    A wardrobe, a bed, a table with a chair and a laptop on top, a sofa, a TV, some cookware and a box with personal use things like soap and shampoo and cleaning supplies. Not exactly a small gift, this could've cost a fortune. 
+    After inspecting everything and unlocking the house's door you put the phone in your pocket and step inside.
     ~~''@@.red;You are about to start the game, you may join college [Not implemented. WIP] or start working [1 job implemented. WIP] directly but beware that if you don't join college in a span of 2 weeks you will need to wait 6 months to apply.@@''~~
     <br>
     <br>
@@ -302,8 +302,8 @@
     <h2>House</h2>
     <div class="divisor"></div>
     <<if $finishL isnot true>>
-        @@#call1;As you get in the house and having a good look of it, you see that it's in pretty bad shape there are things that need to be fixed, others that needs to be replaced and rooms that needs to be cleaned.
-        Fortunately for you, there is water and even some supplies from the boxes. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
+        @@#call1;As you enter the house and take a good look around, you see that it's in pretty bad shape. There are things that need to be fixed, others that needs to be replaced and rooms that need to be cleaned.
+        Fortunately for you, there is running water and some useful cleaning supplies in the boxes. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
         @@#call;
         <br>
         <<button "Call father">>
@@ -317,15 +317,15 @@
                 //<<type 50ms>>Calling...Ding<</type>>
                 <br>
                 <<timed 1500ms>>
-                - "@@.lightyellow;Hello, @@@@.orange;<<print $pName>>@@ @@.lightyellow;what happened, it's everything alright?@@"
-                <br><br>- @@.lightblue;Hello Dad, yes everything is fine, but I need to say that the house is in a pretty bad shape and called to ask if you know someone that could help me to fix some things, oh and your little gift wasn't exactly that little, but thanks a lot, really.@@
-                <br><br>- "@@.lightyellow;No problem, we though that you will need those things so you can start your new left there but the house is really that bad? We tought that well, it wont be in a perfect state but atleast it would be in a somewhat usable state, but alright I'll send you a phone number from a company that we used to call when we needed to fix something in the house. Check if they are still working please.@@"
+                - "@@.lightyellow;Hello, @@@@.orange;<<print $pName>>@@ @@.lightyellow;what happened, is everything alright?@@"
+                <br><br>- @@.lightblue;Hello Dad, yes everything is fine, but the house is in pretty bad shape, so I called to ask if you know someone that could help me to fix some things. Oh, and your little gift wasn't exactly that little> But thanks a lot, really.@@
+                <br><br>- "@@.lightyellow;No problem, we though you might need those things so you can start your new life there. Is the house really that bad? We didn't expect it to be perfect, but at least it should be in a somewhat liveable state. Alright, I'll send you a phone number for a company that we used to call when we needed something fixed in the house. You'll need to check if they're' still operating.@@"
                 <br><br>- @@.lightblue;Thanks Dad! Call you later, bye.@@
                 <br><br>- "@@.lightyellow;Bye, @@@@.orange;<<print $pName>>@@ @@.lightyellow;take care.@@"
                 <<next 1s>>
                 <br>
                 Bep
-                <br>Alright lets see if this number works and please, please don't be expensive.
+                <br>Alright! Lets see if this number works and please, please don't be expensive.
                 //
                 <<replace #call>>
                     <<button "Call the home repair company">>
@@ -337,20 +337,20 @@
 
                             <<timed 1500ms>>
                             <br>
-                            - "@@.lightyellow;Hello HORECO Inc., how may I help you?@@"
-                            <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$pName $pSurname">></span>. I'm calling because recently I moved to a new house but it's in a pretty bad shape and I need to repair it.@@
+                            - "@@.lightyellow;HORECO Inc., how may I help you?@@"
+                            <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$pName $pSurname">></span>. I'm calling because recently I moved to a new house and it's in a pretty bad shape, I need some help to repair it.@@
                             <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pSurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print setup.dadname + " " + $pSurname>>@@?"
                             <br><br>- @@.lightblue;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
-                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $pSurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we can give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your direction and I'll send one of our employee ASAP.@@"
+                            <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $pSurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we will give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your address and I'll send one of our employee ASAP.@@"
                             <br><br>- @@.lightblue;Great thanks a lot, give me a sec... Ready.@@
-                            <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will check the house and tell you how much it will be after the discount of course.@@"
+                            <br><br>- "@@.lightyellow;Let me check... Ok got it, he will arrive in 2 hours, he will look at the house and tell you how much it will cost to repair, after the discount of course.@@"
                             <br><br>- @@.lightblue;Thank you very much, bye!.@@
                             <br><br>- "@@.lightyellow;Bye.@@"
                             <br>
                             <<next 1600ms>>
                             Bep
                             <br>
-                            Well, I need to play fortunately enough I got data so I can check some videos or shitposts, because who doesn't like shitposts?.
+                            Well, I need to wait, fortunately enough I have data so I can check some videos or shitposts. Because who doesn't like shitposts?.
                             //
                             <<replace #call>>
                                 <br>
@@ -363,10 +363,10 @@
                                         // <<type 75ms>>Ding Dong...<</type>>
                                         <<timed 1500ms>>
                                         <br><br>- "@@.lightyellow;Hello, I'm from HORECO Inc.@@"
-                                        <br><br>- @@.lightblue;Wait a second, I'll open the door.@@
+                                        <br><br>- @@.lightblue;Hang on a second, I'll get the door.@@
                                         <<next 1600ms>>
-                                        <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print $pName>></span> go in please.@@
-                                        <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pName>></span>... I'll check everything and this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much it's the payment.@@"
+                                        <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print $pName>></span> step on in please.@@
+                                        <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pName>></span>... I'll check everything with this little friend of mine..." he says and you see a little robot that he drops in the floor. As he looks in the house he says "Wow, this house is in a pretty bad shape... Ok I'll check everything and after I finish I'll tell you how much this will cost.@@"
                                         
                                         <<next 2s>>
                                         <<addminutes 15>>
@@ -374,8 +374,8 @@
                                             <<timedate>>
                                         <</replace>>
                                         <br>
-                                        <br><br>- "@@.lightyellow;I'm back, I left the robot working. Checked everything and there were a lot of things to be fixed lucky for you, you got a big discount from my boss so it will be 250 credits. We'll finish in about 3 hours, the place will get a bit dirty so you may need to clean after we finish.@@"
-                                        <br><br>- @@.lightblue;Alright, thanks I'll transfer it in a second.@@
+                                        <br><br>- "@@.lightyellow;I'm back, I left the robot working. Checked everything and there were a lot of things to be fixed. Lucky for you, you got a big discount from my boss so it will be 250 credits. We'll be done in about 3 hours, the place is a bit of a mess so you may need to clean after we finish.@@"
+                                        <br><br>- @@.lightblue;Alright, thanks. I'll transfer it in a second.@@
                                         //
                                         <<next 1s>>
                                         <<replace #call>>
@@ -424,14 +424,14 @@
             <<set $messageL to []>>
         <</if>>
         <<if $clean lt 7>>
-            Well the house is in a better shape, still need cleaning but is better than before. Unfortunately you don't have enough money to pay someone to clean completely clean the house :(.
+            Well the house is in a better shape, still needs cleaning but is better than before. Unfortunately you don't have enough money to pay someone to clean the house :(.
             <br>
         <</if>>
 
         <fieldset class="charc" id="FrontHouse">
             <legend>Front house</legend>
             <<if !$messageL[0]>>
-                The front of the house needs to be cleaned, it doesn't look that bad atleast but you don't want any visit to see it.
+                The front of the house needs to be cleaned. It doesn't look that bad but you don't want any visitors to see it.
                 <<button "Clean the front of the house" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
                     <<set $messageL[0] to true>>
@@ -447,7 +447,7 @@
         <fieldset class="charc" id="Livingroom">
             <legend>Livingroom</legend>
             <<if !$messageL[1]>>
-                Wow the livingroom, it's like a world of difference but it's still dirty and need a good clean.
+                Wow the livingroom, it's like a world of difference but it's still dirty and needs a good cleaning.
                 <br>
                 <<button "Clean the livingroom" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
@@ -457,9 +457,9 @@
                 <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
                 <br>
             <<else>>
-                @@.green;Now the livingroom looks like something you could spend time off and is worth looking, you even bought a little clock :D.@@
+                @@.green;Now the livingroom looks like something you could spend your time off in and is worth looking at, you even bought a little clock :D.@@
                 <<if !$messageL[2]>>
-                    There is an old tv, who still use a 21 inch LED tv in this day and age?.
+                    There is an old tv, who still uses a 21 inch LED tv anymore?.
                     <br>
                     <<button "Install the new TV" "prelivingroom">>
                         <<energyfun 15 3 10 "skilling" "handyman" 10>>
@@ -475,7 +475,7 @@
                 <</if>>
 
                 <<if !$messageL[3]>>
-                    You will need to move the new sofa it to the living room it weighs so lets put those muscles to work.
+                    You will need to move the new sofa to the living room. It weighs a lot, so lets put those muscles to work.
                     <br>
                     <<button "Buy a new sofa" "prelivingroom">>
                         <<energyfun 15 3 15 "skilling" "handyman" 10>>
@@ -486,7 +486,7 @@
 
                 <<else>>
                     <br>
-                    @@.green;Hey you finally moved the sofa, got tired? Well you haven't finished move on.@@
+                    @@.green;Hey you finally moved the sofa, got tired? Well you haven't finished yet, move along.@@
                 <</if>>
             <</if>>
         </fieldset>
@@ -494,7 +494,7 @@
         <fieldset class="charc" id="Kitchen">
             <legend>Kitchen</legend>
             <<if !$messageL[4]>>
-                This kitchen doesn't look that bad but it needs to be cleaned first tho. Lucky for you the fridge and the stove are fixed and working! They even repaired the cupboad, the cabinet and the counter.
+                This kitchen doesn't look that bad, but it needs to be cleaned before you use it. Lucky for you the fridge and the stove are fixed! They even repaired the cupboards, cabinets, and counters.
                 <br>
                 <<button "Clean the kitchen and store the cookware" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
@@ -504,7 +504,7 @@
                 <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
             
             <<else>>
-                @@.green;Now this is a place where you could cook!.@@
+                @@.green;Now this is a place where you could cook!@@
 
             <</if>>
         </fieldset>
@@ -512,7 +512,7 @@
         <fieldset class="charc" id="Bedroom">
             <legend>Bedroom</legend>
             <<if !$messageL[5]>>
-                The bedroom looks fine, a little empty but after you install everything for it, it will be ready.
+                The bedroom looks fine, a little empty but after you move everything in, it will be ready.
                 <br>
                 <<button "Clean the bedroom and settle in" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>
@@ -522,7 +522,7 @@
                 <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -10 Energy -5 Fun +15 Minutes@@
             
             <<else>>
-                @@.green;You can sleep here, the bed isn't that good but it was free so it will work until you can afford a better one, yournew  laptop is in the table in case you want to use it. The wardrobe was a hard work for sure, why do you want one so big? Well you didn't buy it but still...@@
+                @@.green;You can sleep here, the bed isn't that good but it was free so it'll' work until you can afford a better one. Your new laptop is on the table in case you want to use it. The wardrobe difficult to move, why did they buy one so big? Oh well, it *was* free...@@
             
             <</if>>
         </fieldset>
@@ -530,7 +530,7 @@
         <fieldset class="charc" id="Bathroom">
             <legend>Bathroom</legend>
             <<if !$messageL[6]>>
-                The bathroom is the best looking part of the house, needs some clean.
+                The bathroom is the best looking part of the house, but it still needs some cleaning.
                 <br>
                 <<button "Clean the bathroom" "prelivingroom">>
                     <<energyfun 10 5 15 "skilling" "handyman" 10>>

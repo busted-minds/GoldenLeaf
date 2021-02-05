@@ -6,7 +6,7 @@
     <div class="divisor"></div>
     <<messager>>
     <<if visited() is 1>>
-        You get inside the store from the AD. It seems that they sell many food related things here.
+        You get inside the store from the AD. It seems that they sell many foodstuffs here.
     <<else>>
         You are inside the Grocery Store.
     <</if>>

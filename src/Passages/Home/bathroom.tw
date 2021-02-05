@@ -3,9 +3,9 @@
     <div class="divisor"></div>
     <<messager>>
     <<bathrclean>>
-    You are in your bathroom, you see the door to the living room.
+    You are in your bathroom and you see the door to the living room.
     <br>
-    Inside at one corner you see a @@.orange;small shower@@ at the left of it you see the @@.orange;normal toilet@@. Near the little bathroom air extractor you see the sink.
+    Inside in one corner you see a @@.orange;small shower@@ and a @@.orange;normal toilet@@ to the left of it. Near the little bathroom ventilator you see the sink.
     <br>
     <<if $bathrclean>>
         <br>
