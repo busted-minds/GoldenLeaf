@@ -15,11 +15,11 @@
     <</if>>
     <fieldset id="fieldinline">
         <legend>Open</legend>
-        <<button "Open the fridge" "fridge">><</button>>
+        <<button "Fridge" "fridge">><</button>>
         <br>
-        <<button "Open the spice cabinet" "spicecabinet">><</button>>
+        <<button "Spice cabinet" "spicecabinet">><</button>>
         <br>
-        <<button "Open the cupboard" "cupboard">><</button>>
+        <<button "Cupboard" "cupboard">><</button>>
     </fieldset>
     <br>
     <fieldset id="fieldinline">
