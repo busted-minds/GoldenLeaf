@@ -5,6 +5,7 @@
         {
             id: 0,
             name: "Coconut",
+            description: "A coconut",
             price: 2,
             hunger: 5,
             amount: 1,
@@ -14,6 +15,7 @@
         {
             id: 1,
             name: "Watermelon",
+            description: "A watermelon",
             price: 5,
             hunger: 8,
             amount: 1,

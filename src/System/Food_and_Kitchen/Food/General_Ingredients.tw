@@ -5,6 +5,7 @@
         {
             id: 0,
             name: "Rice",
+            description: "A pack of rice",
             price: 2,
             amount: 1,
             foodtype: "generalIng"
@@ -12,6 +13,7 @@
         {
             id: 1,
             name: "Pasta",
+            description: "A pack of pasta",
             price: 2,
             amount: 1,
             foodtype: "generalIng"
@@ -19,6 +21,7 @@
         {
             id: 2,
             name: "Salt",
+            description: "A pack of salt",
             price: 1,
             amount: 1,
             foodtype: "generalIng"
@@ -26,6 +29,7 @@
         {
             id: 3,
             name: "Flour",
+            description: "A pack of flour",
             price: 2,
             amount: 1,
             foodtype: "generalIng"

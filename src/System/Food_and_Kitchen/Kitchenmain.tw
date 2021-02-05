@@ -2,11 +2,11 @@
 
 <<widget "kitchenini">>
     <<kitchenvar>>
-    <<kitchenwidgets>>
+    <<foodIniWidgets>>
 
 <</widget>>
 
-<<widget "kitchenwidgets">>
+<<widget "foodIniWidgets">>
     <<setfruits>>
     <<setspices>>
     <<setgeneralIng>>
