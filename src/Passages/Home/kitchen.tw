@@ -100,7 +100,7 @@
     <</if>>
 
     <<if !$kitchentable[0]>>
-        You don't have any ingredient on the table.
+        You don't have any ingredient or prepared food on the table.
 
     <<elseif $kitchentable[0]>>
         <<kitchentablevisu>>
