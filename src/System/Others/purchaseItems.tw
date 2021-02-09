@@ -82,7 +82,7 @@
                 <<goto _currPass>>
             <</if>>
 
-        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 2)>> minutes@@
+        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 1.5)>> minutes@@
     <</if>>
     <<button "Back" $args[0]>><</button>>
 
