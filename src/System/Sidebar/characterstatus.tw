@@ -18,7 +18,7 @@
             You hair color is <span @class="$pHairColor.toLowerCase();">$pHairColor</span> with a $pHairStyle style.
             <<if $playervar.gender is "male">>
                 <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
-                    And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ cm.
+                    And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ mm.
                 <</if>>
             <</if>>
             Your body sensibility is <<sensibilitychecker>>

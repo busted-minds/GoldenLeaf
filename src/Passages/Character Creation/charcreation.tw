@@ -99,10 +99,10 @@
                 <ul>
                     <<listbox "$pBeardSize" autoselect>>
                         <<option "Inexistent (It wont grow)" 0>>
-                        <<option "None" 1>>
+                        <<option "Almost none" 1>>
                         <<option "Small" 5>>
                         <<option "Medium" 10>>
-                        <<option "Big" 15>>
+                        <<option "Large" 15>>
                     <</listbox>>
                 </ul>
             <</if>>
