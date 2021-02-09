@@ -5,58 +5,65 @@
 
     <<if _mID isnot -1>>
         <br>
-        <br>
-        <svg width="416" height="350" style="border: 0.5px solid #383e65">
+        <svg width="416" height="350" style="border: 0.2px solid #383e65; border-radius: 5px;">
             <image href="img/others/mapV1.png" height="100%" width="100%"></image>
             
-            <a onclick="passageMov(0);">
-                <rect class="map" x="131" y="43" height="35" width="65">
+            <a onclick="passageMov(0, 'Clove_Row');">
+                <rect id="Clove_Row" class="map" x="131" y="43" height="35" width="65">
                 <title>To Clove Row +8 min.</title>
             </a> 
-            <a onclick="passageMov(1);">
-                <rect class="map" x="84" y="77" height="77" width="36">
+            <a onclick="passageMov(1, 'Blythe_Celyn');">
+                <rect id="Blythe_Celyn" class="map" x="84" y="77" height="77" width="36">
                 <title>To Blythe Celyn +7 min.</title>
             </a>
-            <a onclick="passageMov(2);">
-                <rect class="map" x="84" y="184" height="83" width="36">
+            <a onclick="passageMov(2, 'Barlow_Grove');">
+                <rect id="Barlow_Grove" class="map" x="84" y="184" height="83" width="36">
                 <title>To Barlow Grove +9 min.</title>
             </a>
-            <a onclick="passageMov(3);">
-                <rect class="map" x="225" y="124" height="35" width="73">
+            <a onclick="passageMov(3, 'Hollins_Drift');">
+                <rect id="Hollins_Drift" class="map" x="225" y="124" height="35" width="73">
                 <title>To Hollins Drift +6 min.</title>
             </a>
-            <a onclick="passageMov(4);">
-                <rect class="map" x="346" y="105" height="70" width="36">
+            <a onclick="passageMov(4, 'Pioneer_Lane');">
+                <rect id="Pioneer_Lane" class="map" x="346" y="105" height="70" width="36">
                 <title>To Pioneer Lane +8 min.</title>
             </a>
-            <a onclick="passageMov(5);">
-                <rect class="map" x="100" y="308" height="35" width="56">
+            <a onclick="passageMov(5, 'Ashrout');">
+                <rect id="Ashrout" class="map" x="100" y="308" height="35" width="56">
                 <title>To Ashrout +4 min.</title>
             </a>
-            <a onclick="passageMov(6);">
-                <rect class="map" x="195" y="197" height="45" width="50">
+            <a onclick="passageMov(6, 'Shopping_Center');">
+                <rect id="Shopping_Center" class="map" x="195" y="197" height="45" width="50">
                 <title>To Shopping Center  +6 min.</title>
             </a>
-            <a onclick="passageMov(7);">
-                <rect class="map" x="10" y="298" height="45" width="50">
+            <a onclick="passageMov(7, 'GLCC');">
+                <rect id="GLCC" class="map" x="10" y="298" height="45" width="50">
                 <title>To Golden Leaf Central College  +3 min.</title>
             </a>
+            <image href="img/others/maploc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
         </svg>
-
+        <<timed 40ms>>
+            <<run _imgLoc = document.querySelector("#location");
+                _imgLoc.setAttributeNS(null, "x", $mapCoord.x);
+                _imgLoc.setAttributeNS(null, "y", $mapCoord.y);>>
+        <</timed>>
         <<script>>
             /* Parameters: placeid=Is the id of the passage in mapPlace. time=time used for timeattached widget.
                It compares if the current passage connects to the passage that the players want to move to.
             */
-            window.passageMov = function(placeid) {
+            window.passageMov = function(placeid, placeName) {
                 var id = setup.mapStreets.findIndex(x => x.place === State.passage);
                 var connts = setup.mapStreets[id].connectedTo;
                 var moveTo = setup.mapStreets[placeid].place;
                 var time = setup.mapStreets[placeid].timeTo;
 
-
                 if (connts.includes(moveTo)) {
                     Engine.play(moveTo);
                     wikifier("timeattached", time);
+                    
+                    var placeN = document.getElementById(placeName);
+                    State.variables.mapCoord.x = placeN.getAttributeNS(null, "x");
+                    State.variables.mapCoord.y = placeN.getAttributeNS(null, "y");
                 }
             }
 

@@ -6,16 +6,17 @@
         <<set _bodyPart to $args[2]>>
         <<set _bodyPIndex to $args[3]>>
         <<set _itemSlot to $args[4]>>
+        <<set _tID to $playerTraits.findIndex(x => x.name === "crossdressing")>>
 
-        <<if $wardrobeContent[_wrSlot][_itemID].gender is "neutral" or $wardrobeContent[_wrSlot][_itemID].gender is $playervar.gender>>
+        <<if $wardrobeContent[_wrSlot][_itemID].gender is "neutral" or $wardrobeContent[_wrSlot][_itemID].gender is $playervar.gender or $playerTraits[_tID]>>
             <<undressMain _bodyPart _bpIndex _itemSlot _wrSlot>>
 
             <<set $bps[_bodyPart][_bpIndex][_itemSlot] to clone($wardrobeContent[_wrSlot][_itemID])>>
-            <<set $message to "@@.green;You put your <span class='orange'><<print '"+ $wardrobeContent[_wrSlot][_itemID].name +"'>></span> on.@@">>
+            <<set $message to "@@.green;You put your <span class='orange'>"+ $wardrobeContent[_wrSlot][_itemID].name +"</span> on.@@">>
             <<set $wardrobeContent[_wrSlot].deleteAt(_itemID)>>
 
         <<else>>
-            <<set $message to "@@.red;You can't wear <span class='orange'><<print '"+ $wardrobeContent[_wrSlot][_itemID].name +"'>></span>, they are not for your gender.@@">>
+            <<set $message to "@@.red;You can't wear <span class='orange'>"+ $wardrobeContent[_wrSlot][_itemID].name +"</span>, they are not for your gender or you don't have the crossdresser trait.@@">>
 
         <</if>>
 
@@ -33,7 +34,7 @@
         <<if passage() is "wardrobe">>
             <<if $bps[_bodyPart][_bodySlot][_itemsSlot].lowname isnot "naked">>
                 <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
-                <<set $message to "@@.red;You remove your <span class='orange'><<print '"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"'>></span>.@@">>
+                <<set $message to "@@.red;You remove your <span class='orange'>"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"</span>.@@">>
             <</if>>
             <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
 

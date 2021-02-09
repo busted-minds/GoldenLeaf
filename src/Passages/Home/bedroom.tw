@@ -1,11 +1,11 @@
 :: bedroom [nobr]
     <h2>Bedroom</h2>
     <div class="divisor"></div>
-    You are in your bedroom, you see the door to the living room.
+    You are in your bedroom and you see the door to the living room.
     <br>
-    Your room has a @@.orange;normal bed@@ in one corner on the other you see your wardrobe and a mirror.
+    Your room has a @@.orange;normal bed@@ in one corner and your wardrobe and a mirror in the other.
     <br>
-    Near the window you can see a cheap desk that has a @@.orange;normal laptop@@ ontop of it and a @@.orange;cheap chair@@.
+    Near the window you can see a cheap desk that has a @@.orange;normal laptop@@ on top of it and a @@.orange;cheap chair@@.
     <br>
     <br>
     <<messager>>
@@ -46,29 +46,33 @@
     <<button "Get up" "bedroom">><</button>>
 
 :: sleep [nobr]
-    <h2>Sleep</h2>
+    <h2>Sleep and relax</h2>
     <div class="divisor"></div>
     <br>
-    <<button "Sleep 2 hours" "bed">><<energy 40>><<sleep>><<timeattached 120 true>><</button>> @@.green; +40 energy@@
-    <br>
-    <<button "Sleep 4 hours" "bed">><<energy 60>><<sleep>><<timeattached 240 true>><</button>> @@.green; +60 energy@@
-    <br>
-    <<button "Sleep 6 hours" "bed">><<energy 80>><<sleep>><<timeattached 360 true>><</button>> @@.green; +80 energy@@
-    <br>
-    <<button "Sleep 8 hours" "bed">><<energy 100>><<sleep>><<timeattached 480 true>><</button>> @@.green; +100 energy@@
-    <br>
-
-    <h2>Relax</h2>
-    <div class="divisor"></div>
-    <br>
-    <<button "Relax 5 minutes" "bed">><<energy 2>><<timeattached 5>><</button>> @@.green; +2 energy@@
-    <br>
-    <<button "Relax 15 minutes" "bed">><<energy 6>><<timeattached 15>><</button>> @@.green; +6 energy@@
-    <br>
-    <<button "Relax 30 minutes" "bed">><<energy 14>><<timeattached 30>><</button>> @@.green; +14 energy@@
-    <br>
-    <<button "Relax 1 hour" "bed">><<energy 24>><<timeattached 60>><</button>> @@.green; +24 energy@@
-    <br>
+    <div class="list">
+        <div id="insidelist">
+            <<set _sleeptime to {"2 hours, +40 energy": 2, "4 hours, +60 energy": 4, "6 hours, +80 energy": 6, "8 hours, +100 energy": 8}>>
+            Sleeping time:
+            <<listbox "_time" autoselect>>
+                <<optionsfrom _sleeptime>>
+            <</listbox>>
+            <br>
+            <<set _ene to (_time*10)+20>>
+            <<button "Sleep" "sleep">><<restoreEnergy _ene>><<sleep>> <<set $sleeping to true>> <<timeattached _time*60>><</button>>
+        </div>
+    </div>
+    <div class="list">
+        <div id="insidelist">
+            <<set _relaxtime to {"5 minutes, +2 energy": 5, "15 minutes, +6 energy": 15, "30 minutes, +12 energy": 30, "1 hour, +24 energy": 60}>>
+            Relaxing time:
+            <<listbox "_rtime" autoselect>>
+                <<optionsfrom _relaxtime>>
+            <</listbox>>
+            <br>
+            <<set _rene to _rtime * 0.4>>
+            <<button "Relax" "sleep">><<restoreEnergy _rene>><<timeattached _rtime>><</button>>
+        </div>
+    </div>
     <br>
     <<button "Go back" "bedroom">><</button>>
 
@@ -105,15 +109,29 @@
     <div class="divisor"></div>
     <<messager>>
     <<button "Play videogames" "computer">>
-        <<energyfun 2 5 5 "videogames">>
+        <<if $fun lt 100 and $energy gt 2>>
+            <<restoreEnergy -2>>
+            <<set $fun += 5>>
+            <<addminutes 5>>
+        <<else>>
+            <<if $energy lt 2>>
+                <<set $message to "noEnergyFun">>
+            <<else>>
+                <<set $message to "fullFun">>
+            <</if>>
+        <</if>>
     <</button>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
     <br>
     <<button "Open WaterDog Browser" "browser">><</button>>
     <br>
     <<if $hobby is "programming" or $programmingskill is 2>>
         <<button "Practice programming" "computer">>
-            <<energyfun 10 5 15 "skilling" "programming" 6>>
-        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -5 Fun -10 Energy +15 Minutes@@
+            <<if $fun gte Math.round(15 *0.2) and $energy gte Math.round(15 *0.1)>>
+                <<timeattached 15 "programming" 6>>
+            <<else>>
+                <<set $message to "noEnergyFun">>
+            <</if>>
+        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -<<print Math.round(15 *0.2)>> Fun -<<print Math.round(15 *0.1)>> Energy +15 Minutes@@
     <</if>>
     <br>
     <br>

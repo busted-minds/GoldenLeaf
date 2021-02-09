@@ -1,0 +1,11 @@
+:: traits [widget nobr]
+
+<<widget "traitsInit">>
+    <<set setup.traits to [
+        {
+            id: 0,
+            name: "crossdressing",
+            level: 0
+        }
+    ]>>
+<</widget>>

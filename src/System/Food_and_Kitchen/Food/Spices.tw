@@ -5,6 +5,7 @@
         {
             id: 0,
             name: "Pepper",
+            description: "A pack of pepper.",
             price: 1,
             amount: 1,
             foodtype: "spices",

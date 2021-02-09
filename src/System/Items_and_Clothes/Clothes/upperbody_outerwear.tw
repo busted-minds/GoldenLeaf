@@ -24,7 +24,7 @@
             state: "normal",
             description: "A normal polo shirt",
             article: "a",
-            category: ["shirt", "outerwear"],
+            category: ["shirt", "upperbouter"],
             gender: "neutral",
             exposurelevel: 1,
             exposedchest: false
@@ -38,7 +38,7 @@
             state: "normal",
             description: "A normal blouse",
             article: "a",
-            category: ["blouse", "outerwear"],
+            category: ["blouse", "upperbouter"],
             gender: "female",
             exposurelevel: 1,
             exposedchest: false

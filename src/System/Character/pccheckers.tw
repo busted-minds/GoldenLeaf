@@ -2,75 +2,6 @@
 
 
 /% Some checkers that may and probably will change later on how it works. %/
-<<widget "bsandhchecker">> /* Bodyshape and height checker */
-	<<switch $playervar.height>>
-		<<case "tall">>
-			<<switch $playervar.bodyshapestate>>
-				<<case "muscular">>
-					<<set $bodystate to "ripped">>
-
-				<<case "fit">>
-					<<set $bodystate to "powerful">>
-
-				<<case "toned">>
-					<<set $bodystate to "healthy">>
-
-				<<case "normal">>
-					<<set $bodystate to "good looking">>
-
-				<<case "chubby">>
-					<<set $bodystate to "skinny">>
-
-				<<case "fat">>
-					<<set $bodystate to "fat">>
-
-			<</switch>>
-			
-		<<case "normal">>
-			<<switch $playervar.bodyshapestate>>
-				<<case "muscular">>
-					<<set $bodystate to "powerful">>
-
-				<<case "fit">>
-					<<set $bodystate to "healthy">>
-
-				<<case "toned">>
-					<<set $bodystate to "good looking">>
-
-				<<case "normal">>
-					<<set $bodystate to "skinny">>
-
-				<<case "chubby">>
-					<<set $bodystate to "fat">>
-
-				<<case "fat">>
-					<<set $bodystate to "obese">>
-			<</switch>>
-
-		<<case "small">>
-			<<switch $playervar.bodyshapestate>>
-				<<case "muscular">>
-					<<set $bodystate to "healthy">>
-
-				<<case "fit">>
-					<<set $bodystate to "good looking">>
-
-				<<case "toned">>
-					<<set $bodystate to "skinny">>
-
-				<<case "normal">>
-					<<set $bodystate to "fat">>
-
-				<<case "chubby">>
-					<<set $bodystate to "obese">>
-
-				<<case "fat">>
-					<<set $bodystate to "how do you even move?">>
-			<</switch>>
-
-	<</switch>>
-<</widget>>
-
 <<widget "buttsizechecker">> /* Butt size checker */
 	<<if $playervar.buttsize eq 100>>
 		<span class="lightgreen">huge</span>
@@ -95,7 +26,6 @@
 <</widget>>
 
 <<widget "anustightnesschecker">>
-
 	<<if $playervar.anustightness eq 70>>
 		<span class="red">too tight</span>
 		
@@ -140,7 +70,6 @@
 
 /* Male Checkers */
 <<widget "penissizechecker">>
-
 	<<if $playervar.penissize eq 24>>
 		<span class="green">enormous</span>
 

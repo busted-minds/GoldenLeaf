@@ -10,8 +10,6 @@
     <br>
     <br>
     <<button "Reception" "reception">><</button>>
-    <br>
-    <<button "To Ashrout" "ashrout">><<timeattached 3>><</button>>@@.red; +3 min@@
 
 :: reception [nobr]
     <h2>College Reception</h2>
@@ -59,7 +57,7 @@
     <br>
     @@#q2;<<link "About payment">>
         <<replace #q2>>
-            // GLCC cares about its students so if you have any economic problem we offer other solutions. 
+            // GLCC cares about its students, so if you have any financial difficulties we offer other solutions. 
             <br>
             Do public service around the College(Maintenance, repairing, etc.) or be a professor's assistant are some of the options that you have.
             For students living far away we have housing options.

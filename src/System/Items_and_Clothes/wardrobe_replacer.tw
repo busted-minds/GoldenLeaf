@@ -3,7 +3,7 @@
 /% Just some wardrobelinks that are put as a <a> to use them as functions and so the "game" can remember what was pressed when you leave the passage or refreshes%/
 /% Credits to DoL.%/
 <<widget "wardrobeLinks">>
-    <fieldset id="fieldinline" style="min-width: 17.1em;">
+    <fieldset id="fieldinline" style="min-width: 18.5em;">
         <legend style="font-size: 130%;">Clothes</legend>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
@@ -47,20 +47,14 @@
 <<widget "showWardrobeCC">>
     <<switch $args[0]>>
         <<case "upperbody">>
-            <fieldset id="fieldinline" style="min-width: 10em;">
-                <legend style="font-size: 115%;"> Upper Body </legend>
-                <<wardrobeItemsContent "upperbody">>
-                <div id="wardrobeItemsContent"></div>
-
-            </fieldset>
+            <br>
+            <<wardrobeItemsContent "upperbody">>
+            <div id="wardrobeItemsContent"></div>
 
         <<case "lowerbody">>
-            <fieldset id="fieldinline" style="min-width: 10em;">
-                <legend style="font-size: 115%;"> Lower Body </legend>
-                <<wardrobeItemsContent "lowerbody">>
-                <div id="wardrobeItemsContent"></div>
-
-            </fieldset>
+            <br>
+            <<wardrobeItemsContent "lowerbody">>
+            <div id="wardrobeItemsContent"></div>
 
     <</switch>>
 
@@ -88,64 +82,65 @@
     <</switch>>
 
     <<for _i to 0; _i lt _wardrobeSlot.length; _i++>>
-        <div style="display: inline-block;">
-        <<print _categories[_i]>>
+        <div class="list" style="min-width: 10.6em;">
+            <div id="insidelist">
+                <span style="font-size: 115%"><<print _categories[_i]>></span>
 
-        <<switch _categories[_i]>>
-            <<case "Outerwear" "Legwear" "Shoes">>
-                <<set _itemSlot to "primary">>
+                <<switch _categories[_i]>>
+                    <<case "Outerwear" "Legwear" "Shoes">>
+                        <<set _itemSlot to "primary">>
 
-            <<case "Underwear" "Footwear">>
-                <<set _itemSlot to "secondary">>
+                    <<case "Underwear" "Footwear">>
+                        <<set _itemSlot to "secondary">>
 
-        <</switch>>
+                <</switch>>
 
-        <<switch _categories[_i]>>
-            <<case "Outerwear" "Underwear">>
-                <<set _bpIndex to 0>>
+                <<switch _categories[_i]>>
+                    <<case "Outerwear" "Underwear">>
+                        <<set _bpIndex to 0>>
 
-            <<case "Legwear">>
-                <<set _bpIndex to 2>>
+                    <<case "Legwear">>
+                        <<set _bpIndex to 2>>
 
-            <<case "Footwear" "Shoes">>
-                <<set _bpIndex to 3>>
+                    <<case "Footwear" "Shoes">>
+                        <<set _bpIndex to 3>>
 
-        <</switch>>
+                <</switch>>
 
-        <<if $bps[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
-            <span class="wardrobeBttns">
-                <<capture _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
-                    <<button "Undress" "wardrobe">>
-                        <<undressMain _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
-                    <</button>>
-                <</capture>>
-            </span>
-        <</if>>
+                <<if $bps[_body][_bpIndex][_itemSlot].lowname isnot "naked">>
+                    <span class="wardrobeBttns">
+                        <<capture _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
+                            <<button "Undress" "wardrobe">>
+                                <<undressMain _body _bpIndex _itemSlot _wardrobeSlot[_i]>>
+                            <</button>>
+                        <</capture>>
+                    </span>
+                <</if>>
+                <div class="divisor"></div>
+
+                <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
+                    <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
+                    
+                    <<print _itemContentN>> 
+                    <span class="wardrobeBttns">
+                        <br>
+                        <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
+                            <<button "Wear" "wardrobe">>
+                                <<wearMain _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
+                            <</button>>
+                        <</capture>>
+                        
+                        <<capture _itemContentN _wardrobeSlot[_i]>>
+                            <<button "Info">>
+                                <<replacer "iteminfo" _itemContentN _wardrobeSlot[_i]>>
+                            <</button>>
+                        <</capture>>
+                    </span>
+                    <br>
+                <</for>>
+                <div class="thindiv"></div>
+            </div>
         </div>
-        <div class="divisor"></div>
-
-        <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
-            <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
-            
-            <<print _itemContentN>> 
-            <span class="wardrobeBttns">
-                <br>
-                <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
-                    <<button "Wear" "wardrobe">>
-                        <<wearMain _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
-                    <</button>>
-                <</capture>>
-                
-                <<capture _itemContentN _wardrobeSlot[_i]>>
-                    <<button "Info">>
-                        <<replacer "iteminfo" _itemContentN _wardrobeSlot[_i]>>
-                    <</button>>
-                <</capture>>
-            </span>
-            <br>
-        <</for>>
-        <div class="thindiv"></div>
-
     <</for>>
 
 <</widget>>

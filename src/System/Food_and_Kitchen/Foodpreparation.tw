@@ -96,7 +96,7 @@
                 <<if $energy gte 15>>
                     <<goto "preparation">>
                 <<else>>
-                    <<set $message to "noEnergy">>
+                    <<set $message to "noEnergyFun">>
                     <<goto "kitchentable">>
                 <</if>>
             <</button>>
@@ -106,7 +106,7 @@
                 <<if $energy gte 15>>
                     <<goto "preparation">>
                 <<else>>
-                    <<set $message to "noEnergy">>
+                    <<set $message to "noEnergyFun">>
                     <<goto "kitchentable">>
                 <</if>>
             <</button>>
@@ -297,11 +297,11 @@
 
     <</if>>
     <<set _exp to _tempKTable.exp / _bonus>>
-    <<addexp "cooking" _exp>>
 
-    <<timeattached $preptime>>
-    <<set _ener to Math.round($preptime * 0.5)>>
-    <<energy -_ener>>
+    <<timeattached $preptime "cooking" _exp>>
+    <<set _ener to - (Math.round($preptime * 0.5))>>
+    <<restoreEnergy _ener>>
+    
     <<unset $defExist>>
     <<unset $ingCount>>
     <<unset $steps>>

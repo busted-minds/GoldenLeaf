@@ -3,7 +3,13 @@
 <<if $gamestarted is 1>>
     <fieldset class="info">
         <legend class="centered">Info</legend>
-        <div style="text-align: left;"><<clotheschecker>><<exposedCheck>></div>
+        <div style="text-align: left;">
+            <<clotheschecker>><<exposedCheck>>
+            <br>
+            <br>
+            Your backpack has @@.blue;<<print $bps.upperbody[5].primary.maxitems - $backpack.length>>@@ available slots.
+        </div>
+        <br>
         <div style="text-align: left;" id="StatContainer">
             <div>
                 <img src="img/sidebar-icons/credits.png" class="sbIcons" title="Credits: Your credits, used to buy items." alt="Credits">: @@#credits.yellow; $credits@@
@@ -19,9 +25,6 @@
             </div>
             <div>
                 <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.red; <<print $hunger>>/100@@
-            </div>
-            <div>
-                <img src="img/sidebar-icons/pneeds.png" class="sbIcons" title="P.Needs: Your physical needs." alt="PNeeds">: @@#pNeeds.lightyellow; <<print $pNeeds>>/100@@
             </div>
             <div>
                 <img src="img/sidebar-icons/arousal.png" class="sbIcons" title="Arousal: High levels of arousal may lower your learning profficiency." alt="arousal">: @@#arousal.lightred; <<print $arousal>>/100@@
@@ -40,13 +43,18 @@
     <br>
     <div class="divisor" style="margin-bottom: 5px;"></div>
     <div>
-    <<button Status>>
+    <<button "Status">>
         <<replacer "status">>
     <</button>>
     </div>
     <div>
-    <<button Skills>>
+    <<button "Skills">>
         <<replacer "skills">>
+    <</button>>
+    </div>
+    <div>
+    <<button "Inventory">>
+        <<replacer "inventory">>
     <</button>>
     </div>
     <div class="divisor" style="margin-top: 5px;"></div>

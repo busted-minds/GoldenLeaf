@@ -3,70 +3,24 @@
     <div class="divisor"></div>
     <<messager>>
     <<bathrclean>>
-    You are in your bathroom, you see the door to the living room.
+    You are in your bathroom and you see the door to the living room.
     <br>
-    Inside at one corner you see a @@.orange;small shower@@ at the left of it you see the @@.orange;normal toilet@@. Near the little bathroom air extractor you see the sink.
+    Inside in one corner you see a @@.orange;small shower@@ and a @@.orange;normal toilet@@ to the left of it. Near the little bathroom ventilator you see the sink.
     <br>
     <<if $bathrclean>>
         <br>
-        <<button "Get in to shower" "shower">><</button>>
+        <<button "Fast shower" "bathroom">>
+            <<hygiene 40 4>>
+        <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
         <br>
-        <<button "Sit on the toilet" "toilet">><</button>>
+        <<button "Normal shower" "bathroom">>
+            <<hygiene 100 10>>
+        <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
+        <br>
+        <br>
+        <<masturbutton>>
     <</if>>
-    <br>
-    <<button "Use the sink" "sink">><</button>>
     <br>
     <br>
     <<button "To the living room" "livingroom">><</button>>
 
-:: shower [nobr]
-    <h2>Shower</h2>
-    <div class="divisor"></div>
-    <<messager>>
-    <br>
-    <<button "Fast shower" "shower">>
-        <<hygiene 40 4 "cleaning">>
-    <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
-    <br>
-    <<button "Normal shower" "shower">>
-        <<hygiene 100 10 "cleaning">>
-    <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
-    <br>
-    <<masturbutton>>
-    <br>
-    <br>
-    <<button "Get out" "bathroom">><</button>>
-
-:: toilet [nobr]
-    <h2>Bathroom</h2>
-    <div class="divisor"></div>
-        <<messager>>
-    <br>
-    <<button "Pee" "toilet">>
-        <<pNeeds 45 10 2>>
-    <</button>>@@.green; -45 Physical Needs@@ | @@.red; -10 hygiene +2 Minutes@@
-    <br>
-    <<button "Poop" "toilet">>
-        <<pNeeds 60 15 3>>
-    <</button>>@@.green; -65 Physical Needs@@ | @@.red; -15 hygiene +3 Minutes@@
-    <br>
-    <<masturbutton>>
-    <br>
-    <br>
-    <<button "Get up" "bathroom">><</button>>
-
-:: sink [nobr]
-    <h2>Sink</h2>
-    <div class="divisor"></div>
-        <<messager>>
-    <br>
-    <<button "Wash your hands" "sink">>
-        <<hygiene 10 1 "cleaning">>
-    <</button>>@@.green; +10 hygiene@@ | @@.red; +1 Minutes@@
-    <br>
-    <<button "Wash your hands with soap" "sink">>
-        <<hygiene 15 2 "cleaning">>
-    <</button>>@@.green; +15 hygiene@@ | @@.red; +2 Minutes@@
-    <br>
-    <br>
-    <<button "Get out" "bathroom">><</button>>

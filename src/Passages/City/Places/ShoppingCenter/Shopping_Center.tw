@@ -1,7 +1,4 @@
 :: shoppingcenter
     !!Shopping Center
     <div class="divisor"></div>
-    <<button "Clothes Store" "clothesstore">><</button>>
-
-    <<button "To Barlow Grove" "barlowgrove">><<timeattached 6>><</button>>@@.red; +6 min@@
-    <<button "To Ashrout" "ashrout">><<timeattached 6>><</button>>@@.red; +6 min@@
+    <<button "Clothing Store" "clothesstore">><</button>>

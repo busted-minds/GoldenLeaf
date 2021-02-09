@@ -1,5 +1,5 @@
 :: storing [widget nobr]
-/% Stores food in their respective "category". The first widget uses State.getVar so we can use one case instead of one case per each foodtype%/
+/% Stores food in their respective "category". The first widget uses State.getVar so we can use one case for everyting instead of one case per each foodtype%/
 <<widget "storefood">>
     <<for _index range $backpack>>
         <<set _positb to $backpack.findIndex(x => x.name === _index.name)>>
@@ -48,4 +48,28 @@
     <</if>>
     
     <<unset $moveAm>>
+<</widget>>
+
+<<widget "moveFood">>
+    <<set _fName to $args[0]>>
+    <<set _location to State.getVar("$"+ $args[1])>>
+    <<set _positOut to $kitchentable.findIndex(x => x.name === _fName)>>
+    <<set _positIn to _location.findIndex(x => x.name === _fName)>>
+
+    <<if !_location[_positIn]>>
+        <<set _location.push(clone($kitchentable[_positOut]))>>
+        <<set _positIn to _location.findIndex(x => x.name === _fName)>>
+        <<set _location[_positIn].amount to 1>>
+        <<set $kitchentable[_positOut].amount -= 1>>
+
+    <<elseif _location[_positIn]>>
+        <<set _location[_positIn].amount += 1>>
+        <<set $kitchentable[_positOut].amount -= 1>>
+
+    <</if>>
+
+    <<if $kitchentable[_positOut].amount is 0>>
+        <<set $kitchentable.deleteAt(_positOut)>>
+    <</if>>
+
 <</widget>>

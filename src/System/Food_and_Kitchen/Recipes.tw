@@ -33,7 +33,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         /
         <<set _foodnameF.push(setup.food.fruits[_i].name)>>
     <</for>>%/
-
+    /* Add cut into julienne strips to a recipe(When needed, of course) */
     <<set setup.recipes to [
         {
             id: 0,

@@ -1,0 +1,219 @@
+sugarcube-2:
+  macros:
+    foodready:
+      name: foodready
+    pButton:
+      name: pButton
+    storekitchentable:
+      name: storekitchentable
+    kitchenvar:
+      name: kitchenvar
+    kitchenwidgets:
+      name: kitchenwidgets
+    sensibilitychecker:
+      name: sensibilitychecker
+    breastsizechecker:
+      name: breastsizechecker
+    nipplesizechecker:
+      name: nipplesizechecker
+    vagtightnesschecker:
+      name: vagtightnesschecker
+    clitorissizechecker:
+      name: clitorissizechecker
+    penissizechecker:
+      name: penissizechecker
+    ballssizechecker:
+      name: ballssizechecker
+    buttsizechecker:
+      name: buttsizechecker
+    anustightnesschecker:
+      name: anustightnesschecker
+    replacer:
+      name: replacer
+    clotheschecker:
+      name: clotheschecker
+    exposedCheck:
+      name: exposedCheck
+    timedate:
+      name: timedate
+    charStatus:
+      name: charStatus
+    closePop:
+      name: closePop
+    skillbar:
+      name: skillbar
+    iteminfo:
+      name: iteminfo
+    progressbar:
+      name: progressbar
+    convert12h:
+      name: convert12h
+    date:
+      name: date
+    daystatechecker:
+      name: daystatechecker
+    geneVariables:
+      name: geneVariables
+    skillinit:
+      name: skillinit
+    importantNPCs:
+      name: importantNPCs
+    jobsInfo:
+      name: jobsInfo
+    mapStreets:
+      name: mapStreets
+    traitsInit:
+      name: traitsInit
+    clothesinit:
+      name: clothesinit
+    kitchenini:
+      name: kitchenini
+    images:
+      name: images
+    jobsIni:
+      name: jobsIni
+    qsGT:
+      name: qsGT
+    footerMessager:
+      name: footerMessager
+    map:
+      name: map
+    messager:
+      name: messager
+    timeattached:
+      name: timeattached
+    disable:
+      name: disable
+      container: true
+    cleaningb:
+      name: cleaningb
+    energyfun:
+      name: energyfun
+    jobs:
+      name: jobs
+    storeLinks:
+      name: storeLinks
+    showStoreIC:
+      name: showStoreIC
+    storeItemContent:
+      name: storeItemContent
+    clothesArticles:
+      name: clothesArticles
+    clothesvar:
+      name: clothesvar
+    bodyparts:
+      name: bodyparts
+    upperb_outerwearIni:
+      name: upperb_outerwearIni
+    upperb_underwearIni:
+      name: upperb_underwearIni
+    lowerb_outerwearIni:
+      name: lowerb_outerwearIni
+    lowerb_underwearIni:
+      name: lowerb_underwearIni
+    footwearIni:
+      name: footwearIni
+    legwearIni:
+      name: legwearIni
+    shoesIni:
+      name: shoesIni
+    accesories:
+      name: accesories
+    clothessetter:
+      name: clothessetter
+    showWardrobeCC:
+      name: showWardrobeCC
+    wardrobeLinks:
+      name: wardrobeLinks
+    undressMain:
+      name: undressMain
+    wardrobeItemsContent:
+      name: wardrobeItemsContent
+    wearMain:
+      name: wearMain
+    buttons:
+      name: buttons
+    foodpreparation:
+      name: foodpreparation
+    setspices:
+      name: setspices
+    addexp:
+      name: addexp
+    energy:
+      name: energy
+    setfruits:
+      name: setfruits
+    setgeneralIng:
+      name: setgeneralIng
+    setmeat:
+      name: setmeat
+    setrecipes:
+      name: setrecipes
+    setprepfood:
+      name: setprepfood
+    addminutes:
+      name: addminutes
+    penalty:
+      name: penalty
+    rngod:
+      name: rngod
+    mastOpt:
+      name: mastOpt
+    masturbation:
+      name: masturbation
+    gendersetter:
+      name: gendersetter
+    bsandhsetter:
+      name: bsandhsetter
+    antrwidthsetter:
+      name: antrwidthsetter
+    femalesetter:
+      name: femalesetter
+    malesetter:
+      name: malesetter
+    hobbyselection:
+      name: hobbyselection
+    courtesy:
+      name: courtesy
+    addhours:
+      name: addhours
+    bathrclean:
+      name: bathrclean
+    hygiene:
+      name: hygiene
+    masturbutton:
+      name: masturbutton
+    cleanbedroom:
+      name: cleanbedroom
+    kitchenclean:
+      name: kitchenclean
+    storefood:
+      name: storefood
+    foodVisu:
+      name: foodVisu
+    livingrclean:
+      name: livingrclean
+    recipeselection:
+      name: recipeselection
+    selectrecipe:
+      name: selectrecipe
+    kitchentablevisu:
+      name: kitchentablevisu
+    preparationsteps:
+      name: preparationsteps
+    sleep:
+      name: sleep
+    storingClothes:
+      name: storingClothes
+    eatFood:
+      name: eatFood
+    payment:
+      name: payment
+    barGender:
+      name: barGender
+    foodshow:
+      name: foodshow
+    purchase:
+      name: purchase
+    csShow:
+      name: csShow

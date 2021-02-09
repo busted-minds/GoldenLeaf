@@ -24,7 +24,7 @@
             state: "normal",
             description: "A normal bra",
             article: "a",
-            category: ["bra", "underwear"],
+            category: ["bra", "upperbunder"],
             gender: "female",
             exposurelevel: 3,
             exposedchest: false

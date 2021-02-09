@@ -1,127 +1,21 @@
 :: statusnneeds [widget nobr]
 
-<<widget "energy">> /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn't, and arriving at a position that it wasn't, it now is.*/
+<<widget "restoreEnergy">> /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn't, and arriving at a position that it wasn't, it now is.*/
     <<set $energy += $args[0]>>
 
     <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 <</widget>>
 
-<<widget "energyfun">> /% The args need to be asigned as 0= Energy that will be used. 1= Fun that will be used. 2= Minutes that will be added. 3= Activity(skilling or not). %/
-    <<set _usedEnergy to $args[0]>>
-    <<set _fun to $args[1]>>
-    <<set _addmin to $args[2]>>
-    <<set _activity to $args[3]>>
-
-    <<if $energy lt _usedEnergy>>
-        <<set $message to "noEnergy">>
-
-    <<elseif $energy gte _usedEnergy>>
-        <<if _activity isnot "skilling">>
-            <<if $fun lt 100>>
-                <<set $energy -= _usedEnergy>>
-                <<set $fun += _fun>>
-
-                <<timeattached _addmin>>
-
-                <<if $fun gte 100>>
-                    <<set $fun to 100>>
-
-                <</if>>
-                    
-            <<elseif $fun eq 100>>
-                <<switch _activity>>
-                    <<case "videogames">>
-                        <<set $message to "videogames">>
-
-                    <<case "watchtv">>
-                        <<set $message to "watchtv">>
-
-                <</switch>>
-                
-            <</if>>
-
-        <<elseif _activity is "skilling">>
-                <<if $fun eq 0>>
-                    <<set $message to "fun">>
-                        
-                <<elseif $fun gt 0>>
-                    <<set _skill to $args[4]>>
-                    <<set _expamount to $args[5]>>
-
-                    <<addexp _skill _expamount>>
-                    
-                    <<if $args[6] and $args[7]>>
-                        <<set _skill2 to $args[6]>>
-                        <<set _expamount2 to $args[7]>>
-
-                        <<addexp _skill2 _expamount2>>
-
-                    <</if>>
-
-                    <<set $energy -= _usedEnergy>>
-                    <<set $fun -= _fun>>
-                    
-                    <<timeattached _addmin>>
-
-                <</if>>
-        <</if>>
-
-    <</if>>
-
-<</widget>>
-
-<<widget "hygiene">> /% The args need to be assigned as 0= Value to be used in "cleaning" or "dirtying". 1=Minutes that will be added. 2=Id that is used(Cleaning or dirtying) %/
+<<widget "hygiene">> /% The args need to be assigned as 0= Value to be used. 1=Minutes that will be added.%/
     <<set _value to $args[0]>>
     <<set _addmin to $args[1]>>
-    <<set _id to $args[2]>>
+    <<if $hygiene lt 100>>
+        <<set $hygiene += _value>>
 
-    <<switch _id>>
-        <<case "cleaning">>
-            <<if $hygiene lt 100>>
-                <<set $hygiene += _value>>
+        <<timeattached _addmin>>
 
-                <<if $hygiene gte 100>>
-                    <<set $hygiene to 100>>
-
-                <</if>>
-
-                <<addminutes _addmin>>
-
-            <<elseif $hygiene eq 100>>
-                <<set $message to "clean">>
-
-            <</if>>
-        
-        <<case "dirtying">>
-            <<set $hygiene -= _value>>
-
-            <<if $hygiene lte 0>>
-                <<set $hygiene to 0>>
-            <</if>> 
-
-    <</switch>>
-
-<</widget>>
-
-<<widget "pNeeds">>/% The args need to be assigned as 0= Value to be used. 1=How much "hygiene" will be used. 2=Minutes that will be added.%/
-    <<set _value to $args[0]>>
-    <<set _lessclean to $args[1]>>
-    <<set _addmin to $args[2]>>
-
-    <<if $pNeeds eq 0>>
-        <<set $message to "pNeedEmpt">>
-            
-    <<else>>
-        <<if $pNeeds gte _value>>
-            <<set $pNeeds -= _value>>
-
-        <<elseif $pNeeds lt _value>>
-            <<set $pNeeds to 0>>
-
-        <</if>>
-
-        <<hygiene _lessclean 0 "dirtying">>
-        <<addminutes _addmin>>
+    <<elseif $hygiene eq 100>>
+        <<set $message to "clean">>
 
     <</if>>
 
@@ -129,21 +23,37 @@
 
 <<widget "timeattached">> /% It's pretty self explanatory I think. 0=Case of minutes or hours. 1=Amount of minutes or hours. %/
     <<set _mult to 0.20>>
-    <<set _sleeping to $args[1]>>
 
-    <<if _sleeping is true>>
+    <<if typeof($args[1]) is "number">>
+        <<set _uE to $args[1]>>
+    <<else>>
+        <<set _uE to $args[0] * 0.1>>
+    <</if>>
+
+    <<if $sleeping is true>>
         <<set _mult to 0.10>>
+        <<set _uE to 0>>
+        <<set $sleeping to undefined>>
     <</if>>
     
     <<set $hunger += Math.round($args[0] * _mult)>>
-    <<set $pNeeds += Math.round($args[0] * _mult)>>
     <<set $hygiene -= Math.round($args[0] * _mult)>>
+    <<set $fun -= Math.round($args[0] * _mult)>>
+    <<set $energy -= Math.round(_uE)>>
 
     <<set $hunger to Math.clamp($hunger, 0, 100)>>
-    <<set $pNeeds to Math.clamp($pNeeds, 0, 100)>>
     <<set $hygiene to Math.clamp($hygiene, 0, 100)>>
+    <<set $fun to Math.clamp($fun, 0, 100)>>
+    <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 
     <<addminutes $args[0]>>
+
+    <<if typeof($args[1]) is "string" and $args[2]>>
+        <<addexp $args[1] $args[2]>>
+
+    <<elseif $args[2] and $args[3]>>
+        <<addexp $args[3] $args[3]>>
+    <</if>>
 
 <</widget>>
 
@@ -152,13 +62,8 @@
     <<set _foodID to $args[1]>>
     <<set _location to $args[2]>>
 
-    <<if $hunger gte _value>>
-        <<set $hunger -= _value>>
-
-    <<elseif $hunger lt _value>>
-        <<set $hunger to 0>>
-
-    <</if>>
+    <<set $hunger -= _value>>
+    <<set $hunger to Math.clamp($hunger, 0, 100)>>
 
     <<if _location is "kitchentable">>
         <<if $kitchentable[_foodID].amount gte 2>>

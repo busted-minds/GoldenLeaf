@@ -23,7 +23,7 @@
             state: "normal",
             description: "A pair of Jeans",
             article: "a pair of",
-            category: ["pants", "outerwear"],
+            category: ["pants", "lowerbouter"],
             gender: "neutral",
             exposurelevel: 1,
             exposedgenitals: false
@@ -36,7 +36,7 @@
             state: "normal",
             description: "Just a medium skirt",
             article: "a",
-            category: ["skirt", "outerwear"],
+            category: ["skirt", "lowerbouter"],
             gender: "female",
             exposurelevel: 2,
             exposedgenitals: false

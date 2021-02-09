@@ -5,58 +5,46 @@
 
     <<button "Get inside the house" "livingroom">><</button>>
 
-    You can get a bus@@.red;(WIP)@@ or if you want to walk, you could go to the Blythe Celyn street or Hollins Drift street from here.
+    You can catch a bus@@.red;(WIP)@@ or walk, heading either to Blythe Celyn or Hollins Drift from here.
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Blythe Celyn" "blythecelyn">><<timeattached 7>><</button>>@@.red; +7 min@@
-    <<button "Walk to Hollins Drift" "hollinsdrift">><<timeattached 6>><</button>>@@.red; +6 min@@
 
 :: blythecelyn
     !!Blythe Celyn
     <div class="divisor"></div>
     <<nobr>>
     <<if visited() is 1>>
-        //A flyer on the street floor comes into your sight, it's from a place called "Frozen Jar" apparently is the "Grand Opening" of the place it says that their open at <<print setup.frozenjar.workingHours.openingHours>> am.
+        //A flyer on the street comes into your sight from a place called the "Frozen Jar", apparently having a "Grand Opening". It says that they're open at <<print setup.frozenjar.workingHours.openingHours>> am.
         <br>
-        You should take a look and see if they looking for workers, maybe it's your lucky day ;).
+        You should take a look and see if they're looking for workers, maybe it's your lucky day ;).
         <br>//
     <</if>>
     <</nobr>>
-    <<button "Get inside the Grocery" "grocerystore">><</button>>
+    <<button "Go inside the Grocery" "grocerystore">><</button>>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Barlow Grove" "barlowgrove">><<timeattached 9>><</button>>@@.red; +9 min@@
-    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
 
 :: barlowgrove
     !!Barlow Grove
     <div class="divisor"></div>
-    /*<<button "Get inside Horeco Inc" "horeco">><</button>>
+    /*<<button "Go inside Horeco Inc." "horeco">><</button>>
     <<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to the Shopping Center" "shoppingcenter">><<timeattached 6>><</button>>@@.red; +6 min@@
-    <<button "Walk to Ashrout" "ashrout">><<timeattached 4>><</button>>@@.red; +4 min@@
-    <<button "Back to Blythe Celyn" "blythecelyn">><<timeattached 7>><</button>>@@.red; +7 min@@
 
 :: ashrout
     !!Ashrout
     <div class="divisor"></div>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Walk to Golden Leaf Central College" "collobby">><<timeattached 3>><</button>>@@.red; +3 min@@
-    <<button "Walk to the Shopping Center" "shoppingcenter">><<timeattached 6>><</button>>@@.red; +6 min@@
-    <<button "Back to Barlow Grove" "barlowgrove">><<timeattached 7>><</button>>@@.red; +7 min@@
 
 :: hollinsdrift
     !!Hollins Drift
     <div class="divisor"></div>
-    Arriving at Hollins Drift, you see that there is a building that is in construction, who knows what it will be. Maybe some furniture related thing? ;).
+    Arriving at Hollins Drift, you see a building that is in construction. Who knows what it will be. Maybe some furniture related thing? ;).
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Go to Pioneer Lane" "pioneerlane">><<timeattached 8>><</button>>@@.red; +8 min@@
-    <<button "Go home" "cloverow">><<timeattached 8>><</button>>@@.red; +8 min@@
 
 :: pioneerlane
     !!Pioneer Lane
     <div class="divisor"></div>
     <<nobr>>
     <<messager>>
-    <<button "Get inside Frozen Jar">>
+    <<button "Go inside the Frozen Jar">>
         <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
             <<goto "frozenjar">>
         <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>
@@ -66,6 +54,5 @@
     <</button>>
     <</nobr>>
     /*<<link "Take a bus" "bus">><</link>>*/
-    <<button "Back to Hollins Drift" "hollinsdrift">><<timeattached 6>><</button>>@@.red; +6 min@@
 
 /* This is some voodoo shit I tell you. People think that this is programming but no, this is just magic, its power comes from the pain and tears of the people who call themselves "programmers". It doesn't work? I don't know why. It works? I don't know too. */

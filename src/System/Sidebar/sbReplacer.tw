@@ -7,7 +7,6 @@
 /% The switch switches between the case status and probably(soon)other things. Replacing things here and there. adding and removing classes here and there.%/
 /% And finally the widget to close them all. It just that, it closes the popup. %/
 <<widget "replacer">>
-
 	<<if $args[0]>>
 		<<if $popupbox isnot $args[0]>>
 			<<set $popupbox to $args[0]>>
@@ -17,18 +16,10 @@
 					<<replace #popUpContent>>
 						<<charStatus>>
 					<</replace>>
-
-					<<replace #popUpBottom>>
-						<<closePop>>
-					<</replace>>
 									
 				<<case "skills">>
 					<<replace #popUpContent>>
 						<<skillbar>>
-					<</replace>>
-
-					<<replace #popUpBottom>>
-						<<closePop>>
 					<</replace>>
 
 				<<case "iteminfo">>
@@ -36,11 +27,16 @@
 						<<iteminfo $args[1] $args[2]>>
 					<</replace>>
 
-					<<replace #popUpBottom>>
-						<<closePop>>
+				<<case "inventory">>
+					<<replace #popUpContent>>
+						<<inventory>>
 					<</replace>>
 
 			<</switch>>
+
+			<<replace #popUpBottom>>
+				<<closePop>>
+			<</replace>>
 			
 			<<addclass "#popUp" "open">>
 
@@ -55,7 +51,6 @@
 <</widget>>
 
 <<widget "closePop">>
-
 	<<button "Close">>
 		<<removeclass "#popUp" "open">>
 		<<set $popupbox to 0>>

@@ -1,0 +1,18 @@
+:: inventory [widget nobr]
+
+<<widget "inventory">>
+    <<if $backpack[0]>>
+        <<for _ibp to 0; _ibp lt $backpack.length; _ibp++>>
+            <div class="list">
+                <div id="insidelist">
+                    Name: @@.green;<<print $backpack[_ibp].name>>@@
+                    <br>
+                    Item description: @@.yellow;<<print $backpack[_ibp].description>>@@
+                </div>
+            </div>
+        <</for>>
+    <<else>>
+        Your backpack is empty.
+    <</if>>
+
+<</widget>>

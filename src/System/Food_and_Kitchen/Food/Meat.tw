@@ -5,6 +5,7 @@
         {
             id: 0,
             name: "Raw Chicken Breast",
+            description: "A raw chicken breast",
             price: 5,
             amount: 1,
             foodtype: "meat"
@@ -12,6 +13,7 @@
         {
             id: 1,
             name: "Raw Chicken Wings",
+            description: "Raw chicken wings",
             price: 5,
             amount: 1,
             foodtype: "meat"

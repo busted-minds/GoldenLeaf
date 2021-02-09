@@ -1,9 +1,9 @@
 :: frontdoor [nobr]
     <h2>Front door</h2>
     <div class="divisor"></div>
-    You are at the front door surrounded by brick walls that have an hexagon shape(because reasons). 
+    You are at the front door surrounded by brick walls that have a hexagonal shape(because reasons). 
     <br>
-    From here you can go to the city, the garden or inside the house. 
+    From here you can go to the city, the garden, or inside the house. 
     <br>
     <fieldset id="fieldinline">
         <legend>Places</legend>
@@ -17,9 +17,9 @@
 :: garden [nobr]
     <h2>Garden</h2>
     <div class="divisor"></div>
-    You are in the garden. You see the door that goes to inside the house.
+    You are in the garden. You see the door that leads back inside the house.
     <br>
-    The garden looks like it wasn't cleaned in a lot of time, if you want to do something here you need to fix and clean it.
+    The garden looks like it wasn't cleaned in a long time. If you want to do something here you need to fix and clean it.
     @@.red;(WIP)@@
     <br>
     <br>
