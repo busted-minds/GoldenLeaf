@@ -10,7 +10,7 @@
             hunger: 60,
             price: 15,
             exp: 10,
-            foodtype: "meatfood"
+            foodtype: ["Cooked Meat", "Cooked Food"]
         },
         {
             id: 1,
@@ -20,7 +20,7 @@
             hunger: 50,
             price: 10,
             exp: 8,
-            foodtype: "meatfood"
+            foodtype: ["Cooked Meat", "Cooked Food"]
         },
         {
             id: 2,
@@ -30,7 +30,7 @@
             hunger: 60,
             price: 15,
             exp: 11,
-            foodtype: "meatfood"
+            foodtype: ["Cooked Meat", "Cooked Food"]
         }
     ]>>
 
