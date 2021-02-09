@@ -57,24 +57,23 @@
         <<set _recipeNameID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
         
         <<for _ikt to 0; _ikt lt $kitchentable.length; _ikt++>>
-            <<set _foodtypeKT to []>>
             <<set _foodnameKT to $kitchentable[_ikt].name>>
             <<set _foodamountKT to $kitchentable[_ikt].amount>>
-            <<set _foodtypeKT.push($kitchentable[_ikt].foodtype)>>
+            <<set _foodtypeKT to $kitchentable[_ikt].foodtype>>
             <<set _foodquality to $kitchentable[_ikt].quality>>
             <<set _foodhunger to $kitchentable[_ikt].hunger>>
                 
             _foodnameKT <<if _foodquality>> <<print "(" + _foodquality + ")">><</if>> <<if _foodamountKT gt 1 >> x _foodamountKT <</if>>
-            <<if _foodtypeKT.includesAny("Cooked Food", "fruits")>>
+            <<if typeof(_foodtypeKT) is "object" and _foodtypeKT.includesAny("Prepared Food", "fruits")>>
                 <br>
                 <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_ikt+`, "kitchentable"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
             <</if>>
             
-            <<if !_foodtypeKT.includes("Cooked Food")>>
+            <<if !_foodtypeKT.includes("Prepared Food")>>
                 <br>
-                <<capture _foodnameKT _foodtypeKT[0]>>
+                <<capture _foodnameKT _foodtypeKT>>
                     <<button "Move back" "kitchentable">>
-                        <<moveFood _foodnameKT _foodtypeKT[0]>>
+                        <<moveFood _foodnameKT _foodtypeKT>>
                     <</button>>
                 <</capture>>
             <</if>>
