@@ -193,17 +193,20 @@
                     <<set $exposed to true>>
                     <br>
                     @@.textshining;You are exposed!@@
+                <<else>>
+                    <<unset $exposed>>
                 <</if>>
             <</if>>
 
         <<case "male">>
             <<if _lowerbPri and _lowerbSec or _lowerbPri and !_lowerbSec>>
-                    <<set $exposed to true>>
-                    <br>
-                    @@.textshining;You are exposed!@@
+                <<set $exposed to true>>
+                <br>
+                @@.textshining;You are exposed!@@
+            
+            <<else>>
+                <<unset $exposed>>
             <</if>>
 
-        <<default>>
-            <<unset $exposed>>
     <</switch>>
 <</widget>>
