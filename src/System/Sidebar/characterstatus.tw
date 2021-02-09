@@ -15,10 +15,10 @@
                 @@.lightblue;<<print $playervar.gender>>@@.
 
             <</if>>
-            You hair color is <span @class="$pHairColor.toLowerCase();">$pHairColor</span> with a $pHairStyle style.
+            You hair color is <span @class="$pHairColor.toLowerCase();">$pHairColor</span> with a @@.orange;$pHairStyle@@ style.
             <<if $playervar.gender is "male">>
-                <<if $playervar.beardsize isnot 0 or $playervar.beardsize isnot 1>>
-                    And your beard has a size of @@.blue;<<print $playervar.beardsize>>@@ mm.
+                <<if $pBeardSize isnot 0 or $pBeardSize isnot 1>>
+                    And your beard length is @@.blue;<<print $pBeardSize>>@@ mm.
                 <</if>>
             <</if>>
             Your body sensibility is <<sensibilitychecker>>
@@ -57,9 +57,9 @@
         <<elseif $playervar.gender is "male">>
             <fieldset class="charc">
                 <legend>Genitals info: </legend>
-                    You have a @@.orange;<<penissizechecker>>@@ penis, It's size is @@.blue;<<print $playervar.penissize>>@@ cm in length and @@.blue;<<print $playervar.peniswidth>>@@ cm width. <<if $playervar.virginity.penis is true>> @@.green;You are a virgin@@.<</if>> 
+                    You have a @@.orange;<<penissizechecker>>@@ penis. Its size is @@.blue;<<print $playervar.penissize>>@@ cm in length and @@.blue;<<print $playervar.peniswidth>>@@ cm width. <<if $playervar.virginity.penis is true>> @@.green;You are a virgin@@.<</if>> 
                     <br>
-                    Below it you have a pair of balls that are <<ballssizechecker>> and their size is @@.blue;<<print $playervar.ballssize>>@@ cm.
+                    Below it you have a pair of <<ballssizechecker>> balls and their size is @@.blue;<<print $playervar.ballssize>>@@ cm.
             </fieldset>
             
         <</if>>
@@ -73,7 +73,7 @@
             <legend> Butt info: </legend>
             Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;hasn't been touched@@.<</if>>
             <br>
-            You have an anus that is <<anustightnesschecker>>, it has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects up to @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
+            You have an anus that is <<anustightnesschecker>>, has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects up to @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
         </fieldset>
     </fieldset>
 <</widget>>
