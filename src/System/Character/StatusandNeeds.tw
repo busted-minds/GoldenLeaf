@@ -25,9 +25,9 @@
     <<set _mult to 0.20>>
 
     <<if typeof($args[1]) is "number">>
-        <<set _uE to $arg[1]>>
+        <<set _uE to $args[1]>>
     <<else>>
-        <<set _uE to $args[0]>>
+        <<set _uE to $args[0] * 0.1>>
     <</if>>
 
     <<if $sleeping is true>>
@@ -39,7 +39,7 @@
     <<set $hunger += Math.round($args[0] * _mult)>>
     <<set $hygiene -= Math.round($args[0] * _mult)>>
     <<set $fun -= Math.round($args[0] * _mult)>>
-    <<set $energy -= Math.round(_uE * 0.1)>>
+    <<set $energy -= Math.round(_uE)>>
 
     <<set $hunger to Math.clamp($hunger, 0, 100)>>
     <<set $hygiene to Math.clamp($hygiene, 0, 100)>>
