@@ -68,8 +68,6 @@
 
     <<if $kitchentable[_positOut].amount is 0>>
         <<set $kitchentable.deleteAt(_positOut)>>
-    <<else>>
-        <<set $kitchentable[_positOut].amount -= 1>>
     <</if>>
 
 <</widget>>
