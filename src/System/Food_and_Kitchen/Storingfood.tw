@@ -59,10 +59,12 @@
     <<if !_location[_positIn]>>
         <<set _location.push(clone($kitchentable[_positOut]))>>
         <<set _positIn to _location.findIndex(x => x.name === _fName)>>
+        <<set _location[_positIn].amount to 1>>
         <<set $kitchentable[_positOut].amount -= 1>>
 
     <<elseif _location[_positIn]>>
         <<set _location[_positIn].amount += 1>>
+        <<set $kitchentable[_positOut].amount -= 1>>
 
     <</if>>
 
