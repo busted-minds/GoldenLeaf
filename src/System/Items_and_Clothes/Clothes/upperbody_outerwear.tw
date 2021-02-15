@@ -1,14 +1,13 @@
 :: upperbody_outerwear [widget nobr]
 
 <<widget "upperb_outerwearIni">>
-
     <<set setup.clothes.upperbouter to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
@@ -21,7 +20,7 @@
             name: "Polo shirt",
             lowname: "polo shirt",
             price: 15,
-            state: "normal",
+            color: undefined,
             description: "A normal polo shirt",
             article: "a",
             category: ["shirt", "upperbouter"],
@@ -35,7 +34,7 @@
             name: "Blouse",
             lowname: "blouse",
             price: 20,
-            state: "normal",
+            color: undefined,
             description: "A normal blouse",
             article: "a",
             category: ["blouse", "upperbouter"],

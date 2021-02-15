@@ -1,14 +1,13 @@
 :: lowerbody_outerwear [widget nobr]
 
 <<widget "lowerb_outerwearIni">>
-
     <<set setup.clothes.lowerbouter to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
@@ -20,7 +19,7 @@
             name: "Jeans",
             lowname: "jeans",
             price: 25,
-            state: "normal",
+            color: undefined,
             description: "A pair of Jeans",
             article: "a pair of",
             category: ["pants", "lowerbouter"],
@@ -33,7 +32,7 @@
             name: "Medium Skirt",
             lowname: "medium skirt",
             price: 20,
-            state: "normal",
+            color: undefined,
             description: "Just a medium skirt",
             article: "a",
             category: ["skirt", "lowerbouter"],
