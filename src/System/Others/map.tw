@@ -6,7 +6,7 @@
     <<if _mID isnot -1>>
         <br>
         <svg width="416" height="350" style="border: 0.2px solid #383e65; border-radius: 5px;">
-            <image href="img/others/mapV1.png" height="100%" width="100%"></image>
+            <image href="img/others/MapV1.png" height="100%" width="100%"></image>
             
             <a onclick="passageMov(0, 'Clove_Row');">
                 <rect id="Clove_Row" class="map" x="131" y="43" height="35" width="65">
@@ -40,7 +40,7 @@
                 <rect id="GLCC" class="map" x="10" y="298" height="45" width="50">
                 <title>To Golden Leaf Central College  +3 min.</title>
             </a>
-            <image href="img/others/maploc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
+            <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
         </svg>
         <<timed 40ms>>
             <<run _imgLoc = document.querySelector("#location");
