@@ -32,21 +32,25 @@
 :: meataisle [nobr]
     <h2>Meat aisle</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<foodshow "meat">>
 
 :: fandvaisle [nobr]
     <h2>Fruits and Veg aisle</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<foodshow "fruits">>
 
 :: spicesaisle [nobr]
     <h2>Spices aisle</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<foodshow "spices">>
 
 :: ingredaisle [nobr]
     <h2>General ingredients aisle</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<foodshow "generalIng">>
 
 :: fspurchase

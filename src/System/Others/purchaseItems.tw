@@ -34,6 +34,8 @@
                     <<set _total += $shoppingcart[_sci].price>>
                     Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
                     <br>
+                    Color: <<clothescolor $shoppingcart[_sci] true>>
+                    <br>
                     <button class="macro-button smollfont smollbutt" @onclick='`SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
                 <</if>>
             </div>
@@ -69,7 +71,7 @@
                             <</if>>
                         <</for>>
                         
-                        <<set _minut to Math.round($shoppingcart.length * 1.5)>>
+                        <<set _minut to Math.round($shoppingcart.length * 1.25)>>
                         <<timeattached _minut>>
                         <<unset $shoppingcart>>
                         <<set $message to "succPurch">>
@@ -82,7 +84,7 @@
                 <<goto _currPass>>
             <</if>>
 
-        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 1.5)>> minutes@@
+        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 1.25)>> minutes@@
     <</if>>
     <<button "Back" $args[0]>><</button>>
 

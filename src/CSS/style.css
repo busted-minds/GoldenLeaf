@@ -295,7 +295,7 @@
 		font-size: medium;
 	}
 
-	.smollfont {
+	.smollfont, .pButton button {
 		font-size: small;
 	}
 

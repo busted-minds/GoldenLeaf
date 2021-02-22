@@ -4,15 +4,21 @@
     <<switch $args[0]>>
         <<case "grocery">>
             <button class="macro-button smollfont" 
-            @onclick='`(`+_exist+` !== -1 && SugarCube.State.variables.shoppingcart[`+_exist+`].name == SugarCube.State.temporary.foodlist[`+_i+`].name ? SugarCube.State.variables.shoppingcart[`+_exist+`].amount += 1 : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.foodlist[`+_i+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
+            @onclick='`(`+_exist+` !== -1 && SugarCube.State.variables.shoppingcart[`+_exist+`].name == SugarCube.State.temporary.foodlist[`+_i+`].name ? SugarCube.State.variables.shoppingcart[`+_exist+`].amount += 1 : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.foodlist[`+_i+`])); SugarCube.State.variables.message = "addedToSC"; SugarCube.Engine.play(SugarCube.State.passage)`'>
             Add to shopping cart
             </button>
 
         <<case "clothstore">>
-            <button class="macro-button smollfont" 
-            @onclick='`(`+_exist+` !== -1 || `+_existsc+` !== -1 ? SugarCube.State.variables.message = "bought" : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.values[`+_j+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
-            Add to shopping cart
-            </button>
+            <<set _passage to passage()>>
+            @@.pButton;
+                <<capture _j>>
+                    <<button "Add to shopping cart" _passage>>
+                        <<set $shoppingcart.push(_values[_j])>>
+                        <<set $message to "addedToSC">>
+                        <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
+                    <</button>>
+                <</capture>>
+            @@
 
     <</switch>>
 <</widget>>

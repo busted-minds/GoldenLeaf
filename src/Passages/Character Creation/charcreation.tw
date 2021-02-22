@@ -242,21 +242,23 @@
     <<set $gamestarted to 1>>
     <<set $disablernggod to false>>
     <<set $bps.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
+    <<set $displayColorText to true>>
+    <<set _keys to Object.keys(setup.clothes.colors)>>
     <<if $playervar.gender is "female">>
-        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2]); $bps.upperbody[0].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1]); $bps.upperbody[0].secondary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2]); $bps.lowerbody[0].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1]); $bps.lowerbody[0].secondary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1]); $bps.lowerbody[2].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1]); $bps.lowerbody[3].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2]); $bps.lowerbody[3].secondary.color to setup.clothes.colors.random()>>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2]); $bps.upperbody[0].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1]); $bps.upperbody[0].secondary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2]); $bps.lowerbody[0].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1]); $bps.lowerbody[0].secondary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1]); $bps.lowerbody[2].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1]); $bps.lowerbody[3].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2]); $bps.lowerbody[3].secondary.color to [_keys[_keys.length * Math.random() << 0]]>>
             
     <<elseif $playervar.gender is "male">>
-        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1]); $bps.upperbody[0].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1]); $bps.lowerbody[0].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2]); $bps.lowerbody[0].secondary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[0]); $bps.lowerbody[3].primary.color to setup.clothes.colors.random()>>
-        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1]); $bps.lowerbody[3].secondary.color to setup.clothes.colors.random()>>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1]); $bps.upperbody[0].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1]); $bps.lowerbody[0].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2]); $bps.lowerbody[0].secondary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[0]); $bps.lowerbody[3].primary.color to [_keys[_keys.length * Math.random() << 0]]>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1]); $bps.lowerbody[3].secondary.color to [_keys[_keys.length * Math.random() << 0]]>>
 
     <</if>>
             
