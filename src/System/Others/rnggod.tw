@@ -1,6 +1,0 @@
-:: rnggod [widget nobr]
-
-/% All hail the RNG god. \[R]/ %/
-<<widget "rngod">>
-    <<set $rnggod to random(0,100)>>
-<</widget>>

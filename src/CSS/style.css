@@ -108,6 +108,22 @@
 		color: black;
 	}
 
+	.light {
+		color: #FEE6B8
+	}
+
+	.fair {
+		color: #DEBC97
+	}
+
+	.olive {
+		color: #B58557
+	}
+
+	span #skinTone.black{
+		color: #502E22
+	}
+
 /* Not colors */
 	.charc {
 		border: 1px solid #383e65;

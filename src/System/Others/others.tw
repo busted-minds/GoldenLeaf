@@ -1,0 +1,23 @@
+:: othersWidgets [widget nobr]
+
+<<widget "skintone">>
+    <<if $displayColorText>>
+        <span @class="$pSkinTone" id ="skinTone"><<print $pSkinTone.toUpperFirst()>></span>.
+    <<else>>
+        <<print $pSkinTone.toUpperFirst()>>.
+    <</if>>
+<</widget>>
+
+<<widget "penalty">>
+    <<if $arousal gte 80 or $fun lte 15>>
+        <<set _penalty to 2>>
+    <<else>>
+        <<set _penalty to 1>>
+    <</if>>
+
+<</widget>>
+
+/% All hail the RNG god. \[R]/ %/
+<<widget "rngod">>
+    <<set $rnggod to random(0,100)>>
+<</widget>>

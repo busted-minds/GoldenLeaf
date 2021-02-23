@@ -15,11 +15,11 @@
                 @@.lightblue;<<print $playervar.gender>>@@.
 
             <</if>>
+            Your skin tone is <<skintone>>
+            <br>
             You hair color is <span @class="$pHairColor.toLowerCase();">$pHairColor</span> with a @@.orange;$pHairStyle@@ style.
-            <<if $playervar.gender is "male">>
-                <<if $pBeardSize isnot 0 or $pBeardSize isnot 1>>
-                    And your beard length is @@.blue;<<print $pBeardSize>>@@ mm.
-                <</if>>
+            <<if $pBeardSize>>
+                And your beard length is @@.blue;<<print $pBeardSize>>@@ mm.
             <</if>>
             Your body sensibility is <<sensibilitychecker>>
             Your body is @@.orange;<<print $playervar.height>>@@ and @@.orange;<<print $playervar.bodyshapestate>>@@.

@@ -48,6 +48,14 @@
                 <<option "Athletic" "athletic">>
             <</listbox>>
         </ul>
+
+        <<set _skinTones to { Light: "light", Fair: "fair", Olive: "olive", Brown: "brown", Black: "blackT"}>>
+        @@.darkyellow;Select your skin tone@@
+        <ul>
+            <<listbox "$pSkinTone" autoselect>>
+                <<optionsfrom _skinTones>>
+            <</listbox>>
+        </ul>
     </fieldset>
 
     <<button "Continue">>
