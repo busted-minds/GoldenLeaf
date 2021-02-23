@@ -23,7 +23,7 @@
         <ul>
             <<listbox "$playervar.height" autoselect>>
                 <<option "Tall" "tall">>
-                <<option "Normal" "normal">>
+                <<option "Common" "common">>
                 <<option "Small" "small">>
             <</listbox>>
         </ul>
@@ -32,7 +32,7 @@
         <ul>
             <<listbox "$playervar.bodyshape" autoselect>>
                 <<option "Fit" 60>>
-                <<option "Normal" 40>>
+                <<option "Common" 40>>
                 <<option "Chubby" 20>>
             <</listbox>>
         </ul>
@@ -114,7 +114,7 @@
                 <ul>
                     <<listbox "$playervar.breastsize" autoselect>>
                         <<option "Perky" 60>>
-                        <<option "Normal" 40>>
+                        <<option "Common" 40>>
                         <<option "Small" 20>>
                         <<option "Flat" 0>>
                     <</listbox>>
@@ -134,7 +134,7 @@
                 <ul>
                     <<listbox "$playervar.nipplesize" autoselect>>
                         <<option "Medium" 1.25>>
-                        <<option "Normal" 0.95>>
+                        <<option "Common" 0.95>>
                         <<option "Small" 0.48>>
                         <<option "Tiny" 0.24>>
                     <</listbox>>
@@ -148,7 +148,7 @@
                 <ul>
                     <<listbox "$playervar.clitorissize" autoselect>>
                         <<option "Medium" 1.2>>
-                        <<option "Normal" 0.9>>
+                        <<option "Common" 0.9>>
                         <<option "Small" 0.5>>
                         <<option "Tiny" 0.3>>
                     <</listbox>>
@@ -158,7 +158,7 @@
                 <ul>
                     <<listbox "$playervar.vagtightness" autoselect>>
                         <<option "Tight" 50>>
-                        <<option "Normal" 35>>
+                        <<option "Common" 35>>
                         <<option "Loose" 20>>
                     <</listbox>>
                 </ul>
@@ -168,7 +168,7 @@
                 <ul>
                     <<listbox "$playervar.penissize" autoselect>>
                         <<option "Big" 15>>
-                        <<option "Normal" 12>>
+                        <<option "Common" 12>>
                         <<option "Small" 6>>
                         <<option "Tiny" 3>>
                     <</listbox>>
@@ -178,7 +178,7 @@
                 <ul>
                     <<listbox "$playervar.ballssize" autoselect>>
                         <<option "Big" 8>>
-                        <<option "Normal" 4>>
+                        <<option "Common" 4>>
                         <<option "Small" 2>>
                     <</listbox>>
                 </ul>
@@ -191,7 +191,7 @@
             <ul>
                 <<listbox "$playervar.buttsize" autoselect>>
                     <<option "Plumpy" 60>>
-                    <<option "Normal" 40>>
+                    <<option "Common" 40>>
                     <<option "Small" 20>>
                     <<option "Flat" 0>>
                 <</listbox>>
@@ -201,7 +201,7 @@
             <ul>
                 <<listbox "$playervar.anustightness" autoselect>>
                     <<option "Tight" 50>>
-                    <<option "Normal" 35>>
+                    <<option "Common" 35>>
                     <<option "Loose" 20>>
                 <</listbox>>
             </ul>

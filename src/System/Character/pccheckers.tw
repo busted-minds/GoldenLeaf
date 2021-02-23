@@ -13,7 +13,7 @@
 		<span class="pink">plumpy</span>
 	
 	<<elseif $playervar.buttsize gte 40>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 	
 	<<elseif $playervar.buttsize gte 20>>
 		<span class="lightorange">small</span>
@@ -26,23 +26,21 @@
 <</widget>>
 
 <<widget "anustightnesschecker">>
+	Your anus 
 	<<if $playervar.anustightness eq 70>>
-		<span class="red">too tight</span>
+		is <span class="red">extremely tight</span>.
 		
 	<<elseif $playervar.anustightness gte 50>>
-		<span class="lightred">tight</span>
+		is <span class="lightred">tight</span>.
 
 	<<elseif $playervar.anustightness gte 35>>
-		<span class="gray">normal</span>
+		has a <span class="gray">normal</span> tightness.
 
-	<<elseif $playervar.anustightness gte 20>>
-		<span class="lightred">loose</span>
-		
-	<<elseif $playervar.anustightness gte 10>>
-		<span class="red">too loose</span>
+	<<elseif $playervar.anustightness gte 15>>
+		is <span class="lightred">loose</span>.
 		
 	<<elseif $playervar.anustightness gte 5>>
-		<span class="darkred">extremely loose</span>
+		is <span class="darkred">extremely loose</span>.
 
 	<</if>>
 
@@ -80,7 +78,7 @@
 		<span class="greenyellow">big</span>
 		
 	<<elseif $playervar.penissize gte 12>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 
 	<<elseif $playervar.penissize gte 5>>
 		<span class="lightorange">small</span>
@@ -100,7 +98,7 @@
 		<span class="greenyellow">big</span>
 
 	<<elseif $playervar.ballssize gte 4>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 
 	<<elseif $playervar.ballssize gte 2>>
 		<span class="lightorange">small</span>
@@ -121,7 +119,7 @@
 	<<elseif $playervar.breastsize gte 60>>
 		<span class="pink">perky</span>
 	<<elseif $playervar.breastsize gte 40>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 	<<elseif $playervar.breastsize gte 20>>
 		<span class="lightorange">small</span>
 	<<elseif $playervar.breastsize gte 0>>
@@ -144,7 +142,7 @@
 		<span class="graypink">medium</span>
 
 	<<elseif $playervar.clitorissize gte 0.9>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 		
 	<<elseif $playervar.clitorissize gte 0.5>>
 		<span class="lightorange">small</span>
@@ -165,7 +163,7 @@
 	<<elseif $playervar.nipplesize gte 1.25>>
 		<span class="graypink">medium</span>
 	<<elseif $playervar.nipplesize gte 0.95>>
-		<span class="gray">normal</span>
+		<span class="gray">common</span>
 	<<elseif $playervar.nipplesize gte 0.48>>
 		<span class="lightorange">small</span>
 	<<elseif $playervar.nipplesize gte 0.25>>
@@ -175,23 +173,21 @@
 <</widget>>
 
 <<widget "vagtightnesschecker">>
+	Your vagina
 	<<if $playervar.vagtightness eq 70>>
-		<span class="red">too tight</span>
+		is <span class="red">extremely tight</span>
 		
 	<<elseif $playervar.vagtightness gte 50>>
-		<span class="lightred">tight</span>
+		is <span class="lightred">tight</span>
 
 	<<elseif $playervar.vagtightness gte 35>>
-		<span class="gray">normal</span>
+		has a <span class="gray">normal</span> tightness.
 
-	<<elseif $playervar.vagtightness gte 20>>
-		<span class="lightred">loose</span>
-		
-	<<elseif $playervar.vagtightness gte 10>>
-		<span class="red">too loose</span>
+	<<elseif $playervar.vagtightness gte 15>>
+		is <span class="lightred">loose</span>.
 		
 	<<elseif $playervar.vagtightness gte 5>>
-		<span class="darkred">extremely loose</span>
+		is <span class="darkred">extremely loose</span>.
 
 	<</if>>
 
