@@ -36,15 +36,10 @@
         <<set $sleeping to undefined>>
     <</if>>
     
-    <<set $hunger += Math.round($args[0] * _mult)>>
-    <<set $hygiene -= Math.round($args[0] * _mult)>>
-    <<set $fun -= Math.round($args[0] * _mult)>>
-    <<set $energy -= Math.round(_uE)>>
-
-    <<set $hunger to Math.clamp($hunger, 0, 100)>>
-    <<set $hygiene to Math.clamp($hygiene, 0, 100)>>
-    <<set $fun to Math.clamp($fun, 0, 100)>>
-    <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
+    <<set $hunger += Math.round($args[0] * _mult); $hunger to Math.clamp($hunger, 0, 100)>>
+    <<set $hygiene -= Math.round($args[0] * _mult); $hygiene to Math.clamp($hygiene, 0, 100)>>
+    <<set $fun -= Math.round($args[0] * _mult); $fun to Math.clamp($fun, 0, 100)>>
+    <<set $energy -= Math.round(_uE); $energy to Math.clamp($energy, 0, $maxenergy)>>
 
     <<addminutes $args[0]>>
 
