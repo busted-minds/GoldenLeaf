@@ -8,12 +8,9 @@
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
     </fieldset>
-
-    /%<fieldset id="fieldinline">
-        <legend style="font-size: 130%;">Accesories</legend>
-        <a id="Link" @class="($pressedlink is 'accesories' ? 'selected' : '')" onclick="wikifier('wardrobeCCReplacer', 'accesories', 'accesories')">accesories</a>
-    
-    </fieldset>%/
+    @@.wardrobeBttns;<<button "Undress All" "wardrobe">>
+        <<undressAll>>
+    <</button>>@@
 <</widget>>
 
 /% This replaces some divs in the wardrobe passage and makes it remember what link was pressed.%/

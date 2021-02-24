@@ -9,9 +9,9 @@
         <<set _tID to $playerTraits.findIndex(x => x.name === "crossdressing")>>
 
         <<if $wardrobeContent[_wrSlot][_itemID].gender is "neutral" or $wardrobeContent[_wrSlot][_itemID].gender is $playervar.gender or $playerTraits[_tID]>>
-            <<undressMain _bodyPart _bpIndex _itemSlot _wrSlot>>
+            <<undressMain _bodyPart _bodyPIndex _itemSlot _wrSlot>>
 
-            <<set $bps[_bodyPart][_bpIndex][_itemSlot] to clone($wardrobeContent[_wrSlot][_itemID])>>
+            <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent[_wrSlot][_itemID])>>
             <<set $message to "@@.green;You put your <span class='orange'>"+ $wardrobeContent[_wrSlot][_itemID].name +"</span> on.@@">>
             <<set $wardrobeContent[_wrSlot].deleteAt(_itemID)>>
 
@@ -36,7 +36,13 @@
                 <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
                 <<set $message to "@@.red;You remove your <span class='orange'>"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"</span>.@@">>
             <</if>>
-            <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+
+            <<if _clothesSlot is "shoes">>
+                <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes.accesories[0])>>
+
+            <<else>>
+                <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+            <</if>>
 
         <<else>>
             <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
@@ -55,3 +61,24 @@
             <</if>>
         <</for>>
     <</widget>>
+
+/* Undress all. Calling undressMain */
+<<widget "undresAll">>
+    <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
+    <<set _bodyP to Object.keys($bps)>>
+
+    <<for _i to 0; _i lt _bodyP.length; _i++>>
+        <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
+
+        <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includesAny(_cats)>>
+                <<undressMain _bodyP[_i] _bodyPIndex[_j] "primary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
+            <</if>>
+
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includesAny(_cats)>>
+                <<undressMain _bodyP[_i] _bodyPIndex[_j] "secondary" $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]>>
+            <</if>>
+        <</for>>
+        
+    <</for>>
+<</widget>>
