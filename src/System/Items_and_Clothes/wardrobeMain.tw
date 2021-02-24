@@ -63,7 +63,7 @@
     <</widget>>
 
 /* Undress all. Calling undressMain */
-<<widget "undresAll">>
+<<widget "undressAll">>
     <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
     <<set _bodyP to Object.keys($bps)>>
 
