@@ -1,7 +1,7 @@
 :: othersWidgets [widget nobr]
 
 <<widget "skintone">>
-    <<if $displayColorText>>
+    <<if $displayColorText is true>>
         <span @class="$pSkinTone" id ="skinTone"><<print $pSkinTone.toUpperFirst()>></span>.
     <<else>>
         <<print $pSkinTone.toUpperFirst()>>.
