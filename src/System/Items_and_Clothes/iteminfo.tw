@@ -12,7 +12,7 @@
     <br>
     Description: <<print _itemDesc>>
     <br>
-    Categories: <<print _itemCat>>
+    Color: <<clothescolor $wardrobeContent[_slot][_id] true>>
     <br>
 
 <</widget>>

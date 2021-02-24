@@ -117,8 +117,10 @@
 
                 <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
                     <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
-                    
+
                     <<print _itemContentN>> 
+                    (<<clothescolor $wardrobeContent[_wardrobeSlot[_i]][_j] true>>)
+                    
                     <span class="wardrobeBttns">
                         <br>
                         <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
