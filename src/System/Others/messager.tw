@@ -23,8 +23,8 @@
             <<case "succPurch">>
                 @@.green;Thank you for you purchase, please come back again!.@@
                 <br>
-            <<case "bought">>
-                You don't need more of this item.
+            <<case "enough">>
+                You already have enough of that item.
                 <br>
             <<case "addedToSC">>
                 @@.green;Added to shopping cart!@@
