@@ -187,9 +187,10 @@
 		max-height: 4em !important;
 	}
 
-	.smollbutt {
+	.smollbutt, .smollbutt button {
 		max-width: 4.9em !important; 
 		max-height: 4em !important;
+		font-size: small;
 	}
 
 	#menu li a {

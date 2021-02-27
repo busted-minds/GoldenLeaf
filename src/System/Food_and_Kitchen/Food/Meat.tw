@@ -6,6 +6,7 @@
             id: 0,
             name: "Raw Chicken Breast",
             description: "A raw chicken breast",
+            uses: 1,
             price: 5,
             amount: 1,
             foodtype: "meat"
@@ -14,6 +15,7 @@
             id: 1,
             name: "Raw Chicken Wings",
             description: "Raw chicken wings",
+            uses: 1,
             price: 5,
             amount: 1,
             foodtype: "meat"

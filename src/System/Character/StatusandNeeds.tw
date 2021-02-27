@@ -55,29 +55,34 @@
 <<widget "eatFood">>/%The args need to be assigned as 0= Value to be used to satisfy hunger. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
     <<set _value to $args[0]>>
     <<set _foodID to $args[1]>>
-    <<set _location to $args[2]>>
+    <<set _location to State.getVar("$" + $args[2])>>
+    <<if $args[2] is "fruits">>
+        <<set _setupID to setup.food.fruits.findIndex(x => x.name === _location[_foodID].name)>>
+        <<set _consUse to setup.food.fruits[_setupID].uses>>
+    <<else>>
+        <<set _consUse to 1>>
+    <</if>>
+
+    <<if _location[_foodID].amount gte 2>>
+        <<if _location[_foodID].uses eq 1>>
+            <<set _location[_foodID].amount -= 1>>
+            <<set _location[_foodID].uses = _consUse>>
+
+        <<elseif _location[_foodID].uses lte _consUse>>
+            <<set _location[_foodID].uses -= 1>>
+        <</if>>
+        
+    <<else>>
+        <<if _location[_foodID].uses eq 1>>
+            <<set _location.deleteAt(_foodID)>>
+        <<else>>
+            <<set _location[_foodID].uses -= 1>>
+        <</if>>
+            
+    <</if>>
 
     <<set $hunger -= _value>>
     <<set $hunger to Math.clamp($hunger, 0, 100)>>
-
-    <<if _location is "kitchentable">>
-        <<if $kitchentable[_foodID].amount gte 2>>
-            <<set $kitchentable[_foodID].amount -= 1>>
-        
-        <<else>>
-            <<set $kitchentable.deleteAt(_foodID)>>
-            
-        <</if>>
-
-    <<elseif _location is "fruits">>
-        <<if $fruits[_foodID].amount gte 2>>
-            <<set $fruits[_foodID].amount -= 1>>
-
-        <<else>>
-            <<set $fruits.deleteAt(_foodID)>>
-        <</if>>
-    
-    <</if>>
 
 <</widget>>
 
