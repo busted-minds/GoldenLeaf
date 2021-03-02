@@ -11,7 +11,7 @@
                             <<set $shoppingcart.push(_foodlist[_fLI])>>
                             <<set $shoppingcart[$shoppingcart.length - 1].amount to _Amount>>
                             <<set $message to "addedToSC">>
-                        <<elseif $shoppingcart[_exist].amount lt 5>>
+                        <<elseif ($shoppingcart[_exist].amount + _Amount) lte 5>>
                             <<set $shoppingcart[_exist].amount += _Amount>>
                             <<set $message to "addedToSC">>
                         <<else>>
