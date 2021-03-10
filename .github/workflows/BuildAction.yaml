@@ -1,0 +1,13 @@
+name: AutoBuild
+
+on: [merge]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: RunFile
+      run: build.sh

@@ -1,1 +1,1 @@
-tweego -f sugarcube-2 -o GoldenLeafV0.1.5.html src
+buildTools\tweego\tweego_win64.exe -f sugarcube-2 -o GoldenLeafVersion.html src
