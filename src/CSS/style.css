@@ -167,7 +167,7 @@
 
 	}
 
-	button:disabled {
+	button:disabled, a:disabled{
 		background-color: #191827;
 		border: 2px solid #454152;
 	}
@@ -182,7 +182,7 @@
 		font-size: 100% !important;
 	}
 
-	.med-button{
+	.med-button, .med-button button{
 		max-width: 7em !important; 
 		max-height: 4em !important;
 	}
@@ -201,7 +201,7 @@
 		content:"/Load Game";
 	}
 
-	.macro-button:hover, .delete:hover, .load:hover, .save:hover, #saves-export:hover, #saves-import:hover, #saves-clear:hover {
+	.macro-button:hover, .delete:hover, .load:hover, .save:hover, #saves-export:hover, #saves-import:hover, #saves-clear:hover, a:hover{
 		background-color: #191827;
 		border-color: #eee;
 	}
@@ -245,7 +245,7 @@
 		border: 2px solid #6287f8;
 	}
 
-	.macro-button:focus {
+	.macro-button:focus, a:focus{
 		background-color: #191827;
 		color: #65dc98;
 	}
@@ -303,6 +303,19 @@
 		border-radius: 5px;
 		background-color: #1b1b1b;
 		max-width: 17em;
+		margin-bottom: 5px;
+	}
+
+	.listCodex {
+		display: inline-block;
+		max-width: 17em;
+		margin-bottom: 5px;
+	}
+
+	.listSkills{
+		display: inline-block;
+		border: 1px solid #383e65;
+		border-radius: 5px;
 		margin-bottom: 5px;
 	}
 

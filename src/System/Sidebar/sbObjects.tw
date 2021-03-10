@@ -43,13 +43,8 @@
     <br>
     <div class="divisor" style="margin-bottom: 5px;"></div>
     <div>
-    <<button "Status">>
-        <<replacer "status">>
-    <</button>>
-    </div>
-    <div>
-    <<button "Skills">>
-        <<replacer "skills">>
+    <<button "Codex">>
+        <<replacer "codex">>
     <</button>>
     </div>
     <div>

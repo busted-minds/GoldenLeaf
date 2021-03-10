@@ -1,0 +1,64 @@
+:: Codex [nobr widget]
+
+<<widget "codexMain">>
+    @@#codexBody;@@
+    <br>
+    <<codexButtons>>
+<</widget>>
+
+<<widget "codexButtons">>
+    <div class="listCodex">
+        <<button "Traits">>
+            <<replace "#codexBody">>
+                Traits
+            <</replace>>
+        <</button>>
+    </div>
+    
+    <div class="listCodex"> 
+        <<button "Status">>
+            <<replace "#codexBody">>
+                <<charStatus>>
+            <</replace>>
+        <</button>>
+    </div>
+
+    <div class="listCodex"> 
+        <<button "Recipes">>
+            <<replace "#codexBody">>
+                <<learnedRecipes>>
+            <</replace>>
+        <</button>>
+    </div>
+
+    <div class="listCodex">
+        <<button "Skills">>
+            <<replace "#codexBody">>
+               <<skillbar>>
+            <</replace>>
+        <</button>>
+    </div>
+<</widget>>
+
+<<widget "learnedRecipes">>
+    <h3>Learned Recipes</h3>
+    <<for _i to 0; _i lt $learnedrecipes.length; _i++>>
+        <<set _rID to setup.recipes.findIndex(x => x.name === $learnedrecipes[_i])>>
+
+        <<capture _i _rID>>
+            <span style= "float: left; margin-left: 5px;">
+                <<print _i + 1>>) 
+                <<link "$learnedrecipes[_i]">>
+                    <<toggleclass `"#lr" + _i` "hide">>
+                <</link>>
+            </span>
+
+            <div @id="'lr' + _i" class="hide" style="text-align:left;">
+                @@.listCodex;
+                <<instructions _rID>>
+                @@
+                <div class="thindiv"></div>
+            </div>
+        <</capture>>
+    <</for>>
+<</widget>>

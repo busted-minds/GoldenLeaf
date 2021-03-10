@@ -11,15 +11,10 @@
 		<<if $popupbox isnot $args[0]>>
 			<<set $popupbox to $args[0]>>
 
-			<<switch $args[0]>>
-				<<case "status">>
+			<<switch $args[0]>>				
+				<<case "codex">>
 					<<replace #popUpContent>>
-						<<charStatus>>
-					<</replace>>
-									
-				<<case "skills">>
-					<<replace #popUpContent>>
-						<<skillbar>>
+						<<codexMain>>
 					<</replace>>
 
 				<<case "iteminfo">>
