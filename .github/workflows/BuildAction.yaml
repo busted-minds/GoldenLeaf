@@ -13,3 +13,4 @@ jobs:
     - uses: actions/checkout@v1
     - name: RunFile
       run: build.sh
+      working-directory: ./
