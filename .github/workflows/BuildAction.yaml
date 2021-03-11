@@ -12,5 +12,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: RunFile
-      run: build
-      shell: sh
+      run: build.sh
+      working-directory: master
