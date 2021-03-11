@@ -31,6 +31,9 @@
     <<set _positIn to $kitchentable.findIndex(x => x.name === _fName)>>
     <<set _positOut to _location.findIndex(x => x.name === _fName)>>
 
+    <<set _setupID to setup.food[_location[_positOut].foodtype].findIndex(x => x.name === _fName)>>
+    <<set _consUse to setup.food[_location[_positOut].foodtype][_setupID].uses>>
+
     <<if !$kitchentable[_positIn]>>
         <<set $kitchentable.push(clone(_location[_positOut]))>>
         <<set _positIn to $kitchentable.findIndex(x => x.name === _fName)>>
@@ -45,6 +48,7 @@
         <<set _location.deleteAt(_positOut)>>
     <<else>>
         <<set _location[_positOut].amount -= $moveAm>>
+        <<set _location[_positOut].uses = _consUse>>
     <</if>>
     
     <<unset $moveAm>>
@@ -63,8 +67,13 @@
         <<set $kitchentable[_positOut].amount -= 1>>
 
     <<elseif _location[_positIn]>>
+        <<set _setupID to setup.food[_location[_positIn].foodtype].findIndex(x => x.name === _fName)>>
+        <<set _consUse to setup.food[_location[_positIn].foodtype][_setupID].uses>>
+
         <<set _location[_positIn].amount += 1>>
+        <<set _location[_positIn].uses = $kitchentable[_positOut].uses>>
         <<set $kitchentable[_positOut].amount -= 1>>
+        <<set $kitchentable[_positOut].uses = _consUse>>
 
     <</if>>
 

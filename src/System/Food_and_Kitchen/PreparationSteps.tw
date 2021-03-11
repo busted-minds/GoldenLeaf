@@ -1,5 +1,5 @@
 :: preparationsteps [widget nobr]
-/* Just preparations steps and the button for it. I swear that one day I will find a way to "automate" this so I don't need to manually add each value to the case and the object. If you know how, please tell me :D.*/ 
+/* Just preparations steps and the button for it. Check if the type of the step is string or number. Does a shuffle and then the button is made.*/ 
 <<widget "preparationsteps">>
         <<if typeof($recipesteps[$steps]) is "string">>
             <<set _steps to []>>
