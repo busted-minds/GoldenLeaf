@@ -43,7 +43,7 @@
     <br>
     <div class="divisor" style="margin-bottom: 5px;"></div>
     <div>
-    <<button "Codex">>
+    <<button "GLODEX">>
         <<replacer "codex">>
     <</button>>
     </div>

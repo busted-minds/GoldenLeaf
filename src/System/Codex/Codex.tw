@@ -1,20 +1,20 @@
 :: Codex [nobr widget]
 
 <<widget "codexMain">>
-    @@#codexBody;@@
+    @@#codexBody;<<cContentMain>>@@
     <br>
     <<codexButtons>>
 <</widget>>
 
 <<widget "codexButtons">>
     <div class="listCodex">
-        <<button "Traits">>
+        <<button "Main">>
             <<replace "#codexBody">>
-                Traits
+                <<cContentMain>>
             <</replace>>
         <</button>>
     </div>
-    
+
     <div class="listCodex"> 
         <<button "Status">>
             <<replace "#codexBody">>
@@ -38,6 +38,28 @@
             <</replace>>
         <</button>>
     </div>
+
+    <div class="listCodex">
+        <<button "Traits">>
+            <<replace "#codexBody">>
+                Traits
+            <</replace>>
+        <</button>>
+    </div>  
+<</widget>>
+
+<<widget "cContentMain">>
+    <div style="text-align:left; margin-left: 3px;">
+        Hello @@.gold;<<print String.format("{0} {1}", $pName, $pSurname)>>@@! Welcome back to @@.lightorange;GLODEX@@.
+        <br>
+        You have @@.orange;0@@ unread messages. (@@.red;WIP@@)
+        <br>
+        You have @@.orange;0@@ unread emails. (@@.red;WIP@@)
+        <br>
+        <br>
+        <<shoppingList>>
+    </div>
+
 <</widget>>
 
 <<widget "learnedRecipes">>
@@ -46,7 +68,7 @@
         <<set _rID to setup.recipes.findIndex(x => x.name === $learnedrecipes[_i])>>
 
         <<capture _i _rID>>
-            <span style= "float: left; margin-left: 5px;">
+            <span style="float: left; margin-left: 5px;">
                 <<print _i + 1>>) 
                 <<link "$learnedrecipes[_i]">>
                     <<toggleclass `"#lr" + _i` "hide">>
@@ -54,11 +76,45 @@
             </span>
 
             <div @id="'lr' + _i" class="hide" style="text-align:left;">
-                @@.listCodex;
-                <<instructions _rID>>
-                @@
+                <span class="listCodex">
+                    <<instructions _rID>>
+                    <br>
+                    <br>
+                    <<ingredientsList>>
+                </span>
                 <div class="thindiv"></div>
             </div>
         <</capture>>
     <</for>>
+<</widget>>
+
+<<widget "shoppingList">>
+    <<if $selectedrecipe>>
+        Your current shopping list for @@.blue;$selectedrecipe@@ is:
+        <br>
+        <<set _rID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+        <<ingredientsList>>
+    <<else>>
+        You must select a recipe in the kitchen table to get a shopping list.
+    <</if>>
+<</widget>>
+
+<<widget "ingredientsList">>
+    Required ingredients:
+    <<for _iRI to 0; _iRI lt setup.recipes[_rID].reqingredients.length; _iRI++>>
+        @@.orange;<<print setup.recipes[_rID].reqingredients[_iRI]>>@@<<if _iRI lt setup.recipes[_rID].reqingredients.length -1>>,<</if>>
+    <</for>>
+    <br>
+    Optional ingredients: 
+    <<for _iRI to 0; _iRI lt setup.recipes[_rID].extraingredients.length; _iRI++>>
+        @@.orange;<<print setup.recipes[_rID].extraingredients[_iRI]>>@@<<if _iRI lt setup.recipes[_rID].extraingredients.length -1>>,<</if>>
+    <</for>>
+
+    <<if setup.recipes[_rID].defingredients>>
+        <br>
+        Defining ingredients: 
+        <<for _iRI to 0; _iRI lt setup.recipes[_rID].defingredients.length; _iRI++>>
+            @@.orange;<<print setup.recipes[_rID].defingredients[_iRI]>>@@<<if _iRI lt setup.recipes[_rID].defingredients.length -1>> or<</if>>
+        <</for>>
+    <</if>>
 <</widget>>

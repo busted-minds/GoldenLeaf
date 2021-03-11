@@ -1,12 +1,12 @@
 :: learnrecipsteps [nobr]
     <h2>Cook-ing for Newbies</h2>
     <div class="divisor"></div>
-    To make $selectedrecipe you need to follow these steps:
-    <<set _rID to setup.recipes.findIndex(x => x.name === $selectedrecipe)>>
+    To make $recipeTL you need to follow these steps:
+    <<set _rID to setup.recipes.findIndex(x => x.name === $recipeTL)>>
     <<set _steps to setup.recipes[_rID].steps>>
     <br>
     <br>
-        <<switch $selectedrecipe>> /* Tried to make it more easy to automate but didn't got it working. Couldn't "personalize" it enought to how I liked :(). */
+        <<switch $recipeTL>> /* Tried to make it more easy to automate but didn't got it working. Couldn't "personalize" it enought to how I liked :(). */
             <<case setup.recipes[0].name>>/% Chicken Rice %/
                 <<instructions 0>>
             <<case setup.recipes[1].name>>/% Chicken Fillet %/
@@ -17,12 +17,12 @@
         <</switch>>
         <br>
         <br>
-        Congratulations! Now you have learned how to cook <<print $selectedrecipe>>.
+        Congratulations! Now you have learned how to cook <<print $recipeTL>>.
         <br>
         <<button "Finish" "learnrecipes">>
             <<timeattached 5>>
             <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
-            <<unset $selectedrecipe>>
+            <<unset $recipeTL>>
         <</button>>@@.red; +5 minutes@@
 
 :: learnrecipes [nobr]
@@ -51,7 +51,7 @@
                 <<disable  _minskill gt $cookingskill>>
                     <<capture _recipeName>>
                         <<button `"Learn " + _recipeName` "learnrecipsteps">>
-                            <<set $selectedrecipe to _recipeName>>
+                            <<set $recipeTL to _recipeName>>
                         <</button>>
                     <</capture>>
                 <</disable>>
