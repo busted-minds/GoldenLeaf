@@ -1,6 +1,8 @@
 name: AutoBuild
 
-on: [merge]
+on: 
+  milestone:
+    types: closed
 
 jobs:
   build:
