@@ -11,5 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: RunFile
-      run: autoBuild.sh
+    - name: buildCommand
+      uses: buildtool/build-action@v1.1
+      with:
+        run: autoBuild.sh
