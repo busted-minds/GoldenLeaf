@@ -42,7 +42,7 @@
     <div class="listCodex">
         <<button "Traits">>
             <<replace "#codexBody">>
-                Traits
+                <<traitsList>>
             <</replace>>
         <</button>>
     </div>  
@@ -116,5 +116,18 @@
         <<for _iRI to 0; _iRI lt setup.recipes[_rID].defingredients.length; _iRI++>>
             @@.orange;<<print setup.recipes[_rID].defingredients[_iRI]>>@@<<if _iRI lt setup.recipes[_rID].defingredients.length -1>> or<</if>>
         <</for>>
+    <</if>>
+<</widget>>
+
+<<widget "traitsList">>
+    <<if $pTraits[0]>>
+        <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
+            <div class="listSkills">
+                <<print String.format("{0} <br> Level: {1}", $pTraits[_iT].name.toUpperFirst(), $pTraits[_iT].level )>>
+            </div>
+        <</for>>
+        <br>
+    <<else>>
+        You have no traits.
     <</if>>
 <</widget>>
