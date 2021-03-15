@@ -32,6 +32,7 @@
     !!Ashrout
     <div class="divisor"></div>
     /*<<link "Take a bus" "bus">><</link>>*/
+    <<button "GL Public Library" "library">><</button>>
 
 :: hollinsdrift
     !!Hollins Drift

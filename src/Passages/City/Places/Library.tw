@@ -1,0 +1,32 @@
+:: library [nobr]
+    <h2>GL Public Library</h2>
+    <div class="divisor"></div>
+    //Welcome to Golden Leaf’s Public library. All E-books are free and will be deleted from your device once you leave the establishment. You can pay a membership if you are one of those that like to read paper books, likewise, these books can’t leave the library.
+    <br>
+    If you are interested in the membership, please approach the librarian@@.red;(Not implemented)@@.//
+    <br>
+    <br>
+    <<button "Books about Golden Leaf" "glbooks">><</button>>
+    <br>
+    <br>
+    <<button "Go out" "ashrout">><</button>>
+
+:: glbooks [nobr]
+    <h2>Golden Leaf History</h2>
+    <div class="divisor"></div>
+    <span class="mainB">
+        <<button "Golden Leaf History">>
+            <<replace ".mainB">>
+                Golden Leaf was a relatively small town, whose economy for that time was based solely on 2 things: cocoa and orange farming. 
+                The trade was basically among the villagers themselves and sometimes among visitors to the town
+                <br>
+                <br>
+                Gradually, the town grew and the main products where started to be exported the people had an increased quality of life but even then, 
+                it didn’t grow more than that, not until the arrival of what we call “The turnaround”.
+
+            <</replace>>
+        <</button>>
+    </span>
+    <br>
+    <br>
+    <<button "Go back" "library">><</button>>
