@@ -1,8 +1,6 @@
 name: AutoBuild
 
-on: 
-  milestone:
-    types: closed
+on: push
 
 jobs:
   build:
@@ -12,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: runBuild
-      run: chmod +x ./autoBuild.sh
+      run: ./autoBuild.sh
