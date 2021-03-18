@@ -15,18 +15,67 @@
     <h2>Golden Leaf History</h2>
     <div class="divisor"></div>
     <span class="mainB">
-        <<button "Golden Leaf History">>
-            <<replace ".mainB">>
-                Golden Leaf was a relatively small town, whose economy for that time was based solely on 2 things: cocoa and orange farming. 
-                The trade was basically among the villagers themselves and sometimes among visitors to the town
-                <br>
-                <br>
-                Gradually, the town grew and the main products where started to be exported the people had an increased quality of life but even then, 
-                it didn’t grow more than that, not until the arrival of what we call “The turnaround”.
-
-            <</replace>>
-        <</button>>
+    <<libBooks>>
     </span>
     <br>
     <br>
     <<button "Go back" "library">><</button>>
+
+:: books [widget nobr]
+    <<widget "libBooks">>
+        <<button "Golden Leaf History">>
+            <<replace ".mainB">>
+                Golden Leaf was a relatively small town, whose economy for that time was based solely on 2 things: cocoa and orange farming. 
+                The trade was basically among the villagers themselves and sometimes among visitors.
+                <br>
+                <br>
+                Gradually, the town grew and the main products where started to be exported the people had an increased quality of life but even then, 
+                it didn’t grow more than that, not until the arrival of what we call @@.green;“The Turnaround”@@.
+                <br>
+                <br>
+                <h3 class="green">The Turnaround</h3>
+                With the arrival of @@.orange;<<print String.format("{0} {1}", setup.spirealfOw.name, setup.spirealfOw.surname)>>@@ to the town in 2014 what seemed like a holiday trip became something more. @@.orange;<<print setup.spirealfOw.name>>@@ returned to the town after a year and brought a big change; 
+                Infrastructure improvements, modern farming machinery, investments, etc. Thanks to this gradually the town developed more and more to the point where it’s today.
+                <br>
+                <br>
+                The town went from having practically nothing to having research centers, a college the size of a soccer field, a library with one of the largest book collections in the country and that also collaborates with the research centers and the college, 
+                one of the most modern and efficient shopping centers in the country, energy from solar panel and state cutting-edge wind generators, among other things. And not only this, @@.orange;<<print setup.spirealfOw.name>>@@, moved the headquarters to the city, bringing even more movement to Golden Leaf.
+                <br>
+                <br>
+                Also, Golden Leaf developed his own system called GLODEX, where each citizen can view their physical situation, their e-mails and many other useful functions available in GLODEX.
+                <br>
+                <br>
+                <<button "Close book">>
+                    <<replace ".mainB">>
+                        <<libBooks>>
+                    <</replace>>
+                <</button>>
+            <</replace>>
+        <</button>>
+        <br>
+        <<button "GLODEX Information">>
+            <<replace ".mainB">>
+                @@.green;GLODEX@@ is a system developed by Golden Leaf’s government in collaboration with research centers and the college. 
+                Its development and subsequent launch are relatively recent, as it was not less than 3 years ago (2047) that it was finally released for public access to some functions of @@.green;GLODEX@@. By 2049, around 90% of the city used @@.green;GLODEX@@; Either companies, businesses and individuals.
+                <br>
+                <br>
+                Both companies and business use functions to ease the payment of their employees. For individuals, we could say that @@.green;GLODEX@@ is a personal assistant, you can check your physical status, your emails, work information, notifications, among other things. 
+                @@.green;GLODEX@@ records your address, so companies only need to request this information and it will be provided.
+                <br>
+                <br>
+                And sure, you may wonder, if you can see your info through the system, wouldn’t someone hacking mean they can access it too? 
+                Of course, but @@.green;GLODEX@@ has an open source security system and any person with the skills to improve the strength or find any bug the Golden Leaf city will provide financial reward or if the person wishes so, a job developing and improving @@.green;GLODEX@@. Thanks to this the system is less prone to hacking. 
+                <br>
+                <br>
+                Also, there could be also the doubt that some company with illegal purposes could abuse the info that @@.green;GLODEX@@ provides, but don’t worry, companies must request @@.green;GLODEX Enterprise@@ to make use of these functions. 
+                Before giving them these devices, a thorough investigation is made, because of course, no one wants their information being used for negative purposes.
+                <br>
+                <br>
+                <<button "Close book">>
+                    <<replace ".mainB">>
+                        <<libBooks>>
+                    <</replace>>
+                <</button>>
+            <</replace>>
+        <</button>>
+    <</widget>>

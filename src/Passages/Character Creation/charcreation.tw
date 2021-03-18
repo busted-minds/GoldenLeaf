@@ -1,8 +1,10 @@
 :: charcreation1[nobr]
     /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
     /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
-    <<print $message>>
-    <<unset $message>>
+    <<if $message>>
+        <<print $message>>
+        <<unset $message>>
+    <</if>>
     <fieldset class="charc">
         <legend>Character Creation</legend>
         
@@ -284,7 +286,7 @@
     <br>
     Welcome to @@.gold;Golden Leaf City@@. From the station you can see a small panorama of a few places in the city with a suprising amount of greenery around, quite a lot considering it's a city. On one end of the city, there appear to be three main buildings that attract a lot of your attention due to their unique modern designs. 
     <br>
-    In the past the city was just a small rural town, but thanks to the arrival of a successful business *insert name here* it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
+    In the past the city was just a small rural town, but thanks to the arrival of a successful businessman called <<print setup.spirealfOw.name>> it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
     <br>
     <br>
     When you finally arrive at your new house, you notice it's pretty big from the outside. You are about to open the front door with the digital key in your phone when you get a message on your phone, it's from your parents. It's odd that you didn't recieve the message until now, maybe there was a problem with the Network?
