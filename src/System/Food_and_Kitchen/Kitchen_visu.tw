@@ -42,7 +42,7 @@
                         <</capture>>@@
                         <br>
 
-                        <<if _foodTypes[_ifv] is "fruits" or _foodTypes[_ifv] is "vegetables">>
+                        <<if _foodhunger>>
                             <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_fvFT+`, \"`+_foodTypes[_ifv]+`\"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
                         <</if>>
                         <div class="thindiv"></div>

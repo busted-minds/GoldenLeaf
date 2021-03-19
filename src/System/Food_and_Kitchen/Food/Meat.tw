@@ -5,9 +5,9 @@
         {
             id: 0,
             name: "Raw Chicken Breast",
-            description: "A raw chicken breast",
+            description: "Raw chicken breast",
             uses: 1,
-            price: 5,
+            price: 4,
             amount: 1,
             foodtype: "meat"
         },
@@ -16,10 +16,39 @@
             name: "Raw Chicken Wings",
             description: "Raw chicken wings",
             uses: 1,
+            price: 4,
+            amount: 1,
+            foodtype: "meat"
+        },
+        {
+            id: 2,
+            name: "Raw Steak",
+            description: "Raw steak",
+            uses: 1,
             price: 5,
             amount: 1,
             foodtype: "meat"
-        }
+        },
+        {
+            id: 3,
+            name: "Raw ground beef",
+            description: "Raw ribs",
+            uses: 1,
+            price: 4,
+            amount: 1,
+            foodtype: "meat"
+        },
+        {
+            id: 4,
+            name: "Sausages",
+            description: "Sausages",
+            uses: 2,
+            price: 3,
+            hunger: 8,
+            amount: 1,
+            foodtype: "meat"
+        },
+
     ]>>
 
 <</widget>>

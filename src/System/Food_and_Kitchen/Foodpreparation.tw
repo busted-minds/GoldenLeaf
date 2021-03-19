@@ -313,15 +313,9 @@
     <<set _useIngredients to $args[1]>>
     <<set _useStep to $args[2]>>
     <<set _usesIng to ["Flour", "Salt", "Pepper", "Pasta", "Rice"]>>
-
-
     <<set _fT to $kitchentable[_id].foodtype>>
 
-    <<if _useIngredients.includes("Pasta") or _useIngredients.includes("Rice") or _useIngredients.includesAny(_usesIng)>>
-        <<set _consUse to setup.food[_fT][$kitchentable[_id].id].uses>>
-    <<else>>
-        <<set _consUse to 1>>
-    <</if>>
+    <<set _consUse to setup.food[_fT][$kitchentable[_id].id].uses>>
 
     <<if _id isnot -1 and $kitchentable[_id].name is _useIngredients[_useStep]>>
         <<if $kitchentable[_id].amount gt 1>>

@@ -1,0 +1,63 @@
+:: fruitsVeget [widget nobr]
+
+<<widget "setFruitsVeget">>
+    <<set setup.food.fruits to [
+        {
+            id: 0,
+            name: "Coconut",
+            description: "A coconut",
+            uses: 2,
+            price: 2,
+            hunger: 5,
+            amount: 1,
+            foodtype: "fruits"
+
+        },
+        {
+            id: 1,
+            name: "Watermelon",
+            description: "A watermelon",
+            uses: 3,
+            price: 3,
+            hunger: 4,
+            amount: 1,
+            foodtype: "fruits"
+
+        },
+        {
+            id: 3,
+            name: "Melon",
+            description: "A melon",
+            uses: 2,
+            price: 3,
+            hunger: 5,
+            amount: 1,
+            foodtype: "fruits"
+
+        },
+
+    ]>>
+
+    <<set setup.food.vegetables to [
+        {
+            id: 0,
+            name: "Tomato",
+            description: "Tomatoes",
+            uses: 2,
+            price: 3,
+            amount: 1,
+            foodtype: "vegetables"
+
+        },
+        {
+            id: 1,
+            name: "Cabbage",
+            description: "Cabbages",
+            uses: 2,
+            price: 4,
+            amount: 1,
+            foodtype: "vegetables"
+
+        },
+    ]>>
+<</widget>>

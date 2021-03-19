@@ -56,8 +56,9 @@
     <<set _value to $args[0]>>
     <<set _foodID to $args[1]>>
     <<set _location to State.getVar("$" + $args[2])>>
-    <<if $args[2] is "fruits">>
-        <<set _consUse to setup.food.fruits[_location[_foodID].id].uses>>
+    
+    <<if !$args[2] is "kitchentable">>
+        <<set _consUse to setup.food[$args[2]][_location[_foodID].id].uses>>
     <<else>>
         <<set _consUse to 1>>
     <</if>>

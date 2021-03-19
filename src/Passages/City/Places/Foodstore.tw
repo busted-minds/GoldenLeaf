@@ -35,11 +35,18 @@
     <<messager>>
     <<foodshow "meat">>
 
+    <<button "Back" "grocerystore">> <</button>>
+
 :: fandvaisle [nobr]
     <h2>Fruits and Veg aisle</h2>
     <div class="divisor"></div>
     <<messager>>
+    <br>
+    <span style="font-size=large; font-weight: bold">Fruits</span>
     <<foodshow "fruits">>
+    <span style="font-size=large; font-weight: bold">Vegetables</span>
+    <<foodshow "vegetables">>
+    <<button "Back" "grocerystore">> <</button>>
 
 :: spicesaisle [nobr]
     <h2>Spices aisle</h2>
@@ -47,11 +54,15 @@
     <<messager>>
     <<foodshow "spices">>
 
+    <<button "Back" "grocerystore">> <</button>>
+
 :: ingredaisle [nobr]
     <h2>General ingredients aisle</h2>
     <div class="divisor"></div>
     <<messager>>
     <<foodshow "generalIng">>
+
+    <<button "Back" "grocerystore">> <</button>>
 
 :: fspurchase
     <<purchase "grocerystore">>
