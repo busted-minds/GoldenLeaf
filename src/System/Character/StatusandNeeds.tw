@@ -21,7 +21,7 @@
 
 <</widget>>
 
-<<widget "timeattached">> /% It's pretty self explanatory I think. 0=Case of minutes or hours. 1=Amount of minutes or hours. %/
+<<widget "timeattached">> /% It's pretty self explanatory I think. args 1 in case we need to use an specific amount of energy or an string in case is skilling %/
     <<set _mult to 0.20>>
 
     <<if typeof($args[1]) is "number">>

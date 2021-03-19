@@ -23,7 +23,8 @@
 
 :: books [widget nobr]
     <<widget "libBooks">>
-        <<button "Golden Leaf History">>
+        <<button "Golden Leaf History">>@@.red; +5 min@@
+            <<timeattached 5>>
             <<replace ".mainB">>
                 Golden Leaf was a relatively small town, whose economy for that time was based solely on 2 things: cocoa and orange farming. 
                 The trade was basically among the villagers themselves and sometimes among visitors.
@@ -53,7 +54,8 @@
             <</replace>>
         <</button>>
         <br>
-        <<button "GLODEX Information">>
+        <<button "GLODEX Information">>@@.red; +5 min@@
+            <<timeattached 5>>
             <<replace ".mainB">>
                 @@.green;GLODEX@@ is a system developed by Golden Leaf’s government in collaboration with research centers and the college. 
                 Its development and subsequent launch are relatively recent, as it was not less than 3 years ago (2047) that it was finally released for public access to some functions of @@.green;GLODEX@@. By 2049, around 90% of the city used @@.green;GLODEX@@; Either companies, businesses and individuals.
