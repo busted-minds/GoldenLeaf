@@ -37,6 +37,15 @@
             price: 2,
             amount: 1,
             foodtype: "generalIng"
+        },
+        {
+            id: 4,
+            name: "Butter",
+            description: "Just butter",
+            uses: 4,
+            price: 3,
+            amount: 1,
+            foodtype: "generalIng"
         }
     ]>>
 
