@@ -3,27 +3,18 @@
     <div class="divisor"></div>
     To make $recipeTL you need to follow these steps:
     <<set _rID to setup.recipes.findIndex(x => x.name === $recipeTL)>>
-    <<set _steps to setup.recipes[_rID].steps>>
     <br>
     <br>
-        <<switch $recipeTL>> /* Tried to make it more easy to automate but didn't got it working. Couldn't "personalize" it enought to how I liked :(). */
-            <<case setup.recipes[0].name>>/% Chicken Rice %/
-                <<instructions 0>>
-            <<case setup.recipes[1].name>>/% Chicken Fillet %/
-                <<instructions 1>>
-            <<case setup.recipes[2].name>>/% Chicken Wings %/
-                <<instructions 2>>
-
-        <</switch>>
-        <br>
-        <br>
-        Congratulations! Now you have learned how to cook <<print $recipeTL>>.
-        <br>
-        <<button "Finish" "learnrecipes">>
-            <<timeattached 5>>
-            <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
-            <<unset $recipeTL>>
-        <</button>>@@.red; +5 minutes@@
+    <<instructions $recipeTL>>
+    <br>
+    <br>
+    Congratulations! Now you have learned how to cook @@.orange;<<print $recipeTL>>@@.
+    <br>
+    <<button "Finish" "learnrecipes">>
+        <<timeattached 5>>
+        <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
+        <<unset $recipeTL>>
+    <</button>>@@.red; +5 minutes@@
 
 :: learnrecipes [nobr]
     /* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little "checker" for skill requirements.*/
@@ -41,21 +32,24 @@
         ~~@@.red;We use an AI system to learn your preferences, if you are concerned about your privacy please __click here__. By continuing to use site, you are agreeing to the COMPLETELY NON-INVASIVE terms regarding your privacy.@@~~//
         <br>
         <br>
-
         <<for _i to 0; _i lt setup.recipes.length; _i++>>
             <<set _recipeName to setup.recipes[_i].name>>
             <<set _minskill to setup.recipes[_i].minskill>>
             <<set _recskill to setup.recipes[_i].recskill>>
             <<set _findLearned to $learnedrecipes.findIndex(x => x === _recipeName)>>
+            <<set _defIng to "">>
+            <<if setup.recipes[_i].defingredients>>
+                <<set _defIng to String.format(" With {0} or {1}", setup.recipes[_i].defingredients[0], setup.recipes[_i].defingredients[1])>>
+            <</if>>
             <<if _findLearned is -1>>
                 <<disable  _minskill gt $cookingskill>>
                     <<capture _recipeName>>
-                        <<button `"Learn " + _recipeName` "learnrecipsteps">>
+                        <<button `"Learn " + _recipeName + _defIng` "learnrecipsteps">>
                             <<set $recipeTL to _recipeName>>
                         <</button>>
                     <</capture>>
                 <</disable>>
-                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'orange');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'orange');">_recskill</span>@@
+                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'orange' : 'orange');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'orange' : 'orange');">_recskill</span>@@
                 <br>
             <</if>>
         <</for>>
@@ -68,34 +62,58 @@
         <<set _steps to setup.recipes[_rID].steps>>
         
         <<switch $args[0]>>
-            <<case 0>>
-                1- Carefully @@.green;clean@@ the Chicken Breast, removing any remnants that may exist.
+            <<case "Chicken Rice">>
+                1- Carefully @@.orange;clean@@ the Chicken Breast, removing any remnants that may exist.
                 <br>
-                2- @@.green;Cut it into cubes or pieces@@. Remember to add salt and pepper to your liking!.
+                2- @@.orange;Cut it into cubes or pieces@@. Remember to add salt and pepper to your liking!
                 <br>
-                3- Add the chicken in to a pot and let it brown for about @@.green;<<print _steps[2]>> minutes@@.
+                3- Add the chicken in to a pot and let it brown for about @@.orange;<<print _steps[2]>>@@ minutes.
                 <br>
-                4- Finally, add one cup of rice to the pot. Let it cook for about @@.green;<<print _steps[3]>> minutes@@. Add salt and seasoning to your taste.
+                4- Finally, add one cup of rice to the pot. Let it cook for about @@.orange;<<print _steps[3]>>@@ minutes. Add salt and seasoning to your taste.
                 <br>
                 Remember that per cup of rice you need to add 2 cups of water.
 
-            <<case 1>>
-                1- @@.green;Fillet@@ the chicken breast.
+            <<case "Chicken Fillet">>
+                1- @@.orange;Fillet@@ the chicken breast.
                 <br>
-                2- @@.green;Clean and prepare@@ it, adding salt and pepper to taste.
+                2- @@.orange;Clean and prepare@@ it, adding salt and pepper to taste.
                 <br>
-                3- You may use @@.green;rice or pasta@@. Assuming that you used pasta and the water was already preheated cook it for @@.green;7 minutes@@ or to be al dente. Same time for rice, assuming you are using one cup of rice per 2 cups of water. Remember to add salt and/or pepper!.
+                3- You may use @@.orange;rice or pasta@@. Assuming that you used pasta and the water was already preheated cook it for @@.orange;<<print _steps[2]>>@@ minutes or to be al dente. Same time for rice, assuming you are using one cup of rice per 2 cups of water. Remember to add salt and/or pepper
                 <br>
-                4- The last step is to cook the chicken fillet for about @@.green;10 minutes@@. Add the pasta or rice(that you cooked previously).
+                4- The last step is to cook the chicken fillet for about @@.orange;<<print _steps[3]>>@@ minutes. Add the pasta or rice(that you cooked previously).
             
-            <<case 2>>
-                1- First @@.green;clean and prepare@@ the Chicken Wings, adding salt and seasoning to taste.
+            <<case "Fried Chicken Wings">>
+                1- First @@.orange;clean and prepare@@ the Chicken Wings, adding salt and seasoning to taste.
                 <br>
                 2- Prepare the flour adding cornstarch, salt, pepper and any other seasoning that you have. Coat the wings in the flour mixture, let it rest while you heat the oil.
                 <br>
-                3- In preheated oil, fry the wings for about @@.green;8 minutes@@ turning them halfway.
+                3- In preheated oil, fry the wings for about @@.orange;<<print _steps[1]>>@@ minutes turning them halfway.
                 <br>
                 4- Serve and eat them! :).
-
+            <<case "Rice with Sausages">>
+                1- First @@.orange;cut the sausage into pieces@@(Any shape you like round, square, etc).
+                <br>
+                2- Add them to the pot where you will make the rice and saute with butter for @@.orange;<<print _steps[1]>>@@ minutes.
+                <br>
+                3- Add the water, rice and season to taste. Let it cook for about @@.orange;<<print _steps[2]>>@@ minutes.
+                <br>
+                4- Serve and enjoy!
+            <<case "Steak">>
+                1- In a pot with water, add rice or pasta, season and cook for about @@.orange;<<print _steps[1]>>@@ minutes.
+                <br>
+                2- While it's cooking, we'll @@.orange;prepare@@ the steak seasoning it with salt and pepper.
+                <br>
+                3- In a hot pan, add the steak and let it cook for about @@.orange;<<print _steps[2]>>@@ minutes or depending on the doneness you like.
+                <br>
+                4- Once it's finished, serve the rice or pasta with the steak (if there is any cooking juice left, you can add it) and enjoy!
+            <<case "Ground Beef">>
+                1- Cut the tomatoes, @@.orange;clean@@ them and add them to the blender adding water, blend until you get saucey-liquid.
+                <br>
+                2- Now, we'll @@.orange;prepare@@ the meat in a large pot add the ground beef, if you wish, you can let it saute a little or add the tomato sauce directly. Season and add a bit of sugar and some bay leaves to balance the acidity of the tomato.
+                Let it cook for about @@.orange;<<print _steps[2]>>@@ minutes.
+                <br>
+                3- While it's cooking, setup a pot with water to cook the rice or pasta, add salt and season it to taste. If it's pasta, add the pasta when the water is boling. Cook for about @@.orange;<<print _steps[3]>>@@ minutes.
+                <br>
+                4- Once everything is cooked, serve and enjoy!
         <</switch>>
     <</widget>>

@@ -31,6 +31,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         Salt = 2
         Flour = 3
         Butter = 4
+        Sugar = 5
     %/
     <<for _i to 0; _i lt setup.food.generalIng.length; _i++>>
         <<set _foodnameO.push(setup.food.generalIng[_i].name)>>
@@ -62,7 +63,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             extraingredients: [_foodnameS[0], _foodnameO[2]],
             minskill: 2,
             recskill: 3,
-            steps: [_sSteps[0], _sSteps[1], 4, 7]
+            steps: [_sSteps[0], _sSteps[1], 4, 8]
         },
         {
             id: 1,
@@ -100,17 +101,17 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             defingredients: [_foodnameO[0], _foodnameO[1]],
             minskill: 2,
             recskill: 3,
-            steps: [_sSteps[4], 6, 7] 
+            steps: [_sSteps[4], 8, 7] 
         },
         {
             id: 5,
             name: "Ground Beef",
             reqingredients: [_foodnameM[3]],
-            extraingredients: [_foodnameS[0], _foodnameO[2], _foodnameV[0]],
+            extraingredients: [_foodnameS[0], _foodnameO[2], _foodnameV[0], _foodnameO[5]],
             defingredients: [_foodnameO[0], _foodnameO[1]],
             minskill: 2,
             recskill: 3,
-            steps: [_sSteps[4], 8, 15, 7] 
+            steps: [_sSteps[0], _sSteps[4], 20, 8] 
         }
     ]>>
 
