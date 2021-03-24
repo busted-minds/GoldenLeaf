@@ -10,7 +10,7 @@
         <<set $masturCount++>>
         /* THIS WILL BE CHANGED LATER */
         <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
-        <<if $masturCount gte 6 and _find is -1>>
+        <<if $masturCount gte 5 and _find is -1>>
             <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
         <<elseif _find isnot -1>>
             <<set $pTraits[_find].exp++>>
