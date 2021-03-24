@@ -6,7 +6,7 @@
         <<set _bodyPart to $args[2]>>
         <<set _bodyPIndex to $args[3]>>
         <<set _itemSlot to $args[4]>>
-        <<set _tID to $pTraits.findIndex(x => x.name === "crossdressing")>>
+        <<set _tID to $pTraits.findIndex(x => x.name === "Crossdressing")>>
 
         <<if $wardrobeContent[_wrSlot][_itemID].gender is "neutral" or $wardrobeContent[_wrSlot][_itemID].gender is $playervar.gender or $pTraits[_tID]>>
             <<undressMain _bodyPart _bodyPIndex _itemSlot _wrSlot>>

@@ -8,6 +8,19 @@
         <<set $selectedSexOpt.RightHand to "Select an option">>
         <<set $selectedSexOpt.LeftHand to "Select an option">>
         <<set $masturCount++>>
+        /* THIS WILL BE CHANGED LATER */
+        <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
+        <<if $masturCount gte 6 and _find is -1>>
+            <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
+        <<elseif _find isnot -1>>
+            <<set $pTraits[_find].exp++>>
+
+            <<for $pTraits[_find].exp gte $pTraits[_find].expleft>>
+                <<set $pTraits[_find].exp -= $pTraits[_find].expleft>>
+
+                <<set $pTraits[_find].level++>>
+            <</for>>
+        <</if>>
         <<if $playervar.gender is "male">>
             <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
         <<elseif $playervar.cansquirt is true>>
@@ -20,6 +33,8 @@
             <<set $message[0] to undefined>>
         <</timed>>
         <<set $message[1] to undefined>>
+        <<timeattached $mastTime>>
+        <<unset $mastTime>>
     <</if>>
     <div class="divisor"></div>
     <<mastOpt>>
@@ -48,12 +63,10 @@
     <br>
     <br>
     <<set _eRH to $selectedSexOpt.RightHand isnot "Select an option">>
-    <<set _eLH to $selectedSexOpt.LeftHandand isnot "Select an option">>
+    <<set _eLH to $selectedSexOpt.LeftHand isnot "Select an option">>
     <<button "Update" "masturbate">>
         <<masturbation>>
-        <<if _eRH and _eLH>>
-            <<timeattached 1>>
-        <</if>>
+        <<set $mastTime++>>
     <</button>><<if _eRH or _eLH>>@@.red;+1 Minute@@<</if>>
 
     <<button "Finish" $location>>

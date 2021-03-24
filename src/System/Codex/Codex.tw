@@ -121,12 +121,23 @@
 
 <<widget "traitsList">>
     <<if $pTraits[0]>>
-        <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
-            <div class="listSkills">
-                <<print String.format("{0} <br> Level: {1}", $pTraits[_iT].name.toUpperFirst(), $pTraits[_iT].level )>>
+        <<set _types to ["Non-Sexual", "Sexual"]>>
+
+        <div style="margin: auto; display: table;">
+        <<for _i to 0; _i lt _types.length; _i++>>
+            <div style="display: inline-block">
+                <span @class="_types[_i] is 'Sexual' ? 'lightred' : 'lightyellow'"><<print _types[_i]>></span>
+                <br>
+                <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
+                    <<if $pTraits[_iT].type is _types[_i]>>
+                        <div class="listSkills">
+                        <<print String.format("{0}<br>Level:{1}", $pTraits[_iT].name, $pTraits[_iT].level)>>
+                        </div>
+                    <</if>>
+                <</for>>
             </div>
         <</for>>
-        <br>
+        </div>
     <<else>>
         You have no traits.
     <</if>>
