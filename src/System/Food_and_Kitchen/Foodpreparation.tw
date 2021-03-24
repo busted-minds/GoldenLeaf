@@ -259,7 +259,7 @@
     <</if>>
 
     <<if $defExist is 1>>
-        <<set _tempKTable.name += " with " + _defIngredients.toUpperFirst()>>
+        <<set _tempKTable.name to _defIngredients.toUpperFirst() + " with " + _tempKTable.name>>
     <</if>>
     <<set _tempKTable.quality to _quality>>
     <<set _tempKTable.price to Math.round(_tempKTable.price * _pMult)>>

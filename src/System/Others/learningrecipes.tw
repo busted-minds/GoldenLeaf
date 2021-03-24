@@ -49,7 +49,7 @@
                         <</button>>
                     <</capture>>
                 <</disable>>
-                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'orange' : 'orange');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'orange' : 'orange');">_recskill</span>@@
+                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'red');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'red');">_recskill</span>@@
                 <br>
             <</if>>
         <</for>>
@@ -99,7 +99,7 @@
                 <br>
                 4- Serve and enjoy!
             <<case "Steak">>
-                1- In a pot with water, add rice or pasta, season and cook for about @@.orange;<<print _steps[1]>>@@ minutes.
+                1- In a pot with water, add rice or pasta, season and cook for about @@.orange;<<print _steps[0]>>@@ minutes.
                 <br>
                 2- While it's cooking, we'll @@.orange;prepare@@ the steak seasoning it with salt and pepper.
                 <br>

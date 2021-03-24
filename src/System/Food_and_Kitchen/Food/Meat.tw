@@ -23,7 +23,7 @@
         {
             id: 2,
             name: "Raw Steak",
-            description: "Raw steak",
+            description: "Raw Steak",
             uses: 1,
             price: 5,
             amount: 1,
@@ -31,8 +31,8 @@
         },
         {
             id: 3,
-            name: "Raw ground beef",
-            description: "Raw ribs",
+            name: "Raw Ground Beef",
+            description: "Raw Ground Beef",
             uses: 1,
             price: 4,
             amount: 1,

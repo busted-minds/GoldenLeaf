@@ -101,7 +101,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             defingredients: [_foodnameO[0], _foodnameO[1]],
             minskill: 2,
             recskill: 3,
-            steps: [_sSteps[4], 8, 7] 
+            steps: [8, _sSteps[4], 7] 
         },
         {
             id: 5,
