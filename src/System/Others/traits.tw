@@ -25,3 +25,15 @@
         }
     ]>>
 <</widget>>
+
+<<widget "traitsEXP">>
+    <<set _trait to $args[0]>>
+    <<set _expAm to $args[1]>>
+
+    <<set $pTraits[_trait].exp += _expAm>>
+    <<for $pTraits[_trait].exp gte $pTraits[_trait].expleft>>
+        <<set $pTraits[_trait].exp -= $pTraits[_trait].expleft>>
+
+        <<set $pTraits[_trait].level++>>
+    <</for>>
+<</widget>>

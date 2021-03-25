@@ -1,25 +1,20 @@
 :: masturbate [nobr]
     <h2>Masturbation</h2>
-    <<if !$message>>
+    <<if !$message and !$mastTime>>
         <<set $message to []>>
+        <<set $mastTime to 0>>
     <</if>>
     <<if $arousal gte 100>>
         <<set $arousal to 0>>
         <<set $selectedSexOpt.RightHand to "Select an option">>
         <<set $selectedSexOpt.LeftHand to "Select an option">>
         <<set $masturCount++>>
-        /* THIS WILL BE CHANGED LATER */
+        
         <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
         <<if $masturCount gte 5 and _find is -1>>
             <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
         <<elseif _find isnot -1>>
-            <<set $pTraits[_find].exp++>>
-
-            <<for $pTraits[_find].exp gte $pTraits[_find].expleft>>
-                <<set $pTraits[_find].exp -= $pTraits[_find].expleft>>
-
-                <<set $pTraits[_find].level++>>
-            <</for>>
+            <<traitsEXP _find 1>>
         <</if>>
         <<if $playervar.gender is "male">>
             <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
@@ -34,7 +29,7 @@
         <</timed>>
         <<set $message[1] to undefined>>
         <<timeattached $mastTime>>
-        <<unset $mastTime>>
+        <<set $mastTime to 0>>
     <</if>>
     <div class="divisor"></div>
     <<mastOpt>>
@@ -74,6 +69,7 @@
         <<set $selectedSexOpt.LeftHand to undefined>>
         <<unset $message>>
         <<unset $location>>
+        <<unset $mastTime>>
     <</button>>
 
 :: masturbutton [widget nobr]
