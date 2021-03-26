@@ -31,7 +31,7 @@
         <</timed>>
         <<set $message[1] to undefined>>
 
-        <<timeattached $mastTime $mastTime*1.5 0.3>>
+        <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
         <<set $mastTime to 0>>
     <</if>>
     <div class="divisor"></div>
