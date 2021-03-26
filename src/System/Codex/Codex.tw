@@ -152,5 +152,6 @@
 <</widget>>
 
 <<widget "options">>
+    /*Just commenting because I forgot to add this to the push comment :D */
     <<checkbox "$displayColorText" false true autocheck>> Enabled clothes text color. (Must change passage to update)
 <</widget>>
