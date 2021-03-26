@@ -16,6 +16,7 @@
         <<elseif _find isnot -1>>
             <<traitsEXP _find 1>>
         <</if>>
+
         <<if $playervar.gender is "male">>
             <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
         <<elseif $playervar.cansquirt is true>>
@@ -23,12 +24,14 @@
         <<else>>
             <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
         <</if>>
+
         <<set $aroused to undefined>>
         <<timed 1s>>
             <<set $message[0] to undefined>>
         <</timed>>
         <<set $message[1] to undefined>>
-        <<timeattached $mastTime>>
+
+        <<timeattached $mastTime $mastTime*1.5 0.3>>
         <<set $mastTime to 0>>
     <</if>>
     <div class="divisor"></div>
