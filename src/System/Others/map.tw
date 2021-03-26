@@ -6,38 +6,38 @@
     <<if _mID isnot -1>>
         <br>
         <svg width="416" height="350" style="border: 0.2px solid #383e65; border-radius: 5px;">
-            <image href="img/others/MapV1.png" height="100%" width="100%"></image>
+            <image href="img/others/Map.png" height="100%" width="100%"></image>
             
             <a onclick="passageMov(0, 'Clove_Row');">
-                <rect id="Clove_Row" class="map" x="131" y="43" height="35" width="65">
+                <rect id="Clove_Row" class="map" x="140" y="40" height="32" width="65">
                 <title>To Clove Row +8 min.</title>
             </a> 
             <a onclick="passageMov(1, 'Blythe_Celyn');">
-                <rect id="Blythe_Celyn" class="map" x="84" y="77" height="77" width="36">
+                <rect id="Blythe_Celyn" class="map" x="98" y="69" height="76" width="34">
                 <title>To Blythe Celyn +7 min.</title>
             </a>
             <a onclick="passageMov(2, 'Barlow_Grove');">
-                <rect id="Barlow_Grove" class="map" x="84" y="184" height="83" width="36">
+                <rect id="Barlow_Grove" class="map" x="98" y="168" height="83" width="34">
                 <title>To Barlow Grove +9 min.</title>
             </a>
             <a onclick="passageMov(3, 'Hollins_Drift');">
-                <rect id="Hollins_Drift" class="map" x="225" y="124" height="35" width="73">
+                <rect id="Hollins_Drift" class="map" x="226" y="114" height="34" width="73">
                 <title>To Hollins Drift +6 min.</title>
             </a>
             <a onclick="passageMov(4, 'Pioneer_Lane');">
-                <rect id="Pioneer_Lane" class="map" x="346" y="105" height="70" width="36">
+                <rect id="Pioneer_Lane" class="map" x="341" y="96" height="70" width="36">
                 <title>To Pioneer Lane +8 min.</title>
             </a>
             <a onclick="passageMov(5, 'Ashrout');">
-                <rect id="Ashrout" class="map" x="100" y="308" height="35" width="56">
+                <rect id="Ashrout" class="map" x="110" y="286" height="34" width="56">
                 <title>To Ashrout +4 min.</title>
             </a>
             <a onclick="passageMov(6, 'Shopping_Center');">
-                <rect id="Shopping_Center" class="map" x="195" y="197" height="45" width="50">
+                <rect id="Shopping_Center" class="map" x="199" y="185" height="45" width="50">
                 <title>To Shopping Center  +6 min.</title>
             </a>
             <a onclick="passageMov(7, 'GLCC');">
-                <rect id="GLCC" class="map" x="10" y="298" height="45" width="50">
+                <rect id="GLCC" class="map" x="25" y="274" height="48" width="53">
                 <title>To Golden Leaf Central College  +3 min.</title>
             </a>
             <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
