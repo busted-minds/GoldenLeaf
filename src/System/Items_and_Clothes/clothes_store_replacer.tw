@@ -80,6 +80,14 @@
             <div class="list">
                 <div id="insidelist">
                     Name: @@.orange;<<print _values[_j].name>>@@ 
+                    <<if _values[_j].gender is "male">> 
+                        <<set _ic to "img/others/maleGIcon.png">>
+                    <<elseif _values[_j].gender is "female">>
+                        <<set _ic to "img/others/femaleGIcon.png">>
+                    <<else>>
+                        <<set _ic to "img/others/neutralIcon.png">>
+                    <</if>>
+                    <img @src="_ic" style="max-width: 5%;">
                     <br>
                     Price: @@.yellow;<<print _values[_j].price>> credits@@
                     <br>

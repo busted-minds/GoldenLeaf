@@ -46,6 +46,14 @@
             <</replace>>
         <</button>>
     </div>  
+
+    <div class="listCodex">
+        <<button "Options">>
+            <<replace "#codexBody">>
+                <<options>>
+            <</replace>>
+        <</button>>
+    </div>
 <</widget>>
 
 <<widget "cContentMain">>
@@ -131,7 +139,7 @@
                 <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
                     <<if $pTraits[_iT].type is _types[_i]>>
                         <div class="listSkills">
-                        <<print String.format("{0}<br>Level:{1}", $pTraits[_iT].name, $pTraits[_iT].level)>>
+                        <<print String.format("{0}<br>Level:{1}<br>Exp:{2}/{3}", $pTraits[_iT].name, $pTraits[_iT].level, $pTraits[_iT].exp, $pTraits[_iT].expleft)>>
                         </div>
                     <</if>>
                 <</for>>
@@ -141,4 +149,8 @@
     <<else>>
         You have no traits.
     <</if>>
+<</widget>>
+
+<<widget "options">>
+    <<checkbox "$displayColorText" false true autocheck>> Enabled clothes text color. (Must change passage to update)
 <</widget>>
