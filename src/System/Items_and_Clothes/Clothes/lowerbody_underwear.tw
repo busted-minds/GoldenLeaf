@@ -11,7 +11,6 @@
             description: "Naked",
             category: ["naked"],
             gender: "none",
-            exposurelevel: 5,
             exposedgenitals: true
         },
         {
@@ -22,9 +21,8 @@
             color: undefined,
             description: "Just a pair of panties",
             category: ["panties", "lowerbunder"],
-            article: "a pair of",
+            descriptor: "a pair of",
             gender: "female",
-            exposurelevel: 3,
             exposedgenitals: false
         },
         {
@@ -35,9 +33,20 @@
             color: undefined,
             description: "Just a pair of boxers",
             category: ["boxers", "lowerbunder"],
-            article: "a pair of",
+            descriptor: "a pair of",
             gender: "male",
-            exposurelevel: 2,
+            exposedgenitals: false
+        },
+        {
+            id: 3,
+            name: "Lacy Panties",
+            lowname: "lacy panties",
+            price: 9,
+            color: undefined,
+            description: "Just a pair of lacy panties",
+            category: ["panties", "lowerbunder"],
+            descriptor: "a pair of",
+            gender: "female",
             exposedgenitals: false
         }
 

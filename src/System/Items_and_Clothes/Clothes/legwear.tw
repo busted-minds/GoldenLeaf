@@ -10,8 +10,7 @@
             color: undefined,
             description: "Naked",
             category: ["naked"],
-            gender: "none",
-            exposurelevel: 5
+            gender: "none"
         },
         {
             id: 1,
@@ -20,10 +19,9 @@
             price: 20,
             color: undefined,
             description: "A pair of pantyhose",
-            article: "a",
+            descriptor: "a",
             category: ["pantyhose", "legwear"],
-            gender: "female",
-            exposurelevel: 0
+            gender: "female"
         }
     ]>>
 

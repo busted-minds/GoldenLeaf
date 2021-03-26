@@ -5,7 +5,7 @@
 /% This thing is and was a PitA (Pain in the Ass) to make so not a long comment this one will be :D.%/ 
 /% Credits and Thanks a lot to DoL again, because this was heavely inspired and may look the same as the one of them. %/
 /% Really, you may want to try and play DoL is a great game and it inspired me to make my own (Beware that DoL is more "rapey"). %/
-/% The widget "clothesArticles" works like this: Just put the bodypart variable and that's it.%/
+/% The widget "clothesDescriptor" works like this: Just put the bodypart variable and that's it.%/
 <<widget "clotheschecker">>
     <<if $bps.upperbody[0].primary.lowname is "naked">> /% The player doesn't have outerwear %/
         <<if $bps.upperbody[0].primary.lowname is "naked" and $bps.upperbody[0].secondary.lowname is "naked">> /% The player doesn't have underwear%/
@@ -62,10 +62,10 @@
 
         <<elseif $bps.lowerbody[0].primary.lowname isnot "naked">> /% Lowerbody have outerwearwear %/
             <<if $bps.lowerbody[0].secondary.lowname is "naked">> /% Upperbody doesn't have underwear %/
-                You have <<clothesArticles $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> <span class="darkpink">but nothing underneath</span>.
+                You have <<clothesDescriptor $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> <span class="darkpink">but nothing underneath</span>.
 
             <<elseif $bps.lowerbody[0].secondary.lowname isnot "naked">> /% Or lowerbody have underwear %/
-                You have <<clothesArticles $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> and <<clothescolor $bps.lowerbody[0].secondary>>
+                You have <<clothesDescriptor $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> and <<clothescolor $bps.lowerbody[0].secondary>>
 
             <</if>>
         
@@ -73,15 +73,15 @@
 
     <<elseif $bps.upperbody[0].primary.lowname isnot "naked">> /% Upperbody have outerwear %/
         <<if $bps.upperbody[0].secondary.lowname isnot "naked">> /% Upperbody have underwear %/
-            You have <<clothesArticles $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>> and <<clothesArticles $bps.upperbody[0].secondary>> <<clothescolor $bps.upperbody[0].secondary>>
+            You have <<clothesDescriptor $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>> and <<clothesDescriptor $bps.upperbody[0].secondary>> <<clothescolor $bps.upperbody[0].secondary>>
         
         <<elseif $bps.upperbody[0].secondary.lowname is "naked">> /% Or doesn't have underwear %/
             <<switch $playervar.gender>>
                 <<case "male">>
-                    You have <<clothesArticles $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>>,
+                    You have <<clothesDescriptor $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>>,
 
                 <<case "female">>
-                    You have <<clothesArticles $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>> @@.darkpink;but nothing underneath@@,
+                    You have <<clothesDescriptor $bps.upperbody[0].primary>> <<clothescolor $bps.upperbody[0].primary>> @@.darkpink;but nothing underneath@@,
 
             <</switch>>
 
@@ -89,10 +89,10 @@
 
         <<if $bps.lowerbody[0].primary.lowname isnot "naked">> /% Lowerbody have outerwear %/
             <<if $bps.lowerbody[0].secondary.lowname isnot "naked">> /% Lower body have underwear%/
-                with <<clothesArticles $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> and <<clothescolor $bps.lowerbody[0].secondary>>
+                with <<clothesDescriptor $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> and <<clothescolor $bps.lowerbody[0].secondary>>
             
             <<elseif $bps.lowerbody[0].secondary.lowname is "naked">> /% Lowerbody doesn't have underwear %/
-                with <<clothesArticles $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> @@.darkpink;but nothing underneath@@.
+                with <<clothesDescriptor $bps.lowerbody[0].primary>> <<clothescolor $bps.lowerbody[0].primary>> @@.darkpink;but nothing underneath@@.
 
             <</if>>
 
@@ -118,10 +118,10 @@
 
     /% This thing checks if the player have any shoes, socks or any other footwear. %/
     <<if $bps.lowerbody[2].primary.lowname isnot "naked">>
-        On your feet you have <<clothesArticles $bps.lowerbody[2].primary>><<clothescolor $bps.lowerbody[2].primary>>
+        On your feet you have <<clothesDescriptor $bps.lowerbody[2].primary>><<clothescolor $bps.lowerbody[2].primary>>
 
         <<if $bps.lowerbody[3].secondary.lowname isnot "naked">>
-            and <<clothesArticles $bps.lowerbody[3].secondary>> <<clothescolor $bps.lowerbody[3].secondary>>
+            and <<clothesDescriptor $bps.lowerbody[3].secondary>> <<clothescolor $bps.lowerbody[3].secondary>>
 
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
                 with <<clothescolor $bps.lowerbody[3].primary>>
@@ -133,7 +133,7 @@
 
         <<elseif $bps.lowerbody[3].secondary.lowname is "naked">>
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
-                and <<clothesArticles $bps.lowerbody[3].primary>><<clothescolor $bps.lowerbody[3].primary>>.
+                and <<clothesDescriptor $bps.lowerbody[3].primary>><<clothescolor $bps.lowerbody[3].primary>>.
                 
             <<elseif $bps.lowerbody[3].primary.lowname is "naked">>
                 but no shoes.
@@ -144,7 +144,7 @@
 
     <<elseif $bps.lowerbody[2].primary.lowname is "naked">>
         <<if $bps.lowerbody[3].secondary.lowname isnot "naked">>
-            On your feet you have <<clothesArticles $bps.lowerbody[3].secondary>><<clothescolor $bps.lowerbody[3].secondary>>
+            On your feet you have <<clothesDescriptor $bps.lowerbody[3].secondary>><<clothescolor $bps.lowerbody[3].secondary>>
 
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
                 and <<clothescolor $bps.lowerbody[3].primary>>
@@ -156,7 +156,7 @@
 
         <<elseif $bps.lowerbody[3].secondary.lowname is "naked">>
             <<if $bps.lowerbody[3].primary.lowname isnot "naked">>
-                On your feet you have <<clothesArticles $bps.lowerbody[3].primary>><<clothescolor $bps.lowerbody[3].primary>> but no socks.
+                On your feet you have <<clothesDescriptor $bps.lowerbody[3].primary>><<clothescolor $bps.lowerbody[3].primary>> but no socks.
                 
             <<elseif $bps.lowerbody[3].primary.lowname is "naked">>
                 You are barefoot.
@@ -226,9 +226,8 @@
     <</switch>>
 <</widget>>
 
-/% Just writes and article, you know, those that are in newspapers and people get paid to write them (no). %/
-<<widget "clothesArticles">>
+<<widget "clothesDescriptor">>
     <<set _clothes to $args[0]>>
 
-    <<print _clothes.article>>
+    <<print _clothes.descriptor>>
 <</widget>>
