@@ -7,7 +7,7 @@
 <</widget>>
 
 <<widget "foodIniWidgets">>
-    <<setfruits>>
+    <<setFruitsVeget>>
     <<setspices>>
     <<setgeneralIng>>
     <<setmeat>>

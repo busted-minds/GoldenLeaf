@@ -53,7 +53,7 @@
     virginity:{}
 }>>
 
-<<set $playerTraits to []>>
+<<set $pTraits to []>>
 
 <<set $credits to 250>>
 <<set $energy to 100>>

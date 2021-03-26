@@ -23,9 +23,16 @@
             <<case "succPurch">>
                 @@.green;Thank you for you purchase, please come back again!.@@
                 <br>
-            <<case "bought">>
-                You don't need more of this item.
+            <<case "enough">>
+                You already have enough of that item.
                 <br>
+            <<case "addedToSC">>
+                @@.green;Added to shopping cart!@@ Current amount to spend:
+                    <<set _total to 0>>
+                    <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
+                        <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+                    <</for>>
+                @@.yellow;<<print _total>> credits.
         <</switch>>
         ''
         //
@@ -40,7 +47,7 @@
             <<set _rngM to random(0, 6)>>
             <<switch _rngM>>
                 <<case 0>>
-                    If any of your status get to their highest point(Ex: 100/100 Hunger or P.Needs) or lower point (Ex: 0/100 Energy, Hygiene) you may not be able to do certain options. With "Fun" or "Arousal" you may not be able to focus when working or studying.
+                    If any of your status get to a certain point(Ex: 100/100 Hunger or 0/100 Energy, Hygiene) you may not be able to do certain options. With "Fun" or "Arousal" you may not be able to focus when working or studying.
                 <<case 1>>
                     Certain actions like cooking, masturbating and others uses energy if you don't have enough they will tell you so.
                 <<case 2>>

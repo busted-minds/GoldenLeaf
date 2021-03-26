@@ -140,37 +140,26 @@
         <<set $defExist to 1>>
     <</if>>
 
-        <<for _iri to 0; _iri lt _reqingredients.length; _iri++>>
-            <<set _foodID to $kitchentable.findIndex(x => x.name === _reqingredients[_iri])>>
+    <<for _iri to 0; _iri lt _reqingredients.length; _iri++>>
+        <<set _foodID to $kitchentable.findIndex(x => x.name === _reqingredients[_iri])>>
 
-            <<if _foodID isnot -1 and $kitchentable[_foodID].name is _reqingredients[_iri]>>
-                <<set $kitchentable.deleteAt(_foodID)>>
-                <<set $ingCount++>>
-            
-            <</if>>
+        <<usesCheck _foodID _reqingredients _iri>>
+        <<set $ingCount++>>
 
-        <</for>>
+    <</for>>
 
-        <<for _iei to 0; _iei lt _extraIngredients.length; _iei++>>
-            <<set _foodIDE to $kitchentable.findIndex(y => y.name === _extraIngredients[_iei])>>
+    <<for _iei to 0; _iei lt _extraIngredients.length; _iei++>>
+        <<set _foodIDE to $kitchentable.findIndex(y => y.name === _extraIngredients[_iei])>>
+        <<usesCheck _foodIDE _extraIngredients _iei>>
+        <<set $ingCount++>>
 
-            <<if _foodIDE isnot -1 and $kitchentable[_foodIDE].name is _extraIngredients[_iei]>>
-                <<set $kitchentable.deleteAt(_foodIDE)>>
-                <<set $ingCount++>>
+    <</for>>
 
-            <</if>>
-
-        <</for>>
-
-        <<if $defExist is 1>>
-            <<set _foodIDD to $kitchentable.findIndex(z => z.name === _defIngredients)>>
-
-            <<if _foodIDD isnot -1 and $kitchentable[_foodIDD].name is _defIngredients>>
-                <<set $kitchentable.deleteAt(_foodIDD)>>
-                <<set $ingCount++>>
-
-            <</if>> 
-        <</if>>
+    <<if $defExist is 1>>
+        <<set _foodIDD to $kitchentable.findIndex(z => z.name === _defIngredients)>>
+        <<usesCheck _foodIDD _defIngredients 0>>
+        <<set $ingCount++>>
+    <</if>>
 
         <<foodready>>
 <</widget>>
@@ -270,7 +259,7 @@
     <</if>>
 
     <<if $defExist is 1>>
-        <<set _tempKTable.name += " with " + _defIngredients.toUpperFirst()>>
+        <<set _tempKTable.name to _defIngredients.toUpperFirst() + " with " + _tempKTable.name>>
     <</if>>
     <<set _tempKTable.quality to _quality>>
     <<set _tempKTable.price to Math.round(_tempKTable.price * _pMult)>>
@@ -317,6 +306,36 @@
         <<optionsfrom $learnedrecipes>>
 
     <</listbox>>
+<</widget>>
+
+<<widget "usesCheck">>
+    <<set _id to $args[0]>>
+    <<set _useIngredients to $args[1]>>
+    <<set _useStep to $args[2]>>
+    <<set _usesIng to ["Flour", "Salt", "Pepper", "Pasta", "Rice"]>>
+    <<set _fT to $kitchentable[_id].foodtype>>
+
+    <<set _consUse to setup.food[_fT][$kitchentable[_id].id].uses>>
+
+    <<if _id isnot -1 and $kitchentable[_id].name is _useIngredients[_useStep]>>
+        <<if $kitchentable[_id].amount gt 1>>
+            <<if $kitchentable[_id].uses eq 1>>
+                <<set $kitchentable[_id].amount -= 1>>
+                <<set $kitchentable[_id].uses = _consUse>>
+
+            <<elseif $kitchentable[_id].uses lte _consUse>>
+                <<set $kitchentable[_id].uses -= 1>>
+            <</if>>
+                    
+        <<else>>
+            <<if $kitchentable[_id].uses eq 1>>
+                <<set $kitchentable.deleteAt(_id)>>
+            <<else>>
+                <<set $kitchentable[_id].uses -= 1>>
+            <</if>>
+                        
+        <</if>>
+    <</if>>
 <</widget>>
 
 /* Twenty dollars is twenty dollars. */

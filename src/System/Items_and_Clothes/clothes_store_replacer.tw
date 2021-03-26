@@ -64,20 +64,39 @@
 
 <<widget "storeItemContent">>
     <<set _values to State.getVar("setup.clothes."+$args[0])>>
-    
-    <<for _j to 1; _j lt _values.length; _j++>>
-        <<set _exist to $wardrobeContent[$args[0]].findIndex(x => x.name === _values[_j].name)>>
-        <<set _existsc to $shoppingcart.findIndex(x => x.name === _values[_j].name)>>
+    <<set _colors to {}>>
+    <<set _keys to Object.keys(setup.clothes.colors)>>
+    <<for _i to 0; _i lt _keys.length; _i++>>
+        <<set _colors[setup.clothes.colors[_keys[_i]].toUpperFirst()] to _keys[_i]>>
+    <</for>>
 
-        <div class="list">
-            <div id="insidelist">
-                Name: @@.orange;<<print _values[_j].name>>@@ 
-                <br>
-                Price: @@.yellow;<<print _values[_j].price>> credits@@
-                <br>
-                <<pButton "clothstore">>
+    <<set _selectedColor to undefined>>
+    
+    <<for _j to 0; _j lt _values.length; _j++>>
+        <<if _values[_j].lowname isnot "naked">>
+            <<set _exist to $wardrobeContent[$args[0]].findIndex(x => x.name === _values[_j].name)>>
+            <<set _existsc to $shoppingcart.findIndex(x => x.name === _values[_j].name)>>
+
+            <div class="list">
+                <div id="insidelist">
+                    Name: @@.orange;<<print _values[_j].name>>@@ 
+                    <<if _values[_j].gender is "male">> 
+                        <<set _ic to "img/others/maleGIcon.png">>
+                    <<elseif _values[_j].gender is "female">>
+                        <<set _ic to "img/others/femaleGIcon.png">>
+                    <<else>>
+                        <<set _ic to "img/others/neutralIcon.png">>
+                    <</if>>
+                    <img @src="_ic" style="max-width: 5%;">
+                    <br>
+                    Price: @@.yellow;<<print _values[_j].price>> credits@@
+                    <br>
+                    Color: <<listbox "_selectedColor" autoselect>>
+                        <<optionsfrom _colors>>
+                    <</listbox>>
+                    <<pButton "clothstore">>
+                </div>
             </div>
-        </div>
-        
+        <</if>>
     <</for>>
 <</widget>>

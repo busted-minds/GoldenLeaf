@@ -1,43 +1,39 @@
 :: shoes [widget nobr]
 
 <<widget "shoesIni">>
-
     <<set setup.clothes.shoes to [
         {
             id: 0,
-            name: "Naked",
-            lowname: "naked",
-            price: 0,
-            state: "normal",
-            description: "Naked",
-            category: ["naked"],
-            gender: "none",
-            exposurelevel: 5,
-            exposedchest: true
-        },
-        {
-            id: 1,
             name: "Sport shoes",
             lowname: "sport shoes",
             price: 25,
-            state: "normal",
+            color: undefined,
             description: "A pair of sport shoes",
-            article: "a pair of",
+            descriptor: "a pair of",
             category: ["sport", "shoes"],
-            gender: "neutral",
-            exposurelevel: 0
+            gender: "neutral"
         },
         {
-            id: 2,
+            id: 1,
             name: "Sneakers",
             lowname: "sneakers",
             price: 25,
-            state: "normal",
+            color: undefined,
             description: "A pair of sneaker shoes",
-            article: "a pair of",
+            descriptor: "a pair of",
             category: ["sneakers", "shoes"],
-            gender: "neutral",
-            exposurelevel: 0
+            gender: "neutral"
+        },
+        {
+            id: 2,
+            name: "Sandals",
+            lowname: "sandals",
+            price: 20,
+            color: undefined,
+            description: "A pair of cool looking sandals",
+            descriptor: "a pair of",
+            category: ["sandals", "shoes"],
+            gender: "neutral"
         }
     ]>>
 

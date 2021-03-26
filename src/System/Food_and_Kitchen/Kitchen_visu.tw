@@ -23,7 +23,11 @@
                         <<set _foodnameF to _fvFTName[_fvFT].name>>
                         <<set _foodamountF to _fvFTName[_fvFT].amount>>
                         <<set _foodhunger to _fvFTName[_fvFT].hunger>>
+                        <<set _fooduses to _fvFTName[_fvFT].uses>>
+
                         _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
+                        <br>
+                        Uses left: @@.orange;_fooduses@@
                         <br>
                         <<for _j to 0; _j lt _fvFTName[_fvFT].amount; _j++>>
                             <<set _n.push(_j +1)>>
@@ -31,13 +35,14 @@
                         <<listbox "$moveAm">>
                             <<optionsfrom _n>>
                         <</listbox>>
-                        <<capture _foodnameF _foodTypes[_ifv]>>
+                        @@.smollbutt;<<capture _foodnameF _foodTypes[_ifv]>>
                             <<button "Amount to move" _currPass>>
                                 <<storekitchentable _foodnameF _foodTypes[_ifv]>>
                             <</button>>
-                        <</capture>>
+                        <</capture>>@@
                         <br>
-                        <<if _foodTypes[_ifv] is "fruits" or _foodTypes[_ifv] is "vegetables">>
+
+                        <<if _foodhunger>>
                             <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_fvFT+`, \"`+_foodTypes[_ifv]+`\"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
                         <</if>>
                         <div class="thindiv"></div>
@@ -62,11 +67,20 @@
             <<set _foodtypeKT to $kitchentable[_ikt].foodtype>>
             <<set _foodquality to $kitchentable[_ikt].quality>>
             <<set _foodhunger to $kitchentable[_ikt].hunger>>
+            <<set _fooduses to $kitchentable[_ikt].uses>>
                 
             _foodnameKT <<if _foodquality>> <<print "(" + _foodquality + ")">><</if>> <<if _foodamountKT gt 1 >> x _foodamountKT <</if>>
+            <br>
+            Uses left: @@.orange;_fooduses@@
             <<if typeof(_foodtypeKT) is "object" and _foodtypeKT.includesAny("Prepared Food", "fruits")>>
                 <br>
-                <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_ikt+`, "kitchentable"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
+                <<capture _foodhunger _ikt>>
+                    @@.smollbutt;
+                    <<button "Eat" "kitchentable">>
+                        <<eatFood _foodhunger _ikt "kitchentable">>
+                    <</button>>
+                    @@
+                <</capture>>@@.green;-<<print _foodhunger>> hunger@@
             <</if>>
             
             <<if !_foodtypeKT.includes("Prepared Food")>>

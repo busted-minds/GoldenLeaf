@@ -2,14 +2,23 @@
 
 <<widget "foodshow">>
     <<set _foodlist to State.getVar("setup.food."+ $args[0])>>
+    <<set _n to []>>
+    <<for _fLA to 0; _fLA lt 5; _fLA++>>
+        <<set _n.push(_fLA + 1)>>
+    <</for>>
     <br>
-    <<for _i to 0; _i lt _foodlist.length; _i++>>
-        <<set _exist to $shoppingcart.findIndex(x => x.name === _foodlist[_i].name)>>
+    <<for _fLI to 0; _fLI lt _foodlist.length; _fLI++>>
+        <<set _exist to $shoppingcart.findIndex(x => x.name === _foodlist[_fLI].name)>>
         <div class="list">
             <div id="insidelist">
-                Name: @@.orange;<<print _foodlist[_i].name>>@@ 
+                Name: @@.orange;<<print _foodlist[_fLI].name>>@@ 
                 <br>
-                Price: @@.yellow;<<print _foodlist[_i].price>> credits@@
+                Price: @@.yellow;<<print _foodlist[_fLI].price>> credits@@
+                <br>
+                Amount:
+                <<listbox "_Amount" autoselect>>
+                    <<optionsfrom _n>>
+                <</listbox>>
 
                 <<pButton "grocery">>
             </div>
@@ -17,5 +26,4 @@
     <</for>>
     <br>
     <br>
-    <<button "Back" "grocerystore">> <</button>>
 <</widget>>

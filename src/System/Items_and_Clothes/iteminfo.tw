@@ -5,14 +5,21 @@
     <<set _slot to $args[1]>>
     <<set _id to $wardrobeContent[_slot].findIndex(x => x.name === _itemName)>>
     <<set _itemDesc to $wardrobeContent[_slot][_id].description>>
-    /%<<set _itemExpo to $wardrobeContent[_slot][_id].exposurelevel>>%/
     <<set _itemCat to $wardrobeContent[_slot][_id].category>>
     
     Name: <<print _itemName>>
+    <<if $wardrobeContent[_slot][_id].gender is "male">> 
+        <<set _ic to "img/others/maleGIcon.png">>
+    <<elseif $wardrobeContent[_slot][_id].gender is "female">>
+        <<set _ic to "img/others/femaleGIcon.png">>
+    <<else>>
+        <<set _ic to "img/others/neutralIcon.png">>
+    <</if>>
+    <img @src="_ic" style="max-width: 5%;">
     <br>
     Description: <<print _itemDesc>>
     <br>
-    Categories: <<print _itemCat>>
+    Color: <<clothescolor $wardrobeContent[_slot][_id] true>>
     <br>
 
 <</widget>>

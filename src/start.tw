@@ -12,14 +12,19 @@ Golden Leaf
 }
 
 :: Start
-<img src="img/others/logo.png" id="logo">
+<img src="img/others/Logo.png" id="logo">
 !<span class="green" style="text-align: center;"> Disclaimer!</span>
 !!@@.red;You need to be 18 years old to play this game. (Or whatever age you need to be to be considered legally an "adult" in your country)
 Every character, relationship, name, etc. is purely fictional and not related in any way to real life.
 Every fetish in this game isn't endorsed by the Dev and can be disabled.
 Play at your own risk, and more importantly have fun!.@@
-
-Reminder: This game is in a very "green" state so every feature/thing in the game may/will change in the future. With the current version(0.1) your saves won't work if future updates change any variable, so have that in mind.
+Credits to:
+@@.green;Nameless Magician(Proofreading)
+    Sorter(Proofreading)
+    Hanah Solo(Some ideas :D)
+    Maakhan(Some ideas :D)
+@@
+Reminder: This game is in a very "green" state so every feature/thing in the game may/will change in the future.
 There aren't too many things to do in the game(for now), So if you play, it means that you want to give feedback or ideas. Or maybe you just want to test it, so welcome :).
 <<button "Accept" "charcreation1">><</button>>
 

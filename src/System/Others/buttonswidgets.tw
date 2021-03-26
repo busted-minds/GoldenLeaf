@@ -1,18 +1,36 @@
 :: buttonswidgets [widget nobr]
 
 <<widget "pButton">> /* Some buttons for purchasing items. The first one is for grocery items and the second one for "unique" purchases (Limited to one, or in the case of clothes 2 :)). */
+    <<set _passage to passage()>>
     <<switch $args[0]>>
         <<case "grocery">>
-            <button class="macro-button smollfont" 
-            @onclick='`(`+_exist+` !== -1 && SugarCube.State.variables.shoppingcart[`+_exist+`].name == SugarCube.State.temporary.foodlist[`+_i+`].name ? SugarCube.State.variables.shoppingcart[`+_exist+`].amount += 1 : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.foodlist[`+_i+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
-            Add to shopping cart
-            </button>
+            @@.pButton;
+                <<capture _fLI _exist>>
+                    <<button "Add to shopping cart" _passage>>
+                        <<if _exist is -1>>
+                            <<set $shoppingcart.push(_foodlist[_fLI])>>
+                            <<set $shoppingcart[$shoppingcart.length - 1].amount to _Amount>>
+                            <<set $message to "addedToSC">>
+                        <<elseif ($shoppingcart[_exist].amount + _Amount) lte 5>>
+                            <<set $shoppingcart[_exist].amount += _Amount>>
+                            <<set $message to "addedToSC">>
+                        <<else>>
+                            <<set $message to "enough">>
+                        <</if>>
+                    <</button>>
+                <</capture>>
+            @@
 
         <<case "clothstore">>
-            <button class="macro-button smollfont" 
-            @onclick='`(`+_exist+` !== -1 || `+_existsc+` !== -1 ? SugarCube.State.variables.message = "bought" : SugarCube.State.variables.shoppingcart.push(SugarCube.State.temporary.values[`+_j+`])); SugarCube.Engine.play(SugarCube.State.passage)`'>
-            Add to shopping cart
-            </button>
+            @@.pButton;
+                <<capture _j>>
+                    <<button "Add to shopping cart" _passage>>
+                        <<set $shoppingcart.push(_values[_j])>>
+                        <<set $message to "addedToSC">>
+                        <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
+                    <</button>>
+                <</capture>>
+            @@
 
     <</switch>>
 <</widget>>

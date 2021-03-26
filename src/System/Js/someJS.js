@@ -107,3 +107,17 @@ document.head.appendChild(l);
     });
 
 }());
+
+/* Change color of a select options and from a selected text.
+window.colorChange = function () {
+    $('#listbox-phaircolor').change(function() {
+        $(this).find('option').css('color', '#eee');
+        var x = document.querySelector('#haircolor');
+        var y = getComputedStyle(document.documentElement).getPropertyValue('--' + $(this).find('option:selected').text().toLowerCase());
+        
+        $(this).find('option:selected').css('color', y);
+        x.style.setProperty('--colors', y);
+        console.log('--colors', y, State.variables.pHairColor);
+    })
+}
+*/

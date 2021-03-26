@@ -1,8 +1,10 @@
 :: charcreation1[nobr]
     /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
     /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
-    <<print $message>>
-    <<unset $message>>
+    <<if $message>>
+        <<print $message>>
+        <<unset $message>>
+    <</if>>
     <fieldset class="charc">
         <legend>Character Creation</legend>
         
@@ -23,7 +25,7 @@
         <ul>
             <<listbox "$playervar.height" autoselect>>
                 <<option "Tall" "tall">>
-                <<option "Normal" "normal">>
+                <<option "Common" "common">>
                 <<option "Small" "small">>
             <</listbox>>
         </ul>
@@ -32,7 +34,7 @@
         <ul>
             <<listbox "$playervar.bodyshape" autoselect>>
                 <<option "Fit" 60>>
-                <<option "Normal" 40>>
+                <<option "Common" 40>>
                 <<option "Chubby" 20>>
             <</listbox>>
         </ul>
@@ -46,6 +48,14 @@
                 <<option "Gardening" "gardening">>
                 <<option "Art" "art">>
                 <<option "Athletic" "athletic">>
+            <</listbox>>
+        </ul>
+
+        <<set _skinTones to { Light: "light", Fair: "fair", Olive: "olive", Brown: "brown", Black: "blackT"}>>
+        @@.darkyellow;Select your skin tone@@
+        <ul>
+            <<listbox "$pSkinTone" autoselect>>
+                <<optionsfrom _skinTones>>
             <</listbox>>
         </ul>
     </fieldset>
@@ -114,7 +124,7 @@
                 <ul>
                     <<listbox "$playervar.breastsize" autoselect>>
                         <<option "Perky" 60>>
-                        <<option "Normal" 40>>
+                        <<option "Common" 40>>
                         <<option "Small" 20>>
                         <<option "Flat" 0>>
                     <</listbox>>
@@ -134,7 +144,7 @@
                 <ul>
                     <<listbox "$playervar.nipplesize" autoselect>>
                         <<option "Medium" 1.25>>
-                        <<option "Normal" 0.95>>
+                        <<option "Common" 0.95>>
                         <<option "Small" 0.48>>
                         <<option "Tiny" 0.24>>
                     <</listbox>>
@@ -148,7 +158,7 @@
                 <ul>
                     <<listbox "$playervar.clitorissize" autoselect>>
                         <<option "Medium" 1.2>>
-                        <<option "Normal" 0.9>>
+                        <<option "Common" 0.9>>
                         <<option "Small" 0.5>>
                         <<option "Tiny" 0.3>>
                     <</listbox>>
@@ -158,7 +168,7 @@
                 <ul>
                     <<listbox "$playervar.vagtightness" autoselect>>
                         <<option "Tight" 50>>
-                        <<option "Normal" 35>>
+                        <<option "Common" 35>>
                         <<option "Loose" 20>>
                     <</listbox>>
                 </ul>
@@ -168,7 +178,7 @@
                 <ul>
                     <<listbox "$playervar.penissize" autoselect>>
                         <<option "Big" 15>>
-                        <<option "Normal" 12>>
+                        <<option "Common" 12>>
                         <<option "Small" 6>>
                         <<option "Tiny" 3>>
                     <</listbox>>
@@ -178,7 +188,7 @@
                 <ul>
                     <<listbox "$playervar.ballssize" autoselect>>
                         <<option "Big" 8>>
-                        <<option "Normal" 4>>
+                        <<option "Common" 4>>
                         <<option "Small" 2>>
                     <</listbox>>
                 </ul>
@@ -191,7 +201,7 @@
             <ul>
                 <<listbox "$playervar.buttsize" autoselect>>
                     <<option "Plumpy" 60>>
-                    <<option "Normal" 40>>
+                    <<option "Common" 40>>
                     <<option "Small" 20>>
                     <<option "Flat" 0>>
                 <</listbox>>
@@ -201,7 +211,7 @@
             <ul>
                 <<listbox "$playervar.anustightness" autoselect>>
                     <<option "Tight" 50>>
-                    <<option "Normal" 35>>
+                    <<option "Common" 35>>
                     <<option "Loose" 20>>
                 <</listbox>>
             </ul>
@@ -242,21 +252,23 @@
     <<set $gamestarted to 1>>
     <<set $disablernggod to false>>
     <<set $bps.upperbody[5].primary to clone(setup.clothes.accesories[1])>>
+    <<set $displayColorText to true>>
+    <<set _keys to Object.keys(setup.clothes.colors)>>
     <<if $playervar.gender is "female">>
-        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2])>>
-        <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1])>>
-        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2])>>
-        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1])>>
-        <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1])>>
-        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[2])>>
-        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2])>>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[2]); $bps.upperbody[0].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.upperbody[0].secondary to clone(setup.clothes.upperbunder[1]); $bps.upperbody[0].secondary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[2]); $bps.lowerbody[0].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[1]); $bps.lowerbody[0].secondary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[2].primary to clone(setup.clothes.legwear[1]); $bps.lowerbody[2].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1]); $bps.lowerbody[3].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[2]); $bps.lowerbody[3].secondary.color to _keys[_keys.length * Math.random() << 0]>>
             
     <<elseif $playervar.gender is "male">>
-        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1])>>
-        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1])>>
-        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2])>>
-        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[1])>>
-        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1])>>
+        <<set $bps.upperbody[0].primary to clone(setup.clothes.upperbouter[1]); $bps.upperbody[0].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[0].primary to clone(setup.clothes.lowerbouter[1]); $bps.lowerbody[0].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[0].secondary to clone(setup.clothes.lowerbunder[2]); $bps.lowerbody[0].secondary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[3].primary to clone(setup.clothes.shoes[0]); $bps.lowerbody[3].primary.color to _keys[_keys.length * Math.random() << 0]>>
+        <<set $bps.lowerbody[3].secondary to clone(setup.clothes.footwear[1]); $bps.lowerbody[3].secondary.color to _keys[_keys.length * Math.random() << 0]>>
 
     <</if>>
             
@@ -274,7 +286,7 @@
     <br>
     Welcome to @@.gold;Golden Leaf City@@. From the station you can see a small panorama of a few places in the city with a suprising amount of greenery around, quite a lot considering it's a city. On one end of the city, there appear to be three main buildings that attract a lot of your attention due to their unique modern designs. 
     <br>
-    In the past the city was just a small rural town, but thanks to the arrival of a successful business *insert name here* it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
+    In the past the city was just a small rural town, but thanks to the arrival of a successful businessman called <<print setup.spirealfOw.name>> it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
     <br>
     <br>
     When you finally arrive at your new house, you notice it's pretty big from the outside. You are about to open the front door with the digital key in your phone when you get a message on your phone, it's from your parents. It's odd that you didn't recieve the message until now, maybe there was a problem with the Network?

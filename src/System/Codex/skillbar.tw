@@ -13,7 +13,7 @@
         <<set _expLeft to State.getVar('$'+_skillexpN[_i]+'expleft')>>
         <<set _skillBarN to _skillname[_i]+'b'>>
 
-        <div style="margin-bottom: 8px;">
+        <div class="listSkills">
             <<print _skillname[_i].toUpperFirst()>> level: <span @id="_skillexpN[_i]"><<print '$'+_skillname[_i]+'skill'>></span>
             <br>
             <<progressbar _exp _expLeft _skillBarN>>

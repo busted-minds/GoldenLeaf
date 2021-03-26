@@ -1,0 +1,27 @@
+:: clothes_color [widget nobr]
+
+<<widget "CColorIni">>
+    <<set setup.clothes.colors to {
+        yellow: "yellow",
+        darkyellow: "dark yellow",
+        lightyellow: "light yellow",
+        red: "red",
+        darkred: "dark red",
+        lightred: "light red",
+        green: "green",
+        lightgreen: "light green",
+        blue: "blue",
+        lightblue: "light blue",
+        orange: "orange",
+        lightorange: "light orange",
+        gray: "gray",
+        darkpink: "dark pink",
+        pink: "pink",
+        graypink: "gray pink",
+        purple: "purple",
+        brown: "brown",
+        lightbrown: "light brown",
+        black: "black",
+
+    }>>
+<</widget>>

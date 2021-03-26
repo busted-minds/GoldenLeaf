@@ -27,15 +27,19 @@
 :: outerwear [nobr]
     <h2>Outerwear</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<csShow "Outerwear" "upperbouter">>
 
 :: underwear [nobr]
     <h2>Underwear</h2>
     <div class="divisor"></div>
+    <<messager>>
     <<csShow "Underwear" "upperbunder">>
 
 :: footwear [nobr]
     <h2>Footwear</h2>
+    <div class="divisor"></div>
+    <<messager>>
     <<csShow "Footwear" "shoes">>
 
 :: cspurchase [nobr]

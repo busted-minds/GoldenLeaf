@@ -1,32 +1,40 @@
 :: upperbody_underwear [widget nobr]
 
 <<widget "upperb_underwearIni">>
-
     <<set setup.clothes.upperbunder to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
-            exposurelevel: 5,
             exposedchest: true
         },
-
         {        
             id: 1,
             name: "Bra",
             lowname: "bra",
             price: 10,
-            state: "normal",
+            color: undefined,
             description: "A normal bra",
-            article: "a",
+            descriptor: "a",
             category: ["bra", "upperbunder"],
             gender: "female",
-            exposurelevel: 3,
+            exposedchest: false
+        },
+        {        
+            id: 2,
+            name: "Lacy Bra",
+            lowname: "lacy bra",
+            price: 13,
+            color: undefined,
+            description: "A lacy bra",
+            descriptor: "a",
+            category: ["bra", "upperbunder"],
+            gender: "female",
             exposedchest: false
         }
     ]>>

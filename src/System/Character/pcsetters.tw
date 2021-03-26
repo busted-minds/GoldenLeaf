@@ -50,7 +50,7 @@
 					<<set $playervar.vagwidthcomfortinsert to 10>>
 					<<set $playervar.throatwidthcomfortinsert to 8>>
 					
-				<<case "normal">>
+				<<case "common">>
 					<<set $playervar.vagdepth to 18>>
 					<<set $playervar.anusdepth to 23>>
 					<<set $playervar.anuscomfortinsert to 21>>
@@ -112,7 +112,7 @@
 					<<set $playervar.throatcomfortinsert to 12>>
 					<<set $playervar.throatwidthcomfortinsert to 8>>
 
-				<<case "normal">>
+				<<case "common">>
 					<<set $playervar.anusdepth to 23>>
 					<<set $playervar.anuscomfortinsert to 21>>
 					<<set $playervar.anuswidthcomfortinsert to 14>>
@@ -143,7 +143,7 @@
 		<<set $playervar.bodyshapestate to "fit">>
 
 	<<elseif $playervar.bodyshape gte 40>>
-		<<set $playervar.bodyshapestate to "normal">>
+		<<set $playervar.bodyshapestate to "common">>
 
 	<<elseif $playervar.bodyshape gte 20>>
 		<<set $playervar.bodyshapestate to "chubby">>

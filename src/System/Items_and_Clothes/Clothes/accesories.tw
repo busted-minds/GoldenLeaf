@@ -22,7 +22,7 @@
             description: "A normal backpack.",
             category: ["backpack", "accesory"],
             gender: "none",
-            maxitems: 5
+            maxitems: 7
         }
     ]>>
 

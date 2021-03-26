@@ -8,12 +8,9 @@
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
     </fieldset>
-
-    /%<fieldset id="fieldinline">
-        <legend style="font-size: 130%;">Accesories</legend>
-        <a id="Link" @class="($pressedlink is 'accesories' ? 'selected' : '')" onclick="wikifier('wardrobeCCReplacer', 'accesories', 'accesories')">accesories</a>
-    
-    </fieldset>%/
+    @@.wardrobeBttns;<<button "Undress All" "wardrobe">>
+        <<undressAll>>
+    <</button>>@@
 <</widget>>
 
 /% This replaces some divs in the wardrobe passage and makes it remember what link was pressed.%/
@@ -120,8 +117,17 @@
 
                 <<for _j to 0; _j lt $wardrobeContent[_wardrobeSlot[_i]].length; _j++>>
                     <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
-                    
+
                     <<print _itemContentN>> 
+                    (<<clothescolor $wardrobeContent[_wardrobeSlot[_i]][_j] true>>)
+                    <<if $wardrobeContent[_wardrobeSlot[_i]][_j].gender is "male">> 
+                        <<set _ic to "img/others/maleGIcon.png">>
+                    <<elseif $wardrobeContent[_wardrobeSlot[_i]][_j].gender is "female">>
+                        <<set _ic to "img/others/femaleGIcon.png">>
+                    <<else>>
+                        <<set _ic to "img/others/neutralIcon.png">>
+                    <</if>>
+                    <img @src="_ic" style="max-width: 5%;">
                     <span class="wardrobeBttns">
                         <br>
                         <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>

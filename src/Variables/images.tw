@@ -4,10 +4,10 @@
     <<set setup.icons to {
         "stateD": {
             "Morning": "img/sidebar-icons/Morning.png",
-            "Early Morning": "img/sidebar-icons/Early Morning.png",
+            "Early Morning": "img/sidebar-icons/Early_morning.png",
             "Afternoon": "img/sidebar-icons/Afternoon.png",
             "Evening": "img/sidebar-icons/Evening.png",
-            "Late Evening": "img/sidebar-icons/Late Evening.png",
+            "Late Evening": "img/sidebar-icons/Late_evening.png",
             "Midnight": "img/sidebar-icons/Midnight.png"
         }
     }>>

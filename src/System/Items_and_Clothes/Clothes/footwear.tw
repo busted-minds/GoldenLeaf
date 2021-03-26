@@ -1,42 +1,38 @@
 :: footwearIni [widget nobr]
 
 <<widget "footwearIni">>
-
     <<set setup.clothes.footwear to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
-            exposurelevel: 5
         },
         {
             id: 1,
             name: "Socks",
             lowname: "socks",
             price: 10,
-            state: "normal",
+            color: undefined,
             description: "A pair of socks",
-            article: "a pair of",
+            descriptor: "a pair of",
             category: ["socks", "footwear"],
             gender: "male",
-            exposurelevel: 0
         },
         {
             id: 2,
             name: "Female socks",
             lowname: "female socks",
             price: 10,
-            state: "normal",
+            color: undefined,
             description: "A pair of female socks",
-            article: "a pair of",
+            descriptor: "a pair of",
             category: ["socks", "footwear"],
             gender: "female",
-            exposurelevel: 0
         }
     ]>>
 

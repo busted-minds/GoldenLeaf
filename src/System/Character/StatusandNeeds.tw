@@ -21,13 +21,17 @@
 
 <</widget>>
 
-<<widget "timeattached">> /% It's pretty self explanatory I think. 0=Case of minutes or hours. 1=Amount of minutes or hours. %/
+<<widget "timeattached">> /% It's pretty self explanatory I think. args 1 in case we need to use an specific amount of energy or an string in case is skilling %/
     <<set _mult to 0.20>>
+
+    <<if typeof($args[2]) is "number" and $args[3] is "chngMult">>
+        <<set _mult to $args[2]>>
+    <</if>>
 
     <<if typeof($args[1]) is "number">>
         <<set _uE to $args[1]>>
     <<else>>
-        <<set _uE to $args[0] * 0.1>>
+        <<set _uE to $args[0] * _mult>>
     <</if>>
 
     <<if $sleeping is true>>
@@ -36,22 +40,17 @@
         <<set $sleeping to undefined>>
     <</if>>
     
-    <<set $hunger += Math.round($args[0] * _mult)>>
-    <<set $hygiene -= Math.round($args[0] * _mult)>>
-    <<set $fun -= Math.round($args[0] * _mult)>>
-    <<set $energy -= Math.round(_uE)>>
-
-    <<set $hunger to Math.clamp($hunger, 0, 100)>>
-    <<set $hygiene to Math.clamp($hygiene, 0, 100)>>
-    <<set $fun to Math.clamp($fun, 0, 100)>>
-    <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
+    <<set $hunger += Math.round($args[0] * _mult); $hunger to Math.clamp($hunger, 0, 100)>>
+    <<set $hygiene -= Math.round($args[0] * _mult); $hygiene to Math.clamp($hygiene, 0, 100)>>
+    <<set $fun -= Math.round($args[0] * _mult); $fun to Math.clamp($fun, 0, 100)>>
+    <<set $energy -= Math.round(_uE); $energy to Math.clamp($energy, 0, $maxenergy)>>
 
     <<addminutes $args[0]>>
 
     <<if typeof($args[1]) is "string" and $args[2]>>
         <<addexp $args[1] $args[2]>>
 
-    <<elseif $args[2] and $args[3]>>
+    <<elseif typeof($args[2]) is "string" and $args[3]>>
         <<addexp $args[3] $args[3]>>
     <</if>>
 
@@ -60,29 +59,30 @@
 <<widget "eatFood">>/%The args need to be assigned as 0= Value to be used to satisfy hunger. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
     <<set _value to $args[0]>>
     <<set _foodID to $args[1]>>
-    <<set _location to $args[2]>>
+    <<set _location to State.getVar("$" + $args[2])>>
+    
+    <<set _consUse to setup.food[$args[2]][_location[_foodID].id].uses>>
+
+    <<if _location[_foodID].amount gte 2>>
+        <<if _location[_foodID].uses eq 1>>
+            <<set _location[_foodID].amount -= 1>>
+            <<set _location[_foodID].uses = _consUse>>
+
+        <<elseif _location[_foodID].uses lte _consUse>>
+            <<set _location[_foodID].uses -= 1>>
+        <</if>>
+        
+    <<else>>
+        <<if _location[_foodID].uses eq 1>>
+            <<set _location.deleteAt(_foodID)>>
+        <<else>>
+            <<set _location[_foodID].uses -= 1>>
+        <</if>>
+            
+    <</if>>
 
     <<set $hunger -= _value>>
     <<set $hunger to Math.clamp($hunger, 0, 100)>>
-
-    <<if _location is "kitchentable">>
-        <<if $kitchentable[_foodID].amount gte 2>>
-            <<set $kitchentable[_foodID].amount -= 1>>
-        
-        <<else>>
-            <<set $kitchentable.deleteAt(_foodID)>>
-            
-        <</if>>
-
-    <<elseif _location is "fruits">>
-        <<if $fruits[_foodID].amount gte 2>>
-            <<set $fruits[_foodID].amount -= 1>>
-
-        <<else>>
-            <<set $fruits.deleteAt(_foodID)>>
-        <</if>>
-    
-    <</if>>
 
 <</widget>>
 

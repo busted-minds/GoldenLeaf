@@ -1,46 +1,64 @@
 :: upperbody_outerwear [widget nobr]
 
 <<widget "upperb_outerwearIni">>
-
     <<set setup.clothes.upperbouter to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
-            exposurelevel: 5,
             exposedchest: true
         },
-
         {
             id: 1,
             name: "Polo shirt",
             lowname: "polo shirt",
             price: 15,
-            state: "normal",
+            color: undefined,
             description: "A normal polo shirt",
-            article: "a",
+            descriptor: "a",
             category: ["shirt", "upperbouter"],
             gender: "neutral",
-            exposurelevel: 1,
             exposedchest: false
-        },
-        
+        },   
         {
             id: 2,
             name: "Blouse",
             lowname: "blouse",
             price: 20,
-            state: "normal",
+            color: undefined,
             description: "A normal blouse",
-            article: "a",
+            descriptor: "a",
             category: ["blouse", "upperbouter"],
             gender: "female",
-            exposurelevel: 1,
+            exposedchest: false
+        },   
+        {
+            id: 3,
+            name: "Female Tank Top",
+            lowname: "female tank top",
+            price: 15,
+            color: undefined,
+            description: "A women tank top",
+            descriptor: "a",
+            category: ["tanktop", "upperbouter"],
+            gender: "female",
+            exposedchest: false
+        },   
+        {
+            id: 4,
+            name: "Male Tank Top",
+            lowname: "male tank top",
+            price: 15,
+            color: undefined,
+            description: "A men tank top",
+            descriptor: "a",
+            category: ["tanktop", "upperbouter"],
+            gender: "male",
             exposedchest: false
         }
 

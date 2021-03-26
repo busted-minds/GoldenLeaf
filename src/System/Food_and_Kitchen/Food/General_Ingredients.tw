@@ -7,6 +7,7 @@
             name: "Rice",
             description: "A pack of rice",
             price: 2,
+            uses: 3,
             amount: 1,
             foodtype: "generalIng"
         },
@@ -15,6 +16,7 @@
             name: "Pasta",
             description: "A pack of pasta",
             price: 2,
+            uses: 3,
             amount: 1,
             foodtype: "generalIng"
         },
@@ -22,6 +24,7 @@
             id: 2,
             name: "Salt",
             description: "A pack of salt",
+            uses: 3,
             price: 1,
             amount: 1,
             foodtype: "generalIng"
@@ -30,6 +33,25 @@
             id: 3,
             name: "Flour",
             description: "A pack of flour",
+            uses: 3,
+            price: 2,
+            amount: 1,
+            foodtype: "generalIng"
+        },
+        {
+            id: 4,
+            name: "Butter",
+            description: "Just butter",
+            uses: 4,
+            price: 3,
+            amount: 1,
+            foodtype: "generalIng"
+        },
+        {
+            id: 5,
+            name: "Sugar",
+            description: "A pack of sugar",
+            uses: 3,
             price: 2,
             amount: 1,
             foodtype: "generalIng"

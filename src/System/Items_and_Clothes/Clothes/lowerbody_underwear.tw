@@ -1,18 +1,16 @@
 :: lowerbody_underwear [widget nobr]
 
 <<widget "lowerb_underwearIni">>
-
     <<set setup.clothes.lowerbunder to [
         {
             id: 0,
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
+            color: undefined,
             description: "Naked",
             category: ["naked"],
             gender: "none",
-            exposurelevel: 5,
             exposedgenitals: true
         },
         {
@@ -20,12 +18,11 @@
             name: "Panties",
             lowname: "panties",
             price: 5,
-            state: "normal",
+            color: undefined,
             description: "Just a pair of panties",
             category: ["panties", "lowerbunder"],
-            article: "a pair of",
+            descriptor: "a pair of",
             gender: "female",
-            exposurelevel: 3,
             exposedgenitals: false
         },
         {
@@ -33,12 +30,23 @@
             name: "Boxers",
             lowname: "boxers",
             price: 5,
-            state: "normal",
+            color: undefined,
             description: "Just a pair of boxers",
             category: ["boxers", "lowerbunder"],
-            article: "a pair of",
+            descriptor: "a pair of",
             gender: "male",
-            exposurelevel: 2,
+            exposedgenitals: false
+        },
+        {
+            id: 3,
+            name: "Lacy Panties",
+            lowname: "lacy panties",
+            price: 9,
+            color: undefined,
+            description: "Just a pair of lacy panties",
+            category: ["panties", "lowerbunder"],
+            descriptor: "a pair of",
+            gender: "female",
             exposedgenitals: false
         }
 

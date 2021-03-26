@@ -97,8 +97,8 @@ sugarcube-2:
       name: showStoreIC
     storeItemContent:
       name: storeItemContent
-    clothesArticles:
-      name: clothesArticles
+    clothesDescriptor:
+      name: clothesDescriptor
     clothesvar:
       name: clothesvar
     bodyparts:

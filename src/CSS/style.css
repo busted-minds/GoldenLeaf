@@ -108,6 +108,22 @@
 		color: black;
 	}
 
+	.light {
+		color: #FEE6B8
+	}
+
+	.fair {
+		color: #DEBC97
+	}
+
+	.olive {
+		color: #B58557
+	}
+
+	span #skinTone.black{
+		color: #502E22
+	}
+
 /* Not colors */
 	.charc {
 		border: 1px solid #383e65;
@@ -151,7 +167,7 @@
 
 	}
 
-	button:disabled {
+	button:disabled, a:disabled{
 		background-color: #191827;
 		border: 2px solid #454152;
 	}
@@ -166,14 +182,15 @@
 		font-size: 100% !important;
 	}
 
-	.med-button{
+	.med-button, .med-button button{
 		max-width: 7em !important; 
 		max-height: 4em !important;
 	}
 
-	.smollbutt {
+	.smollbutt, .smollbutt button {
 		max-width: 4.9em !important; 
 		max-height: 4em !important;
+		font-size: small;
 	}
 
 	#menu li a {
@@ -184,7 +201,7 @@
 		content:"/Load Game";
 	}
 
-	.macro-button:hover, .delete:hover, .load:hover, .save:hover, #saves-export:hover, #saves-import:hover, #saves-clear:hover {
+	.macro-button:hover, .delete:hover, .load:hover, .save:hover, #saves-export:hover, #saves-import:hover, #saves-clear:hover, a:hover{
 		background-color: #191827;
 		border-color: #eee;
 	}
@@ -228,7 +245,7 @@
 		border: 2px solid #6287f8;
 	}
 
-	.macro-button:focus {
+	.macro-button:focus, a:focus{
 		background-color: #191827;
 		color: #65dc98;
 	}
@@ -289,13 +306,26 @@
 		margin-bottom: 5px;
 	}
 
+	.listCodex {
+		display: inline-block;
+		max-width: 17em;
+		margin-bottom: 5px;
+	}
+
+	.listSkills{
+		display: inline-block;
+		border: 1px solid #383e65;
+		border-radius: 5px;
+		margin-bottom: 5px;
+	}
+
 	#insidelist {
 		margin-left: 7px;
 		margin-right: 7px;
 		font-size: medium;
 	}
 
-	.smollfont {
+	.smollfont, .pButton button {
 		font-size: small;
 	}
 

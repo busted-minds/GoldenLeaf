@@ -7,7 +7,11 @@
                 <div id="insidelist">
                     Name: @@.green;<<print $backpack[_ibp].name>>@@
                     <br>
-                    Item description: @@.yellow;<<print $backpack[_ibp].description>>@@
+                    Description: @@.yellow;<<print $backpack[_ibp].description>>@@
+                    <<if $backpack[_ibp].color>>
+                    <br>
+                    Color: <<clothescolor $backpack[_ibp] true>>
+                    <</if>>
                 </div>
             </div>
         <</for>>

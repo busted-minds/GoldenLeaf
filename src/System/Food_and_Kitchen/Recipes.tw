@@ -5,45 +5,65 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     <<set _foodnameM to []>>
     <<set _foodnameS to []>>
     <<set _foodnameO to []>>
+    <<set _foodnameV to []>>
+
+    /%IDs:
+        Raw Chicken Breast = 0
+        Raw Chicken Wings = 1 
+        Raw Steak = 2
+        Raw grounded beef = 3
+        Sausages = 4
+    %/
     <<for _i to 0; _i lt setup.food.meat.length; _i++>>
-        /%IDs: Raw Chicken Breast = 0
-               Raw Chicken Wings = 1 
-        %/
         <<set _foodnameM.push(setup.food.meat[_i].name)>> 
     <</for>>
 
+    /%IDs: 
+        Pepper = 0
+    %/
     <<for _i to 0; _i lt setup.food.spices.length; _i++>>
-        /%IDs: Pepper = 0
-        %/
         <<set _foodnameS.push(setup.food.spices[_i].name)>>
     <</for>>
 
+    /%IDs: 
+        Rice = 0
+        Pasta = 1
+        Salt = 2
+        Flour = 3
+        Butter = 4
+        Sugar = 5
+    %/
     <<for _i to 0; _i lt setup.food.generalIng.length; _i++>>
-        /%IDs: Rice = 0
-               Pasta = 1
-               Salt = 2
-               Flour = 3
-        %/
         <<set _foodnameO.push(setup.food.generalIng[_i].name)>>
     <</for>>
 
-    /%<<for _i to 0; _I lt setup.food.fruits.length; _i++>>
+    /%<<for _i to 0; _i lt setup.food.fruits.length; _i++>>
         /%IDs: Coconut = 0
                Watermelon = 1
         /
         <<set _foodnameF.push(setup.food.fruits[_i].name)>>
     <</for>>%/
-    /* Add cut into julienne strips to a recipe(When needed, of course) */
+
+    /%IDs:
+        Tomato = 0,
+        Cabbage = 1
+    
+    %/
+    <<for _i to 0; _i lt setup.food.vegetables.length; _i++>>
+        <<set _foodnameV.push(setup.food.vegetables[_i].name)>>
+    <</for>>
+
+    <<set _sSteps to ["Clean", "Cut into pieces", "Clean and Prepare", "Fillet", "Prepare"]>>
+
     <<set setup.recipes to [
         {
             id: 0,
             name: "Chicken Rice",
             reqingredients: [_foodnameO[0], _foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
-            mastery: "newbie",
             minskill: 2,
             recskill: 3,
-            steps: ["Clean","Cut into pieces", 3, 10]
+            steps: [_sSteps[0], _sSteps[1], 4, 8]
         },
         {
             id: 1,
@@ -51,20 +71,47 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             reqingredients: [_foodnameM[0]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
             defingredients: [_foodnameO[0], _foodnameO[1]],
-            mastery: "newbie",
             minskill: 3,
             recskill: 4,
-            steps: ["Fillet", "Clean and Prepare", 7, 10]
+            steps: [_sSteps[3], _sSteps[2], 7, 8]
         },
         {
             id: 2,
             name: "Fried Chicken Wings",
             reqingredients: [_foodnameM[1], _foodnameO[3]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
-            mastery: "newbie",
             minskill: 1,
             recskill: 2,
-            steps: ["Clean and Prepare", 8]
+            steps: [_sSteps[3], 7]
+        },
+        {
+            id: 3,
+            name: "Rice with Sausages",
+            reqingredients: [_foodnameM[4], _foodnameO[0]],
+            extraingredients: [_foodnameS[0], _foodnameO[2], _foodnameO[4]],
+            minskill: 2,
+            recskill: 3,
+            steps: [_sSteps[2], 3, 8] 
+        },
+        {
+            id: 4,
+            name: "Steak",
+            reqingredients: [_foodnameM[2]],
+            extraingredients: [_foodnameS[0], _foodnameO[2]],
+            defingredients: [_foodnameO[0], _foodnameO[1]],
+            minskill: 2,
+            recskill: 3,
+            steps: [8, _sSteps[4], 7] 
+        },
+        {
+            id: 5,
+            name: "Ground Beef",
+            reqingredients: [_foodnameM[3]],
+            extraingredients: [_foodnameS[0], _foodnameO[2], _foodnameV[0], _foodnameO[5]],
+            defingredients: [_foodnameO[0], _foodnameO[1]],
+            minskill: 2,
+            recskill: 3,
+            steps: [_sSteps[0], _sSteps[4], 20, 8] 
         }
     ]>>
 
