@@ -27,7 +27,12 @@
                 You already have enough of that item.
                 <br>
             <<case "addedToSC">>
-                @@.green;Added to shopping cart!@@
+                @@.green;Added to shopping cart!@@ Current amount to spend:
+                    <<set _total to 0>>
+                    <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
+                        <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+                    <</for>>
+                @@.yellow;<<print _total>> credits.
         <</switch>>
         ''
         //
