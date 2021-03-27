@@ -61,7 +61,15 @@
     <<set _foodID to $args[1]>>
     <<set _location to State.getVar("$" + $args[2])>>
     
-    <<set _consUse to setup.food[$args[2]][_location[_foodID].id].uses>>
+    <<if $args[2] is "kitchentable">>
+        <<if $kitchentable[_foodID].foodtype.includes("Prepared Food")>>
+            <<set _consUse to 1>>
+        <<else>>
+            <<set _consUse to setup.food[$args[2]][_location[_foodID].id].uses>>
+        <</if>>
+    <<else>>
+        <<set _consUse to setup.food[$args[2]][_location[_foodID].id].uses>>
+    <</if>>
 
     <<if _location[_foodID].amount gte 2>>
         <<if _location[_foodID].uses eq 1>>

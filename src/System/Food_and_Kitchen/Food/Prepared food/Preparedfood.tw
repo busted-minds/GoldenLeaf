@@ -37,7 +37,7 @@
         },
         {
             id: 3,
-            name: "Rice with Sausage",
+            name: "Rice with Sausages",
             quality: "Normal",
             uses: 1,
             amount: 1,
