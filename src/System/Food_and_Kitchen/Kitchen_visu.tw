@@ -72,7 +72,7 @@
             _foodnameKT <<if _foodquality>> <<print "(" + _foodquality + ")">><</if>> <<if _foodamountKT gt 1 >> x _foodamountKT <</if>>
             <br>
             Uses left: @@.orange;_fooduses@@
-            <<if typeof(_foodtypeKT) is "object" and _foodtypeKT.includesAny("Prepared Food", "fruits")>>
+            <<if _foodhunger>>
                 <br>
                 <<capture _foodhunger _ikt>>
                     @@.smollbutt;
