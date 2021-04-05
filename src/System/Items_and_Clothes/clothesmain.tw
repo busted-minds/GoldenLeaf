@@ -23,15 +23,18 @@
 /% Making the wardrobe content variable to store a lot(soon™) of clothes, the bodypart, the clothes the bodypart identifiers for the WandU widget etc. %/
 <<widget "clothesvar">>
 
-    <<set $wardrobeContent to {}>>
-        <<set $wardrobeContent.upperbouter to []>>
-        <<set $wardrobeContent.upperbunder to []>>
-        <<set $wardrobeContent.lowerbouter to []>>
-        <<set $wardrobeContent.lowerbunder to []>>
-        <<set $wardrobeContent.legwear to []>>
-        <<set $wardrobeContent.footwear to []>>
-        <<set $wardrobeContent.shoes to []>>
-        <<set $wardrobeContent.accesories to []>>
+    <<set $wardrobeContent to {
+        upperbouter: [],
+        upperbunder: [],
+        lowerbouter: [],
+        lowerbunder: [],
+        legwear: [],
+        footwear: [],
+        shoes: [],
+        accesories: []
+    }>>
+
+    <<set $outfits to []>>
     
     <<set $bps to {}>>
     <<set setup.clothes to {}>>

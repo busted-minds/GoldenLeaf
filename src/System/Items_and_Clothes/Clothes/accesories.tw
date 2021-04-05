@@ -20,7 +20,7 @@
             price: 0,
             state: "normal",
             description: "A normal backpack.",
-            category: ["backpack", "accesory"],
+            category: ["backpack", "accesories"],
             gender: "none",
             maxitems: 7
         }
