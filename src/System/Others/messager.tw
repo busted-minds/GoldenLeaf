@@ -30,7 +30,12 @@
                 @@.green;Added to shopping cart!@@ Current amount to spend:
                     <<set _total to 0>>
                     <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
-                        <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+                        <<if $shoppingcart[_isc].amount>>
+                            <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+
+                        <<else>>
+                            <<set _total += $shoppingcart[_isc].price>>
+                        <</if>>
                     <</for>>
                 @@.yellow;<<print _total>> credits.
         <</switch>>
@@ -59,7 +64,7 @@
                 <<case 5>>
                     Each hobby has a learning multiplier according to their respective skill but that multiplier isn't static, they can be "upgraded" but those with that hobby will start with an upperhand.
                 <<case 6>>
-                    Anythint that takes time will either increase or decrease you energy, food, etc. values even if it's not stated with colors.
+                    Anything that takes time will either increase or decrease you energy, food, etc. values even if it's not stated with colors.
             <</switch>>
         <<case "commessages">>
     <</switch>>
