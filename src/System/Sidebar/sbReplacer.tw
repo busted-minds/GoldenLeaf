@@ -26,11 +26,20 @@
 					<<replace #popUpContent>>
 						<<inventory>>
 					<</replace>>
+				
+				<<case "outfitInfo">>
+					<<replace #popUpContent>>
+						<<outfitPop $args[1]>>
+					<</replace>>
 
 			<</switch>>
 
 			<<replace #popUpBottom>>
-				<<closePop>>
+				<<button "Close">>
+					<<removeclass "#popUp" "open">>
+					<<set $popupbox to 0>>
+					
+				<</button>>
 			<</replace>>
 			
 			<<addclass "#popUp" "open">>
@@ -42,14 +51,5 @@
 		<</if>>
 
 	<</if>>
-
-<</widget>>
-
-<<widget "closePop">>
-	<<button "Close">>
-		<<removeclass "#popUp" "open">>
-		<<set $popupbox to 0>>
-		
-	<</button>>
 
 <</widget>>

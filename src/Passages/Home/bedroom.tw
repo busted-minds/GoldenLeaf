@@ -94,30 +94,55 @@
             <<showWardrobeCC $pressedlink>>
         </div>
     </div>
+    <br>
     <div>
-        Outfits:
+        <span style="font-size: large;">Outfits:</span>
+        <br>
         <<for _iOF to 0; _iOF lt $outfits.length; _iOF++>>
-            <br>
-            <<capture _iOF>>
-            <<link "$outfits[_iOF].name" "wardrobe">>
-                <<wearOutfit>>
-            <</link>>
-            <</capture>>
+            <div class="list" style="min-width: 13.4em; ">
+                <div id="insidelist" style="overflow-wrap: break-word;">
+                    <<capture _iOF>>
+                        <<link "$outfits[_iOF].name" "wardrobe">>
+                            <<wearOutfit>>
+                        <</link>>
+                        <br>
+                        <span class="smollbutt">
+                            <<button "Delete" "wardrobe">>
+                                <<set $outfits.deleteAt(_iOF)>>
+                                <<set $message to "@@.red; Outfit Deleted@@">>
+                            <</button>>
+                            <<button "Update" "wardrobe">>
+                                <<newOutfit "update" _iOF>>
+                            <</button>>
+                            <<button "Info">>
+                                <<replacer "outfitInfo" _iOF>>
+                            <</button>>
+                        </span>
+                    <</capture>>
+                </div>
+            </div>
         <</for>>
         <br>
-        <span class="med-button smollfont"><<button "New Outfit">>
-            <<toggleclass ".newOutfit" "hide">>
-        <</button>></span>
-        @@.newOutfit.hide;
-            <br>
-            <span class="med-texbox"><<textbox "_outFName" "">></span>
-
+        <<if $outfits.length lte 15>>
             <span class="med-button smollfont">
-                <<button "Create" "wardrobe">>
-                    <<newOutfit>>
+                <<button "New Outfit">>
+                    <<toggleclass ".newOutfit" "hide">>
                 <</button>>
             </span>
-        @@
+        
+            @@.newOutfit.hide;
+                <br>
+                <span class="med-texbox"><<textbox "_outFName" "">></span>
+
+                <span class="med-button smollfont">
+                    <<button "Create" "wardrobe">>
+                        <<newOutfit>>
+                    <</button>>
+                </span>
+            @@
+        <<else>>
+            <span class="red" style="font-size: large;"> You can't have more than 15 outfits</span>
+        <</if>>
     </div>
     <br>
     
