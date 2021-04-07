@@ -77,6 +77,7 @@
 
 <</widget>>
 
+/* This widget add a new outfit or update one if $args[0] is "update" and $args[1] exist. It checks if any item was stored in the for loop before creating/updating it.*/
 <<widget "newOutfit">>
     <<set _content to {
         upperbouter: {item: [], color: []},
@@ -122,6 +123,7 @@
     <</if>>
 <</widget>>
 
+/* Undress the player before making them wear the outfit's items, this will need to be modified when accesories get implemented */
 <<widget "wearOutfit">>
     <<set _keys to Object.keys($wardrobeContent)>>
     <<undressAll>>
@@ -133,7 +135,6 @@
             <<if _iID != -1>>
                 <<set _iSlot to $wardrobeContent[_keys[_iK]][_iID].category[1]>>
 
-                /* This will need to be changed when accesories get implemented */
                 <<if _iSlot is "upperbouter" or _iSlot is "upperbunder">>
                         <<set _body to "upperbody">>
 
@@ -165,6 +166,7 @@
     <<set $message to String.format('You put on the "<span class="orange">{0}</span>" outfit', $outfits[_iOF].name)>>
 <</widget>>
 
+/* Just shows the outfit info */
 <<widget "outfitPop">>
     <<set _outfID to $args[0]>>
 

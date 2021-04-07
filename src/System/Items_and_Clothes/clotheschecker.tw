@@ -167,6 +167,7 @@
 
 <</widget>>
 
+/* Enable/disable color clothes */
 <<widget "clothescolor">>
     <<if $args[0] is "outfitInfoColor">>
         <<set _clothColor to setup.clothes.colors[$args[1]]>>
