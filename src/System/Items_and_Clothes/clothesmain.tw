@@ -77,3 +77,83 @@
 
 <</widget>>
 
+<<widget "newOutfit">>
+    <<set _content to {
+        upperbouter: [],
+        upperbunder: [],
+        lowerbouter: [],
+        lowerbunder: [],
+        legwear: [],
+        footwear: [],
+        shoes: [],
+        accesories: []
+        }>>
+
+    <<set _ofColor to []>>
+    <<set _bodyP to Object.keys($bps)>>
+
+    <<for _i to 0; _i lt _bodyP.length; _i++>>
+        <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
+
+        <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "backpack">>
+                <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.name)>>
+                <<set _ofColor.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.color)>>
+            <</if>>
+
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "backpack">>
+                <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.name)>>
+                <<set _ofColor.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.color)>>
+            <</if>>
+        <</for>>
+    <</for>>
+
+    <<if _ofColor[0]>>
+        <<set _newOutfit to {name: _outFName, content: _content, colors: _ofColor}>>
+        <<set $outfits.push(_newOutfit)>>
+    <</if>>
+<</widget>>
+
+<<widget "wearOutfit">>
+    <<set _keys to Object.keys($wardrobeContent)>>
+
+    <<for _iK to 0; _iK lt _keys.length; _iK++>>
+        <<for _iO to 0; _iO lt $outfits[_iOF].content[_keys[_iK]].length; _iO++>>
+            <<for _iC to 0; _iC lt $outfits[_iOF].colors.length; _iC++>>
+                <<set _iID to $wardrobeContent[_keys[_iK]].findIndex(x => x.name === $outfits[_iOF].content[_keys[_iK]][_iO] && x.color === $outfits[_iOF].colors[_iC])>>
+
+                <<if _iID != -1>>
+                    <<set _iSlot to $wardrobeContent[_keys[_iK]][_iID].category[1]>>
+
+                    /* This will need to be changed when accesories get implemented */
+                    <<if _iSlot is "upperbouter" or _iSlot is "upperbunder">>
+                        <<set _body to "upperbody">>
+
+                    <<else>>
+                        <<set _body to "lowerbody">>
+                    <</if>>
+                    <<if _iSlot is "upperbunder" or _iSlot is "lowerbunder" or _iSlot is "footwear">>
+                        <<set _itemSlot to "secondary">>
+                    <<else>>
+                        <<set _itemSlot to "primary">>
+                    <</if>>
+                    <<if _iSlot is "upperbouter" or _iSlot is "upperbunder" or _iSlot is "lowerbouter" or _iSlot is "lowerbunder">>
+                        <<set _bpIndex to 0>>
+
+                    <<elseif _iSlot is "legwear">>
+                        <<set _bpIndex to 2>>
+                                
+                    <<elseif _iSlot is "footwear" or _iSlot is "shoes">>
+                        <<set _bpIndex to 3>>
+
+                    <</if>>
+
+                    <<capture _iK>>
+                        <<wearMain _keys[_iK] _iID _body _bpIndex _itemSlot>>
+                    <</capture>>
+                <</if>>
+            <</for>>
+        <</for>>
+    <</for>>
+<</widget>>
+

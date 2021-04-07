@@ -176,15 +176,19 @@
 		border: 1px solid #454152;
 	}
 
-	span.wardrobeBttns button{
+	span.wardrobeBttns button {
 		max-width: 4.7em !important; 
 		max-height: 4em !important;
 		font-size: 100% !important;
 	}
 
-	.med-button, .med-button button{
+	.med-button, .med-button button {
 		max-width: 7em !important; 
 		max-height: 4em !important;
+	}
+
+	.med-texbox input[type="text"] {
+		min-width: 7em !important; 
 	}
 
 	.smollbutt, .smollbutt button {

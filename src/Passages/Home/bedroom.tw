@@ -94,56 +94,31 @@
             <<showWardrobeCC $pressedlink>>
         </div>
     </div>
-        <div>
-            Outfits:
-            <<for _iOF to 0; _iOF lt $outfits.length; _iOF++>>
-                <br>
-                <<link '$outfits[_iOF].name'>><</link>>
-            <</for>>
+    <div>
+        Outfits:
+        <<for _iOF to 0; _iOF lt $outfits.length; _iOF++>>
             <br>
-            <<button "New Outfit">>
-                <<toggleclass ".newOutfit" "hide">>
-            <</button>>
-            @@.newOutfit.hide;
-                <br>
-                <<textbox "_outFName" "">>
+            <<capture _iOF>>
+            <<link "$outfits[_iOF].name" "wardrobe">>
+                <<wearOutfit>>
+            <</link>>
+            <</capture>>
+        <</for>>
+        <br>
+        <span class="med-button smollfont"><<button "New Outfit">>
+            <<toggleclass ".newOutfit" "hide">>
+        <</button>></span>
+        @@.newOutfit.hide;
+            <br>
+            <span class="med-texbox"><<textbox "_outFName" "">></span>
 
+            <span class="med-button smollfont">
                 <<button "Create" "wardrobe">>
-                    <<set _content to {
-                        upperbouter: [],
-                        upperbunder: [],
-                        lowerbouter: [],
-                        lowerbunder: [],
-                        legwear: [],
-                        footwear: [],
-                        shoes: [],
-                        accesories: []
-                        }>>
-
-                    <<set _ofColor to []>>
-                    <<set _bodyP to Object.keys($bps)>>
-
-                    <<for _i to 0; _i lt _bodyP.length; _i++>>
-                        <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
-
-                        <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-                            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "backpack">>
-                                <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.name)>>
-                                <<set _ofColor.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.color)>>
-                            <</if>>
-
-                            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "backpack">>
-                                <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.name)>>
-                                <<set _ofColor.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.color)>>
-                            <</if>>
-                        <</for>>
-                    <</for>>
-
-                    <<set _newOutfit to {name: _outFName, content: _content, colors: _ofColor}>>
-                    <<set $outfits.push(_newOutfit)>>
+                    <<newOutfit>>
                 <</button>>
-            @@
-        </div>
+            </span>
+        @@
+    </div>
     <br>
     
     <<button "Close the wardrobe" "bedroom">><<unset $pressedlink>><</button>>
