@@ -22,6 +22,17 @@
             descriptor: "a",
             category: ["pantyhose", "legwear"],
             gender: "female"
+        },
+        {
+            id: 2,
+            name: "Lace Pantyhose",
+            lowname: "lace pantyhose",
+            price: 24,
+            color: undefined,
+            description: "A pair of lace pantyhose",
+            descriptor: "a",
+            category: ["pantyhose", "legwear"],
+            gender: "female"
         }
     ]>>
 

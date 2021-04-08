@@ -48,7 +48,31 @@
             category: ["shorts", "lowerbouter"],
             gender: "neutral",
             exposedgenitals: false
-        }
+        },   
+        {
+            id: 4,
+            name: "Suit(Bottom)",
+            lowname: "suit(bottom)",
+            price: 30,
+            color: undefined,
+            description: "A suit(bottom)",
+            descriptor: "a",
+            category: ["suit", "upperbouter"],
+            gender: "neutral",
+            exposedchest: false
+        },
+        {
+            id: 5,
+            name: "Sport Shorts",
+            lowname: "sport shorts",
+            price: 14,
+            color: undefined,
+            description: "Just sport shorts",
+            descriptor: "a",
+            category: ["shorts", "lowerbouter"],
+            gender: "neutral",
+            exposedgenitals: false
+        },
     ]>>
 
 <</widget>>

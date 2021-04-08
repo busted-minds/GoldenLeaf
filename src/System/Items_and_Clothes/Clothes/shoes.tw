@@ -21,7 +21,7 @@
             color: undefined,
             description: "A pair of sneaker shoes",
             descriptor: "a pair of",
-            category: ["sneakers", "shoes"],
+            category: ["sport", "shoes"],
             gender: "neutral"
         },
         {
@@ -33,6 +33,28 @@
             description: "A pair of cool looking sandals",
             descriptor: "a pair of",
             category: ["sandals", "shoes"],
+            gender: "neutral"
+        },
+        {
+            id: 3,
+            name: "Heels",
+            lowname: "heels",
+            price: 30,
+            color: undefined,
+            description: "A pair of heels",
+            descriptor: "a pair of",
+            category: ["heels", "shoes"],
+            gender: "female"
+        },
+        {
+            id: 4,
+            name: "Boots",
+            lowname: "boots",
+            price: 28,
+            color: undefined,
+            description: "A pair of boots",
+            descriptor: "a pair of",
+            category: ["boots", "shoes"],
             gender: "neutral"
         }
     ]>>

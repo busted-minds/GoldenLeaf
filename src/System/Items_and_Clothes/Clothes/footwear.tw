@@ -21,18 +21,18 @@
             description: "A pair of socks",
             descriptor: "a pair of",
             category: ["socks", "footwear"],
-            gender: "male",
+            gender: "neutral",
         },
         {
             id: 2,
-            name: "Female socks",
-            lowname: "female socks",
-            price: 10,
+            name: "Long socks",
+            lowname: "long socks",
+            price: 12,
             color: undefined,
-            description: "A pair of female socks",
+            description: "A pair of long socks",
             descriptor: "a pair of",
             category: ["socks", "footwear"],
-            gender: "female",
+            gender: "neutral",
         }
     ]>>
 
