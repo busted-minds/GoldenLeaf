@@ -167,18 +167,28 @@
 
 <</widget>>
 
+/* Enable/disable color clothes */
 <<widget "clothescolor">>
-    <<set _clothes to $args[0]>>
-    <<set _clothColor to setup.clothes.colors[_clothes.color]>>
-    <<set _clothesName to _clothes.lowname>>
-    <<if $displayColorText>>
-        <<set _clothColorChk to _clothes.color>>
-    <</if>>
-    
-    <<if $args[1] is true>>
-        <span @class="_clothColorChk"><<print _clothColor.toUpperFirst()>></span>
+    <<if $args[0] is "outfitInfoColor">>
+        <<set _clothColor to setup.clothes.colors[$args[1]]>>
+        <<if $displayColorText>>
+            <<set _clothColorChk to $args[1]>>
+        <</if>>
+
+        (<span @class="_clothColorChk"><<print _clothColor.toUpperFirst()>></span>)
     <<else>>
-        <span @class="_clothColorChk"><<print String.format("{0} {1}", _clothColor, _clothesName)>></span>
+        <<set _clothes to $args[0]>>
+        <<set _clothColor to setup.clothes.colors[_clothes.color]>>
+        <<set _clothesName to _clothes.lowname>>
+        <<if $displayColorText>>
+            <<set _clothColorChk to _clothes.color>>
+        <</if>>
+        
+        <<if $args[1] is true>>
+            <span @class="_clothColorChk"><<print _clothColor.toUpperFirst()>></span>
+        <<else>>
+            <span @class="_clothColorChk"><<print String.format("{0} {1}", _clothColor, _clothesName)>></span>
+        <</if>>
     <</if>>
 <</widget>>
 

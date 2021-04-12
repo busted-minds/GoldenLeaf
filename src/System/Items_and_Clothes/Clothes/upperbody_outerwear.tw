@@ -33,35 +33,94 @@
             color: undefined,
             description: "A normal blouse",
             descriptor: "a",
-            category: ["blouse", "upperbouter"],
+            category: ["shirt", "upperbouter"],
             gender: "female",
             exposedchest: false
         },   
         {
             id: 3,
-            name: "Female Tank Top",
-            lowname: "female tank top",
-            price: 15,
+            name: "Tank Top",
+            lowname: "tank top",
+            price: 13,
             color: undefined,
-            description: "A women tank top",
+            description: "A tank top",
             descriptor: "a",
-            category: ["tanktop", "upperbouter"],
-            gender: "female",
+            category: ["shirt", "upperbouter"],
+            gender: "neutral",
             exposedchest: false
         },   
         {
             id: 4,
-            name: "Male Tank Top",
-            lowname: "male tank top",
-            price: 15,
+            name: "T-Shirt",
+            lowname: "t-shirt",
+            price: 12,
             color: undefined,
-            description: "A men tank top",
+            description: "A t-shirt",
             descriptor: "a",
-            category: ["tanktop", "upperbouter"],
+            category: ["shirt", "upperbouter"],
+            gender: "neutral",
+            exposedchest: false
+        },   
+        {
+            id: 5,
+            name: "Camisole",
+            lowname: "camisole",
+            price: 10,
+            color: undefined,
+            description: "A camisole",
+            descriptor: "a",
+            category: ["shirt", "upperbouter"],
+            gender: "female",
+            exposedchest: false
+        },      
+        {
+            id: 6,
+            name: "Sweater",
+            lowname: "sweater",
+            price: 20,
+            color: undefined,
+            description: "A sweater",
+            descriptor: "a",
+            category: ["sweater", "upperbouter"],
+            gender: "neutral",
+            exposedchest: false
+        },   
+        {
+            id: 7,
+            name: "Jacket",
+            lowname: "jacket",
+            price: 25,
+            color: undefined,
+            description: "A jacket",
+            descriptor: "a",
+            category: ["jacket", "upperbouter"],
             gender: "male",
             exposedchest: false
+        },   
+        {
+            id: 8,
+            name: "Suit(Top)",
+            lowname: "suit(top)",
+            price: 30,
+            color: undefined,
+            description: "A suit(top)",
+            descriptor: "a",
+            category: ["suit", "upperbouter"],
+            gender: "neutral",
+            exposedchest: false
         }
-
+        /*This needs a check because it doesn't need a lowerbody outerwear, so for now is disabled{
+            id: 6,
+            name: "Sundress",
+            lowname: "sundress",
+            price: 16,
+            color: undefined,
+            description: "A sundress",
+            descriptor: "a",
+            category: ["dress", "upperbouter"],
+            gender: "female",
+            exposedchest: false
+        },*/
     ]>>
 
 <</widget>>

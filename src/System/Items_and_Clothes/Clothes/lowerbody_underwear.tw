@@ -39,14 +39,26 @@
         },
         {
             id: 3,
-            name: "Lacy Panties",
-            lowname: "lacy panties",
+            name: "Lace Panties",
+            lowname: "lace panties",
             price: 9,
             color: undefined,
-            description: "Just a pair of lacy panties",
+            description: "Just a pair of lace panties",
             category: ["panties", "lowerbunder"],
             descriptor: "a pair of",
             gender: "female",
+            exposedgenitals: false
+        },
+        {
+            id: 4,
+            name: "Boxers Briefs",
+            lowname: "boxers briefs",
+            price: 6,
+            color: undefined,
+            description: "Just a pair of boxers briefs",
+            category: ["boxers", "lowerbunder"],
+            descriptor: "a pair of",
+            gender: "male",
             exposedgenitals: false
         }
 
