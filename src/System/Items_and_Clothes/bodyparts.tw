@@ -79,7 +79,7 @@
     <<set $bps.genitals to [
         {
             id: 0,
-            bodypart: "vagina",
+            bodypart: "vulva",
             primary: {},
             secondary: {}
         },
