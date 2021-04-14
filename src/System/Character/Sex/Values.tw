@@ -1,8 +1,8 @@
 :: values(masturbation) [widget nobr]
     /* Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-    This work beyond human understanding.
-    Just some options so you can fap or the other thing that girls do.
-    You can even fap while switching hands :0
+        This work beyond human understanding.
+        Just some options so you can fap or the other thing that girls do.
+        You can even fap while switching hands :0
     */
     <<widget "masturbation">>
         <<set _mult to $playervar.sensibility / 100>>
@@ -137,7 +137,7 @@
                     <<elseif $arousal lte 99>>
                         <<set $message[_i] to "@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
 
-                <</if>>
+                    <</if>>
 
                 <<case "Stroke penis">>
                     <<set $arousal += 6+ Math.round(6* _mult)>>
@@ -151,9 +151,8 @@
                     <<elseif $arousal lte 99>>
                         <<set $message[_i] to "@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
 
-                <</if>>
+                    <</if>>
             <</switch>>
-
         <</for>>
 
     <</widget>>

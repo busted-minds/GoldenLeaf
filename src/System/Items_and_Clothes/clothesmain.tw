@@ -96,14 +96,14 @@
         <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
 
         <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "backpack">>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and !$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includes("backpack")>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].item.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.name)>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].color.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.color)>>
 
                 <<set _check++>>
             <</if>>
 
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "backpack">>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and !$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includes("backpack")>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].item.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.name)>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].color.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.color)>>
 
@@ -185,4 +185,15 @@
         <</for>>
     <</for>>
     </div>
+<</widget>>
+
+<<widget "genderIcon">>
+    <<if setup.clothes.sextoys[_j].gender is "male">> 
+        <<set _ic to "img/others/maleGIcon.png">>
+    <<elseif setup.clothes.sextoys[_j].gender is "female">>
+        <<set _ic to "img/others/femaleGIcon.png">>
+    <<else>>
+        <<set _ic to "img/others/neutralIcon.png">>
+    <</if>>
+    <img @src="_ic" style="max-width: 5%;">
 <</widget>>

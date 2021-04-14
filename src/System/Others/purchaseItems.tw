@@ -46,7 +46,7 @@
     Total to pay: @@.yellow;<<print _total>>@@ Credits
     </div>
     <br>
-    <<if $shoppingcart [0]>>
+    <<if $shoppingcart[0]>>
         <<button "Confirm">>
         /* You know, sometimes I hate myself because I don't comment my code. I understand them but it's just hard to explain it. Well here I go... 
            It's just a button that checks if the player has enough money to buy everything and if the player has enough space in its backpack.
@@ -84,7 +84,7 @@
                 <<goto _currPass>>
             <</if>>
 
-        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 1.25)>> minutes@@
+        <</button>>@@.red; +<<print Math.round($shoppingcart.length * 1.25)>> minute(s)@@
     <</if>>
     <<button "Back" $args[0]>><</button>>
 

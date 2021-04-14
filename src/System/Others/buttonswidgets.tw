@@ -20,7 +20,6 @@
                     <</button>>
                 <</capture>>
             @@
-
         <<case "clothstore">>
             @@.pButton;
                 <<capture _j>>
@@ -31,7 +30,16 @@
                     <</button>>
                 <</capture>>
             @@
-
+        <<case "ssShop">>
+            @@.pButton;
+                <<capture _j>>
+                    <<button "Add to shopping cart" _passage>>
+                        <<set $shoppingcart.push(setup.clothes.sextoys[_j])>>
+                        <<set $message to "addedToSC">>
+                        <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
+                    <</button>>
+                <</capture>>
+            @@
     <</switch>>
 <</widget>>
 

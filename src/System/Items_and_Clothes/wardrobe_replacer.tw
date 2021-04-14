@@ -120,14 +120,7 @@
 
                     <<print _itemContentN>> 
                     (<<clothescolor $wardrobeContent[_wardrobeSlot[_i]][_j] true>>)
-                    <<if $wardrobeContent[_wardrobeSlot[_i]][_j].gender is "male">> 
-                        <<set _ic to "img/others/maleGIcon.png">>
-                    <<elseif $wardrobeContent[_wardrobeSlot[_i]][_j].gender is "female">>
-                        <<set _ic to "img/others/femaleGIcon.png">>
-                    <<else>>
-                        <<set _ic to "img/others/neutralIcon.png">>
-                    <</if>>
-                    <img @src="_ic" style="max-width: 5%;">
+                    <<genderIcon>>
                     <span class="wardrobeBttns">
                         <br>
                         <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>

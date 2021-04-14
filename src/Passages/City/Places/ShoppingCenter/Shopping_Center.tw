@@ -2,3 +2,4 @@
     !!Shopping Center
     <div class="divisor"></div>
     <<button "Clothing Store" "clothesstore">><</button>>
+    <<button "Sex Shop" "sexshop">><</button>>
