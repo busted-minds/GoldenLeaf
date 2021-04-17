@@ -53,32 +53,34 @@
 
 /* Stores clothes inside the wardrobe, can be extended to any other "storage" that may exist in the future */
     <<widget "storingClothes">>
-        <<for _isc to 0; _isc lt $backpack.length; _isc++>>
-            <<if $backpack[_isc].category>>
-                <<set $wardrobeContent[$backpack[_isc].category[1]].push(clone($backpack[_isc]))>>
-                <<set $backpack.deleteAt(_isc)>>
+        <<for _index range $backpack>>
+            <<set _posit to $backpack.findIndex(x => x.name === _index.name)>>
+
+            <<if $backpack[_posit].category>>
+                <<set $wardrobeContent[$backpack[_posit].category[1]].push(clone($backpack[_posit]))>>
+                <<set $backpack.deleteAt(_posit)>>
 
             <</if>>
         <</for>>
     <</widget>>
 
 /* Undress all. Calling undressMain */
-<<widget "undressAll">>
-    <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
-    <<set _bodyP to Object.keys($bps)>>
+    <<widget "undressAll">>
+        <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
+        <<set _bodyP to Object.keys($bps)>>
 
-    <<for _i to 0; _i lt _bodyP.length; _i++>>
-        <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
+        <<for _i to 0; _i lt _bodyP.length; _i++>>
+            <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
 
-        <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includesAny(_cats)>>
-                <<undressMain _bodyP[_i] _bodyPIndex[_j] "primary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
-            <</if>>
+            <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
+                <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includesAny(_cats)>>
+                    <<undressMain _bodyP[_i] _bodyPIndex[_j] "primary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
+                <</if>>
 
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includesAny(_cats)>>
-                <<undressMain _bodyP[_i] _bodyPIndex[_j] "secondary" $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]>>
-            <</if>>
+                <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includesAny(_cats)>>
+                    <<undressMain _bodyP[_i] _bodyPIndex[_j] "secondary" $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]>>
+                <</if>>
+            <</for>>
+            
         <</for>>
-        
-    <</for>>
-<</widget>>
+    <</widget>>

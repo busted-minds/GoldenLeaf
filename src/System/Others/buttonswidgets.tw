@@ -8,7 +8,7 @@
                 <<capture _fLI _exist>>
                     <<button "Add to shopping cart" _passage>>
                         <<if _exist is -1>>
-                            <<set $shoppingcart.push(_foodlist[_fLI])>>
+                            <<set $shoppingcart.push(clone(_foodlist[_fLI]))>>
                             <<set $shoppingcart[$shoppingcart.length - 1].amount to _Amount>>
                             <<set $message to "addedToSC">>
                         <<elseif ($shoppingcart[_exist].amount + _Amount) lte 5>>
@@ -24,7 +24,7 @@
             @@.pButton;
                 <<capture _j>>
                     <<button "Add to shopping cart" _passage>>
-                        <<set $shoppingcart.push(_values[_j])>>
+                        <<set $shoppingcart.push(clone(_values[_j]))>>
                         <<set $message to "addedToSC">>
                         <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
                     <</button>>
@@ -32,11 +32,54 @@
             @@
         <<case "ssShop">>
             @@.pButton;
-                <<capture _j>>
+                <<capture _j _existsc>>
                     <<button "Add to shopping cart" _passage>>
-                        <<set $shoppingcart.push(setup.clothes.sextoys[_j])>>
-                        <<set $message to "addedToSC">>
-                        <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
+                        <<if setup.clothes.sextoys[_j].name is "Egg Vibe">>
+                            <<if _existsc is -1>>
+                                <<set $shoppingcart.push(clone(setup.clothes.sextoys[_j]))>>
+                                <<set $message to "addedToSC">>
+                                <<set $shoppingcart[$shoppingcart.length - 1].amount to _Amount>>
+
+                            <<elseif ($shoppingcart[_existsc].amount + _Amount) lte 5>>
+                                <<set $shoppingcart[_existsc].amount += _Amount>>
+                                <<set $message to "addedToSC">>
+                            <<else>>
+                                <<set $message to "enough">>
+                            <</if>>
+
+                        <<else>>
+                            <<set $shoppingcart.push(clone(setup.clothes.sextoys[_j]))>>
+                            <<set $message to "addedToSC">>
+                            <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
+                            <<if setup.clothes.sextoys[_j].length isnot undefined and setup.clothes.sextoys[_j].width isnot undefined>>
+                                <<switch _size>>
+                                    <<case "Huge">>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 20>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 5.5>>
+
+                                    <<case "Big">>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 15>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 4.5>>
+                                    
+                                    <<case "Medium">>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 12>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 3.5>>
+
+                                    <<case "Small">>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 2.5>>
+
+                                    <<case "Tiny">>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 3>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 1.5>>
+                                <</switch>>
+                            <</if>>
+                        <</if>>
                     <</button>>
                 <</capture>>
             @@

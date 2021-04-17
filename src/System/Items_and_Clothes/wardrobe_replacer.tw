@@ -8,6 +8,10 @@
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'upperbody')"><span @class="($pressedlink is 'upperbody' ? 'selected' : '')">Upper Body</span></button>
         <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'clothes', 'lowerbody')"><span @class="($pressedlink is 'lowerbody' ? 'selected' : '')">Lower Body</span></button>
     </fieldset>
+    <fieldset id="fieldinline" style="min-width: 18.5em;">
+        <legend style="font-size: 130%;">Accesories</legend>
+        <button class="macro-button med-button" onclick="wikifier('wardrobeCCReplacer', 'accesories', 'sextoys')"><span @class="($pressedlink is 'sextoys' ? 'selected' : '')">Sex Toys</span></button>
+    </fieldset>
     @@.wardrobeBttns;<<button "Undress All" "wardrobe">>
         <<undressAll>>
     <</button>>@@
@@ -31,6 +35,15 @@
                     <<set $pressedlink to "lowerbody">>
                     
             <</switch>>
+        
+        <<case "accesories">>
+            <<switch $args[1]>>
+                <<case "sextoys">>
+                    <<replace "#wardrobeContent">>
+                        <<showWardrobeCC "sextoys">>
+                    <</replace>>
+                    <<set $pressedlink to "sextoys">>
+            <</switch>>
 
             <<replace "#wardrobeLinks">>
                 <<wardrobeLinks>>
@@ -42,23 +55,23 @@
 /% Just some styling and calls to the main "wardrobe content"%/
 
 <<widget "showWardrobeCC">>
+    <br>
     <<switch $args[0]>>
         <<case "upperbody">>
-            <br>
             <<wardrobeItemsContent "upperbody">>
-            <div id="wardrobeItemsContent"></div>
 
         <<case "lowerbody">>
-            <br>
             <<wardrobeItemsContent "lowerbody">>
-            <div id="wardrobeItemsContent"></div>
 
+        <<case "sextoys">>
+            <<wardrobeSexToys>>
     <</switch>>
 
+    <div id="wardrobeItemsContent"></div>
 <</widget>>
 
 /% This is where the fun begins holy shit. I was like 2-3 weeks doing this thing.%/
-/% BTW Credits and thanks a lot to Degree of Lewdity for the code as this one is based from the code that they have and prob heavely modified to work with what I have.%/
+/% BTW Credits and thanks a lot to Degree of Lewdity for the code as this one is based from the code that they have and heavely modified to work with what I have.%/
 /% There are 3 switches, one checks for the "upperbody", the other for the lowerbody, it may be expanded further in the future.%/
 /% That switch stores it temporary so in case the args is, it becomes more easy to use later.%/
 /% The last 2 does essentially the same except that one is for "primary" and "secondary" body slots and the last one is for the bodypart index.%/
@@ -120,7 +133,8 @@
 
                     <<print _itemContentN>> 
                     (<<clothescolor $wardrobeContent[_wardrobeSlot[_i]][_j] true>>)
-                    <<genderIcon>>
+                    <<wardItemIcn _wardrobeSlot[_i] _j>>
+
                     <span class="wardrobeBttns">
                         <br>
                         <<capture _wardrobeSlot[_i] _j _body _bpIndex _itemSlot>>
@@ -131,7 +145,7 @@
                         
                         <<capture _itemContentN _wardrobeSlot[_i]>>
                             <<button "Info">>
-                                <<replacer "iteminfo" _itemContentN _wardrobeSlot[_i]>>
+                                <<replacer "iteminfo" _j _wardrobeSlot[_i]>>
                             <</button>>
                         <</capture>>
                     </span>
@@ -142,4 +156,40 @@
         </div>
     <</for>>
 
+<</widget>>
+
+<<widget "wardrobeSexToys">>
+    <<set _categories to ["vibrator", "dildo"]>>
+
+    <<for _i to 0; _i lt _categories.length; _i++>>
+        <div class="list" style="min-width: 10.6em;">
+            <div id="insidelist">
+                <span style="font-size: 115%"><<print _categories[_i].toUpperFirst() + "s">></span>
+                <div class="divisor"></div>
+                <<for _j to 0; _j lt $wardrobeContent.accesories.length; _j++>>
+                    <<if $wardrobeContent.accesories[_j].category.includes(_categories[_i])>>
+                        <<if $wardrobeContent.accesories[_j].amount gt 1>>
+                            x <<print $wardrobeContent.accesories[_j].amount>>
+                        <</if>>
+                        <<print $wardrobeContent.accesories[_j].name>> 
+                        <<if $wardrobeContent.accesories[_j].color>>
+                            (<<clothescolor $wardrobeContent.accesories[_j] true>>)
+                        <</if>>
+                        <<wardItemIcn "accesories" _j>>
+
+                        <<if $wardrobeContent.accesories[_j].category.includes("wearable")>>
+                            aaaaaaaaaaaa
+                        <</if>>
+                        <span class="wardrobeBttns">
+                            <<capture _j>>
+                                <<button "Info">>
+                                    <<replacer "iteminfo" _j "accesories">>
+                                <</button>>
+                            <</capture>>
+                        </span>
+                    <</if>>
+                <</for>>
+            </div>
+        </div>
+    <</for>>
 <</widget>>

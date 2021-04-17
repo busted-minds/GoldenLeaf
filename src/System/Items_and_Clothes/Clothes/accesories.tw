@@ -32,10 +32,23 @@
             price: 10,
             amount: 1,
             description: "An egg vibe",
-            category: ["vibrator", "accesories", "sextoy"],
+            category: ["vibrator", "accesories", "sextoy", "wearable"],
             gender: "female",
-            arsGain: 5
-        }
+            arsGain: 2
+        },
+        {
+            id: 1,
+            name: "Dildo",
+            lowname: "dildo",
+            price: 10,
+            color: undefined,
+            length: 0,
+            width: 0,
+            description: "A dildo",
+            category: ["dildo", "accesories", "sextoy"],
+            gender: "female",
+            arsGain: 6
+        },
     ]>>
 
 <</widget>>

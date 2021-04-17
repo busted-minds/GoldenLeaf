@@ -1,25 +1,38 @@
 :: iteminfo [widget nobr]
 
 <<widget "iteminfo">>
-    <<set _itemName to $args[0]>>
+    <<set _id to $args[0]>>
     <<set _slot to $args[1]>>
-    <<set _id to $wardrobeContent[_slot].findIndex(x => x.name === _itemName)>>
-    <<set _itemDesc to $wardrobeContent[_slot][_id].description>>
-    <<set _itemCat to $wardrobeContent[_slot][_id].category>>
     
-    Name: <<print _itemName>>
-    <<if $wardrobeContent[_slot][_id].gender is "male">> 
+    Name: <<print $wardrobeContent[_slot][_id].name>>
+    <<wardItemIcn _slot _id>>
+    <br>
+    Description: 
+    <<if $wardrobeContent[_slot][_id].amount gt 1>>
+        <<print String.format("x{0} {1}s", $wardrobeContent[_slot][_id].amount, $wardrobeContent[_slot][_id].name)>>
+    <<else>>
+        <<print $wardrobeContent[_slot][_id].description>>
+    <</if>>
+    <<if $wardrobeContent[_slot][_id].color>>
+        <br>
+        Color: <<clothescolor $wardrobeContent[_slot][_id] true>>
+    <</if>>
+    <br>
+    <<if $wardrobeContent[_slot][_id].length isnot undefined and $wardrobeContent[_slot][_id].width isnot undefined>>
+        Length: <<print $wardrobeContent[_slot][_id].length>>
+        <br>
+        Width: <<print $wardrobeContent[_slot][_id].width>>
+    <</if>>
+
+<</widget>>
+
+<<widget "wardItemIcn">>
+    <<if $wardrobeContent[$args[0]][$args[1]].gender is "male">> 
         <<set _ic to "img/others/maleGIcon.png">>
-    <<elseif $wardrobeContent[_slot][_id].gender is "female">>
+    <<elseif $wardrobeContent[$args[0]][$args[1]].gender is "female">>
         <<set _ic to "img/others/femaleGIcon.png">>
     <<else>>
         <<set _ic to "img/others/neutralIcon.png">>
     <</if>>
     <img @src="_ic" style="max-width: 5%;">
-    <br>
-    Description: <<print _itemDesc>>
-    <br>
-    Color: <<clothescolor $wardrobeContent[_slot][_id] true>>
-    <br>
-
 <</widget>>

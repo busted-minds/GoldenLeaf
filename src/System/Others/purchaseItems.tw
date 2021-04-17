@@ -22,7 +22,6 @@
                     Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
                     <br>
                     <div class="thindiv"></div>
-                    @@.smollfont;Amount to remove:@@
                     <<for _scj to 0; _scj lt $shoppingcart[_sci].amount; _scj++>>
                         <<set _n.push(_scj +1)>>
                     <</for>>
@@ -31,12 +30,27 @@
                     <</listbox>>
                     <button class="macro-button smollfont smollbutt" @onclick='`(SugarCube.State.variables.shoppingcart[`+_sci+`].amount > SugarCube.State.temporary.deleteAm ? SugarCube.State.variables.shoppingcart[`+_sci+`].amount -= SugarCube.State.temporary.deleteAm : SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`)); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
                 <<else>>
-                    <<set _total += $shoppingcart[_sci].price>>
                     Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
+                    <<if $shoppingcart[_sci].color>>
+                        <br>
+                        Color: <<clothescolor $shoppingcart[_sci] true>>
+                    <</if>>
+
+                    <<if $shoppingcart[_sci].amount>>
+                        <<set _total += $shoppingcart[_sci].price * $shoppingcart[_sci].amount>>
+                        <div class="thindiv"></div>
+                        <<for _sc to 0; _sc lt $shoppingcart[_sci].amount; _sc++>>
+                            <<set _n.push(_sc +1)>>
+                        <</for>>
+                        <<listbox "_deleteAm">>
+                            <<optionsfrom _n>>
+                        <</listbox>>
+                        <button class="macro-button smollfont smollbutt" @onclick='`(SugarCube.State.variables.shoppingcart[`+_sci+`].amount > SugarCube.State.temporary.deleteAm ? SugarCube.State.variables.shoppingcart[`+_sci+`].amount -= SugarCube.State.temporary.deleteAm : SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`)); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
+                    <<else>>
+                        <<set _total += $shoppingcart[_sci].price>>
+                        <button class="macro-button smollfont smollbutt" @onclick='`SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
+                    <</if>>
                     <br>
-                    Color: <<clothescolor $shoppingcart[_sci] true>>
-                    <br>
-                    <button class="macro-button smollfont smollbutt" @onclick='`SugarCube.State.variables.shoppingcart.deleteAt(`+_sci+`); SugarCube.Engine.play(SugarCube.State.passage)`'>Remove</button>
                 <</if>>
             </div>
         </div>

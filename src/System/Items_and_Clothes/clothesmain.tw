@@ -188,9 +188,9 @@
 <</widget>>
 
 <<widget "genderIcon">>
-    <<if setup.clothes.sextoys[_j].gender is "male">> 
+    <<if setup.clothes[$args[0]][_j].gender is "male">> 
         <<set _ic to "img/others/maleGIcon.png">>
-    <<elseif setup.clothes.sextoys[_j].gender is "female">>
+    <<elseif setup.clothes[$args[0]][_j].gender is "female">>
         <<set _ic to "img/others/femaleGIcon.png">>
     <<else>>
         <<set _ic to "img/others/neutralIcon.png">>

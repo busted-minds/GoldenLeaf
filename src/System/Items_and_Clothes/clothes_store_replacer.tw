@@ -75,12 +75,10 @@
         
         <<for _j to 0; _j lt _values.length; _j++>>
             <<if _values[_j].lowname isnot "naked">>
-                <<set _existsc to $shoppingcart.findIndex(x => x.name === _values[_j].name)>>
-
                 <div class="list">
                     <div id="insidelist">
                         Name: @@.orange;<<print _values[_j].name>>@@ 
-                        <<genderIcon>>
+                        <<genderIcon _values[_j].category[1]>>
                         <br>
                         Price: @@.yellow;<<print _values[_j].price>> credits@@
                         <br>
@@ -122,6 +120,7 @@
             <<switch $args[0]>>
                 <<case "SexToys">>
                     <button class="macro-button" onclick="wikifier('ssContent', 'vibrator', 'SexToys')"><span @class="($pressedlStore is 'vibrator' ? 'selected' : '')">Vibrators</span></button>
+                    <button class="macro-button" onclick="wikifier('ssContent', 'dildo', 'SexToys')"><span @class="($pressedlStore is 'dildo' ? 'selected' : '')">Dildos</span></button>
             <</switch>>
         </div>
         </div>
@@ -151,21 +150,37 @@
         <</for>>
 
         <<set _selectedColor to undefined>>
-        
+        <<set _sizes to ["Huge", "Big", "Medium", "Small", "Tiny"]>>
+        <<set _n to [1, 2, 3, 4, 5]>>
+
         <<for _j to 0; _j lt setup.clothes.sextoys.length; _j++>>
             <<if setup.clothes.sextoys[_j].category.includes($args[0])>>
-                <<set _existsc to $shoppingcart.findIndex(x => x.name === setup.clothes.sextoys[_j].name)>>
-
                 <div class="list">
                     <div id="insidelist">
                         Name: @@.orange;<<print setup.clothes.sextoys[_j].name>>@@ 
-                        <<genderIcon>>
+                        <<genderIcon "sextoys">>
                         <br>
                         Price: @@.yellow;<<print setup.clothes.sextoys[_j].price>> credits@@
                         <br>
-                        Color: <<listbox "_selectedColor" autoselect>>
-                            <<optionsfrom _colors>>
-                        <</listbox>>
+                        <<if setup.clothes.sextoys[_j].name isnot "Egg Vibe">>
+                            Color: 
+                            <<listbox "_selectedColor" autoselect>>
+                                <<optionsfrom _colors>>
+                            <</listbox>>
+                        <<else>>
+                            Amount:
+                            <<listbox "_Amount" autoselect>>
+                                <<optionsfrom _n>>
+                            <</listbox>>
+                            <<set _existsc to $shoppingcart.findIndex(x => x.name === setup.clothes.sextoys[_j].name)>>
+                        <</if>>
+                        
+                        <<if setup.clothes.sextoys[_j].length isnot undefined and setup.clothes.sextoys[_j].width isnot undefined>>
+                            <br>
+                            Size: <<listbox "_size">> autoselect
+                                <<optionsfrom _sizes>>
+                            <</listbox>>
+                        <</if>>
                         <<pButton "ssShop">>
                     </div>
                 </div>

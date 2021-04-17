@@ -1,11 +1,11 @@
 :: clotheschecker [widget nobr]
 
-/% The widget checks what clothes the player is using and what not. %/
-/% This comment is from 15/05/2020 when I finally "finished" the WandU system, each comment here was before is started commeting the wardrobe system. %/
-/% This thing is and was a PitA (Pain in the Ass) to make so not a long comment this one will be :D.%/ 
-/% Credits and Thanks a lot to DoL again, because this was heavely inspired and may look the same as the one of them. %/
-/% Really, you may want to try and play DoL is a great game and it inspired me to make my own (Beware that DoL is more "rapey"). %/
-/% The widget "clothesDescriptor" works like this: Just put the bodypart variable and that's it.%/
+/% The widget checks what clothes the player is using and what not. 
+ This comment is from 15/05/2020 when I finally "finished" the WandU system, each comment here was before is started commeting the wardrobe system. 
+ This thing is and was a Pain in the Ass to make so not a long comment this one will be :D.
+ Credits and Thanks a lot to DoL again, because this was heavely inspired and may look the same as the one of them. 
+ Really, you may want to try and play DoL is a great game and it inspired me to make my own (Beware that DoL is more "rapey").
+%/
 <<widget "clotheschecker">>
     <<if $bps.upperbody[0].primary.lowname is "naked">> /% The player doesn't have outerwear %/
         <<if $bps.upperbody[0].primary.lowname is "naked" and $bps.upperbody[0].secondary.lowname is "naked">> /% The player doesn't have underwear%/
