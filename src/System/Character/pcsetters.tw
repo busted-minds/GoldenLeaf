@@ -210,13 +210,13 @@
 
 	<</if>>
 
-	<<if $playervar.penissize eq 25>>
+	<<if $playervar.penissize eq 24>>
 		<<set $playervar.peniswidth to 6.5>>
 
-	<<elseif $playervar.penissize gte 22>>
+	<<elseif $playervar.penissize gte 20>>
 		<<set $playervar.peniswidth to 5.5>>
 
-	<<elseif $playervar.penissize gte 18>>
+	<<elseif $playervar.penissize gte 15>>
 		<<set $playervar.peniswidth to 4.5>>
 		
 	<<elseif $playervar.penissize gte 12>>
