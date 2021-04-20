@@ -32,7 +32,7 @@
             price: 10,
             amount: 1,
             description: "An egg vibe",
-            category: ["vibrator", "accesories", "sextoy", "wearable"],
+            category: ["vibrator", "accesories", "sextoy", {wearable: ["vulva", "anus"]}],
             gender: "female",
             arsGain: 2
         },

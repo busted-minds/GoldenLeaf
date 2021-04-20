@@ -124,7 +124,7 @@
                     <<set _itemContentN to $wardrobeContent[_wardrobeSlot[_i]][_j].name>>
 
                     <<print _itemContentN>> 
-                    (<<clothescolor $wardrobeContent[_wardrobeSlot[_i]][_j] true>>)
+                    <<clothescolor "inColor" $wardrobeContent[_wardrobeSlot[_i]][_j].color>>
                     <<wardItemIcn _wardrobeSlot[_i] _j>>
 
                     <span class="wardrobeBttns">
@@ -152,7 +152,6 @@
 
 <<widget "wardrobeSexToys">>
     <<set _categories to ["vibrator", "dildo"]>>
-    <<set _parts to ["vulva", "anus"]>>
 
     <<for _i to 0; _i lt _categories.length; _i++>>
         <div class="list" style="min-width: 10.6em;">
@@ -166,20 +165,27 @@
                         <</if>>
                         <<print $wardrobeContent.accesories[_j].name>> 
                         <<if $wardrobeContent.accesories[_j].color>>
-                            (<<clothescolor $wardrobeContent.accesories[_j] true>>)
+                            <<clothescolor "inColor" $wardrobeContent.accesories[_j].color>>
                         <</if>>
                         <<wardItemIcn "accesories" _j>>
+                        <span class="wardrobeBttns">
+                            <<capture _j>>
+                                <<button "Info">>
+                                    <<replacer "iteminfo" _j "accesories">>
+                                <</button>>
+                            <</capture>>
+                        </span>
 
                         <span class="med-button">
-                        <<if $wardrobeContent.accesories[_j].category.includes("wearable")>>
+                        <<if $wardrobeContent.accesories[_j].category[3] and $wardrobeContent.accesories[_j].category[3].wearable>>
                             <br>
-                            <<for _p to 0; _p lt _parts.length; _p++>>
-                                <<switch _parts[_p]>>
+                            <<for _p to 0; _p lt $wardrobeContent.accesories[_j].category[3].wearable.length; _p++>>
+                                <<switch $wardrobeContent.accesories[_j].category[3].wearable[_p]>>
                                     <<case "vulva">>
                                         <<set _body to "genitals">>
                                         <<set _bpIndex to 0>>
                                         <<set _itemPl to "secondary">>
-                                        <<set _name to "Vagina">>
+                                        <<set _name to "Vag">>
                                     <<case "anus">>
                                         <<set _body to "lowerbody">>
                                         <<set _bpIndex to 1>>
@@ -188,25 +194,16 @@
                                 <</switch>>
 
                                 <<capture _j _body _bpIndex _itemPl _name>>
-                                    <<button "Wear(_name)" "wardrobe">>
+                                    <<button "Put in(_name)" "wardrobe">>
                                         <<set $wardrobeContent.accesories[_j].slot = _name>>
-                                        <<wearSextoy _j _body _bpIndex _itemPl>>
+                                        <<putSextoy _j _body _bpIndex _itemPl>>
                                     <</button>>
                                 <</capture>>
 
                             <</for>>
                         <</if>>
                         </span>
-
-                        <span class="wardrobeBttns">
-                            <<capture _j>>
-                                <<button "Info">>
-                                    <<replacer "iteminfo" _j "accesories">>
-                                <</button>>
-                            <</capture>>
-                        </span>
                     <</if>>
-                    <br>
                 <</for>>
             </div>
         </div>

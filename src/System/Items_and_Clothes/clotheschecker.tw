@@ -169,7 +169,7 @@
 
 /* Enable/disable color clothes */
 <<widget "clothescolor">>
-    <<if $args[0] is "outfitInfoColor">>
+    <<if $args[0] is "inColor">>
         <<set _clothColor to setup.clothes.colors[$args[1]]>>
         <<if $displayColorText>>
             <<set _clothColorChk to $args[1]>>
@@ -184,11 +184,7 @@
             <<set _clothColorChk to _clothes.color>>
         <</if>>
         
-        <<if $args[1] is true>>
-            <span @class="_clothColorChk"><<print _clothColor.toUpperFirst()>></span>
-        <<else>>
-            <span @class="_clothColorChk"><<print String.format("{0} {1}", _clothColor, _clothesName)>></span>
-        <</if>>
+        <span @class="_clothColorChk"><<print String.format("{0} {1}", _clothColor, _clothesName)>></span>
     <</if>>
 <</widget>>
 
