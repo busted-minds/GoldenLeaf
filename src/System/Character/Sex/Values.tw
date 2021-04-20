@@ -1,11 +1,62 @@
-:: values(masturbation) [widget nobr]
+:: sex(main) [widget nobr]
+    /* These widgets are self-explanatory. 
+        But for addArousal the arguments are like this: $args[1] = the message in case of being a "premade" message or the type of action(ex: masturb). 
+        $args[2] is in case of a "pre-made" message so it does collide with the one that doesn't use "pre-made" messages.*/
+    <<widget "addArousal">>
+        <<set _amount to $args[0]>>
+        <<set _mult to $playervar.sensibility / 100>>
+
+        <<set $arousal += _amount + Math.round(_amount * _mult)>>
+
+        <<if $arousal gte 100>>
+            <<orgasmCheck $args[1] $args[2]>>
+        <</if>>
+
+    <</widget>>
+
+    <<widget "orgasmCheck">>
+        <<set $arousal to 0>>
+
+        <<if $args[1] is "mastMsg">>
+            <<if $playervar.gender is "male">>
+                <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
+            <<elseif $playervar.cansquirt is true>>
+                <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some fluids.">>
+            <<else>>
+                <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
+            <</if>>
+
+            <<addSexTraits $args[0]>>
+
+        <<elseif $args[2] is "preM">>
+            <<set $message to $args[0]>>
+            <<addSexTraits $args[1]>>
+        <</if>>
+
+        <<set $aroused to undefined>>
+
+    <</widget>>
+    /* Will need to expand this later when more sexual traits are added. */
+    <<widget "addSexTraits">>
+        <<if $args.includesAny("masturb")>>
+            <<set $masturCount++>>
+        
+            <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
+            <<if $masturCount gte 5 and _find is -1>>
+                <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
+            <<elseif _find isnot -1>>
+                <<traitsEXP _find 1>>
+            <</if>>
+        <</if>>
+    <</widget>>
+
+:: masturbation [widget nobr]
     /* Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
         This work beyond human understanding.
         Just some options so you can fap or the other thing that girls do.
         You can even fap while switching hands :0
     */
     <<widget "masturbation">>
-        <<set _mult to $playervar.sensibility / 100>>
         <<set _hands to ["RightHand", "LeftHand"]>>
         <<for _i to 0; _i lt _hands.length; _i++>>
             <<switch _hands[_i]>>
@@ -17,7 +68,7 @@
 
             <<switch $selectedSexOpt[_hands[_i]]>>
                 <<case "Massage clitoris">>
-                    <<set $arousal += 6+ Math.round(6* _mult)>>
+                    <<addArousal 6 "masturb" "mastMsg">>
                         
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your clitoris in circular motion, up and down and to the sides, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
@@ -31,7 +82,7 @@
                     <</if>>
 
                 <<case "Massage labia">>
-                    <<set $arousal += 4+ Math.round(4* _mult)>>
+                    <<addArousal 4 "masturb" "mastMsg">>
                         
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your labia, in circular motion, up and down and to the sides building up arousal trying to get wet to maybe an insertion@@ and starting to @@.darkpink;feel good@@.">>
@@ -42,7 +93,7 @@
                     <</if>>
 
                 <<case "Insert fingers(Vagina)">>
-                    <<set $arousal += 6+ Math.round(6* _mult)>>
+                    <<addArousal 6 "masturb" "mastMsg">>
                     
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "You gently insert @@.orange;2@@ @@.pink;fingers into your vagina, trying to find the spot that feels the best, warm and moist@@. @@.darkpink;You're starting to feel good@@.">>
@@ -56,7 +107,7 @@
                     <</if>>
 
                 <<case "Massage anus">>
-                    <<set $arousal += 4+ Math.round(4* _mult)>>
+                    <<addArousal 4 "masturb" "mastMsg">>
 
                     <<if $arousal lt 45>>
                     <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage around your anus with circular motions, trying to prepare it for an insertion, or maybe you just like to massage it, and start to @@.darkpink;feel good@@.">>
@@ -67,7 +118,7 @@
                     <</if>> 
 
                 <<case "Insert fingers(Anus)">>
-                    <<set $arousal += 5+ Math.round(5* _mult)>>
+                    <<addArousal 5 "masturb" "mastMsg">>
 
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "You gently insert @@.orange;1@@ @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You're starting to feel good@@.">>
@@ -82,9 +133,9 @@
 
                 <<case "Caress nipples">>
                     <<if $playervar.gender is "female">>
-                        <<set $arousal += 3+ Math.round(3* _mult)>>
+                        <<addArousal 3 "masturb" "mastMsg">>
                     <<else>>
-                        <<set $arousal += Math.round(1.5+ (1.5* _mult))>>
+                        <<addArousal 1 "masturb" "mastMsg".5>>
                     <</if>>
                     
                     <<if $arousal lt 45>>
@@ -100,9 +151,9 @@
 
                 <<case "Pinch nipples">>
                     <<if $playervar.gender is "female">>
-                        <<set $arousal += 4+ Math.round(4* _mult)>>
+                        <<addArousal 4 "masturb" "mastMsg">>
                     <<else>>
-                        <<set $arousal += 2+ Math.round(2* _mult)>>
+                        <<addArousal 2 "masturb" "mastMsg">>
                     <</if>>
 
                     <<if $arousal lt 45>>
@@ -117,7 +168,7 @@
                     <</if>>
 
                 <<case "Caress penis">>
-                    <<set $arousal += 4+ Math.round(4* _mult)>>
+                    <<addArousal 4 "masturb" "mastMsg">>
 
                     <<if $arousal lt 30>>
                     <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you caress your penis, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
@@ -130,7 +181,7 @@
 
                     <</if>>
                 <<case "Caress testicles">>
-                    <<set $arousal += 5+ Math.round(5* _mult)>>
+                    <<addArousal 5 "masturb" "mastMsg">>
                     <<if $arousal lt 70>>
                         <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you caress your testicles with circular motions around them, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
@@ -140,7 +191,7 @@
                     <</if>>
 
                 <<case "Stroke penis">>
-                    <<set $arousal += 6+ Math.round(6* _mult)>>
+                    <<addArousal 6 "masturb" "mastMsg">>
 
                     <<if $arousal lt 30>>
                     <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you stroke your penis up and down, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
