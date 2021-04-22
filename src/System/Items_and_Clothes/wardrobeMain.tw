@@ -33,30 +33,30 @@
         %/
         <<if passage() is "wardrobe">>
             <<if $bps[_bodyPart][_bodySlot][_itemsSlot].lowname isnot "naked">>
-                    <<if $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
-                        <<set _findI to $wardrobeContent[_clothesSlot].findIndex(x => x.lowname === $bps[_bodyPart][_bodySlot][_itemsSlot].lowname)>>
+                <<if $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
+                    <<set _findI to $wardrobeContent[_clothesSlot].findIndex(x => x.lowname === $bps[_bodyPart][_bodySlot][_itemsSlot].lowname)>>
                         
-                        <<if _findI is -1>>
-                            <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
-
-                        <<else>>
-                            <<set $wardrobeContent[_clothesSlot][_findI].amount += $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
-
-                        <</if>>
-                    
-                    <<else>>
+                    <<if _findI is -1>>
                         <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
 
-                    <</if>>
-
-                    <<set $message to "@@.red;You remove your <span class='orange'>"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"</span>.@@">>
-
-                    <<if _clothesSlot is "shoes" or _clothesSlot is "accesories">>
-                        <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes.accesories[0])>>
-
                     <<else>>
-                        <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+                        <<set $wardrobeContent[_clothesSlot][_findI].amount += $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
+
                     <</if>>
+                    
+                <<else>>
+                    <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
+
+                <</if>>
+
+                <<set $message to "@@.red;You remove your <span class='orange'>"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"</span>.@@">>
+
+                <<if _clothesSlot is "shoes" or _clothesSlot is "accesories">>
+                    <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes.accesories[0])>>
+
+                <<else>>
+                    <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+                <</if>>
 
             <</if>>
 
@@ -72,34 +72,79 @@
         <<set _bodyPart to $args[1]>>
         <<set _bodyPIndex to $args[2]>>
         <<set _itemSlot to $args[3]>>
+        <<set _warLowName to $wardrobeContent.accesories[_itemID].lowname>>
 
-        <<if $bps[_bodyPart][_bodyPIndex][_itemSlot].lowname isnot $wardrobeContent.accesories[_itemID].lowname>>
-            <<undressMain _bodyPart _bodyPIndex _itemSlot "accesories">>
+        <<if $bps[_bodyPart][_bodyPIndex].primary.lowname isnot "naked" and $bps[_bodyPart][_bodyPIndex].primary.lowname isnot _warLowName>>
+            <<set _itemSlot to "secondary">>
+            <<run console.log("to secondary")>>
+
+        <<elseif $bps[_bodyPart][_bodyPIndex].secondary.lowname isnot "naked" and $bps[_bodyPart][_bodyPIndex].secondary.lowname isnot _warLowName>>
+            <<set _itemSlot to "primary">>
+            <<run console.log("to primary")>>
         <</if>>
 
-        <<if $bps[_bodyPart][_bodyPIndex][_itemSlot].lowname is $wardrobeContent.accesories[_itemID].lowname>>
-            <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount++>>
+        <<set _bpslowName to $bps[_bodyPart][_bodyPIndex][_itemSlot].lowname>>
+
+        <<limitToy>>
+
+        <<if $bps[_bodyPart][_bodyPIndex][_itemSlot].amount eq _vLimit or 
+            $bps[_bodyPart][_bodyPIndex][_itemSlot].amount eq _aLimit>>
+            <<set $message to "@@.red;You can't put more of this item inside.@@">>
 
         <<else>>
-            <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent.accesories[_itemID])>>
-            <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount to 1>>
-        <</if>>
+            <<if _bpslowName isnot _warLowName>>
+                <<undressMain _bodyPart _bodyPIndex _itemSlot "accesories">>
 
-        <<if $wardrobeContent.accesories[_itemID].arsGain>>
-            <<if $arousal + $wardrobeContent.accesories[_itemID].arsGain gte 100>>
-                <<set _message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you reached your limit and had an @@.pink;orgasm@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
-            <<else>>
-                <<set $message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you feel @@.pink;more aroused@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
             <</if>>
-            
-            <<addArousal $wardrobeContent.accesories[_itemID].arsGain _message "masturb" "preM">>
+
+            <<if $wardrobeContent.accesories[_itemID].arsGain>>
+                <<if $arousal + $wardrobeContent.accesories[_itemID].arsGain gte 100>>
+                    <<set _message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you reached your limit and had an @@.pink;orgasm@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
+                <<else>>
+                    <<set $message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you feel @@.pink;more aroused@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
+                <</if>>
+                
+                <<addArousal $wardrobeContent.accesories[_itemID].arsGain _message "masturb" "preM">>
+            <</if>>
+
+            <<if _bpslowName is _warLowName and $wardrobeContent.accesories[_itemID].amount gt 0>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount++>>
+
+            <<elseif $wardrobeContent.accesories[_itemID].amount gt 0>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent.accesories[_itemID])>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount to 1>>
+
+            <<else>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent.accesories[_itemID])>>
+                
+            <</if>>
+
+            <<if $wardrobeContent.accesories[_itemID].amount and $wardrobeContent.accesories[_itemID].amount gt 1>>
+                <<set $wardrobeContent.accesories[_itemID].amount-->>
+            <<else>>
+                <<set $wardrobeContent.accesories.deleteAt(_itemID)>>
+            <</if>>
+
+        <</if>>
+    <</widget>>
+
+    <<widget "limitToy">>
+        <<if $playervar.vagdepth gte 23>>
+            <<set _vLimit to 5>>
+        <<elseif $playervar.vagdepth gte 18>>
+            <<set _vLimit to 3>>
+        <<elseif $playervar.vagdepth gte 13>>
+            <<set _vLimit to 2>>
         <</if>>
 
-        <<if $wardrobeContent.accesories[_itemID].amount gt 1>>
-            <<set $wardrobeContent.accesories[_itemID].amount-->>
-        <<else>>
-            <<set $wardrobeContent.accesories.deleteAt(_itemID)>>
+        <<if $playervar.anusdepth gte 27>>
+            <<set _aLimit to 7>>
+        <<elseif $playervar.anusdepth gte 23>>
+            <<set _aLimit to 5>>
+        <<elseif $playervar.anusdepth gte 20>>
+            <<set _aLimit to 4>>
         <</if>>
+        
     <</widget>>
 
 /* Stores clothes inside the wardrobe, can be extended to any other "storage" that may exist in the future */

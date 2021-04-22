@@ -183,18 +183,20 @@
                         <<if $wardrobeContent.accesories[_j].category[3] and $wardrobeContent.accesories[_j].category[3].wearable>>
                             <br>
                             <<for _p to 0; _p lt $wardrobeContent.accesories[_j].category[3].wearable.length; _p++>>
-                                <<switch $wardrobeContent.accesories[_j].category[3].wearable[_p]>>
-                                    <<case "vulva">>
-                                        <<set _body to "genitals">>
-                                        <<set _bpIndex to 0>>
-                                        <<set _itemPl to "secondary">>
-                                        <<set _part to "Vag">>
-                                    <<case "anus">>
-                                        <<set _body to "lowerbody">>
-                                        <<set _bpIndex to 1>>
-                                        <<set _itemPl to "primary">>
-                                        <<set _part to "Anus">>
-                                <</switch>>
+                                <<if $wardrobeContent.accesories[_j].category[3].wearable[_p] is "vulva" and $playervar.gender is "female">>
+                                    <<set _body to "genitals">>
+                                    <<set _bpIndex to 0>>
+                                    <<set _itemPl to "secondary">>
+                                    <<set _part to "Vag">>
+
+                                <<elseif $wardrobeContent.accesories[_j].category[3].wearable[_p] is "anus">>
+                                    <<set _body to "lowerbody">>
+                                    <<set _bpIndex to 1>>
+                                    <<set _itemPl to "primary">>
+                                    <<set _part to "Anus">>
+                                <<else>>
+                                    <<continue>>
+                                <</if>>
 
                                 <<capture _j _body _bpIndex _itemPl _part>>
                                     <<button "Put in(_part)" "wardrobe">>
@@ -206,6 +208,7 @@
                             <</for>>
                         <</if>>
                         </span>
+                        <br>
                     <</if>>
                 <</for>>
             </div>
