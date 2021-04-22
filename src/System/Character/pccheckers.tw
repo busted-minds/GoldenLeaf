@@ -1,6 +1,4 @@
 :: pccheckers [widget nobr]
-
-
 /% Some checkers that may and probably will change later on how it works. %/
 <<widget "buttsizechecker">> /* Butt size checker */
 	<<if $playervar.buttsize eq 100>>
