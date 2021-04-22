@@ -33,12 +33,11 @@
                     Price: @@.yellow;<<print $shoppingcart[_sci].price>>@@ Credits
                     <<if $shoppingcart[_sci].color>>
                         <br>
-                        Color: <<clothescolor $shoppingcart[_sci] true>>
+                        Color: <<clothescolor "inColor" $shoppingcart[_sci].color "colorOnly">>
                     <</if>>
-
+                    <div class="thindiv"></div>
                     <<if $shoppingcart[_sci].amount>>
                         <<set _total += $shoppingcart[_sci].price * $shoppingcart[_sci].amount>>
-                        <div class="thindiv"></div>
                         <<for _sc to 0; _sc lt $shoppingcart[_sci].amount; _sc++>>
                             <<set _n.push(_sc +1)>>
                         <</for>>

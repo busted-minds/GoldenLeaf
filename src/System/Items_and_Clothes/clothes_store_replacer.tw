@@ -95,12 +95,8 @@
 :: sexshopReplacer [widget nobr]
     <<widget "ssShow">>
         <<messager>>
-        <<if !$pressedlStore>>
-            <<set $pressedlStore to $args[1]>>
-        <</if>>
-        <br>
             <div id="storeLinks" class="storeLinks">
-                <<ssLinks $args[0]>>
+                <<ssLinks>>
             </div>
             <div class="thindiv"></div>
             <div id="storeContent">
@@ -117,11 +113,9 @@
         <div class="list">
         <span style="font-size: 130%; margin-left: 5px;"> Category: </span>
         <div id="insidelist">
-            <<switch $args[0]>>
-                <<case "SexToys">>
-                    <button class="macro-button" onclick="wikifier('ssContent', 'vibrator', 'SexToys')"><span @class="($pressedlStore is 'vibrator' ? 'selected' : '')">Vibrators</span></button>
-                    <button class="macro-button" onclick="wikifier('ssContent', 'dildo', 'SexToys')"><span @class="($pressedlStore is 'dildo' ? 'selected' : '')">Dildos</span></button>
-            <</switch>>
+            <button class="macro-button" onclick="wikifier('ssContent', 'vibrator', 'SexToys')"><span @class="($pressedlStore is 'vibrator' ? 'selected' : '')">Vibrators</span></button>
+            <button class="macro-button" onclick="wikifier('ssContent', 'dildo', 'SexToys')"><span @class="($pressedlStore is 'dildo' ? 'selected' : '')">Dildos</span></button>
+            <button class="macro-button" onclick="wikifier('ssContent', 'plug', 'SexToys')"><span @class="($pressedlStore is 'plug' ? 'selected' : '')">Plugs</span></button>
         </div>
         </div>
     <</widget>>
@@ -133,7 +127,7 @@
         <<set $pressedlStore to $args[0]>>
 
         <<replace "#storeLinks">>
-            <<ssLinks $args[1]>>
+            <<ssLinks>>
         <</replace>>
     <</widget>>
 

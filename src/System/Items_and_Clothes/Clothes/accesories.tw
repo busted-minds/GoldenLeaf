@@ -49,6 +49,19 @@
             gender: "female",
             arsGain: 6
         },
+        {
+            id: 2,
+            name: "Anal Plug",
+            lowname: "anal plug",
+            price: 10,
+            color: undefined,
+            length: 0,
+            width: 0,
+            description: "An anal plug",
+            category: ["plug", "accesories", "sextoy", {wearable: ["anus"]}],
+            gender: "female",
+            arsGain: 2
+        },
     ]>>
 
 <</widget>>

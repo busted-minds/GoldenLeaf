@@ -151,7 +151,10 @@
 <</widget>>
 
 <<widget "wardrobeSexToys">>
-    <<set _categories to ["vibrator", "dildo"]>>
+    <<set _categories to []>>
+    <<for _st to 0; _st lt setup.clothes.sextoys.length; _st++>>
+        <<set _categories.pushUnique(setup.clothes.sextoys[_st].category[0])>>
+    <</for>>
 
     <<for _i to 0; _i lt _categories.length; _i++>>
         <div class="list" style="min-width: 10.6em;">
@@ -185,17 +188,17 @@
                                         <<set _body to "genitals">>
                                         <<set _bpIndex to 0>>
                                         <<set _itemPl to "secondary">>
-                                        <<set _name to "Vag">>
+                                        <<set _part to "Vag">>
                                     <<case "anus">>
                                         <<set _body to "lowerbody">>
                                         <<set _bpIndex to 1>>
                                         <<set _itemPl to "primary">>
-                                        <<set _name to "Anus">>
+                                        <<set _part to "Anus">>
                                 <</switch>>
 
-                                <<capture _j _body _bpIndex _itemPl _name>>
-                                    <<button "Put in(_name)" "wardrobe">>
-                                        <<set $wardrobeContent.accesories[_j].slot = _name>>
+                                <<capture _j _body _bpIndex _itemPl _part>>
+                                    <<button "Put in(_part)" "wardrobe">>
+                                        <<set $wardrobeContent.accesories[_j].slot = _part>>
                                         <<putSextoy _j _body _bpIndex _itemPl>>
                                     <</button>>
                                 <</capture>>

@@ -56,7 +56,7 @@
                 <<case 1>>
                     Certain actions like cooking, masturbating and others uses energy if you don't have enough they will tell you so.
                 <<case 2>>
-                    Each weekends you will need to clean your house. If you don't, many options will be unavailable to be used.
+                    Each weekend you will need to clean your house. If you don't, many options will be unavailable to be used (Not implemented yet).
                 <<case 3>>
                     Fruits and liquids may be eaten for a low amount of hunger replenishment.
                 <<case 4>>

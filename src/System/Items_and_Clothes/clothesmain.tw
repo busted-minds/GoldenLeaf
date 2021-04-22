@@ -180,7 +180,9 @@
     <<for _i to 0; _i lt _ofKeys.length; _i++>>
         <<for _j to 0; _j lt $outfits[_outfID].content[_ofKeys[_i]].item.length; _j++>>
             <<print $outfits[_outfID].content[_ofKeys[_i]].item[_j]>>
-            <<clothescolor "inColor" $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+            <<if $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+                <<clothescolor "inColor" $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+            <</if>>
             <br>
         <</for>>
     <</for>>

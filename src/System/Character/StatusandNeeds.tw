@@ -38,6 +38,9 @@
         <<set _mult to 0.10>>
         <<set _uE to 0>>
         <<set $sleeping to undefined>>
+
+    <<else>>
+        <<wearSexToy "timeatt" $args[0]>>
     <</if>>
     
     <<set $hunger += Math.round($args[0] * _mult); $hunger to Math.clamp($hunger, 0, 100)>>

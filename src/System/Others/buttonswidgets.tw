@@ -34,7 +34,7 @@
             @@.pButton;
                 <<capture _j _existsc>>
                     <<button "Add to shopping cart" _passage>>
-                        <<if setup.clothes.sextoys[_j].name is "Egg Vibe">>
+                        <<if setup.clothes.sextoys[_j].amount gt 0>>
                             <<if _existsc is -1>>
                                 <<set $shoppingcart.push(clone(setup.clothes.sextoys[_j]))>>
                                 <<set $message to "addedToSC">>
@@ -52,31 +52,37 @@
                             <<set $message to "addedToSC">>
                             <<set $shoppingcart[$shoppingcart.length - 1].color to _selectedColor>>
                             <<if setup.clothes.sextoys[_j].length isnot undefined and setup.clothes.sextoys[_j].width isnot undefined>>
+                                <<if setup.clothes.sextoys[_j].category.includes("plug")>>
+                                    <<set _mult to 0.75>>
+                                <<else>>
+                                    <<set _mult to 1>>
+                                <</if>>
+                                
                                 <<switch _size>>
                                     <<case "Huge">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 20>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 5.5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(20 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(5.5 * _mult)>>
 
                                     <<case "Big">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 15>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 4.5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(15 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(4.5 * _mult)>>
                                     
                                     <<case "Medium">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 12>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 3.5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(12 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(3.5 * _mult)>>
 
                                     <<case "Small">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 5>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 2.5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(2.5 * _mult)>>
 
                                     <<case "Tiny">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to 3>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to 1.5>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(3 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(1.5 * _mult)>>
                                 <</switch>>
                             <</if>>
                         <</if>>

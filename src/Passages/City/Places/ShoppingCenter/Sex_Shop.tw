@@ -19,7 +19,7 @@
     <h2>Sex Toys</h2>
     <div class="divisor"></div>
     <<messager>>
-    <<ssShow "SexToys" "sextoys">>
+    <<ssShow>>
 
 :: sspurchase [nobr]
     <<purchase "sexshop">>

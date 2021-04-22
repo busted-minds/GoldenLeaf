@@ -89,8 +89,9 @@
             <<if $arousal + $wardrobeContent.accesories[_itemID].arsGain gte 100>>
                 <<set _message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you reached your limit and had an @@.pink;orgasm@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
             <<else>>
-                <<set _message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you feel @@.pink;more aroused@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
+                <<set $message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you feel @@.pink;more aroused@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
             <</if>>
+            
             <<addArousal $wardrobeContent.accesories[_itemID].arsGain _message "masturb" "preM">>
         <</if>>
 
@@ -116,20 +117,20 @@
 
 /* Undress all. Calling undressMain */
     <<widget "undressAll">>
-        <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
+        <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes", "accesories"]>>
         <<set _bodyP to Object.keys($bps)>>
+        <<set _iSlots to ["primary", "secondary"]>>
 
         <<for _i to 0; _i lt _bodyP.length; _i++>>
             <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
 
             <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-                <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includesAny(_cats)>>
-                    <<undressMain _bodyP[_i] _bodyPIndex[_j] "primary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
-                <</if>>
+                <<for _is to 0; _is lt _iSlots.length; _is++>>
+                    <<if $bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].category.includesAny(_cats) and !$bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].lowname.includes("backpack")>>
+                        <<undressMain _bodyP[_i] _bodyPIndex[_j] _iSlots[_is] $bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].category[1]>>
+                    <</if>>
+                <</for>>
 
-                <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includesAny(_cats)>>
-                    <<undressMain _bodyP[_i] _bodyPIndex[_j] "secondary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
-                <</if>>
             <</for>>
             
         <</for>>
