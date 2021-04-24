@@ -255,7 +255,7 @@
                             <<set _name to "Expel">>
 
                         <<else>>
-                            <<set _name to "Undress">>
+                            <<set _name to "Take off">>
 
                         <</if>>
                         <br>
