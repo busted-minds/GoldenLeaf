@@ -8,15 +8,11 @@
         <<set $selectedSexOpt.RightHand to "Select an option">>
         <<set $selectedSexOpt.LeftHand to "Select an option">>
 
-        <<timed 1s>>
-            <<set $message[0] to undefined>>
-        <</timed>>
-        <<set $message[1] to undefined>>
-
         <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
         <<set $mastTime to 0>>
     <</if>>
     <div class="divisor"></div>
+    <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
     <<mastOpt>>
     <<if $message[0]>>
         <<print $message[0]>>

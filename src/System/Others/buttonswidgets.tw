@@ -61,28 +61,28 @@
                                 <<switch _size>>
                                     <<case "Huge">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(20 * _mult)>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(5.5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tLength to Math.round(20 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tWidth to Math.round(5.5 * _mult)>>
 
                                     <<case "Big">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(15 * _mult)>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(4.5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tLength to Math.round(15 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tWidth to Math.round(4.5 * _mult)>>
                                     
                                     <<case "Medium">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(12 * _mult)>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(3.5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tLength to Math.round(12 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tWidth to Math.round(3.5 * _mult)>>
 
                                     <<case "Small">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(5 * _mult)>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(2.5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tLength to Math.round(5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tWidth to Math.round(2.5 * _mult)>>
 
                                     <<case "Tiny">>
                                         <<set $shoppingcart[$shoppingcart.length - 1].name += String.format(" ({0})", _size) >>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].length to Math.round(3 * _mult)>>
-                                        <<set $shoppingcart[$shoppingcart.length - 1].width to Math.round(1.5 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tLength to Math.round(3 * _mult)>>
+                                        <<set $shoppingcart[$shoppingcart.length - 1].tWidth to Math.round(1.5 * _mult)>>
                                 <</switch>>
                             <</if>>
                         <</if>>

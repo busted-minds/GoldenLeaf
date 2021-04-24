@@ -22,7 +22,6 @@
         <<set $arousal to 0>>
 
         <<if $args[1] is "mastMsg">>
-            <<run console.log("mastmsg")>>
             <<if $playervar.gender is "male">>
                 <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
             <<elseif $playervar.cansquirt is true>>
@@ -39,7 +38,6 @@
             <<addSexTraits $args[1]>>
 
         <<elseif $args[1] is "noMsg">>
-            <<run console.log("nomsg")>>
             <<addSexTraits $args[0]>>
         <</if>>
 
@@ -113,8 +111,6 @@
 
             <<switch $selectedSexOpt[_hands[_i]]>>
                 <<case "Massage clitoris">>
-                    <<addArousal 6 "masturb" "mastMsg">>
-                        
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your clitoris in circular motion, up and down and to the sides, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
@@ -126,9 +122,8 @@
 
                     <</if>>
 
+                    <<addArousal 6 "masturb" "mastMsg">>
                 <<case "Massage labia">>
-                    <<addArousal 4 "masturb" "mastMsg">>
-                        
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "With your @@.orange;"+ _LorRHand +"@@ @@.pink;you gently massage your labia, in circular motion, up and down and to the sides building up arousal trying to get wet to maybe an insertion@@ and starting to @@.darkpink;feel good@@.">>
 
@@ -137,9 +132,8 @@
 
                     <</if>>
 
+                    <<addArousal 4 "masturb" "mastMsg">> 
                 <<case "Insert fingers(Vagina)">>
-                    <<addArousal 6 "masturb" "mastMsg">>
-                    
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "You gently insert @@.orange;2@@ @@.pink;fingers into your vagina, trying to find the spot that feels the best, warm and moist@@. @@.darkpink;You're starting to feel good@@.">>
 
@@ -151,20 +145,18 @@
 
                     <</if>>
 
+                    <<addArousal 6 "masturb" "mastMsg">>
                 <<case "Massage anus">>
-                    <<addArousal 4 "masturb" "mastMsg">>
-
                     <<if $arousal lt 45>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage around your anus with circular motions, trying to prepare it for an insertion, or maybe you just like to massage it, and start to @@.darkpink;feel good@@.">>
+                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage around your anus with circular motions, trying to prepare it for an insertion, or maybe you just like to massage it, and start to @@@@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lt 100>>
                         <<set $message[_i] to "@@.pink;After a bit you start to feel it more and now you're doing it more fast, trying to @@@@.darkpink;feel better, taking care of not putting a finger in, yet@@.">>
 
                     <</if>> 
 
+                    <<addArousal 4 "masturb" "mastMsg">>
                 <<case "Insert fingers(Anus)">>
-                    <<addArousal 5 "masturb" "mastMsg">>
-
                     <<if $arousal lt 45>>
                         <<set $message[_i] to "You gently insert @@.orange;1@@ @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You're starting to feel good@@.">>
 
@@ -176,15 +168,10 @@
 
                     <</if>> 
 
+                    <<addArousal 5 "masturb" "mastMsg">>
                 <<case "Caress nipples">>
-                    <<if $playervar.gender is "female">>
-                        <<addArousal 3 "masturb" "mastMsg">>
-                    <<else>>
-                        <<addArousal 1 "masturb" "mastMsg".5>>
-                    <</if>>
-                    
                     <<if $arousal lt 45>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage your @@@@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples, with motions in circles, up and down and to the sides some licking and sucking here and there, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you gently massage your @@@@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples, with motions in circles, up and down and to the sides some licking and sucking here and there, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lte 80>>
                         <<set $message[_i] to "@@.pink;After a bit your nipples are erected, getting more easy to feel good@@.">>
@@ -194,15 +181,14 @@
 
                     <</if>> 
 
-                <<case "Pinch nipples">>
                     <<if $playervar.gender is "female">>
-                        <<addArousal 4 "masturb" "mastMsg">>
+                        <<addArousal 3 "masturb" "mastMsg">>
                     <<else>>
-                        <<addArousal 2 "masturb" "mastMsg">>
+                        <<addArousal 1 "masturb" "mastMsg">>
                     <</if>>
-
+                <<case "Pinch nipples">>
                     <<if $arousal lt 45>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lte 60>>
                         <<set $message[_i] to "@@.pink;After a bit your nipples are erected, getting more easy to feel good@@.">>
@@ -212,11 +198,14 @@
 
                     <</if>>
 
+                    <<if $playervar.gender is "female">>
+                        <<addArousal 4 "masturb" "mastMsg">>
+                    <<else>>
+                        <<addArousal 2 "masturb" "mastMsg">>
+                    <</if>>
                 <<case "Caress penis">>
-                    <<addArousal 4 "masturb" "mastMsg">>
-
                     <<if $arousal lt 30>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you caress your penis, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you caress your penis, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
                     <<elseif $arousal lte 70 and $aroused is true>>
                         <<set $message[_i] to "@@.pink;After caressing it, your penis now is fully erected and secreting pre-seminal fluid@@.">>
@@ -225,8 +214,8 @@
                         <<set $message[_i] to "@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
 
                     <</if>>
+                    <<addArousal 4 "masturb" "mastMsg">>
                 <<case "Caress testicles">>
-                    <<addArousal 5 "masturb" "mastMsg">>
                     <<if $arousal lt 70>>
                         <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you caress your testicles with circular motions around them, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
 
@@ -235,11 +224,10 @@
 
                     <</if>>
 
+                    <<addArousal 5 "masturb" "mastMsg">>
                 <<case "Stroke penis">>
-                    <<addArousal 6 "masturb" "mastMsg">>
-
                     <<if $arousal lt 30>>
-                    <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@  @@.pink;you stroke your penis up and down, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
+                        <<set $message[_i] to "With your @@.orange;<<print _LorRHand>>@@ @@.pink;you stroke your penis up and down, building up arousal@@ and starting to @@.darkpink;feel good@@.">>
                     
                     <<elseif $arousal lte 70 and $aroused is true>>
                         <<set $message[_i] to "@@.pink;After stroking it, your penis now is fully erected and secreting pre-seminal fluid and you started to do faster stroke, trying to get to an orgasm@@.">>
@@ -248,7 +236,20 @@
                         <<set $message[_i] to "@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.">>
 
                     <</if>>
+
+                    <<addArousal 6 "masturb" "mastMsg">>
+                <<case "Insert dildo(Vagina)">>
+                    <<set $message[_i] to "You insert your @@.orange;<<print $backpack[_fID].lowname>>@@ in your vagina carefully searching for your sweet spot, thrusting in and out repeatedly while getting wetter and wetter each time.">>
+                    
+                    <<set _arsAm to ($playervar.vagcomfortinsert + $playervar.vagwidthcomfortinsert + $backpack[_fID].tLength + $backpack[_fID].tWidth) * 0.25>>
+                    <<addArousal _arsAm "masturb" "mastMsg">>
+                <<case "Insert dildo(Anus)">>
+                    <<set $message[_i] to "You insert your @@.orange;<<print $backpack[_fID].lowname>>@@ in your anus finding a bit of resistance as it makes its way through giving you pleasure with each thrust.">>
+                    
+                    <<set _arsAm to ($playervar.anuscomfortinsert + $playervar.anuswidthcomfortinsert + $backpack[_fID].tLength + $backpack[_fID].tWidth) * 0.25>>
+                    <<addArousal _arsAm "masturb" "mastMsg">>
             <</switch>>
+
         <</for>>
 
     <</widget>>
@@ -261,6 +262,62 @@
                 <<if $aroused is true>>
                     <<set _masturoptions.push("Insert fingers(Vagina)", "Insert fingers(Anus)", "Pinch nipples")>>
 
+                    <<if $backpack[_fID].tLength gt $playervar.vagcomfortinsert or $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
+                        @@.red;<<print "Be aware that your dildo is too big for your vagina so you can't use it. Buy one of a lower size">>
+                        <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                            <br>
+                            <<print "Be aware that your dildo is too big for your anus so you can't use it for this place too. Buy one of a lower size">>
+                        <</if>>@@
+                        <br>
+                        <br>
+                    <<elseif $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                        @@.red;<<print "Be aware that your dildo is too big for your anus so you can't use it. Buy one of a lower size">>@@
+                        <br>
+                        <br>
+                    <<else>>
+                        <<if $bps.genitals[0].primary.lowname is "naked" and _fID isnot -1 or $bps.genitals[0].secondary.lowname is "naked" and _fID isnot -1 or 
+                            $bps.lowerbody[1].primary.lowname is "naked" and _fID isnot -1 or $bps.lowerbody[1].secondary.lowname is "naked" and _fID isnot -1>>
+                            <<set _masturoptions.push("Insert dildo(Vagina)", "Insert dildo(Anus)")>>
+
+                            <<if $selectedSexOpt.RightHand is "Insert dildo(Vagina)">>
+                                <<set _masturoptions.delete("Insert fingers(Vagina)")>>
+
+                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Vagina)" or
+                                    $selectedSexOpt.RightHand is "Insert dildo(Vagina)" and $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
+                                    <<set $selectedSexOpt.LeftHand to undefined>>
+
+                                <</if>>
+
+                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Vagina)">>
+                                <<set _masturoptions.delete("Insert fingers(Vagina)")>>
+
+                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Vagina)" or
+                                    $selectedSexOpt.LeftHand is "Insert dildo(Vagina)" and $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
+                                    <<set $selectedSexOpt.RightHand to undefined>>
+
+                                <</if>>
+                            
+                            <<elseif $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
+                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
+
+                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Anus)" or
+                                    $selectedSexOpt.RightHand is "Insert dildo(Anus)" and $selectedSexOpt.LeftHand is "Insert dildo(Vagina)">>
+                                    <<set $selectedSexOpt.LeftHand to undefined>>
+                                <</if>>
+                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
+                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
+
+                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Anus)" or
+                                    $selectedSexOpt.LeftHand is "Insert dildo(Anus)" and $selectedSexOpt.RightHand is "Insert dildo(Vagina)">>
+                                    <<set $selectedSexOpt.RightHand to undefined>>
+
+                                <</if>>
+
+                            <</if>>
+
+                        <</if>>
+                    <</if>>
+                    
                 <</if>>
                 
             <<case "male">>
@@ -268,7 +325,37 @@
         
                 <<if $aroused is true>>
                     <<set _masturoptions.push("Stroke penis", "Insert fingers(Anus)", "Pinch nipples")>>
+                    <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
 
+                    <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                        @@.red;<<print "Be aware that your dildo is too big for your anus so you can't use it. Buy one of a lower size">>@@
+                        <br>
+                        <br>
+                    <<else>>
+                        <<if $bps.lowerbody[1].primary.lowname is "naked" and _fID isnot -1 or 
+                            $bps.lowerbody[1].secondary.lowname is "naked" and _fID isnot -1>>
+                            <<set _masturoptions.push("Insert dildo(Anus)")>>
+
+                            <<if $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
+                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
+
+                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Anus)">>
+                                    <<set $selectedSexOpt.LeftHand to undefined>>
+
+                                <</if>>
+
+                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
+                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
+
+                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Anus)">>
+                                    <<set $selectedSexOpt.RightHand to undefined>>
+
+                                <</if>>
+
+                            <</if>>
+
+                        <</if>>
+                    <</if>>
                 <</if>>
         <</switch>>
         
