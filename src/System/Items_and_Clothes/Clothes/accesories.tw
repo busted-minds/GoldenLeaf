@@ -40,20 +40,19 @@
             id: 1,
             name: "Dildo",
             lowname: "dildo",
-            price: 10,
+            price: 20,
             color: undefined,
             tLength: 0,
             tWidth: 0,
             description: "A dildo",
             category: ["dildo", "accesories", "sextoy"],
-            gender: "female",
-            arsGain: 6
+            gender: "female"
         },
         {
             id: 2,
             name: "Anal Plug",
             lowname: "anal plug",
-            price: 10,
+            price: 15,
             color: undefined,
             tLength: 0,
             tWidth: 0,
