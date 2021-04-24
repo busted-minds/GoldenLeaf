@@ -20,7 +20,8 @@
 				butt: true,
 				urethra: true
 			}>>
-		
+			<<set $bps.genitals.deleteAt(2); $bps.genitals.deleteAt(3)>>
+
 			<<if $disablernggod is false>>
 				<<rngod>>
 				<<if $rnggod gte 50>>
@@ -91,6 +92,7 @@
 				butt: true,
 				urethra: true
 			}>>
+			<<set $bps.genitals.deleteAt(0); $bps.genitals.deleteAt(1)>>
 		
 			<<if $disablernggod is false>>
 				<<rngod>>
