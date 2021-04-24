@@ -1,6 +1,7 @@
 :: inventory [widget nobr]
 
 <<widget "inventory">>
+    <<set _passage to passage()>>
     <<if $backpack[0]>>
         <<for _ibp to 0; _ibp lt $backpack.length; _ibp++>>
             <div class="list">
@@ -11,6 +12,17 @@
                     <<if $backpack[_ibp].color>>
                     <br>
                     Color: <<clothescolor $backpack[_ibp] true>>
+                    <</if>>
+
+                    <<if $backpack[_ibp].category.includes("sextoy") and _passage is "wardrobe">>
+                        <span class="toysButtons">
+                            <<capture _ibp>>
+                                <<button "To Backpack" _passage>>
+                                    <<moveItem "toWB" _ibp "accesories">>
+                                <</button>>
+                            <</capture>>
+                        </span>
+
                     <</if>>
                 </div>
             </div>

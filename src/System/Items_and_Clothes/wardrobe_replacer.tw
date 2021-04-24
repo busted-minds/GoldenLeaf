@@ -177,36 +177,43 @@
                                     <<replacer "iteminfo" _j "accesories">>
                                 <</button>>
                             <</capture>>
+
                         </span>
 
-                        <span class="med-button">
-                        <<if $wardrobeContent.accesories[_j].category[3] and $wardrobeContent.accesories[_j].category[3].wearable>>
-                            <br>
-                            <<for _p to 0; _p lt $wardrobeContent.accesories[_j].category[3].wearable.length; _p++>>
-                                <<if $wardrobeContent.accesories[_j].category[3].wearable[_p] is "vulva" and $playervar.gender is "female">>
-                                    <<set _body to "genitals">>
-                                    <<set _bpIndex to 0>>
-                                    <<set _itemPl to "secondary">>
-                                    <<set _part to "Vag">>
+                        <span class="toysButtons">
+                            <<if $wardrobeContent.accesories[_j].category[3] and $wardrobeContent.accesories[_j].category[3].wearable>>
+                                <br>
+                                <<for _p to 0; _p lt $wardrobeContent.accesories[_j].category[3].wearable.length; _p++>>
+                                    <<if $wardrobeContent.accesories[_j].category[3].wearable[_p] is "vulva" and $playervar.gender is "female">>
+                                        <<set _body to "genitals">>
+                                        <<set _bpIndex to 0>>
+                                        <<set _itemPl to "secondary">>
+                                        <<set _part to "Vag">>
 
-                                <<elseif $wardrobeContent.accesories[_j].category[3].wearable[_p] is "anus">>
-                                    <<set _body to "lowerbody">>
-                                    <<set _bpIndex to 1>>
-                                    <<set _itemPl to "primary">>
-                                    <<set _part to "Anus">>
-                                <<else>>
-                                    <<continue>>
-                                <</if>>
+                                    <<elseif $wardrobeContent.accesories[_j].category[3].wearable[_p] is "anus">>
+                                        <<set _body to "lowerbody">>
+                                        <<set _bpIndex to 1>>
+                                        <<set _itemPl to "primary">>
+                                        <<set _part to "Anus">>
+                                    <<else>>
+                                        <<continue>>
+                                    <</if>>
 
-                                <<capture _j _body _bpIndex _itemPl _part>>
-                                    <<button "Put in(_part)" "wardrobe">>
-                                        <<set $wardrobeContent.accesories[_j].slot = _part>>
-                                        <<putSextoy _j _body _bpIndex _itemPl>>
-                                    <</button>>
-                                <</capture>>
+                                    <<capture _j _body _bpIndex _itemPl _part>>
+                                        <<button "Put in(_part)" "wardrobe">>
+                                            <<set $wardrobeContent.accesories[_j].slot = _part>>
+                                            <<putSextoy _j _body _bpIndex _itemPl>>
+                                        <</button>>
+                                    <</capture>>
 
-                            <</for>>
-                        <</if>>
+                                <</for>>
+                            <</if>>
+
+                            <<capture _j>>
+                                <<button "To Backpack" "wardrobe">>
+                                    <<moveItem "toBP" _j "accesories">>
+                                <</button>>
+                            <</capture>>
                         </span>
                         <br>
                     <</if>>

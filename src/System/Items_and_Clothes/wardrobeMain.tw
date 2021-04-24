@@ -149,15 +149,35 @@
 
 /* Stores clothes inside the wardrobe, can be extended to any other "storage" that may exist in the future */
     <<widget "storingClothes">>
+        <<set _enabledCat to ["underwear", "outerwear", "shoes", "legwear", "footwear"]>>
+        <<if $enableAutoToys is true>>
+            <<set _enabledCat.push("sextoy")>>
+        <</if>>
+
         <<for _index range $backpack>>
             <<set _posit to $backpack.findIndex(x => x.name === _index.name)>>
 
-            <<if $backpack[_posit].category>>
+            <<if $backpack[_posit].category.includesAny(_enabledCat)>>
                 <<set $wardrobeContent[$backpack[_posit].category[1]].push(clone($backpack[_posit]))>>
                 <<set $backpack.deleteAt(_posit)>>
 
             <</if>>
         <</for>>
+    <</widget>>
+
+/* Move item between backpack and wardrobe and viceversa  */
+    <<widget "moveItem">>
+        <<set _itemPos to $args[1]>>
+        <<set _itemBoP to $args[2]>>
+
+        <<switch $args[0]>>
+            <<case "toBP">>
+                <<set $backpack.push(clone($wardrobeContent[_itemBoP][_itemPos]))>>
+                <<set $wardrobeContent[_itemBoP].deleteAt(_itemPos)>>
+            <<case "toWB">>
+                <<set $wardrobeContent[_itemBoP].push(clone($backpack[_itemPos]))>>
+                <<set $backpack.deleteAt(_itemPos)>>
+        <</switch>>
     <</widget>>
 
 /* Undress all. Calling undressMain */

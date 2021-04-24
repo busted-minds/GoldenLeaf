@@ -187,6 +187,12 @@
 		max-height: 4em !important;
 	}
 
+	.toysButtons button{
+		font-size: 100% !important;
+		max-width: 7em !important; 
+		max-height: 4em !important;
+	}
+
 	.med-texbox input[type="text"] {
 		min-width: 7em !important; 
 	}
