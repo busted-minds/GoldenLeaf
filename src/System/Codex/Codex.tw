@@ -152,7 +152,11 @@
 <</widget>>
 
 <<widget "options">>
-    <<checkbox "$displayColorText" false true autocheck>> Enabled clothes text color. (Must change passage to update)
+    <<checkbox "$displayColorText" false true autocheck>> Enabled clothes text color.
+    <br>
+    <<checkbox "$enableAutoToys" false true autocheck>> Enable auto-storage of sex toys.
+    <br>
+    (Must change passage to update).
     <br>
     <br>
     Credits to:
@@ -162,7 +166,6 @@
     Sorter(Proofreading)
     <br>
     Hanah Solo(Some ideas :D)
-    <br>
     <br>
     Maakhan(Some ideas :D)
     @@

@@ -35,11 +35,13 @@
 			<</switch>>
 
 			<<replace #popUpBottom>>
-				<<button "Close">>
-					<<removeclass "#popUp" "open">>
-					<<set $popupbox to 0>>
-					
-				<</button>>
+				<span class="med-button">
+					<<button "Close">>
+						<<removeclass "#popUp" "open">>
+						<<set $popupbox to 0>>
+						
+					<</button>>
+				</span>
 			<</replace>>
 			
 			<<addclass "#popUp" "open">>

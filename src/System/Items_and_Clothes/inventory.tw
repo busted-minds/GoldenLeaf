@@ -1,16 +1,32 @@
 :: inventory [widget nobr]
 
 <<widget "inventory">>
+    <<set _passage to passage()>>
     <<if $backpack[0]>>
         <<for _ibp to 0; _ibp lt $backpack.length; _ibp++>>
             <div class="list">
                 <div id="insidelist">
                     Name: @@.green;<<print $backpack[_ibp].name>>@@
                     <br>
-                    Description: @@.yellow;<<print $backpack[_ibp].description>>@@
+                    Description: <<print $backpack[_ibp].description>>
                     <<if $backpack[_ibp].color>>
                     <br>
-                    Color: <<clothescolor $backpack[_ibp] true>>
+                    Color: <<clothescolor "inColor" $backpack[_ibp].color "colorOnly">>
+                    <</if>>
+                    <<if $backpack[_ibp].tLength and $backpack[_ibp].tWidth>>
+                        <br>
+                        Length: <<print $backpack[_ibp].tLength>> / Width: <<print $backpack[_ibp].tWidth>>
+                    <</if>>
+
+                    <<if $backpack[_ibp].category.includes("sextoy") and _passage is "wardrobe">>
+                        <span class="toysButtons">
+                            <<capture _ibp>>
+                                <<button "To Wardrobe" _passage>>
+                                    <<moveItem "toWB" _ibp "accesories">>
+                                <</button>>
+                            <</capture>>
+                        </span>
+
                     <</if>>
                 </div>
             </div>

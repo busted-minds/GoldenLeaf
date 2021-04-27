@@ -5,47 +5,25 @@
         <<set $mastTime to 0>>
     <</if>>
     <<if $arousal gte 100>>
-        <<set $arousal to 0>>
         <<set $selectedSexOpt.RightHand to "Select an option">>
         <<set $selectedSexOpt.LeftHand to "Select an option">>
-        <<set $masturCount++>>
-        
-        <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
-        <<if $masturCount gte 5 and _find is -1>>
-            <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
-        <<elseif _find isnot -1>>
-            <<traitsEXP _find 1>>
-        <</if>>
-
-        <<if $playervar.gender is "male">>
-            <<set $message[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
-        <<elseif $playervar.cansquirt is true>>
-            <<set $message[0] to "After reaching an orgasm you feel satisfied and expel some fluids.">>
-        <<else>>
-            <<set $message[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
-        <</if>>
-
-        <<set $aroused to undefined>>
-        <<timed 1s>>
-            <<set $message[0] to undefined>>
-        <</timed>>
-        <<set $message[1] to undefined>>
 
         <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
         <<set $mastTime to 0>>
     <</if>>
     <div class="divisor"></div>
+    <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
     <<mastOpt>>
-    <<print $message[0]>>
-        <<if $message[0]>>
+    <<if $message[0]>>
+        <<print $message[0]>>
         <br>
         <br>
-        <</if>>
-    <<print $message[1]>>
-        <<if $message[1]>>
+    <</if>>
+    <<if $message[1] and !$message[0].includes("After reaching an orgasm")>>
+        <<print $message[1]>>
         <br>
         <br>
-        <</if>>
+    <</if>>
 
     Right Hand:
     <<listbox "$selectedSexOpt.RightHand" autoselect>>

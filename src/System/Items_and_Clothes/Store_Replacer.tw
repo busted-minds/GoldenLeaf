@@ -1,0 +1,183 @@
+:: clothes_replacer [widget nobr]
+/* These widgets are nearly the same as the one for the wardrobe. Just modified for the store. */
+    <<widget "csShow">>
+        <<messager>>
+        <<if !$pressedlStore>>
+            <<set $pressedlStore to $args[1]>>
+        <</if>>
+        <br>
+            <div id="storeLinks" class="storeLinks">
+                <<storeLinks $args[0]>>
+            </div>
+            <div class="thindiv"></div>
+            <div id="storeContent">
+                <<showStoreIC $pressedlStore>>
+
+            </div>
+        <br>
+        <<button "Finish" "clothesstore">>
+            <<unset $pressedlStore>>
+        <</button>>
+    <</widget>>
+
+    <<widget "storeLinks">>
+        <div class="list">
+        <span style="font-size: 130%; margin-left: 5px;"> Category: </span>
+        <div id="insidelist">
+            <<switch $args[0]>>
+                <<case "Outerwear">>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'upperbouter', 'Outerwear')"><span @class="($pressedlStore is 'upperbouter' ? 'selected' : '')">Upper Body</span></button>
+                    <br>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'lowerbouter', 'Outerwear')"><span @class="($pressedlStore is 'lowerbouter' ? 'selected' : '')">Lower Body</span></button>
+
+                <<case "Underwear">>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'upperbunder', 'Underwear')"><span @class="($pressedlStore is 'upperbunder' ? 'selected' : '')">Upper Body</span></button>
+                    <br>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'lowerbunder', 'Underwear')"><span @class="($pressedlStore is 'lowerbunder' ? 'selected' : '')">Lower Body</span></button>
+                    <br>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'legwear', 'Underwear')"><span @class="($pressedlStore is 'legwear' ? 'selected' : '')">Legwear</span></button>
+                
+                <<case "Footwear">>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'shoes', 'Footwear')"><span @class="($pressedlStore is 'shoes' ? 'selected' : '')">Shoes</span></button>
+                    <br>
+                    <button class="macro-button" onclick="wikifier('storeContent', 'footwear', 'Footwear')"><span @class="($pressedlStore is 'footwear' ? 'selected' : '')">Socks</span></button>
+
+            <</switch>>
+        </div>
+        </div>
+    <</widget>>
+
+    <<widget "storeContent">>
+        <<replace "#storeContent">>
+            <<showStoreIC $args[0]>>
+        <</replace>>
+        <<set $pressedlStore to $args[0]>>
+
+        <<replace "#storeLinks">>
+            <<storeLinks $args[1]>>
+        <</replace>>
+    <</widget>>
+
+    <<widget "showStoreIC">>
+        <<storeItemContent $args[0]>>
+        <div id="storeItemContent"></div>
+    <</widget>>
+
+    <<widget "storeItemContent">>
+        <<set _values to State.getVar("setup.clothes."+$args[0])>>
+        <<set _colors to {}>>
+        <<set _keys to Object.keys(setup.clothes.colors)>>
+        <<for _i to 0; _i lt _keys.length; _i++>>
+            <<set _colors[setup.clothes.colors[_keys[_i]].toUpperFirst()] to _keys[_i]>>
+        <</for>>
+
+        <<set _selectedColor to undefined>>
+        
+        <<for _j to 0; _j lt _values.length; _j++>>
+            <<if _values[_j].lowname isnot "naked">>
+                <div class="list">
+                    <div id="insidelist">
+                        Name: @@.orange;<<print _values[_j].name>>@@ 
+                        <<genderIcon _values[_j].category[1]>>
+                        <br>
+                        Price: @@.yellow;<<print _values[_j].price>> credits@@
+                        <br>
+                        Color: <<listbox "_selectedColor" autoselect>>
+                            <<optionsfrom _colors>>
+                        <</listbox>>
+                        <<pButton "clothstore">>
+                    </div>
+                </div>
+            <</if>>
+        <</for>>
+    <</widget>>
+
+:: sexshopReplacer [widget nobr]
+    <<widget "ssShow">>
+        <<messager>>
+            <div id="storeLinks" class="storeLinks">
+                <<ssLinks>>
+            </div>
+            <div class="thindiv"></div>
+            <div id="storeContent">
+                <<showSSIC $pressedlStore>>
+
+            </div>
+        <br>
+        <<button "Finish" "sexshop">>
+            <<unset $pressedlStore>>
+        <</button>>
+    <</widget>>
+
+    <<widget "ssLinks">>
+        <div class="list">
+        <span style="font-size: 130%; margin-left: 5px;"> Category: </span>
+        <div id="insidelist">
+            <button class="macro-button" onclick="wikifier('ssContent', 'vibrator', 'SexToys')"><span @class="($pressedlStore is 'vibrator' ? 'selected' : '')">Vibrators</span></button>
+            <button class="macro-button" onclick="wikifier('ssContent', 'dildo', 'SexToys')"><span @class="($pressedlStore is 'dildo' ? 'selected' : '')">Dildos</span></button>
+            <button class="macro-button" onclick="wikifier('ssContent', 'plug', 'SexToys')"><span @class="($pressedlStore is 'plug' ? 'selected' : '')">Plugs</span></button>
+        </div>
+        </div>
+    <</widget>>
+
+    <<widget "ssContent">>
+        <<replace "#storeContent">>
+            <<showSSIC $args[0]>>
+        <</replace>>
+        <<set $pressedlStore to $args[0]>>
+
+        <<replace "#storeLinks">>
+            <<ssLinks>>
+        <</replace>>
+    <</widget>>
+
+    <<widget "showSSIC">>
+        <<ssItemContent $args[0]>>
+        <div id="storeItemContent"></div>
+    <</widget>>
+
+    <<widget "ssItemContent">>
+        <<set _colors to {}>>
+        <<set _keys to Object.keys(setup.clothes.colors)>>
+        <<for _i to 0; _i lt _keys.length; _i++>>
+            <<set _colors[setup.clothes.colors[_keys[_i]].toUpperFirst()] to _keys[_i]>>
+        <</for>>
+
+        <<set _selectedColor to undefined>>
+        <<set _sizes to ["Huge", "Big", "Medium", "Small", "Tiny"]>>
+        <<set _n to [1, 2, 3, 4, 5]>>
+
+        <<for _j to 0; _j lt setup.clothes.sextoys.length; _j++>>
+            <<if setup.clothes.sextoys[_j].category.includes($args[0])>>
+                <div class="list">
+                    <div id="insidelist">
+                        Name: @@.orange;<<print setup.clothes.sextoys[_j].name>>@@ 
+                        <<genderIcon "sextoys">>
+                        <br>
+                        Price: @@.yellow;<<print setup.clothes.sextoys[_j].price>> credits@@
+                        <br>
+                        <<if setup.clothes.sextoys[_j].name isnot "Egg Vibe">>
+                            Color: 
+                            <<listbox "_selectedColor" autoselect>>
+                                <<optionsfrom _colors>>
+                            <</listbox>>
+                        <<else>>
+                            Amount:
+                            <<listbox "_Amount" autoselect>>
+                                <<optionsfrom _n>>
+                            <</listbox>>
+                            <<set _existsc to $shoppingcart.findIndex(x => x.name === setup.clothes.sextoys[_j].name)>>
+                        <</if>>
+                        
+                        <<if setup.clothes.sextoys[_j].length isnot undefined and setup.clothes.sextoys[_j].width isnot undefined>>
+                            <br>
+                            Size: <<listbox "_size">> autoselect
+                                <<optionsfrom _sizes>>
+                            <</listbox>>
+                        <</if>>
+                        <<pButton "ssShop">>
+                    </div>
+                </div>
+            <</if>>
+        <</for>>
+    <</widget>>

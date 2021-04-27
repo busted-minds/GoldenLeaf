@@ -20,7 +20,8 @@
 				butt: true,
 				urethra: true
 			}>>
-		
+			<<set $bps.genitals.deleteAt(2); $bps.genitals.deleteAt(2)>>
+
 			<<if $disablernggod is false>>
 				<<rngod>>
 				<<if $rnggod gte 50>>
@@ -91,6 +92,7 @@
 				butt: true,
 				urethra: true
 			}>>
+			<<set $bps.genitals.deleteAt(0); $bps.genitals.deleteAt(0)>>
 		
 			<<if $disablernggod is false>>
 				<<rngod>>
@@ -210,13 +212,13 @@
 
 	<</if>>
 
-	<<if $playervar.penissize eq 25>>
+	<<if $playervar.penissize eq 24>>
 		<<set $playervar.peniswidth to 6.5>>
 
-	<<elseif $playervar.penissize gte 22>>
+	<<elseif $playervar.penissize gte 20>>
 		<<set $playervar.peniswidth to 5.5>>
 
-	<<elseif $playervar.penissize gte 18>>
+	<<elseif $playervar.penissize gte 15>>
 		<<set $playervar.peniswidth to 4.5>>
 		
 	<<elseif $playervar.penissize gte 12>>

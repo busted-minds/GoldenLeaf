@@ -21,7 +21,7 @@
             color: undefined,
             description: "A normal bra",
             descriptor: "a",
-            category: ["bra", "upperbunder"],
+            category: ["bra", "upperbunder", "underwear"],
             gender: "female",
             exposedchest: false
         },
@@ -33,7 +33,7 @@
             color: undefined,
             description: "A lace bra",
             descriptor: "a",
-            category: ["bra", "upperbunder"],
+            category: ["bra", "upperbunder", "underwear"],
             gender: "female",
             exposedchest: false
         }

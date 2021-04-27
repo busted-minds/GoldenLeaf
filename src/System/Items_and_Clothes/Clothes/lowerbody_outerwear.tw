@@ -21,7 +21,7 @@
             color: undefined,
             description: "A pair of Jeans",
             descriptor: "a pair of",
-            category: ["pants", "lowerbouter"],
+            category: ["pants", "lowerbouter", "outerwear"],
             gender: "neutral",
             exposedgenitals: false
         },
@@ -33,7 +33,7 @@
             color: undefined,
             description: "Just a medium skirt",
             descriptor: "a",
-            category: ["skirt", "lowerbouter"],
+            category: ["skirt", "lowerbouter", "outerwear"],
             gender: "female",
             exposedgenitals: false
         },
@@ -45,7 +45,7 @@
             color: undefined,
             description: "Just shorts",
             descriptor: "a",
-            category: ["shorts", "lowerbouter"],
+            category: ["shorts", "lowerbouter", "outerwear"],
             gender: "neutral",
             exposedgenitals: false
         },   
@@ -57,7 +57,7 @@
             color: undefined,
             description: "A suit(bottom)",
             descriptor: "a",
-            category: ["suit", "upperbouter"],
+            category: ["suit", "lowerbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         },
@@ -69,7 +69,7 @@
             color: undefined,
             description: "Just sport shorts",
             descriptor: "a",
-            category: ["shorts", "lowerbouter"],
+            category: ["shorts", "lowerbouter", "outerwear"],
             gender: "neutral",
             exposedgenitals: false
         },

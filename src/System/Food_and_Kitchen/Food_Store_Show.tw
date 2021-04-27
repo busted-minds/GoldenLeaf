@@ -2,10 +2,7 @@
 
 <<widget "foodshow">>
     <<set _foodlist to State.getVar("setup.food."+ $args[0])>>
-    <<set _n to []>>
-    <<for _fLA to 0; _fLA lt 5; _fLA++>>
-        <<set _n.push(_fLA + 1)>>
-    <</for>>
+    <<set _n to [1, 2, 3, 4, 5]>>
     <br>
     <<for _fLI to 0; _fLI lt _foodlist.length; _fLI++>>
         <<set _exist to $shoppingcart.findIndex(x => x.name === _foodlist[_fLI].name)>>

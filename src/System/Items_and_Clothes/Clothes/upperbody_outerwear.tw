@@ -21,7 +21,7 @@
             color: undefined,
             description: "A normal polo shirt",
             descriptor: "a",
-            category: ["shirt", "upperbouter"],
+            category: ["shirt", "upperbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         },   
@@ -33,7 +33,7 @@
             color: undefined,
             description: "A normal blouse",
             descriptor: "a",
-            category: ["shirt", "upperbouter"],
+            category: ["shirt", "upperbouter", "outerwear"],
             gender: "female",
             exposedchest: false
         },   
@@ -45,7 +45,7 @@
             color: undefined,
             description: "A tank top",
             descriptor: "a",
-            category: ["shirt", "upperbouter"],
+            category: ["shirt", "upperbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         },   
@@ -57,7 +57,7 @@
             color: undefined,
             description: "A t-shirt",
             descriptor: "a",
-            category: ["shirt", "upperbouter"],
+            category: ["shirt", "upperbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         },   
@@ -69,7 +69,7 @@
             color: undefined,
             description: "A camisole",
             descriptor: "a",
-            category: ["shirt", "upperbouter"],
+            category: ["shirt", "upperbouter", "outerwear"],
             gender: "female",
             exposedchest: false
         },      
@@ -81,7 +81,7 @@
             color: undefined,
             description: "A sweater",
             descriptor: "a",
-            category: ["sweater", "upperbouter"],
+            category: ["sweater", "upperbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         },   
@@ -93,7 +93,7 @@
             color: undefined,
             description: "A jacket",
             descriptor: "a",
-            category: ["jacket", "upperbouter"],
+            category: ["jacket", "upperbouter", "outerwear"],
             gender: "male",
             exposedchest: false
         },   
@@ -105,7 +105,7 @@
             color: undefined,
             description: "A suit(top)",
             descriptor: "a",
-            category: ["suit", "upperbouter"],
+            category: ["suit", "upperbouter", "outerwear"],
             gender: "neutral",
             exposedchest: false
         }
@@ -117,7 +117,7 @@
             color: undefined,
             description: "A sundress",
             descriptor: "a",
-            category: ["dress", "upperbouter"],
+            category: ["dress", "upperbouter", "outerwear"],
             gender: "female",
             exposedchest: false
         },*/

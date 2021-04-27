@@ -33,15 +33,31 @@
         %/
         <<if passage() is "wardrobe">>
             <<if $bps[_bodyPart][_bodySlot][_itemsSlot].lowname isnot "naked">>
-                <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
+                <<if $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
+                    <<set _findI to $wardrobeContent[_clothesSlot].findIndex(x => x.lowname === $bps[_bodyPart][_bodySlot][_itemsSlot].lowname)>>
+                        
+                    <<if _findI is -1>>
+                        <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
+
+                    <<else>>
+                        <<set $wardrobeContent[_clothesSlot][_findI].amount += $bps[_bodyPart][_bodySlot][_itemsSlot].amount>>
+
+                    <</if>>
+                    
+                <<else>>
+                    <<set $wardrobeContent[_clothesSlot].push(clone($bps[_bodyPart][_bodySlot][_itemsSlot]))>>
+
+                <</if>>
+
                 <<set $message to "@@.red;You remove your <span class='orange'>"+ $bps[_bodyPart][_bodySlot][_itemsSlot].name +"</span>.@@">>
-            <</if>>
 
-            <<if _clothesSlot is "shoes">>
-                <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes.accesories[0])>>
+                <<if _clothesSlot is "shoes" or _clothesSlot is "accesories">>
+                    <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes.accesories[0])>>
 
-            <<else>>
-                <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+                <<else>>
+                    <<set $bps[_bodyPart][_bodySlot][_itemsSlot] to clone(setup.clothes[_clothesSlot][0])>>
+                <</if>>
+
             <</if>>
 
         <<else>>
@@ -51,34 +67,219 @@
 
     <</widget>>
 
+    <<widget "putSextoy">>
+        <<set _itemID to $args[0]>>
+        <<set _bodyPart to $args[1]>>
+        <<set _bodyPIndex to $args[2]>>
+        <<set _itemSlot to $args[3]>>
+        <<set _warLowName to $wardrobeContent.accesories[_itemID].lowname>>
+
+        <<if $bps[_bodyPart][_bodyPIndex].primary.lowname isnot "naked" and $bps[_bodyPart][_bodyPIndex].primary.lowname isnot _warLowName>>
+            <<set _itemSlot to "secondary">>
+            <<run console.log("to secondary")>>
+
+        <<elseif $bps[_bodyPart][_bodyPIndex].secondary.lowname isnot "naked" and $bps[_bodyPart][_bodyPIndex].secondary.lowname isnot _warLowName>>
+            <<set _itemSlot to "primary">>
+            <<run console.log("to primary")>>
+        <</if>>
+
+        <<set _bpslowName to $bps[_bodyPart][_bodyPIndex][_itemSlot].lowname>>
+
+        <<limitToy>>
+
+        <<if $bps[_bodyPart][_bodyPIndex][_itemSlot].amount eq _vLimit or 
+            $bps[_bodyPart][_bodyPIndex][_itemSlot].amount eq _aLimit>>
+            <<set $message to "@@.red;You can't put more of this item inside.@@">>
+
+        <<else>>
+            <<if _bpslowName isnot _warLowName>>
+                <<undressMain _bodyPart _bodyPIndex _itemSlot "accesories">>
+
+            <</if>>
+
+            <<if $wardrobeContent.accesories[_itemID].arsGain>>
+                <<if $arousal + $wardrobeContent.accesories[_itemID].arsGain gte 100>>
+                    <<set _message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you reached your limit and had an @@.pink;orgasm@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
+                <<else>>
+                    <<set $message to String.format("<span class='green'> After inserting your @@.orange;{0}@@ you feel @@.pink;more aroused@@</span>.", $wardrobeContent.accesories[_itemID].name)>>
+                <</if>>
+                
+                <<addArousal $wardrobeContent.accesories[_itemID].arsGain _message "masturb" "preM">>
+            <</if>>
+
+            <<if _bpslowName is _warLowName and $wardrobeContent.accesories[_itemID].amount gt 0>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount++>>
+
+            <<elseif $wardrobeContent.accesories[_itemID].amount gt 0>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent.accesories[_itemID])>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot].amount to 1>>
+
+            <<else>>
+                <<set $bps[_bodyPart][_bodyPIndex][_itemSlot] to clone($wardrobeContent.accesories[_itemID])>>
+                
+            <</if>>
+
+            <<if $wardrobeContent.accesories[_itemID].amount and $wardrobeContent.accesories[_itemID].amount gt 1>>
+                <<set $wardrobeContent.accesories[_itemID].amount-->>
+            <<else>>
+                <<set $wardrobeContent.accesories.deleteAt(_itemID)>>
+            <</if>>
+
+        <</if>>
+    <</widget>>
+
+    <<widget "limitToy">>
+        <<if $playervar.vagdepth gte 23>>
+            <<set _vLimit to 5>>
+        <<elseif $playervar.vagdepth gte 18>>
+            <<set _vLimit to 3>>
+        <<elseif $playervar.vagdepth gte 13>>
+            <<set _vLimit to 2>>
+        <</if>>
+
+        <<if $playervar.anusdepth gte 27>>
+            <<set _aLimit to 7>>
+        <<elseif $playervar.anusdepth gte 23>>
+            <<set _aLimit to 5>>
+        <<elseif $playervar.anusdepth gte 20>>
+            <<set _aLimit to 4>>
+        <</if>>
+        
+    <</widget>>
+
 /* Stores clothes inside the wardrobe, can be extended to any other "storage" that may exist in the future */
     <<widget "storingClothes">>
-        <<for _isc to 0; _isc lt $backpack.length; _isc++>>
-            <<if $backpack[_isc].category>>
-                <<set $wardrobeContent[$backpack[_isc].category[1]].push(clone($backpack[_isc]))>>
-                <<set $backpack.deleteAt(_isc)>>
+        <<set _enabledCat to ["underwear", "outerwear", "shoes", "legwear", "footwear"]>>
+        <<if $enableAutoToys is true>>
+            <<set _enabledCat.push("sextoy")>>
+        <</if>>
+
+        <<for _index range $backpack>>
+            <<set _posit to $backpack.findIndex(x => x.name === _index.name)>>
+
+            <<if $backpack[_posit].category.includesAny(_enabledCat)>>
+                <<set $wardrobeContent[$backpack[_posit].category[1]].push(clone($backpack[_posit]))>>
+                <<set $backpack.deleteAt(_posit)>>
 
             <</if>>
         <</for>>
     <</widget>>
 
+/* Move item between backpack and wardrobe and viceversa  */
+    <<widget "moveItem">>
+        <<set _itemPos to $args[1]>>
+        <<set _itemBoP to $args[2]>>
+
+        <<switch $args[0]>>
+            <<case "toBP">>
+                <<set $backpack.push(clone($wardrobeContent[_itemBoP][_itemPos]))>>
+                <<set $wardrobeContent[_itemBoP].deleteAt(_itemPos)>>
+            <<case "toWB">>
+                <<set $wardrobeContent[_itemBoP].push(clone($backpack[_itemPos]))>>
+                <<set $backpack.deleteAt(_itemPos)>>
+        <</switch>>
+    <</widget>>
+
 /* Undress all. Calling undressMain */
-<<widget "undressAll">>
-    <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes"]>>
-    <<set _bodyP to Object.keys($bps)>>
+    <<widget "undressAll">>
+        <<set _cats to ["upperbouter", "upperbunder", "lowerbouter", "lowerbunder", "legwear", "footwear", "shoes", "accesories"]>>
+        <<set _bodyP to Object.keys($bps)>>
+        <<set _iSlots to ["primary", "secondary"]>>
 
-    <<for _i to 0; _i lt _bodyP.length; _i++>>
-        <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
+        <<for _i to 0; _i lt _bodyP.length; _i++>>
+            <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
 
-        <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includesAny(_cats)>>
-                <<undressMain _bodyP[_i] _bodyPIndex[_j] "primary" $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]>>
-            <</if>>
+            <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
+                <<for _is to 0; _is lt _iSlots.length; _is++>>
+                    <<if $bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].category.includesAny(_cats) and !$bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].lowname.includes("backpack")>>
+                        <<undressMain _bodyP[_i] _bodyPIndex[_j] _iSlots[_is] $bps[_bodyP[_i]][_bodyPIndex[_j]][_iSlots[_is]].category[1]>>
+                    <</if>>
+                <</for>>
 
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includesAny(_cats)>>
-                <<undressMain _bodyP[_i] _bodyPIndex[_j] "secondary" $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]>>
-            <</if>>
+            <</for>>
+            
         <</for>>
-        
-    <</for>>
-<</widget>>
+    <</widget>>
+
+/*  Show the clothes in a certain order with an undress button.
+    The _items array is used to have an order of items, so it doesn't display like "bra, pantyhose, blouse, etc" and instead is in order of categories */
+    <<widget "showWClothes">>
+        <<set _bodyP to Object.keys($bps)>>
+        <<set _pos to ["primary", "secondary"]>>
+        <<set _items to [[],[],[],[],[],[],[]]>>
+
+        <<for _ipk to 0; _ipk lt _bodyP.length; _ipk++>>
+            <<set _bodyPIndex to Object.keys($bps[_bodyP[_ipk]])>>
+
+            <<for _jpi to 0; _jpi lt _bodyPIndex.length; _jpi++>>
+                <<for _k to 0; _k lt _pos.length; _k++>>
+                    <<if $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].lowname isnot "naked" and $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].lowname isnot "backpack">>
+                        <<if $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("outerwear")>>
+                            <<set _items[0].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("underwear")>>
+                            <<set _items[1].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("legwear")>>
+                            <<set _items[2].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("footwear")>>
+                            <<set _items[3].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("shoes")>>
+                            <<set _items[4].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("footwear")>>
+                            <<set _items[5].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+
+                        <<elseif $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]].category.includes("sextoy")>>
+                            <<set _items[6].push($bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_k]])>>
+                        <</if>>
+                    <</if>>
+                <</for>>
+            <</for>>
+        <</for>>
+
+        <<for _it to 0; _it lt _items.length; _it++>>
+            <<for _iit to 0; _iit lt _items[_it].length; _iit++>>
+                <div class="list" style="min-width: 7.5em;">
+                    <div id="insidelist">
+                        <<if _items[_it][_iit].amount gt 1>>
+                            x<<print _items[_it][_iit].amount>>
+                        <</if>>
+                        <<print _items[_it][_iit].name>><<if _items[_it][_iit].slot>>(<<print _items[_it][_iit].slot>>)<</if>>
+                        <<if _items[_it][_iit].color>>
+                            <<clothescolor "inColor" _items[_it][_iit].color>>
+                        <</if>>
+                        <<if _items[_it][_iit].category.includes("sextoy")>>
+                            <<set _name to "Expel">>
+
+                        <<else>>
+                            <<set _name to "Take off">>
+
+                        <</if>>
+                        <br>
+                        <span class="smollbutt">
+                            <<capture _it _iit>>
+                                <<button "_name" "wardrobe">>
+                                    <<for _ipk to 0; _ipk lt _bodyP.length; _ipk++>>
+                                        <<set _bodyPIndex to Object.keys($bps[_bodyP[_ipk]])>>
+
+                                        <<for _jpi to 0; _jpi lt _bodyPIndex.length and !_break; _jpi++>>
+                                            <<for _kp to 0; _kp lt _pos.length; _kp++>>
+                                                <<if $bps[_bodyP[_ipk]][_bodyPIndex[_jpi]][_pos[_kp]].name is _items[_it][_iit].name>>
+                                                    <<undressMain _bodyP[_ipk] _bodyPIndex[_jpi] _pos[_kp] _items[_it][_iit].category[1]>>
+                                                    <<set _break to true>>
+                                                    <<break>>
+                                                <</if>>
+                                            <</for>>
+                                        <</for>>
+                                    <</for>>
+                                <</button>>
+                            <</capture>>
+                        </span>
+                    </div>
+                </div>
+            <</for>>
+        <</for>>
+    <</widget>>

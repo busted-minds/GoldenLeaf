@@ -72,10 +72,8 @@
 :: charcreation2 [nobr]
     <<gendersetter>>
 
-    <<if $playervar.sensibility isnot 0 or $playervar.lowersensibility isnot 0 or $playervar.uppersensibility isnot 0>>
+    <<if $playervar.sensibility isnot 0>>
         <<set $playervar.sensibility to 0>>
-        <<set $playervar.uppersensibility to 0>>
-        <<set $playervar.lowersensibility to 0>>
     <</if>>
 
     <fieldset class="charc">

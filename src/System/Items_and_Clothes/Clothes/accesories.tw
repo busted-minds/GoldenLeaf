@@ -8,7 +8,6 @@
             name: "Naked",
             lowname: "naked",
             price: 0,
-            state: "normal",
             description: "naked",
             category: ["naked"],
             gender: "none"
@@ -18,12 +17,50 @@
             name: "Backpack",
             lowname: "backpack",
             price: 0,
-            state: "normal",
             description: "A normal backpack.",
             category: ["backpack", "accesories"],
             gender: "none",
             maxitems: 7
         }
+    ]>>
+
+    <<set setup.clothes.sextoys to [
+        {
+            id: 0,
+            name: "Egg Vibe",
+            lowname: "egg vibe",
+            price: 10,
+            amount: 1,
+            description: "An egg vibe",
+            category: ["vibrator", "accesories", "sextoy", {wearable: ["vulva", "anus"]}],
+            gender: "female",
+            arsGain: 2
+        },
+        {
+            id: 1,
+            name: "Dildo",
+            lowname: "dildo",
+            price: 20,
+            color: undefined,
+            tLength: 0,
+            tWidth: 0,
+            description: "A dildo",
+            category: ["dildo", "accesories", "sextoy"],
+            gender: "female"
+        },
+        {
+            id: 2,
+            name: "Anal Plug",
+            lowname: "anal plug",
+            price: 15,
+            color: undefined,
+            tLength: 0,
+            tWidth: 0,
+            description: "An anal plug",
+            category: ["plug", "accesories", "sextoy", {wearable: ["anus"]}],
+            gender: "female",
+            arsGain: 2
+        },
     ]>>
 
 <</widget>>

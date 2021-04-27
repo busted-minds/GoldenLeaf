@@ -1,0 +1,25 @@
+:: sexshop [nobr]
+    <h2>Sex Shop</h2>
+    <<if $shoppingcart is undefined>>
+        <<set $shoppingcart to []>>
+    <</if>>
+    <div class="divisor"></div>
+    <<messager>>
+
+    <<button "Sex Toys" "sextoys">><</button>>
+    <br>
+    <br>
+    <<if $shoppingcart[0] isnot undefined>>
+        <<button "Purchase Items" "sspurchase">><</button>>
+    <<else>>
+        <<button "Go out" "shoppingcenter">><<unset $shoppingcart>><</button>>
+    <</if>>
+
+:: sextoys [nobr]
+    <h2>Sex Toys</h2>
+    <div class="divisor"></div>
+    <<messager>>
+    <<ssShow>>
+
+:: sspurchase [nobr]
+    <<purchase "sexshop">>

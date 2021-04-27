@@ -96,14 +96,14 @@
         <<set _bodyPIndex to Object.keys($bps[_bodyP[_i]])>>
 
         <<for _j to 0; _j lt _bodyPIndex.length; _j++>>
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "backpack">>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].primary.lowname isnot "naked" and !$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category.includes("backpack")>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].item.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.name)>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].primary.category[1]].color.push($bps[_bodyP[_i]][_bodyPIndex[_j]].primary.color)>>
 
                 <<set _check++>>
             <</if>>
 
-            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "backpack">>
+            <<if $bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.lowname isnot "naked" and !$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category.includes("backpack")>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].item.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.name)>>
                 <<set _content[$bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.category[1]].color.push($bps[_bodyP[_i]][_bodyPIndex[_j]].secondary.color)>>
 
@@ -180,9 +180,22 @@
     <<for _i to 0; _i lt _ofKeys.length; _i++>>
         <<for _j to 0; _j lt $outfits[_outfID].content[_ofKeys[_i]].item.length; _j++>>
             <<print $outfits[_outfID].content[_ofKeys[_i]].item[_j]>>
-            <<clothescolor "outfitInfoColor" $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+            <<if $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+                <<clothescolor "inColor" $outfits[_outfID].content[_ofKeys[_i]].color[_j]>>
+            <</if>>
             <br>
         <</for>>
     <</for>>
     </div>
+<</widget>>
+
+<<widget "genderIcon">>
+    <<if setup.clothes[$args[0]][_j].gender is "male">> 
+        <<set _ic to "img/others/maleGIcon.png">>
+    <<elseif setup.clothes[$args[0]][_j].gender is "female">>
+        <<set _ic to "img/others/femaleGIcon.png">>
+    <<else>>
+        <<set _ic to "img/others/neutralIcon.png">>
+    <</if>>
+    <img @src="_ic" style="max-width: 5%;">
 <</widget>>

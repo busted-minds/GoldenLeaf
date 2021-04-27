@@ -1,5 +1,4 @@
 :: StoryCaption [nobr]
-
 <<if $gamestarted is 1>>
     <fieldset class="info">
         <legend class="centered">Info</legend>
@@ -27,6 +26,7 @@
                 <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.red; <<print $hunger>>/100@@
             </div>
             <div>
+                <<wearSexToy "sideB">>
                 <img src="img/sidebar-icons/arousal.png" class="sbIcons" title="Arousal: High levels of arousal may lower your learning profficiency." alt="arousal">: @@#arousal.lightred; <<print $arousal>>/100@@
             </div>
         </div>
