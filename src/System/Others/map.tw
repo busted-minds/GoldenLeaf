@@ -34,11 +34,11 @@
             </a>
             <a onclick="passageMov(6, 'Shopping_Center');">
                 <rect id="Shopping_Center" class="map" x="199" y="185" height="45" width="50">
-                <title>To Shopping Center  +6 min.</title>
+                <title>To Shopping Center +6 min.</title>
             </a>
             <a onclick="passageMov(7, 'GLCC');">
                 <rect id="GLCC" class="map" x="25" y="274" height="48" width="53">
-                <title>To Golden Leaf Central College  +3 min.</title>
+                <title>To Golden Leaf Central College +3 min.</title>
             </a>
             <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
         </svg>
@@ -58,12 +58,13 @@
                 var time = setup.mapStreets[placeid].timeTo;
 
                 if (connts.includes(moveTo)) {
-                    Engine.play(moveTo);
                     wikifier("timeattached", time);
                     
                     var placeN = document.getElementById(placeName);
                     State.variables.mapCoord.x = placeN.getAttributeNS(null, "x");
                     State.variables.mapCoord.y = placeN.getAttributeNS(null, "y");
+
+                    Engine.play(moveTo);
                 }
             }
 
