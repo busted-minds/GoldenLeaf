@@ -1,6 +1,5 @@
 :: livingroom [nobr]
-    <h2> Livingroom </h2>
-    <div class="divisor"></div>
+    <<passNameRep "Living Room">>
     <<messager>>
     <<if visited() is 1>>
         //You start to get hungry, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh, and remember to download the map of the city so you know where everything is ;).//
@@ -46,9 +45,9 @@
             <<button "Sit on the Sofa" "sofa">><</button>>
         </fieldset>
     <</if>>
+
 :: tv [nobr]
-    <h2>TV</h2>
-    <div class="divisor"></div>
+    <<passNameRep "TV">>
     <<messager>>
     <<button "Watch news channel" "tv">>
         <<timeattached 3>>
@@ -58,8 +57,7 @@
     <<button "Turn off" "livingroom">><</button>>
 
 :: sofa [nobr]
-    <h2>Sofa</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Sofa">>
     <br>
     <div class="list">
         <div id="insidelist">

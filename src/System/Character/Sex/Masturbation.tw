@@ -1,5 +1,5 @@
 :: masturbate [nobr]
-    <h2>Masturbation</h2>
+    <<passNameRep "Masturbation">>
     <<if !$message and !$mastTime>>
         <<set $message to []>>
         <<set $mastTime to 0>>
@@ -11,7 +11,7 @@
         <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
         <<set $mastTime to 0>>
     <</if>>
-    <div class="divisor"></div>
+    
     <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
     <<mastOpt>>
     <<if $message[0]>>

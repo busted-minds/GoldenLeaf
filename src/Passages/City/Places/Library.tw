@@ -1,6 +1,5 @@
 :: library [nobr]
-    <h2>GL Public Library</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Public Library">>
     //Welcome to Golden Leaf’s Public library. All E-books are free and will be deleted from your device once you leave the establishment. You can pay a membership if you are one of those that like to read paper books, likewise, these books can’t leave the library.
     <br>
     If you are interested in the membership, please approach the librarian@@.red;(Not implemented)@@.//
@@ -12,8 +11,7 @@
     <<button "Go out" "ashrout">><</button>>
 
 :: glbooks [nobr]
-    <h2>Golden Leaf History</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Golden Leaf's History">>
     <span class="mainB">
     <<libBooks>>
     </span>

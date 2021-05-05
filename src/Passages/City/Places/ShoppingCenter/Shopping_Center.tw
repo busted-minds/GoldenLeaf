@@ -1,6 +1,5 @@
 :: shoppingcenter [nobr]
-    <h2>Shopping Center</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Shopping Center">>
     <<if $message>>
         <<print $message>>
     <</if>>

@@ -308,8 +308,7 @@
     <</timed>>
 
 :: prelivingroom [nobr]
-    <h2>House</h2>
-    <div class="divisor"></div>
+    <<passNameRep "House">>
     <<if $finishL isnot true>>
         @@#call1;As you enter the house and take a good look around, you see that it's in pretty bad shape. There are things that need to be fixed, others that needs to be replaced and rooms that need to be cleaned.
         Fortunately for you, there is running water and some useful cleaning supplies in the boxes. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@

@@ -1,7 +1,9 @@
 :: frozenjar [nobr]
-    <h2 class="blue">Frozen Jar</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Frozen Jar">>
     <<messager>>
+    <<if $time.getUTCHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
+        <<unset $workedhours>>
+    <</if>>
     /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) "lore" or story it's just not my forte. */
     <div id="aW">
     You are inside the @@.blue;Frozen Jar@@, a restaurant-bar.
@@ -32,7 +34,7 @@
         You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working at some tables and serving food to the costumers.
         <br>
         <<disable $energy lt _totalEU>>
-            <<button "Start Working" "work">><</button>> 
+            <<button "Start Working" "frozenJwork">><</button>> 
         <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~
         <br>
     <<elseif $pJob.place is undefined>>
@@ -74,8 +76,8 @@
     <<button "Go Out" "pioneerlane">><</button>>
     </div>
 :: employing [nobr]
-    <h2><<print setup.frozenjar.ownerName>>'s Office</h2>
-    <div class="divisor"></div>
+    <<set _passN to setup.frozenjar.ownerName + "'s Office">>
+    <<passNameRep _passN>>
     You get inside a little office. It's like a typical office with a desk, two chairs and a file cabinet.
     <br>
     <br>
@@ -138,8 +140,8 @@
     <</button>> @@.red; Beware, in this version(0.1) if you decline the job you won't be able to work here anymore, as the reset to the var isn't implemented.@@
 
 :: employing2 [nobr]
-    <h2><<print setup.frozenjar.ownerName>>'s Office</h2>
-    <div class="divisor"></div>
+    <<set _passN to setup.frozenjar.ownerName + "'s Office">>
+    <<passNameRep _passN>>
     <<switch $jobaccepted>>
         <<case true>>
             After signing and giving it your fingerprint you hand back the tablet to her.
@@ -241,9 +243,8 @@
             <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $playerdeclinejob to "frozenjar">><</button>>
     <</switch>>
 
-:: work [nobr]
-    <h2>Work, you little shit >:D</h2>
-    <div class="divisor"></div>
+:: frozenJwork [nobr]
+    <<passNameRep "Get to work you little shit >:D">>
     <<if !$workedhours>>
         <<set $workedhours to 0>>
         You greet @@.orange;<<print setup.frozenjar.ownerName>>@@, change yourself into the uniform in the staff room and start working.
@@ -262,7 +263,7 @@
         <br>
         [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
         <br>
-        <<button `"Work " + _workinghour + " hour(s)"` "work">>
+        <<button `"Work " + _workinghour + " hour(s)"` "frozenJwork">>
                 <<timeattached `_workinghour*60` $pJob.energyused>>
                 <<payment _workinghour>>
                 <<set $workedhours++>>

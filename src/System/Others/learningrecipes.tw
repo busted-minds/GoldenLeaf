@@ -1,6 +1,5 @@
 :: learnrecipsteps [nobr]
-    <h2>Cook-ing for Newbies</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Cook-ing for Newbies">>
     To make $recipeTL you need to follow these steps:
     <<set _rID to setup.recipes.findIndex(x => x.name === $recipeTL)>>
     <br>
@@ -23,8 +22,7 @@
 
         <<button "Click on the link" "learnrecipes">><</button>>
     <<else>>
-        <h2>Cook-ing for Newbies</h2>
-        <div class="divisor"></div>
+        <<passNameRep "Cook-ing for Newbies">>
         <<messager>>
         //Welcome to Cook-ing for Newbies, where you can learn some useful recipes so you can delight your family, or yourself if you are a loner.
         <br>

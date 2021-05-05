@@ -1,6 +1,5 @@
 :: cloverow
-    !!Clove Row Complex
-    <div class="divisor"></div>
+    <<passNameRep "Clove Row Complex">>
     You are outside of your home, located in a nice housing complex called Clove Row. 
 
     <<button "Get inside the house" "livingroom">><</button>>
@@ -9,8 +8,7 @@
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: blythecelyn
-    !!Blythe Celyn
-    <div class="divisor"></div>
+    <<passNameRep "Blythe Celyn">>
     <<nobr>>
     <<if visited() is 1>>
         //A flyer on the street comes into your sight from a place called the "Frozen Jar", apparently having a "Grand Opening". It says that they're open at <<print setup.frozenjar.workingHours.openingHours>> am.
@@ -23,26 +21,22 @@
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: barlowgrove
-    !!Barlow Grove
-    <div class="divisor"></div>
+    <<passNameRep "Barlow Grove">>
     /*<<button "Go inside Horeco Inc." "horeco">><</button>>
     <<link "Take a bus" "bus">><</link>>*/
 
 :: ashrout
-    !!Ashrout
-    <div class="divisor"></div>
+    <<passNameRep "Ashrout">>
     /*<<link "Take a bus" "bus">><</link>>*/
     <<button "GL Public Library" "library">><</button>>
 
 :: hollinsdrift
-    !!Hollins Drift
-    <div class="divisor"></div>
+    <<passNameRep "Hollins Drift">>
     Arriving at Hollins Drift, you see a building that is in construction. Who knows what it will be. Maybe some furniture related thing? ;).
     /*<<link "Take a bus" "bus">><</link>>*/
 
 :: pioneerlane
-    !!Pioneer Lane
-    <div class="divisor"></div>
+    <<passNameRep "Pioneer Lane">>
     <<nobr>>
     <<messager>>
     <<button "Go inside the Frozen Jar">>

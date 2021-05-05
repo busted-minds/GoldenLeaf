@@ -1,9 +1,8 @@
 :: sexshop [nobr]
-    <h2>Sex Shop</h2>
+    <<passNameRep "Sex Shop">>
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <div class="divisor"></div>
     <<messager>>
 
     <<button "Sex Toys" "sextoys">><</button>>
@@ -16,8 +15,7 @@
     <</if>>
 
 :: sextoys [nobr]
-    <h2>Sex Toys</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Sex Toys">>
     <<messager>>
     <<ssShow>>
 

@@ -1,6 +1,5 @@
 :: bathroom [nobr]
-    <h2>Bathroom</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Bathroom">>
     <<messager>>
     <<bathrclean>>
     You are in your bathroom and you see the door to the living room.

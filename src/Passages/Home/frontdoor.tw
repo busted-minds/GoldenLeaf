@@ -1,5 +1,5 @@
 :: frontdoor [nobr]
-    <h2>Front door</h2>
+    <<passNameRep "Front Door">>
     <div class="divisor"></div>
     You are at the front door surrounded by brick walls that have a hexagonal shape(because reasons). 
     <br>
@@ -15,8 +15,7 @@
     </fieldset>
     
 :: garden [nobr]
-    <h2>Garden</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Garden">>
     You are in the garden. You see the door that leads back inside the house.
     <br>
     The garden looks like it wasn't cleaned in a long time. If you want to do something here you need to fix and clean it.
