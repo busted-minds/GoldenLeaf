@@ -9,6 +9,8 @@
     <br>
     <br>
     <<button "Reception" "collreception">><</button>>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 :: collreception [nobr]
     <<passNameRep "College Reception">>

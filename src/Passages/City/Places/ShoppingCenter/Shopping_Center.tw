@@ -12,3 +12,6 @@
     <<disable !_open>>
         <<button "Sex Shop" "sexshop">><</button>> <<if !_open>>//You see a sign that says: We open at 6 PM.//<</if>>
     <</disable>>
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
