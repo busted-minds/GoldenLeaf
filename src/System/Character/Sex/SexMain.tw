@@ -48,9 +48,9 @@
         <<if $args.includesAny("masturb")>>
             <<set $masturCount++>>
         
-            <<set _find to $pTraits.findIndex(x => x.name == setup.traits.sexual[0].name)>>
+            <<set _find to $pTraits.findIndex(x => x.name == setup.traits[1].name)>>
             <<if $masturCount gte 5 and _find is -1>>
-                <<set $pTraits.pushUnique(setup.traits.sexual[0])>>
+                <<set $pTraits.pushUnique(setup.traits[1])>>
             <<elseif _find isnot -1>>
                 <<traitsEXP _find 1>>
             <</if>>
