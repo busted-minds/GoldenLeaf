@@ -3,7 +3,6 @@
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <<messager>>
 
     <<button "Sex Toys" "sextoys">><</button>>
     <br>
@@ -16,7 +15,7 @@
 
 :: sextoys [nobr]
     <<passNameRep "Sex Toys">>
-    <<messager>>
+    
     <<ssShow>>
 
 :: sspurchase [nobr]

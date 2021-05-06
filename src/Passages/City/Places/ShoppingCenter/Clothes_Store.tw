@@ -3,7 +3,7 @@
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <<messager>>
+    
     <<if visited() is 1>>
     After seeing a big announcement outside the store, you step inside. It seems that they sell shirts, blouses, pants, skirts, shoes and even underwear. There is a girl attending the store.
     <<else>>
@@ -25,17 +25,17 @@
 
 :: outerwear [nobr]
     <<passNameRep "Outerwear">>
-    <<messager>>
+    
     <<csShow "Outerwear" "upperbouter">>
 
 :: underwear [nobr]
     <<passNameRep "Underwear">>
-    <<messager>>
+    
     <<csShow "Underwear" "upperbunder">>
 
 :: footwear [nobr]
     <<passNameRep "Footwear">>
-    <<messager>>
+    
     <<csShow "Footwear" "shoes">>
 
 :: cspurchase [nobr]

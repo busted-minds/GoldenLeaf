@@ -1,6 +1,6 @@
 :: frozenjar [nobr]
     <<passNameRep "Frozen Jar">>
-    <<messager>>
+    
     <<if $time.getUTCHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
         <<unset $workedhours>>
     <</if>>

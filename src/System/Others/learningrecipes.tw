@@ -1,7 +1,9 @@
 :: learnrecipsteps [nobr]
     <<passNameRep "Cook-ing for Newbies">>
-    To make $recipeTL you need to follow these steps:
     <<set _rID to setup.recipes.findIndex(x => x.name === $recipeTL)>>
+    <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
+
+    To make $recipeTL you need to follow these steps:
     <br>
     <br>
     <<instructions $recipeTL>>
@@ -11,19 +13,19 @@
     <br>
     <<button "Finish" "learnrecipes">>
         <<timeattached 5>>
-        <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
         <<unset $recipeTL>>
     <</button>>@@.red; +5 minutes@@
 
 :: learnrecipes [nobr]
     /* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little "checker" for skill requirements.*/
     <<if $cookingskill lte 5 and visited() is 1>>
+        <<passNameRep "Waterdog Search Result">>
         You found some recipes in a webpage called "Cook-ing for Newbies".
 
         <<button "Click on the link" "learnrecipes">><</button>>
     <<else>>
         <<passNameRep "Cook-ing for Newbies">>
-        <<messager>>
+        
         //Welcome to Cook-ing for Newbies, where you can learn some useful recipes so you can delight your family, or yourself if you are a loner.
         <br>
         Are you interested in some Chicken Wings? Or maybe some easy-to-make pizza? Then this is your place! Scroll down to see our recommended recipes!
@@ -44,6 +46,7 @@
                     <<capture _recipeName>>
                         <<button `"Learn " + _recipeName + _defIng` "learnrecipsteps">>
                             <<set $recipeTL to _recipeName>>
+                            <<set $message to "recipeLearned">>
                         <</button>>
                     <</capture>>
                 <</disable>>

@@ -48,6 +48,7 @@
     <<set _expSN to "$" + _sN + "exp">>
     <<set _skillLearN to State.getVar("$" + $args[0] + "learning")>>
     <<set _expV = (State.getVar(_expSN) + Math.round((_expval * _skillLearN)/_penalty))>>
+    <<set $message to "addedExp"; $mExp to Math.round((_expval * _skillLearN)/_penalty); $mSkill to _sN>>
     <<run State.setVar(_expSN, _expV)>>
 
 <</widget>>

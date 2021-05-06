@@ -38,6 +38,18 @@
                         <</if>>
                     <</for>>
                 @@.yellow;<<print _total>> credits.
+
+            <<case "recipeLearned">>
+                @@.green;New recipe added to Glodex!@@
+                <br>
+            <<case "addedExp">>
+                @@.green;<<print String.format("+{0} {1} exp", $mExp, $mSkill)>>@@
+                <<unset $mExp; $mSkill>>
+                <<if $multiSkill is true>>
+                    @@.green;<<print String.format("+{0} {1} exp", $mExp1, $mSkill1)>>@@
+                    <<unset $mExp1; $mSkill1>>
+                <</if>>
+                <br> 
         <</switch>>
         ''
         //

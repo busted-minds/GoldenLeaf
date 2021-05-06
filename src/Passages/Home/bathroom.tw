@@ -1,6 +1,6 @@
 :: bathroom [nobr]
     <<passNameRep "Bathroom">>
-    <<messager>>
+    
     <<bathrclean>>
     You are in your bathroom and you see the door to the living room.
     <br>

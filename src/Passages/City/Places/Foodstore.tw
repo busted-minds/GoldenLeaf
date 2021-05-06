@@ -3,7 +3,7 @@
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <<messager>>
+    
     <<if visited() is 1>>
         You get inside the store from the AD. It seems that they sell many foodstuffs here.
     <<else>>
@@ -30,14 +30,14 @@
 
 :: meataisle [nobr]
     <<passNameRep "Meat Aisle">>
-    <<messager>>
+    
     <<foodshow "meat">>
 
     <<button "Back" "grocerystore">> <</button>>
 
 :: fandvaisle [nobr]
     <<passNameRep "Fruits and Vegs Aisle">>
-    <<messager>>
+    
     <br>
     <span style="font-size=large; font-weight: bold">Fruits</span>
     <<foodshow "fruits">>
@@ -47,14 +47,14 @@
 
 :: spicesaisle [nobr]
     <<passNameRep "Spices Aisle">>
-    <<messager>>
+    
     <<foodshow "spices">>
 
     <<button "Back" "grocerystore">> <</button>>
 
 :: ingredaisle [nobr]
     <<passNameRep "General Ingredients Aisle">>
-    <<messager>>
+    
     <<foodshow "generalIng">>
 
     <<button "Back" "grocerystore">> <</button>>

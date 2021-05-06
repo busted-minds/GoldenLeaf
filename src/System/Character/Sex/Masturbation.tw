@@ -1,7 +1,7 @@
 :: masturbate [nobr]
     <<passNameRep "Masturbation">>
-    <<if !$message and !$mastTime>>
-        <<set $message to []>>
+    <<if !$sexLog and !$mastTime>>
+        <<set $sexLog to []>>
         <<set $mastTime to 0>>
     <</if>>
     <<if $arousal gte 100>>
@@ -14,13 +14,13 @@
     
     <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
     <<mastOpt>>
-    <<if $message[0]>>
-        <<print $message[0]>>
+    <<if $sexLog[0]>>
+        <<print $sexLog[0]>>
         <br>
         <br>
     <</if>>
-    <<if $message[1] and !$message[0].includes("After reaching an orgasm")>>
-        <<print $message[1]>>
+    <<if $sexLog[1] and !$sexLog[0].includes("After reaching an orgasm")>>
+        <<print $sexLog[1]>>
         <br>
         <br>
     <</if>>
@@ -48,7 +48,7 @@
     <<button "Finish" $location>>
         <<set $selectedSexOpt.RightHand to undefined>>
         <<set $selectedSexOpt.LeftHand to undefined>>
-        <<unset $message>>
+        <<unset $sexLog>>
         <<unset $location>>
         <<unset $mastTime>>
     <</button>>

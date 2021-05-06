@@ -5,7 +5,6 @@
     <<set _total to 0>>
     <<set _deleteAm to 0>>
     <<set _currPass to passage()>>
-    <<messager>>
     <br>
     <div>
     <<for _sci to 0; _sci lt $shoppingcart.length; _sci++>>

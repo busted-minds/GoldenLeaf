@@ -1,6 +1,6 @@
 :: kitchen [nobr]
     <<passNameRep "Kitchen">>
-    <<messager>>
+    
     You are in the kitchen. It's small and is divided by an open-wall through which you can see your living room from.
     <br>
     In the corner you see your fridge, on top of which you have a spice cabinet and a cupboard. 
@@ -60,7 +60,7 @@
 
 :: kitchentable [nobr]
     <<passNameRep "Kitchen Table">>
-    <<messager>>
+    
     <<if $selectedrecipe>>
         <<button "Change Recipe" "kitchentable">><</button>> 
         <<button "Clear selected recipe" "kitchentable">>

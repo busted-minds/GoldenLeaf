@@ -7,7 +7,7 @@
     Near the window you can see a cheap desk that has a @@.orange;normal laptop@@ on top of it and a @@.orange;cheap chair@@.
     <br>
     <br>
-    <<messager>>
+    
     <<cleanbedroom>>
     <fieldset id="fieldinline">
         <legend>Use</legend>
@@ -154,7 +154,7 @@
     
 :: computer [nobr]
     <<passNameRep "Computer">>
-    <<messager>>
+    
     <<button "Play videogames" "computer">>
         <<if $fun lt 100 and $energy gt 2>>
             <<restoreEnergy -2>>

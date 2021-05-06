@@ -42,7 +42,6 @@
 
 :: pioneerlane [nobr]
     <<passNameRep "Pioneer Lane">>
-    <<messager>>
     <<button "Go inside the Frozen Jar">>
         <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
             <<goto "frozenjar">>
