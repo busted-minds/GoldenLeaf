@@ -5,14 +5,17 @@
         {
             id: 0,
             name: "Crossdressing",
-            type: "Non-Sexual",
+            type: ["Non-Sexual"],
+            excludes: [""],
             exp: 0,
             expleft: 10,
             level: 0
         },
+        {
             id: 1,
             name: "Masturbation Lover",
-            type: "Sexual",
+            type: ["Sexual"],
+            excludes: [""],
             exp: 0,
             expleft: 10,
             level: 0

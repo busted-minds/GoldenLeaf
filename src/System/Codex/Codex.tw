@@ -137,7 +137,7 @@
                 <span @class="_types[_i] is 'Sexual' ? 'lightred' : 'lightyellow'"><<print _types[_i]>></span>
                 <br>
                 <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
-                    <<if $pTraits[_iT].type is _types[_i]>>
+                    <<if $pTraits[_iT].type.includes(_types[_i])>>
                         <div class="listSkills">
                         <<print String.format("{0}<br>Level:{1}<br>Exp:{2}/{3}", $pTraits[_iT].name, $pTraits[_iT].level, $pTraits[_iT].exp, $pTraits[_iT].expleft)>>
                         </div>
