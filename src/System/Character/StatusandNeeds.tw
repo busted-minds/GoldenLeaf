@@ -24,7 +24,7 @@
 <<widget "timeattached">> /% It's pretty self explanatory I think. args 1 in case we need to use an specific amount of energy or an string in case is skilling %/
     <<set _mult to 0.20>>
 
-    <<if typeof($args[2]) is "number" and $args[3] is "chngMult">>
+    <<if $args[3] is "chngMult">>
         <<set _mult to $args[2]>>
     <</if>>
 
@@ -54,7 +54,7 @@
         <<addexp $args[1] $args[2]>>
 
     <<elseif typeof($args[2]) is "string" and $args[3]>>
-        <<addexp $args[3] $args[3]>>
+        <<addexp $args[2] $args[3]>>
     <</if>>
 
 <</widget>>

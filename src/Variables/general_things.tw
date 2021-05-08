@@ -2,11 +2,11 @@
 
 <<widget "qsGT">>
     <<geneVariables>>
-    <<skillinit>>
     <<importantNPCs>>
     <<jobsInfo>>
     <<mapStreets>>
     <<traitsInit>>
+    <<skillsIni>>
 <</widget>>
 
 <<widget "geneVariables">>
@@ -35,24 +35,6 @@
     <<set $selectedSexOpt to {"RightHand": 0, "LeftHand": 0}>>
     <<set $masturCount to 0>>
     <<set $aroused to false>>
-
-<</widget>>
-
-<<widget "skillinit">>
-    <<set _skillname to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
-    <<set _skillexpN to ["prog", "cook", "gard", "art", "athletic", "weightl", "handym"]>>
-
-    <<for _i to 0; _i lt _skillname.length; _i++>>
-        <<set _skill to '$'+_skillname[_i]+'skill'>>
-        <<set _exp to '$'+_skillexpN[_i]+'exp'>>
-        <<set _expleft to '$'+_skillexpN[_i]+'expleft'>>
-        <<set _learning to '$'+_skillname[_i]+'learning'>>
-
-        <<set State.setVar(_skill, 0)>>
-        <<set State.setVar(_exp, 0)>>
-        <<set State.setVar(_expleft, 100)>>
-        <<set State.setVar(_learning, 1)>>
-    <</for>>
 
 <</widget>>
 

@@ -54,6 +54,7 @@
 }>>
 
 <<set $pTraits to []>>
+<<set $pSkills to []>>
 
 <<set $credits to 250>>
 <<set $energy to 100>>
@@ -65,13 +66,6 @@
 <<set $footerMessager to true>>
 
 <<set $hobby to undefined>>
-
-<<set _skills to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
-
-<<for _i to 0; _i lt _skills.length; _i++>>
-    <<set _skillN to "$" + _skills[_i] + "skill">>
-    <<set State.setVar(_skillN, 1)>>
-<</for>>
 
 <<set $pName to "Name">>
 <<set $pSurname to "Surname">>

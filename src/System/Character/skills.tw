@@ -1,23 +1,73 @@
 :: skills [widget nobr]
+<<widget "skillsIni">>
+    <<set setup.skills to [
+        {
+            id: 0,
+            name: "programming",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1 
+        },
+        {
+            id: 1,
+            name: "cooking",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1
+        },
+        {
+            id: 2,
+            name: "gardening",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1
+        },
+        {
+            id: 3,
+            name: "art",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1
+        },
+        {
+            id: 4,
+            name: "athletic",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1
+        },
+        {
+            id: 5,
+            name: "handyman",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Main"],
+            lvl: 1
+        },
+    ]>>
+    
+<</widget>>
 
 <<widget "skillup">> /* This is just some voodoo magic, it just make that if the exp is greater than the exp left to level up, it level up that skill as many time as the exp meet the exp left threshold. */
-    <<set _exp to "$" + $args[0] + "exp">>
-    <<set _expleft to "$" + $args[0] + "expleft">>
-    <<set _skillname to "$" + $args[1] + "skill">>
+    <<set _fSk to $pSkills.findIndex(x => x.name === $args[0])>>
 
-    <<set _e to State.getVar(_exp)>>
-    <<set _el to State.getVar(_expleft)>>
+    <<for $pSkills[_fSk].exp gte $pSkills[_fSk].expleft>>
+        <<set $pSkills[_fSk].exp -= $pSkills[_fSk].expleft>>
 
-    <<for _e gte _el>>
-        <<set _e -= _el>>
-        <<run State.setVar(_exp, _e)>>
+        <<set $pSkills[_fSk].expleft += Math.round(1.25 * ($pSkills[_fSk].expleft + 1.25))>>
 
-        <<set _el += Math.round(100 * (State.getVar(_skillname) ** 1.5) / 2.1)>>
-        <<run State.setVar(_expleft, _el)>>
-
-        <<set _su to State.getVar(_skillname)>>
-        <<set _su += 1>>
-        <<run State.setVar(_skillname, _su)>>
+        <<set $pSkills[_fSk].lvl += 1>>
 
     <</for>>
     
@@ -25,30 +75,17 @@
 
 /% It just add exp to the skill and then calls the widget skillup so it can check if it got the needed exp to lvl up.%/
 <<widget "addexp">>
-    <<set _expval to $args[1]>>
+    <<set _fSk to $pSkills.findIndex(x => x.name === $args[0])>>
+    <<set _val to $args[1]>>
+    <<if _fSk is -1>>
+        <<set _fSSk to setup.skills.findIndex(x => x.name === $args[0])>>
+
+        <<set $pSkills.pushUnique(setup.skills[_fSSk])>>
+        <<set _fSk to $pSkills.findIndex(x => x.name === $args[0])>>
+    <</if>>
     <<penalty>>
 
-    <<switch $args[0]>>
-        <<case "programming">>
-            <<set _sN to "prog">>
-        <<case "cooking">>
-            <<set _sN to "cook">>
-        <<case "gardening">>
-            <<set _sN to "gard">>
-        <<case "athletic">>
-            <<set _sN to "athletic">>
-        <<case "art">>
-            <<set _sN to "art">>
-        <<case "handyman">>
-            <<set _sN to "handym">>
-        <<case "weightlift">>
-            <<set _sN to "weightl">>
-    <</switch>>
-
-    <<set _expSN to "$" + _sN + "exp">>
-    <<set _skillLearN to State.getVar("$" + $args[0] + "learning")>>
-    <<set _expV = (State.getVar(_expSN) + Math.round((_expval * _skillLearN)/_penalty))>>
-    <<set $message to "addedExp"; $mExp to Math.round((_expval * _skillLearN)/_penalty); $mSkill to _sN>>
-    <<run State.setVar(_expSN, _expV)>>
+    <<set $pSkills[_fSk].exp += Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/_penalty)>>
+    <<set $message to "addedExp"; $mExp to Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/_penalty); $mSkill to $pSkills[_fSk].name>>
 
 <</widget>>

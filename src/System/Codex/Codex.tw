@@ -94,6 +94,10 @@
             </div>
         <</capture>>
     <</for>>
+
+    <<if !$learnedrecipes[0]>>
+        You haven't learned any recipe yet.
+    <</if>>
 <</widget>>
 
 <<widget "shoppingList">>
