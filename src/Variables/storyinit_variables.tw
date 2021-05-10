@@ -59,9 +59,6 @@
 <<set $credits to 250>>
 <<set $energy to 100>>
 <<set $maxenergy to 100>>
-<<set $fun to 100>>
-<<set $hygiene to 100>>
-<<set $hunger to 20>>
 <<set $arousal to 0>>
 <<set $footerMessager to true>>
 

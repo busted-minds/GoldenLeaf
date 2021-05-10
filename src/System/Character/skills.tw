@@ -52,7 +52,16 @@
             exp: 0,
             expleft: 100,
             learningMod: 1,
-            category: ["Main"],
+            category: ["Secondary"],
+            lvl: 1
+        },
+        {
+            id: 6,
+            name: "gaming",
+            exp: 0,
+            expleft: 100,
+            learningMod: 1,
+            category: ["Secondary"],
             lvl: 1
         },
     ]>>

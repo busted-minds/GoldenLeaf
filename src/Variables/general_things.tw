@@ -35,6 +35,7 @@
     <<set $selectedSexOpt to {"RightHand": 0, "LeftHand": 0}>>
     <<set $masturCount to 0>>
     <<set $aroused to false>>
+    <<set $memberships to []>>
 
 <</widget>>
 

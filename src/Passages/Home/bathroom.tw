@@ -8,13 +8,16 @@
     <br>
     <<if $bathrclean>>
         <br>
-        <<button "Fast shower" "bathroom">>
-            <<hygiene 40 4>>
-        <</button>>@@.green; +40 hygiene@@ | @@.red; +4 Minutes@@
+        <<button "Shower" "bathroom">>
+            <<timeattached 4 0>>
+            <<set $bathed to true>>
+        <</button>> @@.red; +4 Minutes@@
         <br>
-        <<button "Normal shower" "bathroom">>
-            <<hygiene 100 10>>
-        <</button>>@@.green; +100 hygiene@@ | @@.red; +10 Minutes@@
+        <<button "Energizing shower" "bathroom">>
+            <<timeattached 6 0>>
+            <<restoreEnergy 5>>
+            <<set $bathed to true>>
+        <</button>> @@.green; +5 energy@@ |@@.red; +6 Minutes@@
         <br>
         <br>
         <<masturbutton>>

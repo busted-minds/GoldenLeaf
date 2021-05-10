@@ -9,7 +9,7 @@
 <</widget>>
 
 <<widget "penalty">>
-    <<if $arousal gte 80 or $fun lte 15>>
+    <<if $arousal gte 80>>
         <<set _penalty to 2>>
     <<else>>
         <<set _penalty to 1>>

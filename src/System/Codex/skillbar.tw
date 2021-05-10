@@ -6,6 +6,8 @@
         <div class="listSkills">
             <<print $pSkills[_i].name.toUpperFirst()>> level: <span @id="$pSkills[_i].name"><<print $pSkills[_i].lvl>></span>
             <br>
+            Category: <<print $pSkills[_i].category[0]>>
+            <br>
             <<progressbar $pSkills[_i].exp $pSkills[_i].expleft $pSkills[_i].name>>
         </div>
     <</for>>

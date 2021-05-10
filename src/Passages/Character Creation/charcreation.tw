@@ -445,7 +445,7 @@
                     <<set $messageL[0] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now you can feel proud if someone came to your house, because it looks somewhat decent.@@
@@ -462,7 +462,7 @@
                     <<set $messageL[1] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now the livingroom looks like something you could spend your time off in and is worth looking at, you even bought a little clock :D.@@
@@ -475,7 +475,7 @@
 
                         <<set $clean +=1>>
 
-                    <</button>>@@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                    <</button>>@@.red; Energy +10 Minutes@@
                 
                 <<else>>
                     <br>
@@ -490,7 +490,7 @@
                         <<set $messageL[3] to true>>
                         <<set $clean +=1>>
 
-                    <</button>>@@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                    <</button>>@@.red; +15 Minutes@@
 
                 <<else>>
                     <br>
@@ -509,7 +509,7 @@
                     <<set $messageL[4] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                <</button>>@@.red; Energy +10 Minutes@@
             
             <<else>>
                 @@.green;Now this is a place where you could cook!@@
@@ -527,7 +527,7 @@
                     <<set $messageL[5] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
             
             <<else>>
                 @@.green;You can sleep here, the bed isn't that good but it was free so it'll' work until you can afford a better one. Your new laptop is on the table in case you want to use it. The wardrobe difficult to move, why did they buy one so big? Oh well, it *was* free...@@
@@ -545,7 +545,7 @@
                     <<set $messageL[6] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                <</button>>@@.red; Energy +10 Minutes@@
 
             <<else>>
                 @@.green;The bathroom is so clean that you can see your own reflection, some soaps and shampoos were in the boxes as well.@@

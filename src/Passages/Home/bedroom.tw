@@ -32,11 +32,7 @@
     You are in your normal bed, what do you want to do?
     <br>
     <br>
-    <<if $hunger lt 80>>
-        <<button "Sleep or Rest" "sleep">><</button>>
-    <<else>>
-        @@.lightred;You need to eat something before sleeping.@@
-    <</if>>
+    <<button "Sleep or Rest" "sleep">><</button>>
     <br>
     <<masturbutton>>
     <br>
@@ -156,29 +152,24 @@
     <<passNameRep "Computer">>
     
     <<button "Play videogames" "computer">>
-        <<if $fun lt 100 and $energy gt 2>>
-            <<restoreEnergy -2>>
-            <<set $fun += 5>>
-            <<addminutes 5>>
+        <<if $energy gt 2>>
+            <<timeattached 4 "gaming" 3>>
         <<else>>
-            <<if $energy lt 2>>
-                <<set $message to "noEnergyFun">>
-            <<else>>
-                <<set $message to "fullFun">>
-            <</if>>
+            <<set $message to "noEnergy">>
+        
         <</if>>
-    <</button>>@@.green; +5 Fun@@ | @@.red; -2 Energy +5 Minutes@@
+    <</button>>@@.red; +5 Minutes@@
     <br>
     <<button "Open WaterDog Browser" "browser">><</button>>
     <br>
     <<if $hobby is "programming" or $programmingskill is 2>>
         <<button "Practice programming" "computer">>
-            <<if $fun gte Math.round(15 *0.2) and $energy gte Math.round(15 *0.1)>>
+            <<if $energy gte Math.round(15 * 0.2)>>
                 <<timeattached 15 "programming" 6>>
             <<else>>
-                <<set $message to "noEnergyFun">>
+                <<set $message to "noEnergy">>
             <</if>>
-        <</button>>@@.green; +<<print Math.round(6 * $programminglearning)>> Programming Exp@@ | @@.red; -<<print Math.round(15 *0.2)>> Fun -<<print Math.round(15 *0.1)>> Energy +15 Minutes@@
+        <</button>>@@.red; +15 Minutes@@
     <</if>>
     <br>
     <br>

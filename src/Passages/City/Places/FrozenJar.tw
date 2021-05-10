@@ -14,19 +14,17 @@
         <br>
     <</if>>
     There is a menu showing the food available today.
-    <<if $hunger gt 0>>
-        <br>
-        <br>
-        <<button "Buy and eat some food(WIP)" "frozenjar">>
-            <<if $credits gte 8>>
-                <<set $credits -= 8>>
-                <<timeattached 10>>
-                <<eatFood 60>>
-            <<else>>
-                <<set $message to "noCredits">>
-            <</if>>
-        <</button>>@@.green; -60 hunger,@@@@.red; -8 credits, +10 min.@@
-    <</if>>
+    <br>
+    <br>
+    <<button "Buy and eat some food(WIP)" "frozenjar">>
+        <<if $credits gte 8>>
+            <<set $credits -= 8>>
+            <<timeattached 10 0>>
+            <<restoreEnergy 20>>
+        <<else>>
+            <<set $message to "noCredits">>
+        <</if>>
+    <</button>>@@.green; +20 Energy@@ | @@.red; -8 credits, +10 min.@@
     <br>
     <<if $pJob.place is "frozenjar" and !$workedhours>>
         <<set _totalEU to $pJob.hoursreq * $pJob.energyused>>

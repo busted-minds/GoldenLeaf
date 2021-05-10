@@ -8,7 +8,7 @@
             description: "A coconut",
             uses: 2,
             price: 2,
-            hunger: 5,
+            energy: 2,
             amount: 1,
             foodtype: "fruits"
 
@@ -19,7 +19,7 @@
             description: "A watermelon",
             uses: 3,
             price: 3,
-            hunger: 4,
+            energy: 2,
             amount: 1,
             foodtype: "fruits"
 
@@ -30,7 +30,7 @@
             description: "A melon",
             uses: 2,
             price: 3,
-            hunger: 5,
+            energy: 3,
             amount: 1,
             foodtype: "fruits"
 

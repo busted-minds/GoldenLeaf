@@ -96,7 +96,7 @@
                 <<if $energy gte 15>>
                     <<goto "preparation">>
                 <<else>>
-                    <<set $message to "noEnergyFun">>
+                    <<set $message to "noEnergy">>
                     <<goto "kitchentable">>
                 <</if>>
             <</button>>
@@ -106,7 +106,7 @@
                 <<if $energy gte 15>>
                     <<goto "preparation">>
                 <<else>>
-                    <<set $message to "noEnergyFun">>
+                    <<set $message to "noEnergy">>
                     <<goto "kitchentable">>
                 <</if>>
             <</button>>
@@ -163,10 +163,10 @@
 
         <<foodready>>
 <</widget>>
- /* Here is where the magic happens part 2. It checks if the correct count (If you followed the steps as the recipe says) and assigns a quality, a price and a hunger value. 
+ /* Here is where the magic happens part 2. It checks if the correct count (If you followed the steps as the recipe says) and assigns a quality, a price and a energy value. 
     In the case that the recipe has a defining ingredient it adds a "with" to their name.
     It stores the new "prepared food" in a temporary kitchen table, makes all changes to it and then add it to the kitchen table.
-    Checking if any item inside it has the same name, quality, price and hunger value. If it does then the amount values goes up. Meaning that you can eat it more than 1 time.
+    Checking if any item inside it has the same name, quality, price and energy value. If it does then the amount values goes up. Meaning that you can eat it more than 1 time.
     Everything else is self explatanory I think.
  */
 <<widget "foodready">>
@@ -263,15 +263,15 @@
     <</if>>
     <<set _tempKTable.quality to _quality>>
     <<set _tempKTable.price to Math.round(_tempKTable.price * _pMult)>>
-    <<set _tempKTable.hunger to Math.round(_tempKTable.hunger /= _bonus)>>
+    <<set _tempKTable.energy to Math.round(_tempKTable.energy /= _bonus)>>
     <<set _id to $kitchentable.findIndex(kti => kti.name === _tempKTable.name)>>
     
     <<if $kitchentable[_id]>>
         <<if $kitchentable[_id].name is _tempKTable.name>>
             <<set _uQuality to _tempKTable.quality>>
             <<set _uPrice to _tempKTable.price>>
-            <<set _uHunger to _tempKTable.hunger>>
-            <<if $kitchentable[_id].quality is _uQuality and $kitchentable[_id].price is _uPrice and $kitchentable[_id].hunger is _uHunger>>
+            <<set _uEner to _tempKTable.energy>>
+            <<if $kitchentable[_id].quality is _uQuality and $kitchentable[_id].price is _uPrice and $kitchentable[_id].energy is _uEner>>
                 <<set $kitchentable[_id].amount += 1>>
 
             <<else>>

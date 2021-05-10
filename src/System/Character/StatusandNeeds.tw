@@ -6,21 +6,6 @@
     <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 <</widget>>
 
-<<widget "hygiene">> /% The args need to be assigned as 0= Value to be used. 1=Minutes that will be added.%/
-    <<set _value to $args[0]>>
-    <<set _addmin to $args[1]>>
-    <<if $hygiene lt 100>>
-        <<set $hygiene += _value>>
-
-        <<timeattached _addmin>>
-
-    <<elseif $hygiene eq 100>>
-        <<set $message to "clean">>
-
-    <</if>>
-
-<</widget>>
-
 <<widget "timeattached">> /% It's pretty self explanatory I think. args 1 in case we need to use an specific amount of energy or an string in case is skilling %/
     <<set _mult to 0.20>>
 
@@ -34,18 +19,10 @@
         <<set _uE to $args[0] * _mult>>
     <</if>>
 
-    <<if $sleeping is true>>
-        <<set _mult to 0.10>>
-        <<set _uE to 0>>
-        <<set $sleeping to undefined>>
-
-    <<else>>
+    <<if _disableToy is false>>
         <<wearSexToy "timeatt" $args[0]>>
     <</if>>
     
-    <<set $hunger += Math.round($args[0] * _mult); $hunger to Math.clamp($hunger, 0, 100)>>
-    <<set $hygiene -= Math.round($args[0] * _mult); $hygiene to Math.clamp($hygiene, 0, 100)>>
-    <<set $fun -= Math.round($args[0] * _mult); $fun to Math.clamp($fun, 0, 100)>>
     <<set $energy -= Math.round(_uE); $energy to Math.clamp($energy, 0, $maxenergy)>>
 
     <<addminutes $args[0]>>
@@ -59,7 +36,7 @@
 
 <</widget>>
 
-<<widget "eatFood">>/%The args need to be assigned as 0= Value to be used to satisfy hunger. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
+<<widget "eatFood">>/%The args need to be assigned as 0= Value to be used add energy. 1=Food index to delete it. 2= Location from where it came and will be deleted. %/
     <<set _value to $args[0]>>
     <<set _foodID to $args[1]>>
     <<set _location to State.getVar("$" + $args[2])>>
@@ -92,8 +69,8 @@
             
     <</if>>
 
-    <<set $hunger -= _value>>
-    <<set $hunger to Math.clamp($hunger, 0, 100)>>
+    <<set $energy += _value>>
+    <<set $energy to Math.clamp($energy, 0, $maxenergy)>>
 
 <</widget>>
 
