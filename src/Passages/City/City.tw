@@ -30,8 +30,11 @@
 
 :: ashrout [nobr]
     <<passNameRep "Ashrout">>
-    /*<<link "Take a bus" "bus">><</link>>*/
+    
     <<button "GL Public Library" "library">><</button>>
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 :: hollinsdrift [nobr]
     <<passNameRep "Hollins Drift">>
@@ -42,15 +45,18 @@
 
 :: pioneerlane [nobr]
     <<passNameRep "Pioneer Lane">>
-    <<button "Go inside the Frozen Jar">>
+    <<button "Enter Frozen Jar">>
         <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
             <<goto "frozenjar">>
         <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>
             <<set $message to "placeClosed">>
-            <<goto pioneerlane>>
+            <<goto "pioneerlane">>
         <</if>>
     <</button>>
-    
+    <br>
+
+    <br>
+    <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 /* This is some voodoo shit I tell you. People think that this is programming but no, this is just magic, its power comes from the pain and tears of the people who call themselves "programmers". It doesn't work? I don't know why. It works? I don't know too. */
