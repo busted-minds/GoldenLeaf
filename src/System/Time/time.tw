@@ -3,12 +3,12 @@
 /% This is just the time system, nothing to see go on. Its very easy. %/
 /% Credits to the internet, as I saw how to do this there and I don't remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth :()) %/
 <<widget "addminutes">> /* Add minutes*/ 
-    <<run $time.setUTCMinutes($time.getUTCMinutes() + $args[0])>>
+    <<run $time.setMinutes($time.getMinutes() + $args[0])>>
 
 <</widget>>
 
 <<widget "addhours">> /* Add hours */
-    <<run $time.setUTCHours($time.getUTCHours() + $args[0])>>
+    <<run $time.setHours($time.getHours() + $args[0])>>
 
 <</widget>>
 
@@ -22,27 +22,27 @@
 
 <<widget "daystatechecker">>
 
-    <<if $time.getUTCHours() eq 0>>
+    <<if $time.getHours() eq 0>>
         <<set _daystate to "Midnight">>
         <<set _color to "midnightblue">>
 
-    <<elseif $time.getUTCHours() lte 4>>
+    <<elseif $time.getHours() lte 4>>
         <<set _daystate to "Early Morning">>
         <<set _color to "lightyellow">>
         
-    <<elseif $time.getUTCHours() lte 11>>
+    <<elseif $time.getHours() lte 11>>
         <<set _daystate to "Morning">>
         <<set _color to "gold">>
 
-    <<elseif $time.getUTCHours() lte 17>>
+    <<elseif $time.getHours() lte 17>>
         <<set _daystate to "Afternoon">>
         <<set _color to "darkyellow">>
 
-    <<elseif $time.getUTCHours() lte 21>>
+    <<elseif $time.getHours() lte 21>>
         <<set _daystate to "Evening">>
         <<set _color to "eveningblue">>
 
-    <<elseif $time.getUTCHours() lte 24>>
+    <<elseif $time.getHours() lte 24>>
         <<set _daystate to "Late Evening">>
         <<set _color to "lateveningblue">>
 
@@ -51,42 +51,42 @@
 <</widget>>
 
 <<widget "convert12h">> /* Converts to 12 hours */
-    <<if $time.getUTCHours() eq 0>> 
+    <<if $time.getHours() eq 0>> 
         
-        <<if $time.getUTCMinutes() lt 10>>
+        <<if $time.getMinutes() lt 10>>
 
-            <<print $time.getUTCHours() + 12 + ":0" + $time.getUTCMinutes()>>
+            <<print $time.getHours() + 12 + ":0" + $time.getMinutes()>>
 
         <<else>>
-            <<print $time.getUTCHours() + 12 + ":" + $time.getUTCMinutes()>>
+            <<print $time.getHours() + 12 + ":" + $time.getMinutes()>>
 
         <</if>>
 
-    <<elseif $time.getUTCHours() gt 12>>
+    <<elseif $time.getHours() gt 12>>
 
-        <<if $time.getUTCMinutes() lt 10>>
+        <<if $time.getMinutes() lt 10>>
 
-            <<print $time.getUTCHours() - 12 + ":0" + $time.getUTCMinutes()>>
+            <<print $time.getHours() - 12 + ":0" + $time.getMinutes()>>
 
         <<else>>
-            <<print $time.getUTCHours() - 12 + ":" + $time.getUTCMinutes()>>
+            <<print $time.getHours() - 12 + ":" + $time.getMinutes()>>
 
         <</if>>
 
     <<else>>
 
-        <<if $time.getUTCMinutes() lt 10>>
+        <<if $time.getMinutes() lt 10>>
 
-            <<print $time.getUTCHours() + ":0" + $time.getUTCMinutes()>>
+            <<print $time.getHours() + ":0" + $time.getMinutes()>>
 
         <<else>>
-            <<print $time.getUTCHours() + ":" + $time.getUTCMinutes()>>
+            <<print $time.getHours() + ":" + $time.getMinutes()>>
 
         <</if>>
 
     <</if>>
 
-    <<if $time.getUTCHours() gte 12>>
+    <<if $time.getHours() gte 12>>
         PM.
     <<else>>
         AM.
@@ -100,5 +100,5 @@
 <</widget>>
 
 <<widget "sleep">>
-    <<run $time.setUTCMinutes(0)>>
+    <<run $time.setMinutes(0)>>
 <</widget>>

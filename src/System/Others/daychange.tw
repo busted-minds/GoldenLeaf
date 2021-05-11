@@ -1,0 +1,13 @@
+:: daychange [widget nobr]
+
+    <<widget "daychange">>
+        <<if $currDay is undefined>>
+            <<set $currDay to $time.getDate()>>
+        <</if>>
+
+        <<if $currDay isnot $time.getDate()>>
+            <<unset $limitedExerc>>
+
+            <<unset $currDay>>
+        <</if>>
+    <</widget>>

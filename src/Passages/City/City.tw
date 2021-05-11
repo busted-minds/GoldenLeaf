@@ -30,8 +30,10 @@
 
 :: ashrout [nobr]
     <<passNameRep "Ashrout">>
-    
+
     <<button "GL Public Library" "library">><</button>>
+    <br>
+    <<button "Alexandra's Gym" "alegym">><<set $aleWelcome to true>><</button>>
     <br>
     <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>

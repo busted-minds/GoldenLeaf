@@ -4,6 +4,7 @@
     
         <<set saveUpdate to false>>
     <</if>>%/
+    <<daychange>>
     <h2 class="passName"></h2>
     <div class="passDiv"></div>
     <<messager>>
