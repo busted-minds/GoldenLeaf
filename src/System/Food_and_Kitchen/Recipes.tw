@@ -80,7 +80,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             name: "Fried Chicken Wings",
             reqingredients: [_foodnameM[1], _foodnameO[3]],
             extraingredients: [_foodnameS[0], _foodnameO[2]],
-            minskill: 1,
+            minskill: 0,
             recskill: 2,
             steps: [_sSteps[3], 7]
         },

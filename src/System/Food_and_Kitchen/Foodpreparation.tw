@@ -175,8 +175,9 @@
     <<set _recskill to setup.recipes[_recipeNameID].recskill>>
     <<set _prepfoodID to setup.food.preparedfood.findIndex(pf => pf.name === $selectedrecipe)>>
     <<set _tempKTable to setup.food.preparedfood[_prepfoodID]>>
+    <<set _fSkill to $pSkills.findIndex(fs => fs.name === "cooking")>>
 
-    <<if $correctCount lte _stepsL -3 and $cookingskill gte _minskill>>
+    <<if $correctCount lte _stepsL -3 and $pSkills[_fSkill].lvl gte _minskill or _fSkill is -1>>
         <<set _quality to "Mediocre">>
         <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 0.75>>
@@ -196,7 +197,7 @@
         
         <</if>>
 
-    <<elseif $correctCount eq _stepsL -2 and $cookingskill gte _minskill>>
+    <<elseif $correctCount eq _stepsL -2 and $pSkills[_fSkill].lvl gte _minskill>>
         <<set _quality to "Normal">>
         <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1>>
@@ -216,7 +217,7 @@
         
         <</if>>
 
-    <<elseif $correctCount eq _stepsL -1 and $cookingskill gte _minskill or $correctCount eq _stepsL and $cookingskill gte _minskill>>
+    <<elseif $correctCount eq _stepsL -1 and $pSkills[_fSkill].lvl gte _minskill or $correctCount eq _stepsL and $pSkills[_fSkill].lvl gte _minskill>>
         <<set _quality to "Good">>
         <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1.25>>
@@ -236,7 +237,7 @@
         
         <</if>>
 
-    <<elseif $correctCount gte _stepsL and $cookingskill gt _recskill>>
+    <<elseif $correctCount gte _stepsL and $pSkills[_fSkill].lvl gt _recskill>>
         <<set _quality to "Masterpiece">>
         <<if $ingCount gte _reqingredients.length + _extraIngredients.length + $defExist>>
             <<set _pMult to 1.5>>

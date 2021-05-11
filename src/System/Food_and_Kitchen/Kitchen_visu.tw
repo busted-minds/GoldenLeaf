@@ -36,7 +36,7 @@
                             <<optionsfrom _n>>
                         <</listbox>>
                         @@.smollbutt;<<capture _foodnameF _foodTypes[_ifv]>>
-                            <<button "Amount to move" _currPass>>
+                            <<button "Move" _currPass>>
                                 <<storekitchentable _foodnameF _foodTypes[_ifv]>>
                             <</button>>
                         <</capture>>@@

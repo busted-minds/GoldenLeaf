@@ -37,12 +37,19 @@
             <<set _minskill to setup.recipes[_i].minskill>>
             <<set _recskill to setup.recipes[_i].recskill>>
             <<set _findLearned to $learnedrecipes.findIndex(x => x === _recipeName)>>
+            <<set _fSkill to $pSkills.findIndex(x => x.name === "cooking")>>
             <<set _defIng to "">>
             <<if setup.recipes[_i].defingredients>>
                 <<set _defIng to String.format(" With {0} or {1}", setup.recipes[_i].defingredients[0], setup.recipes[_i].defingredients[1])>>
             <</if>>
+            <<if _fSkill is -1 and !_minskill eq 0>>
+                <<set _disabled to true>>
+            <<elseif _minskill eq 0>>
+                <<set _disabled to false>>
+            <</if>>
+
             <<if _findLearned is -1>>
-                <<disable  _minskill gt $cookingskill>>
+                <<disable _disabled>>
                     <<capture _recipeName>>
                         <<button `"Learn " + _recipeName + _defIng` "learnrecipsteps">>
                             <<set $recipeTL to _recipeName>>
@@ -50,7 +57,7 @@
                         <</button>>
                     <</capture>>
                 <</disable>>
-                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'red');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'red');">_recskill</span>@@
+                @@.smollfont;Minimum Skill Level: <span @class="(!_disabled or _fSkill isnot -1 and $pSkill[_fSkill] gte _minskill ? 'green' : 'red');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'red');">_recskill</span>@@
                 <br>
             <</if>>
         <</for>>
