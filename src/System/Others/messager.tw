@@ -12,9 +12,6 @@
                 You don't have enough credits.
             <<case "space">>
                 You don't have enough space in your backpack to store so many items.
-            <<case "placeClosed">>
-                The place is closed, you'll need to come back at their opening hours.
-                <br>
             <<case "succPurch">>
                 @@.green;Thank you for you purchase, please come back again!.@@
                 <br>

@@ -5,8 +5,8 @@
     <</if>>
     <<button "Clothing Store" "clothesstore">><</button>>
     <br>
-    <<set _open to $time.getUTCHours() gte 18>>
-    <<if $time.getUTCHours() lte 3 and $time.getUTCMinutes() lte 20>>
+    <<set _open to $time.getHours() gte 18>>
+    <<if $time.getHours() lte 3 and $time.getMinutes() lte 20>>
         <<set _open to true>>
     <</if>>
     <<disable !_open>>

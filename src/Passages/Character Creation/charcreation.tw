@@ -1,9 +1,9 @@
 :: charcreation1[nobr]
     /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
     /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
-    <<if $message>>
-        <<print $message>>
-        <<unset $message>>
+    <<if $cmessage>>
+        <<print $cmessage>>
+        <<unset $cmessage>>
     <</if>>
     <fieldset class="charc">
         <legend>Character Creation</legend>
@@ -64,7 +64,7 @@
         <<if $pName isnot "Name" and $pSurname isnot "Surname">>
             <<goto charcreation2>>
         <<else>>
-            <<set $message to "@@.red;Your name/surname can't be the default one.@@">>
+            <<set $cmessage to "@@.red;Your name/surname can't be the default one.@@">>
             <<goto charcreation1>>
         <</if>>
     <</button>>
