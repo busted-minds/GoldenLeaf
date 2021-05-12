@@ -4,6 +4,8 @@
     <<if visited() is 1>>
         //You start to get hungry, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh, and remember to download the map of the city so you know where everything is ;).//
         <br>
+        //You should take a bath before going out, all this cleaning left you pretty sweaty and dirty.//
+        <br>
         <br>
         You pull out your phone from your pocket and start searching where to buy food. After some time you see an ad about a grocery shop.
         <br>
