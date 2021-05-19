@@ -1,6 +1,5 @@
 :: frozenjar [nobr]
     <<passNameRep "Frozen Jar">>
-    
     <<if $time.getHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
         <<unset $workedhours>>
     <</if>>
@@ -16,33 +15,35 @@
     There is a menu showing the food available today.
     <br>
     <br>
-    <<button "Buy and eat some food(WIP)" "frozenjar">>
-        <<if $credits gte 8>>
-            <<set $credits -= 8>>
-            <<timeattached 10 0>>
-            <<restoreEnergy 20>>
-        <<else>>
-            <<set $message to "noCredits">>
-        <</if>>
-    <</button>>@@.green; +20 Energy@@ | @@.red; -8 credits, +10 min.@@
+    <<disable $credits lt 8>>
+    <<button "Eat some food" "frozenjar">>
+        <<set $credits -= 8>>
+        <<timeattached 10 0>>
+        <<restoreEnergy 20>>
+    <</button>>
+    <</disable>>@@.green; +16 Energy@@ | @@.red; -8 credits, +10 min.@@
     <br>
     <<if $pJob.place is "frozenjar" and !$workedhours>>
         <<set _totalEU to $pJob.hoursreq * $pJob.energyused>>
         <br>
-        You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working at some tables and serving food to the costumers.
+        You see @@.orange;<<print $fjName>>@@ working at some tables and serving food to the costumers.
         <br>
-        <<disable $energy lt _totalEU>>
+        <<disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
             <<button "Start Working" "frozenJwork">><</button>> 
-        <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~
+        <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~        
+        <<if $time.getHours() gte setup.frozenjar.workingHours.closingHours>> 
+            <<goto "barlowgrove">>
+        <</if>>
+        <<if $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
+            @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
+        <</if>>
         <br>
+
     <<elseif $pJob.place is undefined>>
-        <<if $playerdeclinejob is "frozenjar">>
-            <br>
-            You see @@.orange;<<print setup.frozenjar.ownerName>>@@ working at some tables. You approach her and ask her if she has any available work.
-            <br>
-            <br>
-            - @@.lightblue;You declined the contract not too long ago. Come back later to see if it's available.@@
-        <<elseif !hasVisited("employing")>>
+        <<if $pdenyjob.includes("frozenjar")>>
+            You declined the contract not too long ago. Come back later to see if it's available.
+
+        <<elseif !hasVisited("employingfj")>>
             <br>
             Try to approach her to see if she can give you work.
             <br>
@@ -51,7 +52,7 @@
                     - @@.lightblue;Excuse me, hello. I'm currently looking for work. Do you know if they are looking for someone here?.@@
                     <br>
                     <br>
-                    - @@.lightyellow;Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>></span>, the owner of this little place, and yes, we are currently looking for someone to work here. As you can see, I'm the only one here at the moment, besides the cook in the kitchen, and am in need of a little help.
+                    - @@.lightyellow;Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print "$fjName  $fjSurname">></span>, the owner of this little place, and yes, we are currently looking for someone to work here. As you can see, I'm the only one here at the moment, besides the cook in the kitchen, and am in need of a little help.
                     <br>
                     We serve food and drinks here, but food is serverd mostly during the day. You could start as a <<barGender>>, and depending how well you perform you may be promoted to a bartender with a higher salary and benefits, of course.
                     <br>
@@ -61,84 +62,64 @@
                     Let's go to my office so we can finish the contract and have you start working.
                     If you have any other question, ask me.@@
 
-                    <<button "Follow her" "employing">><<set $knowsFJOwner to true>><</button>>
+                    <<button "Follow her" "employingfj">><<set $knowsFJOwner to true>><</button>>
                 <</replace>>
             <</button>>
         <</if>>
         <br>
     <<elseif $workedhours eq $pJob.hoursreq>>
         <br>
-        You finished working your @@.orange;<<print $pJob.hoursreq>>@@ required hours!
+        @@.blue;//You finished working your @@.orange;<<print $pJob.hoursreq>>@@ required hours!//@@
         <br>
     <</if>>
     <<button "Go Out" "pioneerlane">><</button>>
     </div>
-:: employing [nobr]
-    <<set _passN to setup.frozenjar.ownerName + "'s Office">>
+:: employingfj [nobr]
+    <<set _passN to $fjName + "'s Office">>
     <<passNameRep _passN>>
     You get inside a little office. It's like a typical office with a desk, two chairs and a file cabinet.
     <br>
     <br>
-    - @@.lightyellow;Welcome to my office. I don't use it that much to be honest...
-    Alright, give me a second to get the contract.@@
+    - @@.lightyellow;Welcome to my office. I don't use it that much to be honest... Please could you give me your name and surname?@@.
+    <br>
+    <br>
+    - @@.lightblue; Sure, it's@@ @@.gold;<<print "$pName $pSurname">>@@.
+    <br>
+    <br>
+    - @@.lightyellow; Glad to meet you <<print $pName>>, let me get the contract@@.
     <br>
     She open the drawer and takes a tablet from it as she speaks. A few taps are made on it and hands it to you, containing all of the details regarding the contract.
     <br>
-    - @@.lightyellow;There you go. Read it carefully and if you have any question, ask me.@@
+    - @@.lightyellow;There you go. Read it carefully and if you have any question, ask me@@.
     <br>
     <br>
     <fieldset class="charc">
         <legend>Frozen Jar's Employee Contract</legend>
-        We @@.blue;Frozen Jar@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;$pSurname, $pName@@ with the following requirements, payment, rules and info as shown.
+        We @@.blue;Frozen Jar@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;<<print "$pSurname $pName">>@@ with the following payment.
+        <br>
+        The employee will get paid @@.yellow;<<print setup.frozenjar.jobs[0].payment>>@@ Credits per day.
         <br>
         <br>
-        Requeriments:
-        <br>
-        - <span @class="$playeremployed is undefined ? 'green' : 'orange'">Not working in any other place.</span>
-        <br>
-        - <span class="green">Must work atleast @@.orange;<<print setup.frozenjar.jobs[0].hoursreq>>@@ hours per day and @@.orange;<<print setup.frozenjar.jobs[0].daysreq>>@@ days a week//(Flexible if you are studying)//.</span>
-        <br>
-        - @@.green;Best disposition to work and have a __good relationship__ with your co-workers.@@
-        <br>
-        - @@.green;Must treat customers with __respect__.@@
-        <br>
-        <br>
-        Payment:
-        <br>
-        - The payment is @@.yellow;<<print setup.frozenjar.jobs[0].payment>> credits@@ per hour worked, not including customer tips.
-        <br>
-        - The employee gets the totality of the tips.
-        <br>
-        <br>
-        Additional info and rules:
-        <br>
-        - The employee is subject to promotion if certain conditions are met.
-        <br>
-        - Any problems regarding clients or co-workers may be directed to and discussed with @@.orange;<<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>>@@ so they can be resolved ASAP.
-        <br>
-        - Any client to employee or vice versa and/or co-worker harassment is __severely punished__, with any client being __permanently expelled__ from the place (in case they where the harasser) or the employee __being fired__, __permanently expelled__ from the place and __reported to the police__.
-        <br>
-        <br>
-        If you accept everything that was stated above, put your signature here: //__@@.gold;<<print $pName + " " + $pSurname>>@@__//
+        If you accept everything that was stated above, put your signature here: //__@@.gold;<<print "$pName $pSurname" >>@@__//
         <br>
         <br>
         Please put your finger here:
         <br>
         <br>
-        //__@@.orange;<<print setup.frozenjar.ownerName +" "+ setup.frozenjar.ownerSurname>>@@__//
+        //__@@.orange;<<print "$fjName $fjSurname">>@@__//
         <br>
         Frozen Jar
     </fieldset>
-    <<button "Accept" "employing2">>
+    <<button "Accept" "employingfj2">>
         <<set $jobaccepted to true>>
         <<set $pJob to clone(setup.frozenjar.jobs[0])>>
     <</button>>
-    <<button "Decline" "employing2">>
+    <<button "Decline" "employingfj2">>
         <<set $jobaccepted to false>>
-    <</button>> @@.red; Beware, in this version(0.1) if you decline the job you won't be able to work here anymore, as the reset to the var isn't implemented.@@
+    <</button>>
 
-:: employing2 [nobr]
-    <<set _passN to setup.frozenjar.ownerName + "'s Office">>
+:: employingfj2 [nobr]
+    <<set _passN to $fjName + "'s Office">>
     <<passNameRep _passN>>
     <<switch $jobaccepted>>
         <<case true>>
@@ -182,7 +163,7 @@
                     <br>
                     - @@.lightblue; Isn't it insecure? Whats if someone could get my address with them?@@
                     <br>
-                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.T.P.D.S</span> from the goverment and only authorized devices by them are enabled to get that information.@@ 
+                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.@@ 
                     <br>
                 <</replace>>
             <</link>>@@
@@ -238,14 +219,14 @@
             <br>
             She says with a smile, putting the tablet back from where it came.
             <br>
-            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $playerdeclinejob to "frozenjar">><</button>>
+            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $pdenyjob.push("frozenjar")>><</button>>
     <</switch>>
 
 :: frozenJwork [nobr]
     <<passNameRep "Get to work you little shit >:D">>
     <<if !$workedhours>>
         <<set $workedhours to 0>>
-        You greet @@.orange;<<print setup.frozenjar.ownerName>>@@, change yourself into the uniform in the staff room and start working.
+        You greet @@.orange;<<print $fjName>>@@, change yourself into the uniform in the staff room and start working.
     <</if>>
     <<if $workedhours eq $pJob.hoursreq>>
         You finished your working hours. Congrats, you did a lot of nothing! :D
@@ -258,6 +239,7 @@
         <br>
         <<set _workinghour to 1>>
         There would be some kind of story development if it existed. But there isn't so there you go, a funny weird meme (Or that's what the link says).
+        //Frozen Jar Edition//
         <br>
         [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
         <br>

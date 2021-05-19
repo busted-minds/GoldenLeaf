@@ -32,16 +32,6 @@
     You are in your normal bed, what do you want to do?
     <br>
     <br>
-    <<button "Sleep or Rest" "sleep">><</button>>
-    <br>
-    <<masturbutton>>
-    <br>
-    <br>
-    <<button "Get up" "bedroom">><</button>>
-
-:: sleep [nobr]
-    <<passNameRep "Sleep and Relax">>
-    <br>
     <div class="list">
         <div id="insidelist">
             <<set _sleeptime to {"2 hours, +40 energy": 2, "4 hours, +60 energy": 4, "6 hours, +80 energy": 6, "8 hours, +100 energy": 8}>>
@@ -51,7 +41,7 @@
             <</listbox>>
             <br>
             <<set _ene to (_time*10)+20>>
-            <<button "Sleep" "sleep">><<restoreEnergy _ene>><<sleep>> <<set $sleeping to true>> <<timeattached _time*60>><</button>>
+            <<button "Sleep" "bed">><<restoreEnergy _ene>><<sleep>> <<set $sleeping to true>> <<timeattached _time*60 0>><</button>>
         </div>
     </div>
     <div class="list">
@@ -63,11 +53,16 @@
             <</listbox>>
             <br>
             <<set _rene to _rtime * 0.4>>
-            <<button "Relax" "sleep">><<restoreEnergy _rene>><<timeattached _rtime>><</button>>
+            <<button "Relax" "bed">><<restoreEnergy _rene>><<timeattached _rtime 0>><</button>>
         </div>
     </div>
     <br>
-    <<button "Go back" "bedroom">><</button>>
+    <br>
+    <<masturbutton>>
+    <br>
+    <br>
+    <<button "Get up" "bedroom">><</button>>
+
 
 :: wardrobe [nobr]
     <<passNameRep "Wardrobe">>

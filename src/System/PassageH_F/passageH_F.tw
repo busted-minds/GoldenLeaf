@@ -36,7 +36,8 @@
 
         <<if $currDay isnot $time.getDate()>>
             <<unset $limitedExerc>>
-            <<unset $pdenyjob>>
+            <<set $pdenyjob to []>>
+            <<unset $bathed>>
 
             <<unset $currDay>>
         <</if>>

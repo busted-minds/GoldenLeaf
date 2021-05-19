@@ -1,0 +1,216 @@
+:: coffeshop [nobr]
+    <<passNameRep "Black Nectar Corner">>
+    <div id="aW">
+    After getting inside the shop you notice that it has a quite presentable appearance, very well illuminated and without any dark spots, 
+    the tables have a rather minimalistic and good looking design of a gray color going to black and the chairs looks pretty comfortable too and with a color that matches the tables and the place.
+    <<print either("They are probably at their peak hour since you can see a lot of movement inside the shop and it's almost crowded.", "")>>
+    <<if $knowsBNOwner is false>>
+        On one side of the shop is the barista making the coffee, is a person in his mid 30, black hair, tall and fit.
+    <<else>>
+        You see @@.orange;<<print $bnName>>@@ working.
+    <</if>>
+
+    <<if visited() is 1>>
+        You notice a pamphlet saying that they are looking for workers. 
+        Perhaps you should ask one of the staff if you are interested in working here.
+
+    <</if>>
+    <br>
+    <br>
+    <<disable $credits lt 4>>
+        <<button "Buy some coffe" "coffeshop">>
+            <<set $credits -= 4>>
+            <<timeattached 5 0>>
+            <<restoreEnergy 8>>
+        <</button>>
+    <</disable>>@@.green; +8 Energy@@ | @@.red; -4 credits, +5 min.@@
+
+    <<if $pJob.place is "blacknectar" and !$workedhours>>
+        <<set _totalEU to $pJob.hoursreq * $pJob.energyused>>
+        <br>
+        You see @@.orange;<<print $bnName>>@@ working at some tables and serving food to the costumers.
+        <br>
+        <<disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours>>
+            <<button "Start Working" "bnwork">><</button>> 
+        <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~ 
+        <<if $time.getHours() gte setup.blacknectar.workingHours.closingHours>> 
+            <<goto "barlowgrove">>
+        <</if>>
+        <<if $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours>>
+            @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
+        <</if>>
+        <br>
+
+    <<elseif $pJob.place is undefined>>
+        <<if $pdenyjob.includes("blacknectar")>>
+            <br>
+            <br>
+            You declined the contract not too long ago. Come back later to see if it's available.
+        <<elseif !hasVisited("employingbn")>>
+            <br>
+            You could approach the barista and ask him about the pamphlet at the entrance.
+            <br>
+            <<button "Ask for work">>
+                <<replace #aW>>
+                    - @@.lightblue;Excuse me, hello. I’m looking for a job and saw the pamphlet that is at the entrance and said that you are searching for employees and I’m interested in the job@@.
+                    <br>
+                    <br>
+                    - @@.lightyellow; Sure, just give me a moment to search for someone that could replace me while I explain everything to you@@. He says while waving to a staff member who was passing nearby.
+                    <br>
+                    - @@.lightyellow; Alright, now follow me to the office so I could show you the contract and explain what you will need to do@@.
+                    <br>
+                    <<button "Follow him" "employingbn">><<set $knowsBNOwner to true>><</button>>
+                <</replace>>
+            <</button>>
+        <</if>>
+        <br>
+    <<elseif $workedhours eq $pJob.hoursreq>>
+        <br>
+        @@.blue;//You finished working your @@.orange;<<print $pJob.hoursreq>>@@ required hours!//@@
+        <br>
+
+    <</if>>
+    <br>
+    <br>
+    <<button "Go Outside" "barlowgrove">><</button>>
+    </div>
+:: employingbn [nobr]
+    <<set _passN to $bnName + "'s Office">>
+    <<passNameRep _passN>>
+    Upon entering you notice that the office is pretty much the same as the shop with the only difference being that it has just the right amount of stuff;
+    2 chairs and a table. It's probably used only for interviews.
+    <br>
+    <br>
+    - @@.lightyellow; Well, let's start with the introductions. I'm <span class="orange"><<print "$bnName $bnSurname">></span> and I'm the owner of this coffee shop. Can you give me your name?@@.
+    <br>
+    <br>
+    - @@.lightblue; Of course, it's@@ @@.gold;<<print "$pName $pSurname">>@@.
+    <br>
+    <br>
+    - @@.lightyellow; Alright, <span class="gold"><<print $pName>></span> glad to meet you. I'll start explaining what we do here and what your duties will be@@. He says while getting comfortable in his chair.
+    <br>
+    - @@.lightyellow; We are a coffee shop, but we sell pastries and snacks to go with the coffe, therefore, we have pastry chefs. You will be given a uniform that you must wear during your working hours. After finishing your workday uniforms are deposited in a basket inside the locker room
+    we have a cleaning service and they'll be clean the next day.
+    You'll start as a <<barGender>> and any amount of tips will be enterely yours. I'm proud that my shop has a clean appearance and a comfortable environment for both customers and employees. If you see or feel that any customer or employee is being rude or obnoxious, please notify me to take action@@.
+    <br>
+    - @@.lightyellow; Now the contract, be sure to read it thoroughly before agreeing. Oh... Right, I see that probably you'll be starting the local college if you need financial assitance we can help you with that, most of the staff also study there@@. Says while giving you the tablet.
+    <br>
+    <br>
+    <fieldset class="charc">
+        <legend>Black Nectar Corner's Employee Contract</legend>
+        We @@.blue;Black Nectar Corner@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;<<print "$pName $pSurname">>@@ with the following payment.
+        <br>
+        The employee will get paid @@.yellow;<<print setup.blacknectar.jobs[0].payment>>@@ Credits per day.
+        <br>
+        <br>
+        If you accept everything that was stated above, put your signature here: //__@@.gold;<<print "$pName $pSurname">>@@__//
+        <br>
+        <br>
+        Please put your finger here:
+        <br>
+        <br>
+        //__@@.orange;<<print "$bnName $bnSurname">>@@__//
+        <br>
+        Black Nectar Corner
+    </fieldset>
+    <<button "Accept" "employingbn2">>
+        <<set $jobaccepted to true>>
+        <<set $pJob to clone(setup.blacknectar.jobs[0])>>
+    <</button>>
+    <<button "Decline" "employingbn2">>
+        <<set $jobaccepted to false>>
+    <</button>>
+
+:: employingbn2 [nobr]
+    <<set _passN to $bnName + "'s Office">>
+    <<passNameRep _passN>>
+
+    <<switch $jobaccepted>>
+        <<case true>>
+            After signing in and putting in your fingerprint, you return the tablet.
+            <br>
+            - @@.lightblue;I signed the document@@.
+            <br>
+            <br>
+            <<print $bnName>> verify a few things in the tablet and store it.
+            <br>
+            - @@.lightyellow; Good, you can start tomorrow. We are open from Monday to Friday from 5 AM to 6 PM. You don't have a fixed schedule so as long as you fulfill your required hours, it's all good. Oh, by the way before I forget, I just sent the locker's key to your <span class="green">GLODEX</span> so you can access your uniform tomorrow@@.
+            <span class="red">(Uniforms not implemented yet, so it isn't required.)</span>.
+            <br>
+            <br>
+            @@#q1;<<link "How do I get paid?">>
+                <<replace #q1>>
+                    - @@.lightblue; How do I get paid? I didn't see anything in the contract mentioned about thats.@@
+                    <br>
+                    - @@.lightyellow; All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.@@
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q2;<<link "Don't you need my address?">>
+                <<replace #q2>>
+                    - @@.lightblue; Don't you need my address? I got told that jobs needed them.@@
+                    <br>
+                    - @@.lightyellow; Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.@@
+                    <br>
+                    - @@.lightblue; Isn't it insecure? Whats if someone could get my address with them?@@
+                    <br>
+                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.@@ 
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q3;<<link "Regarding a possible promotion">>
+                <<replace #q3>>
+                    - @@.lightblue; About promotions, how do I know when I'll get it? Or what is required to be able to get one?@@
+                    <br>
+                    - @@.lightyellow; I will call you to my office if you are working or send a message to your GLODEX to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).@@
+                    <br>
+                <</replace>>
+            <</link>>@@
+            <br>
+            <br>
+            <<button "Bye" "coffeshop">>
+                <<unset $jobaccepted>>
+            <</button>>
+
+        <<case false>>
+            You return the tablet.
+            <br>
+            - @@.lightblue;I'm sorry but I need to think it through and come back@@.
+            <br>
+            <br>
+            - @@.lightyellow; Alright, no problem, I can't guarantee that we will be looking for employees when you return. Have a good day@@.
+            Says, as he puts the tablet away and invites you to leave the office.
+            <br>
+            <<button "Finish" "coffeshop">><<unset $jobaccepted>><<set $pdenyjob.push("blacknectar")>><</button>>
+    <</switch>>
+
+:: bnwork [nobr]
+    <<passNameRep "Get to work you little shit >:D">>
+    <<if !$workedhours>>
+        <<set $workedhours to 0>>
+        You greet @@.orange;<<print $bnName>>@@, change yourself into the uniform in the staff room and start working.
+    <</if>>
+    <<if $workedhours eq $pJob.hoursreq>>
+        You finished your working hours. Congrats, you did a lot of nothing! :D
+        <<timed 3s>>
+        <<goto "coffeshop">>
+        <</timed>>
+
+    <<elseif $workedhours lt $pJob.hoursreq>>
+        <<print "Hours left: " + ($pJob.hoursreq - $workedhours)>>
+        <br>
+        <<set _workinghour to 1>>
+        There would be some kind of story development if it existed. But there isn't so there you go, a funny weird meme (Or that's what the link says).
+        //Black Nectar Corner Edition//
+        <br>
+        [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
+        <br>
+        <<button `"Work " + _workinghour + " hour(s)"` "bnwork">>
+                <<timeattached `_workinghour*60` $pJob.energyused>>
+                <<payment _workinghour>>
+                <<set $workedhours++>>
+        <</button>>
+
+    <</if>>

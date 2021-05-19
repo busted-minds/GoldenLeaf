@@ -6,6 +6,7 @@
     <br>
     You can catch a bus or walk, heading either to Blythe Celyn or Hollins Drift from here.
     <br>
+    <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 :: blythecelyn [nobr]
@@ -25,15 +26,23 @@
 :: barlowgrove [nobr]
     <<passNameRep "Barlow Grove">>
     /*<<button "Go inside Horeco Inc." "horeco">><</button>>*/
-
+    <<disable $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>
+        <<button "Black Nectar Corner" "coffeshop">><</button>>
+    <</disable>><<if $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>You see a sign that says: We are open from 5 AM to 6 PM.<</if>>
+    <br>
+    <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 :: ashrout [nobr]
     <<passNameRep "Ashrout">>
 
+    <<disable $time.getHours() gte 18 or $time.getHours() lt 7>>
     <<button "GL Public Library" "library">><</button>>
+    <</disable>><<if $time.getHours() gte 18 or $time.getHours() lt 8>>You see a sign that says: The Public Library open from 7 AM to 6 PM.<</if>>
     <br>
-    <<button "Alexandra's Gym" "alegym">><<set $aleWelcome to true>><</button>>
+    <<disable $time.getHours() gte 18 or $time.getHours() lt 8>>
+        <<button "Alexandra's Gym" "alegym">><<set $aleWelcome to true>><</button>>
+    <</disable>><<if $time.getHours() gte 18 or $time.getHours() lt 8>>You see a sign that says: We are open from 8 AM to 6 PM.<</if>>
     <br>
     <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
@@ -47,15 +56,9 @@
 
 :: pioneerlane [nobr]
     <<passNameRep "Pioneer Lane">>
-    <<button "Enter Frozen Jar">>
-        <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
-            <<goto "frozenjar">>
-        <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>
-            <<set $message to "placeClosed">>
-            <<goto "pioneerlane">>
-        <</if>>
-    <</button>>
-    <br>
+    <<disable $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
+        <<button "Enter Frozen Jar" "frozenjar">><</button>>
+    <</disable>><<if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
 
     <br>
     <br>

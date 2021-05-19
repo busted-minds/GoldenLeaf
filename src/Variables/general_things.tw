@@ -25,9 +25,9 @@
     <<set $bedroomclean to false>>
     <<set $bathroomclean to false>>
 
-    <<set setup.dadname to either("Joshua", "Daniel", "David", "Christopher", "Michael", "James", "Matthew", "Robert", "Andrew")>>
-    <<set setup.momname to either("Emily", "Megan", "Jessica", "Sarah", "Rebecca", "Laura", "Amber", "Victoria", "Katie")>>
-    <<set setup.spirealfOw to {
+    <<set $dadname to either("Joshua", "Daniel", "David", "Christopher", "Michael", "James", "Matthew", "Robert", "Andrew")>>
+    <<set $momname to either("Emily", "Megan", "Jessica", "Sarah", "Rebecca", "Laura", "Amber", "Victoria", "Katie")>>
+    <<set $spirealfOw to {
         name: either("Donnel","Jaymie","Ado","Lance","Perry"),
         surname: either("Bruns","Mcilroy","Osler","Stampfer","Gaskell")
     }>>
@@ -36,12 +36,15 @@
     <<set $masturCount to 0>>
     <<set $aroused to false>>
     <<set $memberships to []>>
+    <<set $pdenyjob to []>>
 
 <</widget>>
 
 <<widget "importantNPCs">>
-    <<set setup.frozenjar.ownerName to "Mona">>
-    <<set setup.frozenjar.ownerSurname to "Hanazawa">>
+    <<set $fjName to "Mona">>
+    <<set $fjSurname to "Hanazawa">>
+    <<set $bnName to either("Lucio", "Danny", "Alasteir", "Farrel")>>
+    <<set $bnSurname to either("Hillion", "Alence", "Kazis", "Jernigan")>>
 <</widget>>
 
 <<widget "mapStreets">>

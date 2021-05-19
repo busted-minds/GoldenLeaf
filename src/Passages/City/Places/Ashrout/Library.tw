@@ -33,12 +33,12 @@
                 <br>
                 <br>
                 <h3 class="green">The Turnaround</h3>
-                With the arrival of @@.orange;<<print String.format("{0} {1}", setup.spirealfOw.name, setup.spirealfOw.surname)>>@@ to the town in 2014 what seemed like a holiday trip became something more. @@.orange;<<print setup.spirealfOw.name>>@@ returned to the town after a year and brought a big change; 
+                With the arrival of @@.orange;<<print String.format("{0} {1}", $spirealfOw.name, $spirealfOw.surname)>>@@ to the town in 2014 what seemed like a holiday trip became something more. @@.orange;<<print $spirealfOw.name>>@@ returned to the town after a year and brought a big change; 
                 Infrastructure improvements, modern farming machinery, investments, etc. Thanks to this gradually the town developed more and more to the point where it’s today.
                 <br>
                 <br>
                 The town went from having practically nothing to having research centers, a college the size of a soccer field, a library with one of the largest book collections in the country and that also collaborates with the research centers and the college, 
-                one of the most modern and efficient shopping centers in the country, energy from solar panel and state cutting-edge wind generators, among other things. And not only this, @@.orange;<<print setup.spirealfOw.name>>@@, moved the headquarters to the city, bringing even more movement to Golden Leaf.
+                one of the most modern and efficient shopping centers in the country, energy from solar panel and state cutting-edge wind generators, among other things. And not only this, @@.orange;<<print $spirealfOw.name>>@@, moved the headquarters to the city, bringing even more movement to Golden Leaf.
                 <br>
                 <br>
                 Also, Golden Leaf developed his own system called GLODEX, where each citizen can view their physical situation, their e-mails and many other useful functions available in GLODEX.

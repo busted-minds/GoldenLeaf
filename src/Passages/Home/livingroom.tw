@@ -1,6 +1,5 @@
 :: livingroom [nobr]
     <<passNameRep "Living Room">>
-    
     <<if visited() is 1>>
         //You start to get hungry, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh, and remember to download the map of the city so you know where everything is ;).//
         <br>
@@ -14,6 +13,9 @@
         <br>
         //Hmmm... this looks interesting, maybe you should take a look? After you come back, you should learn a recipe on your laptop.// @@.red;Read each step carefully, as you will need it for the cooking "minigame".@@
         <br>
+        <br>
+    <<elseif !$bathed>>
+        @@.blue;//You should take a bath before going out//@@
         <br>
     <</if>>
     <<livingrclean>>
