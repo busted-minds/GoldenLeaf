@@ -22,7 +22,7 @@
 
 :: passHWidget [widget nobr]
     <<widget "passNameRep">>
-        <<done 40ms>>
+        <<done>>
             <<replace .passName>>$args[0]<</replace>>
             <<addclass .passDiv divisor>>
         <</done>>
