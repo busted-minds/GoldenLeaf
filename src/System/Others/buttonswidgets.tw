@@ -109,5 +109,5 @@
             <<set $message to "noEnergy">>
         <</if>>
 
-    <</button>>@@.green.smollfont; +<<print (_exp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -<<print Math.round(_e * 0.1)>> Energy +_t Minutes@@
+    <</button>>@@.red.smollfont; +<<print _t>> Minutes@@
 <</widget>>

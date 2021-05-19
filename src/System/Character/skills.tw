@@ -68,13 +68,11 @@
     
 <</widget>>
 
-<<widget "skillup">> /* This is just some voodoo magic, it just make that if the exp is greater than the exp left to level up, it level up that skill as many time as the exp meet the exp left threshold. */
-    <<set _fSk to $pSkills.findIndex(x => x.name === $args[0])>>
-
+<<widget "skillup">> /* If the exp is greater than the exp left to level up, it level up that skill as many time as the exp meet the exp left threshold. */
     <<for $pSkills[_fSk].exp gte $pSkills[_fSk].expleft>>
         <<set $pSkills[_fSk].exp -= $pSkills[_fSk].expleft>>
 
-        <<set $pSkills[_fSk].expleft += Math.round(1.25 * ($pSkills[_fSk].expleft + 1.25))>>
+        <<set $pSkills[_fSk].expleft = Math.round(1.25 * ($pSkills[_fSk].expleft + 1.25)) + ($pSkills[_fSk].category.includes("Secondary") ? 50 : 0)>>
 
         <<set $pSkills[_fSk].lvl += 1>>
 
@@ -92,9 +90,8 @@
         <<set $pSkills.pushUnique(setup.skills[_fSSk])>>
         <<set _fSk to $pSkills.findIndex(x => x.name === $args[0])>>
     <</if>>
-    <<penalty>>
 
-    <<set $pSkills[_fSk].exp += Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/_penalty)>>
-    <<set $message to "addedExp"; $mExp to Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/_penalty); $mSkill to $pSkills[_fSk].name>>
-
+    <<set $pSkills[_fSk].exp += Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/ ($arousal gte 80 ? 2 : 1))>>
+    <<set $message to "addedExp"; $mExp to Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/ ($arousal gte 80 ? 2 : 1)); $mSkill to $pSkills[_fSk].name>>
+    <<skillup>>
 <</widget>>
