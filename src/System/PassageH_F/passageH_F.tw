@@ -21,10 +21,23 @@
     <</if>>
 
 :: passHWidget [widget nobr]
+    <<widget "passNameRep">>
+        <<done 40ms>>
+            <<replace .passName>>$args[0]<</replace>>
+            <<addclass .passDiv divisor>>
+        <</done>>
 
-<<widget "passNameRep">>
-    <<timed 40ms>>
-        <<replace .passName>>$args[0]<</replace>>
-        <<addclass .passDiv divisor>>
-    <</timed>>
-<</widget>>
+    <</widget>>
+
+    <<widget "daychange">>
+        <<if $currDay is undefined>>
+            <<set $currDay to $time.getDate()>>
+        <</if>>
+
+        <<if $currDay isnot $time.getDate()>>
+            <<unset $limitedExerc>>
+            <<unset $pdenyjob>>
+
+            <<unset $currDay>>
+        <</if>>
+    <</widget>>
