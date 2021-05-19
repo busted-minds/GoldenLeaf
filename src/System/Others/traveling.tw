@@ -41,7 +41,7 @@
                 </a>
                 <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
             </svg>
-            <<timed 40ms>>
+            <<done>>
                 <<set _mapCoord to {}>>
                 <<run _place = document.getElementById(passage());
                     _mapCoord.x = _place.getAttributeNS(null, "x");
@@ -50,9 +50,9 @@
                     _imgLoc = document.querySelector("#location");
                     _imgLoc.setAttributeNS(null, "x", _mapCoord.x);
                     _imgLoc.setAttributeNS(null, "y", _mapCoord.y);>>
-            <</timed>>
+            <</done>>
             <<script>>
-                /* Parameters: placeid=Is the id of the passage in mapPlace. time=time used for timeattached widget.
+                /* Parameters: placeid=Is the id of the passage in mapPlace.
                 It compares if the current passage connects to the passage that the players want to move to.
                 */
                 window.passageMov = function(placeid) {
