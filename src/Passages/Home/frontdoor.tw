@@ -1,6 +1,5 @@
 :: frontdoor [nobr]
     <<passNameRep "Front Door">>
-    <div class="divisor"></div>
     You are at the front door surrounded by brick walls that have a hexagonal shape(because reasons). 
     <br>
     From here you can go to the city, the garden, or inside the house. 
