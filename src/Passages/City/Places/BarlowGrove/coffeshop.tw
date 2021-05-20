@@ -106,7 +106,7 @@
         If you accept everything that was stated above, put your signature here: //__@@.gold;<<print "$pName $pSurname">>@@__//
         <br>
         <br>
-        Please put your finger here:
+        Please put your finger here: <img src="img\others\fingerprint.png" style="vertical-align: middle; height: 64px; background-color: white;">
         <br>
         <br>
         //__@@.orange;<<print "$bnName $bnSurname">>@@__//
