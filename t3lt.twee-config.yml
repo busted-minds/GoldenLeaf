@@ -1,15 +1,121 @@
 sugarcube-2:
   macros:
-    foodready:
-      name: foodready
-    pButton:
-      name: pButton
-    storekitchentable:
-      name: storekitchentable
-    kitchenvar:
-      name: kitchenvar
-    kitchenwidgets:
-      name: kitchenwidgets
+    restoreEnergy:
+      name: restoreEnergy
+      parameters: [number]
+    timeattached:
+      name: timeattached
+    masturbutton:
+      name: masturbutton
+    passNameRep:
+      name: passNameRep
+    disable:
+      name: disable
+      container: true
+    livingrclean:
+      name: livingrclean
+    convert12h:
+      name: convert12h
+    dialogue:
+      name: dialogue
+      container: true
+      parameters: [text &+ text]
+    gendersetter:
+      name: gendersetter
+    bsandhsetter:
+      name: bsandhsetter
+    antrwidthsetter:
+      name: antrwidthsetter
+    femalesetter:
+      name: femalesetter
+    malesetter:
+      name: malesetter
+    charStatus:
+      name: charStatus
+    hobbyselection:
+      name: hobbyselection
+    courtesy:
+      name: courtesy
+    addminutes:
+      name: addminutes
+      parameters: [number]
+    timedate:
+      name: timedate
+    addhours:
+      name: addhours
+      parameters: [number]
+    bus:
+      name: bus
+    libBooks:
+      name: libBooks
+    barGender:
+      name: barGender
+    payment:
+      name: payment
+    foodshow:
+      name: foodshow
+    purchase:
+      name: purchase
+    csShow:
+      name: csShow
+    ssShow:
+      name: ssShow
+    bathrclean:
+      name: bathrclean
+    cleanbedroom:
+      name: cleanbedroom
+    sleep:
+      name: sleep
+    storingClothes:
+      name: storingClothes
+    wardrobeLinks:
+      name: wardrobeLinks
+    showWardrobeCC:
+      name: showWardrobeCC
+    wearOutfit:
+      name: wearOutfit
+    newOutfit:
+      name: newOutfit
+    replacer:
+      name: replacer
+    showWClothes:
+      name: showWClothes
+    kitchenclean:
+      name: kitchenclean
+    storefood:
+      name: storefood
+    foodVisu:
+      name: foodVisu
+    recipeselection:
+      name: recipeselection
+    selectrecipe:
+      name: selectrecipe
+    kitchentablevisu:
+      name: kitchentablevisu
+    preparationsteps:
+      name: preparationsteps
+    rngod:
+      name: rngod
+    mastOpt:
+      name: mastOpt
+    masturbation:
+      name: masturbation
+    orgasmCheck:
+      name: orgasmCheck
+    addSexTraits:
+      name: addSexTraits
+    traitsEXP:
+      name: traitsEXP
+    addArousal:
+      name: addArousal
+    skillup:
+      name: skillup
+    wearSexToy:
+      name: wearSexToy
+    addexp:
+      name: addexp
+    skintone:
+      name: skintone
     sensibilitychecker:
       name: sensibilitychecker
     breastsizechecker:
@@ -28,81 +134,66 @@ sugarcube-2:
       name: buttsizechecker
     anustightnesschecker:
       name: anustightnesschecker
-    replacer:
-      name: replacer
-    clotheschecker:
-      name: clotheschecker
-    exposedCheck:
-      name: exposedCheck
-    timedate:
-      name: timedate
-    charStatus:
-      name: charStatus
-    closePop:
-      name: closePop
+    cContentMain:
+      name: cContentMain
+    codexButtons:
+      name: codexButtons
+    learnedRecipes:
+      name: learnedRecipes
     skillbar:
       name: skillbar
-    iteminfo:
-      name: iteminfo
+    traitsList:
+      name: traitsList
+    options:
+      name: options
+    shoppingList:
+      name: shoppingList
+    instructions:
+      name: instructions
+    ingredientsList:
+      name: ingredientsList
     progressbar:
       name: progressbar
-    convert12h:
-      name: convert12h
-    date:
-      name: date
-    daystatechecker:
-      name: daystatechecker
-    geneVariables:
-      name: geneVariables
-    skillinit:
-      name: skillinit
-    importantNPCs:
-      name: importantNPCs
-    jobsInfo:
-      name: jobsInfo
-    mapStreets:
-      name: mapStreets
-    traitsInit:
-      name: traitsInit
-    clothesinit:
-      name: clothesinit
-    kitchenini:
-      name: kitchenini
-    images:
-      name: images
-    jobsIni:
-      name: jobsIni
-    qsGT:
-      name: qsGT
-    footerMessager:
-      name: footerMessager
-    map:
-      name: map
-    messager:
-      name: messager
-    timeattached:
-      name: timeattached
-    disable:
-      name: disable
-      container: true
-    cleaningb:
-      name: cleaningb
-    energyfun:
-      name: energyfun
-    jobs:
-      name: jobs
-    storeLinks:
-      name: storeLinks
-    showStoreIC:
-      name: showStoreIC
-    storeItemContent:
-      name: storeItemContent
+    pButton:
+      name: pButton
+    usesCheck:
+      name: usesCheck
+    foodready:
+      name: foodready
+    storekitchentable:
+      name: storekitchentable
+    eatFood:
+      name: eatFood
+    moveFood:
+      name: moveFood
+    kitchenvar:
+      name: kitchenvar
+    foodIniWidgets:
+      name: foodIniWidgets
+    setFruitsVeget:
+      name: setFruitsVeget
+    setspices:
+      name: setspices
+    setgeneralIng:
+      name: setgeneralIng
+    setmeat:
+      name: setmeat
+    setrecipes:
+      name: setrecipes
+    setprepfood:
+      name: setprepfood
+    foodpreparation:
+      name: foodpreparation
+    clothescolor:
+      name: clothescolor
     clothesDescriptor:
       name: clothesDescriptor
     clothesvar:
       name: clothesvar
     bodyparts:
       name: bodyparts
+    CColorIni:
+      name: CColorIni
     upperb_outerwearIni:
       name: upperb_outerwearIni
     upperb_underwearIni:
@@ -121,99 +212,85 @@ sugarcube-2:
       name: accesories
     clothessetter:
       name: clothessetter
-    showWardrobeCC:
-      name: showWardrobeCC
-    wardrobeLinks:
-      name: wardrobeLinks
-    undressMain:
-      name: undressMain
-    wardrobeItemsContent:
-      name: wardrobeItemsContent
+    undressAll:
+      name: undressAll
     wearMain:
       name: wearMain
-    buttons:
-      name: buttons
-    foodpreparation:
-      name: foodpreparation
-    setspices:
-      name: setspices
-    addexp:
-      name: addexp
-    energy:
-      name: energy
-    setfruits:
-      name: setfruits
-    setgeneralIng:
-      name: setgeneralIng
-    setmeat:
-      name: setmeat
-    setrecipes:
-      name: setrecipes
-    setprepfood:
-      name: setprepfood
-    addminutes:
-      name: addminutes
-    penalty:
-      name: penalty
-    rngod:
-      name: rngod
-    mastOpt:
-      name: mastOpt
-    masturbation:
-      name: masturbation
-    gendersetter:
-      name: gendersetter
-    bsandhsetter:
-      name: bsandhsetter
-    antrwidthsetter:
-      name: antrwidthsetter
-    femalesetter:
-      name: femalesetter
-    malesetter:
-      name: malesetter
-    hobbyselection:
-      name: hobbyselection
-    courtesy:
-      name: courtesy
-    addhours:
-      name: addhours
-    bathrclean:
-      name: bathrclean
-    hygiene:
-      name: hygiene
-    masturbutton:
-      name: masturbutton
-    cleanbedroom:
-      name: cleanbedroom
-    kitchenclean:
-      name: kitchenclean
-    storefood:
-      name: storefood
-    foodVisu:
-      name: foodVisu
-    livingrclean:
-      name: livingrclean
-    recipeselection:
-      name: recipeselection
-    selectrecipe:
-      name: selectrecipe
-    kitchentablevisu:
-      name: kitchentablevisu
-    preparationsteps:
-      name: preparationsteps
-    sleep:
-      name: sleep
-    storingClothes:
-      name: storingClothes
-    eatFood:
-      name: eatFood
-    payment:
-      name: payment
-    barGender:
-      name: barGender
-    foodshow:
-      name: foodshow
-    purchase:
-      name: purchase
-    csShow:
-      name: csShow
+    moveItem:
+      name: moveItem
+    wardItemIcn:
+      name: wardItemIcn
+    storeLinks:
+      name: storeLinks
+    showStoreIC:
+      name: showStoreIC
+    storeItemContent:
+      name: storeItemContent
+    genderIcon:
+      name: genderIcon
+    ssLinks:
+      name: ssLinks
+    showSSIC:
+      name: showSSIC
+    ssItemContent:
+      name: ssItemContent
+    wardrobeItemsContent:
+      name: wardrobeItemsContent
+    wardrobeSexToys:
+      name: wardrobeSexToys
+    putSextoy:
+      name: putSextoy
+    undressMain:
+      name: undressMain
+    limitToy:
+      name: limitToy
+    jobs:
+      name: jobs
+    cleaningb:
+      name: cleaningb
+    daychange:
+      name: daychange
+    messager:
+      name: messager
+    map:
+      name: map
+    footerMessager:
+      name: footerMessager
+    clotheschecker:
+      name: clotheschecker
+    exposedCheck:
+      name: exposedCheck
+    codexMain:
+      name: codexMain
+    iteminfo:
+      name: iteminfo
+    inventory:
+      name: inventory
+    outfitPop:
+      name: outfitPop
+    daystatechecker:
+      name: daystatechecker
+    date:
+      name: date
+    geneVariables:
+      name: geneVariables
+    importantNPCs:
+      name: importantNPCs
+    mapStreets:
+      name: mapStreets
+    jobsInfo:
+      name: jobsInfo
+    traitsInit:
+      name: traitsInit
+    skillsIni:
+      name: skillsIni
+    clothesinit:
+      name: clothesinit
+    kitchenini:
+      name: kitchenini
+    images:
+      name: images
+    jobsIni:
+      name: jobsIni
+    qsGT:
+      name: qsGT
