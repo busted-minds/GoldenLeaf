@@ -398,3 +398,21 @@
 	#popUpContent {
 		margin: 3px;
 	}
+
+	.dialogue {
+		border: 1px solid #383e65;
+		border-radius: 10px;
+		background-color: #222;
+		margin-left: 2px;
+		margin-bottom: 8px;
+		margin-top: 4px;
+		padding-left: 5px;
+		overflow-wrap: break-word;
+		width: 90%;
+	}
+	.dialogue .name {
+		font-size: 120%;
+	}
+	.dialogue .text {
+		margin-left: 5px;
+	}

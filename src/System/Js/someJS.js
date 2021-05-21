@@ -37,14 +37,14 @@ l.href = "img/others/Icon.png";
 l.type = "img/png";
 document.head.appendChild(l);
 
-//This is just a function to change an image on the go, it will be implemented when visuals get implemented in the game.
-
-//function setCar() {
-//    var img = document.getElementById("image");
-//    img.src = this.value + ".png";
-//    return false;
-//}
-//document.getElementById("CarList").onchange = setCar;
+/*This is just a function to change an image on the go, it will be implemented when visuals get implemented in the game.
+    function setCar() {
+        var img = document.getElementById("image");
+        img.src = this.value + ".png";
+        return false;
+    }
+    document.getElementById("CarList").onchange = setCar;
+*/
 
 (function () {
     // disable.js, by chapel, for sugarcube 2
@@ -109,15 +109,33 @@ document.head.appendChild(l);
 }());
 
 /* Change color of a select options and from a selected text.
-window.colorChange = function () {
-    $('#listbox-phaircolor').change(function() {
-        $(this).find('option').css('color', '#eee');
-        var x = document.querySelector('#haircolor');
-        var y = getComputedStyle(document.documentElement).getPropertyValue('--' + $(this).find('option:selected').text().toLowerCase());
-        
-        $(this).find('option:selected').css('color', y);
-        x.style.setProperty('--colors', y);
-        console.log('--colors', y, State.variables.pHairColor);
-    })
-}
+    window.colorChange = function () {
+        $('#listbox-phaircolor').change(function() {
+            $(this).find('option').css('color', '#eee');
+            var x = document.querySelector('#haircolor');
+            var y = getComputedStyle(document.documentElement).getPropertyValue('--' + $(this).find('option:selected').text().toLowerCase());
+            
+            $(this).find('option:selected').css('color', y);
+            x.style.setProperty('--colors', y);
+            console.log('--colors', y, State.variables.pHairColor);
+        })
+    }
 */
+
+Macro.add("dialogue", {
+    tags: null,
+    handler: function () {
+        try {
+            $(this.output).wiki(String.format("<div class='dialogue'>" +
+                                                "<span class='{2} name'>{1}</span>" +
+                                                "<div class='thindiv'></div>" +
+                                                "<div class='{2} text'>{0}</div>" + 
+                                              "</div>"
+                                              , this.payload[0].contents, this.args[0],this.args[1]));
+        }
+        catch (er) {
+            return this.error('The following problem has ocurred: ' + er.message);
+        }
+    }
+
+});

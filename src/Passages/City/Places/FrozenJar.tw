@@ -49,18 +49,20 @@
             <br>
             <<button "Ask for work">>
                 <<replace #aW>>
-                    - @@.lightblue;Excuse me, hello. I'm currently looking for work. Do you know if they are looking for someone here?.@@
-                    <br>
-                    <br>
-                    - @@.lightyellow;Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print "$fjName  $fjSurname">></span>, the owner of this little place, and yes, we are currently looking for someone to work here. As you can see, I'm the only one here at the moment, besides the cook in the kitchen, and am in need of a little help.
-                    <br>
-                    We serve food and drinks here, but food is serverd mostly during the day. You could start as a <<barGender>>, and depending how well you perform you may be promoted to a bartender with a higher salary and benefits, of course.
-                    <br>
-                    And... As you saw, the place is pretty empty, mostly because we just opened and this is one of those slow days. So it's just me and the cook in the kitchen making food.
-                    <br>
-                    <br>
-                    Let's go to my office so we can finish the contract and have you start working.
-                    If you have any other question, ask me.@@
+                    <<dialogue "$pName" "lightblue">>
+                        Excuse me, hello. I'm currently looking for work. Do you know if they are looking for someone here?
+                    <</dialogue>>
+                    <<dialogue "???" "lightyellow">>
+                        Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print "$fjName  $fjSurname">></span>, the owner of this little place, and yes, we are currently looking for someone to work here. As you can see, I'm the only one here at the moment, besides the cook in the kitchen, and I'm in need of a little help here.
+                        <br>
+                        We serve food and drinks here, but food is serverd mostly during the day. You could start as a @@.orange;<<barGender>>@@ and depending how well you perform you may be promoted to a bartender with a higher salary and benefits, of course.
+                        <br>
+                        And... As you saw, the place is pretty empty, mostly because we just opened and this is one of those slow days. So it's just me and the cook in the kitchen making food.
+                        <br>
+                        <br>
+                        Let's go to my office so we can finish the contract and have you start working.
+                        If you have any other question, ask me.
+                    <</dialogue>>
 
                     <<button "Follow her" "employingfj">><<set $knowsFJOwner to true>><</button>>
                 <</replace>>
