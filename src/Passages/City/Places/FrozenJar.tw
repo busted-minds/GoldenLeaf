@@ -49,7 +49,7 @@
             <br>
             <<button "Ask for work">>
                 <<replace #aW>>
-                    <<dialogue "$pName" "lightblue">>
+                    <<dialogue "$pName $pSurname" "lightblue">>
                         Excuse me, hello. I'm currently looking for work. Do you know if they are looking for someone here?
                     <</dialogue>>
                     <<dialogue "???" "lightyellow">>
@@ -80,26 +80,29 @@
     <<set _passN to $fjName + "'s Office">>
     <<passNameRep _passN>>
     You get inside a little office. It's like a typical office with a desk, two chairs and a file cabinet.
-    <br>
-    <br>
-    - @@.lightyellow;Welcome to my office. I don't use it that much to be honest... Please could you give me your name and surname?@@.
-    <br>
-    <br>
-    - @@.lightblue; Sure, it's@@ @@.gold;<<print "$pName $pSurname">>@@.
-    <br>
-    <br>
-    - @@.lightyellow; Glad to meet you <<print $pName>>, let me get the contract@@.
-    <br>
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        Welcome to my office. I don't use it that much to be honest... Please could you give me your name?.
+    <</dialogue>>
+
+    <<dialogue "$pName $pSurname" "lightblue">>
+        Sure, it's @@.gold;<<print "$pName $pSurname">>@@.
+    <</dialogue>>
+
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        Glad to meet you @@.gold;<<print $pName>>@@, let me get the contract.
+    <</dialogue>>
+
     She open the drawer and takes a tablet from it as she speaks. A few taps are made on it and hands it to you, containing all of the details regarding the contract.
-    <br>
-    - @@.lightyellow;There you go. Read it carefully and if you have any question, ask me@@.
-    <br>
+    
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        There you go. Read it carefully and if you have any question, ask me.
+    <</dialogue>>
     <br>
     <fieldset class="charc">
         <legend>Frozen Jar's Employee Contract</legend>
         We @@.blue;Frozen Jar@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;<<print "$pSurname $pName">>@@ with the following payment.
         <br>
-        The employee will get paid @@.yellow;<<print setup.frozenjar.jobs[0].payment>>@@ Credits per day.
+        The employee will get paid @@.yellow;<<print setup.frozenjar.jobs[0].payment * setup.frozenjar.jobs[0].hoursreq>>@@ Credits per day.
         <br>
         <br>
         If you accept everything that was stated above, put your signature here: //__@@.gold;<<print "$pName $pSurname" >>@@__//
@@ -126,65 +129,91 @@
     <<switch $jobaccepted>>
         <<case true>>
             After signing and giving it your fingerprint you hand back the tablet to her.
-            <br>
-            - @@.lightblue;Here, I've signed the document.@@
-            <br>
-            <br>
+            <<dialogue "$pName $pSurname" "lightblue">>
+                Here, I've signed the document.
+            <</dialogue>>
+
             She confirms something and puts the tablet back from where it came.
-            <br>
-            - @@.lightyellow; Good... You can start tomorrow. We are open Saturdays and Sundays but you have those days off. Wait a second, let me borrow a uniform for you.@@
-            <br>
-            She says, pulling out a uniform from the cabinet and hands it to you.
-            <br>
-            - @@.lightyellow; Here, if you lose it or something happens to it, you have to buy a new one. You get a locker in the staff room, so you can keep it there or take it home, as you see fit <span class="red">(Uniform not implemented yet, so it isn't required.)</span>. It's mandatory that you use it while you are working. Well, any question?.@@
-            <br>
-            <br>
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Good... You can start tomorrow. We are open Saturdays and Sundays but you have those days off. Wait a second, let me borrow a uniform for you.
+            <</dialogue>>
+
+            Says while pulling out a uniform from the cabinet and hands it to you.
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Here, if you lose it or something happens to it, you have to buy a new one. You get a locker in the staff room, so you can keep it there or take it home, as you see fit <span class="red">(Uniform not implemented yet, so it isn't required.)</span>. It's mandatory that you use it while you are working. Well, any question?.
+            <</dialogue>>
+
             @@#q1;<<link "Are there any other employees here?">>
                 <<replace #q1>>
-                    - @@.lightblue;Are there any other employees here?@@
                     <br>
-                    - @@.lightyellow; Yes, as I said, there is a guy who is the one in the kitchen cooking the food and me... Oh right, there is also a part-time girl working here on weekends. So pretty much the three of us.
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Are there any other employees here?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Yes, as I said, there is a guy who is the one in the kitchen cooking the food and me... Oh right, there is also a part-time girl working here on weekends. So pretty much the three of us.
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
             @@#q2;<<link "How do I get paid?">>
                 <<replace #q2>>
-                    - @@.lightblue; How do I get paid? I didn't see anything in the contract mentioned about thats.@@
-                    <br>
-                    - @@.lightyellow; All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.@@
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        How do I get paid? I didn't see anything in the contract mentioned about thats.
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
             @@#q3;<<link "Don't you need my address?">>
                 <<replace #q3>>
-                    - @@.lightblue; Don't you need my address? I got told that jobs needed them.@@
-                    <br>
-                    - @@.lightyellow; Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.@@
-                    <br>
-                    - @@.lightblue; Isn't it insecure? Whats if someone could get my address with them?@@
-                    <br>
-                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.@@ 
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Don't you need my address? I got told that jobs needed them.
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.
+                    <</dialogue>>
+
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Isn't it insecure? Whats if someone could get my address with them?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.
+                    <</dialogue>>
+
                 <</replace>>
             <</link>>@@
             <br>
             @@#q4;<<link "Regarding a possible promotion">>
                 <<replace #q4>>
-                    - @@.lightblue; Regarding a possible promotion, how do I know when I'll get it? Or what is required to be able to get one?@@
-                    <br>
-                    - @@.lightyellow; I will call you to my office if you are working or send you a message to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).@@
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Regarding a possible promotion, how do I know when I'll get it? Or what is required to be able to get one?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        I will call you to my office if you are working or send you a message to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).
+                    <</dialogue>>
+
                 <</replace>>
             <</link>>@@
             <br>
             @@#q5;<<link "About working days and hours">>
                 <<replace #q5>>
-                    - @@.lightblue; About working days and hours. Do I need to work every day? And those <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours required, they can be anytime of the day?@@
-                    <br>
-                    - @@.lightyellow; Yes, as you saw in the contract you need to work at least <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours, Monday through Friday. 
-                    The good thing is that it can be anytime during the day but of course, <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours before we close. We __open__ at <span class="orange"><<print setup.frozenjar.workingHours.openingHours>></span> am and __close__ at <span class="orange"><<print setup.frozenjar.workingHours.closingHours>></span> am.
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        About working days and hours. Do I need to work every day? And those <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours required, they can be anytime of the day?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Yes, as you saw in the contract you need to work at least <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours, Monday through Friday. 
+                        The good thing is that it can be anytime during the day but of course, <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours before we close. We __open__ at <span class="orange"><<print setup.frozenjar.workingHours.openingHours>></span> am and __close__ at <span class="orange"><<print setup.frozenjar.workingHours.closingHours>></span> am.
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
@@ -194,11 +223,15 @@
             <<button "Bye">>
                 <<replace #smsg>>
                     She stops you before you go out.
-                    <br>
-                    - @@.lightyellow; Oh before I forget. You will get a copy of the contract in your mail.@@
-                    <br>
-                    - @@.lightblue; Alright, thanks. Have a nice day.@@
-                    <br>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Oh before I forget. You will get a copy of the contract in your mail.
+                    <</dialogue>>
+
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Alright, thanks. Have a nice day.
+                    <</dialogue>>
+                    
                     You say as you close the door.
                 <</replace>>
                 <<script>>
@@ -213,14 +246,17 @@
 
         <<case false>>
             You hand back the tablet to her.
-            <br>
-            - @@.lightblue; Sorry but I'm not interested.@@
-            <br>
-            <br>
-            - @@.lightyellow; Alright, if you want the job just come again and if it's available I'll tell you. Have a nice day.@@
-            <br>
+            
+            <<dialogue "$pName $pSurname" "lightblue">>
+                Sorry but I'm not interested.
+            <</dialogue>>
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Alright, if you want the job just come again and if it's available I'll tell you. Have a nice day.
+            <</dialogue>>
+
             She says with a smile, putting the tablet back from where it came.
-            <br>
+
             <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $pdenyjob.push("frozenjar")>><</button>>
     <</switch>>
 
