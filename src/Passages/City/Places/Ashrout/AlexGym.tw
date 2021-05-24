@@ -2,21 +2,25 @@
     <<passNameRep "Alexandra's Gym">>
     <<if visited() is 1>>
         After going inside the gym a girl with workout clothes approaches you.
-        <br>
-        - @@.lightyellow; Hello! Welcome to Alexandra's Gym I'm Alexandra and, well, the owner of this gym as the name may give it out. May I know your name?@@. She says with a bit of imperactivity.
-        <br>
-        <br>
-        - @@.lightblue; Hello, it's <<print $pName>>@@
-        <br>
-        <br>
-        - @@.lightyellow; Well <<print $pName>>, I'll explain how the gym works@@. Then she takes her tablet out and show you a list of memberships.
-        <br>
-        @@.lightyellow; The first one is the daily membership, it means that you will need to pay each day that you use the gym, has limited access and has a cost of 6 credits@@. Moving to the next membership with an slide of her finger.
-        <br>
-        @@.lightyellow; The next one is a bi-weekly membership, it cost 60 credits but you can use everything in the gym and you just need to pay it each 2 weeks@@. As she finishes she moves to the last membership.
-        <br>
-        @@.lightyellow; And the last membership, it's a montly membership and has a cost of 100 credits, you can use everything in the gym and can get help from any of the trainers in the gym or if I'm available I can help too. So if you need any help or have any questions about the memberships you can ask me@@. She says as she put the tablet back at the reception table.
-        <br>
+        <<dialogue "???" "lightyellow">>
+            Hello! Welcome to Alexandra's Gym I'm Alexandra and, well, the owner of this gym as the name may give it out. May I know your name?. @@.white;She says with a bit of hyperactivity.@@
+        <</dialogue>>
+
+        <<dialogue "$pName $pSurname" "lightblue">>
+            Hello, it's @@.gold;<<print $pName>>@@.
+        <</dialogue>>
+
+        <<dialogue "???" "lightyellow">>
+            Well <<print $pName>>, I'll explain how the gym works. @@.white;Then she takes her tablet out and show you a list of memberships.@@
+        <</dialogue>>
+
+        <<dialogue "Alexandra" "lightyellow">>
+            The first one is the daily membership, it means that you will need to pay each day that you use the gym, has limited access and has a cost of 6 credits. @@.white;Moving to the next membership with an slide of her finger.@@
+            <br>
+            The next one is a bi-weekly membership, it cost 60 credits but you can use everything in the gym and you just need to pay it each 2 weeks. @@.white;As she finishes she moves to the last membership.@@
+            <br>
+            And the last membership, it's a montly membership and has a cost of 100 credits, you can use everything in the gym and can get help from any of the trainers in the gym or if I'm available I can help too. So if you need any help or have any questions about the memberships you can ask me. @@.white;She says as she put the tablet back at the reception table.@@
+        <</dialogue>>
     <<else>>
         <<set _incMS to $memberships.includesAny("AleDayMember", "AleBiMember", "AleMonMember")>>
 
@@ -24,15 +28,17 @@
         <<if $aleWelcome is true>>
             <br>
             When she notices your presence she welcomes you.
-            - @@.lightyellow; Welcome back <<print $pName>>,
-                <<if _incMS is true>> 
-                    are you going to train today?
-                    <<if $memberships.includes("AleMonMember")>> 
-                       or do you need my help with your training?.
+            <<dialogue "Alexandra" "lightyellow">>
+                Welcome back <<print $pName>>,
+                    <<if _incMS is true>> 
+                        are you going to train today?
+                        <<if $memberships.includes("AleMonMember")>> 
+                        or do you need my help with your training?.
+                        <</if>>
+                    <<else>>
+                        do you want to buy any of our memberships?.
                     <</if>>
-                <<else>>
-                    do you want to buy any of our memberships?.
-                <</if>>@@
+            <</dialogue>>
         <</if>>
     
     <</if>>
