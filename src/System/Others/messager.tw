@@ -2,51 +2,53 @@
 
 <<widget "messager">>
     <<if $message>>
-        <span class="red">
-        //
-        ''
-        <<switch $message>>
-            <<case "noEnergy">>
-                You don't have enough energy.
-            <<case "noCredits">>
-                You don't have enough credits.
-            <<case "space">>
-                You don't have enough space in your backpack to store so many items.
-            <<case "succPurch">>
-                @@.green;Thank you for you purchase, please come back again!.@@
-                <br>
-            <<case "enough">>
-                You already have enough of that item.
-                <br>
-            <<case "addedToSC">>
-                @@.green;Added to shopping cart!@@ Current amount to spend:
-                    <<set _total to 0>>
-                    <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
-                        <<if $shoppingcart[_isc].amount>>
-                            <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+        <<dialogue "GLODEX" "green">>
+            <span class="red">
+            //
+            ''
+            <<switch $message>>
+                <<case "noEnergy">>
+                    You don't have enough energy.
+                <<case "noCredits">>
+                    You don't have enough credits.
+                <<case "space">>
+                    You don't have enough space in your backpack to store so many items.
+                <<case "succPurch">>
+                    @@.green;Thank you for you purchase, please come back again!.@@
+                    <br>
+                <<case "enough">>
+                    You already have enough of that item.
+                    <br>
+                <<case "addedToSC">>
+                    @@.green;Added to shopping cart!@@ Current amount to spend:
+                        <<set _total to 0>>
+                        <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
+                            <<if $shoppingcart[_isc].amount>>
+                                <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
 
-                        <<else>>
-                            <<set _total += $shoppingcart[_isc].price>>
-                        <</if>>
-                    <</for>>
-                @@.yellow;<<print _total>> credits.
+                            <<else>>
+                                <<set _total += $shoppingcart[_isc].price>>
+                            <</if>>
+                        <</for>>
+                    @@.yellow;<<print _total>> credits.
 
-            <<case "recipeLearned">>
-                @@.green;New recipe added to Glodex!@@
-                <br>
-            <<case "addedExp">>
-                @@.green;<<print String.format("+{0} {1} exp", $mExp, $mSkill)>>@@
-                <<unset $mExp; $mSkill>>
-                <<if $multiSkill is true>>
-                    @@.green;<<print String.format("+{0} {1} exp", $mExp1, $mSkill1)>>@@
-                    <<unset $mExp1; $mSkill1>>
-                <</if>>
-                <br> 
-        <</switch>>
-        ''
-        //
-        </span>
-        <<unset $message>>
+                <<case "recipeLearned">>
+                    @@.green;New recipe added to Glodex!@@
+                    <br>
+                <<case "addedExp">>
+                    @@.green;<<print String.format("+{0} {1} exp", $mExp, $mSkill)>>@@
+                    <<unset $mExp; $mSkill>>
+                    <<if $multiSkill is true>>
+                        @@.green;<<print String.format("+{0} {1} exp", $mExp1, $mSkill1)>>@@
+                        <<unset $mExp1; $mSkill1>>
+                    <</if>>
+                    <br> 
+            <</switch>>
+            ''
+            //
+            </span>
+            <<unset $message>>
+        <</dialogue>>
     <</if>>
 <</widget>>
 
