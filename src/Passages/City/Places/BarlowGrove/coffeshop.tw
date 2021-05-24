@@ -52,13 +52,16 @@
             <br>
             <<button "Ask for work">>
                 <<replace #aW>>
-                    - @@.lightblue;Excuse me, hello. I’m looking for a job and saw the pamphlet that is at the entrance and said that you are searching for employees and I’m interested in the job@@.
-                    <br>
-                    <br>
-                    - @@.lightyellow; Sure, just give me a moment to search for someone that could replace me while I explain everything to you@@. He says while waving to a staff member who was passing nearby.
-                    <br>
-                    - @@.lightyellow; Alright, now follow me to the office so I could show you the contract and explain what you will need to do@@.
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Excuse me, hello. I’m looking for a job and saw the pamphlet that is at the entrance and said that you are searching for employees and I’m interested in the job.
+                    <</dialogue>>
+
+                    <<dialogue "???" "lightyellow">>
+                        Sure, just give me a moment to search for someone that could replace me while I explain everything to you. @@.white;He says while waving to a staff member who was passing nearby.@@
+                        <br>
+                        Alright, now follow me to the office so I could show you the contract and explain what you will need to do.
+                    <</dialogue>>
+
                     <<button "Follow him" "employingbn">><<set $knowsBNOwner to true>><</button>>
                 <</replace>>
             <</button>>
@@ -79,22 +82,25 @@
     <<passNameRep _passN>>
     Upon entering you notice that the office is pretty much the same as the shop with the only difference being that it has just the right amount of stuff;
     2 chairs and a table. It's probably used only for interviews.
-    <br>
-    <br>
-    - @@.lightyellow; Well, let's start with the introductions. I'm <span class="orange"><<print "$bnName $bnSurname">></span> and I'm the owner of this coffee shop. Can you give me your name?@@.
-    <br>
-    <br>
-    - @@.lightblue; Of course, it's@@ @@.gold;<<print "$pName $pSurname">>@@.
-    <br>
-    <br>
-    - @@.lightyellow; Alright, <span class="gold"><<print $pName>></span> glad to meet you. I'll start explaining what we do here and what your duties will be@@. He says while getting comfortable in his chair.
-    <br>
-    - @@.lightyellow; We are a coffee shop, but we sell pastries and snacks to go with the coffe, therefore, we have pastry chefs. You will be given a uniform that you must wear during your working hours. After finishing your workday uniforms are deposited in a basket inside the locker room
-    we have a cleaning service and they'll be clean the next day.
-    You'll start as a <<barGender>> and any amount of tips will be enterely yours. I'm proud that my shop has a clean appearance and a comfortable environment for both customers and employees. If you see or feel that any customer or employee is being rude or obnoxious, please notify me to take action@@.
-    <br>
-    - @@.lightyellow; Now the contract, be sure to read it thoroughly before agreeing. Oh... Right, I see that probably you'll be starting the local college if you need financial assitance we can help you with that, most of the staff also study there@@. Says while giving you the tablet.
-    <br>
+    
+    <<dialogue "$bnName $bnSurname" "lightyellow">>
+        Well, let's start with the introductions. I'm @@.orange;<<print "$bnName $bnSurname">>@@ and I'm the owner of this coffee shop. Can you give me your name?.
+    <</dialogue>>
+
+    <<dialogue "$pName $pSurname" "lightblue">>
+        Of course, it's @@.gold;<<print "$pName $pSurname">>@@.
+    <</dialogue>>
+
+    <<dialogue "$bnName $bnSurname" "lightyellow">>
+        Alright, @@.gold;<<print $pName>>@@ glad to meet you. I'll start explaining what we do here and what your duties will be. @@.white;He says while getting comfortable in his chair.@@
+        <br>
+        We are a coffee shop, but we sell pastries and snacks to go with the coffe, therefore, we have pastry chefs. You will be given a uniform that you must wear during your working hours. After finishing your workday uniforms are deposited in a basket inside the locker room
+        we have a cleaning service and they'll be clean the next day.
+        You'll start as a <<barGender>> and any amount of tips will be enterely yours. I'm proud that my shop has a clean appearance and a comfortable environment for both customers and employees. If you see or feel that any customer or employee is being rude or obnoxious, please notify me to take action.
+        <br>
+        <br>
+        Now the contract, be sure to read it thoroughly before agreeing. Oh... Right, I see that probably you'll be starting the local college if you need financial assitance we can help you with that, most of the staff also study there. @@.white;Says while giving you the tablet.@@
+    <</dialogue>>
     <br>
     <fieldset class="charc">
         <legend>Black Nectar Corner's Employee Contract</legend>
@@ -128,59 +134,76 @@
     <<switch $jobaccepted>>
         <<case true>>
             After signing in and putting in your fingerprint, you return the tablet.
-            <br>
-            - @@.lightblue;I signed the document@@.
-            <br>
-            <br>
-            <<print $bnName>> verify a few things in the tablet and store it.
-            <br>
-            - @@.lightyellow; Good, you can start tomorrow. We are open from Monday to Friday from 5 AM to 6 PM. You don't have a fixed schedule so as long as you fulfill your required hours, it's all good. Oh, by the way before I forget, I just sent the locker's key to your <span class="green">GLODEX</span> so you can access your uniform tomorrow@@.
-            <span class="red">(Uniforms not implemented yet, so it isn't required.)</span>.
-            <br>
+            <<dialogue "$pName $pSurname" "lightblue">>
+                I signed the document.
+
+            <</dialogue>>
+
+            @@.orange;<<print $bnName>>@@ verify a few things in the tablet and store it.
+
+            <<dialogue "$bnName $bnSurname" "lightyellow">>
+                Good, you can start tomorrow. We are open from Monday to Friday from 5 AM to 6 PM. You don't have a fixed schedule so as long as you fulfill your required hours, it's all good. Oh, by the way before I forget, I just sent the locker's key to your <span class="green">GLODEX</span> so you can access your uniform tomorrow.
+                <span class="red">(Uniforms not implemented yet, so it isn't required.)</span>.
+            <</dialogue>>
             <br>
             @@#q1;<<link "How do I get paid?">>
                 <<replace #q1>>
-                    - @@.lightblue; How do I get paid? I didn't see anything in the contract mentioned about thats.@@
-                    <br>
-                    - @@.lightyellow; All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.@@
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        How do I get paid? I didn't see anything in the contract mentioned about thats.
+                    <</dialogue>>
+
+                    <<dialogue "$bnName $bnSurname" "lightyellow">> 
+                        All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
             @@#q2;<<link "Don't you need my address?">>
                 <<replace #q2>>
-                    - @@.lightblue; Don't you need my address? I got told that jobs needed them.@@
-                    <br>
-                    - @@.lightyellow; Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.@@
-                    <br>
-                    - @@.lightblue; Isn't it insecure? Whats if someone could get my address with them?@@
-                    <br>
-                    - @@.lightyellow; No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.@@ 
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Don't you need my address? I got told that jobs needed them.
+                    <</dialogue>>
+                    
+                    <<dialogue "$bnName $bnSurname" "lightyellow">> 
+                        Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.
+                    <</dialogue>>
+
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Isn't it insecure? Whats if someone could get my address with them?
+                    <</dialogue>>
+
+                    <<dialogue "$bnName $bnSurname" "lightyellow">> 
+                        No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
             @@#q3;<<link "Regarding a possible promotion">>
                 <<replace #q3>>
-                    - @@.lightblue; About promotions, how do I know when I'll get it? Or what is required to be able to get one?@@
-                    <br>
-                    - @@.lightyellow; I will call you to my office if you are working or send a message to your GLODEX to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).@@
-                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        About promotions, how do I know when I'll get it? Or what is required to be able to get one?
+                    <</dialogue>>
+
+                    <<dialogue "$bnName $bnSurname" "lightyellow">> 
+                        I will call you to my office if you are working or send a message to your GLODEX to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).
+                    <</dialogue>>
                 <</replace>>
             <</link>>@@
             <br>
-            <br>
+
             <<button "Bye" "coffeshop">>
                 <<unset $jobaccepted>>
             <</button>>
 
         <<case false>>
             You return the tablet.
-            <br>
-            - @@.lightblue;I'm sorry but I need to think it through and come back@@.
-            <br>
-            <br>
-            - @@.lightyellow; Alright, no problem, I can't guarantee that we will be looking for employees when you return. Have a good day@@.
+            <<dialogue "$pName $pSurname" "lightblue">>
+                I'm sorry but I need to think it through and come back.
+            <</dialogue>>
+
+            <<dialogue "$bnName $bnSurname" "lightyellow">> 
+                Alright, no problem, I can't guarantee that we will be looking for employees when you return. Have a good day.
+            <</dialogue>>
             Says, as he puts the tablet away and invites you to leave the office.
             <br>
             <<button "Finish" "coffeshop">><<unset $jobaccepted>><<set $pdenyjob.push("blacknectar")>><</button>>
