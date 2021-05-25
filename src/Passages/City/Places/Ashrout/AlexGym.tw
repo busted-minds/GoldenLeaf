@@ -47,7 +47,9 @@
         <<button "Ask about memberships" "buyalemem">><</button>>
 
     <<elseif !$limitedExerc>>
-        <<button "Train" "aletrain">><</button>>
+        <<disable $energy lt 5>>
+            <<button "Train" "aletrain">><</button>>
+        <</disable>><<if $energy lt 5>>@@.blue;You don't have enough energy@@<</if>>
     <<else>>
         <br>
         You have already trained today. Come back tomorrow.
@@ -135,12 +137,8 @@
     <<passNameRep "Alexandra's Gym">>
 
     <<button "Train(WIP)" "alegym">>
-        <<if $energy gte (5 * 0.20)>>
-            <<timeattached 5>>
-            <<set $limitedExerc to true>>
+        <<timeattached 5 5>>
 
-        <<else>>
-            <<set $message to "noEnergy">>
-        <</if>>
-    <</button>>  @@.red;I'm developing and testing the system so it does nothing for now@@
+    <</button>> @@.red;I'm developing and testing the system so it does nothing for now@@
+    <br>
     <<button "Finish" "alegym">><</button>>
