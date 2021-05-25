@@ -112,6 +112,14 @@
             icon: "img/others/bus-icons/collobby.png",
             timeTo: 3,
             connectedTo: ["ashrout"]
+        },
+        {
+            id: 8,
+            place: "golbrowpath",
+            name: "Golbrow Path",
+            icon: "img/others/bus-icons/collobby.png",
+            timeTo: 3,
+            connectedTo: ["pioneerlane"]
         }
     ]>>
 <</widget>>

@@ -1,0 +1,38 @@
+:: goldpark [nobr]
+    <<passNameRep "Chrysanthus Park">>
+    You are in Chrysanthus Park, a large park with several yellow flowering trees and a tree that stands out to the eye because there are many people around it taking pictures. 
+    The tree is fenced to prevent getting too close to it, probably to protect it from ill-intentioned people. There is a plaque near the fence.
+    @@.plaque;
+    <<link "Read Plaque">>
+        <<replace ".plaque">>
+            <fieldset class="charc">
+                <legend>Plaque</legend>
+                //"This tree by the name of Handroanthus chrysanthus with an approximate age of 200 years, is the oldest in the city. 
+                With the arrival of more people to live or do tourism in the city, a plan was created to protect it from damage. Those who attempt to damage the tree can be fined or in moderate cases, even 1 year in prison.
+                <br>
+                <br>
+                According to the stories of the old settlers, the area where the tree is located was used as a place of commerce or in festive times as a meeting place to have parties."//
+            </fieldset>
+        <</replace>>
+    <</link>>@@
+
+    <<if $time.getHours() lt 18>>
+        <br>
+        <br>
+        Elsewhere in the park, you can see people exercising. Some are jogging and others are doing what appears to be yoga. 
+        There are also old people sitting around talking and the occasional person riding a bicycle.
+        <br>
+    <<elseif $time.getHours() gte 18 and $time.getHours() lt 5>>
+        <br>
+        The place, although almost empty, is illuminated and you can still see some people who may be using the park as a shortcut to their home or workplace.
+        <br>
+    <</if>>
+    <br>
+    <<disable $energy lt 5>>
+        <<button "Run around" "goldpark">>
+            <<timeattached 10 5>>
+        <</button>>
+    <</disable>><<if $energy lt 5>>@@.blue;You don't have enough energy@@<</if>> @@.red;I'm developing and testing the system so it does nothing for now@@
+    <br>
+    <br>
+    <<button "Back" "golbrowpath">><</button>>

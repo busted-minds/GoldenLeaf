@@ -64,4 +64,13 @@
     <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
+:: golbrowpath [nobr]
+    <<passNameRep "Golbrow Path">>
+
+    <<button "To the park" "goldpark">><</button>>
+
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
+
 /* This is some voodoo shit I tell you. People think that this is programming but no, this is just magic, its power comes from the pain and tears of the people who call themselves "programmers". It doesn't work? I don't know why. It works? I don't know too. */
