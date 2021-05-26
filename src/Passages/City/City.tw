@@ -1,7 +1,13 @@
 :: cloverow [nobr]
     <<passNameRep "Clove Row Complex">>
-    You are outside of your home, located in a nice housing complex called Clove Row. 
+    You are outside of your home, located in a nice housing complex called Clove Row.
     <br>
+    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+        <<print either("You see a security man walking by.", "You can see some cars passing by.", "You see some people walking with their pets.")>>
+
+    <<else>>
+        You can still see some people going out of the complex, maybe to their night shift or some other places.
+    <</if>>
     <<button "Get inside the house" "livingroom">><</button>>
     <br>
     You can catch a bus or walk, heading either to Blythe Celyn or Hollins Drift from here.
@@ -11,6 +17,15 @@
 
 :: blythecelyn [nobr]
     <<passNameRep "Blythe Celyn">>
+    You are at Blythe Celyn. Between some buildings, you can identify the grocery shop.
+    <br>
+    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+        You can see some cars passing by and people walking.
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
     <<if visited() is 1>>
         //A flyer on the street comes into your sight from a place called the "Frozen Jar", apparently having a "Grand Opening". It says that they're open at <<print setup.frozenjar.workingHours.openingHours>> am.
         <br>
@@ -25,6 +40,16 @@
 
 :: barlowgrove [nobr]
     <<passNameRep "Barlow Grove">>
+    You are at Barlow Grove. You can see the building of Horeco and some people going in and out.
+    <br>
+    You can identify the Black Nectar Corner at the corner of the street.
+    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+
     /*<<button "Go inside Horeco Inc." "horeco">><</button>>*/
     <<disable $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>
         <<button "Black Nectar Corner" "coffeshop">><</button>>
