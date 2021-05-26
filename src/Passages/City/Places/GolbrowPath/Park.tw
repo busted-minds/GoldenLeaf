@@ -20,7 +20,7 @@
         <br>
         <br>
         Elsewhere in the park, you can see people exercising. Some are jogging and others are doing what appears to be yoga. 
-        There are also old people sitting around talking and the occasional person riding a bicycle.
+        There are also old people sitting around talking, the occasional person riding a bicycle and someone walking their pet around.
         <br>
     <<elseif $time.getHours() gte 18 and $time.getHours() lt 5>>
         <br>
