@@ -52,7 +52,7 @@
 
 :: tv [nobr]
     <<passNameRep "TV">>
-    
+    You can watch the news if you wan't to know what's happening in the city or maybe a cooking show if you wan't to improve your cooking skills @@.red;WIP@@
     <<button "Watch news channel" "tv">>
         <<timeattached 3>>
     <</button>> @@.red; -<<print Math.round(3 *0.1)>> Energy +3 Minutes@@
@@ -62,6 +62,7 @@
 
 :: sofa [nobr]
     <<passNameRep "Sofa">>
+    You sit on your sofa, you could relax or have some "fun" if you want.
     <br>
     <div class="list">
         <div id="insidelist">

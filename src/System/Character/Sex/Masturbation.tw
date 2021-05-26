@@ -56,11 +56,11 @@
 :: masturbutton [widget nobr]
 
 <<widget "masturbutton">>
-    <<if $energy gte 35>>
+    <<disable $energy lt 35>>
+        <div class="med-button">
         <<button "Masturbate" "masturbate">>
             <<set $location to passage()>>
         <</button>>
-    <<else>>
-        @@.lightred;You need some rest before trying to masturbate.@@
-    <</if>>
+        </div>
+    <</disable>><<if $energy lt 35>>@@.lightred;You need some rest before trying to masturbate.@@<</if>>
 <</widget>>
