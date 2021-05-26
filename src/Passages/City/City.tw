@@ -2,7 +2,7 @@
     <<passNameRep "Clove Row Complex">>
     You are outside of your home, located in a nice housing complex called Clove Row.
     <br>
-    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
         <<print either("You see a security man walking by.", "You can see some cars passing by.", "You see some people walking with their pets.")>>
 
     <<else>>
@@ -19,7 +19,7 @@
     <<passNameRep "Blythe Celyn">>
     You are at Blythe Celyn. Between some buildings, you can identify the grocery shop.
     <br>
-    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
         You can see some cars passing by and people walking.
 
     <<else>>
@@ -43,7 +43,7 @@
     You are at Barlow Grove. You can see the building of Horeco and some people going in and out.
     <br>
     You can identify the Black Nectar Corner at the corner of the street.
-    <<if $time.getHours lt 18 and $time.getHours gt 5>>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
         <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
