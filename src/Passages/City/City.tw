@@ -8,10 +8,11 @@
     <<else>>
         You can still see some people going out of the complex, maybe to their night shift or some other places.
     <</if>>
+    <br>
     <<button "Get inside the house" "livingroom">><</button>>
     <br>
-    You can catch a bus or walk, heading either to Blythe Celyn or Hollins Drift from here.
     <br>
+    You can catch a bus or walk, heading either to Blythe Celyn or Hollins Drift from here.
     <br>
     <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
