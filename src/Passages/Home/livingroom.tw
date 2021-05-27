@@ -65,7 +65,7 @@
     <<passNameRep "Sofa">>
     You sit on your sofa, you could relax or have some "fun" if you want.
     <br>
-    <div class="list">
+    <div class="list" style="max-width: 14em;">
         <div id="insidelist">
             <<set _relaxtime to {"5 minutes, +2 energy": 5, "10 minutes, +4 energy": 10, "15 minutes, +6 energy": 15, "20 minutes, +8 energy": 20}>>
             Relaxing time:
@@ -74,7 +74,9 @@
             <</listbox>>
             <br>
             <<set _rene to _rtime * 0.4>>
-            <<button "Relax" "sofa">><<restoreEnergy _rene>><<timeattached _rtime>><</button>>
+            <div class="med-button">
+                <<button "Relax" "sofa">><<restoreEnergy _rene>><<timeattached _rtime>><</button>>
+            </div>
         </div>
     </div>
     <br>
