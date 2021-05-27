@@ -45,12 +45,12 @@
     <br>
     You can identify the Black Nectar Corner at the corner of the street.
     <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
-        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
         It's a bit dark but, you can still see people walking around and, although few, some cars.
     <</if>>
-
+    <br>
     /*<<button "Go inside Horeco Inc." "horeco">><</button>>*/
     <<disable $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>
         <<button "Black Nectar Corner" "coffeshop">><</button>>
@@ -64,12 +64,12 @@
     <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
         You can identify Alexandra's Gym and some people going in. The library has some people going in too, probably some students.
         <br>
-        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
         It's a bit dark but, you can still see people walking around and, although few, some cars.
     <</if>>
-
+    <br>
     <<disable $time.getHours() gte 18 or $time.getHours() lt 7>>
     <<button "GL Public Library" "library">><</button>>
     <</disable>><<if $time.getHours() gte 18 or $time.getHours() lt 8>>You see a sign that says: The Public Library open from 7 AM to 6 PM.<</if>>
@@ -86,7 +86,7 @@
     Arriving at Hollins Drift, you see a building that is in construction. Who knows what it will be. Maybe some furniture related thing? ;).
     <br>
     <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
-        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
         It's a bit dark but, you can still see people walking around and, although few, some cars.
@@ -100,7 +100,7 @@
     <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
         You can identify Frozen Jar and some people going in and out and some people going on their way to work.
         <br>
-        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
         <<if !$time.getHours() gte setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours>>
@@ -108,6 +108,7 @@
         <</if>>
         It's a bit dark but, you can still see people walking around and, although few, some cars.
     <</if>>
+    <br>
     <<disable $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
         <<button "Enter Frozen Jar" "frozenjar">><</button>>
     <</disable>><<if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
@@ -121,11 +122,12 @@
     <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
         You see some people going in and out of the park.
         <br>
-        <<print either("You see a group of people talking while they are walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
         It's a bit dark but, you can still see people walking around and, although few, some cars. Some people it's still going inside the park, maybe using it as a shortcut.
     <</if>>
+    <br>
     <<button "To the park" "goldpark">><</button>>
 
     <br>
