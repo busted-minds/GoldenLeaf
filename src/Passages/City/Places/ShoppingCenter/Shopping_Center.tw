@@ -1,9 +1,18 @@
 :: shoppingcenter [nobr]
     <<passNameRep "Shopping Center">>
-    <<if $message>>
-        <<print $message>>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
+        You see some people going in and out of the Shopping Center.
+        <br>
+        <<print either("You see a group of people talking while they are walking.", "You see some people eating food in a bench", "You see some people walking with bags of clothes.")>>
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around. There are some people who are leaving the Shopping Center and/or closing their stores, while others are opening theirs.
     <</if>>
-    <<button "Clothing Store" "clothesstore">><</button>>
+    <br>
+    <<disable $time.getHours() gte 18 and $time.getHours() lt 7>>
+        <<button "Clothing Store" "clothesstore">><</button>>
+    <</disable>><<if $time.getHours() gte 18 and $time.getHours() lt 7>>//You see a sign that says: We open at 7 AM.// <</if>>
+    
     <br>
     <<set _open to $time.getHours() gte 18>>
     <<if $time.getHours() lte 3 and $time.getMinutes() lte 20>>

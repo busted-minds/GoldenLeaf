@@ -1,6 +1,16 @@
 :: collobby [nobr]
     <<passNameRep "College Lobby">>
     You are at Golden Leaf Central College lobby.
+    <<if $time.getHours() lt 18 and $time.getHours() gt 6>>
+        You see some people going in and out of the College.
+        <br>
+        <<print either("You see a group of people talking while they are walking.", "You see some people eating food in a bench", "You can see some cars parking.")>>
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around probably going to their evening lessons, while others are maybe going to their houses.
+        /*Parking cars may have no sense for now, but it will be moved to a "College Campus passage" when more content for the college start to be added. */
+    <</if>>
+    <br>
     <<if visited() is 1>>
         There is a reception where you can get info about what careers are available to study, payments, etc.
     <<else>>
