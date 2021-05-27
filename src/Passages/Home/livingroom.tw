@@ -53,9 +53,10 @@
 :: tv [nobr]
     <<passNameRep "TV">>
     You can watch the news if you wan't to know what's happening in the city or maybe a cooking show if you wan't to improve your cooking skills @@.red;WIP@@
+    <br>
     <<button "Watch news channel" "tv">>
         <<timeattached 3>>
-    <</button>> @@.red; -<<print Math.round(3 *0.1)>> Energy +3 Minutes@@
+    <</button>> @@.red;+3 Minutes@@
     <br>
     <br>
     <<button "Turn off" "livingroom">><</button>>
