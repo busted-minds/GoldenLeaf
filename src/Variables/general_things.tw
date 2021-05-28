@@ -87,7 +87,7 @@
             name: "Pioneer Lane",
             icon: "img/others/bus-icons/pioneerlane.png",
             timeTo: 8,
-            connectedTo: ["hollinsdrift"]
+            connectedTo: ["hollinsdrift", "golbrowpath"]
         },
         {
             id: 5,
@@ -117,7 +117,7 @@
             id: 8,
             place: "golbrowpath",
             name: "Golbrow Path",
-            icon: "img/others/bus-icons/collobby.png",
+            icon: "img/others/bus-icons/golbrowpath.png",
             timeTo: 3,
             connectedTo: ["pioneerlane"]
         }

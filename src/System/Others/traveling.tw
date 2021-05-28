@@ -39,6 +39,10 @@
                     <rect id="collobby" class="map" x="25" y="274" height="48" width="53">
                     <title>To Golden Leaf Central College +3 min.</title>
                 </a>
+                <a onclick="passageMov(8);">
+                    <rect id="golbrowpath" class="map" x="341" y="203" height="70" width="36">
+                    <title>To Golbrow Path +3 min.</title>
+                </a>
                 <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
             </svg>
             <<done>>
