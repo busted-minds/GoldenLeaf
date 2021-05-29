@@ -3,7 +3,13 @@
 <<widget "iteminfo">>
     <<set _id to $args[0]>>
     <<set _slot to $args[1]>>
-    
+
+    <<if $wardrobeContent[_slot][_id].category.includes("upperbouter")>>
+        <img src="img\others\clothes\shirt.png">
+    <<elseif $wardrobeContent[_slot][_id].category.includes("lowerbouter")>>
+        <img src="img\others\clothes\pants.png" style="height:65px;"> 
+    <</if>>
+    <br>
     Name: <<print $wardrobeContent[_slot][_id].name>>
     <<wardItemIcn _slot _id>>
     <br>
