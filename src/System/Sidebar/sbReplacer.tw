@@ -32,6 +32,10 @@
 						<<outfitPop $args[1]>>
 					<</replace>>
 
+				<<case "credits">>
+					<<replace #popUpContent>>
+						<<creds>>
+					<</replace>>
 			<</switch>>
 
 			<<replace #popUpBottom>>
