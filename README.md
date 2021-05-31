@@ -4,6 +4,7 @@ Current public Version: **V0.2.3**
 
 Current development Version: **V0.2.3**
 
+**[Play the game](https://gampsi.github.io/GoldenLeaf/GoldenLeaf.html) (Online version)**
 
 #### Remember if you encounter any bug in the game please open an issue. Or if you wan't to give a suggestion open an issue to.
 
