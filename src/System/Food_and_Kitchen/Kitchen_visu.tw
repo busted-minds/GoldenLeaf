@@ -22,7 +22,7 @@
                         <<set _n to []>>
                         <<set _foodnameF to _fvFTName[_fvFT].name>>
                         <<set _foodamountF to _fvFTName[_fvFT].amount>>
-                        <<set _foodhunger to _fvFTName[_fvFT].hunger>>
+                        <<set _foodener to _fvFTName[_fvFT].energy>>
                         <<set _fooduses to _fvFTName[_fvFT].uses>>
 
                         _foodnameF <<if _foodamountF gt 1 >> x _foodamountF <</if>>
@@ -36,14 +36,14 @@
                             <<optionsfrom _n>>
                         <</listbox>>
                         @@.smollbutt;<<capture _foodnameF _foodTypes[_ifv]>>
-                            <<button "Amount to move" _currPass>>
+                            <<button "Move" _currPass>>
                                 <<storekitchentable _foodnameF _foodTypes[_ifv]>>
                             <</button>>
                         <</capture>>@@
                         <br>
 
-                        <<if _foodhunger>>
-                            <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodhunger+`, `+_fvFT+`, \"`+_foodTypes[_ifv]+`\"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;-<<print _foodhunger>> hunger@@
+                        <<if _foodener>>
+                            <button class="macro-button smollbutt" @onclick='`wikifier("eatFood", `+_foodener+`, `+_fvFT+`, \"`+_foodTypes[_ifv]+`\"); SugarCube.Engine.play(SugarCube.State.passage)`'>Eat</button>@@.green;+<<print _foodener>> energy@@
                         <</if>>
                         <div class="thindiv"></div>
                     <</for>>
@@ -66,21 +66,21 @@
             <<set _foodamountKT to $kitchentable[_ikt].amount>>
             <<set _foodtypeKT to $kitchentable[_ikt].foodtype>>
             <<set _foodquality to $kitchentable[_ikt].quality>>
-            <<set _foodhunger to $kitchentable[_ikt].hunger>>
+            <<set _foodener to $kitchentable[_ikt].energy>>
             <<set _fooduses to $kitchentable[_ikt].uses>>
                 
             _foodnameKT <<if _foodquality>> <<print "(" + _foodquality + ")">><</if>> <<if _foodamountKT gt 1 >> x _foodamountKT <</if>>
             <br>
             Uses left: @@.orange;_fooduses@@
-            <<if _foodhunger>>
+            <<if _foodener>>
                 <br>
-                <<capture _foodhunger _ikt>>
+                <<capture _foodener _ikt>>
                     @@.smollbutt;
                     <<button "Eat" "kitchentable">>
-                        <<eatFood _foodhunger _ikt "kitchentable">>
+                        <<eatFood _foodener _ikt "kitchentable">>
                     <</button>>
                     @@
-                <</capture>>@@.green;-<<print _foodhunger>> hunger@@
+                <</capture>>@@.green;+<<print _foodener>> energy@@
             <</if>>
             
             <<if !_foodtypeKT.includes("Prepared Food")>>

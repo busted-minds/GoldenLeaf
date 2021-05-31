@@ -1,7 +1,7 @@
 :: clothes_replacer [widget nobr]
 /* These widgets are nearly the same as the one for the wardrobe. Just modified for the store. */
     <<widget "csShow">>
-        <<messager>>
+        
         <<if !$pressedlStore>>
             <<set $pressedlStore to $args[1]>>
         <</if>>
@@ -94,7 +94,7 @@
 
 :: sexshopReplacer [widget nobr]
     <<widget "ssShow">>
-        <<messager>>
+        
             <div id="storeLinks" class="storeLinks">
                 <<ssLinks>>
             </div>

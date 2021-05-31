@@ -1,4 +1,8 @@
 :: StoryCaption [nobr]
+<div id="popUp" class="popUp">
+    <div id="popUpContent"></div>
+    <div id="popUpBottom" style="margin-top: 2.5%;"></div>
+</div>
 <<if $gamestarted is 1>>
     <fieldset class="info">
         <legend class="centered">Info</legend>
@@ -14,16 +18,7 @@
                 <img src="img/sidebar-icons/credits.png" class="sbIcons" title="Credits: Your credits, used to buy items." alt="Credits">: @@#credits.yellow; $credits@@
             </div>
             <div>
-                <img src="img/sidebar-icons/hygiene.png" class="sbIcons" title="Hygiene: You hygiene level, you can't do certain actions if you don't have enought energy" alt="hygiene">: @@#hygiene.blue; <<print $hygiene>>/100@@
-            </div>
-            <div>
                 <img src="img/sidebar-icons/energy.png" class="sbIcons" title="Energy: You energy level, you can't do certain actions if you don't have enought energy" alt="Energy">: @@#energy.green; <<print $energy + "/" + $maxenergy>>@@
-            </div>
-            <div>
-                <img src="img/sidebar-icons/fun.png" class="sbIcons" title="Fun: You fun level" alt="fun">: @@#fun.lightblue; <<print $fun>>/100@@
-            </div>
-            <div>
-                <img src="img/sidebar-icons/hunger.png" class="sbIcons" title="Hunger: Your hunger level." alt="hunger">: @@#hunger.red; <<print $hunger>>/100@@
             </div>
             <div>
                 <<wearSexToy "sideB">>
@@ -35,11 +30,6 @@
     </fieldset>
 
     <<set $popupbox to 0>>
-    <div id="popUp" class="popUp">
-        <div id="popUpContent"></div>
-        <div id="popUpBottom" style="margin-top: 2.5%;"></div>
-    </div>
-
     <br>
     <div class="divisor" style="margin-bottom: 5px;"></div>
     <div>
@@ -53,4 +43,51 @@
     <</button>>
     </div>
     <div class="divisor" style="margin-top: 5px;"></div>
+
+<<else>>
+    <<button "Credits">>
+        <<replacer "credits">>
+    <</button>>
 <</if>>
+
+:: credits [widget nobr]
+<<widget "creds">>
+    Credits to:
+    <br>
+    @@.green;Nameless Magician(Proofreading)
+    <br>
+    Sorter(Proofreading)
+    <br>
+    Hanah Solo(Some ideas :D)
+    <br>
+    Maakhan(Some ideas :D)
+    @@
+    <br>
+    Image credits:
+    <div class="imgCred">
+        Frozen Jar original image by "De an Su" in "Unsplash.com"
+        <br>
+        Shopping Center original image by "Jorge Fernández Salas" in "Unsplash.com"
+        <br>
+        Sex Shop original image by "David Len" in "Unsplash.com"
+        <br>
+        Clothes Store original image by "Ashim D'Silva" in "Unsplash.com"
+        <br>
+        College original image by "Parker Gibbons" in "Unsplash.com"
+        <br>
+        Living room original image by "Kara Eads" in "Unsplash.com"
+        <br>
+        Bus original image by "Ant Rozetsky" in "Unsplash.com"
+        <br>
+        Grocery store original image by "gemma" in "Unsplash.com"
+        <br>
+        Park original image by "Srecko Skrobic" in "Unsplash.com"
+        <br>
+        Black Nectar Coffe original image by "Petr Sevcovic" in "Unsplash.com"
+        <br>
+        Alexandra's Gym original image by "Humphrey Muleba" in "Unsplash.com"
+        <br>
+        Golden Leaf's Library original image by "Gabriel Sollmann" in "Unsplash.com"
+    </div>
+<</widget>>
+

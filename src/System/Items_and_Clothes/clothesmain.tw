@@ -77,7 +77,7 @@
 
 <</widget>>
 
-/* This widget add a new outfit or update one if $args[0] is "update" and $args[1] exist. It checks if any item was stored in the for loop before creating/updating it.*/
+/* This widget add a new outfit or update one if $args[0] is "update". It checks if any item was stored in the for loop before creating/updating it.*/
 <<widget "newOutfit">>
     <<set _content to {
         upperbouter: {item: [], color: []},
@@ -112,7 +112,7 @@
         <</for>>
     <</for>>
 
-    <<if _check gt 0 and $args[0] is "update" and $args[1]>>
+    <<if _check gt 0 and $args[0] is "update">>
         <<set $outfits[$args[1]].content to _content>>
         <<set $message to "@@.green; Outfit Updated@@">>
         

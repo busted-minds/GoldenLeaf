@@ -1,10 +1,10 @@
 :: grocerystore [nobr] 
-    <h2>Grocery Store</h2>
+    <<passNameRep "Grocery Store">>
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <div class="divisor"></div>
-    <<messager>>
+    <img src="img\placesimg\grocerystore.png" style="width: 20em;">
+    <br>
     <<if visited() is 1>>
         You get inside the store from the AD. It seems that they sell many foodstuffs here.
     <<else>>
@@ -30,17 +30,15 @@
     <</if>>
 
 :: meataisle [nobr]
-    <h2>Meat aisle</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Meat Aisle">>
+    
     <<foodshow "meat">>
 
     <<button "Back" "grocerystore">> <</button>>
 
 :: fandvaisle [nobr]
-    <h2>Fruits and Veg aisle</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Fruits and Vegs Aisle">>
+    
     <br>
     <span style="font-size=large; font-weight: bold">Fruits</span>
     <<foodshow "fruits">>
@@ -49,17 +47,15 @@
     <<button "Back" "grocerystore">> <</button>>
 
 :: spicesaisle [nobr]
-    <h2>Spices aisle</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Spices Aisle">>
+    
     <<foodshow "spices">>
 
     <<button "Back" "grocerystore">> <</button>>
 
 :: ingredaisle [nobr]
-    <h2>General ingredients aisle</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "General Ingredients Aisle">>
+    
     <<foodshow "generalIng">>
 
     <<button "Back" "grocerystore">> <</button>>

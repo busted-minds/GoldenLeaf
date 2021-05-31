@@ -2,47 +2,53 @@
 
 <<widget "messager">>
     <<if $message>>
-        <span class="red">
-        //
-        ''
-        <<switch $message>>
-            <<case "noEnergyFun">>
-                You don't have enough energy or fun.
-            <<case "fullFun">>
-                Your fun is already full.
-                <br>
-            <<case "clean">>
-                You are clean enough.
-            <<case "noCredits">>
-                You don't have enough credits.
-            <<case "space">>
-                You don't have enough space in your backpack to store so many items.
-            <<case "placeClosed">>
-                The place is closed, you'll need to come back at their opening hours.
-                <br>
-            <<case "succPurch">>
-                @@.green;Thank you for you purchase, please come back again!.@@
-                <br>
-            <<case "enough">>
-                You already have enough of that item.
-                <br>
-            <<case "addedToSC">>
-                @@.green;Added to shopping cart!@@ Current amount to spend:
-                    <<set _total to 0>>
-                    <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
-                        <<if $shoppingcart[_isc].amount>>
-                            <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
+        <<dialogue "GLODEX" "green">>
+            <span class="red">
+            //
+            ''
+            <<switch $message>>
+                <<case "noEnergy">>
+                    You don't have enough energy.
+                <<case "noCredits">>
+                    You don't have enough credits.
+                <<case "space">>
+                    You don't have enough space in your backpack to store so many items.
+                <<case "succPurch">>
+                    @@.green;Thank you for you purchase, please come back again!.@@
+                    <br>
+                <<case "enough">>
+                    You already have enough of that item.
+                    <br>
+                <<case "addedToSC">>
+                    @@.green;Added to shopping cart!@@ Current amount to spend:
+                        <<set _total to 0>>
+                        <<for _isc to 0; _isc lt $shoppingcart.length; _isc++>>
+                            <<if $shoppingcart[_isc].amount>>
+                                <<set _total += $shoppingcart[_isc].price * $shoppingcart[_isc].amount>>
 
-                        <<else>>
-                            <<set _total += $shoppingcart[_isc].price>>
-                        <</if>>
-                    <</for>>
-                @@.yellow;<<print _total>> credits.
-        <</switch>>
-        ''
-        //
-        </span>
-        <<unset $message>>
+                            <<else>>
+                                <<set _total += $shoppingcart[_isc].price>>
+                            <</if>>
+                        <</for>>
+                    @@.yellow;<<print _total>> credits.
+
+                <<case "recipeLearned">>
+                    @@.green;New recipe added to Glodex!@@
+                    <br>
+                <<case "addedExp">>
+                    @@.green;<<print String.format("+{0} {1} exp", $mExp, $mSkill)>>@@
+                    <<unset $mExp; $mSkill>>
+                    <<if $multiSkill is true>>
+                        @@.green;<<print String.format("+{0} {1} exp", $mExp1, $mSkill1)>>@@
+                        <<unset $mExp1; $mSkill1>>
+                    <</if>>
+                    <br> 
+            <</switch>>
+            ''
+            //
+            </span>
+            <<unset $message>>
+        <</dialogue>>
     <</if>>
 <</widget>>
 
@@ -52,26 +58,23 @@
             <<set _rngM to random(0, 6)>>
             <<switch _rngM>>
                 <<case 0>>
-                    If any of your status get to a certain point(Ex: 100/100 Hunger or 0/100 Energy, Hygiene) you may not be able to do certain options. With "Fun" or "Arousal" you may not be able to focus when working or studying.
+                    With high arousal you won't be able to focus when working, studying or any activity that gives exp giving you half of it.
                 <<case 1>>
                     Certain actions like cooking, masturbating and others uses energy if you don't have enough they will tell you so.
                 <<case 2>>
                     Each weekend you will need to clean your house. If you don't, many options will be unavailable to be used (Not implemented yet).
                 <<case 3>>
-                    Fruits and liquids may be eaten for a low amount of hunger replenishment.
+                    Fruits and liquids may be consumed for a low amount of energy replenishment.
                 <<case 4>>
-                    Going out at night might be dangerous, even more if you go to not "protected" streets @@.red;(Not implemented and it's as a hint just because :D)@@.
+                    You will need to bath atleast once per day before going out.
                 <<case 5>>
                     Each hobby has a learning multiplier according to their respective skill but that multiplier isn't static, they can be "upgraded" but those with that hobby will start with an upperhand.
                 <<case 6>>
-                    Anything that takes time will either increase or decrease you energy, food, etc. values even if it's not stated with colors.
+                    Some things that advance time will either increase or decrease you energy or arousal(if you have a sex toy inside) values even if it's not stated.
             <</switch>>
         <<case "commessages">>
     <</switch>>
     //
 
-    /* If you see this comment, please write your username below:
-       - Khroma(Phalanx)
-    
-     */
+    /* If you wan't to add any message to "community messages" so it can be displayed in-game please open an issue :).*/
 <</widget>>

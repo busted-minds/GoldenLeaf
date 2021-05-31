@@ -334,21 +334,16 @@
 <</widget>>%/
 
 <<widget "hobbyselection">>
-	<<switch $hobby>>
-		<<case $hobby>>
-			<<set _skill to '$'+$hobby+'skill'>>
-			<<set _learning to '$'+$hobby+'learning'>>
-			
-			<<set State.setVar(_skill, 2)>>
-			<<set State.setVar(_learning, 2)>>
-			
-		<<default>>
-			<<set $programminglearning to 1.2>>
-			<<set $cookinglearning to 1.2>>
-			<<set $gardeninglearning to 1.2>>
-			<<set $artlearning to 1.2>>
-			<<set $athleticlearning to 1.2>>
+	<<switch $hobby>>		
+		<<case "joat">>
+			<<set $genSkillMod to 1.2>>
 
+		<<case $hobby>>
+			<<set _fSk to setup.skills.findIndex(x => x.name === $hobby)>>
+			<<set $pSkills.push(clone(setup.skills[_fSk]))>>
+
+			<<set $genSkillMod to 1>>
+			<<set $pSkills[$pSkills.length - 1].learningMod to 2>>
 	<</switch>>
 
 <</widget>>

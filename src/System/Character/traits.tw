@@ -1,24 +1,21 @@
 :: traits [widget nobr]
 
 <<widget "traitsInit">>
-    <<set setup.traits to {}>>
-
-    <<set setup.traits.nonsex to [
+    <<set setup.traits to [
         {
             id: 0,
             name: "Crossdressing",
-            type: "Non-Sexual",
+            type: ["Non-Sexual"],
+            excludes: [""],
             exp: 0,
             expleft: 10,
             level: 0
-        }
-    ]>>
-
-    <<set setup.traits.sexual to [
+        },
         {
-            id: 0,
+            id: 1,
             name: "Masturbation Lover",
-            type: "Sexual",
+            type: ["Sexual"],
+            excludes: [""],
             exp: 0,
             expleft: 10,
             level: 0

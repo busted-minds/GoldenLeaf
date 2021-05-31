@@ -1,0 +1,291 @@
+:: frozenjar [nobr]
+    <<passNameRep "Frozen Jar">>
+    <<if $time.getHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
+        <<unset $workedhours>>
+    <</if>>
+    /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) "lore" or story it's just not my forte. */
+    <img src="img\placesimg\frozenjar.png" style="width: 20em;">
+    <div id="aW">
+    You are inside @@.blue;Frozen Jar@@, a restaurant-bar.
+    <<if visited() is 1>> 
+        It's a pretty cozy place. There are tables and chairs made of wood or some similar material, spaced out so that it doesn't look or feel cramped. Large windows face the street, giving good lightning, 
+        and make the place give a feeling of warmth and lightness. 
+        As you open the door, you see an asian girl with @@.black;background-color: #383e65;long black hair@@ and a petite frame focused on cleaning some tables and chairs. The place seems pretty empty. Maybe they are opening?
+        <br>
+    <</if>>
+    There is a menu showing the food available today.
+    <br>
+    <br>
+    <<disable $credits lt 8>>
+    <<button "Eat some food" "frozenjar">>
+        <<set $credits -= 8>>
+        <<timeattached 10 0>>
+        <<restoreEnergy 20>>
+    <</button>>
+    <</disable>>@@.green; +16 Energy@@ | @@.red; -8 credits, +10 min.@@
+    <br>
+    <<if $pJob.place is "frozenjar" and !$workedhours>>
+        <<set _totalEU to $pJob.hoursreq * $pJob.energyused>>
+        <br>
+        You see @@.orange;<<print $fjName>>@@ working at some tables and serving food to the costumers.
+        <br>
+        <<disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
+            <<button "Start Working" "frozenJwork">><</button>> 
+        <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~        
+        <<if $time.getHours() gte setup.frozenjar.workingHours.closingHours>> 
+            <<goto "barlowgrove">>
+        <</if>>
+        <<if $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
+            @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
+        <</if>>
+        <br>
+
+    <<elseif $pJob.place is undefined>>
+        <<if $pdenyjob.includes("frozenjar")>>
+            You declined the contract not too long ago. Come back later to see if it's available.
+
+        <<elseif !hasVisited("employingfj")>>
+            <br>
+            Try to approach her to see if she can give you work.
+            <br>
+            <<button "Ask for work">>
+                <<replace #aW>>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Excuse me, hello. I'm currently looking for work. Do you know if they are looking for someone here?
+                    <</dialogue>>
+                    <<dialogue "???" "lightyellow">>
+                        Oh, well umm hello... Sorry, you startled me hahaha. Hello, I'm <span class="orange"><<print "$fjName  $fjSurname">></span>, the owner of this little place, and yes, we are currently looking for someone to work here. As you can see, I'm the only one here at the moment, besides the cook in the kitchen, and I'm in need of a little help here.
+                        <br>
+                        We serve food and drinks here, but food is serverd mostly during the day. You could start as a @@.orange;<<barGender>>@@ and depending how well you perform you may be promoted to a bartender with a higher salary and benefits, of course.
+                        <br>
+                        And... As you saw, the place is pretty empty, mostly because we just opened and this is one of those slow days. So it's just me and the cook in the kitchen making food.
+                        <br>
+                        <br>
+                        Let's go to my office so we can finish the contract and have you start working.
+                        If you have any other question, ask me.
+                    <</dialogue>>
+
+                    <<button "Follow her" "employingfj">><<set $knowsFJOwner to true>><</button>>
+                <</replace>>
+            <</button>>
+        <</if>>
+        <br>
+    <<elseif $workedhours eq $pJob.hoursreq>>
+        <br>
+        @@.blue;//You finished working your @@.orange;<<print $pJob.hoursreq>>@@ required hours!//@@
+        <br>
+    <</if>>
+    <<button "Go Out" "pioneerlane">><</button>>
+    </div>
+:: employingfj [nobr]
+    <<set _passN to $fjName + "'s Office">>
+    <<passNameRep _passN>>
+    You get inside a little office. It's like a typical office with a desk, two chairs and a file cabinet.
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        Welcome to my office. I don't use it that much to be honest... Please could you give me your name?.
+    <</dialogue>>
+
+    <<dialogue "$pName $pSurname" "lightblue">>
+        Sure, it's @@.gold;<<print "$pName $pSurname">>@@.
+    <</dialogue>>
+
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        Glad to meet you @@.gold;<<print $pName>>@@, let me get the contract.
+    <</dialogue>>
+
+    She open the drawer and takes a tablet from it as she speaks. A few taps are made on it and hands it to you, containing all of the details regarding the contract.
+    
+    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+        There you go. Read it carefully and if you have any question, ask me.
+    <</dialogue>>
+    <br>
+    <fieldset class="charc">
+        <legend>Frozen Jar's Employee Contract</legend>
+        We @@.blue;Frozen Jar@@ bla bla legal stuff here bla bla contract bla bla with @@.darkyellow;<<print "$pSurname $pName">>@@ with the following payment.
+        <br>
+        The employee will get paid @@.yellow;<<print setup.frozenjar.jobs[0].payment * setup.frozenjar.jobs[0].hoursreq>>@@ Credits per day.
+        <br>
+        <br>
+        If you accept everything that was stated above, put your signature here: //__@@.gold;<<print "$pName $pSurname" >>@@__//
+        <br>
+        <br>
+        Please put your finger here: <img src="img\others\fingerprint.png" style="vertical-align: middle; height: 64px; background-color: white;">
+        <br>
+        <br>
+        //__@@.orange;<<print "$fjName $fjSurname">>@@__//
+        <br>
+        Frozen Jar
+    </fieldset>
+    <<button "Accept" "employingfj2">>
+        <<set $jobaccepted to true>>
+        <<set $pJob to clone(setup.frozenjar.jobs[0])>>
+    <</button>>
+    <<button "Decline" "employingfj2">>
+        <<set $jobaccepted to false>>
+    <</button>>
+
+:: employingfj2 [nobr]
+    <<set _passN to $fjName + "'s Office">>
+    <<passNameRep _passN>>
+    <<switch $jobaccepted>>
+        <<case true>>
+            After signing and giving it your fingerprint you hand back the tablet to her.
+            <<dialogue "$pName $pSurname" "lightblue">>
+                Here, I've signed the document.
+            <</dialogue>>
+
+            She confirms something and puts the tablet back from where it came.
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Good... You can start tomorrow. We are open Saturdays and Sundays but you have those days off. Wait a second, let me borrow a uniform for you.
+            <</dialogue>>
+
+            Says while pulling out a uniform from the cabinet and hands it to you.
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Here, if you lose it or something happens to it, you have to buy a new one. You get a locker in the staff room, so you can keep it there or take it home, as you see fit <span class="red">(Uniform not implemented yet, so it isn't required.)</span>. It's mandatory that you use it while you are working. Well, any question?.
+            <</dialogue>>
+
+            @@#q1;<<link "Are there any other employees here?">>
+                <<replace #q1>>
+                    <br>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Are there any other employees here?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Yes, as I said, there is a guy who is the one in the kitchen cooking the food and me... Oh right, there is also a part-time girl working here on weekends. So pretty much the three of us.
+                    <</dialogue>>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q2;<<link "How do I get paid?">>
+                <<replace #q2>>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        How do I get paid? I didn't see anything in the contract mentioned about thats.
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        All payments are done directly to your account. As you must know, thanks to your signature and fingerprint we know where to deposit the credits.
+                    <</dialogue>>
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q3;<<link "Don't you need my address?">>
+                <<replace #q3>>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Don't you need my address? I got told that jobs needed them.
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Well yes, we require your address in case we need to send something to your place or in case of an emergency, but everything is given to us with your signature and fingerprint.
+                    <</dialogue>>
+
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Isn't it insecure? Whats if someone could get my address with them?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        No, don't worry. The tablet that I gave you is registered with the <span class="orange">A.P.D.T.S</span> from the goverment and only authorized devices by them are enabled to get that information.
+                    <</dialogue>>
+
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q4;<<link "Regarding a possible promotion">>
+                <<replace #q4>>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Regarding a possible promotion, how do I know when I'll get it? Or what is required to be able to get one?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        I will call you to my office if you are working or send you a message to meet me here if you aren't. About the requeriments, well you just need to accumulate working hours ;).
+                    <</dialogue>>
+
+                <</replace>>
+            <</link>>@@
+            <br>
+            @@#q5;<<link "About working days and hours">>
+                <<replace #q5>>
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        About working days and hours. Do I need to work every day? And those <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours required, they can be anytime of the day?
+                    <</dialogue>>
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Yes, as you saw in the contract you need to work at least <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours, Monday through Friday. 
+                        The good thing is that it can be anytime during the day but of course, <span class="orange"><<print setup.frozenjar.jobs[0].hoursreq>></span> hours before we close. We __open__ at <span class="orange"><<print setup.frozenjar.workingHours.openingHours>></span> am and __close__ at <span class="orange"><<print setup.frozenjar.workingHours.closingHours>></span> am.
+                    <</dialogue>>
+                <</replace>>
+            <</link>>@@
+            <br>
+            <br>
+            
+            @@#smsg;
+            <<button "Bye">>
+                <<replace #smsg>>
+                    She stops you before you go out.
+                    
+                    <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                        Oh before I forget. You will get a copy of the contract in your mail.
+                    <</dialogue>>
+
+                    <<dialogue "$pName $pSurname" "lightblue">>
+                        Alright, thanks. Have a nice day.
+                    <</dialogue>>
+                    
+                    You say as you close the door.
+                <</replace>>
+                <<script>>
+                    document.getElementById("smsg").scrollIntoView();
+                <</script>>
+                <<unset $jobaccepted>>
+                <<timed 5s>>
+                    <<goto "frozenjar">>
+                <</timed>>
+            <</button>>
+            @@
+
+        <<case false>>
+            You hand back the tablet to her.
+            
+            <<dialogue "$pName $pSurname" "lightblue">>
+                Sorry but I'm not interested.
+            <</dialogue>>
+
+            <<dialogue "$fjName  $fjSurname" "lightyellow">>
+                Alright, if you want the job just come again and if it's available I'll tell you. Have a nice day.
+            <</dialogue>>
+
+            She says with a smile, putting the tablet back from where it came.
+
+            <<button "Finish" "frozenjar">><<unset $jobaccepted>><<set $pdenyjob.push("frozenjar")>><</button>>
+    <</switch>>
+
+:: frozenJwork [nobr]
+    <<passNameRep "Get to work you little shit >:D">>
+    <<if !$workedhours>>
+        <<set $workedhours to 0>>
+        You greet @@.orange;<<print $fjName>>@@, change yourself into the uniform in the staff room and start working.
+    <</if>>
+    <<if $workedhours eq $pJob.hoursreq>>
+        You finished your working hours. Congrats, you did a lot of nothing! :D
+        <<timed 3s>>
+        <<goto "frozenjar">>
+        <</timed>>
+
+    <<elseif $workedhours lt $pJob.hoursreq>>
+        <<print "Hours left: " + ($pJob.hoursreq - $workedhours)>>
+        <br>
+        <<set _workinghour to 1>>
+        There would be some kind of story development if it existed. But there isn't so there you go, a funny weird meme (Or that's what the link says).
+        //Frozen Jar Edition//
+        <br>
+        [img[https://www.askideas.com/media/36/I-Know-There-Is-Something-That-I-Am-Supposed-To-Do-Here-Funny-Weird-Meme-Picture.jpg]]
+        <br>
+        <<button `"Work " + _workinghour + " hour(s)"` "frozenJwork">>
+                <<timeattached `_workinghour*60` $pJob.energyused>>
+                <<payment _workinghour>>
+                <<set $workedhours++>>
+        <</button>>
+
+    <</if>>

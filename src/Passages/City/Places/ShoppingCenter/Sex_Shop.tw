@@ -1,11 +1,14 @@
 :: sexshop [nobr]
-    <h2>Sex Shop</h2>
+    <<passNameRep "Sex Shop">>
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    <div class="divisor"></div>
-    <<messager>>
-
+    <img src="img\placesimg\sexshop.png" style="width: 20em;">
+    <br>
+    After getting inside the sex shop you see many kinds of toys (animal-shaped, human-shaped, and many other forms), lubes, and many other things. There is a girl at the counter with a bored face.
+    <br>
+    <<print either("Some people are going out with embarrassed faces.","")>>
+    <br>
     <<button "Sex Toys" "sextoys">><</button>>
     <br>
     <br>
@@ -16,9 +19,8 @@
     <</if>>
 
 :: sextoys [nobr]
-    <h2>Sex Toys</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Sex Toys">>
+    
     <<ssShow>>
 
 :: sspurchase [nobr]

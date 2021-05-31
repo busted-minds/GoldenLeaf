@@ -1,0 +1,146 @@
+:: alegym [nobr]
+    <<passNameRep "Alexandra's Gym">>
+    <img src="img\placesimg\gym.png" style="width: 20em;">
+    <br>
+    <<if visited() is 1>>
+        After going inside the gym a girl with workout clothes approaches you.
+        <<dialogue "???" "lightyellow">>
+            Hello! Welcome to Alexandra's Gym I'm Alexandra and, well, the owner of this gym as the name may give it out. May I know your name?. @@.white;She says with a bit of hyperactivity.@@
+        <</dialogue>>
+
+        <<dialogue "$pName $pSurname" "lightblue">>
+            Hello, it's @@.gold;<<print $pName>>@@.
+        <</dialogue>>
+
+        <<dialogue "???" "lightyellow">>
+            Well <<print $pName>>, I'll explain how the gym works. @@.white;Then she takes her tablet out and show you a list of memberships.@@
+        <</dialogue>>
+
+        <<dialogue "Alexandra" "lightyellow">>
+            The first one is the daily membership, it means that you will need to pay each day that you use the gym, has limited access and has a cost of 6 credits. @@.white;Moving to the next membership with an slide of her finger.@@
+            <br>
+            The next one is a bi-weekly membership, it cost 60 credits but you can use everything in the gym and you just need to pay it each 2 weeks. @@.white;As she finishes she moves to the last membership.@@
+            <br>
+            And the last membership, it's a montly membership and has a cost of 100 credits, you can use everything in the gym and can get help from any of the trainers in the gym or if I'm available I can help too. So if you need any help or have any questions about the memberships you can ask me. @@.white;She says as she put the tablet back at the reception table.@@
+        <</dialogue>>
+    <<else>>
+        <<set _incMS to $memberships.includesAny("AleDayMember", "AleBiMember", "AleMonMember")>>
+
+        As you get inside the gym you see Alexandra at the reception.
+        <<if $aleWelcome is true>>
+            <br>
+            When she notices your presence she welcomes you.
+            <<dialogue "Alexandra" "lightyellow">>
+                Welcome back <<print $pName>>,
+                    <<if _incMS is true>> 
+                        are you going to train today?
+                        <<if $memberships.includes("AleMonMember")>> 
+                        or do you need my help with your training?.
+                        <</if>>
+                    <<else>>
+                        do you want to buy any of our memberships?.
+                    <</if>>
+            <</dialogue>>
+        <</if>>
+    
+    <</if>>
+    <br>
+    <<if !$memberships.includes("AleDayMember")>>
+        <<button "Ask about memberships" "buyalemem">><</button>>
+
+    <<elseif !$limitedExerc>>
+        <<disable $energy lt 5>>
+            <<button "Train" "aletrain">><</button>>
+        <</disable>><<if $energy lt 5>>@@.blue;You don't have enough energy@@<</if>>
+    <<else>>
+        <br>
+        You have already trained today. Come back tomorrow.
+    <</if>>
+    <br>
+    <br>
+    <<button "Go outside" "ashrout">>
+        <<unset $aleWelcome>>
+        <<set $memberships to []>>
+    <</button>>
+
+:: buyalemem [nobr]
+    <<passNameRep "Gym Memberships">>
+    After you approach Alexandra she gives you the membership list.
+
+    <span class="memName" style="font-size: medium;"></span>
+    <br>
+    <span class="memDesc"></span>
+    <span class="hide">
+        <<button "Buy" "alegym">>
+            <<set $memberships.push(_membership)>>
+            <<set $credits -= _cost>>
+        <</button>>
+        <br>
+    </span>
+    <br>
+    <div class="smollfont">
+    <<if !$memberships.includesAny("AleDayMember", "AleMonMember", "AleBiMember")>>
+        <<disable $credits lt 6>>
+        <<button "Daily Membership">>
+            <<replace ".memName">>
+                Daily Membership
+            <</replace>>
+
+            <<replace ".memDesc">>
+                The daily membership needs to be paid each day, it has limited access to some training machines. It has a cost of @@.yellow;6 credits@@.
+                <br>
+            <</replace>>
+            <<removeclass ".hide">>
+            <<set _membership to "AleDayMember">>
+            <<set _cost to 6>>
+        <</button>>
+        <</disable>>
+        <br>
+        <<disable>>
+            <<button "Bi-weekly Membership">>
+                <<replace ".memName">>
+                    Bi-weekly Membership
+                <</replace>>
+
+                <<replace ".memDesc">>
+                    The bi-weekly membership needs to be paid each 2 weeks, it has access to everything in the gym. It has a cost of @@.yellow;60 credits@@.
+                    <br>
+                <</replace>>
+
+                <<set _membership to "AleBiMember">>
+            <</button>>
+        <</disable>>
+        <br>
+        <<disable>>
+            <<button "Monthly Membership">>
+                <<replace ".memName">>
+                    Monthly Membership
+                <</replace>>
+
+                <<replace ".memDesc">>
+                    The monthly membership needs to be paid each month, it has access to everything in the gym and you can use the help of the gym's trainers or ask help from Alexandra if she is available. It has a cost of @@.yellow;100 credits@@.
+                    <br>
+                <</replace>>
+
+                <<set _membership to "AleMonMember">>
+            <</button>>
+        <</disable>>
+        Bi-weekly and monthly memberships aren't implemented yet.
+    <<else>>
+        Your current membership need to end before changing them.
+
+    <</if>>
+    </div>
+    <br>
+    <br>
+    <<button "Back" "alegym">><</button>>
+
+:: aletrain [nobr]
+    <<passNameRep "Alexandra's Gym">>
+
+    <<button "Train(WIP)" "alegym">>
+        <<timeattached 5 5>>
+
+    <</button>> @@.red;I'm developing and testing the system so it does nothing for now@@
+    <br>
+    <<button "Finish" "alegym">><</button>>

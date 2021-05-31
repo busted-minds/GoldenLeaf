@@ -1,9 +1,9 @@
 :: charcreation1[nobr]
     /% I won't comment passage content and you think this think will be the exception? Well I'll just comment it but not because you told me to do it. Hpmf.%/
     /% Now in more serious matters, I won't explain with details what is here but it just where the character is made. With fieldset (The cool looking border with a word between it) some list and things.%/
-    <<if $message>>
-        <<print $message>>
-        <<unset $message>>
+    <<if $cmessage>>
+        <<print $cmessage>>
+        <<unset $cmessage>>
     <</if>>
     <fieldset class="charc">
         <legend>Character Creation</legend>
@@ -64,7 +64,7 @@
         <<if $pName isnot "Name" and $pSurname isnot "Surname">>
             <<goto charcreation2>>
         <<else>>
-            <<set $message to "@@.red;Your name/surname can't be the default one.@@">>
+            <<set $cmessage to "@@.red;Your name/surname can't be the default one.@@">>
             <<goto charcreation1>>
         <</if>>
     <</button>>
@@ -284,7 +284,7 @@
     <br>
     Welcome to @@.gold;Golden Leaf City@@. From the station you can see a small panorama of a few places in the city with a suprising amount of greenery around, quite a lot considering it's a city. On one end of the city, there appear to be three main buildings that attract a lot of your attention due to their unique modern designs. 
     <br>
-    In the past the city was just a small rural town, but thanks to the arrival of a successful businessman called <<print setup.spirealfOw.name>> it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
+    In the past the city was just a small rural town, but thanks to the arrival of a successful businessman called <<print $spirealfOw.name>> it has expanded and thrived to the point where it is now. On the other side of the city you can see what appears to be the residential area where you will live.
     <br>
     <br>
     When you finally arrive at your new house, you notice it's pretty big from the outside. You are about to open the front door with the digital key in your phone when you get a message on your phone, it's from your parents. It's odd that you didn't recieve the message until now, maybe there was a problem with the Network?
@@ -308,8 +308,7 @@
     <</timed>>
 
 :: prelivingroom [nobr]
-    <h2>House</h2>
-    <div class="divisor"></div>
+    <<passNameRep "House">>
     <<if $finishL isnot true>>
         @@#call1;As you enter the house and take a good look around, you see that it's in pretty bad shape. There are things that need to be fixed, others that needs to be replaced and rooms that need to be cleaned.
         Fortunately for you, there is running water and some useful cleaning supplies in the boxes. You may need to call your father and ask if he knows someone in this city that can help you fix some parts of the house.@@
@@ -348,7 +347,7 @@
                             <br>
                             - "@@.lightyellow;HORECO Inc., how may I help you?@@"
                             <br><br>- @@.lightblue;Hello, I'm <span class="orange"><<print "$pName $pSurname">></span>. I'm calling because recently I moved to a new house and it's in a pretty bad shape, I need some help to repair it.@@
-                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pSurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print setup.dadname + " " + $pSurname>>@@?"
+                            <br><br>- "@@.lightyellow;Alright <span class="orange"><<courtesy>> <<print $pSurname>></span>, wait a moment please... Your dad is @@@@.orange;<<print "$dadname $pSurname">>@@?"
                             <br><br>- @@.lightblue;Yes, everything alright? Did he owe any money or anything that I need to worry about?.@@
                             <br><br>- "@@.lightyellow;No, nothing like that hahaha. It's just that <span class="orange">Mr.<<print $pSurname>> </span>was my dad's friend, he helped us a lot when we began this family company so in return we will give you a big discount, unfortunately I can't help you free but it's better than nothing right?. Give me your address and I'll send one of our employee ASAP.@@"
                             <br><br>- @@.lightblue;Great thanks a lot, give me a sec... Ready.@@
@@ -446,7 +445,7 @@
                     <<set $messageL[0] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now you can feel proud if someone came to your house, because it looks somewhat decent.@@
@@ -463,7 +462,7 @@
                     <<set $messageL[1] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
                 <br>
             <<else>>
                 @@.green;Now the livingroom looks like something you could spend your time off in and is worth looking at, you even bought a little clock :D.@@
@@ -476,7 +475,7 @@
 
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                    <</button>>@@.red; +10 Minutes@@
                 
                 <<else>>
                     <br>
@@ -491,7 +490,7 @@
                         <<set $messageL[3] to true>>
                         <<set $clean +=1>>
 
-                    <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                    <</button>>@@.red; +15 Minutes@@
 
                 <<else>>
                     <br>
@@ -510,7 +509,7 @@
                     <<set $messageL[4] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                <</button>>@@.red; +10 Minutes@@
             
             <<else>>
                 @@.green;Now this is a place where you could cook!@@
@@ -528,7 +527,7 @@
                     <<set $messageL[5] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(15 * 0.1)>> Energy -<<print Math.round(15 * 0.2)>> Fun +15 Minutes@@
+                <</button>>@@.red; +15 Minutes@@
             
             <<else>>
                 @@.green;You can sleep here, the bed isn't that good but it was free so it'll' work until you can afford a better one. Your new laptop is on the table in case you want to use it. The wardrobe difficult to move, why did they buy one so big? Oh well, it *was* free...@@
@@ -546,7 +545,7 @@
                     <<set $messageL[6] to true>>
                     <<set $clean +=1>>
 
-                <</button>>@@.green; +<<print (10 * $handymanlearning)>> Handyman exp@@ | @@.red; -<<print Math.round(10 * 0.1)>> Energy -<<print Math.round(10 * 0.2)>> Fun +10 Minutes@@
+                <</button>>@@.red; +10 Minutes@@
 
             <<else>>
                 @@.green;The bathroom is so clean that you can see your own reflection, some soaps and shampoos were in the boxes as well.@@

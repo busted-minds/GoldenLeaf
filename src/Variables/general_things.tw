@@ -2,11 +2,11 @@
 
 <<widget "qsGT">>
     <<geneVariables>>
-    <<skillinit>>
     <<importantNPCs>>
     <<jobsInfo>>
     <<mapStreets>>
     <<traitsInit>>
+    <<skillsIni>>
 <</widget>>
 
 <<widget "geneVariables">>
@@ -25,9 +25,9 @@
     <<set $bedroomclean to false>>
     <<set $bathroomclean to false>>
 
-    <<set setup.dadname to either("Joshua", "Daniel", "David", "Christopher", "Michael", "James", "Matthew", "Robert", "Andrew")>>
-    <<set setup.momname to either("Emily", "Megan", "Jessica", "Sarah", "Rebecca", "Laura", "Amber", "Victoria", "Katie")>>
-    <<set setup.spirealfOw to {
+    <<set $dadname to either("Joshua", "Daniel", "David", "Christopher", "Michael", "James", "Matthew", "Robert", "Andrew")>>
+    <<set $momname to either("Emily", "Megan", "Jessica", "Sarah", "Rebecca", "Laura", "Amber", "Victoria", "Katie")>>
+    <<set $spirealfOw to {
         name: either("Donnel","Jaymie","Ado","Lance","Perry"),
         surname: either("Bruns","Mcilroy","Osler","Stampfer","Gaskell")
     }>>
@@ -35,34 +35,16 @@
     <<set $selectedSexOpt to {"RightHand": 0, "LeftHand": 0}>>
     <<set $masturCount to 0>>
     <<set $aroused to false>>
-    <<set $mapCoord to {
-        "x": 131,
-        "y": 43
-    }>>
-
-<</widget>>
-
-<<widget "skillinit">>
-    <<set _skillname to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
-    <<set _skillexpN to ["prog", "cook", "gard", "art", "athletic", "weightl", "handym"]>>
-
-    <<for _i to 0; _i lt _skillname.length; _i++>>
-        <<set _skill to '$'+_skillname[_i]+'skill'>>
-        <<set _exp to '$'+_skillexpN[_i]+'exp'>>
-        <<set _expleft to '$'+_skillexpN[_i]+'expleft'>>
-        <<set _learning to '$'+_skillname[_i]+'learning'>>
-
-        <<set State.setVar(_skill, 0)>>
-        <<set State.setVar(_exp, 0)>>
-        <<set State.setVar(_expleft, 100)>>
-        <<set State.setVar(_learning, 1)>>
-    <</for>>
+    <<set $memberships to []>>
+    <<set $pdenyjob to []>>
 
 <</widget>>
 
 <<widget "importantNPCs">>
-    <<set setup.frozenjar.ownerName to "Mona">>
-    <<set setup.frozenjar.ownerSurname to "Hanazawa">>
+    <<set $fjName to "Mona">>
+    <<set $fjSurname to "Hanazawa">>
+    <<set $bnName to either("Lucio", "Danny", "Alasteir", "Farrel")>>
+    <<set $bnSurname to either("Hillion", "Alence", "Kazis", "Jernigan")>>
 <</widget>>
 
 <<widget "mapStreets">>
@@ -70,50 +52,74 @@
         {
             id: 0,
             place: "cloverow",
+            name: "Clove Row Complex",
+            icon: "img/others/bus-icons/cloverow.png",
             timeTo: 8,
             connectedTo: ["blythecelyn", "hollinsdrift"]
         },
         {
             id: 1,
             place: "blythecelyn",
+            name: "Blythe Celyn",
+            icon: "img/others/bus-icons/blythecelyn.png",
             timeTo: 7,
             connectedTo: ["barlowgrove", "cloverow"]
         },
         {
             id: 2,
             place: "barlowgrove",
+            name: "Barlow Grove",
+            icon: "img/others/bus-icons/barlowgrove.png",
             timeTo: 9,
             connectedTo: ["blythecelyn", "ashrout", "shoppingcenter"]
         },
         {
             id: 3,
             place: "hollinsdrift",
+            name: "Hollins Drift",
+            icon: "img/others/bus-icons/hollinsdrift.png",
             timeTo: 6,
             connectedTo: ["pioneerlane", "cloverow"]
         },
         {
             id: 4,
             place: "pioneerlane",
+            name: "Pioneer Lane",
+            icon: "img/others/bus-icons/pioneerlane.png",
             timeTo: 8,
-            connectedTo: ["hollinsdrift"]
+            connectedTo: ["hollinsdrift", "golbrowpath"]
         },
         {
             id: 5,
             place: "ashrout",
+            name: "Ashrout",
+            icon: "img/others/bus-icons/ashrout.png",
             timeTo: 4,
             connectedTo: ["barlowgrove", "shoppingcenter", "collobby"]
         },
         {
             id: 6,
             place: "shoppingcenter",
+            name: "Shopping Center",
+            icon: "img/others/bus-icons/shoppingcenter.png",
             timeTo: 6,
             connectedTo: ["barlowgrove","ashrout"]
         },
         {
             id: 7,
             place: "collobby",
+            name: "Golden Leaf's College",
+            icon: "img/others/bus-icons/collobby.png",
             timeTo: 3,
             connectedTo: ["ashrout"]
+        },
+        {
+            id: 8,
+            place: "golbrowpath",
+            name: "Golbrow Path",
+            icon: "img/others/bus-icons/golbrowpath.png",
+            timeTo: 3,
+            connectedTo: ["pioneerlane"]
         }
     ]>>
 <</widget>>

@@ -1,20 +1,17 @@
 :: debugger [widget nobr]
 
-<<widget "maxStatusNeeds">>
-    <<set $hygiene to 100>>
+<<widget "maxEnergyAr">>
     <<set $energy to $maxenergy>>
-    <<set $fun to 100>>
-    <<set $hunger to 0>>
     <<if $args[0] is 1>>
         <<set $arousal to 100>>
     <<else>>
         <<set $arousal to 0>>
     <</if>>
-    <<run console.log("Widget maxStatusNeeds called.")>>
+    <<run console.log("Widget maxEnergyAr called.")>>
 <</widget>>
 
-<<widget "addCreditsDbg">>
+<<widget "addCredits">>
     <<set $credits += $args[0]>>
     
-    <<run console.log("Called widget addCreditsDbg. Added " + $args[0] + " credits.")>>
+    <<run console.log("Called widget addCredits. Added " + $args[0] + " credits.")>>
 <</widget>>

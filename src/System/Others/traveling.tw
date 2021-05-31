@@ -1,0 +1,96 @@
+:: traveling [widget nobr]
+    <<widget "map">>/* Hippity Hoppity, get off my property */
+        <<set _mID to setup.mapStreets.findIndex(x => x.place === passage())>>
+
+        <<if _mID isnot -1>>
+            <br>
+            <svg width="416" height="350" style="border: 0.2px solid #383e65; border-radius: 5px;">
+                <image href="img/others/Map.png" height="100%" width="100%"></image>
+                
+                <a onclick="passageMov(0);">
+                    <rect id="cloverow" class="map" x="140" y="40" height="32" width="65">
+                    <title>To Clove Row +8 min.</title>
+                </a> 
+                <a onclick="passageMov(1);">
+                    <rect id="blythecelyn" class="map" x="98" y="69" height="76" width="34">
+                    <title>To Blythe Celyn +7 min.</title>
+                </a>
+                <a onclick="passageMov(2);">
+                    <rect id="barlowgrove" class="map" x="98" y="168" height="83" width="34">
+                    <title>To Barlow Grove +9 min.</title>
+                </a>
+                <a onclick="passageMov(3);">
+                    <rect id="hollinsdrift" class="map" x="226" y="114" height="34" width="73">
+                    <title>To Hollins Drift +6 min.</title>
+                </a>
+                <a onclick="passageMov(4);">
+                    <rect id="pioneerlane" class="map" x="341" y="96" height="70" width="36">
+                    <title>To Pioneer Lane +8 min.</title>
+                </a>
+                <a onclick="passageMov(5);">
+                    <rect id="ashrout" class="map" x="110" y="286" height="34" width="56">
+                    <title>To Ashrout +4 min.</title>
+                </a>
+                <a onclick="passageMov(6);">
+                    <rect id="shoppingcenter" class="map" x="199" y="185" height="45" width="50">
+                    <title>To Shopping Center +6 min.</title>
+                </a>
+                <a onclick="passageMov(7);">
+                    <rect id="collobby" class="map" x="25" y="274" height="48" width="53">
+                    <title>To Golden Leaf Central College +3 min.</title>
+                </a>
+                <a onclick="passageMov(8);">
+                    <rect id="golbrowpath" class="map" x="341" y="203" height="70" width="36">
+                    <title>To Golbrow Path +3 min.</title>
+                </a>
+                <image href="img/others/mapLoc.png" id="location" x="131" y="43" height="8%" width="8%"></img>
+            </svg>
+            <<done>>
+                <<set _mapCoord to {}>>
+                <<run _place = document.getElementById(passage());
+                    _mapCoord.x = _place.getAttributeNS(null, "x");
+                    _mapCoord.y = _place.getAttributeNS(null, "y");
+
+                    _imgLoc = document.querySelector("#location");
+                    _imgLoc.setAttributeNS(null, "x", _mapCoord.x);
+                    _imgLoc.setAttributeNS(null, "y", _mapCoord.y);>>
+            <</done>>
+            <<script>>
+                /* Parameters: placeid=Is the id of the passage in mapPlace.
+                It compares if the current passage connects to the passage that the players want to move to.
+                */
+                window.passageMov = function(placeid) {
+                    var id = setup.mapStreets.findIndex(x => x.place === State.passage);
+                    var connts = setup.mapStreets[id].connectedTo;
+                    var moveTo = setup.mapStreets[placeid].place;
+                    var time = setup.mapStreets[placeid].timeTo;
+
+                    if (connts.includes(moveTo)) {
+                        wikifier("timeattached", time);
+                        Engine.play(moveTo);
+
+                    }
+                }
+
+            <</script>>
+        <</if>>
+        
+    <</widget>>
+
+    <<widget "bus">>
+        <<for _tl to 0; _tl lt setup.mapStreets.length; _tl++>>
+            <<if setup.mapStreets[_tl].place isnot $lastPass>>
+                <<set _name to setup.mapStreets[_tl].name>>
+                <img src="img/others/bus-icons/bus.png" title="Placeholder image, will change later." class="busIcons">
+                <<capture _tl>>
+                <<link `"To " + setup.mapStreets[_tl].name` setup.mapStreets[_tl].place>>
+                    <<unset $lastPass>>
+                    <<set $credits -= 5>>
+                    <<timeattached 3>>
+                <</link>>@@.red; +3 min@@
+                <</capture>>
+                <br>
+            <</if>>
+        <</for>>
+
+    <</widget>>

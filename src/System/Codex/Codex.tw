@@ -94,6 +94,10 @@
             </div>
         <</capture>>
     <</for>>
+
+    <<if !$learnedrecipes[0]>>
+        You haven't learned any recipe yet.
+    <</if>>
 <</widget>>
 
 <<widget "shoppingList">>
@@ -137,7 +141,7 @@
                 <span @class="_types[_i] is 'Sexual' ? 'lightred' : 'lightyellow'"><<print _types[_i]>></span>
                 <br>
                 <<for _iT to 0; _iT lt $pTraits.length; _iT++>>
-                    <<if $pTraits[_iT].type is _types[_i]>>
+                    <<if $pTraits[_iT].type.includes(_types[_i])>>
                         <div class="listSkills">
                         <<print String.format("{0}<br>Level:{1}<br>Exp:{2}/{3}", $pTraits[_iT].name, $pTraits[_iT].level, $pTraits[_iT].exp, $pTraits[_iT].expleft)>>
                         </div>
@@ -157,16 +161,4 @@
     <<checkbox "$enableAutoToys" false true autocheck>> Enable auto-storage of sex toys.
     <br>
     (Must change passage to update).
-    <br>
-    <br>
-    Credits to:
-    <br>
-    @@.green;Nameless Magician(Proofreading)
-    <br>
-    Sorter(Proofreading)
-    <br>
-    Hanah Solo(Some ideas :D)
-    <br>
-    Maakhan(Some ideas :D)
-    @@
 <</widget>>

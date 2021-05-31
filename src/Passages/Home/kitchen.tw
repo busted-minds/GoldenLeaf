@@ -1,7 +1,6 @@
 :: kitchen [nobr]
-    <h2>Kitchen</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Kitchen">>
+    
     You are in the kitchen. It's small and is divided by an open-wall through which you can see your living room from.
     <br>
     In the corner you see your fridge, on top of which you have a spice cabinet and a cupboard. 
@@ -34,8 +33,7 @@
     <<button "To the living room" "livingroom">><</button>>
 
 :: fridge [nobr]
-    <h2>Fridge</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Fridge">>
     <div id="fridge">
         <<foodVisu>>
     </div>
@@ -44,8 +42,7 @@
     <<button "Close" "kitchen">><</button>>
 
 :: spicecabinet [nobr]
-    <h2>Spice Cabinet</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Spice Cabinet">>
     <div id="spicecabinet">
         <<foodVisu>>
     </div>
@@ -54,8 +51,7 @@
     <<button "Close" "kitchen">><</button>>
 
 :: cupboard [nobr] 
-    <h2>Cupboard</h2>
-    <div class="divisor"></div>
+    <<passNameRep "Cupboard">>
     <div id="cupboard">
         <<foodVisu>>
     </div>
@@ -63,9 +59,8 @@
     <<button "Close" "kitchen">><</button>>
 
 :: kitchentable [nobr]
-    <h2>Kitchen Table</h2>
-    <div class="divisor"></div>
-    <<messager>>
+    <<passNameRep "Kitchen Table">>
+    
     <<if $selectedrecipe>>
         <<button "Change Recipe" "kitchentable">><</button>> 
         <<button "Clear selected recipe" "kitchentable">>
@@ -118,8 +113,8 @@
         <<set $recipesteps to setup.recipes[_recipeSID].steps>>
         <<set $preptime to 0>>
     <</if>>
-    <h2>Preparation Step <<print $steps + 1>></h2>
-    <div class="divisor"></div>
+    <<set _passN to "Preparation Step " + ($steps + 1)>>
+    <<passNameRep _passN>>
     <br>
     Select the correct option based on the recipe instruction for @@.green;<<print $selectedrecipe>>@@. @@.red;Beware that the quality of the food depends on the selected options@@
     <br>

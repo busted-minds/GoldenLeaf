@@ -1,21 +1,34 @@
 :: jobs [widget nobr]
 <<widget "jobsIni">>
     <<set setup.frozenjar to []>>
-
+    <<set setup.blacknectar to []>>
+    
     <<jobs>>
 <</widget>>
 
 <<widget "jobs">>
     <<set setup.frozenjar.jobs to [
         {
-            rank : 0,
+            rank: 0,
             place: "frozenjar",
-            name : "waiter/waitress",
-            payment : 5,
+            name: "waiter/waitress",
+            payment: 5,
             energyused: 5,
-            hoursreq : 4,
-            daysreq : 5,
-            expreq : 4 * 30,
+            hoursreq: 4,
+            daysreq: 5,
+            expreq: 120,
+        }
+    ]>>
+    <<set setup.blacknectar.jobs to [
+        {
+            rank: 0,
+            place: "blacknectar",
+            name: "waiter/waitress",
+            payment: 5,
+            energyused: 5,
+            hoursreq: 4,
+            daysreq: 5,
+            expreq: 120, 
         }
     ]>>
 <</widget>>

@@ -1,24 +1,20 @@
 :: skillbar [widget nobr]
-/* If you you think that I know what I've done here, oh boy you are so wrong.
-   Or maybe not. It uses the getvar so it can concatenate the skill name to the "$". Making it more easy and doesn't need to write it manually for each skill.
-   Saved me like 80 lines of code (Maybe they where 20 but shhhhh).
-   The _skillname and _skillexpN length needs to be always the same number.
-*/
+/* Now that I know what I'm doing it's just an skillbar.*/
 <<widget "skillbar">> 
-    <<set _skillname to ["programming", "cooking", "gardening", "art", "athletic", "weightlift", "handyman"]>>
-    <<set _skillexpN to ["prog", "cook", "gard", "art", "athletic", "weightl", "handym"]>>
-    
-    <<for _i to 0; _i lt _skillname.length; _i++>>
-        <<set _exp to State.getVar('$'+_skillexpN[_i]+'exp')>>
-        <<set _expLeft to State.getVar('$'+_skillexpN[_i]+'expleft')>>
-        <<set _skillBarN to _skillname[_i]+'b'>>
+    <<for _i to 0; _i lt $pSkills.length; _i++>>
 
         <div class="listSkills">
-            <<print _skillname[_i].toUpperFirst()>> level: <span @id="_skillexpN[_i]"><<print '$'+_skillname[_i]+'skill'>></span>
+            <<print $pSkills[_i].name.toUpperFirst()>> level: <span @id="$pSkills[_i].name"><<print $pSkills[_i].lvl>></span>
             <br>
-            <<progressbar _exp _expLeft _skillBarN>>
+            Category: <<print $pSkills[_i].category[0]>>
+            <br>
+            <<progressbar $pSkills[_i].exp $pSkills[_i].expleft $pSkills[_i].name>>
         </div>
     <</for>>
+
+    <<if !$pSkills[0]>>
+        You don't have any skill yet.
+    <</if>>
 
 <</widget>>
 

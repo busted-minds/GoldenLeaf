@@ -5,4 +5,8 @@
         openingHours : 11,
         closingHours : 3
     }>>
+    <<set setup.blacknectar.workingHours to {
+        openingHours: 5,
+        closingHours: 18
+    }>>
 <</widget>>

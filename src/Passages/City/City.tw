@@ -1,59 +1,137 @@
-:: cloverow
-    !!Clove Row Complex
-    <div class="divisor"></div>
-    You are outside of your home, located in a nice housing complex called Clove Row. 
+:: cloverow [nobr]
+    <<passNameRep "Clove Row Complex">>
+    You are outside of your home, located in a nice housing complex called Clove Row.
+    <br>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
+        <<print either("You see a security man walking by.", "You can see some cars passing by.", "You see some people walking with their pets.")>>
 
+    <<else>>
+        You can still see some people going out of the complex, maybe to their night shift or some other places.
+    <</if>>
+    <br>
     <<button "Get inside the house" "livingroom">><</button>>
+    <br>
+    <br>
+    You can catch a bus or walk, heading either to Blythe Celyn or Hollins Drift from here.
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
-    You can catch a bus@@.red;(WIP)@@ or walk, heading either to Blythe Celyn or Hollins Drift from here.
-    /*<<link "Take a bus" "bus">><</link>>*/
+:: blythecelyn [nobr]
+    <<passNameRep "Blythe Celyn">>
+    You are at Blythe Celyn. Between some buildings, you can identify the grocery shop.
+    <br>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
+        You can see some cars passing by and people walking.
 
-:: blythecelyn
-    !!Blythe Celyn
-    <div class="divisor"></div>
-    <<nobr>>
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
     <<if visited() is 1>>
         //A flyer on the street comes into your sight from a place called the "Frozen Jar", apparently having a "Grand Opening". It says that they're open at <<print setup.frozenjar.workingHours.openingHours>> am.
         <br>
         You should take a look and see if they're looking for workers, maybe it's your lucky day ;).
         <br>//
     <</if>>
-    <</nobr>>
+    <br>
     <<button "Go inside the Grocery" "grocerystore">><</button>>
-    /*<<link "Take a bus" "bus">><</link>>*/
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
-:: barlowgrove
-    !!Barlow Grove
-    <div class="divisor"></div>
-    /*<<button "Go inside Horeco Inc." "horeco">><</button>>
-    <<link "Take a bus" "bus">><</link>>*/
+:: barlowgrove [nobr]
+    <<passNameRep "Barlow Grove">>
+    You are at Barlow Grove. You can see the building of Horeco and some people going in and out.
+    <br>
+    You can identify the Black Nectar Corner at the corner of the street.
+    <<if $time.getHours() lt 18 and $time.getHours() gt 5>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
-:: ashrout
-    !!Ashrout
-    <div class="divisor"></div>
-    /*<<link "Take a bus" "bus">><</link>>*/
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
+    /*<<button "Go inside Horeco Inc." "horeco">><</button>>*/
+    <<disable $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>
+        <<button "Black Nectar Corner" "coffeshop">><</button>>
+    <</disable>><<if $time.getHours() gte setup.blacknectar.workingHours.closingHours or $time.getHours() lt setup.blacknectar.workingHours.openingHours>>You see a sign that says: We are open from 5 AM to 6 PM.<</if>>
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
+
+:: ashrout [nobr]
+    <<passNameRep "Ashrout">>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
+        You can identify Alexandra's Gym and some people going in. The library has some people going in too, probably some students.
+        <br>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
+    <<disable $time.getHours() gte 18 or $time.getHours() lt 7>>
     <<button "GL Public Library" "library">><</button>>
+    <</disable>><<if $time.getHours() gte 18 or $time.getHours() lt 8>>You see a sign that says: The Public Library open from 7 AM to 6 PM.<</if>>
+    <br>
+    <<disable $time.getHours() gte 18 or $time.getHours() lt 8>>
+        <<button "Alexandra's Gym" "alegym">><<set $aleWelcome to true>><</button>>
+    <</disable>><<if $time.getHours() gte 18 or $time.getHours() lt 8>>You see a sign that says: We are open from 8 AM to 6 PM.<</if>>
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
-:: hollinsdrift
-    !!Hollins Drift
-    <div class="divisor"></div>
+:: hollinsdrift [nobr]
+    <<passNameRep "Hollins Drift">>
     Arriving at Hollins Drift, you see a building that is in construction. Who knows what it will be. Maybe some furniture related thing? ;).
-    /*<<link "Take a bus" "bus">><</link>>*/
+    <br>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
-:: pioneerlane
-    !!Pioneer Lane
-    <div class="divisor"></div>
-    <<nobr>>
-    <<messager>>
-    <<button "Go inside the Frozen Jar">>
-        <<if $time.getUTCHours() gte setup.frozenjar.workingHours.openingHours>>
-            <<goto "frozenjar">>
-        <<elseif $time.getUTCHours() gte setup.frozenjar.workingHours.closingHours>>
-            <<set $message to "placeClosed">>
-            <<goto pioneerlane>>
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
+
+:: pioneerlane [nobr]
+    <<passNameRep "Pioneer Lane">>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
+        You can identify Frozen Jar and some people going in and out and some people going on their way to work.
+        <br>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+
+    <<else>>
+        <<if !$time.getHours() gte setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours>>
+            Frozen Jar it's still open and it appears to be quite active
         <</if>>
-    <</button>>
-    <</nobr>>
-    /*<<link "Take a bus" "bus">><</link>>*/
+        It's a bit dark but, you can still see people walking around and, although few, some cars.
+    <</if>>
+    <br>
+    <<disable $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
+        <<button "Enter Frozen Jar" "frozenjar">><</button>>
+    <</disable>><<if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
+
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
+
+:: golbrowpath [nobr]
+    <<passNameRep "Golbrow Path">>
+    <<if $time.getHours() lt 18 and $time.getHours() gt 7>>
+        You see some people going in and out of the park.
+        <br>
+        <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
+
+    <<else>>
+        It's a bit dark but, you can still see people walking around and, although few, some cars. Some people it's still going inside the park, maybe using it as a shortcut.
+    <</if>>
+    <br>
+    <<button "To the park" "goldpark">><</button>>
+
+    <br>
+    <br>
+    <<button "Take a bus" "bus">><<set $lastPass to passage()>><</button>>
 
 /* This is some voodoo shit I tell you. People think that this is programming but no, this is just magic, its power comes from the pain and tears of the people who call themselves "programmers". It doesn't work? I don't know why. It works? I don't know too. */

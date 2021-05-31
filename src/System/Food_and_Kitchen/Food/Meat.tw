@@ -44,7 +44,7 @@
             description: "Sausages",
             uses: 2,
             price: 3,
-            hunger: 8,
+            energy: 4,
             amount: 1,
             foodtype: "meat"
         },

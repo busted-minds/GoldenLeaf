@@ -1,0 +1,16 @@
+:: bus [nobr]
+    <<passNameRep "Bus">>
+    <img src="img\placesimg\bus.png" style="width: 20em;">
+    <br>
+    <<if $credits gte 5>>
+        You get inside the bus, you can go almost anywhere you want in the city for the convenient price of @@.yellow; 5 credits@@.
+        <br>
+        <br>
+        <<bus>>
+    <<else>>
+        You don't have enough credits to use the bus. Please get them or take a walk.
+    <</if>>
+    <br>
+    <<button "Leave" $lastPass>> 
+        <<unset $lastPass>> 
+    <</button>>

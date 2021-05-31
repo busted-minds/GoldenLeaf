@@ -1,8 +1,9 @@
 :: learnrecipsteps [nobr]
-    <h2>Cook-ing for Newbies</h2>
-    <div class="divisor"></div>
-    To make $recipeTL you need to follow these steps:
+    <<passNameRep "Cook-ing for Newbies">>
     <<set _rID to setup.recipes.findIndex(x => x.name === $recipeTL)>>
+    <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
+
+    To make $recipeTL you need to follow these steps:
     <br>
     <br>
     <<instructions $recipeTL>>
@@ -12,20 +13,19 @@
     <br>
     <<button "Finish" "learnrecipes">>
         <<timeattached 5>>
-        <<set $learnedrecipes.push(setup.recipes[_rID].name)>>
         <<unset $recipeTL>>
     <</button>>@@.red; +5 minutes@@
 
 :: learnrecipes [nobr]
     /* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little "checker" for skill requirements.*/
     <<if $cookingskill lte 5 and visited() is 1>>
+        <<passNameRep "Waterdog Search Result">>
         You found some recipes in a webpage called "Cook-ing for Newbies".
 
         <<button "Click on the link" "learnrecipes">><</button>>
     <<else>>
-        <h2>Cook-ing for Newbies</h2>
-        <div class="divisor"></div>
-        <<messager>>
+        <<passNameRep "Cook-ing for Newbies">>
+        
         //Welcome to Cook-ing for Newbies, where you can learn some useful recipes so you can delight your family, or yourself if you are a loner.
         <br>
         Are you interested in some Chicken Wings? Or maybe some easy-to-make pizza? Then this is your place! Scroll down to see our recommended recipes!
@@ -37,19 +37,27 @@
             <<set _minskill to setup.recipes[_i].minskill>>
             <<set _recskill to setup.recipes[_i].recskill>>
             <<set _findLearned to $learnedrecipes.findIndex(x => x === _recipeName)>>
+            <<set _fSkill to $pSkills.findIndex(x => x.name === "cooking")>>
             <<set _defIng to "">>
             <<if setup.recipes[_i].defingredients>>
                 <<set _defIng to String.format(" With {0} or {1}", setup.recipes[_i].defingredients[0], setup.recipes[_i].defingredients[1])>>
             <</if>>
+            <<if _fSkill is -1 and !_minskill eq 0>>
+                <<set _disabled to true>>
+            <<elseif _minskill eq 0>>
+                <<set _disabled to false>>
+            <</if>>
+
             <<if _findLearned is -1>>
-                <<disable  _minskill gt $cookingskill>>
+                <<disable _disabled>>
                     <<capture _recipeName>>
                         <<button `"Learn " + _recipeName + _defIng` "learnrecipsteps">>
                             <<set $recipeTL to _recipeName>>
+                            <<set $message to "recipeLearned">>
                         <</button>>
                     <</capture>>
                 <</disable>>
-                @@.smollfont;Minimum Skill Level: <span @class="($cookingskill gte _minskill ? 'green' : 'red');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'red');">_recskill</span>@@
+                @@.smollfont;Minimum Skill Level: <span @class="(!_disabled or _fSkill isnot -1 and $pSkill[_fSkill] gte _minskill ? 'green' : 'red');">_minskill</span>. Recommended Level: <span @class="($cookingskill gte _recskill ? 'green' : 'red');">_recskill</span>@@
                 <br>
             <</if>>
         <</for>>

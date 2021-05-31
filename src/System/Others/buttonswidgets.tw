@@ -106,8 +106,8 @@
             <<timeattached _t _e "handyman" _exp>>
 
         <<else>>
-            <<set $message to "noEnergyFun">>
+            <<set $message to "noEnergy">>
         <</if>>
 
-    <</button>>@@.green.smollfont; +<<print (_exp * $handymanlearning)>> Handyman exp@@ | @@.red.smollfont; -<<print Math.round(_e * 0.1)>> Energy -<<print Math.round(_t *0.2)>> Fun +_t Minutes@@
+    <</button>>@@.red.smollfont; +<<print _t>> Minutes@@
 <</widget>>

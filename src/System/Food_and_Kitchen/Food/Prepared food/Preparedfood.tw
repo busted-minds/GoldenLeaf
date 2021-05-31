@@ -8,7 +8,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 60,
+            energy: 27,
             price: 0,
             exp: 10,
             foodtype: ["Cooked Meat", "Prepared Food"]
@@ -19,7 +19,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 50,
+            energy: 23,
             price: 0,
             exp: 8,
             foodtype: ["Cooked Meat", "Prepared Food"]
@@ -30,7 +30,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 60,
+            energy: 27,
             price: 0,
             exp: 11,
             foodtype: ["Cooked Meat", "Prepared Food"]
@@ -41,7 +41,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 40,
+            energy: 20,
             price: 0,
             exp: 7,
             foodtype: ["Cooked Meat", "Prepared Food"]
@@ -52,7 +52,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 60,
+            energy: 27,
             price: 0,
             exp: 10,
             foodtype: ["Cooked Meat", "Prepared Food"]
@@ -63,7 +63,7 @@
             quality: "Normal",
             uses: 1,
             amount: 1,
-            hunger: 65,
+            energy: 29,
             price: 0,
             exp: 16,
             foodtype: ["Cooked Meat", "Prepared Food"]
