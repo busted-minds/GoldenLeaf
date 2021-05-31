@@ -1,5 +1,7 @@
 :: library [nobr]
     <<passNameRep "Public Library">>
+    <img src="img\placesimg\library.png" style="width: 20em;">
+    <br>
     //Welcome to Golden Leaf’s Public library. All E-books are free and will be deleted from your device once you leave the establishment. You can pay a membership if you are one of those that like to read paper books, likewise, these books can’t leave the library.
     <br>
     If you are interested in the membership, please approach the librarian@@.red;(Not implemented)@@.//

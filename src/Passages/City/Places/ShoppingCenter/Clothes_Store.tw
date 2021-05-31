@@ -3,11 +3,12 @@
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    
+    <img src="img\placesimg\clothesstore.png" style="width: 20em;">
+    <br>
     <<if visited() is 1>>
     After seeing a big announcement outside the store, you step inside. It seems that they sell shirts, blouses, pants, skirts, shoes and even underwear. There is a girl attending the store.
     <<else>>
-    You are inside the Clothing Store.There is a girl attending the store.
+    You are inside the Clothing Store. There is a <<print either("girl", "guy")>> attending the store.
     <</if>>
     <br>
     <<button "Outerwear" "outerwear">><</button>>

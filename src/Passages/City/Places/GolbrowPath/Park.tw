@@ -1,5 +1,7 @@
 :: goldpark [nobr]
     <<passNameRep "Chrysanthus Park">>
+    <img src="img\placesimg\park.png" style="width: 20em;">
+    <br>
     You are in Chrysanthus Park, a large park with several yellow flowering trees and a tree that stands out to the eye because there are many people around it taking pictures. 
     The tree is fenced to prevent getting too close to it, probably to protect it from ill-intentioned people. There is a plaque near the fence.
     @@.plaque;

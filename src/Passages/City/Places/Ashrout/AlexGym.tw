@@ -1,5 +1,7 @@
 :: alegym [nobr]
     <<passNameRep "Alexandra's Gym">>
+    <img src="img\placesimg\gym.png" style="width: 20em;">
+    <br>
     <<if visited() is 1>>
         After going inside the gym a girl with workout clothes approaches you.
         <<dialogue "???" "lightyellow">>

@@ -3,7 +3,8 @@
     <<if $shoppingcart is undefined>>
         <<set $shoppingcart to []>>
     <</if>>
-    
+    <img src="img\placesimg\grocerystore.png" style="width: 20em;">
+    <br>
     <<if visited() is 1>>
         You get inside the store from the AD. It seems that they sell many foodstuffs here.
     <<else>>

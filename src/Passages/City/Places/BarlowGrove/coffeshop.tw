@@ -1,5 +1,7 @@
 :: coffeshop [nobr]
     <<passNameRep "Black Nectar Corner">>
+    <img src="img\placesimg\coffeshop.png" style="width: 20em;">
+    <br>
     <div id="aW">
     After getting inside the shop you notice that it has a quite presentable appearance, very well illuminated and without any dark spots, 
     the tables have a rather minimalistic and good looking design of a gray color going to black and the chairs looks pretty comfortable too and with a color that matches the tables and the place.

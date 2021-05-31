@@ -2,7 +2,8 @@ sugarcube-2:
   macros:
     restoreEnergy:
       name: restoreEnergy
-      parameters: [number]
+      parameters:
+        - number
     timeattached:
       name: timeattached
     masturbutton:
@@ -19,7 +20,8 @@ sugarcube-2:
     dialogue:
       name: dialogue
       container: true
-      parameters: [text &+ text]
+      parameters:
+        - text &+ text
     gendersetter:
       name: gendersetter
     bsandhsetter:
@@ -38,12 +40,14 @@ sugarcube-2:
       name: courtesy
     addminutes:
       name: addminutes
-      parameters: [number]
+      parameters:
+        - number
     timedate:
       name: timedate
     addhours:
       name: addhours
-      parameters: [number]
+      parameters:
+        - number
     bus:
       name: bus
     libBooks:
@@ -294,3 +298,5 @@ sugarcube-2:
       name: jobsIni
     qsGT:
       name: qsGT
+    imgCred:
+      name: imgCred

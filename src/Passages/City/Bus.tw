@@ -1,5 +1,7 @@
 :: bus [nobr]
     <<passNameRep "Bus">>
+    <img src="img\placesimg\bus.png" style="width: 20em;">
+    <br>
     <<if $credits gte 5>>
         You get inside the bus, you can go almost anywhere you want in the city for the convenient price of @@.yellow; 5 credits@@.
         <br>

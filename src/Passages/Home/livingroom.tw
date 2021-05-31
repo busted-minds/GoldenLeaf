@@ -1,5 +1,7 @@
 :: livingroom [nobr]
     <<passNameRep "Living Room">>
+    <img src="img\placesimg\house.png" style="width: 20em;">
+    <br>
     <<if visited() is 1>>
         //You start to get hungry, so maybe your phone could tell you where to buy some ingredients and learn a recipe. Oh, and remember to download the map of the city so you know where everything is ;).//
         <br>

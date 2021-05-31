@@ -241,6 +241,12 @@
 		max-height: 635px;
 	}
 
+	.imgCred {
+		overflow-y: scroll;
+		max-width: 426px;
+		max-height: 100px;
+	}
+
 	.open {
 		display: block !important; 
 	}

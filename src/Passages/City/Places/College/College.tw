@@ -1,5 +1,7 @@
 :: collobby [nobr]
     <<passNameRep "College Lobby">>
+    <img src="img\placesimg\college.png" style="width: 20em;">
+    <br>
     You are at Golden Leaf Central College lobby.
     <<if $time.getHours() lt 18 and $time.getHours() gt 6>>
         You see some people going in and out of the College.

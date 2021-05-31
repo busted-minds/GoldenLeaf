@@ -4,8 +4,9 @@
         <<unset $workedhours>>
     <</if>>
     /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) "lore" or story it's just not my forte. */
+    <img src="img\placesimg\frozenjar.png" style="width: 20em;">
     <div id="aW">
-    You are inside the @@.blue;Frozen Jar@@, a restaurant-bar.
+    You are inside @@.blue;Frozen Jar@@, a restaurant-bar.
     <<if visited() is 1>> 
         It's a pretty cozy place. There are tables and chairs made of wood or some similar material, spaced out so that it doesn't look or feel cramped. Large windows face the street, giving good lightning, 
         and make the place give a feeling of warmth and lightness. 
