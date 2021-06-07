@@ -104,16 +104,15 @@
         <div class="mainSexBttns">
             <<button "Main">> 
                 <<replace ".sexBttns">>
-                    <<sexOptions $args[0]>>
+                    <<sexOptions $args[0] "main">>
                 <</replace>>   
             <</button>>
 
             <<button "Secondary">>
                 <<replace ".sexBttns">>
-                    <<sexOptions $args[0]>>
+                    <<sexOptions $args[0] "sec">>
                 <</replace>>           
             <</button>>
-            <div class="sexBttns"></div>
         </div>
     <</widget>>
 
@@ -121,23 +120,31 @@
         <<switch $args[0]>>
             <<case "masturb">>
                 <<if $playervar.gender is "female">>
-                    <<set _mainOptions to []>>
-                    <<set _secOptions to ["Select an option", "Massage clitoris", "Massage labia", "Massage anus", "Caress nipples", "Pinch nipples"]>>
+                    <<set _mainOptions to ["Insert fingers (Vagina)", "Insert fingers (Anus)"]>>
+                    <<set _secOptions to ["Massage clitoris", "Massage labia", "Massage anus", "Caress nipples", "Pinch nipples"]>>
                 <<else>>
-                    <<set _secOptions to ["Select an option", "Caress penis", "Caress testicles", "Massage anus", "Caress nipples", "Pinch nipples"]>>
-                    <<set _mainOptions to []>>
+                    <<set _mainOptions to ["Stroke penis", "Insert fingers(Anus)"]>>
+                    <<set _secOptions to ["Caress penis", "Caress testicles", "Massage anus", "Caress nipples", "Pinch nipples"]>>
                 <</if>>
+
+                <<set _n to State.getVar(String.format("_{0}Options", $args[1]))>>
+                <<for _io to 0; _io lt _n.length; _io++>>
+                    <span style="font-size: small; max-width: 7rem; display: inline-block;">
+                        <<button _n[_io]>>
+
+                        <</button>>
+                    </span>
+                <</for>>
         <</switch>>
     <</widget>>
-:: masturbation [widget nobr]
+/*:: masturbation [widget nobr]
 
     <<widget "mastOpt">>
         <<switch $playervar.gender>>
             <<case "female">>
-                <<set _masturoptions to ["Select an option", "Massage clitoris", "Massage labia", "Massage anus", "Caress nipples", "Pinch nipples"]>>
                 
                 <<if $aroused is true>>
-                    <<set _masturoptions.push("Insert fingers(Vagina)", "Insert fingers(Anus)", "Pinch nipples")>>
+                    
 
                     <<if $backpack[_fID].tLength gt $playervar.vagcomfortinsert or $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
                         @@.red;<<print "Be aware that your dildo is too big for your vagina so you can't use it. Buy one of a lower size">>
@@ -198,10 +205,7 @@
                 <</if>>
                 
             <<case "male">>
-                <<set _masturoptions to ["Select an option", "Caress penis", "Caress testicles", "Massage anus", "Caress nipples"]>>
-        
                 <<if $aroused is true>>
-                    <<set _masturoptions.push("Stroke penis", "Insert fingers(Anus)", "Pinch nipples")>>
                     <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
 
                     <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
@@ -237,3 +241,4 @@
         <</switch>>
         
     <</widget>>
+    */
