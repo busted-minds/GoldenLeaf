@@ -102,8 +102,6 @@ sugarcube-2:
       name: rngod
     mastOpt:
       name: mastOpt
-    masturbation:
-      name: masturbation
     orgasmCheck:
       name: orgasmCheck
     addSexTraits:
@@ -300,3 +298,9 @@ sugarcube-2:
       name: qsGT
     creds:
       name: creds
+    sexWindow:
+      name: sexWindow
+    sexOptions:
+      name: sexOptions
+    sexButtons:
+      name: sexButtons
