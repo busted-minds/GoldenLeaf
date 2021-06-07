@@ -2,7 +2,7 @@
 
 Current public Version: **V0.2.3**
 
-Current development Version: **V0.2.3**
+Current development Version: **V0.2.4**
 
 **[Play the game](https://gampsi.github.io/GoldenLeaf/GoldenLeaf.html) (Online version)**
 
