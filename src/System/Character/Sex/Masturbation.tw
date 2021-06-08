@@ -2,16 +2,22 @@
     <<passNameRep "Masturbation">>
     <<if !$sexLog and !$mastTime>>
         <<set $sexLog to []>>
-        <<set $mastTime to 0>>
     <</if>>
-    <<if $arousal gte 100>>
-        <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
-        <<set $mastTime to 0>>
+    <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
+
+    <<if _fID isnot -1 and $playervar.virginity.vagina is true and !$dispMess>>
+        <<dialogue "GLODEX" "green">>
+            @@.red;Warning@@@@.white;
+            <br>
+            Sex toy with penetration capabilities detected. Using it will break your hymen@@
+        <</dialogue>>
+        <<set $dispMess to true>>
     <</if>>
-    
     <<sexWindow>>
-    <<sexButtons "masturb">>
-    <div class="sexBttns"></div>
+    <div class="sexOpts">
+        <<sexButtons "masturb">>
+        <div class="sexBttns"></div>
+    </div>
     <br>
     <br>
 
@@ -19,16 +25,18 @@
         <<unset $sexLog>>
         <<unset $location>>
         <<unset $mastTime>>
+        <<unset $dispMess>>
+        <<unset $secAct>>
     <</button>>
 
 :: masturbutton [widget nobr]
 
 <<widget "masturbutton">>
-    <<disable $energy lt 35>>
+    <<disable $energy lt 30>>
         <div class="med-button">
         <<button "Masturbate" "masturbate">>
             <<set $location to passage()>>
         <</button>>
         </div>
-    <</disable>><<if $energy lt 35>>@@.lightred;You need some rest before trying to masturbate.@@<</if>>
+    <</disable>>
 <</widget>>

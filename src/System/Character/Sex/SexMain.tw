@@ -13,7 +13,7 @@
         <</if>>
 
         <<if $arousal gte 100>>
-            <<orgasmCheck $args[1] $args[2] $args[3]>>
+            <<orgasmCheck $args[1]>>
         <</if>>
 
     <</widget>>
@@ -21,24 +21,7 @@
     <<widget "orgasmCheck">>
         <<set $arousal to 0>>
 
-        <<if $args[1] is "mastMsg">>
-            <<if $playervar.gender is "male">>
-                <<set $sexLog[0] to "After reaching an orgasm you ejaculate and feel satisfied.">>
-            <<elseif $playervar.cansquirt is true>>
-                <<set $sexLog[0] to "After reaching an orgasm you feel satisfied and expel some fluids.">>
-            <<else>>
-                <<set $sexLog[0] to "After reaching an orgasm you feel satisfied. Or maybe not?.">>
-            <</if>>
-
-            <<addSexTraits $args[0]>>
-
-        <<elseif $args[2] is "preM">>
-            <<set $sexLog to $args[0]>>
-            <<addSexTraits $args[1]>>
-
-        <<elseif $args[1] is "noMsg">>
-            <<addSexTraits $args[0]>>
-        <</if>>
+        <<addSexTraits $args[0]>>
 
         <<set $aroused to undefined>>
 
@@ -93,152 +76,81 @@
     <</widget>>
 
     <<widget "sexWindow">>
+        <<sexText>>
         <div class="scrollWin">
             <<for _sl to 0; _sl lt $sexLog.length; _sl++>>
-                <<print $sexLog[_sl]>>
+                - <<print $sexLog[_sl]>>
+                <br>
+                <br>
             <</for>>
         </div>
     <</widget>>
 
     <<widget "sexButtons">>
-        <div class="mainSexBttns">
-            <<button "Main">> 
-                <<replace ".sexBttns">>
-                    <<sexOptions $args[0] "main">>
-                <</replace>>   
-            <</button>>
-
-            <<button "Secondary">>
-                <<replace ".sexBttns">>
-                    <<sexOptions $args[0] "sec">>
-                <</replace>>           
-            <</button>>
-        </div>
-    <</widget>>
-
-    <<widget "sexOptions">>
         <<switch $args[0]>>
             <<case "masturb">>
                 <<if $playervar.gender is "female">>
                     <<set _mainOptions to ["Insert fingers (Vagina)", "Insert fingers (Anus)"]>>
                     <<set _secOptions to ["Massage clitoris", "Massage labia", "Massage anus", "Caress nipples", "Pinch nipples"]>>
+
+                    <<if _fID isnot -1 and $backpack[_fID].tLength lte $playervar.vagcomfortinsert and $backpack[_fID].tWidth lte $playervar.vagwidthcomfortinsert>>
+                        <<set _mainOptions.push("Insert dildo (Vagina)")>>
+                    <</if>>
+                    <<if _fID isnot -1 and $backpack[_fID].tLength lte $playervar.anuscomfortinsert and $backpack[_fID].tWidth lte $playervar.anuswidthcomfortinsert>>
+                        <<set _mainOptions.push("Insert dildo (Anus)")>>
+                    <</if>>
+
                 <<else>>
-                    <<set _mainOptions to ["Stroke penis", "Insert fingers(Anus)"]>>
+                    <<set _mainOptions to ["Stroke penis", "Insert fingers (Anus)"]>>
                     <<set _secOptions to ["Caress penis", "Caress testicles", "Massage anus", "Caress nipples", "Pinch nipples"]>>
+                    <<if _fID isnot -1 and $backpack[_fID].tLength lte $playervar.anuscomfortinsert and $backpack[_fID].tWidth lte $playervar.anuswidthcomfortinsert>>
+                        <<set _mainOptions.push("Insert dildo (Anus)")>>
+                    <</if>>
                 <</if>>
 
-                <<set _n to State.getVar(String.format("_{0}Options", $args[1]))>>
-                <<for _io to 0; _io lt _n.length; _io++>>
+                <<for _mo to 0; _mo lt _mainOptions.length; _mo++>>
                     <span style="font-size: small; max-width: 7rem; display: inline-block;">
-                        <<button _n[_io]>>
+                        <<capture _mainOptions[_mo]>>
+                            <<disable !$aroused>>
+                            <<button _mainOptions[_mo] "masturbate">>
+                                <<set $mainAct to _mainOptions[_mo]>>
+                                <<timeattached 1 4>>
+                            <</button>>
+                            <</disable>>
+                        <</capture>>
+                    </span>
+                <</for>>
 
-                        <</button>>
+                <<for _so to 0; _so lt _secOptions.length; _so++>>
+                    <<set _act to _secOptions[_so] + ($secAct is _secOptions[_so] ? ' (Active)' : ' (Repeatable)')>>
+                    <span style="font-size: small; max-width: 7rem; display: inline-block;">
+                        <<capture _secOptions[_so]>>
+                            <<button _act "masturbate">>
+                                <<set $secAct to _secOptions[_so]>>
+                                <<timeattached 1 4>>
+                            <</button>>
+                        <</capture>>
                     </span>
                 <</for>>
         <</switch>>
     <</widget>>
-/*:: masturbation [widget nobr]
 
-    <<widget "mastOpt">>
-        <<switch $playervar.gender>>
-            <<case "female">>
+    <<widget "sexText">>
+        <<switch $mainAct>>
+            <<case "Insert fingers (Vagina)">>
+                <<set $sexLog.push(either("You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best.", "@@.pink;After so much stimulation you start to feel better, inserting your fingers faster and faster inside your pussy, @@@@.darkpink; making a wet sound that echoes around.@@", ))>>
                 
-                <<if $aroused is true>>
-                    
-
-                    <<if $backpack[_fID].tLength gt $playervar.vagcomfortinsert or $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
-                        @@.red;<<print "Be aware that your dildo is too big for your vagina so you can't use it. Buy one of a lower size">>
-                        <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
-                            <br>
-                            <<print "Be aware that your dildo is too big for your anus so you can't use it for this place too. Buy one of a lower size">>
-                        <</if>>@@
-                        <br>
-                        <br>
-                    <<elseif $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
-                        @@.red;<<print "Be aware that your dildo is too big for your anus so you can't use it. Buy one of a lower size">>@@
-                        <br>
-                        <br>
-                    <<else>>
-                        <<if $bps.genitals[0].primary.lowname is "naked" and _fID isnot -1 or $bps.genitals[0].secondary.lowname is "naked" and _fID isnot -1 or 
-                            $bps.lowerbody[1].primary.lowname is "naked" and _fID isnot -1 or $bps.lowerbody[1].secondary.lowname is "naked" and _fID isnot -1>>
-                            <<set _masturoptions.push("Insert dildo(Vagina)", "Insert dildo(Anus)")>>
-
-                            <<if $selectedSexOpt.RightHand is "Insert dildo(Vagina)">>
-                                <<set _masturoptions.delete("Insert fingers(Vagina)")>>
-
-                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Vagina)" or
-                                    $selectedSexOpt.RightHand is "Insert dildo(Vagina)" and $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
-                                    <<set $selectedSexOpt.LeftHand to undefined>>
-
-                                <</if>>
-
-                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Vagina)">>
-                                <<set _masturoptions.delete("Insert fingers(Vagina)")>>
-
-                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Vagina)" or
-                                    $selectedSexOpt.LeftHand is "Insert dildo(Vagina)" and $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
-                                    <<set $selectedSexOpt.RightHand to undefined>>
-
-                                <</if>>
-                            
-                            <<elseif $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
-                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
-
-                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Anus)" or
-                                    $selectedSexOpt.RightHand is "Insert dildo(Anus)" and $selectedSexOpt.LeftHand is "Insert dildo(Vagina)">>
-                                    <<set $selectedSexOpt.LeftHand to undefined>>
-                                <</if>>
-                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
-                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
-
-                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Anus)" or
-                                    $selectedSexOpt.LeftHand is "Insert dildo(Anus)" and $selectedSexOpt.RightHand is "Insert dildo(Vagina)">>
-                                    <<set $selectedSexOpt.RightHand to undefined>>
-
-                                <</if>>
-
-                            <</if>>
-
-                        <</if>>
-                    <</if>>
-                    
-                <</if>>
-                
-            <<case "male">>
-                <<if $aroused is true>>
-                    <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
-
-                    <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
-                        @@.red;<<print "Be aware that your dildo is too big for your anus so you can't use it. Buy one of a lower size">>@@
-                        <br>
-                        <br>
-                    <<else>>
-                        <<if $bps.lowerbody[1].primary.lowname is "naked" and _fID isnot -1 or 
-                            $bps.lowerbody[1].secondary.lowname is "naked" and _fID isnot -1>>
-                            <<set _masturoptions.push("Insert dildo(Anus)")>>
-
-                            <<if $selectedSexOpt.RightHand is "Insert dildo(Anus)">>
-                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
-
-                                <<if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is "Insert fingers(Anus)">>
-                                    <<set $selectedSexOpt.LeftHand to undefined>>
-
-                                <</if>>
-
-                            <<elseif $selectedSexOpt.LeftHand is "Insert dildo(Anus)">>
-                                <<set _masturoptions.delete("Insert fingers(Anus)")>>
-
-                                <<if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is "Insert fingers(Anus)">>
-                                    <<set $selectedSexOpt.RightHand to undefined>>
-
-                                <</if>>
-
-                            <</if>>
-
-                        <</if>>
-                    <</if>>
-                <</if>>
         <</switch>>
-        
+
+        <<switch $secAct>>
+            <<case "Caress nipples">>
+                <<set $sexLog.push(either("With your fingers @@.pink;you gently massage your @@@@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples doing regular motions, making them stiffen@@"))>>
+                
+        <</switch>>
+
+        <<set _val to ((def $mainAct ? 1 : 0) + (def $secAct ? 1 : 0)) * 5>>
+
+        <<addArousal _val "masturb">>
+        <<unset $mainAct>>
     <</widget>>
-    */
+    

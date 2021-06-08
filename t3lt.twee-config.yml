@@ -304,3 +304,5 @@ sugarcube-2:
       name: sexOptions
     sexButtons:
       name: sexButtons
+    sexText:
+      name: sexText
