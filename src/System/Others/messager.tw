@@ -7,6 +7,10 @@
             //
             ''
             <<switch $message>>
+                <<case "noEne">>
+                    No enough energy left to do this action.
+                <<case "mastLimit">>
+                    You have reached your masturbation limit for this session.
                 <<case "noCredits">>
                     You don't have enough credits.
                 <<case "space">>

@@ -1,6 +1,14 @@
 :: masturbate [nobr]
     <<passNameRep "Masturbation">>
-    <<if !$sexLog and !$mastTime>>
+    <<if !$mastSession>>
+        <<set $mastSession to 0>>
+    <</if>>
+    <<if $mastSession eq $mastLimit>>
+        <<set $message to "mastLimit">>
+        <<goto $location>>
+        <<unset $location>>
+    <</if>>
+    <<if !$sexLog>>
         <<set $sexLog to []>>
     <</if>>
     <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
@@ -24,9 +32,10 @@
     <<button "Finish" $location>>
         <<unset $sexLog>>
         <<unset $location>>
-        <<unset $mastTime>>
         <<unset $dispMess>>
         <<unset $secAct>>
+        <<unset $aroused>>
+        <<unset $mastSession>>
     <</button>>
 
 :: masturbutton [widget nobr]

@@ -1,4 +1,9 @@
 :: sex(main) [widget nobr]
+    <<widget "sexIni">>
+        <<set setup.sexActions to {}>>
+
+        <<masturbActions>>
+    <</widget>>
     /* These widgets are self-explanatory. 
         But for addArousal the arguments are like this: $args[1] = the message in case of being a "premade" message or the type of action(ex: masturb). 
         $args[2] is in case of a "pre-made" message so it does collide with the one that doesn't use "pre-made" messages.*/
@@ -20,22 +25,33 @@
 
     <<widget "orgasmCheck">>
         <<set $arousal to 0>>
+        
+        <<if $playervar.gender is "male">>
+            <<set $sexLog.push("After reaching an orgasm you ejaculate and feel satisfied")>>
+        <<elseif $playervar.cansquirt is true>>
+            <<set $sexLog.push("After reaching an orgasm you feel satisfied and expel some fluids")>>
+        <<else>>
+            <<set $sexLog.push("After reaching an orgasm you feel satisfied. Or maybe not?")>>
+        <</if>>
+
 
         <<addSexTraits $args[0]>>
-
-        <<set $aroused to undefined>>
 
     <</widget>>
     /* Will need to expand this later when more sexual traits are added. */
     <<widget "addSexTraits">>
         <<if $args.includesAny("masturb")>>
             <<set $masturCount++>>
+            <<set $mastSession += 1>>
         
             <<set _find to $pTraits.findIndex(x => x.name == setup.traits[1].name)>>
             <<if $masturCount gte 5 and _find is -1>>
                 <<set $pTraits.pushUnique(setup.traits[1])>>
+                <<set $mastLimit to 2>>
+
             <<elseif _find isnot -1>>
                 <<traitsEXP _find 1>>
+                <<set $mastLimit to $mastLimit*$pTraits[_find].level>>
             <</if>>
         <</if>>
     <</widget>>
@@ -83,6 +99,12 @@
                 <br>
                 <br>
             <</for>>
+            <<done>>
+            <<script>>
+                var el = document.querySelector('.scrollWin');
+                el.scrollTop = el.scrollHeight;
+            <</script>>
+            <</done>>
         </div>
     <</widget>>
 
@@ -91,7 +113,7 @@
             <<case "masturb">>
                 <<if $playervar.gender is "female">>
                     <<set _mainOptions to ["Insert fingers (Vagina)", "Insert fingers (Anus)"]>>
-                    <<set _secOptions to ["Massage clitoris", "Massage labia", "Massage anus", "Caress nipples", "Pinch nipples"]>>
+                    <<set _secOptions to ["Massage clitoris", "Massage anus", "Caress nipples"]>>
 
                     <<if _fID isnot -1 and $backpack[_fID].tLength lte $playervar.vagcomfortinsert and $backpack[_fID].tWidth lte $playervar.vagwidthcomfortinsert>>
                         <<set _mainOptions.push("Insert dildo (Vagina)")>>
@@ -136,21 +158,68 @@
     <</widget>>
 
     <<widget "sexText">>
-        <<switch $mainAct>>
-            <<case "Insert fingers (Vagina)">>
-                <<set $sexLog.push(either("You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best.", "@@.pink;After so much stimulation you start to feel better, inserting your fingers faster and faster inside your pussy, @@@@.darkpink; making a wet sound that echoes around.@@", ))>>
-                
-        <</switch>>
-
         <<switch $secAct>>
             <<case "Caress nipples">>
-                <<set $sexLog.push(either("With your fingers @@.pink;you gently massage your @@@@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples doing regular motions, making them stiffen@@"))>>
-                
+                <<set $sexLog.push(either("With your fingers you gently massage your @@.orange;<<print $playervar.nippletype>>@@@@.pink; nipples with regular motions, making them stiffen@@", 
+                "With your fingers you gently massage your @@.pink;stiffened@@ @@.orange;<<print $playervar.nippletype>>@@ @@.pink;nipples@@"))>>
+            
+            <<case "Massage clitoris">>
+                <<set $sexLog.push(either("With your fingers @@.pink;you gently massage your clitoris@@", 
+                                    "@@.pink;With that much stimulation, your @@@@.darkpink;clitoris@@ @@.pink;got a bit swollen from arousal and you feel that you are close to having an @@@@.darkpink;orgasm@@"))>>
+
+            <<case "Massage anus">>
+                <<set $sexLog.push(either("With your fingers @@.pink;you gently massage around your anus and start to @@@@.darkpink;feel good@@",
+                                    "With your fingers @@.pink;you gently massage around your anus and start, trying to @@@@.darkpink;feel better, taking care of not putting a finger in, yet@@"))>>
+
+            <<case "Caress penis">>
+                <<set $sexLog.push(either("You start caressing your @@.pink;<<penissizechecker>> penis@@, building up arousal and starting to @@.darkpink;feel good@@",
+                                    "You start caressing your @@.pink;<<print ($arousal is true ? 'erected' : 'semi-erected')>> <<penissizechecker>> penis@@ with pre-seminal liquid going out of it"))>>
+
+            <<case "Caress testicles">>
+                <<set $sexLog.push(either("You gently massage your @@.pink;<<ballssizechecker>> testicles@@ with your fingers, with regular motions trying to feel better each time."))>>
+
         <</switch>>
 
-        <<set _val to ((def $mainAct ? 1 : 0) + (def $secAct ? 1 : 0)) * 5>>
+        <<switch $mainAct>>
+            <<case "Insert fingers (Vagina)">>
+                <<set $sexLog.push(either("You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best",
+                                    "After inserting @@.orange;2@@ @@.pink;fingers into your pussy@@ so much stimulation caused you start to feel better, making you put your fingers faster and faster inside,@@.darkpink; making a wet sound that echoes around@@", ))>>
+            
+            <<case "Insert fingers (Anus)">>
+                <<set $sexLog.push(either("You gently insert @@.orange;1@@ @@.pink;finger into your anus@@, @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You start to feel good@@",
+                                    "@@.pink;After a bit you insert @@.orange;1@@ @@.pink;fingers into your anus@@ so much stimulation caused you start to feel better, making you put your fingers faster and faster inside, @@@@.darkpink; making a wet sound@@"))>>
+
+            <<case "Stroke penis">>   
+                <<set $sexLog.push(either("You start stroking your @@.pink;erected <<penissizechecker>> penis@@ up and down with your hand, building up arousal@@",
+                                    "You start stroking @@.pink;erected <<penissizechecker>> penis@@ up and down with your hand, doing it faster and faster each time and getting close to an orgasm@@"))>>
+
+            <<case "Insert dildo (Vagina)">>
+                <<set $sexLog.push(either("You insert your @@.orange;<<print $backpack[_fID].lowname>>@@ in your pussy carefully searching for your sweet spot, thrusting in and out repeatedly making wet sounds each time."))>>
+
+            <<case "Insert dildo (Anus)">>
+                <<set $sexLog.push(either("You insert your @@.orange;<<print $backpack[_fID].lowname>>@@ in your anus finding a bit of resistance as it makes its way through giving you pleasure with each thrust."))>>
+
+        <</switch>>
+
+        <<set _val to Math.round(((def $mainAct ? 1 : 0) + (def $secAct ? 1 : 0) + ($mainAct is "Insert dildo (Vagina)" or $mainAct is "Insert dildo (Anus)" ? 0.5 : 0) ) * random(3,9))>>
 
         <<addArousal _val "masturb">>
         <<unset $mainAct>>
+    <</widget>>
+
+    <<widget "masturbActions">>
+        <<set setup.sexActions.masturb to [
+            {
+                id: 0,
+                name: "Insert fingers (Vagina)",
+                type: ["main"],
+                excludes: ["Insert dildo (Vagina)"]
+                text: [
+                    "You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best",
+                    "After inserting @@.orange;2@@ @@.pink;fingers into your pussy@@ so much stimulation caused you start to feel better, making you put your fingers faster and faster inside,@@.darkpink; making a wet sound that echoes around@@"
+                    ],
+                value: 4,
+            }
+        ]>>
     <</widget>>
     

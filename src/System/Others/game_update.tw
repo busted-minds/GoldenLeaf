@@ -4,4 +4,5 @@
     <<set $version to updatedVersion>>
     /*Variables added in 0.2.4*/
     <<set $mastLimit to 2>>
+    <<sexIni>>
 <</widget>>

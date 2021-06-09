@@ -7,6 +7,7 @@
     <<mapStreets>>
     <<traitsInit>>
     <<skillsIni>>
+    <<sexIni>>
 <</widget>>
 
 <<widget "geneVariables">>
