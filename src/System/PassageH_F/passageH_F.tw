@@ -1,9 +1,10 @@
 :: PassageHeader [nobr]
-    /%<<if saveUpdate is true>>
+    <<if saveUpdate is true>>
         <<gameUpdate>>
     
         <<set saveUpdate to false>>
-    <</if>>%/
+    <</if>>
+
     <<daychange>>
     <h2 class="passName"></h2>
     <div class="passDiv"></div>
