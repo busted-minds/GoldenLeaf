@@ -252,8 +252,6 @@
 		overflow-wrap: break-word;
 		max-width: 90%;
 		max-height: 16rem;
-		border: 2px solid whitesmoke;
-		border-radius: 3px;
 		margin: 5px;
 		padding: 5px;
 	}
