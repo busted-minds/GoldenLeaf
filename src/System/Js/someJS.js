@@ -21,14 +21,6 @@ window.wikifier = function (widget, args, args2, args3) {
 window.updatedVersion = "0.2.4";
 Config.saves.id="golden-leaf";
 
-Config.saves.onLoad = function () {
-    if (State.variables.version !== window.updatedVersion) {
-        window.saveUpdate = true;
-    }
-};
-
-window.saveUpdate = true;
-
 var l = document.createElement('link');
 l.rel = "icon";
 l.href = "img/others/Icon.png";
