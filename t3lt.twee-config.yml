@@ -304,11 +304,11 @@ sugarcube-2:
       name: sexOptions
     sexButtons:
       name: sexButtons
-    sexText:
-      name: sexText
     gameUpdate:
       name: gameUpdate
     masturbActions:
       name: masturbActions
+    sexVal:
+      name: sexVal
     sexIni:
       name: sexIni

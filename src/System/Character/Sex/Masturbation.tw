@@ -3,11 +3,6 @@
     <<if !$mastSession>>
         <<set $mastSession to 0>>
     <</if>>
-    <<if $mastSession eq $mastLimit>>
-        <<set $message to "mastLimit">>
-        <<goto $location>>
-        <<unset $location>>
-    <</if>>
     <<if !$sexLog>>
         <<set $sexLog to []>>
     <</if>>
@@ -22,10 +17,17 @@
         <<set $dispMess to true>>
     <</if>>
     <<sexWindow>>
-    <div class="sexOpts">
-        <<sexButtons "masturb">>
-        <div class="sexBttns"></div>
-    </div>
+    <<if $mastSession eq $mastLimit>>
+        <<dialogue "GLODEX" "green">>
+            //@@.orange;Warning, high exhaustion levels.@@ You have reached your masturbation limit for this session. //
+        <</dialogue>>
+
+    <<else>>
+        <div class="sexOpts">
+            <<sexButtons "masturb">>
+            <div class="sexBttns"></div>
+        </div>
+    <</if>>
     <br>
     <br>
 
@@ -33,7 +35,6 @@
         <<unset $sexLog>>
         <<unset $location>>
         <<unset $dispMess>>
-        <<unset $secAct>>
         <<unset $aroused>>
         <<unset $mastSession>>
     <</button>>
