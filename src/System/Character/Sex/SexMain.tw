@@ -41,7 +41,6 @@
         <</if>>
 
 
-        <<unset $mainAct>>
         <<unset $secAct>>
         <<addSexTraits $args[0]>>
 
@@ -134,6 +133,7 @@
 
                         <span style="font-size: small; max-width: 7rem; display: inline-block;">
                             <<disable setup.sexActions[_o].type.includes("main") and !$aroused>>
+
                                 <<capture _o>>
                                     <<button _name "masturbate">>
                                         <<set (setup.sexActions[_o].type.includes("secondary") ? $secAct to setup.sexActions[_o].id : (setup.sexActions[_o].type.includes("main") ? $mainAct to setup.sexActions[_o].id : ""))>>
@@ -150,6 +150,10 @@
 
     <<widget "sexVal">>
         <<if def $secAct or def $mainAct>>
+            <<if def $mainAct and def $secAct and setup.sexActions[$mainAct].excludes.includes(setup.sexActions[$secAct].name)>>
+                <<unset $secAct>>
+            <</if>>
+
             <<set _secVal to (def $secAct ? setup.sexActions[$secAct].value : 0)>>
             <<set (def $secAct ? $sexLog.push(either(setup.sexActions[$secAct].text)) : '')>>
 
@@ -158,6 +162,7 @@
 
             <<set _val to _secVal + _mainVal>>
 
+            <<unset $mainAct>>
             <<addArousal _val "masturb">>
         <</if>>
     <</widget>>
@@ -184,7 +189,7 @@
                 excludes: ["Massage anus"],
                 text: [
                     "You gently insert @@.orange;1@@ @@.pink;finger into your anus@@, @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You start to feel good@@",
-                    "@@.pink;After a bit you insert @@.orange;1@@ @@.pink;fingers into your anus@@ so much stimulation caused you start to feel better, making you put your fingers faster and faster inside, @@@@.darkpink; making a wet sound@@"
+                    "After a bit you insert @@.orange;1@@ @@.pink;fingers into your anus@@. So much stimulation has caused you to feel better, making you put your fingers faster and faster inside, @@.darkpink; making a wet sound@@"
                     ],
                 value: 8,
             },
