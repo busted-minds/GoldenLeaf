@@ -109,7 +109,7 @@
         It's a bit dark but, you can still see people walking around and, although few, some cars.
     <</if>>
     <br>
-    <<disable $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
+    <<disable $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
         <<button "Enter Frozen Jar" "frozenjar">><</button>>
     <</disable>><<if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
 

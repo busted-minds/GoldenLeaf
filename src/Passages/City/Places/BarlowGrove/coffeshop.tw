@@ -32,13 +32,13 @@
         <br>
         You see @@.orange;<<print $bnName>>@@ working at some tables and serving food to the costumers.
         <br>
-        <<disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours>>
+        <<disable $energy lt _totalEU or $time.getHours() gt setup.blacknectar.workingHours.closingHours - $pJob.hoursreq>>
             <<button "Start Working" "bnwork">><</button>> 
         <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~ 
         <<if $time.getHours() gte setup.blacknectar.workingHours.closingHours>> 
             <<goto "barlowgrove">>
         <</if>>
-        <<if $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours>>
+        <<if $time.getHours() gt setup.blacknectar.workingHours.closingHours - $pJob.hoursreq>>
             @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
         <</if>>
         <br>
