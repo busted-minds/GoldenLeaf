@@ -33,7 +33,7 @@
             <<button "Start Working" "frozenJwork">><</button>> 
         <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~        
         <<if $time.getHours() gte setup.frozenjar.workingHours.closingHours>> 
-            <<goto "frozenjar">>
+            <<goto "pioneerlane">>
         <</if>>
         <<if $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
             @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
