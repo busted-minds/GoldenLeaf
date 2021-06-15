@@ -122,6 +122,14 @@
                     <<if setup.sexActions[_o].type.includesAny("main", "secondary") and setup.sexActions[_o].for.includes($playervar.gender)>>
                         <<if setup.sexActions[_o].type.includes("sextoy") and _fID is -1>>
                             <<continue>>
+
+                        <<elseif setup.sexActions[_o].type.includes("sextoy") and _fID isnot -1 and setup.sexActions[_o].requirements.includesAny($backpack[_fID].name) and $backpack[_fID].tLength gt $playervar.anuscomfortinsert and $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                            <<set _disable to true>>
+
+                        <<elseif setup.sexActions[_o].type.includes("sextoy") and _fID isnot -1 and setup.sexActions[_o].requirements.includesAny($backpack[_fID].name) and $backpack[_fID].tLength gt $playervar.vagcomfortinsert and $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
+                            <<set _disable to true>>
+                        <<else>>
+                            <<unset _disable>>
                         <</if>>
                             
                         <<if setup.sexActions[_o].type.includes("secondary")>>
@@ -132,7 +140,8 @@
                         <</if>>
 
                         <span style="font-size: small; max-width: 7rem; display: inline-block;">
-                            <<disable setup.sexActions[_o].type.includes("main") and !$aroused>>
+                            <<disable setup.sexActions[_o].type.includes("main") and !$aroused
+                                    or _disable is true>>
 
                                 <<capture _o>>
                                     <<button _name "masturbate">>
@@ -174,6 +183,7 @@
                 name: "Insert fingers (Vagina)",
                 type: ["main", "masturbation"],
                 for: ["female"],
+                requirements: [],
                 excludes: [],
                 text: [
                     "You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best",
@@ -186,6 +196,7 @@
                 name: "Insert fingers (Anus)",
                 type: ["main", "masturbation"],
                 for: ["female", "male"],
+                requirements: [],
                 excludes: ["Massage anus"],
                 text: [
                     "You gently insert @@.orange;1@@ @@.pink;finger into your anus@@, @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You start to feel good@@",
@@ -197,6 +208,7 @@
                 id: 2,
                 name: "Stroke penis",
                 type: ["main", "masturbation"],
+                requirements: [],
                 excludes: ["Caress penis"],
                 for: ["male"],
                 text: [
@@ -210,6 +222,7 @@
                 name: "Insert dildo (Vagina)",
                 type: ["main", "sextoy"],
                 for: ["female"],
+                requirements: [setup.clothes.sextoys[1].name],
                 excludes: [],
                 text: [
                     "You insert your @@.orange;<<print $backpack[_fID].lowname>>@@ in your @@.pink;pussy@@ carefully searching for your sweet spot, thrusting in and out repeatedly @@.pink;making wet sounds each time@@"
@@ -220,6 +233,7 @@
                 id: 4,
                 name: "Insert dildo (Anus)",
                 type: ["main", "sextoy"],
+                requirements: [setup.clothes.sextoys[1].name],
                 excludes: [],
                 for: ["female", "male"],
                 text: [
@@ -231,6 +245,7 @@
                 id: 5,
                 name: "Caress nipples",
                 type: ["secondary", "masturbation"],
+                requirements: [],
                 excludes: [],
                 for: ["female", "male"],
                 text: [
@@ -243,6 +258,7 @@
                 id: 6,
                 name: "Massage clitoris",
                 type: ["secondary", "masturbation"],
+                requirements: [],
                 excludes: [],
                 for: ["female"],
                 text: [
@@ -255,6 +271,7 @@
                 id: 7,
                 name: "Massage anus",
                 type: ["secondary", "masturbation"],
+                requirements: [],
                 excludes: ["Insert fingers (Anus)"],
                 for: ["female", "male"],
                 text: [
@@ -267,6 +284,7 @@
                 id: 8,
                 name: "Caress penis",
                 type: ["secondary", "masturbation"],
+                requirements: [],
                 excludes: ["Insert fingers (Anus)"],
                 for: ["male"],
                 text: [
@@ -279,6 +297,7 @@
                 id: 9,
                 name: "Caress testicles",
                 type: ["secondary", "masturbation"],
+                requirements: [],
                 excludes: ["Insert fingers (Anus)"],
                 for: ["male"],
                 text: [

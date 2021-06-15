@@ -12,14 +12,25 @@
         <<dialogue "GLODEX" "green">>
             @@.red;Warning@@@@.white;
             <br>
-            Sex toy with penetration capabilities detected. Using it will break your hymen@@
+            Sex toy with penetration capabilities detected. Using it will break your hymen
+            <<if $backpack[_fID].tLength gt $playervar.vagcomfortinsert and $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
+                <br>
+                Detected sex toy with an uncomfortable size for your vagina, please refrain fom using it.
+            <</if>>
+            <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert and $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                <br>
+                Detected sex toy with an uncomfortable size for your anus, please refrain fom using it.
+            <</if>>
+            @@
         <</dialogue>>
         <<set $dispMess to true>>
     <</if>>
     <<sexWindow>>
     <<if $mastSession eq $mastLimit>>
         <<dialogue "GLODEX" "green">>
-            //@@.orange;Warning, high exhaustion levels.@@ You have reached your masturbation limit for this session. //
+            //@@.orange;Warning, high exhaustion levels.@@ 
+            <br>
+            You have reached your masturbation limit for this session. //
         <</dialogue>>
 
     <<else>>
@@ -37,6 +48,8 @@
         <<unset $dispMess>>
         <<unset $aroused>>
         <<unset $mastSession>>
+        <<unset $secAct>>
+        <<unset $mainAct>>
     <</button>>
 
 :: masturbutton [widget nobr]
