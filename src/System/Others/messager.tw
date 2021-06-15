@@ -38,6 +38,8 @@
                         @@.green;<<print String.format("+{0} {1} exp", $mExp1, $mSkill1)>>@@
                         <<unset $mExp1; $mSkill1>>
                     <</if>>
+                <<default>>
+                    <<print $message>>
             <</switch>>
             ''
             //
