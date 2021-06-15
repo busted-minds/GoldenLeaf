@@ -1330,15 +1330,15 @@ Macro.add("dialogue", {
         &lt;&lt;print either(&quot;You see a group of people talking while walking.&quot;, &quot;You see some cars passing by.&quot;, &quot;You can see a bus making a stop.&quot;)&gt;&gt;
 
     &lt;&lt;else&gt;&gt;
-        &lt;&lt;if !$time.getHours() gte setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
+        &lt;&lt;if !$time.getHours() gt setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
             Frozen Jar it&#39;s still open and it appears to be quite active
         &lt;&lt;/if&gt;&gt;
         It&#39;s a bit dark but, you can still see people walking around and, although few, some cars.
     &lt;&lt;/if&gt;&gt;
     &lt;br&gt;
-    &lt;&lt;disable $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
+    &lt;&lt;disable $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
         &lt;&lt;button &quot;Enter Frozen Jar&quot; &quot;frozenjar&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;/disable&gt;&gt;&lt;&lt;if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;You see a sign that says: We are open from 11 AM to 3 AM.&lt;&lt;/if&gt;&gt;
+    &lt;&lt;/disable&gt;&gt;&lt;&lt;if $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;You see a sign that says: We are open from 11 AM to 3 AM.&lt;&lt;/if&gt;&gt;
 
     &lt;br&gt;
     &lt;br&gt;
@@ -1604,13 +1604,13 @@ Macro.add("dialogue", {
         &lt;br&gt;
         You see @@.orange;&lt;&lt;print $bnName&gt;&gt;@@ working at some tables and serving food to the costumers.
         &lt;br&gt;
-        &lt;&lt;disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours&gt;&gt;
+        &lt;&lt;disable $energy lt _totalEU or $time.getHours() gt setup.blacknectar.workingHours.closingHours - $pJob.hoursreq&gt;&gt;
             &lt;&lt;button &quot;Start Working&quot; &quot;bnwork&quot;&gt;&gt;&lt;&lt;/button&gt;&gt; 
         &lt;&lt;/disable&gt;&gt;~~@@.red;Energy required: &lt;&lt;print _totalEU&gt;&gt;.@@~~ 
         &lt;&lt;if $time.getHours() gte setup.blacknectar.workingHours.closingHours&gt;&gt; 
             &lt;&lt;goto &quot;barlowgrove&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $time.getHours() + $pJob.hoursreq gt setup.blacknectar.workingHours.closingHours&gt;&gt;
+        &lt;&lt;if $time.getHours() gt setup.blacknectar.workingHours.closingHours - $pJob.hoursreq&gt;&gt;
             @@.blue;//It&#39;s too late to complete your required hours, come back tomorrow//@@
         &lt;&lt;/if&gt;&gt;
         &lt;br&gt;
@@ -1995,13 +1995,13 @@ Macro.add("dialogue", {
         &lt;br&gt;
         You see @@.orange;&lt;&lt;print $fjName&gt;&gt;@@ working at some tables and serving food to the costumers.
         &lt;br&gt;
-        &lt;&lt;disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours&gt;&gt;
+        &lt;&lt;disable $energy lt _totalEU or $time.getHours() gt setup.frozenjar.workingHours.closingHours + 24 - $pJob.hoursreq&gt;&gt;
             &lt;&lt;button &quot;Start Working&quot; &quot;frozenJwork&quot;&gt;&gt;&lt;&lt;/button&gt;&gt; 
         &lt;&lt;/disable&gt;&gt;~~@@.red;Energy required: &lt;&lt;print _totalEU&gt;&gt;.@@~~        
-        &lt;&lt;if $time.getHours() gte setup.frozenjar.workingHours.closingHours&gt;&gt; 
-            &lt;&lt;goto &quot;frozenjar&quot;&gt;&gt;
+        &lt;&lt;if $time.getHours() lte setup.frozenjar.workingHours.closingHours&gt;&gt; 
+            &lt;&lt;goto &quot;pioneerlane&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours&gt;&gt;
+        &lt;&lt;if $time.getHours() gt setup.frozenjar.workingHours.closingHours + 24 - $pJob.hoursreq&gt;&gt;
             @@.blue;//It&#39;s too late to complete your required hours, come back tomorrow//@@
         &lt;&lt;/if&gt;&gt;
         &lt;br&gt;
