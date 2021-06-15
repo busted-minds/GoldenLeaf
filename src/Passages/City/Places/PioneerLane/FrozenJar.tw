@@ -29,13 +29,13 @@
         <br>
         You see @@.orange;<<print $fjName>>@@ working at some tables and serving food to the costumers.
         <br>
-        <<disable $energy lt _totalEU or $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
+        <<disable $energy lt _totalEU or $time.getHours() gt setup.frozenjar.workingHours.closingHours + 24 - $pJob.hoursreq>>
             <<button "Start Working" "frozenJwork">><</button>> 
         <</disable>>~~@@.red;Energy required: <<print _totalEU>>.@@~~        
-        <<if $time.getHours() gte setup.frozenjar.workingHours.closingHours>> 
-            <<goto "frozenjar">>
+        <<if $time.getHours() lte setup.frozenjar.workingHours.closingHours>> 
+            <<goto "pioneerlane">>
         <</if>>
-        <<if $time.getHours() + $pJob.hoursreq gt setup.frozenjar.workingHours.closingHours>>
+        <<if $time.getHours() gt setup.frozenjar.workingHours.closingHours + 24 - $pJob.hoursreq>>
             @@.blue;//It's too late to complete your required hours, come back tomorrow//@@
         <</if>>
         <br>
