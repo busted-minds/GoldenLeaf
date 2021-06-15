@@ -43,7 +43,7 @@
 
             <fieldset class="charc">
                 <legend>Genitals info: </legend>
-                    <<vagtightnesschecker>> It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects up to @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;You are hymen is still intact@@.<<else>>@@.gray;<<print $playervar.virginity.vagina>>@@<</if>>
+                    <<vagtightnesschecker>> It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects up to @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;Your hymen is still intact@@.<<else>>@@.gray;<<print $playervar.virginity.vagina>>@@<</if>>
                     <<if $playervar.cansquirt is true>><br>@@.green;When you orgasm you expel liquids from it@@.<</if>> 
                     <br>
                     Your clitoris has a <<clitorissizechecker>>size and is @@.blue;<<print $playervar.clitorissize>>@@ cm in total.
