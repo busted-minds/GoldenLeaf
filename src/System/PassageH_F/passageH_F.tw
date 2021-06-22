@@ -1,9 +1,8 @@
 :: PassageHeader [nobr]
-    /%<<if saveUpdate is true>>
+    <<if $version isnot updatedVersion>>
         <<gameUpdate>>
-    
-        <<set saveUpdate to false>>
-    <</if>>%/
+    <</if>>
+
     <<daychange>>
     <h2 class="passName"></h2>
     <div class="passDiv"></div>

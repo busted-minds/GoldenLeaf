@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://92D86F41-8C6B-4749-A2EF-2849676A8561// --><tw-storydata name="Golden Leaf" startnode="132" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="92D86F41-8C6B-4749-A2EF-2849676A8561" zoom="1" format="SugarCube" format-version="2.35.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Colors */
+	<!-- UUID://92D86F41-8C6B-4749-A2EF-2849676A8561// --><tw-storydata name="Golden Leaf" startnode="131" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="92D86F41-8C6B-4749-A2EF-2849676A8561" zoom="1" format="SugarCube" format-version="2.35.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Colors */
 	.yellow {
 		color: #fbf665;
 	}
@@ -347,6 +347,23 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		max-height: 100px;
 	}
 
+	.scrollWin {
+		overflow-y: auto;
+		overflow-wrap: break-word;
+		max-width: 90%;
+		max-height: 16rem;
+		margin: 5px;
+		padding: 5px;
+	}
+
+	.sexOpts {
+		border: 2px solid #383e65;
+		border-radius: 3px;
+		margin-left: 5px;
+		padding-left: 5px;
+		max-width: 90%;
+	}
+
 	.open {
 		display: block !important; 
 	}
@@ -545,18 +562,8 @@ window.wikifier = function (widget, args, args2, args3) {
     }
 };
 
-window.updatedVersion = 1;
+window.updatedVersion = "0.2.4";
 Config.saves.id="golden-leaf";
-(!Config.saves.version ? Config.saves.version = 1 : '');
-
-Config.saves.onLoad = function () {
-    if (Config.saves.version !== window.updatedVersion) {
-        window.saveUpdate = true;
-        Config.saves.version = window.updatedVersion;
-    }
-};
-
-window.saveUpdate = true;
 
 var l = document.createElement('link');
 l.rel = "icon";
@@ -1323,7 +1330,7 @@ Macro.add("dialogue", {
         &lt;&lt;print either(&quot;You see a group of people talking while walking.&quot;, &quot;You see some cars passing by.&quot;, &quot;You can see a bus making a stop.&quot;)&gt;&gt;
 
     &lt;&lt;else&gt;&gt;
-        &lt;&lt;if !$time.getHours() gte setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
+        &lt;&lt;if !$time.getHours() gt setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
             Frozen Jar it&#39;s still open and it appears to be quite active
         &lt;&lt;/if&gt;&gt;
         It&#39;s a bit dark but, you can still see people walking around and, although few, some cars.
@@ -1331,7 +1338,7 @@ Macro.add("dialogue", {
     &lt;br&gt;
     &lt;&lt;disable $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;
         &lt;&lt;button &quot;Enter Frozen Jar&quot; &quot;frozenjar&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;/disable&gt;&gt;&lt;&lt;if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;You see a sign that says: We are open from 11 AM to 3 AM.&lt;&lt;/if&gt;&gt;
+    &lt;&lt;/disable&gt;&gt;&lt;&lt;if $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours&gt;&gt;You see a sign that says: We are open from 11 AM to 3 AM.&lt;&lt;/if&gt;&gt;
 
     &lt;br&gt;
     &lt;br&gt;
@@ -2372,13 +2379,18 @@ Macro.add("dialogue", {
         &lt;div id=&quot;insidelist&quot;&gt;
             &lt;&lt;set _sleeptime to {&quot;2 hours, +40 energy&quot;: 2, &quot;4 hours, +60 energy&quot;: 4, &quot;6 hours, +80 energy&quot;: 6, &quot;8 hours, +100 energy&quot;: 8}&gt;&gt;
             Sleeping time:
-            &lt;&lt;listbox &quot;_time&quot; autoselect&gt;&gt;
+            &lt;&lt;listbox &quot;_time&quot;&gt;&gt;
                 &lt;&lt;optionsfrom _sleeptime&gt;&gt;
             &lt;&lt;/listbox&gt;&gt;
             &lt;br&gt;
-            &lt;&lt;set _ene to (_time*10)+20&gt;&gt;
             &lt;div class=&quot;med-button&quot;&gt;
-                &lt;&lt;button &quot;Sleep&quot; &quot;bed&quot;&gt;&gt;&lt;&lt;restoreEnergy _ene&gt;&gt;&lt;&lt;sleep&gt;&gt;&lt;&lt;timeattached _time*60 0&gt;&gt;&lt;&lt;/button&gt;&gt;
+                &lt;&lt;button &quot;Sleep&quot; &quot;bed&quot;&gt;&gt;
+                    &lt;&lt;set _ene to (_time*10)+20&gt;&gt;
+                    &lt;&lt;restoreEnergy _ene&gt;&gt;
+                    &lt;&lt;sleep&gt;&gt;
+                    &lt;&lt;timeattached _time*60 0&gt;&gt;
+                    &lt;&lt;unset _time&gt;&gt;
+                &lt;&lt;/button&gt;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -2386,13 +2398,16 @@ Macro.add("dialogue", {
         &lt;div id=&quot;insidelist&quot;&gt;
             &lt;&lt;set _relaxtime to {&quot;5 minutes, +2 energy&quot;: 5, &quot;15 minutes, +6 energy&quot;: 15, &quot;30 minutes, +12 energy&quot;: 30, &quot;1 hour, +24 energy&quot;: 60}&gt;&gt;
             Relaxing time:
-            &lt;&lt;listbox &quot;_rtime&quot; autoselect&gt;&gt;
+            &lt;&lt;listbox &quot;_rtime&quot;&gt;&gt;
                 &lt;&lt;optionsfrom _relaxtime&gt;&gt;
             &lt;&lt;/listbox&gt;&gt;
             &lt;br&gt;
-            &lt;&lt;set _rene to _rtime * 0.4&gt;&gt;
             &lt;div class=&quot;med-button&quot;&gt;
-                &lt;&lt;button &quot;Relax&quot; &quot;bed&quot;&gt;&gt;&lt;&lt;restoreEnergy _rene&gt;&gt;&lt;&lt;timeattached _rtime 0&gt;&gt;&lt;&lt;/button&gt;&gt;
+                &lt;&lt;button &quot;Relax&quot; &quot;bed&quot;&gt;&gt;
+                    &lt;&lt;set _rene to _rtime * 0.4&gt;&gt;
+                    &lt;&lt;restoreEnergy _rene&gt;&gt;
+                    &lt;&lt;timeattached _rtime 0&gt;&gt;
+                &lt;&lt;/button&gt;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -2700,9 +2715,12 @@ Macro.add("dialogue", {
                 &lt;&lt;optionsfrom _relaxtime&gt;&gt;
             &lt;&lt;/listbox&gt;&gt;
             &lt;br&gt;
-            &lt;&lt;set _rene to _rtime * 0.4&gt;&gt;
             &lt;div class=&quot;med-button&quot;&gt;
-                &lt;&lt;button &quot;Relax&quot; &quot;sofa&quot;&gt;&gt;&lt;&lt;restoreEnergy _rene&gt;&gt;&lt;&lt;timeattached _rtime&gt;&gt;&lt;&lt;/button&gt;&gt;
+                &lt;&lt;button &quot;Relax&quot; &quot;bed&quot;&gt;&gt;
+                    &lt;&lt;set _rene to _rtime * 0.4&gt;&gt;
+                    &lt;&lt;restoreEnergy _rene&gt;&gt;
+                    &lt;&lt;timeattached _rtime 0&gt;&gt;
+                &lt;&lt;/button&gt;&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -2712,71 +2730,81 @@ Macro.add("dialogue", {
     &lt;br&gt;
     &lt;br&gt;
     &lt;&lt;button &quot;Get up&quot; &quot;livingroom&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="masturbate" tags="nobr" position="475,850" size="100,100">&lt;&lt;passNameRep &quot;Masturbation&quot;&gt;&gt;
-    &lt;&lt;if !$sexLog and !$mastTime&gt;&gt;
+    &lt;&lt;if !$mastSession&gt;&gt;
+        &lt;&lt;set $mastSession to 0&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+    &lt;&lt;if !$sexLog&gt;&gt;
         &lt;&lt;set $sexLog to []&gt;&gt;
-        &lt;&lt;set $mastTime to 0&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-    &lt;&lt;if $arousal gte 100&gt;&gt;
-        &lt;&lt;set $selectedSexOpt.RightHand to &quot;Select an option&quot;&gt;&gt;
-        &lt;&lt;set $selectedSexOpt.LeftHand to &quot;Select an option&quot;&gt;&gt;
-
-        &lt;&lt;timeattached $mastTime $mastTime*1.5 0.3 &quot;chngMult&quot;&gt;&gt;
-        &lt;&lt;set $mastTime to 0&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-    
     &lt;&lt;set _fID to $backpack.findIndex(x =&gt; x.category.some(y =&gt; y === &quot;dildo&quot;))&gt;&gt;
-    &lt;&lt;mastOpt&gt;&gt;
-    &lt;&lt;if $sexLog[0]&gt;&gt;
-        &lt;&lt;print $sexLog[0]&gt;&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-    &lt;&lt;/if&gt;&gt;
-    &lt;&lt;if $sexLog[1] and !$sexLog[0].includes(&quot;After reaching an orgasm&quot;)&gt;&gt;
-        &lt;&lt;print $sexLog[1]&gt;&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-    &lt;&lt;/if&gt;&gt;
 
-    Right Hand:
-    &lt;&lt;listbox &quot;$selectedSexOpt.RightHand&quot; autoselect&gt;&gt;
-        &lt;&lt;optionsfrom _masturoptions&gt;&gt;
-    &lt;&lt;/listbox&gt;&gt;
-    &lt;br&gt;
-    &lt;br&gt;
-    Left Hand:
-    &lt;&lt;listbox &quot;$selectedSexOpt.LeftHand&quot; autoselect&gt;&gt;
-        &lt;&lt;optionsfrom _masturoptions&gt;&gt;
-    &lt;&lt;/listbox&gt;&gt;
+    &lt;&lt;if _fID isnot -1 and $playervar.virginity.vagina is true and !$dispMess&gt;&gt;
+        &lt;&lt;dialogue &quot;GLODEX&quot; &quot;green&quot;&gt;&gt;
+            @@.red;Warning@@@@.white;
+            &lt;br&gt;
+            Sex toy with penetration capabilities detected. Using it will break your hymen
+            &lt;&lt;if $backpack[_fID].tLength gt $playervar.vagcomfortinsert and $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert&gt;&gt;
+                &lt;br&gt;
+                Detected sex toy with an uncomfortable size for your vagina, please refrain fom using it.
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $backpack[_fID].tLength gt $playervar.anuscomfortinsert and $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
+                &lt;br&gt;
+                Detected sex toy with an uncomfortable size for your anus, please refrain fom using it.
+            &lt;&lt;/if&gt;&gt;
+            @@
+        &lt;&lt;/dialogue&gt;&gt;
+        &lt;&lt;set $dispMess to true&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+    &lt;&lt;sexWindow&gt;&gt;
+    &lt;&lt;if $mastSession eq $mastLimit&gt;&gt;
+        &lt;&lt;dialogue &quot;GLODEX&quot; &quot;green&quot;&gt;&gt;
+            //@@.orange;Warning, high exhaustion levels.@@ 
+            &lt;br&gt;
+            You have reached your masturbation limit for this session. //
+        &lt;&lt;/dialogue&gt;&gt;
 
+    &lt;&lt;else&gt;&gt;
+        &lt;div class=&quot;sexOpts&quot;&gt;
+            &lt;&lt;sexButtons &quot;masturb&quot;&gt;&gt;
+            &lt;div class=&quot;sexBttns&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;&lt;/if&gt;&gt;
     &lt;br&gt;
     &lt;br&gt;
-    &lt;&lt;set _eRH to $selectedSexOpt.RightHand isnot &quot;Select an option&quot;&gt;&gt;
-    &lt;&lt;set _eLH to $selectedSexOpt.LeftHand isnot &quot;Select an option&quot;&gt;&gt;
-    &lt;&lt;button &quot;Update&quot; &quot;masturbate&quot;&gt;&gt;
-        &lt;&lt;masturbation&gt;&gt;
-        &lt;&lt;set $mastTime++&gt;&gt;
-    &lt;&lt;/button&gt;&gt;&lt;&lt;if _eRH or _eLH&gt;&gt;@@.red;+1 Minute@@&lt;&lt;/if&gt;&gt;
 
     &lt;&lt;button &quot;Finish&quot; $location&gt;&gt;
-        &lt;&lt;set $selectedSexOpt.RightHand to undefined&gt;&gt;
-        &lt;&lt;set $selectedSexOpt.LeftHand to undefined&gt;&gt;
         &lt;&lt;unset $sexLog&gt;&gt;
         &lt;&lt;unset $location&gt;&gt;
-        &lt;&lt;unset $mastTime&gt;&gt;
+        &lt;&lt;unset $dispMess&gt;&gt;
+        &lt;&lt;unset $aroused&gt;&gt;
+        &lt;&lt;unset $mastSession&gt;&gt;
+        &lt;&lt;unset $secAct&gt;&gt;
+        &lt;&lt;unset $mainAct&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="masturbutton" tags="widget nobr" position="600,850" size="100,100">&lt;&lt;widget &quot;masturbutton&quot;&gt;&gt;
-    &lt;&lt;disable $energy lt 35&gt;&gt;
+    &lt;&lt;disable $energy lt 30&gt;&gt;
         &lt;div class=&quot;med-button&quot;&gt;
         &lt;&lt;button &quot;Masturbate&quot; &quot;masturbate&quot;&gt;&gt;
             &lt;&lt;set $location to passage()&gt;&gt;
         &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/disable&gt;&gt;&lt;&lt;if $energy lt 35&gt;&gt;@@.lightred;You need some rest before trying to masturbate.@@&lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="sex(main)" tags="widget nobr" position="725,850" size="100,100">/* These widgets are self-explanatory. 
+    &lt;&lt;/disable&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="sex(main)" tags="widget nobr" position="725,850" size="100,100">&lt;&lt;widget &quot;sexIni&quot;&gt;&gt;
+        &lt;&lt;set setup.sexActions to {}&gt;&gt;
+
+        &lt;&lt;masturbActions&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;
+    /* These widgets are self-explanatory. 
         But for addArousal the arguments are like this: $args[1] = the message in case of being a &quot;premade&quot; message or the type of action(ex: masturb). 
         $args[2] is in case of a &quot;pre-made&quot; message so it does collide with the one that doesn&#39;t use &quot;pre-made&quot; messages.*/
     &lt;&lt;widget &quot;addArousal&quot;&gt;&gt;
         &lt;&lt;set _amount to $args[0]&gt;&gt;
         &lt;&lt;set _mult to $playervar.sensibility / 200&gt;&gt;
+
+        &lt;&lt;if $mainAct isnot undefined and setup.sexActions[$mainAct].type.includes(&quot;sextoy&quot;) and $playervar.virginity.vagina is true&gt;&gt;
+            &lt;&lt;set $playervar.virginity.vagina to &quot;Your hymen was teared with a &lt;&lt;print $backpack[_fID].name&gt;&gt;.&quot;&gt;&gt;
+
+            &lt;&lt;set $sexLog.push(&quot;@@.red;You have teared your hymen@@&quot;)&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
 
         &lt;&lt;set $arousal += Math.round(_amount + (_amount * _mult))&gt;&gt;
 
@@ -2785,46 +2813,41 @@ Macro.add("dialogue", {
         &lt;&lt;/if&gt;&gt;
 
         &lt;&lt;if $arousal gte 100&gt;&gt;
-            &lt;&lt;orgasmCheck $args[1] $args[2] $args[3]&gt;&gt;
+            &lt;&lt;orgasmCheck $args[1]&gt;&gt;
         &lt;&lt;/if&gt;&gt;
 
     &lt;&lt;/widget&gt;&gt;
 
     &lt;&lt;widget &quot;orgasmCheck&quot;&gt;&gt;
         &lt;&lt;set $arousal to 0&gt;&gt;
-
-        &lt;&lt;if $args[1] is &quot;mastMsg&quot;&gt;&gt;
-            &lt;&lt;if $playervar.gender is &quot;male&quot;&gt;&gt;
-                &lt;&lt;set $sexLog[0] to &quot;After reaching an orgasm you ejaculate and feel satisfied.&quot;&gt;&gt;
-            &lt;&lt;elseif $playervar.cansquirt is true&gt;&gt;
-                &lt;&lt;set $sexLog[0] to &quot;After reaching an orgasm you feel satisfied and expel some fluids.&quot;&gt;&gt;
-            &lt;&lt;else&gt;&gt;
-                &lt;&lt;set $sexLog[0] to &quot;After reaching an orgasm you feel satisfied. Or maybe not?.&quot;&gt;&gt;
-            &lt;&lt;/if&gt;&gt;
-
-            &lt;&lt;addSexTraits $args[0]&gt;&gt;
-
-        &lt;&lt;elseif $args[2] is &quot;preM&quot;&gt;&gt;
-            &lt;&lt;set $sexLog to $args[0]&gt;&gt;
-            &lt;&lt;addSexTraits $args[1]&gt;&gt;
-
-        &lt;&lt;elseif $args[1] is &quot;noMsg&quot;&gt;&gt;
-            &lt;&lt;addSexTraits $args[0]&gt;&gt;
+        
+        &lt;&lt;if $playervar.gender is &quot;male&quot;&gt;&gt;
+            &lt;&lt;set $sexLog.push(&quot;After reaching an orgasm you ejaculate and feel satisfied&quot;)&gt;&gt;
+        &lt;&lt;elseif $playervar.cansquirt is true&gt;&gt;
+            &lt;&lt;set $sexLog.push(&quot;After reaching an orgasm you feel satisfied and expel some fluids&quot;)&gt;&gt;
+        &lt;&lt;else&gt;&gt;
+            &lt;&lt;set $sexLog.push(&quot;After reaching an orgasm you feel satisfied. Or maybe not?&quot;)&gt;&gt;
         &lt;&lt;/if&gt;&gt;
 
-        &lt;&lt;set $aroused to undefined&gt;&gt;
+
+        &lt;&lt;unset $secAct&gt;&gt;
+        &lt;&lt;addSexTraits $args[0]&gt;&gt;
 
     &lt;&lt;/widget&gt;&gt;
     /* Will need to expand this later when more sexual traits are added. */
     &lt;&lt;widget &quot;addSexTraits&quot;&gt;&gt;
         &lt;&lt;if $args.includesAny(&quot;masturb&quot;)&gt;&gt;
             &lt;&lt;set $masturCount++&gt;&gt;
+            &lt;&lt;set $mastSession += 1&gt;&gt;
         
             &lt;&lt;set _find to $pTraits.findIndex(x =&gt; x.name == setup.traits[1].name)&gt;&gt;
             &lt;&lt;if $masturCount gte 5 and _find is -1&gt;&gt;
                 &lt;&lt;set $pTraits.pushUnique(setup.traits[1])&gt;&gt;
+                &lt;&lt;set $mastLimit to 2&gt;&gt;
+
             &lt;&lt;elseif _find isnot -1&gt;&gt;
                 &lt;&lt;traitsEXP _find 1&gt;&gt;
+                &lt;&lt;set $mastLimit to $mastLimit*$pTraits[_find].level&gt;&gt;
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/widget&gt;&gt;
@@ -2862,272 +2885,217 @@ Macro.add("dialogue", {
         &lt;&lt;if _arAmount isnot 0&gt;&gt;
             &lt;&lt;addArousal _arAmount &quot;masturb&quot; &quot;noMsg&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="masturbation" tags="widget nobr" position="850,850" size="100,100">/* Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-        This work beyond human understanding.
-        Just some options so you can fap or the other thing that girls do.
-        You can even fap while switching hands :0
-    */
-    &lt;&lt;widget &quot;masturbation&quot;&gt;&gt;
-        &lt;&lt;set _hands to [&quot;RightHand&quot;, &quot;LeftHand&quot;]&gt;&gt;
-        &lt;&lt;for _i to 0; _i lt _hands.length; _i++&gt;&gt;
-            &lt;&lt;switch _hands[_i]&gt;&gt;
-                &lt;&lt;case &quot;RightHand&quot;&gt;&gt;
-                    &lt;&lt;set _LorRHand to &quot;right hand&quot;&gt;&gt;
-                &lt;&lt;case &quot;LeftHand&quot;&gt;&gt;
-                    &lt;&lt;set _LorRHand to &quot;left hand&quot;&gt;&gt;
-            &lt;&lt;/switch&gt;&gt;
-
-            &lt;&lt;switch $selectedSexOpt[_hands[_i]]&gt;&gt;
-                &lt;&lt;case &quot;Massage clitoris&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&quot;+ _LorRHand +&quot;@@ @@.pink;you gently massage your clitoris in circular motion, up and down and to the sides, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 80&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After a bit, you start to feel it more and now you&#39;re doing faster and more rapid motions, trying to @@@@.darkpink;feel better@@ @@.pink; more and more@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;With that much stimulation, your @@@@.darkpink;clitoris@@ @@.pink;got a bit swollen from arousal and you feel that you are close to having an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;addArousal 6 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Massage labia&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&quot;+ _LorRHand +&quot;@@ @@.pink;you gently massage your labia, in circular motion, up and down and to the sides building up arousal trying to get wet to maybe an insertion@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;With that much stimulation you are now wet. After so many motions, you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;addArousal 4 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt; 
-                &lt;&lt;case &quot;Insert fingers(Vagina)&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;You gently insert @@.orange;2@@ @@.pink;fingers into your vagina, trying to find the spot that feels the best, warm and moist@@. @@.darkpink;You&#39;re starting to feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 80&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After so much stimulation you start to feel it more, and now you&#39;re doing fast motions trying to @@@@.darkpink;feel better, getting closer to an orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;Your vagina is wetter than before, a sign that you are close to an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;addArousal 6 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Massage anus&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                    &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@ @@.pink;you gently massage around your anus with circular motions, trying to prepare it for an insertion, or maybe you just like to massage it, and start to @@@@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lt 100&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After a bit you start to feel it more and now you&#39;re doing it more fast, trying to @@@@.darkpink;feel better, taking care of not putting a finger in, yet@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt; 
-
-                    &lt;&lt;addArousal 4 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Insert fingers(Anus)&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;You gently insert @@.orange;1@@ @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You&#39;re starting to feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 60&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After a bit stimulation you start to feel more used to have it in. @@@@.darkpink; You start to feel better trying to get close to an orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                    &lt;&lt;set $sexLog[_i] to &quot;@@.pink;Your anus has widened enough to try and put more fingers in@@.@@.darkpink;Drawing you close to an orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt; 
-
-                    &lt;&lt;addArousal 5 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Caress nipples&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@ @@.pink;you gently massage your @@@@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@@@.pink; nipples, with motions in circles, up and down and to the sides some licking and sucking here and there, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 80&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After a bit your nipples are erected, getting more easy to feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt; 
-
-                    &lt;&lt;if $playervar.gender is &quot;female&quot;&gt;&gt;
-                        &lt;&lt;addArousal 3 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;addArousal 1 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                    &lt;&lt;/if&gt;&gt;
-                &lt;&lt;case &quot;Pinch nipples&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 45&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@ @@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@@@.pink; nipples, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 60&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After a bit your nipples are erected, getting more easy to feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;if $playervar.gender is &quot;female&quot;&gt;&gt;
-                        &lt;&lt;addArousal 4 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;addArousal 2 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                    &lt;&lt;/if&gt;&gt;
-                &lt;&lt;case &quot;Caress penis&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 30&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@  @@.pink;you caress your penis, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 70 and $aroused is true&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After caressing it, your penis now is fully erected and secreting pre-seminal fluid@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-                    &lt;&lt;addArousal 4 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Caress testicles&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 70&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@  @@.pink;you caress your testicles with circular motions around them, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;addArousal 5 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Stroke penis&quot;&gt;&gt;
-                    &lt;&lt;if $arousal lt 30&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;With your @@.orange;&lt;&lt;print _LorRHand&gt;&gt;@@ @@.pink;you stroke your penis up and down, building up arousal@@ and starting to @@.darkpink;feel good@@.&quot;&gt;&gt;
-                    
-                    &lt;&lt;elseif $arousal lte 70 and $aroused is true&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink;After stroking it, your penis now is fully erected and secreting pre-seminal fluid and you started to do faster stroke, trying to get to an orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;elseif $arousal lte 99&gt;&gt;
-                        &lt;&lt;set $sexLog[_i] to &quot;@@.pink; With that much stimulation you feel that you are close to have an @@@@.darkpink;orgasm@@.&quot;&gt;&gt;
-
-                    &lt;&lt;/if&gt;&gt;
-
-                    &lt;&lt;addArousal 6 &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Insert dildo(Vagina)&quot;&gt;&gt;
-                    &lt;&lt;set $sexLog[_i] to &quot;You insert your @@.orange;&lt;&lt;print $backpack[_fID].lowname&gt;&gt;@@ in your vagina carefully searching for your sweet spot, thrusting in and out repeatedly while getting wetter and wetter each time.&quot;&gt;&gt;
-                    
-                    &lt;&lt;set _arsAm to ($playervar.vagcomfortinsert + $playervar.vagwidthcomfortinsert + $backpack[_fID].tLength + $backpack[_fID].tWidth) * 0.25&gt;&gt;
-                    &lt;&lt;addArousal _arsAm &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-                &lt;&lt;case &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                    &lt;&lt;set $sexLog[_i] to &quot;You insert your @@.orange;&lt;&lt;print $backpack[_fID].lowname&gt;&gt;@@ in your anus finding a bit of resistance as it makes its way through giving you pleasure with each thrust.&quot;&gt;&gt;
-                    
-                    &lt;&lt;set _arsAm to ($playervar.anuscomfortinsert + $playervar.anuswidthcomfortinsert + $backpack[_fID].tLength + $backpack[_fID].tWidth) * 0.25&gt;&gt;
-                    &lt;&lt;addArousal _arsAm &quot;masturb&quot; &quot;mastMsg&quot;&gt;&gt;
-            &lt;&lt;/switch&gt;&gt;
-
-        &lt;&lt;/for&gt;&gt;
-
     &lt;&lt;/widget&gt;&gt;
 
-    &lt;&lt;widget &quot;mastOpt&quot;&gt;&gt;
-        &lt;&lt;switch $playervar.gender&gt;&gt;
-            &lt;&lt;case &quot;female&quot;&gt;&gt;
-                &lt;&lt;set _masturoptions to [&quot;Select an option&quot;, &quot;Massage clitoris&quot;, &quot;Massage labia&quot;, &quot;Massage anus&quot;, &quot;Caress nipples&quot;]&gt;&gt;
-                
-                &lt;&lt;if $aroused is true&gt;&gt;
-                    &lt;&lt;set _masturoptions.push(&quot;Insert fingers(Vagina)&quot;, &quot;Insert fingers(Anus)&quot;, &quot;Pinch nipples&quot;)&gt;&gt;
+    &lt;&lt;widget &quot;sexWindow&quot;&gt;&gt;
+        &lt;&lt;sexVal&gt;&gt;
+        &lt;div class=&quot;scrollWin&quot;&gt;
+            &lt;&lt;for _sl to 0; _sl lt $sexLog.length; _sl++&gt;&gt;
+                - &lt;&lt;print $sexLog[_sl]&gt;&gt;
+                &lt;br&gt;
+                &lt;br&gt;
+            &lt;&lt;/for&gt;&gt;
+            &lt;&lt;done&gt;&gt;
+            &lt;&lt;script&gt;&gt;
+                var el = document.querySelector(&#39;.scrollWin&#39;);
+                el.scrollTop = el.scrollHeight;
+            &lt;&lt;/script&gt;&gt;
+            &lt;&lt;/done&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/widget&gt;&gt;
 
-                    &lt;&lt;if $backpack[_fID].tLength gt $playervar.vagcomfortinsert or $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert&gt;&gt;
-                        @@.red;&lt;&lt;print &quot;Be aware that your dildo is too big for your vagina so you can&#39;t use it. Buy one of a lower size&quot;&gt;&gt;
-                        &lt;&lt;if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
-                            &lt;br&gt;
-                            &lt;&lt;print &quot;Be aware that your dildo is too big for your anus so you can&#39;t use it for this place too. Buy one of a lower size&quot;&gt;&gt;
-                        &lt;&lt;/if&gt;&gt;@@
-                        &lt;br&gt;
-                        &lt;br&gt;
-                    &lt;&lt;elseif $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
-                        @@.red;&lt;&lt;print &quot;Be aware that your dildo is too big for your anus so you can&#39;t use it. Buy one of a lower size&quot;&gt;&gt;@@
-                        &lt;br&gt;
-                        &lt;br&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;if $bps.genitals[0].primary.lowname is &quot;naked&quot; and _fID isnot -1 or $bps.genitals[0].secondary.lowname is &quot;naked&quot; and _fID isnot -1 or 
-                            $bps.lowerbody[1].primary.lowname is &quot;naked&quot; and _fID isnot -1 or $bps.lowerbody[1].secondary.lowname is &quot;naked&quot; and _fID isnot -1&gt;&gt;
-                            &lt;&lt;set _masturoptions.push(&quot;Insert dildo(Vagina)&quot;, &quot;Insert dildo(Anus)&quot;)&gt;&gt;
+    &lt;&lt;widget &quot;sexButtons&quot;&gt;&gt;
+        &lt;&lt;switch $args[0]&gt;&gt;
+            &lt;&lt;case &quot;masturb&quot;&gt;&gt;
+                &lt;&lt;for _o to 0; _o lt setup.sexActions.length; _o++&gt;&gt;
+                    &lt;&lt;if setup.sexActions[_o].type.includesAny(&quot;main&quot;, &quot;secondary&quot;) and setup.sexActions[_o].for.includes($playervar.gender)&gt;&gt;
+                        &lt;&lt;if setup.sexActions[_o].type.includes(&quot;sextoy&quot;) and _fID is -1&gt;&gt;
+                            &lt;&lt;continue&gt;&gt;
 
-                            &lt;&lt;if $selectedSexOpt.RightHand is &quot;Insert dildo(Vagina)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Vagina)&quot;)&gt;&gt;
+                        &lt;&lt;elseif setup.sexActions[_o].type.includes(&quot;sextoy&quot;) and _fID isnot -1 and setup.sexActions[_o].requirements.includesAny($backpack[_fID].name) and $backpack[_fID].tLength gt $playervar.anuscomfortinsert and $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
+                            &lt;&lt;set _disable to true&gt;&gt;
 
-                                &lt;&lt;if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is &quot;Insert fingers(Vagina)&quot; or
-                                    $selectedSexOpt.RightHand is &quot;Insert dildo(Vagina)&quot; and $selectedSexOpt.LeftHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.LeftHand to undefined&gt;&gt;
-
-                                &lt;&lt;/if&gt;&gt;
-
-                            &lt;&lt;elseif $selectedSexOpt.LeftHand is &quot;Insert dildo(Vagina)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Vagina)&quot;)&gt;&gt;
-
-                                &lt;&lt;if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is &quot;Insert fingers(Vagina)&quot; or
-                                    $selectedSexOpt.LeftHand is &quot;Insert dildo(Vagina)&quot; and $selectedSexOpt.RightHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.RightHand to undefined&gt;&gt;
-
-                                &lt;&lt;/if&gt;&gt;
+                        &lt;&lt;elseif setup.sexActions[_o].type.includes(&quot;sextoy&quot;) and _fID isnot -1 and setup.sexActions[_o].requirements.includesAny($backpack[_fID].name) and $backpack[_fID].tLength gt $playervar.vagcomfortinsert and $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert&gt;&gt;
+                            &lt;&lt;set _disable to true&gt;&gt;
+                        &lt;&lt;else&gt;&gt;
+                            &lt;&lt;unset _disable&gt;&gt;
+                        &lt;&lt;/if&gt;&gt;
                             
-                            &lt;&lt;elseif $selectedSexOpt.RightHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Anus)&quot;)&gt;&gt;
+                        &lt;&lt;if setup.sexActions[_o].type.includes(&quot;secondary&quot;)&gt;&gt;
+                            &lt;&lt;set _name to setup.sexActions[_o].name + ($secAct is setup.sexActions[_o].id ? &quot; (Active)&quot; : &quot; (Repeatable)&quot;)&gt;&gt;
 
-                                &lt;&lt;if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is &quot;Insert fingers(Anus)&quot; or
-                                    $selectedSexOpt.RightHand is &quot;Insert dildo(Anus)&quot; and $selectedSexOpt.LeftHand is &quot;Insert dildo(Vagina)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.LeftHand to undefined&gt;&gt;
-                                &lt;&lt;/if&gt;&gt;
-                            &lt;&lt;elseif $selectedSexOpt.LeftHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Anus)&quot;)&gt;&gt;
-
-                                &lt;&lt;if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is &quot;Insert fingers(Anus)&quot; or
-                                    $selectedSexOpt.LeftHand is &quot;Insert dildo(Anus)&quot; and $selectedSexOpt.RightHand is &quot;Insert dildo(Vagina)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.RightHand to undefined&gt;&gt;
-
-                                &lt;&lt;/if&gt;&gt;
-
-                            &lt;&lt;/if&gt;&gt;
-
+                        &lt;&lt;else&gt;&gt;
+                            &lt;&lt;set _name to setup.sexActions[_o].name&gt;&gt;
                         &lt;&lt;/if&gt;&gt;
+
+                        &lt;span style=&quot;font-size: small; max-width: 7rem; display: inline-block;&quot;&gt;
+                            &lt;&lt;disable setup.sexActions[_o].type.includes(&quot;main&quot;) and !$aroused
+                                    or _disable is true&gt;&gt;
+
+                                &lt;&lt;capture _o&gt;&gt;
+                                    &lt;&lt;button _name &quot;masturbate&quot;&gt;&gt;
+                                        &lt;&lt;set (setup.sexActions[_o].type.includes(&quot;secondary&quot;) ? $secAct to setup.sexActions[_o].id : (setup.sexActions[_o].type.includes(&quot;main&quot;) ? $mainAct to setup.sexActions[_o].id : &quot;&quot;))&gt;&gt;
+                                        &lt;&lt;timeattached 1 4&gt;&gt;
+                                    &lt;&lt;/button&gt;&gt;
+                                &lt;&lt;/capture&gt;&gt;
+                            &lt;&lt;/disable&gt;&gt;
+                        &lt;/span&gt;
                     &lt;&lt;/if&gt;&gt;
-                    
-                &lt;&lt;/if&gt;&gt;
-                
-            &lt;&lt;case &quot;male&quot;&gt;&gt;
-                &lt;&lt;set _masturoptions to [&quot;Select an option&quot;, &quot;Caress penis&quot;, &quot;Caress testicles&quot;, &quot;Massage anus&quot;, &quot;Caress nipples&quot;]&gt;&gt;
-        
-                &lt;&lt;if $aroused is true&gt;&gt;
-                    &lt;&lt;set _masturoptions.push(&quot;Stroke penis&quot;, &quot;Insert fingers(Anus)&quot;, &quot;Pinch nipples&quot;)&gt;&gt;
-                    &lt;&lt;set _fID to $backpack.findIndex(x =&gt; x.category.some(y =&gt; y === &quot;dildo&quot;))&gt;&gt;
+                &lt;&lt;/for&gt;&gt;
 
-                    &lt;&lt;if $backpack[_fID].tLength gt $playervar.anuscomfortinsert or $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
-                        @@.red;&lt;&lt;print &quot;Be aware that your dildo is too big for your anus so you can&#39;t use it. Buy one of a lower size&quot;&gt;&gt;@@
-                        &lt;br&gt;
-                        &lt;br&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;if $bps.lowerbody[1].primary.lowname is &quot;naked&quot; and _fID isnot -1 or 
-                            $bps.lowerbody[1].secondary.lowname is &quot;naked&quot; and _fID isnot -1&gt;&gt;
-                            &lt;&lt;set _masturoptions.push(&quot;Insert dildo(Anus)&quot;)&gt;&gt;
-
-                            &lt;&lt;if $selectedSexOpt.RightHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Anus)&quot;)&gt;&gt;
-
-                                &lt;&lt;if $selectedSexOpt.RightHand is $selectedSexOpt.LeftHand or $selectedSexOpt.LeftHand is &quot;Insert fingers(Anus)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.LeftHand to undefined&gt;&gt;
-
-                                &lt;&lt;/if&gt;&gt;
-
-                            &lt;&lt;elseif $selectedSexOpt.LeftHand is &quot;Insert dildo(Anus)&quot;&gt;&gt;
-                                &lt;&lt;set _masturoptions.delete(&quot;Insert fingers(Anus)&quot;)&gt;&gt;
-
-                                &lt;&lt;if $selectedSexOpt.LeftHand is $selectedSexOpt.RightHand or $selectedSexOpt.RightHand is &quot;Insert fingers(Anus)&quot;&gt;&gt;
-                                    &lt;&lt;set $selectedSexOpt.RightHand to undefined&gt;&gt;
-
-                                &lt;&lt;/if&gt;&gt;
-
-                            &lt;&lt;/if&gt;&gt;
-
-                        &lt;&lt;/if&gt;&gt;
-                    &lt;&lt;/if&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
         &lt;&lt;/switch&gt;&gt;
-        
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="statusnneeds" tags="widget nobr" position="975,850" size="100,100">&lt;&lt;widget &quot;restoreEnergy&quot;&gt;&gt; /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn&#39;t. By subtracting where it is from where it isn&#39;t, or where it isn&#39;t from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn&#39;t, and arriving at a position that it wasn&#39;t, it now is.*/
+    &lt;&lt;/widget&gt;&gt;
+
+    &lt;&lt;widget &quot;sexVal&quot;&gt;&gt;
+        &lt;&lt;if def $secAct or def $mainAct&gt;&gt;
+            &lt;&lt;if def $mainAct and def $secAct and setup.sexActions[$mainAct].excludes.includes(setup.sexActions[$secAct].name)&gt;&gt;
+                &lt;&lt;unset $secAct&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+
+            &lt;&lt;set _secVal to (def $secAct ? setup.sexActions[$secAct].value : 0)&gt;&gt;
+            &lt;&lt;set (def $secAct ? $sexLog.push(either(setup.sexActions[$secAct].text)) : &#39;&#39;)&gt;&gt;
+
+            &lt;&lt;set _mainVal to (def $mainAct ? setup.sexActions[$mainAct].value : 0)&gt;&gt;
+            &lt;&lt;set (def $mainAct ? $sexLog.push(either(setup.sexActions[$mainAct].text)) : &#39;&#39;)&gt;&gt;
+
+            &lt;&lt;set _val to _secVal + _mainVal&gt;&gt;
+
+            &lt;&lt;unset $mainAct&gt;&gt;
+            &lt;&lt;addArousal _val &quot;masturb&quot;&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;
+
+    &lt;&lt;widget &quot;masturbActions&quot;&gt;&gt;
+        &lt;&lt;set setup.sexActions to [
+            {
+                id: 0,
+                name: &quot;Insert fingers (Vagina)&quot;,
+                type: [&quot;main&quot;, &quot;masturbation&quot;],
+                for: [&quot;female&quot;],
+                requirements: [],
+                excludes: [],
+                text: [
+                    &quot;You gently insert @@.orange;2@@ @@.pink;fingers into your pussy@@, trying to find the spot that feels the best&quot;,
+                    &quot;After inserting @@.orange;2@@ @@.pink;fingers into your pussy@@ so much stimulation caused you start to feel better, making you put your fingers faster and faster inside,@@.darkpink; making a wet sound that echoes around@@&quot;
+                    ],
+                value: 8,
+            },            
+            {
+                id: 1,
+                name: &quot;Insert fingers (Anus)&quot;,
+                type: [&quot;main&quot;, &quot;masturbation&quot;],
+                for: [&quot;female&quot;, &quot;male&quot;],
+                requirements: [],
+                excludes: [&quot;Massage anus&quot;],
+                text: [
+                    &quot;You gently insert @@.orange;1@@ @@.pink;finger into your anus@@, @@.pink;finger into your anus, opening it step by step, with so much care to not hurt yourself@@. @@.darkpink;You start to feel good@@&quot;,
+                    &quot;After a bit you insert @@.orange;1@@ @@.pink;fingers into your anus@@. So much stimulation has caused you to feel better, making you put your fingers faster and faster inside, @@.darkpink; making a wet sound@@&quot;
+                    ],
+                value: 8,
+            },
+            {
+                id: 2,
+                name: &quot;Stroke penis&quot;,
+                type: [&quot;main&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [&quot;Caress penis&quot;],
+                for: [&quot;male&quot;],
+                text: [
+                    &quot;You start stroking your @@.pink;erected &lt;&lt;penissizechecker&gt;&gt; penis@@ up and down with your hand, building up arousal@@&quot;,
+                    &quot;You start stroking @@.pink;erected &lt;&lt;penissizechecker&gt;&gt; penis@@ up and down with your hand, doing it faster and faster each time and getting close to an orgasm@@&quot;
+                    ],
+                value: 8,
+            },
+            {
+                id: 3,
+                name: &quot;Insert dildo (Vagina)&quot;,
+                type: [&quot;main&quot;, &quot;sextoy&quot;],
+                for: [&quot;female&quot;],
+                requirements: [setup.clothes.sextoys[1].name],
+                excludes: [],
+                text: [
+                    &quot;You insert your @@.orange;&lt;&lt;print $backpack[_fID].lowname&gt;&gt;@@ in your @@.pink;pussy@@ carefully searching for your sweet spot, thrusting in and out repeatedly @@.pink;making wet sounds each time@@&quot;
+                    ],
+                value: 12,
+            },
+            {
+                id: 4,
+                name: &quot;Insert dildo (Anus)&quot;,
+                type: [&quot;main&quot;, &quot;sextoy&quot;],
+                requirements: [setup.clothes.sextoys[1].name],
+                excludes: [],
+                for: [&quot;female&quot;, &quot;male&quot;],
+                text: [
+                    &quot;You insert your @@.orange;&lt;&lt;print $backpack[_fID].lowname&gt;&gt;@@ in your @@.pink;anus@@ finding a bit of resistance as it makes its way through giving you pleasure with each thrust&quot;
+                    ],
+                value: 12,
+            },
+            {
+                id: 5,
+                name: &quot;Caress nipples&quot;,
+                type: [&quot;secondary&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [],
+                for: [&quot;female&quot;, &quot;male&quot;],
+                text: [
+                    &quot;With your fingers you gently massage your @@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@@@.pink; nipples with regular motions, making them stiffen@@&quot;, 
+                    &quot;With your fingers you gently massage your @@.pink;stiffened@@ @@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@ @@.pink;nipples@@&quot;
+                    ],
+                value: 4,
+            },
+            {
+                id: 6,
+                name: &quot;Massage clitoris&quot;,
+                type: [&quot;secondary&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [],
+                for: [&quot;female&quot;],
+                text: [
+                    &quot;@@.pink;You gently massage your@@ @@.darkpink;clitoris@@ doing regular motions.&quot;, 
+                    &quot;@@.pink;You gently massage your@@ @@.darkpink;clitoris@@ doing regular motions. With that much @@.pink;stimulation@@, your @@.darkpink;clitoris@@ is @@.pink;swollen from arousal@@.&quot;
+                    ],
+                value: 8,
+            },
+            {
+                id: 7,
+                name: &quot;Massage anus&quot;,
+                type: [&quot;secondary&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [&quot;Insert fingers (Anus)&quot;],
+                for: [&quot;female&quot;, &quot;male&quot;],
+                text: [
+                    &quot;With your fingers @@.pink;you gently massage around your anus and start to @@@@.darkpink;feel good@@&quot;,
+                    &quot;With your fingers @@.pink;you gently massage around your anus and start, trying to @@@@.darkpink;feel better, taking care of not putting a finger in, yet@@&quot;
+                    ],
+                value: 4,
+            },
+            {
+                id: 8,
+                name: &quot;Caress penis&quot;,
+                type: [&quot;secondary&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [&quot;Insert fingers (Anus)&quot;],
+                for: [&quot;male&quot;],
+                text: [
+                    &quot;You start caressing your @@.pink;&lt;&lt;penissizechecker&gt;&gt; penis@@, building up arousal and starting to @@.darkpink;feel good@@&quot;,
+                    &quot;You start caressing your @@.pink;&lt;&lt;print ($arousal is true ? &#39;erected&#39; : &#39;semi-erected&#39;)&gt;&gt; &lt;&lt;penissizechecker&gt;&gt; penis@@ with pre-seminal liquid going out of it&quot;
+                    ],
+                value: 4,
+            },
+            {
+                id: 9,
+                name: &quot;Caress testicles&quot;,
+                type: [&quot;secondary&quot;, &quot;masturbation&quot;],
+                requirements: [],
+                excludes: [&quot;Insert fingers (Anus)&quot;],
+                for: [&quot;male&quot;],
+                text: [
+                    &quot;You gently massage your @@.pink;&lt;&lt;ballssizechecker&gt;&gt; testicles@@ with your fingers, with regular motions trying to feel better each time.&quot;
+                    ],
+                value: 4,
+            }
+        ]&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="statusnneeds" tags="widget nobr" position="850,850" size="100,100">&lt;&lt;widget &quot;restoreEnergy&quot;&gt;&gt; /* This is some energy thing. The energy know where is it at all times.  It knows this because it knows where it isn&#39;t. By subtracting where it is from where it isn&#39;t, or where it isn&#39;t from where it is - whichever is greater - it obtains a difference or deviation. The guidance subsystem uses deviation to generate corrective commands to drive the energy from a position where it is to a position where it isn&#39;t, and arriving at a position that it wasn&#39;t, it now is.*/
     &lt;&lt;set $energy += $args[0]&gt;&gt;
 
     &lt;&lt;set $energy to Math.clamp($energy, 0, $maxenergy)&gt;&gt;
@@ -3201,7 +3169,7 @@ Macro.add("dialogue", {
 
 &lt;&lt;/widget&gt;&gt;
 
-/* Who are you, who is so wise in the ways of science */</tw-passagedata><tw-passagedata pid="69" name="courtesy" tags="widget nobr" position="1100,850" size="100,100">/* If you think that this need code comment. Check your priorities D:. */
+/* Who are you, who is so wise in the ways of science */</tw-passagedata><tw-passagedata pid="68" name="courtesy" tags="widget nobr" position="975,850" size="100,100">/* If you think that this need code comment. Check your priorities D:. */
 &lt;&lt;widget &quot;courtesy&quot;&gt;&gt;
     &lt;&lt;switch $playervar.gender&gt;&gt;
         &lt;&lt;case &quot;male&quot;&gt;&gt;
@@ -3230,7 +3198,7 @@ Macro.add("dialogue", {
         &lt;&lt;case &quot;female&quot;&gt;&gt;
             Waitress
     &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="pccheckers" tags="widget nobr" position="1225,850" size="100,100">/% Some checkers that may and probably will change later on how it works. %/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="pccheckers" tags="widget nobr" position="1100,850" size="100,100">/% Some checkers that may and probably will change later on how it works. %/
 &lt;&lt;widget &quot;buttsizechecker&quot;&gt;&gt; /* Butt size checker */
 	&lt;&lt;if $playervar.buttsize eq 100&gt;&gt;
 		&lt;span class=&quot;lightgreen&quot;&gt;huge&lt;/span&gt;
@@ -3420,7 +3388,7 @@ Macro.add("dialogue", {
 
 	&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="pcsetters" tags="widget nobr" position="100,975" size="100,100">/% Character creation widgets and things that can or can&#39;t change later. %/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="pcsetters" tags="widget nobr" position="1225,850" size="100,100">/% Character creation widgets and things that can or can&#39;t change later. %/
 &lt;&lt;widget &quot;gendersetter&quot;&gt;&gt;
 	&lt;&lt;switch $playervar.gender&gt;&gt;
 		/*Female player*/
@@ -3433,7 +3401,6 @@ Macro.add("dialogue", {
 				vagina: true,
 				breast: true,
 				nipples: true,
-				clitoris: true,
 				throat: true,
 				hands: true,
 				tights: true,
@@ -3766,7 +3733,7 @@ Macro.add("dialogue", {
 			&lt;&lt;set $pSkills[$pSkills.length - 1].learningMod to 2&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="skills" tags="widget nobr" position="225,975" size="100,100">&lt;&lt;widget &quot;skillsIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="skills" tags="widget nobr" position="100,975" size="100,100">&lt;&lt;widget &quot;skillsIni&quot;&gt;&gt;
     &lt;&lt;set setup.skills to [
         {
             id: 0,
@@ -3861,7 +3828,7 @@ Macro.add("dialogue", {
     &lt;&lt;set $pSkills[_fSk].exp += Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/ ($arousal gte 80 ? 2 : 1))&gt;&gt;
     &lt;&lt;set $message to &quot;addedExp&quot;; $mExp to Math.round((_val * ($pSkills[_fSk].learningMod * $genSkillMod ))/ ($arousal gte 80 ? 2 : 1)); $mSkill to $pSkills[_fSk].name&gt;&gt;
     &lt;&lt;skillup&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="traits" tags="widget nobr" position="350,975" size="100,100">&lt;&lt;widget &quot;traitsInit&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="traits" tags="widget nobr" position="225,975" size="100,100">&lt;&lt;widget &quot;traitsInit&quot;&gt;&gt;
     &lt;&lt;set setup.traits to [
         {
             id: 0,
@@ -3894,7 +3861,7 @@ Macro.add("dialogue", {
 
         &lt;&lt;set $pTraits[_trait].level++&gt;&gt;
     &lt;&lt;/for&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Codex" tags="nobr widget" position="475,975" size="100,100">&lt;&lt;widget &quot;codexMain&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Codex" tags="nobr widget" position="350,975" size="100,100">&lt;&lt;widget &quot;codexMain&quot;&gt;&gt;
     @@#codexBody;&lt;&lt;cContentMain&gt;&gt;@@
     &lt;br&gt;
     &lt;&lt;codexButtons&gt;&gt;
@@ -4055,7 +4022,7 @@ Macro.add("dialogue", {
     &lt;&lt;checkbox &quot;$enableAutoToys&quot; false true autocheck&gt;&gt; Enable auto-storage of sex toys.
     &lt;br&gt;
     (Must change passage to update).
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="characterstatus" tags="widget nobr" position="600,975" size="100,100">&lt;&lt;widget &quot;charStatus&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="characterstatus" tags="widget nobr" position="475,975" size="100,100">&lt;&lt;widget &quot;charStatus&quot;&gt;&gt;
     &lt;fieldset class=&quot;charc&quot;&gt;
         &lt;legend class=&quot;centered&quot;&gt; Character Status &lt;/legend&gt;
 
@@ -4083,7 +4050,7 @@ Macro.add("dialogue", {
 
         &lt;fieldset class=&quot;charc&quot;&gt;
             &lt;legend&gt; Mouth info: &lt;/legend&gt;
-            You have a mouth that has a pair of lips. They &lt;&lt;if $playervar.virginity.mouth is true&gt;&gt;@@.green;haven&#39;t been touched@@.&lt;&lt;/if&gt;&gt;&lt;br&gt;
+            You have a mouth that has a pair of lips. &lt;&lt;if $playervar.virginity.mouth is true&gt;&gt;@@.green;You haven&#39;t performed any sex action with your mouth@@.&lt;&lt;/if&gt;&gt;&lt;br&gt;
             Your throat has a depth of @@.blue;&lt;&lt;print $playervar.throatdepth&gt;&gt;@@ cm and can comfortably insert objects up to @@.blue;&lt;&lt;print $playervar.throatcomfortinsert&gt;&gt;@@ cm in length and @@.blue;&lt;&lt;print $playervar.throatwidthcomfortinsert&gt;&gt;@@ cm width. 
             It &lt;&lt;if $playervar.virginity.throat is true&gt;&gt;@@.green;had no object in it before@@.&lt;&lt;/if&gt;&gt; &lt;&lt;if $playervar.gagreflex is true&gt;&gt;@@.green;You still have your gag reflex@@. &lt;&lt;else&gt;&gt; You don&#39;t have a gag reflex.&lt;&lt;/if&gt;&gt;
         &lt;/fieldset&gt;
@@ -4091,17 +4058,17 @@ Macro.add("dialogue", {
         &lt;&lt;if $playervar.gender is &quot;female&quot;&gt;&gt;
             &lt;fieldset class=&quot;charc&quot;&gt;
                 &lt;legend&gt;Breast info: &lt;/legend&gt;
-                    You have a pair of &lt;&lt;breastsizechecker&gt;&gt; breast. /*They can hold @@.blue;&lt;&lt;print $playervar.breastmilkmaxlevel&gt;&gt;@@ ml of milk //Disabled until used*/. Your breasts&lt;&lt;if $playervar.virginity.breast is true&gt;&gt; @@.green;have&#39;t been touched yet@@.&lt;&lt;/if&gt;&gt;
+                    You have a pair of &lt;&lt;breastsizechecker&gt;&gt; breast. /*They can hold @@.blue;&lt;&lt;print $playervar.breastmilkmaxlevel&gt;&gt;@@ ml of milk //Disabled until used*/. &lt;&lt;if $playervar.virginity.breast is true&gt;&gt; @@.green;You haven&#39;t performed any sex action with your breast@@.&lt;&lt;/if&gt;&gt;
                     &lt;br&gt; 
-                    Each breast has &lt;&lt;nipplesizechecker&gt;&gt; nipple and they are @@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@. Their size is @@.blue;&lt;&lt;print $playervar.nipplesize&gt;&gt;@@ cm. Your nipples &lt;&lt;if $playervar.virginity.nipples is true&gt;&gt; @@.green;haven&#39;t been touched yet@@. &lt;&lt;/if&gt;&gt;
+                    Each breast has &lt;&lt;nipplesizechecker&gt;&gt; nipple and they are @@.orange;&lt;&lt;print $playervar.nippletype&gt;&gt;@@. Their size is @@.blue;&lt;&lt;print $playervar.nipplesize&gt;&gt;@@ cm. &lt;&lt;if $playervar.virginity.nipples is true&gt;&gt;@@.green;You haven&#39;t performed any sex action with your nipples@@.&lt;&lt;/if&gt;&gt;
             &lt;/fieldset&gt;
 
             &lt;fieldset class=&quot;charc&quot;&gt;
                 &lt;legend&gt;Genitals info: &lt;/legend&gt;
-                    &lt;&lt;vagtightnesschecker&gt;&gt; It has a depth of @@.blue;&lt;&lt;print $playervar.vagdepth&gt;&gt;@@ cm, can insert objects up to @@.blue;&lt;&lt;print $playervar.vagcomfortinsert&gt;&gt;@@ cm in length and @@.blue;&lt;&lt;print $playervar.vagwidthcomfortinsert&gt;&gt;@@ cm width. &lt;&lt;if $playervar.virginity.vagina is true&gt;&gt; @@.green;You are still a virgin@@.&lt;&lt;/if&gt;&gt;
+                    &lt;&lt;vagtightnesschecker&gt;&gt; It has a depth of @@.blue;&lt;&lt;print $playervar.vagdepth&gt;&gt;@@ cm, can insert objects up to @@.blue;&lt;&lt;print $playervar.vagcomfortinsert&gt;&gt;@@ cm in length and @@.blue;&lt;&lt;print $playervar.vagwidthcomfortinsert&gt;&gt;@@ cm width. &lt;&lt;if $playervar.virginity.vagina is true&gt;&gt; @@.green;Your hymen is still intact@@.&lt;&lt;else&gt;&gt;@@.gray;&lt;&lt;print $playervar.virginity.vagina&gt;&gt;@@&lt;&lt;/if&gt;&gt;
                     &lt;&lt;if $playervar.cansquirt is true&gt;&gt;&lt;br&gt;@@.green;When you orgasm you expel liquids from it@@.&lt;&lt;/if&gt;&gt; 
                     &lt;br&gt;
-                    Your clitoris has a &lt;&lt;clitorissizechecker&gt;&gt;size and is @@.blue;&lt;&lt;print $playervar.clitorissize&gt;&gt;@@ cm in total. It &lt;&lt;if $playervar.virginity.clitoris is true&gt;&gt; @@.green;hasn&#39;t been touched yet@@. &lt;&lt;/if&gt;&gt;
+                    Your clitoris has a &lt;&lt;clitorissizechecker&gt;&gt;size and is @@.blue;&lt;&lt;print $playervar.clitorissize&gt;&gt;@@ cm in total.
             &lt;/fieldset&gt;
 
         &lt;&lt;elseif $playervar.gender is &quot;male&quot;&gt;&gt;
@@ -4116,12 +4083,12 @@ Macro.add("dialogue", {
 
         &lt;fieldset class=&quot;charc&quot;&gt;
             &lt;legend&gt; Butt info: &lt;/legend&gt;
-            Your butt is &lt;&lt;buttsizechecker&gt;&gt; and &lt;&lt;if $playervar.virginity.butt is true&gt;&gt; @@.green;hasn&#39;t been touched@@.&lt;&lt;/if&gt;&gt;
+            Your butt is &lt;&lt;buttsizechecker&gt;&gt; and &lt;&lt;if $playervar.virginity.butt is true&gt;&gt; @@.green;You haven&#39;t performed any sex action with your butt@@.&lt;&lt;/if&gt;&gt;
             &lt;br&gt;
             &lt;&lt;anustightnesschecker&gt;&gt; It has a depth of @@.blue;&lt;&lt;print $playervar.anusdepth&gt;&gt;@@ cm and can insert objects up to @@.blue;&lt;&lt;print $playervar.anuscomfortinsert&gt;&gt;@@ cm in length and @@.blue;&lt;&lt;print $playervar.anuswidthcomfortinsert&gt;&gt;@@ cm width. &lt;&lt;if $playervar.virginity.anus is true&gt;&gt; @@.green; It&#39;s still virgin@@.&lt;&lt;/if&gt;&gt;
         &lt;/fieldset&gt;
     &lt;/fieldset&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="skillbar" tags="widget nobr" position="725,975" size="100,100">/* Now that I know what I&#39;m doing it&#39;s just an skillbar.*/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="skillbar" tags="widget nobr" position="600,975" size="100,100">/* Now that I know what I&#39;m doing it&#39;s just an skillbar.*/
 &lt;&lt;widget &quot;skillbar&quot;&gt;&gt; 
     &lt;&lt;for _i to 0; _i lt $pSkills.length; _i++&gt;&gt;
 
@@ -4153,7 +4120,7 @@ Macro.add("dialogue", {
     &lt;h4 id=&quot;expnumber&quot; style=&quot;padding:0; margin:0;&quot;&gt;Exp: &lt;&lt;print _expval + &quot;/&quot; + _expleftval&gt;&gt;&lt;/h4&gt;
     &lt;/div&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="fruitsVeget" tags="widget nobr" position="850,975" size="100,100">&lt;&lt;widget &quot;setFruitsVeget&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="fruitsVeget" tags="widget nobr" position="725,975" size="100,100">&lt;&lt;widget &quot;setFruitsVeget&quot;&gt;&gt;
     &lt;&lt;set setup.food.fruits to [
         {
             id: 0,
@@ -4213,7 +4180,7 @@ Macro.add("dialogue", {
 
         },
     ]&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="generalIng" tags="widget nobr" position="975,975" size="100,100">&lt;&lt;widget &quot;setgeneralIng&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="generalIng" tags="widget nobr" position="850,975" size="100,100">&lt;&lt;widget &quot;setgeneralIng&quot;&gt;&gt;
     &lt;&lt;set setup.food.generalIng to [
         {
             id: 0,
@@ -4271,7 +4238,7 @@ Macro.add("dialogue", {
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="meat" tags="widget nobr" position="1100,975" size="100,100">&lt;&lt;widget &quot;setmeat&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="meat" tags="widget nobr" position="975,975" size="100,100">&lt;&lt;widget &quot;setmeat&quot;&gt;&gt;
     &lt;&lt;set setup.food.meat to [
         {
             id: 0,
@@ -4322,7 +4289,7 @@ Macro.add("dialogue", {
 
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="preparedfood" tags="widget nobr" position="1225,975" size="100,100">&lt;&lt;widget &quot;setprepfood&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="preparedfood" tags="widget nobr" position="1100,975" size="100,100">&lt;&lt;widget &quot;setprepfood&quot;&gt;&gt;
     &lt;&lt;set setup.food.preparedfood to [
         {
             id: 0,
@@ -4392,7 +4359,7 @@ Macro.add("dialogue", {
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="spices" tags="widget nobr" position="100,1100" size="100,100">&lt;&lt;widget &quot;setspices&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="spices" tags="widget nobr" position="1225,975" size="100,100">&lt;&lt;widget &quot;setspices&quot;&gt;&gt;
     &lt;&lt;set setup.food.spices to [
         {
             id: 0,
@@ -4406,7 +4373,7 @@ Macro.add("dialogue", {
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="foodshow" tags="widget nobr" position="225,1100" size="100,100">&lt;&lt;widget &quot;foodshow&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="foodshow" tags="widget nobr" position="100,1100" size="100,100">&lt;&lt;widget &quot;foodshow&quot;&gt;&gt;
     &lt;&lt;set _foodlist to State.getVar(&quot;setup.food.&quot;+ $args[0])&gt;&gt;
     &lt;&lt;set _n to [1, 2, 3, 4, 5]&gt;&gt;
     &lt;br&gt;
@@ -4429,7 +4396,7 @@ Macro.add("dialogue", {
     &lt;&lt;/for&gt;&gt;
     &lt;br&gt;
     &lt;br&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="foodpreparation" tags="widget nobr" position="350,1100" size="100,100">/* Note to myself: Remember to write the comments after you have finished these widgets. Because is a PITA to write them. Fuck. */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="foodpreparation" tags="widget nobr" position="225,1100" size="100,100">/* Note to myself: Remember to write the comments after you have finished these widgets. Because is a PITA to write them. Fuck. */
 /*These are just some for loops to check if the kitchen table has the ingredients of the selected recipe.*/
 &lt;&lt;widget &quot;selectrecipe&quot;&gt;&gt;
     &lt;fieldset id=&quot;fieldinline&quot;&gt;
@@ -4768,7 +4735,7 @@ Macro.add("dialogue", {
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
 
-/* Twenty dollars is twenty dollars. */</tw-passagedata><tw-passagedata pid="84" name="kitchenvisualizer" tags="widget nobr" position="475,1100" size="100,100">/% Just some for loops to display the stored food, nothing else.%/
+/* Twenty dollars is twenty dollars. */</tw-passagedata><tw-passagedata pid="83" name="kitchenvisualizer" tags="widget nobr" position="350,1100" size="100,100">/% Just some for loops to display the stored food, nothing else.%/
 
 &lt;&lt;widget &quot;foodVisu&quot;&gt;&gt;
     &lt;&lt;if passage() is &quot;fridge&quot;&gt;&gt;
@@ -4862,7 +4829,7 @@ Macro.add("dialogue", {
             &lt;div class=&quot;thindiv&quot;&gt;&lt;/div&gt;
         &lt;&lt;/for&gt;&gt;
     &lt;/fieldset&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="kitchenini" tags="widget nobr" position="600,1100" size="100,100">&lt;&lt;widget &quot;kitchenini&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="kitchenini" tags="widget nobr" position="475,1100" size="100,100">&lt;&lt;widget &quot;kitchenini&quot;&gt;&gt;
     &lt;&lt;kitchenvar&gt;&gt;
     &lt;&lt;foodIniWidgets&gt;&gt;
 
@@ -4893,7 +4860,7 @@ Macro.add("dialogue", {
     
     &lt;&lt;set setup.food to {}&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="preparationsteps" tags="widget nobr" position="725,1100" size="100,100">/* Just preparations steps and the button for it. Check if the type of the step is string or number. Does a shuffle and then the button is made.*/ 
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="preparationsteps" tags="widget nobr" position="600,1100" size="100,100">/* Just preparations steps and the button for it. Check if the type of the step is string or number. Does a shuffle and then the button is made.*/ 
 &lt;&lt;widget &quot;preparationsteps&quot;&gt;&gt;
         &lt;&lt;if typeof($recipesteps[$steps]) is &quot;string&quot;&gt;&gt;
             &lt;&lt;set _steps to []&gt;&gt;
@@ -4959,7 +4926,7 @@ Macro.add("dialogue", {
             &lt;&lt;/capture&gt;&gt;
             &lt;br&gt;
         &lt;&lt;/for&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="recipes" tags="widget nobr" position="850,1100" size="100,100">/%Making a recipe: Name, Raw Ingredients (Required ingredients), Extra ingredients (These are optional), defining ingredients (If they are needed. Ex: Chicken fillet with rice or pasta)
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="recipes" tags="widget nobr" position="725,1100" size="100,100">/%Making a recipe: Name, Raw Ingredients (Required ingredients), Extra ingredients (These are optional), defining ingredients (If they are needed. Ex: Chicken fillet with rice or pasta)
 Minimum skill level (Required to learn the recipe), Recomended skill level (To get &quot;Masterwork&quot; quality) and steps.%/
 &lt;&lt;widget &quot;setrecipes&quot;&gt;&gt;
     &lt;&lt;set _foodnameM to []&gt;&gt;
@@ -5075,7 +5042,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="storing" tags="widget nobr" position="975,1100" size="100,100">/% Stores food in their respective &quot;category&quot;. The first widget uses State.getVar so we can use one case for everyting instead of one case per each foodtype%/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="storing" tags="widget nobr" position="850,1100" size="100,100">/% Stores food in their respective &quot;category&quot;. The first widget uses State.getVar so we can use one case for everyting instead of one case per each foodtype%/
 &lt;&lt;widget &quot;storefood&quot;&gt;&gt;
     &lt;&lt;for _index range $backpack&gt;&gt;
         &lt;&lt;set _positb to $backpack.findIndex(x =&gt; x.name === _index.name)&gt;&gt;
@@ -5157,7 +5124,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;&lt;set $kitchentable.deleteAt(_positOut)&gt;&gt;
     &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="accesories" tags="widget nobr" position="1100,1100" size="100,100">&lt;&lt;widget &quot;accesories&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="accesories" tags="widget nobr" position="975,1100" size="100,100">&lt;&lt;widget &quot;accesories&quot;&gt;&gt;
 
     &lt;&lt;set setup.clothes.accesories to [
         {
@@ -5220,7 +5187,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         },
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="clothes_color" tags="widget nobr" position="1225,1100" size="100,100">&lt;&lt;widget &quot;CColorIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="clothes_color" tags="widget nobr" position="1100,1100" size="100,100">&lt;&lt;widget &quot;CColorIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.colors to {
         yellow: &quot;yellow&quot;,
         darkyellow: &quot;dark yellow&quot;,
@@ -5244,7 +5211,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         black: &quot;black&quot;,
 
     }&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="footwearIni" tags="widget nobr" position="100,1225" size="100,100">&lt;&lt;widget &quot;footwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="footwearIni" tags="widget nobr" position="1225,1100" size="100,100">&lt;&lt;widget &quot;footwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.footwear to [
         {
             id: 0,
@@ -5280,7 +5247,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="legwear" tags="widget nobr" position="225,1225" size="100,100">&lt;&lt;widget &quot;legwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="legwear" tags="widget nobr" position="100,1225" size="100,100">&lt;&lt;widget &quot;legwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.legwear to [
         {
             id: 0,
@@ -5316,7 +5283,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="lowerbody_outerwear" tags="widget nobr" position="350,1225" size="100,100">&lt;&lt;widget &quot;lowerb_outerwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="lowerbody_outerwear" tags="widget nobr" position="225,1225" size="100,100">&lt;&lt;widget &quot;lowerb_outerwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.lowerbouter to [
         {
             id: 0,
@@ -5391,7 +5358,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         },
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="lowerbody_underwear" tags="widget nobr" position="475,1225" size="100,100">&lt;&lt;widget &quot;lowerb_underwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="lowerbody_underwear" tags="widget nobr" position="350,1225" size="100,100">&lt;&lt;widget &quot;lowerb_underwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.lowerbunder to [
         {
             id: 0,
@@ -5454,7 +5421,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
 
     ]&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="shoes" tags="widget nobr" position="600,1225" size="100,100">&lt;&lt;widget &quot;shoesIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="shoes" tags="widget nobr" position="475,1225" size="100,100">&lt;&lt;widget &quot;shoesIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.shoes to [
         {
             id: 0,
@@ -5513,7 +5480,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="upperbody_outerwear" tags="widget nobr" position="725,1225" size="100,100">&lt;&lt;widget &quot;upperb_outerwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="upperbody_outerwear" tags="widget nobr" position="600,1225" size="100,100">&lt;&lt;widget &quot;upperb_outerwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.upperbouter to [
         {
             id: 0,
@@ -5636,7 +5603,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         },*/
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="upperbody_underwear" tags="widget nobr" position="850,1225" size="100,100">&lt;&lt;widget &quot;upperb_underwearIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="upperbody_underwear" tags="widget nobr" position="725,1225" size="100,100">&lt;&lt;widget &quot;upperb_underwearIni&quot;&gt;&gt;
     &lt;&lt;set setup.clothes.upperbunder to [
         {
             id: 0,
@@ -5675,7 +5642,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="clothes_replacer" tags="widget nobr" position="975,1225" size="100,100">/* These widgets are nearly the same as the one for the wardrobe. Just modified for the store. */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="clothes_replacer" tags="widget nobr" position="850,1225" size="100,100">/* These widgets are nearly the same as the one for the wardrobe. Just modified for the store. */
     &lt;&lt;widget &quot;csShow&quot;&gt;&gt;
         
         &lt;&lt;if !$pressedlStore&gt;&gt;
@@ -5766,7 +5733,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                 &lt;/div&gt;
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/for&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="sexshopReplacer" tags="widget nobr" position="1100,1225" size="100,100">&lt;&lt;widget &quot;ssShow&quot;&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="sexshopReplacer" tags="widget nobr" position="975,1225" size="100,100">&lt;&lt;widget &quot;ssShow&quot;&gt;&gt;
         
             &lt;div id=&quot;storeLinks&quot; class=&quot;storeLinks&quot;&gt;
                 &lt;&lt;ssLinks&gt;&gt;
@@ -5853,7 +5820,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                 &lt;/div&gt;
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/for&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="bodyparts" tags="widget nobr" position="1225,1225" size="100,100">&lt;&lt;widget &quot;bodyparts&quot;&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="bodyparts" tags="widget nobr" position="1100,1225" size="100,100">&lt;&lt;widget &quot;bodyparts&quot;&gt;&gt;
 
     &lt;&lt;set $bps.head to [
         { 
@@ -5989,7 +5956,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     ]&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="clotheschecker" tags="widget nobr" position="100,1350" size="100,100">/% The widget checks what clothes the player is using and what not. 
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="clotheschecker" tags="widget nobr" position="1225,1225" size="100,100">/% The widget checks what clothes the player is using and what not. 
  This comment is from 15/05/2020 when I finally &quot;finished&quot; the WandU system, each comment here was before is started commeting the wardrobe system. 
  This thing is and was a Pain in the Ass to make so not a long comment this one will be :D.
  Credits and Thanks a lot to DoL again, because this was heavely inspired and may look the same as the one of them. 
@@ -6229,7 +6196,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;set _clothes to $args[0]&gt;&gt;
 
     &lt;&lt;print _clothes.descriptor&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="clothesmain" tags="widget nobr" position="225,1350" size="100,100">/% Just initializing some widgets and things you know. %/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="clothesmain" tags="widget nobr" position="100,1350" size="100,100">/% Just initializing some widgets and things you know. %/
 /% Oh and btw if you somehow got to read everything I wrote, thank you :D. English isn&#39;t my first languague so I hope u can understand something. %/
 &lt;&lt;widget &quot;clothesinit&quot;&gt;&gt;
 
@@ -6427,7 +6394,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;&lt;set _ic to &quot;img/others/neutralIcon.png&quot;&gt;&gt;
     &lt;&lt;/if&gt;&gt;
     &lt;img @src=&quot;_ic&quot; style=&quot;max-width: 5%;&quot;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="inventory" tags="widget nobr" position="350,1350" size="100,100">&lt;&lt;widget &quot;inventory&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="inventory" tags="widget nobr" position="225,1350" size="100,100">&lt;&lt;widget &quot;inventory&quot;&gt;&gt;
     &lt;&lt;set _passage to passage()&gt;&gt;
     &lt;&lt;if $backpack[0]&gt;&gt;
         &lt;&lt;for _ibp to 0; _ibp lt $backpack.length; _ibp++&gt;&gt;
@@ -6462,7 +6429,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         Your backpack is empty.
     &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="iteminfo" tags="widget nobr" position="475,1350" size="100,100">&lt;&lt;widget &quot;iteminfo&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="iteminfo" tags="widget nobr" position="350,1350" size="100,100">&lt;&lt;widget &quot;iteminfo&quot;&gt;&gt;
     &lt;&lt;set _id to $args[0]&gt;&gt;
     &lt;&lt;set _slot to $args[1]&gt;&gt;
 
@@ -6503,7 +6470,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;&lt;set _ic to &quot;img/others/neutralIcon.png&quot;&gt;&gt;
     &lt;&lt;/if&gt;&gt;
     &lt;img @src=&quot;_ic&quot; style=&quot;max-width: 5%;&quot;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="wardrobemain" tags="widget nobr" position="600,1350" size="100,100">/* Wardrobe wear and undress widget.*/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="wardrobemain" tags="widget nobr" position="475,1350" size="100,100">/* Wardrobe wear and undress widget.*/
     &lt;&lt;widget &quot;wearMain&quot;&gt;&gt;
         &lt;&lt;set _wrSlot to $args[0]&gt;&gt;
         &lt;&lt;set _itemID to $args[1]&gt;&gt;
@@ -6786,7 +6753,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                 &lt;/div&gt;
             &lt;&lt;/for&gt;&gt;
         &lt;&lt;/for&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="wardrobe_replacer" tags="widget nobr" position="725,1350" size="100,100">/% Just some wardrobelinks that are put as a &lt;a&gt; to use them as functions and so the &quot;game&quot; can remember what was pressed when you leave the passage or refreshes%/
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="wardrobe_replacer" tags="widget nobr" position="600,1350" size="100,100">/% Just some wardrobelinks that are put as a &lt;a&gt; to use them as functions and so the &quot;game&quot; can remember what was pressed when you leave the passage or refreshes%/
 /% Credits to DoL.%/
 &lt;&lt;widget &quot;wardrobeLinks&quot;&gt;&gt;
     &lt;fieldset id=&quot;fieldinline&quot; style=&quot;min-width: 18.5em;&quot;&gt;
@@ -6975,21 +6942,33 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                                         &lt;&lt;set _bpIndex to 0&gt;&gt;
                                         &lt;&lt;set _itemPl to &quot;secondary&quot;&gt;&gt;
                                         &lt;&lt;set _part to &quot;Vag&quot;&gt;&gt;
-
+                                        &lt;&lt;if $wardrobeContent.accesories[_j].tLength gt $playervar.vagcomfortinsert and $wardrobeContent.accesories[_j].tWidth gt $playervar.vagwidthcomfortinsert&gt;&gt;
+                                            &lt;&lt;set _disable to true&gt;&gt;
+                                        &lt;&lt;else&gt;&gt;
+                                            &lt;&lt;set _disable to false&gt;&gt;
+                                        &lt;&lt;/if&gt;&gt;
                                     &lt;&lt;elseif $wardrobeContent.accesories[_j].category[3].wearable[_p] is &quot;anus&quot;&gt;&gt;
                                         &lt;&lt;set _body to &quot;lowerbody&quot;&gt;&gt;
                                         &lt;&lt;set _bpIndex to 1&gt;&gt;
                                         &lt;&lt;set _itemPl to &quot;primary&quot;&gt;&gt;
                                         &lt;&lt;set _part to &quot;Anus&quot;&gt;&gt;
+
+                                        &lt;&lt;if $wardrobeContent.accesories[_j].tLength gt $playervar.anuscomfortinsert and $wardrobeContent.accesories[_j].tWidth gt $playervar.anuswidthcomfortinsert&gt;&gt;
+                                            &lt;&lt;set _disable to true&gt;&gt;
+                                        &lt;&lt;else&gt;&gt;
+                                            &lt;&lt;set _disable to false&gt;&gt;
+                                        &lt;&lt;/if&gt;&gt;
                                     &lt;&lt;else&gt;&gt;
                                         &lt;&lt;continue&gt;&gt;
                                     &lt;&lt;/if&gt;&gt;
 
                                     &lt;&lt;capture _j _body _bpIndex _itemPl _part&gt;&gt;
-                                        &lt;&lt;button &quot;Put in(_part)&quot; &quot;wardrobe&quot;&gt;&gt;
-                                            &lt;&lt;set $wardrobeContent.accesories[_j].slot = _part&gt;&gt;
-                                            &lt;&lt;putSextoy _j _body _bpIndex _itemPl&gt;&gt;
-                                        &lt;&lt;/button&gt;&gt;
+                                        &lt;&lt;disable _disable&gt;&gt;
+                                            &lt;&lt;button &quot;Put in (_part)&quot; &quot;wardrobe&quot;&gt;&gt;
+                                                &lt;&lt;set $wardrobeContent.accesories[_j].slot = _part&gt;&gt;
+                                                &lt;&lt;putSextoy _j _body _bpIndex _itemPl&gt;&gt;
+                                            &lt;&lt;/button&gt;&gt;
+                                        &lt;&lt;/disable&gt;&gt;
                                     &lt;&lt;/capture&gt;&gt;
 
                                 &lt;&lt;/for&gt;&gt;
@@ -7007,7 +6986,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;&lt;/for&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="jobsinfo" tags="widget nobr" position="850,1350" size="100,100">&lt;&lt;widget &quot;jobsInfo&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="jobsinfo" tags="widget nobr" position="725,1350" size="100,100">&lt;&lt;widget &quot;jobsInfo&quot;&gt;&gt;
     &lt;&lt;set setup.frozenjar.workingHours to {
         openingHours : 11,
         closingHours : 3
@@ -7016,12 +6995,12 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         openingHours: 5,
         closingHours: 18
     }&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="payment" tags="widget nobr" position="975,1350" size="100,100">/* Just pay me! D: D: */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="payment" tags="widget nobr" position="850,1350" size="100,100">/* Just pay me! D: D: */
 &lt;&lt;widget &quot;payment&quot;&gt;&gt;
     &lt;&lt;set _hoursworked to $args[0]&gt;&gt;
 
     &lt;&lt;set $credits += $pJob.payment * _hoursworked&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="jobs" tags="widget nobr" position="1100,1350" size="100,100">&lt;&lt;widget &quot;jobsIni&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="jobs" tags="widget nobr" position="975,1350" size="100,100">&lt;&lt;widget &quot;jobsIni&quot;&gt;&gt;
     &lt;&lt;set setup.frozenjar to []&gt;&gt;
     &lt;&lt;set setup.blacknectar to []&gt;&gt;
     
@@ -7053,7 +7032,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             expreq: 120, 
         }
     ]&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="buttonswidgets" tags="widget nobr" position="1225,1350" size="100,100">&lt;&lt;widget &quot;pButton&quot;&gt;&gt; /* Some buttons for purchasing items. The first one is for grocery items and the second one for &quot;unique&quot; purchases (Limited to one, or in the case of clothes 2 :)). */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="buttonswidgets" tags="widget nobr" position="1100,1350" size="100,100">&lt;&lt;widget &quot;pButton&quot;&gt;&gt; /* Some buttons for purchasing items. The first one is for grocery items and the second one for &quot;unique&quot; purchases (Limited to one, or in the case of clothes 2 :)). */
     &lt;&lt;set _passage to passage()&gt;&gt;
     &lt;&lt;switch $args[0]&gt;&gt;
         &lt;&lt;case &quot;grocery&quot;&gt;&gt;
@@ -7163,7 +7142,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;&lt;/if&gt;&gt;
 
     &lt;&lt;/button&gt;&gt;@@.red.smollfont; +&lt;&lt;print _t&gt;&gt; Minutes@@
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="debugger" tags="widget nobr" position="100,1475" size="100,100">&lt;&lt;widget &quot;maxEnergyAr&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="debugger" tags="widget nobr" position="1225,1350" size="100,100">&lt;&lt;widget &quot;maxEnergyAr&quot;&gt;&gt;
     &lt;&lt;set $energy to $maxenergy&gt;&gt;
     &lt;&lt;if $args[0] is 1&gt;&gt;
         &lt;&lt;set $arousal to 100&gt;&gt;
@@ -7177,8 +7156,12 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;set $credits += $args[0]&gt;&gt;
     
     &lt;&lt;run console.log(&quot;Called widget addCredits. Added &quot; + $args[0] + &quot; credits.&quot;)&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="game_update" tags="widget nobr" position="225,1475" size="100,100">/%&lt;&lt;widget &quot;gameUpdate&quot;&gt;&gt;
-&lt;&lt;/widget&gt;&gt;%/</tw-passagedata><tw-passagedata pid="113" name="cleanbedroom" tags="widget nobr" position="350,1475" size="100,100">&lt;&lt;widget &quot;cleanbedroom&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="game_update" tags="widget nobr" position="100,1475" size="100,100">&lt;&lt;widget &quot;gameUpdate&quot;&gt;&gt;
+    &lt;&lt;set $version to updatedVersion&gt;&gt;
+    /*Variables added in 0.2.4*/
+    &lt;&lt;set $mastLimit to 2&gt;&gt;
+    &lt;&lt;sexIni&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="cleanbedroom" tags="widget nobr" position="225,1475" size="100,100">&lt;&lt;widget &quot;cleanbedroom&quot;&gt;&gt;
         &lt;&lt;if !$bedroomclean&gt;&gt;
             @@.lightblue.smollfont;You will need to clean your room and fix the bed before using it.@@
             &lt;br&gt;
@@ -7213,7 +7196,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             &lt;&lt;cleaningb &quot;Clean the bathroom&quot; 7 13 10 &quot;bathrclean&quot;&gt;&gt;
             &lt;br&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="learnrecipsteps" tags="nobr" position="475,1475" size="100,100">&lt;&lt;passNameRep &quot;Cook-ing for Newbies&quot;&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="learnrecipsteps" tags="nobr" position="350,1475" size="100,100">&lt;&lt;passNameRep &quot;Cook-ing for Newbies&quot;&gt;&gt;
     &lt;&lt;set _rID to setup.recipes.findIndex(x =&gt; x.name === $recipeTL)&gt;&gt;
     &lt;&lt;set $learnedrecipes.push(setup.recipes[_rID].name)&gt;&gt;
 
@@ -7228,7 +7211,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;button &quot;Finish&quot; &quot;learnrecipes&quot;&gt;&gt;
         &lt;&lt;timeattached 5&gt;&gt;
         &lt;&lt;unset $recipeTL&gt;&gt;
-    &lt;&lt;/button&gt;&gt;@@.red; +5 minutes@@</tw-passagedata><tw-passagedata pid="115" name="learnrecipes" tags="nobr" position="600,1475" size="100,100">/* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little &quot;checker&quot; for skill requirements.*/
+    &lt;&lt;/button&gt;&gt;@@.red; +5 minutes@@</tw-passagedata><tw-passagedata pid="114" name="learnrecipes" tags="nobr" position="475,1475" size="100,100">/* Pretty self explanatory I think. Just a for loop for each recipe that the setup.recipe has and a little &quot;checker&quot; for skill requirements.*/
     &lt;&lt;if $cookingskill lte 5 and visited() is 1&gt;&gt;
         &lt;&lt;passNameRep &quot;Waterdog Search Result&quot;&gt;&gt;
         You found some recipes in a webpage called &quot;Cook-ing for Newbies&quot;.
@@ -7274,7 +7257,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;&lt;/for&gt;&gt;
         &lt;br&gt;
         &lt;&lt;button &quot;Close tab&quot; &quot;browser&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="recipesInstructions" tags="widget nobr" position="725,1475" size="100,100">&lt;&lt;widget &quot;instructions&quot;&gt;&gt;
+    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="recipesInstructions" tags="widget nobr" position="600,1475" size="100,100">&lt;&lt;widget &quot;instructions&quot;&gt;&gt;
         &lt;&lt;set _steps to setup.recipes[_rID].steps&gt;&gt;
         
         &lt;&lt;switch $args[0]&gt;&gt;
@@ -7332,25 +7315,22 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                 &lt;br&gt;
                 4- Once everything is cooked, serve and enjoy!
         &lt;&lt;/switch&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="messager" tags="widget nobr" position="850,1475" size="100,100">&lt;&lt;widget &quot;messager&quot;&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="messager" tags="widget nobr" position="725,1475" size="100,100">&lt;&lt;widget &quot;messager&quot;&gt;&gt;
     &lt;&lt;if $message&gt;&gt;
         &lt;&lt;dialogue &quot;GLODEX&quot; &quot;green&quot;&gt;&gt;
             &lt;span class=&quot;red&quot;&gt;
             //
             &#39;&#39;
             &lt;&lt;switch $message&gt;&gt;
-                &lt;&lt;case &quot;noEnergy&quot;&gt;&gt;
-                    You don&#39;t have enough energy.
+                &lt;&lt;case &quot;noEne&quot;&gt;&gt;
+                    No enough energy left to do this action.
                 &lt;&lt;case &quot;noCredits&quot;&gt;&gt;
                     You don&#39;t have enough credits.
                 &lt;&lt;case &quot;space&quot;&gt;&gt;
                     You don&#39;t have enough space in your backpack to store so many items.
                 &lt;&lt;case &quot;succPurch&quot;&gt;&gt;
                     @@.green;Thank you for you purchase, please come back again!.@@
-                    &lt;br&gt;
-                &lt;&lt;case &quot;enough&quot;&gt;&gt;
-                    You already have enough of that item.
-                    &lt;br&gt;
+
                 &lt;&lt;case &quot;addedToSC&quot;&gt;&gt;
                     @@.green;Added to shopping cart!@@ Current amount to spend:
                         &lt;&lt;set _total to 0&gt;&gt;
@@ -7366,7 +7346,6 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 
                 &lt;&lt;case &quot;recipeLearned&quot;&gt;&gt;
                     @@.green;New recipe added to Glodex!@@
-                    &lt;br&gt;
                 &lt;&lt;case &quot;addedExp&quot;&gt;&gt;
                     @@.green;&lt;&lt;print String.format(&quot;+{0} {1} exp&quot;, $mExp, $mSkill)&gt;&gt;@@
                     &lt;&lt;unset $mExp; $mSkill&gt;&gt;
@@ -7374,7 +7353,8 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
                         @@.green;&lt;&lt;print String.format(&quot;+{0} {1} exp&quot;, $mExp1, $mSkill1)&gt;&gt;@@
                         &lt;&lt;unset $mExp1; $mSkill1&gt;&gt;
                     &lt;&lt;/if&gt;&gt;
-                    &lt;br&gt; 
+                &lt;&lt;default&gt;&gt;
+                    &lt;&lt;print $message&gt;&gt;
             &lt;&lt;/switch&gt;&gt;
             &#39;&#39;
             //
@@ -7409,7 +7389,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     //
 
     /* If you wan&#39;t to add any message to &quot;community messages&quot; so it can be displayed in-game please open an issue :).*/
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="othersWidgets" tags="widget nobr" position="975,1475" size="100,100">&lt;&lt;widget &quot;skintone&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="othersWidgets" tags="widget nobr" position="850,1475" size="100,100">&lt;&lt;widget &quot;skintone&quot;&gt;&gt;
     &lt;&lt;if $displayColorText is true&gt;&gt;
         &lt;span @class=&quot;$pSkinTone&quot; id =&quot;skinTone&quot;&gt;&lt;&lt;print $pSkinTone.toUpperFirst()&gt;&gt;&lt;/span&gt;.
     &lt;&lt;else&gt;&gt;
@@ -7420,7 +7400,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 /% All hail the RNG god. \[R]/ %/
 &lt;&lt;widget &quot;rngod&quot;&gt;&gt;
     &lt;&lt;set $rnggod to random(0,100)&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="purchasewidget" tags="widget nobr" position="1100,1475" size="100,100">&lt;&lt;widget &quot;purchase&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="purchasewidget" tags="widget nobr" position="975,1475" size="100,100">&lt;&lt;widget &quot;purchase&quot;&gt;&gt;
     &lt;&lt;passNameRep &quot;Cash Register&quot;&gt;&gt;
     &lt;&lt;set _total to 0&gt;&gt;
     &lt;&lt;set _deleteAm to 0&gt;&gt;
@@ -7519,7 +7499,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;/if&gt;&gt;
     &lt;&lt;button &quot;Back&quot; $args[0]&gt;&gt;&lt;&lt;/button&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="traveling" tags="widget nobr" position="1225,1475" size="100,100">&lt;&lt;widget &quot;map&quot;&gt;&gt;/* Hippity Hoppity, get off my property */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="traveling" tags="widget nobr" position="1100,1475" size="100,100">&lt;&lt;widget &quot;map&quot;&gt;&gt;/* Hippity Hoppity, get off my property */
         &lt;&lt;set _mID to setup.mapStreets.findIndex(x =&gt; x.place === passage())&gt;&gt;
 
         &lt;&lt;if _mID isnot -1&gt;&gt;
@@ -7613,15 +7593,14 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/for&gt;&gt;
 
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="PassageHeader" tags="nobr" position="100,1600" size="100,100">/%&lt;&lt;if saveUpdate is true&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="PassageHeader" tags="nobr" position="1225,1475" size="100,100">&lt;&lt;if $version isnot updatedVersion&gt;&gt;
         &lt;&lt;gameUpdate&gt;&gt;
-    
-        &lt;&lt;set saveUpdate to false&gt;&gt;
-    &lt;&lt;/if&gt;&gt;%/
+    &lt;&lt;/if&gt;&gt;
+
     &lt;&lt;daychange&gt;&gt;
     &lt;h2 class=&quot;passName&quot;&gt;&lt;/h2&gt;
     &lt;div class=&quot;passDiv&quot;&gt;&lt;/div&gt;
-    &lt;&lt;messager&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="PassageFooter" tags="nobr" position="225,1600" size="100,100">&lt;&lt;map&gt;&gt;
+    &lt;&lt;messager&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="PassageFooter" tags="nobr" position="100,1600" size="100,100">&lt;&lt;map&gt;&gt;
     &lt;&lt;if !$footerMessager&gt;&gt; 
         &lt;br&gt;
         &lt;br&gt;
@@ -7629,7 +7608,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;div&gt;
             &lt;&lt;footerMessager &quot;tips&quot;&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="passHWidget" tags="widget nobr" position="350,1600" size="100,100">&lt;&lt;widget &quot;passNameRep&quot;&gt;&gt;
+    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="passHWidget" tags="widget nobr" position="225,1600" size="100,100">&lt;&lt;widget &quot;passNameRep&quot;&gt;&gt;
         &lt;&lt;done&gt;&gt;
             &lt;&lt;replace .passName&gt;&gt;$args[0]&lt;&lt;/replace&gt;&gt;
             &lt;&lt;addclass .passDiv divisor&gt;&gt;
@@ -7649,7 +7628,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 
             &lt;&lt;unset $currDay&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="StoryCaption" tags="nobr" position="475,1600" size="100,100">&lt;div id=&quot;popUp&quot; class=&quot;popUp&quot;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="StoryCaption" tags="nobr" position="350,1600" size="100,100">&lt;div id=&quot;popUp&quot; class=&quot;popUp&quot;&gt;
     &lt;div id=&quot;popUpContent&quot;&gt;&lt;/div&gt;
     &lt;div id=&quot;popUpBottom&quot; style=&quot;margin-top: 2.5%;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7698,7 +7677,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;button &quot;Credits&quot;&gt;&gt;
         &lt;&lt;replacer &quot;credits&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="credits" tags="widget nobr" position="600,1600" size="100,100">&lt;&lt;widget &quot;creds&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="credits" tags="widget nobr" position="475,1600" size="100,100">&lt;&lt;widget &quot;creds&quot;&gt;&gt;
     Credits to:
     &lt;br&gt;
     @@.green;Nameless Magician(Proofreading)
@@ -7736,7 +7715,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         &lt;br&gt;
         Golden Leaf&#39;s Library original image by &quot;Gabriel Sollmann&quot; in &quot;Unsplash.com&quot;
     &lt;/div&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="replacer" tags="nobr widget" position="725,1600" size="100,100">/% Credits and Thanks a lot to DoL(once more, again :D) as I liked how they show some info in-game with a &quot;pop up&quot; box so I tried the same. %/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="replacer" tags="nobr widget" position="600,1600" size="100,100">/% Credits and Thanks a lot to DoL(once more, again :D) as I liked how they show some info in-game with a &quot;pop up&quot; box so I tried the same. %/
 /% Heavely inspired in them. Give that game a try ffs. %/
 /% It checks if the argument given exist, then if the var popupbox doesn&#39;t have the &quot;same value&quot; as the argument then it sets it and goes to the switch. %/
 /% The switch switches between the case status and probably(soon)other things. Replacing things here and there. adding and removing classes here and there.%/
@@ -7793,7 +7772,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 
 	&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="timesystem" tags="widget nobr" position="850,1600" size="100,100">/% This is just the time system, nothing to see go on. Its very easy. %/
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="timesystem" tags="widget nobr" position="725,1600" size="100,100">/% This is just the time system, nothing to see go on. Its very easy. %/
 /% Credits to the internet, as I saw how to do this there and I don&#39;t remember where, sorry :(. (VSCode stop trying to make my sad faces like if they had an open mouth :()) %/
 &lt;&lt;widget &quot;addminutes&quot;&gt;&gt; /* Add minutes*/ 
     &lt;&lt;run $time.setMinutes($time.getMinutes() + $args[0])&gt;&gt;
@@ -7894,13 +7873,14 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 
 &lt;&lt;widget &quot;sleep&quot;&gt;&gt;
     &lt;&lt;run $time.setMinutes(0)&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="generalThings" tags="widget nobr" position="975,1600" size="100,100">&lt;&lt;widget &quot;qsGT&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="generalThings" tags="widget nobr" position="850,1600" size="100,100">&lt;&lt;widget &quot;qsGT&quot;&gt;&gt;
     &lt;&lt;geneVariables&gt;&gt;
     &lt;&lt;importantNPCs&gt;&gt;
     &lt;&lt;jobsInfo&gt;&gt;
     &lt;&lt;mapStreets&gt;&gt;
     &lt;&lt;traitsInit&gt;&gt;
     &lt;&lt;skillsIni&gt;&gt;
+    &lt;&lt;sexIni&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;geneVariables&quot;&gt;&gt;
@@ -7931,6 +7911,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
     &lt;&lt;set $aroused to false&gt;&gt;
     &lt;&lt;set $memberships to []&gt;&gt;
     &lt;&lt;set $pdenyjob to []&gt;&gt;
+    &lt;&lt;set $mastLimit to 2&gt;&gt;
 
 &lt;&lt;/widget&gt;&gt;
 
@@ -8016,7 +7997,11 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
             connectedTo: [&quot;pioneerlane&quot;]
         }
     ]&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="images" tags="widget nobr" position="1100,1600" size="100,100">&lt;&lt;widget &quot;images&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;updateSave&quot;&gt;&gt;
+    &lt;&lt;set $version to updatedVersion&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="images" tags="widget nobr" position="975,1600" size="100,100">&lt;&lt;widget &quot;images&quot;&gt;&gt;
     &lt;&lt;set setup.icons to {
         &quot;stateD&quot;: {
             &quot;Morning&quot;: &quot;img/sidebar-icons/Morning.png&quot;,
@@ -8028,7 +8013,7 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
         }
     }&gt;&gt;
 
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StoryInit" tags="" position="1225,1600" size="100,100">&lt;&lt;clothesinit&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="StoryInit" tags="" position="1100,1600" size="100,100">&lt;&lt;clothesinit&gt;&gt;
 &lt;&lt;kitchenini&gt;&gt;
 &lt;&lt;images&gt;&gt;
 &lt;&lt;jobsIni&gt;&gt;
@@ -8106,8 +8091,8 @@ Minimum skill level (Required to learn the recipe), Recomended skill level (To g
 &lt;&lt;set setup.months to [
     &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;,
 	&quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;
-]&gt;&gt;</tw-passagedata><tw-passagedata pid="131" name="StorySubtitle" tags="" position="100,1725" size="100,100">~~By Khroma~~
-V0.2.3</tw-passagedata><tw-passagedata pid="132" name="Start" tags="" position="225,1725" size="100,100">&lt;img src=&quot;img/others/Logo.png&quot; id=&quot;logo&quot;&gt;
+]&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="StorySubtitle" tags="" position="1225,1600" size="100,100">~~By Khroma~~
+V&lt;&lt;print updatedVersion&gt;&gt;</tw-passagedata><tw-passagedata pid="131" name="Start" tags="" position="100,1725" size="100,100">&lt;img src=&quot;img/others/Logo.png&quot; id=&quot;logo&quot;&gt;
 !&lt;span class=&quot;green&quot; style=&quot;text-align: center;&quot;&gt; Disclaimer!&lt;/span&gt;
 !!@@.red;You need to be 18 years old to play this game. (Or whatever age you need to be to be considered legally an &quot;adult&quot; in your country)
 Every character, relationship, name, etc. is purely fictional and not related in any way to real life.
@@ -8119,7 +8104,7 @@ Credits to:
     Hanah Solo(Some ideas :D)
     Maakhan(Some ideas :D)
 @@
-Reminder: This game is in a very &quot;green&quot; state so every feature/thing in the game may/will change in the future. As of the current version(V0.2.3) there isn&#39;t a guarantee that your save will work with future updates since there isn&#39;t much content that needs a save compatibility system.
+Reminder: This game is in a very &quot;green&quot; state so every feature/thing in the game may/will change in the future. As of the current version(V0.2.4) there isn&#39;t a guarantee that your save will work with future updates since there isn&#39;t much content that needs a save compatibility system.
 There aren&#39;t too many things to do in the game(for now), So if you play, it means that you want to give feedback or ideas. Or maybe you just want to test it, so welcome :).
 &lt;&lt;button &quot;Accept&quot; &quot;charcreation1&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
 

@@ -7,6 +7,7 @@
     <<mapStreets>>
     <<traitsInit>>
     <<skillsIni>>
+    <<sexIni>>
 <</widget>>
 
 <<widget "geneVariables">>
@@ -37,6 +38,7 @@
     <<set $aroused to false>>
     <<set $memberships to []>>
     <<set $pdenyjob to []>>
+    <<set $mastLimit to 2>>
 
 <</widget>>
 
@@ -122,4 +124,8 @@
             connectedTo: ["pioneerlane"]
         }
     ]>>
+<</widget>>
+
+<<widget "updateSave">>
+    <<set $version to updatedVersion>>
 <</widget>>

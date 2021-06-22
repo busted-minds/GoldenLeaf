@@ -18,18 +18,8 @@ window.wikifier = function (widget, args, args2, args3) {
     }
 };
 
-window.updatedVersion = 1;
+window.updatedVersion = "0.2.4";
 Config.saves.id="golden-leaf";
-(!Config.saves.version ? Config.saves.version = 1 : '');
-
-Config.saves.onLoad = function () {
-    if (Config.saves.version !== window.updatedVersion) {
-        window.saveUpdate = true;
-        Config.saves.version = window.updatedVersion;
-    }
-};
-
-window.saveUpdate = true;
 
 var l = document.createElement('link');
 l.rel = "icon";

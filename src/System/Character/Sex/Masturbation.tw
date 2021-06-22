@@ -1,66 +1,65 @@
 :: masturbate [nobr]
     <<passNameRep "Masturbation">>
-    <<if !$sexLog and !$mastTime>>
+    <<if !$mastSession>>
+        <<set $mastSession to 0>>
+    <</if>>
+    <<if !$sexLog>>
         <<set $sexLog to []>>
-        <<set $mastTime to 0>>
     <</if>>
-    <<if $arousal gte 100>>
-        <<set $selectedSexOpt.RightHand to "Select an option">>
-        <<set $selectedSexOpt.LeftHand to "Select an option">>
-
-        <<timeattached $mastTime $mastTime*1.5 0.3 "chngMult">>
-        <<set $mastTime to 0>>
-    <</if>>
-    
     <<set _fID to $backpack.findIndex(x => x.category.some(y => y === "dildo"))>>
-    <<mastOpt>>
-    <<if $sexLog[0]>>
-        <<print $sexLog[0]>>
-        <br>
-        <br>
-    <</if>>
-    <<if $sexLog[1] and !$sexLog[0].includes("After reaching an orgasm")>>
-        <<print $sexLog[1]>>
-        <br>
-        <br>
-    <</if>>
 
-    Right Hand:
-    <<listbox "$selectedSexOpt.RightHand" autoselect>>
-        <<optionsfrom _masturoptions>>
-    <</listbox>>
-    <br>
-    <br>
-    Left Hand:
-    <<listbox "$selectedSexOpt.LeftHand" autoselect>>
-        <<optionsfrom _masturoptions>>
-    <</listbox>>
+    <<if _fID isnot -1 and $playervar.virginity.vagina is true and !$dispMess>>
+        <<dialogue "GLODEX" "green">>
+            @@.red;Warning@@@@.white;
+            <br>
+            Sex toy with penetration capabilities detected. Using it will break your hymen
+            <<if $backpack[_fID].tLength gt $playervar.vagcomfortinsert and $backpack[_fID].tWidth gt $playervar.vagwidthcomfortinsert>>
+                <br>
+                Detected sex toy with an uncomfortable size for your vagina, please refrain fom using it.
+            <</if>>
+            <<if $backpack[_fID].tLength gt $playervar.anuscomfortinsert and $backpack[_fID].tWidth gt $playervar.anuswidthcomfortinsert>>
+                <br>
+                Detected sex toy with an uncomfortable size for your anus, please refrain fom using it.
+            <</if>>
+            @@
+        <</dialogue>>
+        <<set $dispMess to true>>
+    <</if>>
+    <<sexWindow>>
+    <<if $mastSession eq $mastLimit>>
+        <<dialogue "GLODEX" "green">>
+            //@@.orange;Warning, high exhaustion levels.@@ 
+            <br>
+            You have reached your masturbation limit for this session. //
+        <</dialogue>>
 
+    <<else>>
+        <div class="sexOpts">
+            <<sexButtons "masturb">>
+            <div class="sexBttns"></div>
+        </div>
+    <</if>>
     <br>
     <br>
-    <<set _eRH to $selectedSexOpt.RightHand isnot "Select an option">>
-    <<set _eLH to $selectedSexOpt.LeftHand isnot "Select an option">>
-    <<button "Update" "masturbate">>
-        <<masturbation>>
-        <<set $mastTime++>>
-    <</button>><<if _eRH or _eLH>>@@.red;+1 Minute@@<</if>>
 
     <<button "Finish" $location>>
-        <<set $selectedSexOpt.RightHand to undefined>>
-        <<set $selectedSexOpt.LeftHand to undefined>>
         <<unset $sexLog>>
         <<unset $location>>
-        <<unset $mastTime>>
+        <<unset $dispMess>>
+        <<unset $aroused>>
+        <<unset $mastSession>>
+        <<unset $secAct>>
+        <<unset $mainAct>>
     <</button>>
 
 :: masturbutton [widget nobr]
 
 <<widget "masturbutton">>
-    <<disable $energy lt 35>>
+    <<disable $energy lt 30>>
         <div class="med-button">
         <<button "Masturbate" "masturbate">>
             <<set $location to passage()>>
         <</button>>
         </div>
-    <</disable>><<if $energy lt 35>>@@.lightred;You need some rest before trying to masturbate.@@<</if>>
+    <</disable>>
 <</widget>>

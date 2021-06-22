@@ -189,21 +189,33 @@
                                         <<set _bpIndex to 0>>
                                         <<set _itemPl to "secondary">>
                                         <<set _part to "Vag">>
-
+                                        <<if $wardrobeContent.accesories[_j].tLength gt $playervar.vagcomfortinsert and $wardrobeContent.accesories[_j].tWidth gt $playervar.vagwidthcomfortinsert>>
+                                            <<set _disable to true>>
+                                        <<else>>
+                                            <<set _disable to false>>
+                                        <</if>>
                                     <<elseif $wardrobeContent.accesories[_j].category[3].wearable[_p] is "anus">>
                                         <<set _body to "lowerbody">>
                                         <<set _bpIndex to 1>>
                                         <<set _itemPl to "primary">>
                                         <<set _part to "Anus">>
+
+                                        <<if $wardrobeContent.accesories[_j].tLength gt $playervar.anuscomfortinsert and $wardrobeContent.accesories[_j].tWidth gt $playervar.anuswidthcomfortinsert>>
+                                            <<set _disable to true>>
+                                        <<else>>
+                                            <<set _disable to false>>
+                                        <</if>>
                                     <<else>>
                                         <<continue>>
                                     <</if>>
 
                                     <<capture _j _body _bpIndex _itemPl _part>>
-                                        <<button "Put in(_part)" "wardrobe">>
-                                            <<set $wardrobeContent.accesories[_j].slot = _part>>
-                                            <<putSextoy _j _body _bpIndex _itemPl>>
-                                        <</button>>
+                                        <<disable _disable>>
+                                            <<button "Put in (_part)" "wardrobe">>
+                                                <<set $wardrobeContent.accesories[_j].slot = _part>>
+                                                <<putSextoy _j _body _bpIndex _itemPl>>
+                                            <</button>>
+                                        <</disable>>
                                     <</capture>>
 
                                 <</for>>

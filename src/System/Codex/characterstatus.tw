@@ -28,7 +28,7 @@
 
         <fieldset class="charc">
             <legend> Mouth info: </legend>
-            You have a mouth that has a pair of lips. They <<if $playervar.virginity.mouth is true>>@@.green;haven't been touched@@.<</if>><br>
+            You have a mouth that has a pair of lips. <<if $playervar.virginity.mouth is true>>@@.green;You haven't performed any sex action with your mouth@@.<</if>><br>
             Your throat has a depth of @@.blue;<<print $playervar.throatdepth>>@@ cm and can comfortably insert objects up to @@.blue;<<print $playervar.throatcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.throatwidthcomfortinsert>>@@ cm width. 
             It <<if $playervar.virginity.throat is true>>@@.green;had no object in it before@@.<</if>> <<if $playervar.gagreflex is true>>@@.green;You still have your gag reflex@@. <<else>> You don't have a gag reflex.<</if>>
         </fieldset>
@@ -36,17 +36,17 @@
         <<if $playervar.gender is "female">>
             <fieldset class="charc">
                 <legend>Breast info: </legend>
-                    You have a pair of <<breastsizechecker>> breast. /*They can hold @@.blue;<<print $playervar.breastmilkmaxlevel>>@@ ml of milk //Disabled until used*/. Your breasts<<if $playervar.virginity.breast is true>> @@.green;have't been touched yet@@.<</if>>
+                    You have a pair of <<breastsizechecker>> breast. /*They can hold @@.blue;<<print $playervar.breastmilkmaxlevel>>@@ ml of milk //Disabled until used*/. <<if $playervar.virginity.breast is true>> @@.green;You haven't performed any sex action with your breast@@.<</if>>
                     <br> 
-                    Each breast has <<nipplesizechecker>> nipple and they are @@.orange;<<print $playervar.nippletype>>@@. Their size is @@.blue;<<print $playervar.nipplesize>>@@ cm. Your nipples <<if $playervar.virginity.nipples is true>> @@.green;haven't been touched yet@@. <</if>>
+                    Each breast has <<nipplesizechecker>> nipple and they are @@.orange;<<print $playervar.nippletype>>@@. Their size is @@.blue;<<print $playervar.nipplesize>>@@ cm. <<if $playervar.virginity.nipples is true>>@@.green;You haven't performed any sex action with your nipples@@.<</if>>
             </fieldset>
 
             <fieldset class="charc">
                 <legend>Genitals info: </legend>
-                    <<vagtightnesschecker>> It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects up to @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;You are still a virgin@@.<</if>>
+                    <<vagtightnesschecker>> It has a depth of @@.blue;<<print $playervar.vagdepth>>@@ cm, can insert objects up to @@.blue;<<print $playervar.vagcomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.vagwidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.vagina is true>> @@.green;Your hymen is still intact@@.<<else>>@@.gray;<<print $playervar.virginity.vagina>>@@<</if>>
                     <<if $playervar.cansquirt is true>><br>@@.green;When you orgasm you expel liquids from it@@.<</if>> 
                     <br>
-                    Your clitoris has a <<clitorissizechecker>>size and is @@.blue;<<print $playervar.clitorissize>>@@ cm in total. It <<if $playervar.virginity.clitoris is true>> @@.green;hasn't been touched yet@@. <</if>>
+                    Your clitoris has a <<clitorissizechecker>>size and is @@.blue;<<print $playervar.clitorissize>>@@ cm in total.
             </fieldset>
 
         <<elseif $playervar.gender is "male">>
@@ -61,7 +61,7 @@
 
         <fieldset class="charc">
             <legend> Butt info: </legend>
-            Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;hasn't been touched@@.<</if>>
+            Your butt is <<buttsizechecker>> and <<if $playervar.virginity.butt is true>> @@.green;You haven't performed any sex action with your butt@@.<</if>>
             <br>
             <<anustightnesschecker>> It has a depth of @@.blue;<<print $playervar.anusdepth>>@@ cm and can insert objects up to @@.blue;<<print $playervar.anuscomfortinsert>>@@ cm in length and @@.blue;<<print $playervar.anuswidthcomfortinsert>>@@ cm width. <<if $playervar.virginity.anus is true>> @@.green; It's still virgin@@.<</if>>
         </fieldset>

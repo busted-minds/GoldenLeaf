@@ -103,7 +103,7 @@
         <<print either("You see a group of people talking while walking.", "You see some cars passing by.", "You can see a bus making a stop.")>>
 
     <<else>>
-        <<if !$time.getHours() gte setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours>>
+        <<if !$time.getHours() gt setup.frozenjar.workingHours.closingHours and !$time.getHours() lt setup.frozenjar.workingHours.openingHours>>
             Frozen Jar it's still open and it appears to be quite active
         <</if>>
         It's a bit dark but, you can still see people walking around and, although few, some cars.
@@ -111,7 +111,7 @@
     <br>
     <<disable $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>
         <<button "Enter Frozen Jar" "frozenjar">><</button>>
-    <</disable>><<if $time.getHours() gte setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
+    <</disable>><<if $time.getHours() gt setup.frozenjar.workingHours.closingHours and $time.getHours() lt setup.frozenjar.workingHours.openingHours>>You see a sign that says: We are open from 11 AM to 3 AM.<</if>>
 
     <br>
     <br>

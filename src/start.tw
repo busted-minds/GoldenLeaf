@@ -3,7 +3,7 @@ Golden Leaf
 
 :: StorySubtitle
 ~~By Khroma~~
-V0.2.3
+V<<print updatedVersion>>
 
 :: StoryData
 {
@@ -25,7 +25,7 @@ Credits to:
     Hanah Solo(Some ideas :D)
     Maakhan(Some ideas :D)
 @@
-Reminder: This game is in a very "green" state so every feature/thing in the game may/will change in the future. As of the current version(V0.2.3) there isn't a guarantee that your save will work with future updates since there isn't much content that needs a save compatibility system.
+Reminder: This game is in a very "green" state so every feature/thing in the game may/will change in the future. As of the current version(V0.2.4) there isn't a guarantee that your save will work with future updates since there isn't much content that needs a save compatibility system.
 There aren't too many things to do in the game(for now), So if you play, it means that you want to give feedback or ideas. Or maybe you just want to test it, so welcome :).
 <<button "Accept" "charcreation1">><</button>>
 

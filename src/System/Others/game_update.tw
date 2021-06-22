@@ -1,4 +1,8 @@
 :: game_update [widget nobr]
 
-/%<<widget "gameUpdate">>
-<</widget>>%/
+<<widget "gameUpdate">>
+    <<set $version to updatedVersion>>
+    /*Variables added in 0.2.4*/
+    <<set $mastLimit to 2>>
+    <<sexIni>>
+<</widget>>

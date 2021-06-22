@@ -36,13 +36,18 @@
         <div id="insidelist">
             <<set _sleeptime to {"2 hours, +40 energy": 2, "4 hours, +60 energy": 4, "6 hours, +80 energy": 6, "8 hours, +100 energy": 8}>>
             Sleeping time:
-            <<listbox "_time" autoselect>>
+            <<listbox "_time">>
                 <<optionsfrom _sleeptime>>
             <</listbox>>
             <br>
-            <<set _ene to (_time*10)+20>>
             <div class="med-button">
-                <<button "Sleep" "bed">><<restoreEnergy _ene>><<sleep>><<timeattached _time*60 0>><</button>>
+                <<button "Sleep" "bed">>
+                    <<set _ene to (_time*10)+20>>
+                    <<restoreEnergy _ene>>
+                    <<sleep>>
+                    <<timeattached _time*60 0>>
+                    <<unset _time>>
+                <</button>>
             </div>
         </div>
     </div>
@@ -50,13 +55,16 @@
         <div id="insidelist">
             <<set _relaxtime to {"5 minutes, +2 energy": 5, "15 minutes, +6 energy": 15, "30 minutes, +12 energy": 30, "1 hour, +24 energy": 60}>>
             Relaxing time:
-            <<listbox "_rtime" autoselect>>
+            <<listbox "_rtime">>
                 <<optionsfrom _relaxtime>>
             <</listbox>>
             <br>
-            <<set _rene to _rtime * 0.4>>
             <div class="med-button">
-                <<button "Relax" "bed">><<restoreEnergy _rene>><<timeattached _rtime 0>><</button>>
+                <<button "Relax" "bed">>
+                    <<set _rene to _rtime * 0.4>>
+                    <<restoreEnergy _rene>>
+                    <<timeattached _rtime 0>>
+                <</button>>
             </div>
         </div>
     </div>
