@@ -1,6 +1,6 @@
 # Welcome to the Golden Leaf repository.
 
-Current public Version: **V0.2.3**
+Current public Version: **V0.2.4**
 
 Current development Version: **V0.2.4**
 
