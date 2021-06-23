@@ -1572,6 +1572,9 @@ Macro.add("dialogue", {
             &lt;&lt;/replace&gt;&gt;
         &lt;&lt;/button&gt;&gt;
     &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="coffeshop" tags="nobr" position="1225,225" size="100,100">&lt;&lt;passNameRep &quot;Black Nectar Corner&quot;&gt;&gt;
+    &lt;&lt;if $time.getHours() is setup.blacknectar.workingHours.openingHours and $workedhours is $pJob.hoursreq&gt;&gt;
+        &lt;&lt;unset $workedhours&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
     &lt;img src=&quot;img\placesimg\coffeshop.png&quot; style=&quot;width: 20em;&quot;&gt;
     &lt;br&gt;
     &lt;div id=&quot;aW&quot;&gt;
