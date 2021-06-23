@@ -16,7 +16,7 @@
     <</disable>><<if $time.getHours() gte 18 and $time.getHours() lt 7>>//You see a sign that says: We open at 7 AM.// <</if>>
     
     <br>
-    <<if $time.getHours() lte 3 and $time.getMinutes() lte 20>>
+    <<if $time.getHours() lte 3 or $time.getHours() gte 18>>
         <<set _open to true>>
     <</if>>
     <<disable !_open>>

@@ -18,7 +18,7 @@ window.wikifier = function (widget, args, args2, args3) {
     }
 };
 
-window.updatedVersion = "0.2.4";
+window.updatedVersion = "0.2.4.1";
 Config.saves.id="golden-leaf";
 
 var l = document.createElement('link');

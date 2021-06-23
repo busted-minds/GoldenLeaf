@@ -2311,7 +2311,7 @@ Macro.add("dialogue", {
     &lt;&lt;/disable&gt;&gt;&lt;&lt;if $time.getHours() gte 18 and $time.getHours() lt 7&gt;&gt;//You see a sign that says: We open at 7 AM.// &lt;&lt;/if&gt;&gt;
     
     &lt;br&gt;
-    &lt;&lt;if $time.getHours() lte 3 and $time.getMinutes() lte 20&gt;&gt;
+    &lt;&lt;if $time.getHours() lte 3 or $time.getHours() gte 18&gt;&gt;
         &lt;&lt;set _open to true&gt;&gt;
     &lt;&lt;/if&gt;&gt;
     &lt;&lt;disable !_open&gt;&gt;

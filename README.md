@@ -1,8 +1,8 @@
 # Welcome to the Golden Leaf repository.
 
-Current public Version: **V0.2.4**
+Current public Version: **V0.2.4.1**
 
-Current development Version: **V0.2.4**
+Current development Version: **V0.2.4.1**
 
 **[Play the game](https://gampsi.github.io/GoldenLeaf/GoldenLeaf.html) (Online version)**
 
