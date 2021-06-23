@@ -1572,7 +1572,7 @@ Macro.add("dialogue", {
             &lt;&lt;/replace&gt;&gt;
         &lt;&lt;/button&gt;&gt;
     &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="coffeshop" tags="nobr" position="1225,225" size="100,100">&lt;&lt;passNameRep &quot;Black Nectar Corner&quot;&gt;&gt;
-    &lt;&lt;if $time.getHours() is setup.blacknectar.workingHours.openingHours and $workedhours is $pJob.hoursreq&gt;&gt;
+    &lt;&lt;if $time.getHours() gte setup.blacknectar.workingHours.openingHours and $workedhours is $pJob.hoursreq&gt;&gt;
         &lt;&lt;unset $workedhours&gt;&gt;
     &lt;&lt;/if&gt;&gt;
     &lt;img src=&quot;img\placesimg\coffeshop.png&quot; style=&quot;width: 20em;&quot;&gt;
@@ -1969,7 +1969,7 @@ Macro.add("dialogue", {
     &lt;br&gt;
     &lt;br&gt;
     &lt;&lt;button &quot;Back&quot; &quot;golbrowpath&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="frozenjar" tags="nobr" position="350,475" size="100,100">&lt;&lt;passNameRep &quot;Frozen Jar&quot;&gt;&gt;
-    &lt;&lt;if $time.getHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq&gt;&gt;
+    &lt;&lt;if $time.getHours() gte setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq&gt;&gt;
         &lt;&lt;unset $workedhours&gt;&gt;
     &lt;&lt;/if&gt;&gt;
     /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) &quot;lore&quot; or story it&#39;s just not my forte. */

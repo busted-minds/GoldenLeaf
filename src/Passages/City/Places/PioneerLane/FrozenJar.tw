@@ -1,6 +1,6 @@
 :: frozenjar [nobr]
     <<passNameRep "Frozen Jar">>
-    <<if $time.getHours() is setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
+    <<if $time.getHours() gte setup.frozenjar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
         <<unset $workedhours>>
     <</if>>
     /* If you think I liked writing everything here, you were wrong. I enjoyed making the coding part but writing some(If you call 227 lines here, with aprox of 160 being plain text some...) "lore" or story it's just not my forte. */

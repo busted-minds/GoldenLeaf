@@ -1,6 +1,6 @@
 :: coffeshop [nobr]
     <<passNameRep "Black Nectar Corner">>
-    <<if $time.getHours() is setup.blacknectar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
+    <<if $time.getHours() gte setup.blacknectar.workingHours.openingHours and $workedhours is $pJob.hoursreq>>
         <<unset $workedhours>>
     <</if>>
     <img src="img\placesimg\coffeshop.png" style="width: 20em;">
