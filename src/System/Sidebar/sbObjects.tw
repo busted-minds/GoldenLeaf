@@ -52,42 +52,35 @@
 
 :: credits [widget nobr]
 <<widget "creds">>
-    Credits to:
+    Powered By:
     <br>
-    @@.green;Nameless Magician(Proofreading)
-    <br>
-    Sorter(Proofreading)
-    <br>
-    Hanah Solo(Some ideas :D)
-    <br>
-    Maakhan(Some ideas :D)
-    @@
+    <a href="https://busted-minds.github.io">'@@.green;Busted Minds</a>
     <br>
     Image credits:
     <div class="imgCred">
-        Frozen Jar original image by "De an Su" in "Unsplash.com"
+        Frozen Jar original image by "Unsplash.com"
         <br>
         Shopping Center original image by "Jorge Fernández Salas" in "Unsplash.com"
         <br>
-        Sex Shop original image by "David Len" in "Unsplash.com"
+        Sex Shop original image by "Unsplash.com"
         <br>
-        Clothes Store original image by "Ashim D'Silva" in "Unsplash.com"
+        Clothes Store original image by "Unsplash.com"
         <br>
-        College original image by "Parker Gibbons" in "Unsplash.com"
+        College original image by "Unsplash.com"
         <br>
-        Living room original image by "Kara Eads" in "Unsplash.com"
+        Living room original image by "Unsplash.com"
         <br>
-        Bus original image by "Ant Rozetsky" in "Unsplash.com"
+        Bus original image by "Unsplash.com"
         <br>
-        Grocery store original image by "gemma" in "Unsplash.com"
+        Grocery store original image by "Unsplash.com"
         <br>
-        Park original image by "Srecko Skrobic" in "Unsplash.com"
+        Park original image by "Unsplash.com"
         <br>
-        Black Nectar Coffe original image by "Petr Sevcovic" in "Unsplash.com"
+        Black Nectar Coffe original image by "Unsplash.com"
         <br>
-        Alexandra's Gym original image by "Humphrey Muleba" in "Unsplash.com"
+        Alexandra's Gym original image by "Unsplash.com"
         <br>
-        Golden Leaf's Library original image by "Gabriel Sollmann" in "Unsplash.com"
+        Golden Leaf's Library original image by "Unsplash.com"
     </div>
 <</widget>>
 
